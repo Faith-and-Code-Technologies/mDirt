@@ -1,9 +1,19 @@
-from ui import Ui_MainWindow
-from select_item import Ui_Form
-from PySide6.QtWidgets import QMainWindow, QApplication, QFileDialog, QWidget, QMessageBox
-from PySide6.QtGui import QPixmap, QImage
+import ast
+import datetime
+import json
+import os
+import re
+import shutil
+import sys
+
 from PySide6.QtCore import Qt
-import sys, os, json, datetime, re, shutil, ast
+from PySide6.QtGui import QImage, QPixmap
+from PySide6.QtWidgets import (QApplication, QFileDialog, QMainWindow,
+                               QMessageBox, QWidget)
+
+from select_item import Ui_Form
+from ui import Ui_MainWindow
+
 
 def alert(message):
     messageBox = QMessageBox()
@@ -13,13 +23,40 @@ def alert(message):
     messageBox.setStandardButtons(QMessageBox.StandardButton.Ok)
     messageBox.exec()
 
+
 def checkInputValid(input_, type_):
-    return "empty" if not input_.text() else ("type" if type_ == "strict" and (not input_.text().islower() or any(
-        char.isspace() or char.isdigit() for char in input_.text())) else ("valid" if type_ == "strict" else (
-        "valid" if type_ == "string" and re.match(r'^[^<>:\"/\\|?*\x00-\x1F]+$',
-                                                  input_.text()) and input_.text().strip() != "" else (
-            "type" if type_ == "string" else (
-                "valid" if type_ == "integer" and input_.text().isdigit() else "type")))))
+    return (
+        "empty"
+        if not input_.text()
+        else (
+            "type"
+            if type_ == "strict"
+            and (
+                not input_.text().islower()
+                or any(char.isspace() or char.isdigit() for char in input_.text())
+            )
+            else (
+                "valid"
+                if type_ == "strict"
+                else (
+                    "valid"
+                    if type_ == "string"
+                    and re.match(r"^[^<>:\"/\\|?*\x00-\x1F]+$", input_.text())
+                    and input_.text().strip() != ""
+                    else (
+                        "type"
+                        if type_ == "string"
+                        else (
+                            "valid"
+                            if type_ == "integer" and input_.text().isdigit()
+                            else "type"
+                        )
+                    )
+                )
+            )
+        )
+    )
+
 
 class App(QMainWindow):
     def __init__(self):
@@ -72,7 +109,9 @@ class App(QMainWindow):
         self.ui.blockTextureButtonBack.clicked.connect(lambda: self.getBlockTexture(2))
         self.ui.blockTextureButtonRight.clicked.connect(lambda: self.getBlockTexture(3))
         self.ui.blockTextureButtonFront.clicked.connect(lambda: self.getBlockTexture(4))
-        self.ui.blockTextureButtonBottom.clicked.connect(lambda: self.getBlockTexture(5))
+        self.ui.blockTextureButtonBottom.clicked.connect(
+            lambda: self.getBlockTexture(5)
+        )
 
         self.ui.blockModel.activated.connect(self.getBlockModel)
 
@@ -111,8 +150,8 @@ class App(QMainWindow):
         self.ui.packGenerate.clicked.connect(self.generateDataPack)
 
     def setupData(self):
-        self.mainDirectory = f'{os.path.dirname(os.path.abspath(__file__))}\\..'
-        self.data = json.load(open(f'{self.mainDirectory}\\lib\\data.json', 'r'))
+        self.mainDirectory = f"{os.path.dirname(os.path.abspath(__file__))}\\.."
+        self.data = json.load(open(f"{self.mainDirectory}\\lib\\data.json", "r"))
 
         self.blocks = {}
         self.items = {}
@@ -131,14 +170,19 @@ class App(QMainWindow):
         \n"""
 
     def parseCMD(self, num):
-        if checkInputValid(self.ui.packCMDPrefix, "integer") == "empty": alert("Pack CMD Prefix is empty!"); return "error"
-        if checkInputValid(self.ui.packCMDPrefix, "integer") == "type": alert("Pack CMD Prefix has unsupported characters!"); return "error"
-        elif checkInputValid(self.ui.packCMDPrefix, "integer") == "valid": self.packCMDPrefix = self.ui.packCMDPrefix.text()
+        if checkInputValid(self.ui.packCMDPrefix, "integer") == "empty":
+            alert("Pack CMD Prefix is empty!")
+            return "error"
+        if checkInputValid(self.ui.packCMDPrefix, "integer") == "type":
+            alert("Pack CMD Prefix has unsupported characters!")
+            return "error"
+        elif checkInputValid(self.ui.packCMDPrefix, "integer") == "valid":
+            self.packCMDPrefix = self.ui.packCMDPrefix.text()
 
         strNum = str(num)
         numLen = len(strNum)
         zeros = 7 - len(self.packCMDPrefix) - numLen
-        return f'{self.packCMDPrefix}{'0' * zeros}{strNum}'
+        return f"{self.packCMDPrefix}{'0' * zeros}{strNum}"
 
     #######################
     # IMPORT & EXPORT     #
@@ -158,31 +202,34 @@ class App(QMainWindow):
                     "author": self.ui.packAuthor.text(),
                     "cmdPrefix": self.ui.packCMDPrefix.text(),
                     "description": self.ui.packDescription.text(),
-                    "version": self.ui.packVersion.currentText()
+                    "version": self.ui.packVersion.currentText(),
                 },
                 "elements": {
                     "blocks": self.blocks,
                     "items": self.items,
-                    "recipes": self.recipes
-                }
-            }
+                    "recipes": self.recipes,
+                },
+            },
         }
-        file, _ = QFileDialog.getSaveFileName(self, "Save mDirt Project", "", "mDirt File (*.mdrt)")
+        file, _ = QFileDialog.getSaveFileName(
+            self, "Save mDirt Project", "", "mDirt File (*.mdrt)"
+        )
 
         if file:
-            with open(file, 'w') as f:
+            with open(file, "w") as f:
                 json.dump(data, f, indent=4)
 
     def importProject(self, version="2.0.0"):
-        file, _ = QFileDialog.getOpenFileName(self, "Open mDirt Project", "", "mDirt File (*.mdrt)")
+        file, _ = QFileDialog.getOpenFileName(
+            self, "Open mDirt Project", "", "mDirt File (*.mdrt)"
+        )
 
         if file:
-            with open(file, 'r') as f:
+            with open(file, "r") as f:
                 data = json.load(f)
         else:
             alert("Please Select a Valid File!")
             return
-
 
         if data.get("file_type") != "mDirtProjectData":
             alert("Invalid File!")
@@ -201,9 +248,12 @@ class App(QMainWindow):
         self.items = data["content"]["elements"]["items"]
         self.recipes = data["content"]["elements"]["recipes"]
 
-        for block in self.blocks: self.ui.blockList.addItem(self.blocks[block]["name"])
-        for item in self.items: self.ui.itemList.addItem(self.items[item]["name"])
-        for recipe in self.recipes: self.ui.recipeList.addItem(self.recipes[recipe]["name"])
+        for block in self.blocks:
+            self.ui.blockList.addItem(self.blocks[block]["name"])
+        for item in self.items:
+            self.ui.itemList.addItem(self.items[item]["name"])
+        for recipe in self.recipes:
+            self.ui.recipeList.addItem(self.recipes[recipe]["name"])
 
     #######################
     # BLOCKS TAB          #
@@ -212,23 +262,38 @@ class App(QMainWindow):
     def getBlockModel(self):
         if self.ui.blockModel.currentText() == "Custom":
             fileDialog = QFileDialog()
-            filePath, _ = fileDialog.getOpenFileName(self, "Open JSON File", "", "JSON Files (*.json)")
+            filePath, _ = fileDialog.getOpenFileName(
+                self, "Open JSON File", "", "JSON Files (*.json)"
+            )
 
-            if filePath: self.ui.blockModel.addItem(filePath); self.ui.blockModel.setCurrentText(filePath)
+            if filePath:
+                self.ui.blockModel.addItem(filePath)
+                self.ui.blockModel.setCurrentText(filePath)
 
     def getBlockTexture(self, id_):
         textureId = id_
-        self.blockTexture[textureId], _ = QFileDialog.getOpenFileName(self, "Open Texture File", "", "PNG Files (*.png)")
-        if not self.blockTexture[textureId]: return
+        self.blockTexture[textureId], _ = QFileDialog.getOpenFileName(
+            self, "Open Texture File", "", "PNG Files (*.png)"
+        )
+        if not self.blockTexture[textureId]:
+            return
         image = QImage(self.blockTexture[textureId])
-        pixmap = QPixmap.fromImage(image).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio)
+        pixmap = QPixmap.fromImage(image).scaled(
+            50, 50, Qt.AspectRatioMode.KeepAspectRatio
+        )
 
-        if textureId == 0: self.ui.blockTextureTop.setPixmap(pixmap)
-        if textureId == 1: self.ui.blockTextureLeft.setPixmap(pixmap)
-        if textureId == 2: self.ui.blockTextureBack.setPixmap(pixmap)
-        if textureId == 3: self.ui.blockTextureRight.setPixmap(pixmap)
-        if textureId == 4: self.ui.blockTextureFront.setPixmap(pixmap)
-        if textureId == 5: self.ui.blockTextureBottom.setPixmap(pixmap)
+        if textureId == 0:
+            self.ui.blockTextureTop.setPixmap(pixmap)
+        if textureId == 1:
+            self.ui.blockTextureLeft.setPixmap(pixmap)
+        if textureId == 2:
+            self.ui.blockTextureBack.setPixmap(pixmap)
+        if textureId == 3:
+            self.ui.blockTextureRight.setPixmap(pixmap)
+        if textureId == 4:
+            self.ui.blockTextureFront.setPixmap(pixmap)
+        if textureId == 5:
+            self.ui.blockTextureBottom.setPixmap(pixmap)
 
     def addBlock(self):
 
@@ -243,7 +308,7 @@ class App(QMainWindow):
             "blockDrop": self.ui.blockDrop.text(),
             "directional": self.ui.blockDirectional.isChecked(),
             "model": self.ui.blockModel.currentText(),
-            "cmd": self.parseCMD(self.featureNum)
+            "cmd": self.parseCMD(self.featureNum),
         }
 
         self.blocks[self.blockProperties["name"]] = self.blockProperties
@@ -253,7 +318,8 @@ class App(QMainWindow):
         self.clearBlockFields()
 
     def editBlock(self):
-        if not self.ui.blockList.currentRow(): return
+        if not self.ui.blockList.currentRow():
+            return
         curItem = self.ui.blockList.currentRow()
         curItem = self.ui.blockList.item(curItem).text()
         properties = self.blocks[curItem]
@@ -269,14 +335,22 @@ class App(QMainWindow):
 
         for textureId in self.blockTexture:
             image = QImage(self.blockTexture[textureId])
-            pixmap = QPixmap.fromImage(image).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio)
+            pixmap = QPixmap.fromImage(image).scaled(
+                50, 50, Qt.AspectRatioMode.KeepAspectRatio
+            )
 
-            if textureId == 0: self.ui.blockTextureTop.setPixmap(pixmap)
-            if textureId == 1: self.ui.blockTextureLeft.setPixmap(pixmap)
-            if textureId == 2: self.ui.blockTextureBack.setPixmap(pixmap)
-            if textureId == 3: self.ui.blockTextureRight.setPixmap(pixmap)
-            if textureId == 4: self.ui.blockTextureFront.setPixmap(pixmap)
-            if textureId == 5: self.ui.blockTextureBottom.setPixmap(pixmap)
+            if textureId == 0:
+                self.ui.blockTextureTop.setPixmap(pixmap)
+            if textureId == 1:
+                self.ui.blockTextureLeft.setPixmap(pixmap)
+            if textureId == 2:
+                self.ui.blockTextureBack.setPixmap(pixmap)
+            if textureId == 3:
+                self.ui.blockTextureRight.setPixmap(pixmap)
+            if textureId == 4:
+                self.ui.blockTextureFront.setPixmap(pixmap)
+            if textureId == 5:
+                self.ui.blockTextureBottom.setPixmap(pixmap)
 
         self.removeBlock(self.ui.blockList.currentRow())
 
@@ -284,7 +358,8 @@ class App(QMainWindow):
         curItem = item
         if not item:
             curItem = self.ui.blockList.currentRow()
-            if not self.ui.blockList.currentRow(): return
+            if not self.ui.blockList.currentRow():
+                return
 
         self.blocks.pop(self.ui.blockList.item(curItem).text())
         self.ui.blockList.takeItem(curItem)
@@ -314,15 +389,24 @@ class App(QMainWindow):
     def getItemModel(self):
         if self.ui.itemModel.currentText() == "Custom":
             fileDialog = QFileDialog()
-            filePath, _ = fileDialog.getOpenFileName(self, "Open JSON File", "", "JSON Files (*.json)")
+            filePath, _ = fileDialog.getOpenFileName(
+                self, "Open JSON File", "", "JSON Files (*.json)"
+            )
 
-            if filePath: self.ui.itemModel.addItem(filePath); self.ui.itemModel.setCurrentText(filePath)
+            if filePath:
+                self.ui.itemModel.addItem(filePath)
+                self.ui.itemModel.setCurrentText(filePath)
 
     def getItemTexture(self):
-        self.itemTexture, _ = QFileDialog.getOpenFileName(self, "Open Texture File", "","PNG Files (*.png)")
-        if not self.itemTexture: return
+        self.itemTexture, _ = QFileDialog.getOpenFileName(
+            self, "Open Texture File", "", "PNG Files (*.png)"
+        )
+        if not self.itemTexture:
+            return
         image = QImage(self.itemTexture)
-        pixmap = QPixmap.fromImage(image).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio)
+        pixmap = QPixmap.fromImage(image).scaled(
+            50, 50, Qt.AspectRatioMode.KeepAspectRatio
+        )
 
         self.ui.itemTexture.setPixmap(pixmap)
 
@@ -336,7 +420,7 @@ class App(QMainWindow):
             "baseItem": self.ui.itemBaseItem.text(),
             "texture": self.itemTexture,
             "model": self.ui.itemModel.currentText().lower(),
-            "cmd": self.parseCMD(self.featureNum)
+            "cmd": self.parseCMD(self.featureNum),
         }
 
         self.items[self.itemProperties["name"]] = self.itemProperties
@@ -344,7 +428,8 @@ class App(QMainWindow):
         self.clearItemFields()
 
     def editItem(self):
-        if not self.ui.itemList.currentRow(): return
+        if not self.ui.itemList.currentRow():
+            return
         curItem = self.ui.itemList.currentItem()
         curItem = self.ui.itemList.item(curItem).text()
         properties = self.items[curItem]
@@ -356,7 +441,9 @@ class App(QMainWindow):
 
         self.itemTexture = properties["texture"]
 
-        pixmap = QPixmap.fromImage(QImage(properties["texture"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio)
+        pixmap = QPixmap.fromImage(QImage(properties["texture"])).scaled(
+            50, 50, Qt.AspectRatioMode.KeepAspectRatio
+        )
         self.ui.itemTexture.setPixmap(pixmap)
 
         self.removeItem(self.ui.itemList.currentRow())
@@ -365,7 +452,8 @@ class App(QMainWindow):
         curItem = item
         if not item:
             curItem = self.ui.itemList.currentRow()
-            if not self.ui.itemList.currentRow(): return
+            if not self.ui.itemList.currentRow():
+                return
 
         self.items.pop(self.ui.itemList.item(curItem).text())
         self.ui.itemList.takeItem(curItem)
@@ -401,7 +489,9 @@ class App(QMainWindow):
         for item in item_list:
             self.ui_form.itemsBox.addItem(item)
 
-        self.ui_form.pushButton.clicked.connect(lambda: self.recipeCloseForm(slotId, self.ui_form.itemsBox.currentText()))
+        self.ui_form.pushButton.clicked.connect(
+            lambda: self.recipeCloseForm(slotId, self.ui_form.itemsBox.currentText())
+        )
 
         self.block_popup.show()
 
@@ -443,7 +533,9 @@ class App(QMainWindow):
             "outputCount": self.ui.slot9Count.value(),
             "exact": self.ui.exactlyRadio.isChecked(),
             "shapeless": self.ui.exactlyRadio.isChecked(),
-            "type": self.ui.recipeSubTabs.tabText(self.ui.recipeSubTabs.currentIndex()).lower() # Should result as "crafting" or "smelting"
+            "type": self.ui.recipeSubTabs.tabText(
+                self.ui.recipeSubTabs.currentIndex()
+            ).lower(),  # Should result as "crafting" or "smelting"
         }
 
         self.recipes[self.recipeProperties["name"]] = self.recipeProperties
@@ -451,7 +543,8 @@ class App(QMainWindow):
         self.clearRecipeFields()
 
     def editRecipe(self):
-        if not self.ui.recipeList.currentRow(): return
+        if not self.ui.recipeList.currentRow():
+            return
         curItem = self.ui.recipeList.currentRow()
         curItem = self.ui.recipeList.item(curItem).text()
         properties = self.recipes[curItem]
@@ -480,7 +573,8 @@ class App(QMainWindow):
         curItem = item
         if not item:
             curItem = self.ui.itemList.currentRow()
-            if not self.ui.itemList.currentRow(): return
+            if not self.ui.itemList.currentRow():
+                return
 
         self.recipes.pop(self.ui.recipeList.item(curItem).text())
         self.ui.recipeList.takeItem(curItem)
@@ -512,96 +606,175 @@ class App(QMainWindow):
         # BASE STRUCTURE      #
         #######################
 
-        self.resPackDirectory = os.path.join(self.outputDir, f'{self.packName} Resource Pack')
+        self.resPackDirectory = os.path.join(
+            self.outputDir, f"{self.packName} Resource Pack"
+        )
         os.mkdir(self.resPackDirectory)
-        os.mkdir(f'{self.resPackDirectory}\\assets')
-        os.mkdir(f'{self.resPackDirectory}\\assets\\minecraft')
-        os.mkdir(f'{self.resPackDirectory}\\assets\\minecraft\\atlases')
-        os.mkdir(f'{self.resPackDirectory}\\assets\\minecraft\\models')
-        os.mkdir(f'{self.resPackDirectory}\\assets\\minecraft\\textures')
-        os.mkdir(f'{self.resPackDirectory}\\assets\\minecraft\\textures\\item')
-        os.mkdir(f'{self.resPackDirectory}\\assets\\minecraft\\models\\item')
-        os.mkdir(f'{self.resPackDirectory}\\assets\\minecraft\\models\\{self.packNamespace}')
+        os.mkdir(f"{self.resPackDirectory}\\assets")
+        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft")
+        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\atlases")
+        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\models")
+        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\textures")
+        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\textures\\item")
+        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\models\\item")
+        os.mkdir(
+            f"{self.resPackDirectory}\\assets\\minecraft\\models\\{self.packNamespace}"
+        )
 
         # Create Atlas
-        with open(f'{self.resPackDirectory}\\assets\\minecraft\\atlases\\blocks.json', 'w') as file:
-            file.write(f'{{"sources":[{{"type": "directory", "source": "{self.packNamespace}", "prefix": "{self.packNamespace}/"}}]}}')
+        with open(
+            f"{self.resPackDirectory}\\assets\\minecraft\\atlases\\blocks.json", "w"
+        ) as file:
+            file.write(
+                f'{{"sources":[{{"type": "directory", "source": "{self.packNamespace}", "prefix": "{self.packNamespace}/"}}]}}'
+            )
 
         # Pack.mcmeta
-        with open(f'{self.resPackDirectory}\\pack.mcmeta', 'w') as pack:
-            pack.write(f'{{\n    "pack": {{\n        "pack_format": 42,\n        "description": "{self.packDescription}"\n    }}\n}}\n')
+        with open(f"{self.resPackDirectory}\\pack.mcmeta", "w") as pack:
+            pack.write(
+                f'{{\n    "pack": {{\n        "pack_format": 42,\n        "description": "{self.packDescription}"\n    }}\n}}\n'
+            )
 
         # Item Frame Model(s) For Blocks
-        with open(f'{self.resPackDirectory}\\assets\\minecraft\\models\\item\\item_frame.json', 'a') as file:
-            file.write('{"parent": "minecraft:item/generated","textures": {"layer0": "minecraft:item/item_frame"},"overrides":[')
+        with open(
+            f"{self.resPackDirectory}\\assets\\minecraft\\models\\item\\item_frame.json",
+            "a",
+        ) as file:
+            file.write(
+                '{"parent": "minecraft:item/generated","textures": {"layer0": "minecraft:item/item_frame"},"overrides":['
+            )
             for block in self.blocks:
-                file.write(f'{{ "predicate": {{ "custom_model_data": {self.blocks[block]["cmd"]}}}, "model": "{self.packNamespace}/{self.blocks[block]["name"]}"}}')
+                file.write(
+                    f'{{ "predicate": {{ "custom_model_data": {self.blocks[block]["cmd"]}}}, "model": "{self.packNamespace}/{self.blocks[block]["name"]}"}}'
+                )
                 if block != next(reversed(self.blocks.keys())):
-                    file.write(',')
-            file.write('}}')
+                    file.write(",")
+            file.write("}}")
 
         # Copy Block Textures To Pack
         for block in self.blocks:
-            texturePath = f'{self.resPackDirectory}\\assets\\minecraft\\textures\\item\\'
+            texturePath = (
+                f"{self.resPackDirectory}\\assets\\minecraft\\textures\\item\\"
+            )
 
-            if '.json' not in self.blocks[block]["model"]:
+            if ".json" not in self.blocks[block]["model"]:
                 for path in self.blocks[block]["textures"].values():
-                    if not os.path.exists(os.path.join(texturePath, os.path.splitext(os.path.basename(str(path)))[ -2] + ".png")):
-                        shutil.copy(path, os.path.join(texturePath,os.path.splitext(os.path.basename(str(path)))[-2] + ".png"))
+                    if not os.path.exists(
+                        os.path.join(
+                            texturePath,
+                            os.path.splitext(os.path.basename(str(path)))[-2] + ".png",
+                        )
+                    ):
+                        shutil.copy(
+                            path,
+                            os.path.join(
+                                texturePath,
+                                os.path.splitext(os.path.basename(str(path)))[-2]
+                                + ".png",
+                            ),
+                        )
             else:
                 path = self.blocks[block]["textures"][5]
-                if not os.path.exists(os.path.join(texturePath, os.path.splitext(os.path.basename(str(path)))[-2] + ".png")):
-                    shutil.copy(path, os.path.join(texturePath, os.path.splitext(os.path.basename(str(path)))[ -2] + ".png"))
+                if not os.path.exists(
+                    os.path.join(
+                        texturePath,
+                        os.path.splitext(os.path.basename(str(path)))[-2] + ".png",
+                    )
+                ):
+                    shutil.copy(
+                        path,
+                        os.path.join(
+                            texturePath,
+                            os.path.splitext(os.path.basename(str(path)))[-2] + ".png",
+                        ),
+                    )
 
         # Copy / Write Block Model To Pack
         for block in self.blocks:
-            with open(f'{self.resPackDirectory}\\assets\\minecraft\\models\\{self.packNamespace}\\{self.blocks[block]["name"]}.json', 'w') as file:
-                if '.json' not in self.blocks[block]["model"]:
-                    file.write(f'{{"credit": "Made with mDirt 2","textures": {{"0": "item/{self.blocks[block]["textures"][0]}","1": "item/{self.blocks[block]["textures"][1]}","2": "item/{self.blocks[block]["textures"][2]}","3": "item/{self.blocks[block]["textures"][3]}","4": "item/{self.blocks[block]["textures"][4]}","5": "item/{self.blocks[block]["textures"][5]}","particle": "item/{self.blocks[block]["textures"][0]}"}},"elements": [{{"from": [0, 0, 0],"to": [16, 16, 16],"faces": {{"north": {{"uv": [0, 0, 16, 16], "texture": "#0"}},"east": {{"uv": [0, 0, 16, 16], "texture": "#1"}},"south": {{"uv": [0, 0, 16, 16], "texture": "#2"}},"west": {{"uv": [0, 0, 16, 16], "texture": "#3"}},"up": {{"uv": [0, 0, 16, 16], "texture": "#4"}},"down": {{"uv": [0, 0, 16, 16], "texture": "#5"}}}}}}],"display": {{"thirdperson_righthand": {{"rotation": [0, 0, -55],"translation": [0, 2.75, -2.5],"scale": [0.4, 0.4, 0.4]}},"thirdperson_lefthand": {{"rotation": [0, 0, -55],"translation": [0, 2.75, -2.5],"scale": [0.4, 0.4, 0.4]}},"firstperson_righthand": {{"rotation": [0, 45, 0],"scale": [0.4, 0.4, 0.4]}},"ground": {{"translation": [0, 3.25, 0],"scale": [0.4, 0.4, 0.4]}},"gui": {{"rotation": [28, 45, 0],"scale": [0.6, 0.6, 0.6]}}}}}}')
+            with open(
+                f'{self.resPackDirectory}\\assets\\minecraft\\models\\{self.packNamespace}\\{self.blocks[block]["name"]}.json',
+                "w",
+            ) as file:
+                if ".json" not in self.blocks[block]["model"]:
+                    file.write(
+                        f'{{"credit": "Made with mDirt 2","textures": {{"0": "item/{self.blocks[block]["textures"][0]}","1": "item/{self.blocks[block]["textures"][1]}","2": "item/{self.blocks[block]["textures"][2]}","3": "item/{self.blocks[block]["textures"][3]}","4": "item/{self.blocks[block]["textures"][4]}","5": "item/{self.blocks[block]["textures"][5]}","particle": "item/{self.blocks[block]["textures"][0]}"}},"elements": [{{"from": [0, 0, 0],"to": [16, 16, 16],"faces": {{"north": {{"uv": [0, 0, 16, 16], "texture": "#0"}},"east": {{"uv": [0, 0, 16, 16], "texture": "#1"}},"south": {{"uv": [0, 0, 16, 16], "texture": "#2"}},"west": {{"uv": [0, 0, 16, 16], "texture": "#3"}},"up": {{"uv": [0, 0, 16, 16], "texture": "#4"}},"down": {{"uv": [0, 0, 16, 16], "texture": "#5"}}}}}}],"display": {{"thirdperson_righthand": {{"rotation": [0, 0, -55],"translation": [0, 2.75, -2.5],"scale": [0.4, 0.4, 0.4]}},"thirdperson_lefthand": {{"rotation": [0, 0, -55],"translation": [0, 2.75, -2.5],"scale": [0.4, 0.4, 0.4]}},"firstperson_righthand": {{"rotation": [0, 45, 0],"scale": [0.4, 0.4, 0.4]}},"ground": {{"translation": [0, 3.25, 0],"scale": [0.4, 0.4, 0.4]}},"gui": {{"rotation": [28, 45, 0],"scale": [0.6, 0.6, 0.6]}}}}}}'
+                    )
                 else:
-                    with open(self.blocks[block]["model"], 'r') as f:
+                    with open(self.blocks[block]["model"], "r") as f:
                         model = ast.literal_eval(f.read())
                     for texture in model["textures"]:
-                        model["textures"][texture] = f'item/{model["textures"][texture]}'
+                        model["textures"][
+                            texture
+                        ] = f'item/{model["textures"][texture]}'
                     file.write(str(model).replace("'", '"'))
 
         # Write Base Item Model To Pack
         for item in self.items:
-            modelPath = f'{self.resPackDirectory}\\assets\\minecraft\\models\\item\\'
-            if not os.path.exists(f'{modelPath}{self.items[item]["baseItem"].removeprefix("minecraft:")}.json'):
+            modelPath = f"{self.resPackDirectory}\\assets\\minecraft\\models\\item\\"
+            if not os.path.exists(
+                f'{modelPath}{self.items[item]["baseItem"].removeprefix("minecraft:")}.json'
+            ):
                 self.exists[self.items[item]["baseItem"]] = False
-            with open(f'{modelPath}{self.items[item]["baseItem"].removeprefix("minecraft:")}.json', 'a') as file:
+            with open(
+                f'{modelPath}{self.items[item]["baseItem"].removeprefix("minecraft:")}.json',
+                "a",
+            ) as file:
                 if not self.exists[self.items[item]["baseItem"]]:
                     self.exists[self.items[item]["baseItem"]] = True
                     modelType = self.data["models"][self.items[item]["baseItem"]]
                     file.write(f'{modelType}, "overrides": [')
-                file.write(f'{{ "predicate": {{ "custom_model_data": {self.items[item]["cmd"]}}}, "model": "{self.packNamespace}/{self.items[item]["name"]}"}},')
+                file.write(
+                    f'{{ "predicate": {{ "custom_model_data": {self.items[item]["cmd"]}}}, "model": "{self.packNamespace}/{self.items[item]["name"]}"}},'
+                )
 
         # Remove Trailing Comma At Each Model
-        for file in os.listdir(f'{self.resPackDirectory}\\assets\\minecraft\\models\\item'):
-            if file.endswith('.json'):
-                with open(os.path.join(f'{self.resPackDirectory}\\assets\\minecraft\\models\\item\\', file), 'r+') as f:
-                    content = f.read(); f.seek(0); f.write(content[:-1]);  f.truncate(); f.write(']}')
+        for file in os.listdir(
+            f"{self.resPackDirectory}\\assets\\minecraft\\models\\item"
+        ):
+            if file.endswith(".json"):
+                with open(
+                    os.path.join(
+                        f"{self.resPackDirectory}\\assets\\minecraft\\models\\item\\",
+                        file,
+                    ),
+                    "r+",
+                ) as f:
+                    content = f.read()
+                    f.seek(0)
+                    f.write(content[:-1])
+                    f.truncate()
+                    f.write("]}")
 
         # Copy / Write Item Model To Pack
         for item in self.items:
-            currentPath = f'{self.resPackDirectory}\\assets\\minecraft\\models\\{self.packNamespace}'
-            with open(f'{currentPath}\\{self.items[item]["name"]}.json', 'w') as file:
-                if '.json' in self.items[item]["model"]:
-                    with open(self.items[item]["model"], 'r') as f:
+            currentPath = f"{self.resPackDirectory}\\assets\\minecraft\\models\\{self.packNamespace}"
+            with open(f'{currentPath}\\{self.items[item]["name"]}.json', "w") as file:
+                if ".json" in self.items[item]["model"]:
+                    with open(self.items[item]["model"], "r") as f:
                         model = ast.literal_eval(f.read())
                     for texture in model["textures"]:
-                        model["textures"][texture] = f'{self.packNamespace}/{model["textures"][texture]}'
+                        model["textures"][
+                            texture
+                        ] = f'{self.packNamespace}/{model["textures"][texture]}'
                     file.write(str(model).replace("'", '"'))
                 else:
-                    file.write(f'{{"parent":" {self.data["models"][self.items[item]["baseItem"]]["parent"]}", "textures": {{ "layer0": "minecraft:{self.packNamespace}/{os.path.splitext(os.path.basename(str(self.items[item]["texture"])))[-2]}"}}}}')
+                    file.write(
+                        f'{{"parent":" {self.data["models"][self.items[item]["baseItem"]]["parent"]}", "textures": {{ "layer0": "minecraft:{self.packNamespace}/{os.path.splitext(os.path.basename(str(self.items[item]["texture"])))[-2]}"}}}}'
+                    )
 
-        os.mkdir(f'{self.resPackDirectory}\\assets\\minecraft\\textures\\{self.packNamespace}')
+        os.mkdir(
+            f"{self.resPackDirectory}\\assets\\minecraft\\textures\\{self.packNamespace}"
+        )
 
         # Copy Item Texture To Pack
         for item in self.items:
-            currentPath = f'{self.resPackDirectory}\\assets\\minecraft\\textures\\{self.packNamespace}'
-            shutil.copy(self.items[item]["texture"], os.path.normpath(f'{currentPath}\\{os.path.splitext(os.path.basename(str(self.items[item]["texture"])))[-2]}.png'))
+            currentPath = f"{self.resPackDirectory}\\assets\\minecraft\\textures\\{self.packNamespace}"
+            shutil.copy(
+                self.items[item]["texture"],
+                os.path.normpath(
+                    f'{currentPath}\\{os.path.splitext(os.path.basename(str(self.items[item]["texture"])))[-2]}.png'
+                ),
+            )
 
     def generateDataPack(self):
 
@@ -613,33 +786,68 @@ class App(QMainWindow):
         self.default_items = self.data["items"]
 
         for block in self.blocks:
-            if self.blocks[block]["baseBlock"] not in self.default_blocks.keys(): alert(f"Block '{self.blocks[block]["name"]}' has an unsupported Base Block!"); return
+            if self.blocks[block]["baseBlock"] not in self.default_blocks.keys():
+                alert(
+                    f"Block '{self.blocks[block]["name"]}' has an unsupported Base Block!"
+                )
+                return
 
         for item in self.items:
-            if self.items[item]["baseItem"] not in self.default_items.keys(): alert(f"Item '{self.items[item]["name"]}' has an unsupported Base Item!"); return
+            if self.items[item]["baseItem"] not in self.default_items.keys():
+                alert(
+                    f"Item '{self.items[item]["name"]}' has an unsupported Base Item!"
+                )
+                return
 
-        if checkInputValid(self.ui.packName, "string") == "empty": alert("Pack Name is empty!"); return
-        if checkInputValid(self.ui.packName, "string") == "type": alert("Pack Name has unsupported characters!"); return
-        elif checkInputValid(self.ui.packName, "string") == "valid": self.packName = self.ui.packName.text()
+        if checkInputValid(self.ui.packName, "string") == "empty":
+            alert("Pack Name is empty!")
+            return
+        if checkInputValid(self.ui.packName, "string") == "type":
+            alert("Pack Name has unsupported characters!")
+            return
+        elif checkInputValid(self.ui.packName, "string") == "valid":
+            self.packName = self.ui.packName.text()
 
-        if checkInputValid(self.ui.packNamespace, "strict") == "empty": alert("Pack Namespace is empty!"); return
-        if checkInputValid(self.ui.packNamespace, "strict") == "type": alert("Pack Namespace has unsupported characters!"); return
-        elif checkInputValid(self.ui.packNamespace, "strict") == "valid": self.packNamespace = self.ui.packNamespace.text()
+        if checkInputValid(self.ui.packNamespace, "strict") == "empty":
+            alert("Pack Namespace is empty!")
+            return
+        if checkInputValid(self.ui.packNamespace, "strict") == "type":
+            alert("Pack Namespace has unsupported characters!")
+            return
+        elif checkInputValid(self.ui.packNamespace, "strict") == "valid":
+            self.packNamespace = self.ui.packNamespace.text()
 
-        if checkInputValid(self.ui.packDescription, "string") == "empty": alert("Pack Description is empty!"); return
-        if checkInputValid(self.ui.packDescription, "string") == "type": alert("Pack Description has unsupported characters!"); return
-        elif checkInputValid(self.ui.packDescription, "string") == "valid": self.packDescription = self.ui.packDescription.text()
+        if checkInputValid(self.ui.packDescription, "string") == "empty":
+            alert("Pack Description is empty!")
+            return
+        if checkInputValid(self.ui.packDescription, "string") == "type":
+            alert("Pack Description has unsupported characters!")
+            return
+        elif checkInputValid(self.ui.packDescription, "string") == "valid":
+            self.packDescription = self.ui.packDescription.text()
 
-        if checkInputValid(self.ui.packAuthor, "strict") == "empty": alert("Pack Author is empty!"); return
-        if checkInputValid(self.ui.packAuthor, "strict") == "type": alert("Pack Author has unsupported characters!"); return
-        elif checkInputValid(self.ui.packAuthor, "strict") == "valid": self.packAuthor = self.ui.packAuthor.text()
+        if checkInputValid(self.ui.packAuthor, "strict") == "empty":
+            alert("Pack Author is empty!")
+            return
+        if checkInputValid(self.ui.packAuthor, "strict") == "type":
+            alert("Pack Author has unsupported characters!")
+            return
+        elif checkInputValid(self.ui.packAuthor, "strict") == "valid":
+            self.packAuthor = self.ui.packAuthor.text()
 
-        if checkInputValid(self.ui.packCMDPrefix, "integer") == "empty": alert("Pack CMD Prefix is empty!"); return
-        if checkInputValid(self.ui.packCMDPrefix, "integer") == "type": alert("Pack CMD Prefix has unsupported characters!"); return
-        elif checkInputValid(self.ui.packCMDPrefix, "integer") == "valid": self.packCMDPrefix = self.ui.packCMDPrefix.text()
+        if checkInputValid(self.ui.packCMDPrefix, "integer") == "empty":
+            alert("Pack CMD Prefix is empty!")
+            return
+        if checkInputValid(self.ui.packCMDPrefix, "integer") == "type":
+            alert("Pack CMD Prefix has unsupported characters!")
+            return
+        elif checkInputValid(self.ui.packCMDPrefix, "integer") == "valid":
+            self.packCMDPrefix = self.ui.packCMDPrefix.text()
 
         self.outputDir = QFileDialog.getExistingDirectory(self, "Output Directory", "")
-        if not self.outputDir: alert("Please select a valid output directory!"); return
+        if not self.outputDir:
+            alert("Please select a valid output directory!")
+            return
 
         #######################
         # BASE STRUCTURE      #
@@ -647,35 +855,54 @@ class App(QMainWindow):
 
         self.packDirectory = os.path.join(self.outputDir, self.packName)
         os.mkdir(self.packDirectory)
-        os.mkdir(f'{self.packDirectory}\\data')
-        self.namespaceDirectory = os.path.join(self.packDirectory, 'data', self.packNamespace)
+        os.mkdir(f"{self.packDirectory}\\data")
+        self.namespaceDirectory = os.path.join(
+            self.packDirectory, "data", self.packNamespace
+        )
         self.minecraftDirectory = os.path.join(self.packDirectory, "data", "minecraft")
         os.mkdir(self.minecraftDirectory)
         os.mkdir(self.namespaceDirectory)
 
-        with open(f'{self.packDirectory}\\pack.mcmeta', 'w') as pack:
-            pack.write('{\n    "pack": {\n        "pack_format": 57,\n        "description": "' + self.packDescription + '"\n    }\n}\n')
+        with open(f"{self.packDirectory}\\pack.mcmeta", "w") as pack:
+            pack.write(
+                '{\n    "pack": {\n        "pack_format": 57,\n        "description": "'
+                + self.packDescription
+                + '"\n    }\n}\n'
+            )
 
-        os.mkdir(f'{self.namespaceDirectory}\\function')
+        os.mkdir(f"{self.namespaceDirectory}\\function")
         if len(self.blocks) > 0:
-            os.mkdir(f'{self.namespaceDirectory}\\loot_table')
-            os.mkdir(f'{self.namespaceDirectory}\\advancement')
+            os.mkdir(f"{self.namespaceDirectory}\\loot_table")
+            os.mkdir(f"{self.namespaceDirectory}\\advancement")
         if len(self.recipes) > 0:
-            os.mkdir(f'{self.namespaceDirectory}\\recipe')
+            os.mkdir(f"{self.namespaceDirectory}\\recipe")
 
-        os.mkdir(f'{self.minecraftDirectory}\\tags')
-        os.mkdir(f'{self.minecraftDirectory}\\tags\\function')
+        os.mkdir(f"{self.minecraftDirectory}\\tags")
+        os.mkdir(f"{self.minecraftDirectory}\\tags\\function")
 
-        with open(f'{self.namespaceDirectory}\\function\\tick.mcfunction', 'w') as tick:
+        with open(f"{self.namespaceDirectory}\\function\\tick.mcfunction", "w") as tick:
             if len(self.blocks) > 0:
-                tick.write(f'{self.header}execute as @e[type=item_display,tag={self.packAuthor}.custom_block] at @s run function {self.packNamespace}:as_blocks')
-            else: tick.write(self.header)
-        with open(f'{self.namespaceDirectory}\\function\\load.mcfunction', 'w') as load:
-            load.write(f'{self.header}tellraw @a {"text":"[mDirt 2] - Successfully loaded pack!","color":"red"}')
-        with open(f'{self.minecraftDirectory}\\tags\\function\\tick.json', 'w') as tick:
-            tick.write('{\n    "values":[\n        ' + f'"{self.packNamespace}' + ':tick"\n        ]\n    }')
-        with open(f'{self.minecraftDirectory}\\tags\\function\\load.json', 'w') as load:
-            load.write('{\n    "values":[\n        ' + f'"{self.packNamespace}' + ':load"\n        ]\n    }')
+                tick.write(
+                    f"{self.header}execute as @e[type=item_display,tag={self.packAuthor}.custom_block] at @s run function {self.packNamespace}:as_blocks"
+                )
+            else:
+                tick.write(self.header)
+        with open(f"{self.namespaceDirectory}\\function\\load.mcfunction", "w") as load:
+            load.write(
+                f'{self.header}tellraw @a {"text":"[mDirt 2] - Successfully loaded pack!","color":"red"}'
+            )
+        with open(f"{self.minecraftDirectory}\\tags\\function\\tick.json", "w") as tick:
+            tick.write(
+                '{\n    "values":[\n        '
+                + f'"{self.packNamespace}'
+                + ':tick"\n        ]\n    }'
+            )
+        with open(f"{self.minecraftDirectory}\\tags\\function\\load.json", "w") as load:
+            load.write(
+                '{\n    "values":[\n        '
+                + f'"{self.packNamespace}'
+                + ':load"\n        ]\n    }'
+            )
 
         #######################
         # CUSTOM BLOCKS       #
@@ -705,77 +932,158 @@ class App(QMainWindow):
         self.generateResourcePack()
 
     def generateBlocks(self):
-        os.mkdir(f'{self.namespaceDirectory}\\function\\blocks')
+        os.mkdir(f"{self.namespaceDirectory}\\function\\blocks")
 
         # Placed Item Frame Advancement
-        with open(f'{self.namespaceDirectory}\\advancement\\placed_item_frame.json', 'w') as file:
-            file.write(f'{{"criteria": {{"requirement": {{"trigger": "minecraft:item_used_on_block","conditions": {{"location": [{{"condition": "minecraft:match_tool","predicate": {{"items": ["minecraft:item_frame"]}}}}]}}}}}}, "rewards": {{"function": "{self.packNamespace}:placed_item_frame"}}}}')
+        with open(
+            f"{self.namespaceDirectory}\\advancement\\placed_item_frame.json", "w"
+        ) as file:
+            file.write(
+                f'{{"criteria": {{"requirement": {{"trigger": "minecraft:item_used_on_block","conditions": {{"location": [{{"condition": "minecraft:match_tool","predicate": {{"items": ["minecraft:item_frame"]}}}}]}}}}}}, "rewards": {{"function": "{self.packNamespace}:placed_item_frame"}}}}'
+            )
 
         # Placed Item Frame Function
-        with open(f'{self.namespaceDirectory}\\function\\blocks\\placed_item_frame.mcfunction', 'w') as file:
-            file.write(f"{self.header}advancement revoke @s only {self.packNamespace}:placed_item_frame\n"
-                       f"execute as @e[tag={self.packAuthor}.item_frame_block,distance=..10] at @s run function {self.packNamespace}:check_placed_item_frame")
+        with open(
+            f"{self.namespaceDirectory}\\function\\blocks\\placed_item_frame.mcfunction",
+            "w",
+        ) as file:
+            file.write(
+                f"{self.header}advancement revoke @s only {self.packNamespace}:placed_item_frame\n"
+                f"execute as @e[tag={self.packAuthor}.item_frame_block,distance=..10] at @s run function {self.packNamespace}:check_placed_item_frame"
+            )
 
         # Check Placed Item Frame, block/place Functions
-        with open(f'{self.packNamespace}\\function\\blocks\\check_placed_item_frame', 'a') as file:
+        with open(
+            f"{self.packNamespace}\\function\\blocks\\check_placed_item_frame", "a"
+        ) as file:
             for block in self.blocks:
-                os.mkdir(f'{self.namespaceDirectory}\\function\\blocks\\{self.blocks[block]["name"]}')
-                with open(f'{self.namespaceDirectory}\\function\\{self.blocks[block]["name"]}\\place.mcfunction', 'a') as file2:
-                    file2.write(f'{self.header}setblock ~ ~ ~ {self.blocks[block]["baseBlock"]} keep\n')
-                    if self.blocks[block]["placeSound"] != "": file2.write(f'playsound {self.blocks[block]["placeSound"]} block @e[type=player,distance=..5] ~ ~ ~ 10 1 1\n')
+                os.mkdir(
+                    f'{self.namespaceDirectory}\\function\\blocks\\{self.blocks[block]["name"]}'
+                )
+                with open(
+                    f'{self.namespaceDirectory}\\function\\{self.blocks[block]["name"]}\\place.mcfunction',
+                    "a",
+                ) as file2:
+                    file2.write(
+                        f'{self.header}setblock ~ ~ ~ {self.blocks[block]["baseBlock"]} keep\n'
+                    )
+                    if self.blocks[block]["placeSound"] != "":
+                        file2.write(
+                            f'playsound {self.blocks[block]["placeSound"]} block @e[type=player,distance=..5] ~ ~ ~ 10 1 1\n'
+                        )
                     if self.blocks[block]["directional"]:
-                        file2.write(f'execute at @p if entity @p[y_rotation=135..-135,x_rotation=-45..45] at @s run summon item_display ~ ~0.469 ~-0.469 {{Rotation:[0F,90F],brightness:{{sky:15,block:0}}}},Tags:["{self.packAuthor}.{self.blocks[block]["name"]}","{self.packAuthor}.custom_block"],transformation:{{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0.469f,0f],scale:[1.001f,1.001f,1.001f]}},item:{{id:"minecraft:item_frame",count:1,components:{{"minecraft:custom_model_data":{self.blocks[block]["cmd"]}}}}}}}\n')
-                        file2.write(f'execute at @p if entity @p[y_rotation=-135..-45,x_rotation=-45..45] at @s run summon item_display ~0.469 ~0.469 ~ {{Rotation:[90F,90F],brightness:{{sky:15,block:0}}}},Tags:["{self.packAuthor}.{self.blocks[block]["name"]}","{self.packAuthor}.custom_block"],transformation:{{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0.469f,0f],scale:[1.001f,1.001f,1.001f]}},item:{{id:"minecraft:item_frame",count:1,components:{{"minecraft:custom_model_data":{self.blocks[block]["cmd"]}}}}}}}\n')
-                        file2.write(f'execute at @p if entity @p[y_rotation=-45..45,x_rotation=-45..45] at @s run summon item_display ~ ~0.469 ~0.469 {{Rotation:[180F,90F],brightness:{{sky:15,block:0}}}},Tags:["{self.packAuthor}.{self.blocks[block]["name"]}","{self.packAuthor}.custom_block"],transformation:{{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0.469f,0f],scale:[1.001f,1.001f,1.001f]}},item:{{id:"minecraft:item_frame",count:1,components:{{"minecraft:custom_model_data":{self.blocks[block]["cmd"]}}}}}}}\n')
-                        file2.write(f'execute at @p if entity @p[y_rotation=45..135,x_rotation=-45..45] at @s run summon item_display ~-0.469 ~0.469 ~ {{Rotation:[90F,-90F],brightness:{{sky:15,block:0}}}},Tags:["{self.packAuthor}.{self.blocks[block]["name"]}","{self.packAuthor}.custom_block"],transformation:{{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0.469f,0f],scale:[1.001f,1.001f,1.001f]}},item:{{id:"minecraft:item_frame",count:1,components:{{"minecraft:custom_model_data":{self.blocks[block]["cmd"]}}}}}}}\n')
-                        file2.write(f'execute if entity @p[x_rotation=45..90] at @s run summon item_display ~ ~ ~ {{brightness:{{sky:15,block:0}}}},Tags:["{self.packAuthor}.{self.blocks[block]["name"]}","{self.packAuthor}.custom_block"],transformation:{{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0.469f,0f],scale:[1.001f,1.001f,1.001f]}},item:{{id:"minecraft:item_frame",count:1,components:{{"minecraft:custom_model_data":{self.blocks[block]["cmd"]}}}}}}}\n')
-                        file2.write(f'execute if entity @p[x_rotation=-90..-45] at @s run summon item_display ~ ~0.469 ~-0.47 {{Rotation:[0F,90F],brightness:{{sky:15,block:0}}}},Tags:["{self.packAuthor}.{self.blocks[block]["name"]}","{self.packAuthor}.custom_block"],transformation:{{left_rotation:[0f,-1f,1f,1f],right_rotation:[1.000f,0.5f,0.5f,0f],translation:[0f,0.47f,0f],scale:[1.001f,1.001f,1.001f]}},item:{{id:"minecraft:item_frame",count:1,components:{{"minecraft:custom_model_data":{self.blocks[block]["cmd"]}}}}}}}\n')
+                        file2.write(
+                            f'execute at @p if entity @p[y_rotation=135..-135,x_rotation=-45..45] at @s run summon item_display ~ ~0.469 ~-0.469 {{Rotation:[0F,90F],brightness:{{sky:15,block:0}}}},Tags:["{self.packAuthor}.{self.blocks[block]["name"]}","{self.packAuthor}.custom_block"],transformation:{{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0.469f,0f],scale:[1.001f,1.001f,1.001f]}},item:{{id:"minecraft:item_frame",count:1,components:{{"minecraft:custom_model_data":{self.blocks[block]["cmd"]}}}}}}}\n'
+                        )
+                        file2.write(
+                            f'execute at @p if entity @p[y_rotation=-135..-45,x_rotation=-45..45] at @s run summon item_display ~0.469 ~0.469 ~ {{Rotation:[90F,90F],brightness:{{sky:15,block:0}}}},Tags:["{self.packAuthor}.{self.blocks[block]["name"]}","{self.packAuthor}.custom_block"],transformation:{{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0.469f,0f],scale:[1.001f,1.001f,1.001f]}},item:{{id:"minecraft:item_frame",count:1,components:{{"minecraft:custom_model_data":{self.blocks[block]["cmd"]}}}}}}}\n'
+                        )
+                        file2.write(
+                            f'execute at @p if entity @p[y_rotation=-45..45,x_rotation=-45..45] at @s run summon item_display ~ ~0.469 ~0.469 {{Rotation:[180F,90F],brightness:{{sky:15,block:0}}}},Tags:["{self.packAuthor}.{self.blocks[block]["name"]}","{self.packAuthor}.custom_block"],transformation:{{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0.469f,0f],scale:[1.001f,1.001f,1.001f]}},item:{{id:"minecraft:item_frame",count:1,components:{{"minecraft:custom_model_data":{self.blocks[block]["cmd"]}}}}}}}\n'
+                        )
+                        file2.write(
+                            f'execute at @p if entity @p[y_rotation=45..135,x_rotation=-45..45] at @s run summon item_display ~-0.469 ~0.469 ~ {{Rotation:[90F,-90F],brightness:{{sky:15,block:0}}}},Tags:["{self.packAuthor}.{self.blocks[block]["name"]}","{self.packAuthor}.custom_block"],transformation:{{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0.469f,0f],scale:[1.001f,1.001f,1.001f]}},item:{{id:"minecraft:item_frame",count:1,components:{{"minecraft:custom_model_data":{self.blocks[block]["cmd"]}}}}}}}\n'
+                        )
+                        file2.write(
+                            f'execute if entity @p[x_rotation=45..90] at @s run summon item_display ~ ~ ~ {{brightness:{{sky:15,block:0}}}},Tags:["{self.packAuthor}.{self.blocks[block]["name"]}","{self.packAuthor}.custom_block"],transformation:{{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0.469f,0f],scale:[1.001f,1.001f,1.001f]}},item:{{id:"minecraft:item_frame",count:1,components:{{"minecraft:custom_model_data":{self.blocks[block]["cmd"]}}}}}}}\n'
+                        )
+                        file2.write(
+                            f'execute if entity @p[x_rotation=-90..-45] at @s run summon item_display ~ ~0.469 ~-0.47 {{Rotation:[0F,90F],brightness:{{sky:15,block:0}}}},Tags:["{self.packAuthor}.{self.blocks[block]["name"]}","{self.packAuthor}.custom_block"],transformation:{{left_rotation:[0f,-1f,1f,1f],right_rotation:[1.000f,0.5f,0.5f,0f],translation:[0f,0.47f,0f],scale:[1.001f,1.001f,1.001f]}},item:{{id:"minecraft:item_frame",count:1,components:{{"minecraft:custom_model_data":{self.blocks[block]["cmd"]}}}}}}}\n'
+                        )
                     else:
-                        file2.write(f'summon item_display ~ ~ ~ {{brightness:{{sky:15,block:0}}}},Tags:["{self.packAuthor}.{self.blocks[block]["name"]}","{self.packAuthor}.custom_block"],transformation:{{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0.469f,0f],scale:[1.001f,1.001f,1.001f]}},item:{{id:"minecraft:item_frame",count:1,components:{{"minecraft:custom_model_data":{self.blocks[block]["cmd"]}}}}}}}\n')
-                file.write(f"{self.header}execute as @s[tag={self.packAuthor}.{self.blocks[block]['name']}] run function {self.packNamespace}:blocks/{self.blocks[block]['name']}/place\n")
-            file.write('kill @s')
+                        file2.write(
+                            f'summon item_display ~ ~ ~ {{brightness:{{sky:15,block:0}}}},Tags:["{self.packAuthor}.{self.blocks[block]["name"]}","{self.packAuthor}.custom_block"],transformation:{{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0.469f,0f],scale:[1.001f,1.001f,1.001f]}},item:{{id:"minecraft:item_frame",count:1,components:{{"minecraft:custom_model_data":{self.blocks[block]["cmd"]}}}}}}}\n'
+                        )
+                file.write(
+                    f"{self.header}execute as @s[tag={self.packAuthor}.{self.blocks[block]['name']}] run function {self.packNamespace}:blocks/{self.blocks[block]['name']}/place\n"
+                )
+            file.write("kill @s")
 
         # As Blocks, block/block, block/break Functions
-        with open(f'{self.namespaceDirectory}\\function\\blocks\\as_blocks.mcfunction', 'a') as file:
+        with open(
+            f"{self.namespaceDirectory}\\function\\blocks\\as_blocks.mcfunction", "a"
+        ) as file:
             file.write(self.header)
             for block in self.blocks:
-                with open(f'{self.namespaceDirectory}\\function\\blocks\\{block}\\{block}.mcfunction', 'w') as file2:
-                    file2.write(f'{self.header}execute unless block ~ ~ ~ {self.blocks[block]["baseBlock"]} run function {self.packNamespace}:blocks/{self.blocks[block]["name"]}/break')
-                with open(f'{self.namespaceDirectory}\\function\\blocks\\{block}\\break.mcfunction', 'a') as file2:
-                    file2.write(f'{self.header}execute as @e[type=item,sort=nearest,limit=1,distance=..2,nbt={{OnGround:0b,Age:0s,Item:{{id:"{self.blocks[block]["baseBlock"]}"}}}}] run kill @s\n'
-                                f'loot spawn ~ ~ ~ loot {self.packNamespace}:{self.blocks[block]["name"]}\n'
-                                f'kill @s')
+                with open(
+                    f"{self.namespaceDirectory}\\function\\blocks\\{block}\\{block}.mcfunction",
+                    "w",
+                ) as file2:
+                    file2.write(
+                        f'{self.header}execute unless block ~ ~ ~ {self.blocks[block]["baseBlock"]} run function {self.packNamespace}:blocks/{self.blocks[block]["name"]}/break'
+                    )
+                with open(
+                    f"{self.namespaceDirectory}\\function\\blocks\\{block}\\break.mcfunction",
+                    "a",
+                ) as file2:
+                    file2.write(
+                        f'{self.header}execute as @e[type=item,sort=nearest,limit=1,distance=..2,nbt={{OnGround:0b,Age:0s,Item:{{id:"{self.blocks[block]["baseBlock"]}"}}}}] run kill @s\n'
+                        f'loot spawn ~ ~ ~ loot {self.packNamespace}:{self.blocks[block]["name"]}\n'
+                        f"kill @s"
+                    )
 
-                file.write(f'execute as @s[tag={self.packAuthor}.{self.blocks[block]["name"]}] run function {self.packNamespace}:blocks/{self.blocks[block]["name"]}/{self.blocks[block]["name"]}\n')
+                file.write(
+                    f'execute as @s[tag={self.packAuthor}.{self.blocks[block]["name"]}] run function {self.packNamespace}:blocks/{self.blocks[block]["name"]}/{self.blocks[block]["name"]}\n'
+                )
 
         # Give Blocks Function
-        with open(f'{self.namespaceDirectory}\\function\\give_blocks.mcfunction', 'a') as file:
+        with open(
+            f"{self.namespaceDirectory}\\function\\give_blocks.mcfunction", "a"
+        ) as file:
             file.write(self.header)
             for block in self.blocks:
-                file.write(f'give @s item_frame[item_name=\'{{"italic":false,"text":"{self.blocks[block]["displayName"]}}}\',custom_model_data={self.blocks[block]["cmd"]},entity_data={{id:"minecraft:item_frame",Fixed:1b,Invisible:1b,Silent:1b,Invulnerable:1b,Facing:1,Tags:["{self.packAuthor}.item_frame_block","{self.packAuthor}.{self.blocks[block]["name"]}"]}}] 1\n')
+                file.write(
+                    f'give @s item_frame[item_name=\'{{"italic":false,"text":"{self.blocks[block]["displayName"]}}}\',custom_model_data={self.blocks[block]["cmd"]},entity_data={{id:"minecraft:item_frame",Fixed:1b,Invisible:1b,Silent:1b,Invulnerable:1b,Facing:1,Tags:["{self.packAuthor}.item_frame_block","{self.packAuthor}.{self.blocks[block]["name"]}"]}}] 1\n'
+                )
 
         # Loot Tables
         for block in self.blocks:
-            with open(f'{self.namespaceDirectory}\\loot_table\\{self.blocks[block]["name"]}.json', 'w') as file:
+            with open(
+                f'{self.namespaceDirectory}\\loot_table\\{self.blocks[block]["name"]}.json',
+                "w",
+            ) as file:
                 if self.blocks[block]["blockDrop"] == "":
-                    file.write(f'{{"pools": [{{"rolls": 1,"entries": [{{"type": "minecraft:item","name": "minecraft:item_frame"}}],"functions": [{{"function": "minecraft:set_components","components": {{"minecraft:custom_model_data": {self.blocks[block]["cmd"]},"minecraft:custom_name": "{{\\"italic\\":false,\\"text\\":\\"{self.blocks[block]["displayName"]}\\"}}","minecraft:entity_data": {{"id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{self.blocks[block]["name"]}"]}}}}}}]}}]}}')
+                    file.write(
+                        f'{{"pools": [{{"rolls": 1,"entries": [{{"type": "minecraft:item","name": "minecraft:item_frame"}}],"functions": [{{"function": "minecraft:set_components","components": {{"minecraft:custom_model_data": {self.blocks[block]["cmd"]},"minecraft:custom_name": "{{\\"italic\\":false,\\"text\\":\\"{self.blocks[block]["displayName"]}\\"}}","minecraft:entity_data": {{"id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{self.blocks[block]["name"]}"]}}}}}}]}}]}}'
+                    )
                 else:
-                    file.write(f'{{"pools": [{{"rolls": 1,"entries": [{{"type": "minecraft:item","name": "{self.blocks[block]["blockDrop"]}"}}]}}]}}')
+                    file.write(
+                        f'{{"pools": [{{"rolls": 1,"entries": [{{"type": "minecraft:item","name": "{self.blocks[block]["blockDrop"]}"}}]}}]}}'
+                    )
 
     def generateItems(self):
-        with open(f'{self.packNamespace}\\function\\give_items.mcfunction', 'a') as file:
+        with open(
+            f"{self.packNamespace}\\function\\give_items.mcfunction", "a"
+        ) as file:
             file.write(self.header)
             for item in self.items:
-                file.write(f'give @s {self.items[item]["baseItem"]}[item_name=\'{{"italic":false,"text":"{self.items[item]["displayName"]}"}}\',custom_model_data={self.items[item]["cmd"]}] 1\n')
+                file.write(
+                    f'give @s {self.items[item]["baseItem"]}[item_name=\'{{"italic":false,"text":"{self.items[item]["displayName"]}"}}\',custom_model_data={self.items[item]["cmd"]}] 1\n'
+                )
 
     def generateRecipes(self):
         for recipe in self.recipes:
             if self.recipes[recipe]["type"] == "crafting":
                 if not self.recipes[recipe]["shapeless"]:
-                    with open(f'{self.namespaceDirectory}\\recipe\\{self.recipes[recipe]["name"]}.json', 'a') as file:
-                        letters = {0: "A", 1: "B", 2: "C", 3: "D", 4: "E", 5: "F", 6: "G", 7: "H", 8: "I"}
+                    with open(
+                        f'{self.namespaceDirectory}\\recipe\\{self.recipes[recipe]["name"]}.json',
+                        "a",
+                    ) as file:
+                        letters = {
+                            0: "A",
+                            1: "B",
+                            2: "C",
+                            3: "D",
+                            4: "E",
+                            5: "F",
+                            6: "G",
+                            7: "H",
+                            8: "I",
+                        }
                         recip = self.recipes[recipe]["items"]
-                        file.write('{"type": "minecraft:crafting_shaped", "pattern": ["')
+                        file.write(
+                            '{"type": "minecraft:crafting_shaped", "pattern": ["'
+                        )
                         result = []
 
                         for key in range(9):
@@ -792,56 +1100,81 @@ class App(QMainWindow):
                             file.write(line)
 
                         file.write('"],"key":{')
-                        items = [(k, v) for k, v in recip.items() if v not in (None, '')][:-1]
+                        items = [
+                            (k, v) for k, v in recip.items() if v not in (None, "")
+                        ][:-1]
                         for i, (key, value) in enumerate(items):
                             if value != "" and value:
                                 file.write(f'"{letters[key]}":"minecraft:{value}"')
-                                if i < len(items) - 1: file.write(',')
+                                if i < len(items) - 1:
+                                    file.write(",")
                         if not recip[9] in self.items and not recip[9] in self.blocks:
-                            file.write(f'}},"result": {{ "id":"minecraft:{recip[9]}", "count":{self.recipes[recipe]["outputCount"]}}}}}')
+                            file.write(
+                                f'}},"result": {{ "id":"minecraft:{recip[9]}", "count":{self.recipes[recipe]["outputCount"]}}}}}'
+                            )
                         elif recip[9] in self.items:
                             idx = self.items[recip[9]]
-                            file.write(f'}},"result":{{ "id":"{idx["baseItem"]}", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:item_name":"{{\"italic\":false,\"text\":\"{idx["displayName"]}\"}}", "minecraft:custom_model_data": {idx["name"]} }} }} }}')
+                            file.write(
+                                f'}},"result":{{ "id":"{idx["baseItem"]}", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:item_name":"{{"italic":false,"text":"{idx["displayName"]}"}}", "minecraft:custom_model_data": {idx["name"]} }} }} }}'
+                            )
                         elif recip[9] in self.blocks:
                             idx = self.blocks[recip[9]]
-                            file.write(f'}},"result":{{ "id":"minecraft:item_frame", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:custom_model_data": {idx["cmd"]}, "minecraft:custom_name": "{{\\"italic\\":false,\\"text\\":\\"{idx["displayName"]}\\"}}", "minecraft:entity_data": {{ "id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{idx["name"]}"] }} }} }}')
+                            file.write(
+                                f'}},"result":{{ "id":"minecraft:item_frame", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:custom_model_data": {idx["cmd"]}, "minecraft:custom_name": "{{\\"italic\\":false,\\"text\\":\\"{idx["displayName"]}\\"}}", "minecraft:entity_data": {{ "id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{idx["name"]}"] }} }} }}'
+                            )
 
                 else:
-                    with open(f'{self.namespaceDirectory}\\recipe\\{self.recipes[recipe]["name"]}.json', 'a') as file:
+                    with open(
+                        f'{self.namespaceDirectory}\\recipe\\{self.recipes[recipe]["name"]}.json',
+                        "a",
+                    ) as file:
                         recip = self.recipes[recipe]["items"]
-                        items = [(k, v) for k, v in recip.items() if v not in (None, '')][:-3]
+                        items = [
+                            (k, v) for k, v in recip.items() if v not in (None, "")
+                        ][:-3]
                         for ingredient, (key, value) in enumerate(items):
                             if value:
                                 file.write(f'"minecraft:{value}"')
-                                if ingredient < len(items) - 1: file.write(',')
+                                if ingredient < len(items) - 1:
+                                    file.write(",")
                         if not recip[9] in self.items and not recip[9] in self.blocks:
                             file.write(
-                                f']],"result":{{"id": "minecraft:{recip[9]}", "count":{self.recipes[recipe]["outputCount"]}}}}}')
+                                f']],"result":{{"id": "minecraft:{recip[9]}", "count":{self.recipes[recipe]["outputCount"]}}}}}'
+                            )
                         elif recip[9] in self.items:
                             idx = self.items[recip[9]]
                             file.write(
-                                f'}},"result":{{ "id":"{idx["baseItem"]}", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:item_name":"{{\\"italic\\":false,\\"text\\":\\"{idx["displayName"]}\\"}}", "minecraft:custom_model_data": {idx["cmd"]}}} }} }}')
+                                f'}},"result":{{ "id":"{idx["baseItem"]}", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:item_name":"{{\\"italic\\":false,\\"text\\":\\"{idx["displayName"]}\\"}}", "minecraft:custom_model_data": {idx["cmd"]}}} }} }}'
+                            )
                         elif recip[9] in self.blocks:
                             idx = self.blocks[recip[9]]
                             file.write(
-                                f'}},"result":{{ "id":"minecraft:item_frame", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:custom_model_data": {idx["cmd"]}, "minecraft:custom_name": "{{\\"italic\\":false,\\"text\\":\\"{idx["displayName"]}\\"}}", "minecraft:entity_data": {{ "id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{idx["name"]}"] }} }} }}')
+                                f'}},"result":{{ "id":"minecraft:item_frame", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:custom_model_data": {idx["cmd"]}, "minecraft:custom_name": "{{\\"italic\\":false,\\"text\\":\\"{idx["displayName"]}\\"}}", "minecraft:entity_data": {{ "id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{idx["name"]}"] }} }} }}'
+                            )
 
             elif self.recipes[recipe]["type"] == "smelting":
-                with open(f'{self.namespaceDirectory}\\recipe\\{self.recipes[recipe]["name"]}.json', 'a') as file:
+                with open(
+                    f'{self.namespaceDirectory}\\recipe\\{self.recipes[recipe]["name"]}.json',
+                    "a",
+                ) as file:
                     recip = self.recipes[recipe]["items"]
                     if not recip[11] in self.items and not recip[11] in self.blocks:
-                        file.write(f'{{ "type": "minecraft:smelting", "ingredient": "minecraft:{recipe[10]}", "result": {{ "id": "minecraft:{recip[11]}"}} }}')
+                        file.write(
+                            f'{{ "type": "minecraft:smelting", "ingredient": "minecraft:{recipe[10]}", "result": {{ "id": "minecraft:{recip[11]}"}} }}'
+                        )
                     elif recip[11] in self.items:
                         idx = self.items[recip[11]]
                         file.write(
-                            f'{{ "type": "minecraft:smelting", "ingredient": "minecraft:{recip[10]}", "result": {{ "id": "minecraft:{recip[11]}", "components": {{"minecraft:item_name":"{{\\"italic\\":false,\\"text\\":\\"{idx["displayName"]}\\"}}", "minecraft:custom_model_data": {idx["cmd"]} }}}}')
+                            f'{{ "type": "minecraft:smelting", "ingredient": "minecraft:{recip[10]}", "result": {{ "id": "minecraft:{recip[11]}", "components": {{"minecraft:item_name":"{{\\"italic\\":false,\\"text\\":\\"{idx["displayName"]}\\"}}", "minecraft:custom_model_data": {idx["cmd"]} }}}}'
+                        )
                     elif recip[11] in self.blocks:
                         idx = self.blocks[recip[11]]
                         file.write(
-                            f'}},"result":{{ "id":"minecraft:item_frame", "count":{self.recipes[recipe]["count"]}, "components": {{ "minecraft:custom_model_data": {idx["cmd"]}, "minecraft:custom_name": "{{\\"italic\\":false,\\"text\\":\\"{idx["displayName"]}\\"}}", "minecraft:entity_data": {{ "id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{idx["name"]}"] }} }} }}')
+                            f'}},"result":{{ "id":"minecraft:item_frame", "count":{self.recipes[recipe]["count"]}, "components": {{ "minecraft:custom_model_data": {idx["cmd"]}, "minecraft:custom_name": "{{\\"italic\\":false,\\"text\\":\\"{idx["displayName"]}\\"}}", "minecraft:entity_data": {{ "id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{idx["name"]}"] }} }} }}'
+                        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = App()
     window.show()
