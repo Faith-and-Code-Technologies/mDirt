@@ -1,9 +1,7 @@
-import ast
 import datetime
 import json
 import os
 import re
-import shutil
 import sys
 
 from PySide6.QtCore import Qt
@@ -11,12 +9,11 @@ from PySide6.QtGui import QImage, QPixmap
 from PySide6.QtWidgets import (QApplication, QFileDialog, QMainWindow,
                                QMessageBox, QWidget)
 
+from generation.blocks import BlockGenerator, BlockResourcer
+from generation.items import ItemGenerator, ItemResourcer
+from generation.recipes import RecipeGenerator
 from select_item import Ui_Form
 from ui import Ui_MainWindow
-
-from generation.blocks import BlockGenerator
-from generation.items import ItemGenerator
-from generation.recipes import RecipeGenerator
 
 
 def alert(message):
@@ -602,190 +599,10 @@ class App(QMainWindow):
         self.ui.smeltingOutput.setText("")
 
     #######################
-    # PACK GENERATION     #
+    # ERROR CHECKING      #
     #######################
 
-    def generateResourcePack(self):
-        #######################
-        # BASE STRUCTURE      #
-        #######################
-
-        self.resPackDirectory = os.path.join(
-            self.outputDir, f"{self.packName} Resource Pack"
-        )
-        os.mkdir(self.resPackDirectory)
-        os.mkdir(f"{self.resPackDirectory}\\assets")
-        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft")
-        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\atlases")
-        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\models")
-        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\textures")
-        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\textures\\item")
-        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\models\\item")
-        os.mkdir(
-            f"{self.resPackDirectory}\\assets\\minecraft\\models\\{self.packNamespace}"
-        )
-
-        # Create Atlas
-        with open(
-            f"{self.resPackDirectory}\\assets\\minecraft\\atlases\\blocks.json", "w"
-        ) as file:
-            file.write(
-                f'{{"sources":[{{"type": "directory", "source": "{self.packNamespace}", "prefix": "{self.packNamespace}/"}}]}}'
-            )
-
-        # Pack.mcmeta
-        with open(f"{self.resPackDirectory}\\pack.mcmeta", "w") as pack:
-            pack.write(
-                f'{{\n    "pack": {{\n        "pack_format": 42,\n        "description": "{self.packDescription}"\n    }}\n}}\n'
-            )
-
-        # Item Frame Model(s) For Blocks
-        with open(
-            f"{self.resPackDirectory}\\assets\\minecraft\\models\\item\\item_frame.json",
-            "a",
-        ) as file:
-            file.write(
-                '{"parent": "minecraft:item/generated","textures": {"layer0": "minecraft:item/item_frame"},"overrides":['
-            )
-            for block in self.blocks:
-                file.write(
-                    f'{{ "predicate": {{ "custom_model_data": {self.blocks[block]["cmd"]}}}, "model": "{self.packNamespace}/{self.blocks[block]["name"]}"}}'
-                )
-                if block != next(reversed(self.blocks.keys())):
-                    file.write(",")
-            file.write("}}")
-
-        # Copy Block Textures To Pack
-        for block in self.blocks:
-            texturePath = (
-                f"{self.resPackDirectory}\\assets\\minecraft\\textures\\item\\"
-            )
-
-            if ".json" not in self.blocks[block]["model"]:
-                for path in self.blocks[block]["textures"].values():
-                    if not os.path.exists(
-                        os.path.join(
-                            texturePath,
-                            os.path.splitext(os.path.basename(str(path)))[-2] + ".png",
-                        )
-                    ):
-                        shutil.copy(
-                            path,
-                            os.path.join(
-                                texturePath,
-                                os.path.splitext(os.path.basename(str(path)))[-2]
-                                + ".png",
-                            ),
-                        )
-            else:
-                path = self.blocks[block]["textures"][5]
-                if not os.path.exists(
-                    os.path.join(
-                        texturePath,
-                        os.path.splitext(os.path.basename(str(path)))[-2] + ".png",
-                    )
-                ):
-                    shutil.copy(
-                        path,
-                        os.path.join(
-                            texturePath,
-                            os.path.splitext(os.path.basename(str(path)))[-2] + ".png",
-                        ),
-                    )
-
-        # Copy / Write Block Model To Pack
-        for block in self.blocks:
-            with open(
-                f'{self.resPackDirectory}\\assets\\minecraft\\models\\{self.packNamespace}\\{self.blocks[block]["name"]}.json',
-                "w",
-            ) as file:
-                if ".json" not in self.blocks[block]["model"]:
-                    file.write(
-                        f'{{"credit": "Made with mDirt 2","textures": {{"0": "item/{self.blocks[block]["textures"][0]}","1": "item/{self.blocks[block]["textures"][1]}","2": "item/{self.blocks[block]["textures"][2]}","3": "item/{self.blocks[block]["textures"][3]}","4": "item/{self.blocks[block]["textures"][4]}","5": "item/{self.blocks[block]["textures"][5]}","particle": "item/{self.blocks[block]["textures"][0]}"}},"elements": [{{"from": [0, 0, 0],"to": [16, 16, 16],"faces": {{"north": {{"uv": [0, 0, 16, 16], "texture": "#0"}},"east": {{"uv": [0, 0, 16, 16], "texture": "#1"}},"south": {{"uv": [0, 0, 16, 16], "texture": "#2"}},"west": {{"uv": [0, 0, 16, 16], "texture": "#3"}},"up": {{"uv": [0, 0, 16, 16], "texture": "#4"}},"down": {{"uv": [0, 0, 16, 16], "texture": "#5"}}}}}}],"display": {{"thirdperson_righthand": {{"rotation": [0, 0, -55],"translation": [0, 2.75, -2.5],"scale": [0.4, 0.4, 0.4]}},"thirdperson_lefthand": {{"rotation": [0, 0, -55],"translation": [0, 2.75, -2.5],"scale": [0.4, 0.4, 0.4]}},"firstperson_righthand": {{"rotation": [0, 45, 0],"scale": [0.4, 0.4, 0.4]}},"ground": {{"translation": [0, 3.25, 0],"scale": [0.4, 0.4, 0.4]}},"gui": {{"rotation": [28, 45, 0],"scale": [0.6, 0.6, 0.6]}}}}}}'
-                    )
-                else:
-                    with open(self.blocks[block]["model"], "r") as f:
-                        model = ast.literal_eval(f.read())
-                    for texture in model["textures"]:
-                        model["textures"][
-                            texture
-                        ] = f'item/{model["textures"][texture]}'
-                    file.write(str(model).replace("'", '"'))
-
-        # Write Base Item Model To Pack
-        for item in self.items:
-            modelPath = f"{self.resPackDirectory}\\assets\\minecraft\\models\\item\\"
-            if not os.path.exists(
-                f'{modelPath}{self.items[item]["baseItem"].removeprefix("minecraft:")}.json'
-            ):
-                self.exists[self.items[item]["baseItem"]] = False
-            with open(
-                f'{modelPath}{self.items[item]["baseItem"].removeprefix("minecraft:")}.json',
-                "a",
-            ) as file:
-                if not self.exists[self.items[item]["baseItem"]]:
-                    self.exists[self.items[item]["baseItem"]] = True
-                    modelType = self.data["models"][self.items[item]["baseItem"]]
-                    file.write(f'{modelType}, "overrides": [')
-                file.write(
-                    f'{{ "predicate": {{ "custom_model_data": {self.items[item]["cmd"]}}}, "model": "{self.packNamespace}/{self.items[item]["name"]}"}},'
-                )
-
-        # Remove Trailing Comma At Each Model
-        for file in os.listdir(
-            f"{self.resPackDirectory}\\assets\\minecraft\\models\\item"
-        ):
-            if file.endswith(".json"):
-                with open(
-                    os.path.join(
-                        f"{self.resPackDirectory}\\assets\\minecraft\\models\\item\\",
-                        file,
-                    ),
-                    "r+",
-                ) as f:
-                    content = f.read()
-                    f.seek(0)
-                    f.write(content[:-1])
-                    f.truncate()
-                    f.write("]}")
-
-        # Copy / Write Item Model To Pack
-        for item in self.items:
-            currentPath = f"{self.resPackDirectory}\\assets\\minecraft\\models\\{self.packNamespace}"
-            with open(f'{currentPath}\\{self.items[item]["name"]}.json', "w") as file:
-                if ".json" in self.items[item]["model"]:
-                    with open(self.items[item]["model"], "r") as f:
-                        model = ast.literal_eval(f.read())
-                    for texture in model["textures"]:
-                        model["textures"][
-                            texture
-                        ] = f'{self.packNamespace}/{model["textures"][texture]}'
-                    file.write(str(model).replace("'", '"'))
-                else:
-                    file.write(
-                        f'{{"parent":" {self.data["models"][self.items[item]["baseItem"]]["parent"]}", "textures": {{ "layer0": "minecraft:{self.packNamespace}/{os.path.splitext(os.path.basename(str(self.items[item]["texture"])))[-2]}"}}}}'
-                    )
-
-        os.mkdir(
-            f"{self.resPackDirectory}\\assets\\minecraft\\textures\\{self.packNamespace}"
-        )
-
-        # Copy Item Texture To Pack
-        for item in self.items:
-            currentPath = f"{self.resPackDirectory}\\assets\\minecraft\\textures\\{self.packNamespace}"
-            shutil.copy(
-                self.items[item]["texture"],
-                os.path.normpath(
-                    f'{currentPath}\\{os.path.splitext(os.path.basename(str(self.items[item]["texture"])))[-2]}.png'
-                ),
-            )
-
-    def generateDataPack(self):
-
-        #######################
-        # ERROR CHECKING      #
-        #######################
-
+    def checkInputs(self):
         self.default_blocks = self.data["blocks"]
         self.default_items = self.data["items"]
 
@@ -853,6 +670,62 @@ class App(QMainWindow):
             alert("Please select a valid output directory!")
             return
 
+    #######################
+    # PACK GENERATION     #
+    #######################
+
+    def generateResourcePack(self):
+        #######################
+        # BASE STRUCTURE      #
+        #######################
+
+        self.resPackDirectory = os.path.join(
+            self.outputDir, f"{self.packName} Resource Pack"
+        )
+        os.mkdir(self.resPackDirectory)
+        os.mkdir(f"{self.resPackDirectory}\\assets")
+        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft")
+        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\atlases")
+        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\models")
+        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\textures")
+        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\textures\\item")
+        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\models\\item")
+        os.mkdir(
+            f"{self.resPackDirectory}\\assets\\minecraft\\models\\{self.packNamespace}"
+        )
+
+        # Create Atlas
+        with open(
+            f"{self.resPackDirectory}\\assets\\minecraft\\atlases\\blocks.json", "w"
+        ) as file:
+            file.write(
+                f'{{"sources":[{{"type": "directory", "source": "{self.packNamespace}", "prefix": "{self.packNamespace}/"}}]}}'
+            )
+
+        # Pack.mcmeta
+        with open(f"{self.resPackDirectory}\\pack.mcmeta", "w") as pack:
+            pack.write(
+                f'{{\n    "pack": {{\n        "pack_format": 42,\n        "description": "{self.packDescription}"\n    }}\n}}\n'
+            )
+
+        blockResourcer = BlockResourcer(
+            self.resPackDirectory, self.packNamespace, self.blocks
+        )
+        blockResourcer.generate()
+
+        itemResourcer = ItemResourcer(
+            self.resPackDirectory,
+            self.packNamespace,
+            self.exists,
+            self.data,
+            self.items,
+        )
+        itemResourcer.generate()
+
+    def generateDataPack(self):
+
+        self.checkInputs()
+
         #######################
         # BASE STRUCTURE      #
         #######################
@@ -913,52 +786,47 @@ class App(QMainWindow):
         #######################
 
         if len(self.blocks) > 0:
-            self.generateBlocks()
+            blockGenerator = BlockGenerator(
+                self.header,
+                self.namespaceDirectory,
+                self.packNamespace,
+                self.packAuthor,
+                self.blocks,
+            )
+
+            blockGenerator.generate()
 
         #######################
         # CUSTOM ITEMS        #
         #######################
 
         if len(self.items) > 0:
-            self.generateItems()
+            itemGenerator = ItemGenerator(
+                self.header, self.namespaceDirectory, self.items
+            )
+
+            itemGenerator.generate()
 
         #######################
         # CUSTOM RECIPES      #
         #######################
 
         if len(self.recipes) > 0:
-            self.generateRecipes()
+            recipeGenerator = RecipeGenerator(
+                self.namespaceDirectory,
+                self.packAuthor,
+                self.blocks,
+                self.items,
+                self.recipes,
+            )
+
+            recipeGenerator.generate()
 
         #######################
         # RESOURCE PACK       #
         #######################
 
         self.generateResourcePack()
-
-    def generateBlocks(self):
-        blockGenerator = BlockGenerator(self.header,
-                                               self.namespaceDirectory,
-                                               self.packNamespace,
-                                               self.packAuthor,
-                                               self.blocks)
-
-        blockGenerator.generate()
-
-    def generateItems(self):
-        itemGenerator = ItemGenerator(self.header,
-                                            self.namespaceDirectory,
-                                            self.items)
-
-        itemGenerator.generate()
-
-    def generateRecipes(self):
-        recipeGenerator = RecipeGenerator(self.namespaceDirectory,
-                                                  self.packAuthor,
-                                                  self.blocks,
-                                                  self.items,
-                                                  self.recipes)
-
-        recipeGenerator.generate()
 
 
 if __name__ == "__main__":
