@@ -11,8 +11,8 @@ class RecipeGenerator:
             if self.recipes[recipe]["type"] == "crafting":
                 if not self.recipes[recipe]["shapeless"]:
                     with open(
-                            f'{self.namespaceDirectory}\\recipe\\{self.recipes[recipe]["name"]}.json',
-                            "a",
+                        f'{self.namespaceDirectory}\\recipe\\{self.recipes[recipe]["name"]}.json',
+                        "a",
                     ) as file:
                         letters = {
                             0: "A",
@@ -46,8 +46,8 @@ class RecipeGenerator:
 
                         file.write('"],"key":{')
                         items = [
-                                    (k, v) for k, v in recip.items() if v not in (None, "")
-                                ][:-1]
+                            (k, v) for k, v in recip.items() if v not in (None, "")
+                        ][:-1]
                         for i, (key, value) in enumerate(items):
                             if value != "" and value:
                                 file.write(f'"{letters[key]}":"minecraft:{value}"')
@@ -70,13 +70,13 @@ class RecipeGenerator:
 
                 else:
                     with open(
-                            f'{self.namespaceDirectory}\\recipe\\{self.recipes[recipe]["name"]}.json',
-                            "a",
+                        f'{self.namespaceDirectory}\\recipe\\{self.recipes[recipe]["name"]}.json',
+                        "a",
                     ) as file:
                         recip = self.recipes[recipe]["items"]
                         items = [
-                                    (k, v) for k, v in recip.items() if v not in (None, "")
-                                ][:-3]
+                            (k, v) for k, v in recip.items() if v not in (None, "")
+                        ][:-3]
                         for ingredient, (key, value) in enumerate(items):
                             if value:
                                 file.write(f'"minecraft:{value}"')
@@ -99,8 +99,8 @@ class RecipeGenerator:
 
             elif self.recipes[recipe]["type"] == "smelting":
                 with open(
-                        f'{self.namespaceDirectory}\\recipe\\{self.recipes[recipe]["name"]}.json',
-                        "a",
+                    f'{self.namespaceDirectory}\\recipe\\{self.recipes[recipe]["name"]}.json',
+                    "a",
                 ) as file:
                     recip = self.recipes[recipe]["items"]
                     if not recip[11] in self.items and not recip[11] in self.blocks:

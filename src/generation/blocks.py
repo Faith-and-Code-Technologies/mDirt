@@ -1,4 +1,7 @@
+import ast
 import os
+import shutil
+
 
 class BlockGenerator:
     def __init__(self, header, namespaceDir, packNamespace, packAuthor, blocks):
@@ -13,7 +16,7 @@ class BlockGenerator:
 
         # Placed Item Frame Advancement
         with open(
-                f"{self.namespaceDirectory}\\advancement\\placed_item_frame.json", "w"
+            f"{self.namespaceDirectory}\\advancement\\placed_item_frame.json", "w"
         ) as file:
             file.write(
                 f'{{"criteria": {{"requirement": {{"trigger": "minecraft:item_used_on_block","conditions": {{"location": [{{"condition": "minecraft:match_tool","predicate": {{"items": ["minecraft:item_frame"]}}}}]}}}}}}, "rewards": {{"function": "{self.packNamespace}:placed_item_frame"}}}}'
@@ -21,8 +24,8 @@ class BlockGenerator:
 
         # Placed Item Frame Function
         with open(
-                f"{self.namespaceDirectory}\\function\\blocks\\placed_item_frame.mcfunction",
-                "w",
+            f"{self.namespaceDirectory}\\function\\blocks\\placed_item_frame.mcfunction",
+            "w",
         ) as file:
             file.write(
                 f"{self.header}advancement revoke @s only {self.packNamespace}:placed_item_frame\n"
@@ -31,15 +34,15 @@ class BlockGenerator:
 
         # Check Placed Item Frame, block/place Functions
         with open(
-                f"{self.packNamespace}\\function\\blocks\\check_placed_item_frame", "a"
+            f"{self.packNamespace}\\function\\blocks\\check_placed_item_frame", "a"
         ) as file:
             for block in self.blocks:
                 os.mkdir(
                     f'{self.namespaceDirectory}\\function\\blocks\\{self.blocks[block]["name"]}'
                 )
                 with open(
-                        f'{self.namespaceDirectory}\\function\\{self.blocks[block]["name"]}\\place.mcfunction',
-                        "a",
+                    f'{self.namespaceDirectory}\\function\\{self.blocks[block]["name"]}\\place.mcfunction',
+                    "a",
                 ) as file2:
                     file2.write(
                         f'{self.header}setblock ~ ~ ~ {self.blocks[block]["baseBlock"]} keep\n'
@@ -78,20 +81,20 @@ class BlockGenerator:
 
         # As Blocks, block/block, block/break Functions
         with open(
-                f"{self.namespaceDirectory}\\function\\blocks\\as_blocks.mcfunction", "a"
+            f"{self.namespaceDirectory}\\function\\blocks\\as_blocks.mcfunction", "a"
         ) as file:
             file.write(self.header)
             for block in self.blocks:
                 with open(
-                        f"{self.namespaceDirectory}\\function\\blocks\\{block}\\{block}.mcfunction",
-                        "w",
+                    f"{self.namespaceDirectory}\\function\\blocks\\{block}\\{block}.mcfunction",
+                    "w",
                 ) as file2:
                     file2.write(
                         f'{self.header}execute unless block ~ ~ ~ {self.blocks[block]["baseBlock"]} run function {self.packNamespace}:blocks/{self.blocks[block]["name"]}/break'
                     )
                 with open(
-                        f"{self.namespaceDirectory}\\function\\blocks\\{block}\\break.mcfunction",
-                        "a",
+                    f"{self.namespaceDirectory}\\function\\blocks\\{block}\\break.mcfunction",
+                    "a",
                 ) as file2:
                     file2.write(
                         f'{self.header}execute as @e[type=item,sort=nearest,limit=1,distance=..2,nbt={{OnGround:0b,Age:0s,Item:{{id:"{self.blocks[block]["baseBlock"]}"}}}}] run kill @s\n'
@@ -105,7 +108,7 @@ class BlockGenerator:
 
         # Give Blocks Function
         with open(
-                f"{self.namespaceDirectory}\\function\\give_blocks.mcfunction", "a"
+            f"{self.namespaceDirectory}\\function\\give_blocks.mcfunction", "a"
         ) as file:
             file.write(self.header)
             for block in self.blocks:
@@ -116,8 +119,8 @@ class BlockGenerator:
         # Loot Tables
         for block in self.blocks:
             with open(
-                    f'{self.namespaceDirectory}\\loot_table\\{self.blocks[block]["name"]}.json',
-                    "w",
+                f'{self.namespaceDirectory}\\loot_table\\{self.blocks[block]["name"]}.json',
+                "w",
             ) as file:
                 if self.blocks[block]["blockDrop"] == "":
                     file.write(
@@ -127,3 +130,84 @@ class BlockGenerator:
                     file.write(
                         f'{{"pools": [{{"rolls": 1,"entries": [{{"type": "minecraft:item","name": "{self.blocks[block]["blockDrop"]}"}}]}}]}}'
                     )
+
+
+class BlockResourcer:
+    def __init__(self, resPackDirectory, packNamespace, blocks):
+        self.resPackDirectory = resPackDirectory
+        self.blocks = packNamespace
+        self.packNamespace = blocks
+
+    def generate(self):
+        # Item Frame Model(s) For Blocks
+        with open(
+            f"{self.resPackDirectory}\\assets\\minecraft\\models\\item\\item_frame.json",
+            "a",
+        ) as file:
+            file.write(
+                '{"parent": "minecraft:item/generated","textures": {"layer0": "minecraft:item/item_frame"},"overrides":['
+            )
+            for block in self.blocks:
+                file.write(
+                    f'{{ "predicate": {{ "custom_model_data": {self.blocks[block]["cmd"]}}}, "model": "{self.packNamespace}/{self.blocks[block]["name"]}"}}'
+                )
+                if block != next(reversed(self.blocks.keys())):
+                    file.write(",")
+            file.write("}}")
+
+        # Copy Block Textures To Pack
+        for block in self.blocks:
+            texturePath = (
+                f"{self.resPackDirectory}\\assets\\minecraft\\textures\\item\\"
+            )
+
+            if ".json" not in self.blocks[block]["model"]:
+                for path in self.blocks[block]["textures"].values():
+                    if not os.path.exists(
+                        os.path.join(
+                            texturePath,
+                            os.path.splitext(os.path.basename(str(path)))[-2] + ".png",
+                        )
+                    ):
+                        shutil.copy(
+                            path,
+                            os.path.join(
+                                texturePath,
+                                os.path.splitext(os.path.basename(str(path)))[-2]
+                                + ".png",
+                            ),
+                        )
+            else:
+                path = self.blocks[block]["textures"][5]
+                if not os.path.exists(
+                    os.path.join(
+                        texturePath,
+                        os.path.splitext(os.path.basename(str(path)))[-2] + ".png",
+                    )
+                ):
+                    shutil.copy(
+                        path,
+                        os.path.join(
+                            texturePath,
+                            os.path.splitext(os.path.basename(str(path)))[-2] + ".png",
+                        ),
+                    )
+
+        # Copy / Write Block Model To Pack
+        for block in self.blocks:
+            with open(
+                f'{self.resPackDirectory}\\assets\\minecraft\\models\\{self.packNamespace}\\{self.blocks[block]["name"]}.json',
+                "w",
+            ) as file:
+                if ".json" not in self.blocks[block]["model"]:
+                    file.write(
+                        f'{{"credit": "Made with mDirt 2","textures": {{"0": "item/{self.blocks[block]["textures"][0]}","1": "item/{self.blocks[block]["textures"][1]}","2": "item/{self.blocks[block]["textures"][2]}","3": "item/{self.blocks[block]["textures"][3]}","4": "item/{self.blocks[block]["textures"][4]}","5": "item/{self.blocks[block]["textures"][5]}","particle": "item/{self.blocks[block]["textures"][0]}"}},"elements": [{{"from": [0, 0, 0],"to": [16, 16, 16],"faces": {{"north": {{"uv": [0, 0, 16, 16], "texture": "#0"}},"east": {{"uv": [0, 0, 16, 16], "texture": "#1"}},"south": {{"uv": [0, 0, 16, 16], "texture": "#2"}},"west": {{"uv": [0, 0, 16, 16], "texture": "#3"}},"up": {{"uv": [0, 0, 16, 16], "texture": "#4"}},"down": {{"uv": [0, 0, 16, 16], "texture": "#5"}}}}}}],"display": {{"thirdperson_righthand": {{"rotation": [0, 0, -55],"translation": [0, 2.75, -2.5],"scale": [0.4, 0.4, 0.4]}},"thirdperson_lefthand": {{"rotation": [0, 0, -55],"translation": [0, 2.75, -2.5],"scale": [0.4, 0.4, 0.4]}},"firstperson_righthand": {{"rotation": [0, 45, 0],"scale": [0.4, 0.4, 0.4]}},"ground": {{"translation": [0, 3.25, 0],"scale": [0.4, 0.4, 0.4]}},"gui": {{"rotation": [28, 45, 0],"scale": [0.6, 0.6, 0.6]}}}}}}'
+                    )
+                else:
+                    with open(self.blocks[block]["model"], "r") as f:
+                        model = ast.literal_eval(f.read())
+                    for texture in model["textures"]:
+                        model["textures"][
+                            texture
+                        ] = f'item/{model["textures"][texture]}'
+                    file.write(str(model).replace("'", '"'))
