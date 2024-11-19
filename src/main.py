@@ -1,857 +1,833 @@
-import json.tool, os, sys, shutil, json, ast
-from ui import Ui_MainWindow
-from item_select import Ui_Form
-from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QWidget
-from PySide6.QtGui import QPixmap, QImage
-from PySide6.QtCore import Qt
+import datetime
+import json
+import os
+import re
+import sys
 
-class app:
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QImage, QPixmap
+from PySide6.QtWidgets import (QApplication, QFileDialog, QMainWindow,
+                               QMessageBox, QWidget)
+
+from generation.blocks import BlockGenerator, BlockResourcer
+from generation.items import ItemGenerator, ItemResourcer
+from generation.recipes import RecipeGenerator
+from select_item import Ui_Form
+from ui import Ui_MainWindow
+
+
+def alert(message):
+    messageBox = QMessageBox()
+    messageBox.setIcon(QMessageBox.Icon.Information)
+    messageBox.setText(message)
+    messageBox.setWindowTitle("Alert")
+    messageBox.setStandardButtons(QMessageBox.StandardButton.Ok)
+    messageBox.exec()
+
+
+def checkInputValid(input_, type_):
+    return (
+        "empty"
+        if not input_.text()
+        else (
+            "type"
+            if type_ == "strict"
+            and (
+                not input_.text().islower()
+                or any(char.isspace() or char.isdigit() for char in input_.text())
+            )
+            else (
+                "valid"
+                if type_ == "strict"
+                else (
+                    "valid"
+                    if type_ == "string"
+                    and re.match(r"^[^<>:\"/\\|?*\x00-\x1F]+$", input_.text())
+                    and input_.text().strip() != ""
+                    else (
+                        "type"
+                        if type_ == "string"
+                        else (
+                            "valid"
+                            if type_ == "integer" and input_.text().isdigit()
+                            else "type"
+                        )
+                    )
+                )
+            )
+        )
+    )
+
+
+class App(QMainWindow):
     def __init__(self):
-        super(app, self).__init__()
-        
+        super().__init__()
+
+        # Make PyCharm stop yelling at me
+        self.exists = {}
+        self.resPackDirectory = None
+        self.minecraftDirectory = None
+        self.namespaceDirectory = None
+        self.packDirectory = None
+        self.outputDir = None
+        self.packAuthor = None
+        self.packDescription = None
+        self.packNamespace = None
+        self.packName = None
+        self.default_items = None
+        self.default_blocks = None
+        self.packCMDPrefix = None
+        self.recipeProperties = None
+        self.ui_form = None
+        self.block_popup = None
+        self.itemProperties = None
+        self.blockProperties = None
+        self.header = None
+        self.recipe = None
+        self.itemTexture = None
+        self.blockTexture = {}
+        self.recipes = None
+        self.items = None
+        self.blocks = None
+        self.data = None
+        self.mainDirectory = None
+
+        self.featureNum = 0
+
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+
+        # Setup Needed Data
+        self.setupData()
+
+        # Block Signals
+        self.ui.blockAddButton.clicked.connect(self.addBlock)
+        self.ui.blockEditButton.clicked.connect(self.editBlock)
+        self.ui.blockRemoveButton.clicked.connect(self.removeBlock)
+
+        self.ui.blockTextureButtonTop.clicked.connect(lambda: self.getBlockTexture(0))
+        self.ui.blockTextureButtonLeft.clicked.connect(lambda: self.getBlockTexture(1))
+        self.ui.blockTextureButtonBack.clicked.connect(lambda: self.getBlockTexture(2))
+        self.ui.blockTextureButtonRight.clicked.connect(lambda: self.getBlockTexture(3))
+        self.ui.blockTextureButtonFront.clicked.connect(lambda: self.getBlockTexture(4))
+        self.ui.blockTextureButtonBottom.clicked.connect(lambda: self.getBlockTexture(5))
+
+        self.ui.blockModel.activated.connect(self.getBlockModel)
+
+        # Item Signals
+        self.ui.itemAddButton.clicked.connect(self.addItem)
+        self.ui.itemEditButton.clicked.connect(self.editItem)
+        self.ui.itemRemoveButton.clicked.connect(self.removeItem)
+        self.ui.itemTextureButton.clicked.connect(self.getItemTexture)
+
+        self.ui.itemModel.activated.connect(self.getItemModel)
+
+        # Recipe Signals
+        self.ui.recipeAddButton.clicked.connect(self.addRecipe)
+        self.ui.recipeEditButton.clicked.connect(self.editRecipe)
+        self.ui.recipeRemoveButton.clicked.connect(self.removeRecipe)
+
+        self.ui.slot0Button.clicked.connect(lambda: self.getRecipeItem(0))
+        self.ui.slot1Button.clicked.connect(lambda: self.getRecipeItem(1))
+        self.ui.slot2Button.clicked.connect(lambda: self.getRecipeItem(2))
+        self.ui.slot3Button.clicked.connect(lambda: self.getRecipeItem(3))
+        self.ui.slot4Button.clicked.connect(lambda: self.getRecipeItem(4))
+        self.ui.slot5Button.clicked.connect(lambda: self.getRecipeItem(5))
+        self.ui.slot6Button.clicked.connect(lambda: self.getRecipeItem(6))
+        self.ui.slot7Button.clicked.connect(lambda: self.getRecipeItem(7))
+        self.ui.slot8Button.clicked.connect(lambda: self.getRecipeItem(8))
+        self.ui.slot9Button.clicked.connect(lambda: self.getRecipeItem(9))
+
+        self.ui.smeltingInputButton.clicked.connect(lambda: self.getRecipeItem(10))
+        self.ui.smeltingOutputButton.clicked.connect(lambda: self.getRecipeItem(11))
+
+        # Import & Export
+        self.ui.actionImport_mdrt.triggered.connect(self.importProject)
+        self.ui.actionExport_mdrt.triggered.connect(self.exportProject)
+
+        # Generate
+        self.ui.packGenerate.clicked.connect(self.generateDataPack)
+
+    def setupData(self):
+        self.mainDirectory = f"{os.path.dirname(os.path.abspath(__file__))}\\.."
+        self.data = json.load(open(f"{self.mainDirectory}\\lib\\data.json", "r"))
+
         self.blocks = {}
         self.items = {}
         self.recipes = {}
 
-        self.generated_cmds = {
-            "items": {}, 
-            "blocks": {}
-            }
+        self.blockTexture = {}
+        self.itemTexture = None
+        self.recipe = {}
 
-        self.recipe = {"0": "", "1": "", "2": "", "3": "", "4": "", "5": "", "6": "", "7": "", "8": "", "9": "", "10": "", "11": ""}
-        self.texture = {"0": "", "1": "", "2": "", "3": "", "4": "", "5": ""}
-        self.blockNum = 0
+        self.header = """
+        #####################################
+        #   This File Was Created By mDirt  #
+        #               v2.0.0              #
+        #   Copyright 2024 by Jupiter Dev   #
+        #####################################
+        \n"""
 
-        self.header = '#####################################\n#   This File Was Created By mDirt  #\n#              v1.10.0              #\n#   Copyright 2024 by Jupiter Dev   #\n#####################################\n'
+    def parseCMD(self, num):
+        if checkInputValid(self.ui.packCMDPrefix, "integer") == "empty":
+            alert("Pack CMD Prefix is empty!")
+            return "error"
+        if checkInputValid(self.ui.packCMDPrefix, "integer") == "type":
+            alert("Pack CMD Prefix has unsupported characters!")
+            return "error"
+        elif checkInputValid(self.ui.packCMDPrefix, "integer") == "valid":
+            self.packCMDPrefix = self.ui.packCMDPrefix.text()
 
-        self.app = QApplication(sys.argv)
-        self.mainwindow = QMainWindow()
-        self.ui = Ui_MainWindow()
-        self.ui.setupUi(self.mainwindow)
-        self.mainwindow.setStyleSheet(open("themes/dark.qss", "r").read())
-        self.mainwindow.show()
+        strNum = str(num)
+        numLen = len(strNum)
+        zeros = 7 - len(self.packCMDPrefix) - numLen
+        return f"{self.packCMDPrefix}{'0' * zeros}{strNum}"
 
-        self.ui.actionImport_from_mrdt.triggered.connect(self.imported)
-        self.ui.actionExport_to_mrdt_2.triggered.connect(self.export)
+    #######################
+    # IMPORT & EXPORT     #
+    #######################
 
-        self.ui.itemModel.activated.connect(self.getItemModel)
-        self.ui.blockModel.activated.connect(self.getBlockModel)
+    def exportProject(self, version="2.0.0"):
+        data = {
+            "file_type": "mDirtProjectData",
+            "version": version,
+            "metadata": {
+                "exported_at": datetime.datetime.now(datetime.UTC).isoformat() + "Z"
+            },
+            "content": {
+                "pack_info": {
+                    "packName": self.ui.packName.text(),
+                    "packNamespace": self.ui.packNamespace.text(),
+                    "author": self.ui.packAuthor.text(),
+                    "cmdPrefix": self.ui.packCMDPrefix.text(),
+                    "description": self.ui.packDescription.text(),
+                    "version": self.ui.packVersion.currentText(),
+                },
+                "elements": {
+                    "blocks": self.blocks,
+                    "items": self.items,
+                    "recipes": self.recipes,
+                },
+            },
+        }
+        file, _ = QFileDialog.getSaveFileName(
+            self, "Save mDirt Project", "", "mDirt File (*.mdrt)"
+        )
 
-        self.checkBlockAdd()
-        self.checkBlockRemove()
-        self.checkBlockEdit()
-        self.checkItemAdd()
-        self.checkItemRemove()
-        self.checkItemEdit()
-        self.checkRecipeAdd()
-        self.checkRecipeRemove()
-        self.checkRecipeEdit()
-        self.checkGenerate()
-        self.checkBlockTextures()
-        self.checkItemTexture()
-        self.checkRecipeButtons()
-        self.checkThemeActions()
+        if file:
+            with open(file, "w") as f:
+                json.dump(data, f, indent=4)
 
-        self.app.exec()
-    
-    def checkThemeActions(self):
-        self.ui.actionBlue.triggered.connect(lambda: self.switchTheme("blue"))
-        self.ui.actionRed.triggered.connect(lambda: self.switchTheme("red"))
-        self.ui.actionGreen.triggered.connect(lambda: self.switchTheme("green"))
-        self.ui.actionPurple.triggered.connect(lambda: self.switchTheme("purple"))
-        self.ui.actionDark_default.triggered.connect(lambda: self.switchTheme("dark"))
-        self.ui.actionLight.triggered.connect(lambda: self.switchTheme("light"))
-    
-    def switchTheme(self, theme):
-        self.mainwindow.setStyleSheet(open(f"themes/{theme}.qss", "r").read())
-    
-    def checkRecipeButtons(self):
-        self.ui.slot0.clicked.connect(lambda: self.recipeSlot(0))
-        self.ui.slot1.clicked.connect(lambda: self.recipeSlot(1))
-        self.ui.slot2.clicked.connect(lambda: self.recipeSlot(2))
-        self.ui.slot3.clicked.connect(lambda: self.recipeSlot(3))
-        self.ui.slot4.clicked.connect(lambda: self.recipeSlot(4))
-        self.ui.slot5.clicked.connect(lambda: self.recipeSlot(5))
-        self.ui.slot6.clicked.connect(lambda: self.recipeSlot(6))
-        self.ui.slot7.clicked.connect(lambda: self.recipeSlot(7))
-        self.ui.slot8.clicked.connect(lambda: self.recipeSlot(8))
-        self.ui.slot9.clicked.connect(lambda: self.recipeSlot(9))
-                                                                                                          
-        self.ui.input.clicked.connect(lambda: self.recipeSlot(10))
-        self.ui.output.clicked.connect(lambda: self.recipeSlot(11))
-    
-    def recipeSlot(self, id):
-        self.block_popup = QWidget()
-        self.ui_form = Ui_Form()
-        self.ui_form.setupUi(self.block_popup)
+    def importProject(self, version="2.0.0"):
+        file, _ = QFileDialog.getOpenFileName(
+            self, "Open mDirt Project", "", "mDirt File (*.mdrt)"
+        )
 
-        with open(f'{os.path.dirname(os.path.abspath(__file__)) + '\\data.json'}', 'r') as f:
-            item_list = json.load(f)["items"]
+        if file:
+            with open(file, "r") as f:
+                data = json.load(f)
+        else:
+            alert("Please Select a Valid File!")
+            return
 
-        if id == 9 or id == 11:
-            for block in self.blocks:
-                self.ui_form.comboBox.addItem(f'{self.blocks[block]["name"]}')
-            for item in self.items:
-                self.ui_form.comboBox.addItem(f'{self.items[item]["name"]}')
-        
-        for item in item_list:
-            self.ui_form.comboBox.addItem(item)
+        if data.get("file_type") != "mDirtProjectData":
+            alert("Invalid File!")
+            return
 
-        self.block_popup.show()
+        if data.get("version") != version:
+            alert(f"Incompatible version!")
 
-        self.ui_form.pushButton.clicked.connect(lambda: self.itemFormClosed(id, self.ui_form.comboBox.currentText()))
-        
-    def itemFormClosed(self, id, item):
-        self.recipe[str(id)] = item
-        if id == 0:
-            self.ui.slot0Label.setText(item)
-        elif id == 1:
-            self.ui.slot1Label.setText(item)
-        elif id == 2:
-            self.ui.slot2Label.setText(item)
-        elif id == 3:
-            self.ui.slot3Label.setText(item)
-        elif id == 4:
-            self.ui.slot4Label.setText(item)
-        elif id == 5:
-            self.ui.slot5Label.setText(item)
-        elif id == 6:
-            self.ui.slot6Label.setText(item)
-        elif id == 7:
-            self.ui.slot7Label.setText(item)
-        elif id == 8:
-            self.ui.slot8Label.setText(item)
-        elif id == 9:
-            self.ui.slot9Label.setText(item)
-        elif id == 10:
-            self.ui.inputLabel.setText(item)
-        elif id == 11:
-            self.ui.outputLabel.setText(item)
-        self.block_popup.close()
+        self.ui.packName.setText(data["content"]["pack_info"]["packName"])
+        self.ui.packNamespace.setText(data["content"]["pack_info"]["packNamespace"])
+        self.ui.packAuthor.setText(data["content"]["pack_info"]["author"])
+        self.ui.packCMDPrefix.setText(data["content"]["pack_info"]["cmdPrefix"])
+        self.ui.packDescription.setText(data["content"]["pack_info"]["description"])
+        self.ui.packVersion.setCurrentText(data["content"]["pack_info"]["version"])
+        self.blocks = data["content"]["elements"]["blocks"]
+        self.items = data["content"]["elements"]["items"]
+        self.recipes = data["content"]["elements"]["recipes"]
+
+        self.featureNum = 0
+
+        for block in self.blocks:
+            self.ui.blockList.addItem(self.blocks[block]["name"])
+            self.featureNum += 1
+        for item in self.items:
+            self.ui.itemList.addItem(self.items[item]["name"])
+            self.featureNum += 1
+        for recipe in self.recipes:
+            self.ui.recipeList.addItem(self.recipes[recipe]["name"])
+
+    #######################
+    # BLOCKS TAB          #
+    #######################
 
     def getBlockModel(self):
         if self.ui.blockModel.currentText() == "Custom":
-            file_dialog = QFileDialog()
-            file_path, _ = file_dialog.getOpenFileName(self.mainwindow, "Open JSON File", "", "JSON Files (*.json)")
+            fileDialog = QFileDialog()
+            filePath, _ = fileDialog.getOpenFileName(
+                self, "Open JSON File", "", "JSON Files (*.json)"
+            )
 
-            if file_path:
-                self.ui.blockModel.addItem(file_path)
-                self.ui.blockModel.setCurrentText(file_path)
+            if filePath:
+                self.ui.blockModel.addItem(filePath)
+                self.ui.blockModel.setCurrentText(filePath)
+
+    def getBlockTexture(self, id_):
+        textureId = id_
+        self.blockTexture[textureId], _ = QFileDialog.getOpenFileName(
+            self, "Open Texture File", "", "PNG Files (*.png)"
+        )
+        if not self.blockTexture[textureId]:
+            return
+        image = QImage(self.blockTexture[textureId])
+        pixmap = QPixmap.fromImage(image).scaled(
+            50, 50, Qt.AspectRatioMode.KeepAspectRatio
+        )
+
+        if textureId == 0:
+            self.ui.blockTextureTop.setPixmap(pixmap)
+        if textureId == 1:
+            self.ui.blockTextureLeft.setPixmap(pixmap)
+        if textureId == 2:
+            self.ui.blockTextureBack.setPixmap(pixmap)
+        if textureId == 3:
+            self.ui.blockTextureRight.setPixmap(pixmap)
+        if textureId == 4:
+            self.ui.blockTextureFront.setPixmap(pixmap)
+        if textureId == 5:
+            self.ui.blockTextureBottom.setPixmap(pixmap)
+
+    def addBlock(self):
+
+        self.featureNum += 1
+
+        self.blockProperties = {
+            "name": self.ui.blockName.text(),
+            "displayName": self.ui.blockDisplayName.text(),
+            "baseBlock": self.ui.blockBaseBlock.text(),
+            "textures": self.blockTexture,
+            "placeSound": self.ui.blockPlaceSound.text(),
+            "blockDrop": self.ui.blockDrop.text(),
+            "directional": self.ui.blockDirectional.isChecked(),
+            "model": self.ui.blockModel.currentText(),
+            "cmd": self.parseCMD(self.featureNum),
+        }
+
+        self.blocks[self.blockProperties["name"]] = self.blockProperties
+
+        self.ui.blockList.addItem(self.blockProperties["name"])
+
+        self.clearBlockFields()
+
+    def editBlock(self):
+        curItem = self.ui.blockList.currentRow()
+        curItem = self.ui.blockList.item(curItem).text()
+        properties = self.blocks[curItem]
+
+        self.ui.blockName.setText(properties["name"])
+        self.ui.blockDisplayName.setText(properties["displayName"])
+        self.ui.blockBaseBlock.setText(properties["baseBlock"])
+        self.ui.blockDrop.setText(properties["blockDrop"])
+        self.ui.blockPlaceSound.setText(properties["placeSound"])
+        self.ui.blockDirectional.setChecked(properties["directional"])
+        self.ui.blockModel.setCurrentText(properties["model"])
+        self.blockTexture = properties["textures"]
+
+        for textureId in self.blockTexture:
+            image = QImage(self.blockTexture[textureId])
+            pixmap = QPixmap.fromImage(image).scaled(
+                50, 50, Qt.AspectRatioMode.KeepAspectRatio
+            )
+
+            if textureId == 0:
+                self.ui.blockTextureTop.setPixmap(pixmap)
+            if textureId == 1:
+                self.ui.blockTextureLeft.setPixmap(pixmap)
+            if textureId == 2:
+                self.ui.blockTextureBack.setPixmap(pixmap)
+            if textureId == 3:
+                self.ui.blockTextureRight.setPixmap(pixmap)
+            if textureId == 4:
+                self.ui.blockTextureFront.setPixmap(pixmap)
+            if textureId == 5:
+                self.ui.blockTextureBottom.setPixmap(pixmap)
+
+        self.removeBlock(self.ui.blockList.currentRow())
+
+    def removeBlock(self, item=None):
+        curItem = item
+        if not item:
+            curItem = self.ui.blockList.currentRow()
+
+        self.blocks.pop(self.ui.blockList.item(curItem).text())
+        self.ui.blockList.takeItem(curItem)
+
+    def clearBlockFields(self):
+        self.ui.blockName.setText("")
+        self.ui.blockDisplayName.setText("")
+        self.ui.blockBaseBlock.setText("")
+        self.ui.blockDrop.setText("")
+        self.ui.blockPlaceSound.setText("")
+        self.ui.blockDirectional.setChecked(False)
+        self.ui.blockModel.setCurrentText("")
+
+        self.ui.blockTextureTop.clear()
+        self.ui.blockTextureLeft.clear()
+        self.ui.blockTextureBack.clear()
+        self.ui.blockTextureRight.clear()
+        self.ui.blockTextureFront.clear()
+        self.ui.blockTextureBottom.clear()
+
+        self.blockTexture = {}
+
+    #######################
+    # ITEMS TAB           #
+    #######################
 
     def getItemModel(self):
         if self.ui.itemModel.currentText() == "Custom":
-            file_dialog = QFileDialog()
-            file_path, _ = file_dialog.getOpenFileName(self.mainwindow, "Open JSON File", "", "JSON Files (*.json)")
+            fileDialog = QFileDialog()
+            filePath, _ = fileDialog.getOpenFileName(
+                self, "Open JSON File", "", "JSON Files (*.json)"
+            )
 
-            if file_path:
-                self.ui.itemModel.addItem(file_path)
-                self.ui.itemModel.setCurrentText(file_path)
-
-    def imported(self):
-        self.iFile = QFileDialog.getOpenFileName(self.mainwindow, "Open mDirt File", "", "mDirt File (*.mdrt)")
-        
-        if self.iFile[0] != "":
-            with open(self.iFile[0], 'r') as file:
-                self.packProperties = json.load(file)
-                self.ui.packName.setText(self.packProperties["packName"])
-                self.ui.packNamespace.setText(self.packProperties["packNamespace"])
-                self.ui.packDescription.setText(self.packProperties["packDescription"])
-                self.ui.packVersion.setCurrentText(self.packProperties["packVersion"])
-                self.ui.author.setText(self.packProperties["packAuthor"])
-                self.blocks = self.packProperties["blcks"]
-                self.items = self.packProperties["itms"]
-                self.recipes = self.packProperties["recip"]
-                for block in self.blocks:
-                    self.ui.blockList.addItem(self.blocks[block]["name"])
-                for item in self.items:
-                    self.ui.itemList.addItem(self.items[item]["name"])
-                for recipe in self.recipes:
-                    self.ui.recipeList.addItem(self.recipes[recipe]["name"])
-        else:
-            self.setStatus("Please select a valid mDirt file!")
-
-    def export(self):
-        self.eFile = QFileDialog.getSaveFileName(self.mainwindow, "Save mDirt File", "", "mDirt File (*.mdrt)")
-        
-        if self.eFile[0] != "":
-            self.packProperties = {
-                "packName": self.ui.packName.text(),
-                "packNamespace": self.ui.packNamespace.text(),
-                "packDescription": self.ui.packDescription.text(),
-                "packVersion": self.ui.packVersion.currentText(),
-                "packAuthor": self.ui.author.text(),
-                "blcks": self.blocks,
-                "itms": self.items,
-                "recip": self.recipes
-            }
-            with open(self.eFile[0], 'w') as eFile:
-                eFile[0].write(str(self.packProperties).replace("'", '"'))
-            eFile[0]
-        else:
-            self.setStatus("Please save to a proper location!")
-
-    def setStatus(self, stat):
-        self.stat = stat
-        self.ui.status.setEnabled(True)
-        self.ui.status.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.ui.status.setText(self.stat)
-
-    def checkItemTexture(self):
-        self.ui.itemTextureButton.clicked.connect(self.getItemTexture)
-
-    def checkBlockTextures(self):
-        self.ui.topFaceBtn.clicked.connect(lambda: self.getBlockTexture("4"))
-        self.ui.bottomFaceBtn.clicked.connect(lambda: self.getBlockTexture("5"))
-        self.ui.rightFaceBtn.clicked.connect(lambda: self.getBlockTexture("1"))
-        self.ui.leftFaceBtn.clicked.connect(lambda: self.getBlockTexture("3"))
-        self.ui.frontFaceBtn.clicked.connect(lambda: self.getBlockTexture("2"))
-        self.ui.backFaceBtn.clicked.connect(lambda: self.getBlockTexture("0"))
+            if filePath:
+                self.ui.itemModel.addItem(filePath)
+                self.ui.itemModel.setCurrentText(filePath)
 
     def getItemTexture(self):
-        self.itemTexture = QFileDialog.getOpenFileName(self.mainwindow, "Open Texture File", "", "PNG Files (*.png)")[0]
-        self.image = QImage(self.itemTexture)
-        self.pixmap = QPixmap.fromImage(self.image).scaled(41, 41, Qt.AspectRatioMode.KeepAspectRatio)
-        self.ui.itemTextureLabel.setPixmap(self.pixmap)
+        self.itemTexture, _ = QFileDialog.getOpenFileName(
+            self, "Open Texture File", "", "PNG Files (*.png)"
+        )
+        if not self.itemTexture:
+            return
+        image = QImage(self.itemTexture)
+        pixmap = QPixmap.fromImage(image).scaled(
+            50, 50, Qt.AspectRatioMode.KeepAspectRatio
+        )
 
-    def getBlockTexture(self, id):
-        self.id = id
-        self.texture[self.id] = QFileDialog.getOpenFileName(self.mainwindow, "Open Texture File", "", "PNG Files (*.png)")[0]
-        self.image = QImage(self.texture[self.id])
-
-        if self.texture[self.id] != "":
-            self.pixmap = QPixmap.fromImage(self.image).scaled(41, 41, Qt.AspectRatioMode.KeepAspectRatio)
-            if self.id == "0":
-                self.ui.backFace.setPixmap(self.pixmap)
-            elif self.id == "1":
-                self.ui.rightFace.setPixmap(self.pixmap)
-            elif self.id == "2":
-                self.ui.frontFace.setPixmap(self.pixmap)
-            elif self.id == "3":
-                self.ui.leftFace.setPixmap(self.pixmap)
-            elif self.id == "4":
-                self.ui.topFace.setPixmap(self.pixmap)
-            elif self.id == "5":
-                self.ui.bottomFace.setPixmap(self.pixmap)
-        else:
-            self.setStatus("Please select a valid Texture!")
-
-    def checkBlockAdd(self):
-        self.ui.buttonAddBlock.clicked.connect(self.addBlock)
-
-    def checkBlockEdit(self):
-        self.ui.buttonEditBlock.clicked.connect(self.editBlock)
-
-    def checkBlockRemove(self):
-        self.ui.buttonRemoveBlock.clicked.connect(self.removeBlock)
-
-    def checkItemAdd(self):
-        self.ui.itemAddButton.clicked.connect(self.addItem)
-
-    def checkItemEdit(self):
-        self.ui.buttonEditItem.clicked.connect(self.editItem)
-
-    def checkItemRemove(self):
-        self.ui.buttonRemoveItem.clicked.connect(self.removeItem)
-    
-    def checkRecipeAdd(self):
-        self.ui.buttonAddRecipe.clicked.connect(self.addRecipe)
-        self.ui.buttonAddRecipe_2.clicked.connect(self.addSmelting)
-    
-    def checkRecipeRemove(self):
-        self.ui.buttonRemoveRecipe.clicked.connect(self.removeRecipe)
-    
-    def checkRecipeEdit(self):
-        self.ui.buttonEditRecipe.clicked.connect(self.editRecipe)
-
-    def checkGenerate(self):
-        self.ui.buttonGeneratePack.clicked.connect(self.generate)
-    
-    def addSmelting(self):
-        self.recipeProperties = {
-            "name": self.ui.lineEdit.text(),
-            "items": self.recipe,
-            "mode": "smelting"
-        }
-    
-        self.recipes[self.recipeProperties["name"]] = self.recipeProperties
-        self.ui.recipeList.addItem(self.recipeProperties["name"])
-        self.clearRecipeFields()
-
-    def addRecipe(self):
-        self.recipeProperties = {
-            "name": self.ui.lineEdit.text(),
-            "shapeless": self.ui.shapeless.isChecked(),
-            "exact": self.ui.exact.isChecked(),
-            "items": self.recipe,
-            "count": str(self.ui.slot9Count.value()),
-            "mode": "recipe"
-        }
-
-        self.recipes[self.recipeProperties["name"]] = self.recipeProperties
-        self.ui.recipeList.addItem(self.recipeProperties["name"])
-        self.clearRecipeFields()
+        self.ui.itemTexture.setPixmap(pixmap)
 
     def addItem(self):
+
+        self.featureNum += 1
+
         self.itemProperties = {
             "name": self.ui.itemName.text(),
             "displayName": self.ui.itemDisplayName.text(),
-            "baseItem": self.ui.itemBase.text(),
+            "baseItem": self.ui.itemBaseItem.text(),
             "texture": self.itemTexture,
-            "model": self.ui.itemModel.currentText().lower()
+            "model": self.ui.itemModel.currentText().lower(),
+            "cmd": self.parseCMD(self.featureNum),
         }
 
         self.items[self.itemProperties["name"]] = self.itemProperties
         self.ui.itemList.addItem(self.itemProperties["name"])
         self.clearItemFields()
 
-    def addBlock(self):
-        self.textureNames = {"0": "", "1": "", "2": "", "3": "", "4": "", "5": ""}
-        for text in self.texture.keys():
-            self.val = self.texture[text]
-            self.textureNames[text] = os.path.splitext(os.path.basename(str(self.val)))[0]
-        
-        if self.ui.blockName.text() == "":
-            self.setStatus("Please fill in each field!")
-            return
-        if self.ui.blockDisplayName.text() == "":
-            self.setStatus("Please fill in each field!")
-            return
-        if self.ui.blockBase.text() == "":
-            self.setStatus("Please fill in each field!")
-            return
-        if '.json' not in self.ui.blockModel.currentText():
-            if self.texture["0"] == "":
-                self.setStatus("Please fill in each field!")
-                return
-            if self.texture["1"] == "":
-                self.setStatus("Please fill in each field!")
-                return
-            if self.texture["2"] == "":
-                self.setStatus("Please fill in each field!")
-                return
-            if self.texture["3"] == "":
-                self.setStatus("Please fill in each field!")
-                return
-            if self.texture["4"] == "":
-                self.setStatus("Please fill in each field!")
-                return
-        if self.texture["5"] == "":
-            self.setStatus("Please fill in each field!")
-            return
-        
-        self.blockProperties = {
-            "name": self.ui.blockName.text(),
-            "displayName": self.ui.blockDisplayName.text(),
-            "baseBlock": self.ui.blockBase.text(),
-            "blockDrop": self.ui.blockDrop.text(),
-            "texturePaths": self.texture,
-            "textures": self.textureNames,
-            "placeSound": self.ui.placeSound.text(),
-            "directional": self.ui.directionalCheck.isChecked(),
-            "model": self.ui.blockModel.currentText()
-        }
-
-        self.blocks[self.blockProperties["name"]] = self.blockProperties
-
-        self.blockNum += 1
-
-        self.ui.blockList.addItem(self.blockProperties["name"])
-        self.clearBlockFields()
-    
-    def clearRecipeFields(self):
-        self.recipe = {"0": "", "1": "", "2": "", "3": "", "4": "", "5": "", "6": "", "7": "", "8": "", "9": "", "10": "", "11": ""}
-        self.ui.lineEdit.setText("")
-        self.ui.shapeless.setChecked(False)
-        self.ui.exact.setChecked(False)
-        self.ui.slot0Label.setText("")
-        self.ui.slot1Label.setText("")
-        self.ui.slot2Label.setText("")
-        self.ui.slot3Label.setText("")
-        self.ui.slot4Label.setText("")
-        self.ui.slot5Label.setText("")
-        self.ui.slot6Label.setText("")
-        self.ui.slot7Label.setText("")
-        self.ui.slot8Label.setText("")
-        self.ui.slot9Label.setText("")
-        self.ui.outputLabel.setText("")
-        self.ui.inputLabel.setText("")
-
-    def clearItemFields(self):
-        self.itemTexture = None
-        self.ui.itemDisplayName.setText("")
-        self.ui.itemName.setText("")
-        self.ui.itemBase.setText("")
-        self.ui.itemTextureLabel.clear()
-
-    def clearBlockFields(self):
-        self.texture = {"0": "", "1": "", "2": "", "3": "", "4": "", "5": ""}
-        self.ui.blockDisplayName.setText("")
-        self.ui.blockName.setText("")
-        self.ui.blockBase.setText("")
-        self.ui.blockDrop.setText("")
-        self.ui.placeSound.setText("")
-        self.ui.directionalCheck.setChecked(False)
-        self.ui.topFace.clear()
-        self.ui.bottomFace.clear()
-        self.ui.rightFace.clear()
-        self.ui.leftFace.clear()
-        self.ui.frontFace.clear()
-        self.ui.backFace.clear() 
-    
-    def editRecipe(self):
-        self.curItem = self.ui.recipeList.currentRow()
-        self.curItem = self.ui.recipeList.item(self.curItem).text()
-        properties = self.recipes[self.recipe]
-
-        self.ui.lineEdit.setText(properties["name"])
-        self.ui.shapeless.setChecked(properties["shapeless"])
-        self.ui.exact.setChecked(properties["exact"])
-        self.ui.slot9Count.setValue(properties["count"])
-
-        self.recipe = properties["items"]
-
-        self.ui.slot0Label.setText(self.recipe["0"])
-        self.ui.slot1Label.setText(self.recipe["1"])
-        self.ui.slot2Label.setText(self.recipe["2"])
-        self.ui.slot3Label.setText(self.recipe["3"])
-        self.ui.slot4Label.setText(self.recipe["4"])
-        self.ui.slot5Label.setText(self.recipe["5"])
-        self.ui.slot6Label.setText(self.recipe["6"])
-        self.ui.slot7Label.setText(self.recipe["7"])
-        self.ui.slot8Label.setText(self.recipe["8"])
-        self.ui.slot9Label.setText(self.recipe["9"])
-
     def editItem(self):
-        self.curItem = self.ui.itemList.currentRow()
-        self.curItem = self.ui.itemList.item(self.curItem).text()
-        properties = self.items[self.curItem]
+        curItem = self.ui.itemList.currentRow()
+        curItem = self.ui.itemList.item(curItem).text()
+        properties = self.items[curItem]
 
         self.ui.itemName.setText(properties["name"])
         self.ui.itemDisplayName.setText(properties["displayName"])
-        self.ui.itemBase.setText(properties["baseItem"])
+        self.ui.itemBaseItem.setText(properties["baseItem"])
         self.ui.itemModel.setCurrentText(properties["model"])
 
         self.itemTexture = properties["texture"]
 
-        self.ui.itemTextureLabel.setPixmap(QPixmap.fromImage(QImage(properties["texture"])).scaled(41, 41, Qt.KeepAspectRatio))
+        pixmap = QPixmap.fromImage(QImage(properties["texture"])).scaled(
+            50, 50, Qt.AspectRatioMode.KeepAspectRatio
+        )
+        self.ui.itemTexture.setPixmap(pixmap)
 
-    def editBlock(self):
-        self.curItem = self.ui.blockList.currentRow()
-        self.curItem = self.ui.blockList.item(self.curItem).text()
-        properties = self.blocks[self.curItem]
+        self.removeItem(self.ui.itemList.currentRow())
 
-        self.ui.blockName.setText(properties["name"])
-        self.ui.blockDisplayName.setText(properties["displayName"])
-        self.ui.blockBase.setText(properties["baseBlock"])
-        self.ui.blockDrop.setText(properties["blockDrop"])
-        self.ui.placeSound.setText(properties["placeSound"])
-        self.ui.directionalCheck.setChecked(properties["directional"])
-        
-        self.ui.frontFace.setPixmap(QPixmap.fromImage(QImage(properties["texturePaths"]["2"])).scaled(41, 41, Qt.KeepAspectRatio))
-        self.ui.backFace.setPixmap(QPixmap.fromImage(QImage(properties["texturePaths"]["0"])).scaled(41, 41, Qt.KeepAspectRatio))
-        self.ui.rightFace.setPixmap(QPixmap.fromImage(QImage(properties["texturePaths"]["1"])).scaled(41, 41, Qt.KeepAspectRatio))
-        self.ui.leftFace.setPixmap(QPixmap.fromImage(QImage(properties["texturePaths"]["3"])).scaled(41, 41, Qt.KeepAspectRatio))
-        self.ui.topFace.setPixmap(QPixmap.fromImage(QImage(properties["texturePaths"]["4"])).scaled(41, 41, Qt.KeepAspectRatio))
-        self.ui.bottomFace.setPixmap(QPixmap.fromImage(QImage(properties["texturePaths"]["5"])).scaled(41, 41, Qt.KeepAspectRatio))
+    def removeItem(self, item=None):
+        curItem = item
+        if not item:
+            curItem = self.ui.itemList.currentRow()
 
-        self.texture = {
-            "0": properties["texturePaths"]["0"],
-            "1": properties["texturePaths"]["1"],
-            "2": properties["texturePaths"]["2"],
-            "3": properties["texturePaths"]["3"],
-            "4": properties["texturePaths"]["4"],
-            "5": properties["texturePaths"]["5"]
+        self.items.pop(self.ui.itemList.item(curItem).text())
+        self.ui.itemList.takeItem(curItem)
+
+    def clearItemFields(self):
+        self.ui.itemName.setText("")
+        self.ui.itemDisplayName.setText("")
+        self.ui.itemBaseItem.setText("")
+        self.ui.itemModel.setCurrentText("Generated")
+
+        self.ui.itemTexture.clear()
+
+        self.itemTexture = None
+
+    #######################
+    # RECIPES TAB         #
+    #######################
+
+    def getRecipeItem(self, id_):
+        slotId = id_
+        self.block_popup = QWidget()
+        self.ui_form = Ui_Form()
+        self.ui_form.setupUi(self.block_popup)
+
+        item_list = self.data["items"]
+
+        if slotId == 9 or slotId == 11:
+            for block in self.blocks:
+                self.ui_form.itemsBox.addItem(f'{self.blocks[block]["name"]}')
+            for item in self.items:
+                self.ui_form.itemsBox.addItem(f'{self.items[item]["name"]}')
+
+        for item in item_list:
+            self.ui_form.itemsBox.addItem(item)
+
+        self.ui_form.pushButton.clicked.connect(
+            lambda: self.recipeCloseForm(slotId, self.ui_form.itemsBox.currentText())
+        )
+
+        self.block_popup.show()
+
+    def recipeCloseForm(self, id_, item):
+        self.recipe[id_] = item
+
+        match id_:
+            case 0:
+                self.ui.slot0.setText(item)
+            case 1:
+                self.ui.slot1.setText(item)
+            case 2:
+                self.ui.slot2.setText(item)
+            case 3:
+                self.ui.slot3.setText(item)
+            case 4:
+                self.ui.slot4.setText(item)
+            case 5:
+                self.ui.slot5.setText(item)
+            case 6:
+                self.ui.slot6.setText(item)
+            case 7:
+                self.ui.slot7.setText(item)
+            case 8:
+                self.ui.slot8.setText(item)
+            case 9:
+                self.ui.slot9.setText(item)
+            case 10:
+                self.ui.smeltingInput.setText(item)
+            case 11:
+                self.ui.smeltingOutput.setText(item)
+
+        self.block_popup.close()
+
+    def addRecipe(self):
+        self.recipeProperties = {
+            "name": self.ui.recipeName.text(),
+            "items": self.recipe,
+            "outputCount": self.ui.slot9Count.value(),
+            "exact": self.ui.exactlyRadio.isChecked(),
+            "shapeless": self.ui.exactlyRadio.isChecked(),
+            "type": self.ui.recipeSubTabs.tabText(
+                self.ui.recipeSubTabs.currentIndex()
+            ).lower(),  # Should result as "crafting" or "smelting"
         }
 
-    def removeRecipe(self):
-        self.curItem = self.ui.recipeList.currentRow()
-        self.recipes.pop(self.ui.recipeList.item(self.curItem).text())
-        self.ui.recipeList.takeItem(self.curItem)
+        self.recipes[self.recipeProperties["name"]] = self.recipeProperties
+        self.ui.recipeList.addItem(self.recipeProperties["name"])
+        self.clearRecipeFields()
 
-    def removeItem(self):
-        self.curItem = self.ui.itemList.currentRow()
-        self.items.pop(self.ui.itemList.item(self.curItem).text())
-        self.ui.itemList.takeItem(self.curItem)  
+    def editRecipe(self):
+        curItem = self.ui.recipeList.currentRow()
+        curItem = self.ui.recipeList.item(curItem).text()
+        properties = self.recipes[curItem]
 
-    def removeBlock(self):
-        self.curItem = self.ui.blockList.currentRow()
-        self.blocks.pop(self.ui.blockList.item(self.curItem).text())
-        self.ui.blockList.takeItem(self.curItem)  
+        self.ui.recipeName.setText(properties["name"])
+        self.ui.shapelessRadio.setChecked(properties["shapeless"])
+        self.ui.exactlyRadio.setChecked(properties["exact"])
+        self.ui.slot9Count.setValue(properties["outputCount"])
 
-    def parse(self, cmdPrefix, blockNumLoop):
-        self.strBlockNumLoop = str(blockNumLoop)
-        self.blockNumLoopLen = len(self.strBlockNumLoop)
-        self.zeros = 7 - len(cmdPrefix) - self.blockNumLoopLen
-        return f'{cmdPrefix}{'0' * self.zeros}{self.strBlockNumLoop}' 
-    
-    def appendCMD(self, type_, name, cmd):
-        self.generated_cmds[type_][name] = cmd
+        self.ui.slot0.setText(properties["items"][0])
+        self.ui.slot1.setText(properties["items"][1])
+        self.ui.slot2.setText(properties["items"][2])
+        self.ui.slot3.setText(properties["items"][3])
+        self.ui.slot4.setText(properties["items"][4])
+        self.ui.slot5.setText(properties["items"][5])
+        self.ui.slot6.setText(properties["items"][6])
+        self.ui.slot7.setText(properties["items"][7])
+        self.ui.slot8.setText(properties["items"][8])
+        self.ui.slot9.setText(properties["items"][9])
+        self.ui.smeltingInput.setText(properties["items"][10])
+        self.ui.smeltingOutput.setText(properties["items"][11])
 
-    def generateResourcePack(self, itemModelFile):
-        self.outputDir = QFileDialog.getExistingDirectory(self.mainwindow, "Output Directory", "")
+        self.removeRecipe(self.ui.recipeList.currentRow())
 
-        if self.outputDir == "":
-            self.setStatus("Please select an output directory!")
-            return
+    def removeRecipe(self, item=None):
+        curItem = item
+        if not item:
+            curItem = self.ui.itemList.currentRow()
 
-        self.packDir = os.path.join(self.outputDir, self.packName + " Resource Pack")
-        os.mkdir(self.packDir)
-        os.mkdir(self.packDir + "\\assets")
-        os.mkdir(self.packDir + "\\assets\\minecraft")
-        os.mkdir(self.packDir + "\\assets\\minecraft\\atlases")
-        os.mkdir(self.packDir + "\\assets\\minecraft\\models")
-        os.mkdir(self.packDir + "\\assets\\minecraft\\textures")
-        os.mkdir(self.packDir + "\\assets\\minecraft\\textures\\item")
-        os.mkdir(self.packDir + "\\assets\\minecraft\\models\\item")
-        os.mkdir(self.packDir + "\\assets\\minecraft\\models\\" + self.nameSpace)
+        self.recipes.pop(self.ui.recipeList.item(curItem).text())
+        self.ui.recipeList.takeItem(curItem)
 
-        with open(f'{self.packDir}\\assets\\minecraft\\atlases\\blocks.json', 'w') as f:
-            f.write('{"sources":[{"type": "directory","source": "' + self.nameSpace + '","prefix": "' + self.nameSpace + '/"}]}')
+    def clearRecipeFields(self):
+        self.recipe = {}
+        self.ui.recipeName.setText("")
+        self.ui.shapelessRadio.setChecked(False)
+        self.ui.exactlyRadio.setChecked(False)
+        self.ui.slot0.setText("")
+        self.ui.slot1.setText("")
+        self.ui.slot2.setText("")
+        self.ui.slot3.setText("")
+        self.ui.slot4.setText("")
+        self.ui.slot5.setText("")
+        self.ui.slot6.setText("")
+        self.ui.slot7.setText("")
+        self.ui.slot8.setText("")
+        self.ui.slot9.setText("")
+        self.ui.smeltingInput.setText("")
+        self.ui.smeltingOutput.setText("")
 
-        with open(f'{self.packDir}\\pack.mcmeta', 'w') as pack:
-            pack.write('{\n    "pack": {\n        "pack_format": 42,\n        "description": "' + self.packDescription + '"\n    }\n}\n')
-        with open(f'{self.packDir}\\assets\\minecraft\\models\\item\\item_frame.json', 'a') as file:
-            file.write('{"parent": "minecraft:item/generated","textures": {"layer0": "minecraft:item/item_frame"},"overrides":[')
-            self.blockNumLoop = 0
-            for block in self.blocks:
-                self.blockNumLoop += 1
-                self.personalCMD = self.parse(self.customModelDataPrefix, self.blockNumLoop)
-                file.write('{ "predicate": { "custom_model_data": ' + self.personalCMD + '}, "model": "' + self.nameSpace + '/' + self.blocks[block]["name"] + '"}')
-                self.appendCMD("blocks", self.blocks[block]["name"], self.personalCMD)
-                if block != next(reversed(self.blocks.keys())):
-                    file.write(',')
-            file.write('}')
-            file.close()
-        for self.block in self.blocks:
-            self.texturePath = self.packDir + "\\assets\\minecraft\\textures\\item\\"
-            if '.json' not in self.blocks[self.block]["model"]:
-                for self.path in self.blocks[self.block]["texturePaths"].values():
-                    if not os.path.exists(os.path.join(self.texturePath, os.path.splitext(os.path.basename(str(self.path)))[-2] + ".png")):
-                        shutil.copy(self.path, os.path.join(self.texturePath, os.path.splitext(os.path.basename(str(self.path)))[-2] + ".png"))
-            else:
-                self.path = self.blocks[self.block]["texturePaths"]["5"]
-                if not os.path.exists(os.path.join(self.texturePath, os.path.splitext(os.path.basename(str(self.path)))[-2] + ".png")):
-                        shutil.copy(self.path, os.path.join(self.texturePath, os.path.splitext(os.path.basename(str(self.path)))[-2] + ".png"))
-            
-        for self.block in self.blocks:
-            with open(f'{self.packDir}\\assets\\minecraft\\models\\'+ self.nameSpace + '\\' + self.blocks[self.block]["name"] + '.json', 'w') as file:
-                if ".json" not in self.blocks[self.block]["model"]:
-                    file.write('{"credit": "Made with mDirt","textures": {"0": "item/' + self.blocks[self.block]["textures"]["0"] + '","1": "item/' + self.blocks[self.block]["textures"]["1"] + '","2": "item/' + self.blocks[self.block]["textures"]["2"] + '","3": "item/' + self.blocks[self.block]["textures"]["3"] + '","4": "item/' + self.blocks[self.block]["textures"]["4"] + '","5": "item/' + self.blocks[self.block]["textures"]["5"] + '","particle": "item/' + self.blocks[self.block]["textures"]["0"] + '"},"elements": [{"from": [0, 0, 0],"to": [16, 16, 16],"faces": {"north": {"uv": [0, 0, 16, 16], "texture": "#0"},"east": {"uv": [0, 0, 16, 16], "texture": "#1"},"south": {"uv": [0, 0, 16, 16], "texture": "#2"},"west": {"uv": [0, 0, 16, 16], "texture": "#3"},"up": {"uv": [0, 0, 16, 16], "texture": "#4"},"down": {"uv": [0, 0, 16, 16], "texture": "#5"}}}],"display": {"thirdperson_righthand": {"rotation": [0, 0, -55],"translation": [0, 2.75, -2.5],"scale": [0.4, 0.4, 0.4]},"thirdperson_lefthand": {"rotation": [0, 0, -55],"translation": [0, 2.75, -2.5],"scale": [0.4, 0.4, 0.4]},"firstperson_righthand": {"rotation": [0, 45, 0],"scale": [0.4, 0.4, 0.4]},"ground": {"translation": [0, 3.25, 0],"scale": [0.4, 0.4, 0.4]},"gui": {"rotation": [28, 45, 0],"scale": [0.6, 0.6, 0.6]}}}')
-                else:
-                    with open(self.blocks[self.block]["model"], 'r') as f:
-                        model = ast.literal_eval(f.read())
-                    for texture in model["textures"]:
-                        model["textures"][texture] = 'item/' + model["textures"][texture]
-                    file.write(str(model).replace("'", '"'))
+    #######################
+    # ERROR CHECKING      #
+    #######################
 
-        for self.item in self.items:
-            self.blockNumLoop += 1
-            self.modelPath = self.packDir + "\\assets\\minecraft\\models\\item\\"
-            self.personalCMD = self.parse(self.customModelDataPrefix, self.blockNumLoop)
-            self.appendCMD("items", self.items[self.item]["name"], self.personalCMD)
-            if not os.path.exists(f'{self.modelPath}{self.items[self.item]["baseItem"].removeprefix("minecraft:")}.json'): 
-                self.exists = 0
-            with open(f'{self.modelPath}{self.items[self.item]["baseItem"].removeprefix("minecraft:")}.json', 'a') as file:
-                if self.exists == 0:
-                    self.exists = 1
-                    if ".json" in self.items[self.item]["model"]:
-                        self.modelType = itemModelFile[self.items[self.item]["baseItem"]]
-                        file.write('{"parent": "' + self.modelType + '", "textures":{"layer0": "minecraft:item/' + self.items[self.item]["baseItem"].removeprefix("minecraft:") + '"},"overrides":[')
-                    else:
-                        file.write('{"parent": "minecraft:item/' + self.items[self.item]["model"] + '", "textures":{"layer0": "minecraft:item/' + self.items[self.item]["baseItem"].removeprefix("minecraft:") + '"},"overrides":[')
-                file.write('{ "predicate": { "custom_model_data": ' + self.personalCMD + '}, "model": "' + self.nameSpace + '/' + self.items[self.item]["name"] + '"},')
-        
-        for file in os.listdir(self.packDir + "\\assets\\minecraft\\models\\item"):
-            if file.endswith('.json'):
-                with open(os.path.join(self.packDir + "\\assets\\minecraft\\models\\item\\", file), 'r+') as f:
-                    content = f.read()
-                    f.seek(0)
-                    f.write(content[:-1])
-                    f.truncate()
-                    f.write(']}')
-        
-        for self.item in self.items:
-            self.currentPath = f'{self.packDir}\\assets\\minecraft\\models\\{self.nameSpace}'
-            with open(f'{self.currentPath}\\{self.items[self.item]["name"]}.json', 'w') as file:
-                if ".json" in self.items[self.item]["model"]:
-                    with open(self.items[self.item]["model"], 'r') as f:
-                        model = ast.literal_eval(f.read())
-                        f.close()
-                    for texture in model["textures"]:
-                        model["textures"][texture] = self.nameSpace + '/' + model["textures"][texture]
-                    file.write(str(model).replace("'", '"'))
-                else:
-                    file.write('{"parent":"minecraft:item/' + self.items[self.item]["model"] + '", "textures": { "layer0": "minecraft:' + self.nameSpace + '/' + os.path.splitext(os.path.basename(str(self.items[self.item]["texture"])))[-2] + '"}}')
-        
-        os.mkdir(f'{self.packDir}\\assets\\minecraft\\textures\\{self.nameSpace}')
+    def checkInputs(self):
+        self.default_blocks = self.data["blocks"]
+        self.default_items = self.data["items"]
 
-        for self.item in self.items:
-            self.currentPath = f'{self.packDir}\\assets\\minecraft\\textures\\{self.nameSpace}'
-            shutil.copy(self.items[self.item]["texture"], os.path.normpath(f'{self.currentPath}\\{os.path.splitext(os.path.basename(str(self.items[self.item]["texture"])))[-2]}.png'))  
-
-    def generate(self):
-        
-        self.setStatus("Generating...")
-
-        with open(f'{os.path.dirname(os.path.abspath(__file__)) + '\\data.json'}', 'r') as f:
-            self.item_models = json.load(f)["models"]
-        
-        for self.itm in self.items:
-            if self.items[self.itm]["baseItem"] not in self.item_models.keys():
-                self.setStatus(f"The item '{self.items[self.itm]["name"]}' has an unsupported Base Item!")
+        for block in self.blocks:
+            if self.blocks[block]["baseBlock"] not in self.default_blocks:
+                alert(
+                    f"Block '{self.blocks[block]["name"]}' has an unsupported Base Block!"
+                )
                 return
 
-        self.nameSpace = self.ui.packNamespace.text()
-        if self.nameSpace == "":
-            self.setStatus("Input a proper Namespace!")
+        for item in self.items:
+            if self.items[item]["baseItem"] not in self.default_items:
+                alert(
+                    f"Item '{self.items[item]["name"]}' has an unsupported Base Item!"
+                )
+                return
+
+        if checkInputValid(self.ui.packName, "string") == "empty":
+            alert("Pack Name is empty!")
             return
-        
-        self.packName = self.ui.packName.text()
-
-        if self.packName == "":
-            self.setStatus("Input a proper Pack Name!")
+        if checkInputValid(self.ui.packName, "string") == "type":
+            alert("Pack Name has unsupported characters!")
             return
-        
-        self.packDescription = self.ui.packDescription.text()
-        
-        if self.packDescription == "":
-            self.setStatus("Input a proper Pack Description!")
+        elif checkInputValid(self.ui.packName, "string") == "valid":
+            self.packName = self.ui.packName.text()
+
+        if checkInputValid(self.ui.packNamespace, "strict") == "empty":
+            alert("Pack Namespace is empty!")
+            return
+        if checkInputValid(self.ui.packNamespace, "strict") == "type":
+            alert("Pack Namespace has unsupported characters!")
+            return
+        elif checkInputValid(self.ui.packNamespace, "strict") == "valid":
+            self.packNamespace = self.ui.packNamespace.text()
+
+        if checkInputValid(self.ui.packDescription, "string") == "empty":
+            alert("Pack Description is empty!")
+            return
+        if checkInputValid(self.ui.packDescription, "string") == "type":
+            alert("Pack Description has unsupported characters!")
+            return
+        elif checkInputValid(self.ui.packDescription, "string") == "valid":
+            self.packDescription = self.ui.packDescription.text()
+
+        if checkInputValid(self.ui.packAuthor, "strict") == "empty":
+            alert("Pack Author is empty!")
+            return
+        if checkInputValid(self.ui.packAuthor, "strict") == "type":
+            alert("Pack Author has unsupported characters!")
+            return
+        elif checkInputValid(self.ui.packAuthor, "strict") == "valid":
+            self.packAuthor = self.ui.packAuthor.text()
+
+        if checkInputValid(self.ui.packCMDPrefix, "integer") == "empty":
+            alert("Pack CMD Prefix is empty!")
+            return
+        if checkInputValid(self.ui.packCMDPrefix, "integer") == "type":
+            alert("Pack CMD Prefix has unsupported characters!")
+            return
+        elif checkInputValid(self.ui.packCMDPrefix, "integer") == "valid":
+            self.packCMDPrefix = self.ui.packCMDPrefix.text()
+
+        self.outputDir = QFileDialog.getExistingDirectory(self, "Output Directory", "")
+        if not self.outputDir:
+            alert("Please select a valid output directory!")
             return
 
-        self.packAuthor = self.ui.author.text()
-        if self.packAuthor == "":
-            self.setStatus("Input a proper Author name!")
-            return
-        
-        self.customModelDataPrefix = self.ui.vmdPrefix.text()
-        if self.customModelDataPrefix == "":
-            self.setStatus("Input a proper CMD Prefix!")
-            return
+    #######################
+    # PACK GENERATION     #
+    #######################
 
-        self.generateResourcePack(self.item_models)
+    def generateResourcePack(self):
+        #######################
+        # BASE STRUCTURE      #
+        #######################
 
-        self.outputDir = QFileDialog.getExistingDirectory(self.mainwindow, "Output Directory", "")
-        if self.outputDir == "":
-            self.setStatus("Please select an output directory!")
-            return
+        self.resPackDirectory = os.path.join(
+            self.outputDir, f"{self.packName} Resource Pack"
+        )
+        os.mkdir(self.resPackDirectory)
+        os.mkdir(f"{self.resPackDirectory}\\assets")
+        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft")
+        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\atlases")
+        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\models")
+        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\textures")
+        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\textures\\item")
+        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\models\\item")
+        os.mkdir(
+            f"{self.resPackDirectory}\\assets\\minecraft\\models\\{self.packNamespace}"
+        )
 
-        self.packDir = os.path.join(self.outputDir, self.packName)
-        os.mkdir(self.packDir)
-        os.mkdir(self.packDir + "\\data")
-        self.packNamespace = os.path.join(self.packDir, "data", self.nameSpace)
-        self.minecraft = os.path.join(self.packDir, "data", "minecraft")
-        os.mkdir(self.minecraft)
-        os.mkdir(self.packNamespace)
+        # Create Atlas
+        with open(
+            f"{self.resPackDirectory}\\assets\\minecraft\\atlases\\blocks.json", "w"
+        ) as file:
+            file.write(
+                f'{{"sources":[{{"type": "directory", "source": "{self.packNamespace}", "prefix": "{self.packNamespace}/"}}]}}'
+            )
 
-        with open(f'{self.packDir}\\pack.mcmeta', 'w') as pack:
-            pack.write('{\n    "pack": {\n        "pack_format": 57,\n        "description": "' + self.ui.packDescription.text() + '"\n    }\n}\n')
-            pack.close()
-        
-        os.mkdir(self.packNamespace + "\\function")
-        os.mkdir(self.packNamespace + "\\loot_table")
-        os.mkdir(self.packNamespace + "\\advancement")
-        os.mkdir(self.packNamespace + "\\recipe")
+        # Pack.mcmeta
+        with open(f"{self.resPackDirectory}\\pack.mcmeta", "w") as pack:
+            pack.write(
+                f'{{\n    "pack": {{\n        "pack_format": 42,\n        "description": "{self.packDescription}"\n    }}\n}}\n'
+            )
 
-        os.mkdir(self.minecraft + "\\tags")
-        os.mkdir(self.minecraft + "\\tags" + "\\function")
+        blockResourcer = BlockResourcer(
+            self.resPackDirectory, self.packNamespace, self.blocks
+        )
+        blockResourcer.generate()
 
-        with open(f'{self.packNamespace}\\function\\tick.mcfunction', 'w') as tick:
-            tick.write(self.header + 'execute as @e[type=item_display,tag=' + self.packAuthor + ".custom_block] at @s run function " + self.nameSpace + ":as_blocks")
-            tick.close()
-        with open(f'{self.packNamespace}\\function\\load.mcfunction', 'w') as load:
-            load.write(self.header + 'tellraw @a {"text":"[mDirt] - Successfully loaded pack!","color":"red"}')
-            load.close()
-        with open(f'{self.minecraft}\\tags\\function\\tick.json', 'w') as tickJS:
-            tickJS.write('{\n    "values":[\n        ' + f'"{self.nameSpace}' + ':tick"\n        ]\n    }')
-            tickJS.close()
-        with open(f'{self.minecraft}\\tags\\function\\load.json', 'w') as loadJS:
-            loadJS.write('{\n    "values":[\n        ' + f'"{self.nameSpace}' + ':load"\n        ]\n    }')
-            loadJS.close()
-        
-        # Placed Item Frame Advancement
+        itemResourcer = ItemResourcer(
+            self.resPackDirectory,
+            self.packNamespace,
+            self.exists,
+            self.data,
+            self.items,
+        )
+        itemResourcer.generate()
 
-        with open(f'{self.packNamespace}\\advancement\\placed_item_frame.json', 'w') as file:
-            file.write('{"criteria": {"requirement": {"trigger": "minecraft:item_used_on_block","conditions": {"location": [{"condition": "minecraft:match_tool","predicate": {"items": ["minecraft:item_frame"]}}]}}},"rewards": {"function": "' + self.nameSpace + ':placed_item_frame"}}')
-            file.close()
-        
-        # Placed Item Frame Function
+    def generateDataPack(self):
 
-        with open(f'{self.packNamespace}\\function\\placed_item_frame.mcfunction', 'w') as file:
-            file.write(self.header + 'advancement revoke @s only ' + self.nameSpace + ':placed_item_frame\nexecute as @e[tag=' + self.packAuthor + '.item_frame_block,distance=..10] at @s run function ' + self.nameSpace + ':check_placed_item_frame')
-            file.close()
+        self.checkInputs()
 
-        # Check Placed Item Frame, block/place Functions
+        #######################
+        # BASE STRUCTURE      #
+        #######################
 
-        with open(f'{self.packNamespace}\\function\\check_placed_item_frame.mcfunction', 'a') as file:
-            self.blockNumLoop = 0
-            for self.blck in self.blocks.keys():
-                self.blockNumLoop += 1
-                self.personalCMD = self.parse(self.customModelDataPrefix, self.blockNumLoop)
-                os.mkdir(self.packNamespace + "\\function" + f"\\{self.blck}")
-                with open(f'{self.packNamespace}\\function\\{self.blck}\\place.mcfunction', 'a') as file2:
-                    file2.write(self.header + "setblock ~ ~ ~ " + self.blocks[self.blck]["baseBlock"] + ' keep\n')
-                    if self.blocks[self.block]["placeSound"] != "":
-                        file2.write("playsound " + self.blocks[self.block]["placeSound"] + " block @e[type=player,distance=..5] ~ ~ ~ 10 1 1\n")
-                    if self.blocks[self.block]["directional"]:
-                        file2.write('execute at @p if entity @p[y_rotation=135..-135,x_rotation=-45..45] at @s run summon item_display ~ ~0.469 ~-0.469 {Rotation:[0F,90F],brightness:{sky:15,block:0},Tags:["' + self.packAuthor + f'.{self.blocks[self.blck]["name"]}","' + self.packAuthor + '.custom_block"],transformation:{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0.469f,0f],scale:[1.001f,1.001f,1.001f]},item:{id:"minecraft:item_frame",count:1,components:{"minecraft:custom_model_data":' + self.personalCMD + '}}}\n')
-                        file2.write('execute at @p if entity @p[y_rotation=-135..-45,x_rotation=-45..45] at @s run summon item_display ~0.469 ~0.469 ~ {Rotation:[90F,90F],brightness:{sky:15,block:0},Tags:["' + self.packAuthor + f'.{self.blocks[self.blck]["name"]}","' + self.packAuthor + '.custom_block"],transformation:{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0.469f,0f],scale:[1.001f,1.001f,1.001f]},item:{id:"minecraft:item_frame",count:1,components:{"minecraft:custom_model_data":' + self.personalCMD + '}}}\n')
-                        file2.write('execute at @p if entity @p[y_rotation=-45..45,x_rotation=-45..45] at @s run summon item_display ~ ~0.469 ~0.469 {Rotation:[180F,90F],brightness:{sky:15,block:0},Tags:["' + self.packAuthor + f'.{self.blocks[self.blck]["name"]}","' + self.packAuthor + '.custom_block"],transformation:{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0.469f,0f],scale:[1.001f,1.001f,1.001f]},item:{id:"minecraft:item_frame",count:1,components:{"minecraft:custom_model_data":' + self.personalCMD + '}}}\n')
-                        file2.write('execute at @p if entity @p[y_rotation=45..135,x_rotation=-45..45] at @s run summon item_display ~-0.469 ~0.469 ~ {Rotation:[90F,-90F],brightness:{sky:15,block:0},Tags:["' + self.packAuthor + f'.{self.blocks[self.blck]["name"]}","' + self.packAuthor + '.custom_block"],transformation:{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0.469f,0f],scale:[1.001f,1.001f,1.001f]},item:{id:"minecraft:item_frame",count:1,components:{"minecraft:custom_model_data":' + self.personalCMD + '}}}\n')
-                        file2.write('execute if entity @p[x_rotation=45..90] at @s run summon item_display ~ ~ ~ {brightness:{sky:15,block:0},Tags:["' + self.packAuthor + f'.{self.blocks[self.blck]["name"]}","' + self.packAuthor + '.custom_block"],transformation:{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0.469f,0f],scale:[1.001f,1.001f,1.001f]},item:{id:"minecraft:item_frame",count:1,components:{"minecraft:custom_model_data":' + self.personalCMD + '}}}\n')
-                        file2.write('execute if entity @p[x_rotation=-90..-45] at @s run summon item_display ~ ~0.469 ~-0.47 {Rotation:[0F,90F],brightness:{sky:15,block:0},Tags:["' + self.packAuthor + f'.{self.blocks[self.blck]["name"]}","' + self.packAuthor + '.custom_block"],transformation:{left_rotation:[0f,-1f,1f,1f],right_rotation:[1.000f,0.5f,0.5f,0f],translation:[0f,0.47f,0f],scale:[1.001f,1.001f,1.001f]},item:{id:"minecraft:item_frame",count:1,components:{"minecraft:custom_model_data":' + self.personalCMD + '}}}\n')
-                    else:
-                        file2.write('summon item_display ~ ~ ~ {brightness:{sky:15,block:0},Tags:["' + self.packAuthor + f'.{self.blocks[self.blck]["name"]}","' + self.packAuthor + '.custom_block"],transformation:{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0.469f,0f],scale:[1.001f,1.001f,1.001f]},item:{id:"minecraft:item_frame",count:1,components:{"minecraft:custom_model_data":' + self.personalCMD + '}}}\n')
-                    file2.close()
-                file.write(self.header + 'execute as @s[tag=' + self.packAuthor + '.' + self.blocks[self.blck]["name"] + '] run function ' + self.nameSpace + ':' + self.blocks[self.blck]["name"] + '/place\n')
-            
-            file.write('\nkill @s')
-            file.close()
-        
-        # As Blocks block/block, block/break Functions
+        self.packDirectory = os.path.join(self.outputDir, self.packName)
+        os.mkdir(self.packDirectory)
+        os.mkdir(f"{self.packDirectory}\\data")
+        self.namespaceDirectory = os.path.join(
+            self.packDirectory, "data", self.packNamespace
+        )
+        self.minecraftDirectory = os.path.join(self.packDirectory, "data", "minecraft")
+        os.mkdir(self.minecraftDirectory)
+        os.mkdir(self.namespaceDirectory)
 
-        with open(f'{self.packNamespace}\\function\\as_blocks.mcfunction', 'a') as file:
-            for self.blck in self.blocks.keys():
-                with open(f'{self.packNamespace}\\function\\{self.blck}\\{self.blck}.mcfunction', 'w') as file2:
-                    file2.write(self.header + 'execute unless block ~ ~ ~ ' + self.blocks[self.blck]["baseBlock"] + ' run function ' + self.nameSpace + ':' + self.blocks[self.blck]["name"] + '/break')
-                    file2.close()
-                with open(f'{self.packNamespace}\\function\\{self.blck}\\break.mcfunction', 'a') as file3:
-                    file3.write(self.header + 'execute as @e[type=item,sort=nearest,limit=1,distance=..2,nbt={OnGround:0b,Age:0s,Item:{id:"' + self.blocks[self.blck]["baseBlock"] + '"}}] run kill @s\n')
-                    file3.write('loot spawn ~ ~ ~ loot ' + self.nameSpace + ':' + self.blocks[self.blck]["name"] + '\n')
-                    file3.write('kill @s')
-                    file3.close()
-                
-                file.write(self.header + 'execute as @s[tag=' + self.packAuthor + '.' + self.blocks[self.blck]["name"] + '] run function ' + self.nameSpace + ':' + self.blocks[self.blck]["name"] + '/' + self.blocks[self.blck]["name"] + '\n')
-            file.close()
-        
-        # Give Items Function
+        with open(f"{self.packDirectory}\\pack.mcmeta", "w") as pack:
+            pack.write(
+                '{\n    "pack": {\n        "pack_format": 57,\n        "description": "'
+                + self.packDescription
+                + '"\n    }\n}\n'
+            )
 
-        with open(f'{self.packNamespace}\\function\\give_items.mcfunction', 'a') as file:
-            self.blockNumLoop = 0
-            for self.blck in self.blocks.keys():
-                self.blockNumLoop += 1
-                self.personalCMD = self.parse(self.customModelDataPrefix, self.blockNumLoop)
-                file.write(self.header + 'give @s item_frame[item_name=\'{"italic":false,"text":"' + self.blocks[self.blck]["displayName"] + '"}\',custom_model_data=' + self.personalCMD + ',entity_data={id:"minecraft:item_frame",Fixed:1b,Invisible:1b,Silent:1b,Invulnerable:1b,Facing:1,Tags:["' + self.packAuthor + '.item_frame_block","' + self.packAuthor + '.' + self.blocks[self.blck]["name"] + '"]}] 1\n')
-            for self.itm in self.items.keys():
-                self.blockNumLoop += 1
-                self.personalCMD = self.parse(self.customModelDataPrefix, self.blockNumLoop)
-                file.write('give @s ' + self.items[self.itm]["baseItem"] + '[item_name=\'{"italic":false,"text":"' + self.items[self.itm]["displayName"] + '"}\',custom_model_data=' + self.personalCMD + '] 1\n')
-            file.close()
-        
-        
-        # Loot Tables
+        os.mkdir(f"{self.namespaceDirectory}\\function")
+        if len(self.blocks) > 0:
+            os.mkdir(f"{self.namespaceDirectory}\\loot_table")
+            os.mkdir(f"{self.namespaceDirectory}\\advancement")
+        if len(self.recipes) > 0:
+            os.mkdir(f"{self.namespaceDirectory}\\recipe")
 
-        self.blockNumLoop = 0
-        for self.blck in self.blocks.keys():
-            self.blockNumLoop += 1
-            self.personalCMD = self.parse(self.customModelDataPrefix, self.blockNumLoop)
-            with open(f'{self.packNamespace}\\loot_table\\{self.blocks[self.blck]["name"]}.json', 'w') as file:
-                if self.blocks[self.blck]["blockDrop"] == "":
-                    file.write('{"pools": [{"rolls": 1,"entries": [{"type": "minecraft:item","name": "minecraft:item_frame"}],"functions": [{"function": "minecraft:set_components","components": {"minecraft:custom_model_data": ' + self.personalCMD + ',"minecraft:custom_name": "{\\"italic\\":false,\\"text\\":\\"' + self.blocks[self.blck]["displayName"] + '\\"}","minecraft:entity_data": {"id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["' + self.packAuthor + '.item_frame_block","' + self.packAuthor + '.' + self.blocks[self.blck]["name"] + '"]}}}]}]}')
-                else:
-                    file.write('{"pools": [{"rolls": 1,"entries": [{"type": "minecraft:item","name": "' + self.blocks[self.blck]["blockDrop"] + '"}]}]}')
-                
-                file.close()
-        
-        # Recipes
+        os.mkdir(f"{self.minecraftDirectory}\\tags")
+        os.mkdir(f"{self.minecraftDirectory}\\tags\\function")
 
-        for recipe in self.recipes:
-            if self.recipes[recipe]["mode"] == "recipe":
-                if not self.recipes[recipe]["shapeless"]:
-                    with open(f'{self.packNamespace}\\recipe\\{self.recipes[recipe]["name"]}.json', 'a') as file:
-                        file.truncate(0)
-                        file.seek(0)
-                        letters = {"0": "A", "1": "D", "2": "G", "3": "B", "4": "E", "5": "H", "6": "C", "7": "F", "8": "I"}
-                        recip = self.recipes[recipe]["items"]
-                        file.write('{"type": "minecraft:crafting_shaped", "pattern": ["')
-                        if recip["0"] != "":
-                            file.write("A")
-                        else:
-                            file.write(" ")
-                        if recip["3"] != "":
-                            file.write("B")
-                        else:
-                            file.write(" ")
-                        if recip["6"] != "":
-                            file.write("C")
-                        else:
-                            file.write(" ")
-                        
-                        file.write('","')
+        with open(f"{self.namespaceDirectory}\\function\\tick.mcfunction", "w") as tick:
+            if len(self.blocks) > 0:
+                tick.write(
+                    f"{self.header}execute as @e[type=item_display,tag={self.packAuthor}.custom_block] at @s run function {self.packNamespace}:blocks/as_blocks"
+                )
+            else:
+                tick.write(self.header)
+        with open(f"{self.namespaceDirectory}\\function\\load.mcfunction", "w") as load:
+            load.write(
+                f'{self.header}tellraw @a {{"text":"[mDirt 2] - Successfully loaded pack!","color":"red"}}'
+            )
+        with open(f"{self.minecraftDirectory}\\tags\\function\\tick.json", "w") as tick:
+            tick.write(
+                '{\n    "values":[\n        '
+                + f'"{self.packNamespace}'
+                + ':tick"\n        ]\n    }'
+            )
+        with open(f"{self.minecraftDirectory}\\tags\\function\\load.json", "w") as load:
+            load.write(
+                '{\n    "values":[\n        '
+                + f'"{self.packNamespace}'
+                + ':load"\n        ]\n    }'
+            )
 
-                        if recip["1"] != "":
-                            file.write("D")
-                        else:
-                            file.write(" ")
-                        if recip["4"] != "":
-                            file.write("E")
-                        else:
-                            file.write(" ")
-                        if recip["7"] != "":
-                            file.write("F")
-                        else:
-                            file.write(" ")
-                        
-                        file.write('","')
+        #######################
+        # CUSTOM BLOCKS       #
+        #######################
 
-                        if recip["2"] != "":
-                            file.write("G")
-                        else:
-                            file.write(" ")
-                        if recip["5"] != "":
-                            file.write("H")
-                        else:
-                            file.write(" ")
-                        if recip["8"] != "":
-                            file.write("I")
-                        else:
-                            file.write(" ")
+        if len(self.blocks) > 0:
+            blockGenerator = BlockGenerator(
+                self.header,
+                self.namespaceDirectory,
+                self.packNamespace,
+                self.packAuthor,
+                self.blocks,
+            )
 
-                        file.write('"],"key":{')
-                        items = [(k, v) for k, v in recip.items() if v not in (None, '')][:-1]
-                        for i, (key, value) in enumerate(items):
-                            if value != "" and value != None:
-                                file.write('"' + letters[str(key).replace("'", '"')] + '":"minecraft:' + value + '"')
-                                if i < len(items) -1: file.write(',')
-                        if not recip["9"] in self.items and not recip["9"] in self.blocks:
-                            file.write('},"result": { "id":"minecraft:' + recip[str(9)] + '", "count":' + self.recipes[recipe]["count"] + '}}')
-                        elif recip["9"] in self.items:
-                            idx = self.items[recip["9"]]
-                            file.write('},"result":{ "id":"' + idx["baseItem"] + '", "count":' + self.recipes[recipe]["count"] + ', "components": {"minecraft:item_name":"{\"italic\":false,\"text\":\"' + idx["displayName"] + '\"}", "minecraft:custom_model_data": ' + self.generated_cmds["items"][idx["name"]] + '}}}')
-                        elif recip["9"] in self.blocks:
-                            idx = self.blocks[recip["9"]]
-                            file.write('},"result":{ "id":"' + 'minecraft:item_frame' + '", "count":' + self.recipes[recipe]["count"] + ', "components": {"minecraft:custom_model_data": ' + self.generated_cmds["blocks"][idx["name"]] + ',"minecraft:custom_name": "{\\"italic\\":false,\\"text\\":\\"' + idx["displayName"] + '\\"}","minecraft:entity_data": {"id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["' + self.packAuthor + '.item_frame_block","' + self.packAuthor + '.' + idx["name"] + '"]}}}}')
-                            
-                else:
-                    with open(f'{self.packNamespace}\\recipe\\{self.recipes[recipe]["name"]}.json', 'a') as file:
-                        recip = self.recipes[recipe]["items"]
-                        file.write('{"type": "minecraft:crafting_shapeless", "ingredients": [')
-                        items = [(k, v) for k, v in recip.items() if v not in (None, '')][:-3]
-                        for ingredient, (key, value) in enumerate(items):
-                            if str(value) != "":
-                                file.write('"minecraft:' + str(value) + '"')
-                                if ingredient < len(items) - 1: file.write(',')
-                        if not recip["9"] in self.items and not recip["9"] in self.blocks:
-                            file.write('],"result":{"id": "minecraft:' + recip[str(9)] + '", "count":' + self.recipes[recipe]["count"] + '}}')
-                        elif recip["9"] in self.items:
-                            idx = self.items[recip["9"]]
-                            file.write('},"result":{ "id":"' + idx["baseItem"] + '", "count":' + self.recipes[recipe]["count"] + ', "components": {"minecraft:item_name":"{\"italic\":false,\"text\":\"' + idx["displayName"] + '\"}", "minecraft:custom_model_data": ' + self.generated_cmds["items"][idx["name"]] + '}}}')
-                        elif recip["9"] in self.blocks:
-                            idx = self.blocks[recip["9"]]
-                            file.write('},"result":{ "id":"' + 'minecraft:item_frame' + '", "count":' + self.recipes[recipe]["count"] + ', "components": {"minecraft:custom_model_data": ' + self.generated_cmds["blocks"][idx["name"]] + ',"minecraft:custom_name": "{\\"italic\\":false,\\"text\\":\\"' + idx["displayName"] + '\\"}","minecraft:entity_data": {"id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["' + self.packAuthor + '.item_frame_block","' + self.packAuthor + '.' + idx["name"] + '"]}}}}')
-            
-            elif self.recipes[recipe]["mode"] == "smelting":
-                with open(f'{self.packNamespace}\\recipe\\{self.recipes[recipe]["name"]}.json', 'a') as file:
-                    recip = self.recipes[recipe]["items"]
-                    if not recip["11"] in self.items and not recip["11"] in self.blocks:
-                        file.write('{ "type": "minecraft:smelting", "ingredient": "minecraft:' + recip["10"] + '", "result": { "id": "minecraft:' + recip["11"] + '"}}')
-                    elif recip["11"] in self.items:
-                        idx = self.items[recip["11"]]
-                        file.write('{ "type": "minecraft:smelting", "ingredient": "minecraft:' + recip["10"] + '", "result": { "id": "minecraft:' + recip["11"] + '", "components": {"minecraft:item_name":"{\"italic\":false,\"text\":\"' + idx["displayName"] + '\"}", "minecraft:custom_model_data": ' + self.generated_cmds["items"][idx["name"]] + '}}}')
-                    elif recip["11"] in self.blocks:
-                        idx = self.blocks[recip["11"]]
-                        file.write('},"result":{ "id":"' + 'minecraft:item_frame' + '", "count":' + self.recipes[recipe]["count"] + ', "components": {"minecraft:custom_model_data": ' + self.generated_cmds["blocks"][idx["name"]] + ',"minecraft:custom_name": "{\\"italic\\":false,\\"text\\":\\"' + idx["displayName"] + '\\"}","minecraft:entity_data": {"id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["' + self.packAuthor + '.item_frame_block","' + self.packAuthor + '.' + idx["name"] + '"]}}}}')
+            blockGenerator.generate()
 
-        self.setStatus("Generated!")     
+        #######################
+        # CUSTOM ITEMS        #
+        #######################
 
-if __name__ == '__main__':
-    app()
+        if len(self.items) > 0:
+            itemGenerator = ItemGenerator(
+                self.header, self.namespaceDirectory, self.items
+            )
+
+            itemGenerator.generate()
+
+        #######################
+        # CUSTOM RECIPES      #
+        #######################
+
+        if len(self.recipes) > 0:
+            recipeGenerator = RecipeGenerator(
+                self.namespaceDirectory,
+                self.packAuthor,
+                self.blocks,
+                self.items,
+                self.recipes,
+            )
+
+            recipeGenerator.generate()
+
+        #######################
+        # RESOURCE PACK       #
+        #######################
+
+        self.generateResourcePack()
+
+        #######################
+        # FINISH GENERATE     #
+        #######################
+
+        alert("Pack Generated!")
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = App()
+    window.show()
+    app.setStyle("Fusion")
+    sys.exit(app.exec())
