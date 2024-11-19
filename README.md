@@ -24,7 +24,7 @@ To get your items in game, run /function YOURNAMESPACE:give_items
 The UI is broken if you run the code on MacOS. *This is being worked on* (@JustJoshinDev)
 
 ## Credits
-The tool was made entirely by me, with lots of UI help from @JustJoshinDev.
+The tool was made entirely by me, with lots of help from @JustJoshinDev.
 Some Datapack things, such as the method for creating custom blocks, was developed by others:
 
 [Admin](https://youtube.com/@WASDBuildTeam) for some custom block methods.
