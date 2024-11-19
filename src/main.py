@@ -114,6 +114,8 @@ class App(QMainWindow):
 
         self.ui.blockModel.activated.connect(self.getBlockModel)
 
+        self.ui.blockDropBox.dropEvent(self.loadBlockDropBox())
+
         # Item Signals
         self.ui.itemAddButton.clicked.connect(self.addItem)
         self.ui.itemEditButton.clicked.connect(self.editItem)
@@ -140,6 +142,9 @@ class App(QMainWindow):
 
         self.ui.smeltingInputButton.clicked.connect(lambda: self.getRecipeItem(10))
         self.ui.smeltingOutputButton.clicked.connect(lambda: self.getRecipeItem(11))
+
+        self.ui.stoneCuttingInputButton.clicked.connect(lambda: self.getRecipeItem(12))
+        self.ui.stoneCuttingOutputButton.clicked.connect(lambda: self.getRecipeItem(13))
 
         # Import & Export
         self.ui.actionImport_mdrt.triggered.connect(self.importProject)
@@ -262,6 +267,16 @@ class App(QMainWindow):
     # BLOCKS TAB          #
     #######################
 
+    def loadBlockDropBox(self):
+        if self.ui.blockDropBox.count() == 0:
+            item_list = self.data["items"]
+            for block in self.blocks:
+                self.ui.blockDropBox.addItem(f'{self.blocks[block]["name"]}')
+            for item in self.items:
+                self.ui.blockDropBox.addItem(f'{self.items[item]["name"]}')
+            for item in item_list:
+                self.ui.blockDropBox.addItem(item)
+
     def getBlockModel(self):
         if self.ui.blockModel.currentText() == "Custom":
             fileDialog = QFileDialog()
@@ -308,7 +323,7 @@ class App(QMainWindow):
             "baseBlock": self.ui.blockBaseBlock.text(),
             "textures": self.blockTexture,
             "placeSound": self.ui.blockPlaceSound.text(),
-            "blockDrop": self.ui.blockDrop.text(),
+            "blockDrop": self.ui.blockDropBox.currentText(),
             "directional": self.ui.blockDirectional.isChecked(),
             "model": self.ui.blockModel.currentText(),
             "cmd": self.parseCMD(self.featureNum),
@@ -328,7 +343,7 @@ class App(QMainWindow):
         self.ui.blockName.setText(properties["name"])
         self.ui.blockDisplayName.setText(properties["displayName"])
         self.ui.blockBaseBlock.setText(properties["baseBlock"])
-        self.ui.blockDrop.setText(properties["blockDrop"])
+        self.ui.blockDropBox.setCurrentText(properties["blockDrop"])
         self.ui.blockPlaceSound.setText(properties["placeSound"])
         self.ui.blockDirectional.setChecked(properties["directional"])
         self.ui.blockModel.setCurrentText(properties["model"])
@@ -367,7 +382,7 @@ class App(QMainWindow):
         self.ui.blockName.setText("")
         self.ui.blockDisplayName.setText("")
         self.ui.blockBaseBlock.setText("")
-        self.ui.blockDrop.setText("")
+        self.ui.blockDropBox.setCurrentText("")
         self.ui.blockPlaceSound.setText("")
         self.ui.blockDirectional.setChecked(False)
         self.ui.blockModel.setCurrentText("")
@@ -475,7 +490,7 @@ class App(QMainWindow):
 
         item_list = self.data["items"]
 
-        if slotId == 9 or slotId == 11:
+        if slotId in (9, 11, 13):
             for block in self.blocks:
                 self.ui_form.itemsBox.addItem(f'{self.blocks[block]["name"]}')
             for item in self.items:
@@ -522,15 +537,24 @@ class App(QMainWindow):
         self.block_popup.close()
 
     def addRecipe(self):
+
+        mode = "crafting"
+
+        if self.ui.recipeSubTabs.tabText(self.ui.recipeSubTabs.currentIndex()).lower() == "crafting":
+            mode = "crafting"
+        elif self.ui.recipeSubTabs.tabText(self.ui.recipeSubTabs.currentIndex()).lower() == "smelting":
+            mode = self.ui.smeltingModeBox.currentText().lower()
+        elif self.ui.recipeSubTabs.tabText(self.ui.recipeSubTabs.currentIndex()).lower() == "stonecutting":
+            mode = "stonecutting"
+
         self.recipeProperties = {
             "name": self.ui.recipeName.text(),
             "items": self.recipe,
             "outputCount": self.ui.slot9Count.value(),
+            "outputCount2": self.ui.stoneCuttingCount.value(),
             "exact": self.ui.exactlyRadio.isChecked(),
             "shapeless": self.ui.exactlyRadio.isChecked(),
-            "type": self.ui.recipeSubTabs.tabText(
-                self.ui.recipeSubTabs.currentIndex()
-            ).lower(),  # Should result as "crafting" or "smelting"
+            "type": mode
         }
 
         self.recipes[self.recipeProperties["name"]] = self.recipeProperties

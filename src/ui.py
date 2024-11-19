@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiWqYIDF.ui'
+## Form generated from reading UI file 'uigmKrfT.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.0
 ##
@@ -51,6 +51,14 @@ class Ui_MainWindow(object):
         self.actionDark.setObjectName(u"actionDark")
         self.actionLight = QAction(MainWindow)
         self.actionLight.setObjectName(u"actionLight")
+        self.actionDark_2 = QAction(MainWindow)
+        self.actionDark_2.setObjectName(u"actionDark_2")
+        self.actionLight_2 = QAction(MainWindow)
+        self.actionLight_2.setObjectName(u"actionLight_2")
+        self.actionDark_Theme = QAction(MainWindow)
+        self.actionDark_Theme.setObjectName(u"actionDark_Theme")
+        self.actionLight_Theme = QAction(MainWindow)
+        self.actionLight_Theme.setObjectName(u"actionLight_Theme")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.mainTab = QTabWidget(self.centralwidget)
@@ -185,11 +193,6 @@ class Ui_MainWindow(object):
 
         self.formLayout_2.setWidget(2, QFormLayout.FieldRole, self.blockBaseBlock)
 
-        self.blockDrop = QLineEdit(self.formLayoutWidget_2)
-        self.blockDrop.setObjectName(u"blockDrop")
-
-        self.formLayout_2.setWidget(3, QFormLayout.FieldRole, self.blockDrop)
-
         self.blockPlaceSound = QLineEdit(self.formLayoutWidget_2)
         self.blockPlaceSound.setObjectName(u"blockPlaceSound")
 
@@ -199,6 +202,12 @@ class Ui_MainWindow(object):
         self.blockDirectional.setObjectName(u"blockDirectional")
 
         self.formLayout_2.setWidget(5, QFormLayout.FieldRole, self.blockDirectional)
+
+        self.blockDropBox = QComboBox(self.formLayoutWidget_2)
+        self.blockDropBox.setObjectName(u"blockDropBox")
+        self.blockDropBox.setEditable(True)
+
+        self.formLayout_2.setWidget(3, QFormLayout.FieldRole, self.blockDropBox)
 
         self.blockTextureButtonTop = QPushButton(self.blockTab)
         self.blockTextureButtonTop.setObjectName(u"blockTextureButtonTop")
@@ -522,11 +531,46 @@ class Ui_MainWindow(object):
         self.smeltingOutput = QLabel(self.smeltingTab)
         self.smeltingOutput.setObjectName(u"smeltingOutput")
         self.smeltingOutput.setGeometry(QRect(250, 90, 50, 50))
+        self.label = QLabel(self.smeltingTab)
+        self.label.setObjectName(u"label")
+        self.label.setGeometry(QRect(140, 160, 49, 16))
+        self.smeltingModeBox = QComboBox(self.smeltingTab)
+        self.smeltingModeBox.addItem("")
+        self.smeltingModeBox.addItem("")
+        self.smeltingModeBox.addItem("")
+        self.smeltingModeBox.addItem("")
+        self.smeltingModeBox.setObjectName(u"smeltingModeBox")
+        self.smeltingModeBox.setGeometry(QRect(180, 160, 121, 22))
         self.recipeSubTabs.addTab(self.smeltingTab, "")
         self.smeltingInput.raise_()
         self.smeltingOutput.raise_()
         self.smeltingOutputButton.raise_()
         self.smeltingInputButton.raise_()
+        self.label.raise_()
+        self.smeltingModeBox.raise_()
+        self.tab_4 = QWidget()
+        self.tab_4.setObjectName(u"tab_4")
+        self.stoneCuttingInputButton = QPushButton(self.tab_4)
+        self.stoneCuttingInputButton.setObjectName(u"stoneCuttingInputButton")
+        self.stoneCuttingInputButton.setGeometry(QRect(140, 90, 50, 50))
+        self.stoneCuttingInputButton.setFlat(True)
+        self.stoneCuttingInput = QLabel(self.tab_4)
+        self.stoneCuttingInput.setObjectName(u"stoneCuttingInput")
+        self.stoneCuttingInput.setGeometry(QRect(140, 90, 50, 50))
+        self.stoneCuttingOutputButton = QPushButton(self.tab_4)
+        self.stoneCuttingOutputButton.setObjectName(u"stoneCuttingOutputButton")
+        self.stoneCuttingOutputButton.setGeometry(QRect(250, 90, 50, 50))
+        self.stoneCuttingOutputButton.setFlat(True)
+        self.stoneCuttingOutput = QLabel(self.tab_4)
+        self.stoneCuttingOutput.setObjectName(u"stoneCuttingOutput")
+        self.stoneCuttingOutput.setGeometry(QRect(250, 90, 50, 50))
+        self.stoneCuttingCount = QSpinBox(self.tab_4)
+        self.stoneCuttingCount.setObjectName(u"stoneCuttingCount")
+        self.stoneCuttingCount.setGeometry(QRect(250, 160, 88, 24))
+        self.stoneCuttingCount.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.PlusMinus)
+        self.stoneCuttingCount.setMinimum(1)
+        self.stoneCuttingCount.setMaximum(64)
+        self.recipeSubTabs.addTab(self.tab_4, "")
         self.gridLayoutWidget_3 = QWidget(self.recipeTab)
         self.gridLayoutWidget_3.setObjectName(u"gridLayoutWidget_3")
         self.gridLayoutWidget_3.setGeometry(QRect(639, 10, 321, 341))
@@ -568,6 +612,9 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuFile.menuAction())
         self.menuFile.addAction(self.actionExport_mdrt)
         self.menuFile.addAction(self.actionImport_mdrt)
+        self.menuFile.addSeparator()
+        self.menuFile.addAction(self.actionDark_Theme)
+        self.menuFile.addAction(self.actionLight_Theme)
 
         self.retranslateUi(MainWindow)
 
@@ -584,6 +631,10 @@ class Ui_MainWindow(object):
         self.actionImport_mdrt.setText(QCoreApplication.translate("MainWindow", u"Import (*.mdrt)", None))
         self.actionDark.setText(QCoreApplication.translate("MainWindow", u"Dark", None))
         self.actionLight.setText(QCoreApplication.translate("MainWindow", u"Light", None))
+        self.actionDark_2.setText(QCoreApplication.translate("MainWindow", u"Dark", None))
+        self.actionLight_2.setText(QCoreApplication.translate("MainWindow", u"Light", None))
+        self.actionDark_Theme.setText(QCoreApplication.translate("MainWindow", u"Dark Theme", None))
+        self.actionLight_Theme.setText(QCoreApplication.translate("MainWindow", u"Light Theme", None))
         self.packNameLabel.setText(QCoreApplication.translate("MainWindow", u"Pack Name", None))
         self.packName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"The Ruby Pack", None))
         self.packNamespaceLabel.setText(QCoreApplication.translate("MainWindow", u"Namespace", None))
@@ -677,7 +728,18 @@ class Ui_MainWindow(object):
         self.smeltingOutputButton.setText("")
         self.smeltingInput.setText("")
         self.smeltingOutput.setText("")
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Mode:", None))
+        self.smeltingModeBox.setItemText(0, QCoreApplication.translate("MainWindow", u"Smelting", None))
+        self.smeltingModeBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Smoking", None))
+        self.smeltingModeBox.setItemText(2, QCoreApplication.translate("MainWindow", u"Blasting", None))
+        self.smeltingModeBox.setItemText(3, QCoreApplication.translate("MainWindow", u"Campfire_Cooking", None))
+
         self.recipeSubTabs.setTabText(self.recipeSubTabs.indexOf(self.smeltingTab), QCoreApplication.translate("MainWindow", u"Smelting", None))
+        self.stoneCuttingInputButton.setText("")
+        self.stoneCuttingInput.setText("")
+        self.stoneCuttingOutputButton.setText("")
+        self.stoneCuttingOutput.setText("")
+        self.recipeSubTabs.setTabText(self.recipeSubTabs.indexOf(self.tab_4), QCoreApplication.translate("MainWindow", u"Stonecutting", None))
         self.recipeEditButton.setText(QCoreApplication.translate("MainWindow", u"Edit", None))
         self.recipeAddButton.setText(QCoreApplication.translate("MainWindow", u"Add", None))
         self.recipeRemoveButton.setText(QCoreApplication.translate("MainWindow", u"Remove", None))
