@@ -42,17 +42,17 @@ class ItemResourcer:
             ) as file:
                 if not self.exists[self.items[item]["baseItem"]]:
                     self.exists[self.items[item]["baseItem"]] = True
-                    modelType = self.data["models"][self.items[item]["baseItem"]]
-                    file.write(f'{modelType}, "overrides": [')
+                    modelType = self.data["models"][f'minecraft:{self.items[item]["baseItem"]}']
+                    file.write(f'{str(modelType)[:-1]}, "overrides": ['.replace("'", '"'))
                 file.write(
-                    f'{{ "predicate": {{ "custom_model_data": {self.items[item]["cmd"]}}}, "model": "{self.packNamespace}/{self.items[item]["name"]}"}},'
+                    f'{{ "predicate": {{ "minecraft:custom_model_data": {self.items[item]["cmd"]}}}, "model": "{self.packNamespace}/{self.items[item]["name"]}"}},'
                 )
 
         # Remove Trailing Comma At Each Model
         for file in os.listdir(
             f"{self.resPackDirectory}\\assets\\minecraft\\models\\item"
         ):
-            if file.endswith(".json"):
+            if file.endswith(".json") and not "item_frame" in file:
                 with open(
                     os.path.join(
                         f"{self.resPackDirectory}\\assets\\minecraft\\models\\item\\",
@@ -80,7 +80,7 @@ class ItemResourcer:
                     file.write(str(model).replace("'", '"'))
                 else:
                     file.write(
-                        f'{{"parent":" {self.data["models"][self.items[item]["baseItem"]]["parent"]}", "textures": {{ "layer0": "minecraft:{self.packNamespace}/{os.path.splitext(os.path.basename(str(self.items[item]["texture"])))[-2]}"}}}}'
+                        f'{{"parent":"{self.data["models"][f'minecraft:{self.items[item]["baseItem"]}']["parent"]}", "textures": {{ "layer0": "minecraft:{self.packNamespace}/{os.path.splitext(os.path.basename(str(self.items[item]["texture"])))[-2]}"}}}}'
                     )
 
         os.mkdir(

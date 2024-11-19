@@ -19,7 +19,7 @@ class BlockGenerator:
             f"{self.namespaceDirectory}\\advancement\\placed_item_frame.json", "w"
         ) as file:
             file.write(
-                f'{{"criteria": {{"requirement": {{"trigger": "minecraft:item_used_on_block","conditions": {{"location": [{{"condition": "minecraft:match_tool","predicate": {{"items": ["minecraft:item_frame"]}}}}]}}}}}}, "rewards": {{"function": "{self.packNamespace}:placed_item_frame"}}}}'
+                f'{{"criteria": {{"requirement": {{"trigger": "minecraft:item_used_on_block","conditions": {{"location": [{{"condition": "minecraft:match_tool","predicate": {{"items": ["minecraft:item_frame"]}}}}]}}}}}}, "rewards": {{"function": "{self.packNamespace}:blocks/placed_item_frame"}}}}'
             )
 
         # Placed Item Frame Function
@@ -29,19 +29,19 @@ class BlockGenerator:
         ) as file:
             file.write(
                 f"{self.header}advancement revoke @s only {self.packNamespace}:placed_item_frame\n"
-                f"execute as @e[tag={self.packAuthor}.item_frame_block,distance=..10] at @s run function {self.packNamespace}:check_placed_item_frame"
+                f"execute as @e[tag={self.packAuthor}.item_frame_block,distance=..10] at @s run function {self.packNamespace}:blocks/check_placed_item_frame"
             )
 
         # Check Placed Item Frame, block/place Functions
         with open(
-            f"{self.packNamespace}\\function\\blocks\\check_placed_item_frame", "a"
+            f"{self.namespaceDirectory}\\function\\blocks\\check_placed_item_frame.mcfunction", "a"
         ) as file:
             for block in self.blocks:
                 os.mkdir(
                     f'{self.namespaceDirectory}\\function\\blocks\\{self.blocks[block]["name"]}'
                 )
                 with open(
-                    f'{self.namespaceDirectory}\\function\\{self.blocks[block]["name"]}\\place.mcfunction',
+                    f'{self.namespaceDirectory}\\function\\blocks\\{self.blocks[block]["name"]}\\place.mcfunction',
                     "a",
                 ) as file2:
                     file2.write(
@@ -72,7 +72,7 @@ class BlockGenerator:
                         )
                     else:
                         file2.write(
-                            f'summon item_display ~ ~ ~ {{brightness:{{sky:15,block:0}}}},Tags:["{self.packAuthor}.{self.blocks[block]["name"]}","{self.packAuthor}.custom_block"],transformation:{{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0.469f,0f],scale:[1.001f,1.001f,1.001f]}},item:{{id:"minecraft:item_frame",count:1,components:{{"minecraft:custom_model_data":{self.blocks[block]["cmd"]}}}}}}}\n'
+                            f'summon item_display ~ ~ ~ {{brightness:{{sky:15,block:0}},Tags:["{self.packAuthor}.{self.blocks[block]["name"]}","{self.packAuthor}.custom_block"],transformation:{{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0.469f,0f],scale:[1.001f,1.001f,1.001f]}},item:{{id:"minecraft:item_frame",count:1,components:{{"minecraft:custom_model_data":{self.blocks[block]["cmd"]}}}}}}}\n'
                         )
                 file.write(
                     f"{self.header}execute as @s[tag={self.packAuthor}.{self.blocks[block]['name']}] run function {self.packNamespace}:blocks/{self.blocks[block]['name']}/place\n"
@@ -113,7 +113,7 @@ class BlockGenerator:
             file.write(self.header)
             for block in self.blocks:
                 file.write(
-                    f'give @s item_frame[item_name=\'{{"italic":false,"text":"{self.blocks[block]["displayName"]}}}\',custom_model_data={self.blocks[block]["cmd"]},entity_data={{id:"minecraft:item_frame",Fixed:1b,Invisible:1b,Silent:1b,Invulnerable:1b,Facing:1,Tags:["{self.packAuthor}.item_frame_block","{self.packAuthor}.{self.blocks[block]["name"]}"]}}] 1\n'
+                    f'give @s item_frame[item_name=\'{{"italic":false,"text":"{self.blocks[block]["displayName"]}"}}\',custom_model_data={self.blocks[block]["cmd"]},entity_data={{id:"minecraft:item_frame",Fixed:1b,Invisible:1b,Silent:1b,Invulnerable:1b,Facing:1,Tags:["{self.packAuthor}.item_frame_block","{self.packAuthor}.{self.blocks[block]["name"]}"]}}] 1\n'
                 )
 
         # Loot Tables
@@ -135,8 +135,8 @@ class BlockGenerator:
 class BlockResourcer:
     def __init__(self, resPackDirectory, packNamespace, blocks):
         self.resPackDirectory = resPackDirectory
-        self.blocks = packNamespace
-        self.packNamespace = blocks
+        self.blocks = blocks
+        self.packNamespace = packNamespace
 
     def generate(self):
         # Item Frame Model(s) For Blocks
@@ -153,7 +153,7 @@ class BlockResourcer:
                 )
                 if block != next(reversed(self.blocks.keys())):
                     file.write(",")
-            file.write("}}")
+            file.write("]}")
 
         # Copy Block Textures To Pack
         for block in self.blocks:
@@ -178,7 +178,7 @@ class BlockResourcer:
                             ),
                         )
             else:
-                path = self.blocks[block]["textures"][5]
+                path = self.blocks[block]["textures"]['5']
                 if not os.path.exists(
                     os.path.join(
                         texturePath,
@@ -195,13 +195,19 @@ class BlockResourcer:
 
         # Copy / Write Block Model To Pack
         for block in self.blocks:
+
+            textureNames = []
+
+            for texture in self.blocks[block]["textures"]:
+                textureNames.append(os.path.splitext(os.path.basename(self.blocks[block]["textures"][texture]))[0])
+
             with open(
                 f'{self.resPackDirectory}\\assets\\minecraft\\models\\{self.packNamespace}\\{self.blocks[block]["name"]}.json',
                 "w",
             ) as file:
                 if ".json" not in self.blocks[block]["model"]:
                     file.write(
-                        f'{{"credit": "Made with mDirt 2","textures": {{"0": "item/{self.blocks[block]["textures"][0]}","1": "item/{self.blocks[block]["textures"][1]}","2": "item/{self.blocks[block]["textures"][2]}","3": "item/{self.blocks[block]["textures"][3]}","4": "item/{self.blocks[block]["textures"][4]}","5": "item/{self.blocks[block]["textures"][5]}","particle": "item/{self.blocks[block]["textures"][0]}"}},"elements": [{{"from": [0, 0, 0],"to": [16, 16, 16],"faces": {{"north": {{"uv": [0, 0, 16, 16], "texture": "#0"}},"east": {{"uv": [0, 0, 16, 16], "texture": "#1"}},"south": {{"uv": [0, 0, 16, 16], "texture": "#2"}},"west": {{"uv": [0, 0, 16, 16], "texture": "#3"}},"up": {{"uv": [0, 0, 16, 16], "texture": "#4"}},"down": {{"uv": [0, 0, 16, 16], "texture": "#5"}}}}}}],"display": {{"thirdperson_righthand": {{"rotation": [0, 0, -55],"translation": [0, 2.75, -2.5],"scale": [0.4, 0.4, 0.4]}},"thirdperson_lefthand": {{"rotation": [0, 0, -55],"translation": [0, 2.75, -2.5],"scale": [0.4, 0.4, 0.4]}},"firstperson_righthand": {{"rotation": [0, 45, 0],"scale": [0.4, 0.4, 0.4]}},"ground": {{"translation": [0, 3.25, 0],"scale": [0.4, 0.4, 0.4]}},"gui": {{"rotation": [28, 45, 0],"scale": [0.6, 0.6, 0.6]}}}}}}'
+                        f'{{"credit": "Made with mDirt 2","textures": {{"0": "item/{textureNames[0]}","1": "item/{textureNames[1]}","2": "item/{textureNames[2]}","3": "item/{textureNames[3]}","4": "item/{textureNames[4]}","5": "item/{textureNames[5]}","particle": "item/{textureNames[0]}"}},"elements": [{{"from": [0, 0, 0],"to": [16, 16, 16],"faces": {{"north": {{"uv": [0, 0, 16, 16], "texture": "#2"}},"east": {{"uv": [0, 0, 16, 16], "texture": "#3"}},"south": {{"uv": [0, 0, 16, 16], "texture": "#4"}},"west": {{"uv": [0, 0, 16, 16], "texture": "#1"}},"up": {{"uv": [0, 0, 16, 16], "texture": "#0"}},"down": {{"uv": [0, 0, 16, 16], "texture": "#5"}}}}}}],"display": {{"thirdperson_righthand": {{"rotation": [0, 0, -55],"translation": [0, 2.75, -2.5],"scale": [0.4, 0.4, 0.4]}},"thirdperson_lefthand": {{"rotation": [0, 0, -55],"translation": [0, 2.75, -2.5],"scale": [0.4, 0.4, 0.4]}},"firstperson_righthand": {{"rotation": [0, 45, 0],"scale": [0.4, 0.4, 0.4]}},"ground": {{"translation": [0, 3.25, 0],"scale": [0.4, 0.4, 0.4]}},"gui": {{"rotation": [28, 45, 0],"scale": [0.6, 0.6, 0.6]}}}}}}'
                     )
                 else:
                     with open(self.blocks[block]["model"], "r") as f:
