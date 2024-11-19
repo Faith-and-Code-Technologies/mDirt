@@ -251,9 +251,6 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
-        <widget class="QLineEdit" name="blockDrop"/>
-       </item>
        <item row="4" column="1">
         <widget class="QLineEdit" name="blockPlaceSound">
          <property name="placeholderText">
@@ -265,6 +262,13 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
         <widget class="QCheckBox" name="blockDirectional">
          <property name="text">
           <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QComboBox" name="blockDropBox">
+         <property name="editable">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -1183,10 +1187,137 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
          <string/>
         </property>
        </widget>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>160</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Mode:</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="smeltingModeBox">
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>160</y>
+          <width>121</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>Smelting</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Smoking</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Blasting</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Campfire_Cooking</string>
+         </property>
+        </item>
+       </widget>
        <zorder>smeltingInput</zorder>
        <zorder>smeltingOutput</zorder>
        <zorder>smeltingOutputButton</zorder>
        <zorder>smeltingInputButton</zorder>
+       <zorder>label</zorder>
+       <zorder>smeltingModeBox</zorder>
+      </widget>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>Stonecutting</string>
+       </attribute>
+       <widget class="QPushButton" name="stoneCuttingInputButton">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>90</y>
+          <width>50</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="stoneCuttingInput">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>90</y>
+          <width>50</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="stoneCuttingOutputButton">
+        <property name="geometry">
+         <rect>
+          <x>250</x>
+          <y>90</y>
+          <width>50</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="stoneCuttingOutput">
+        <property name="geometry">
+         <rect>
+          <x>250</x>
+          <y>90</y>
+          <width>50</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="stoneCuttingCount">
+        <property name="geometry">
+         <rect>
+          <x>250</x>
+          <y>160</y>
+          <width>88</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="buttonSymbols">
+         <enum>QAbstractSpinBox::ButtonSymbols::PlusMinus</enum>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>64</number>
+        </property>
+       </widget>
       </widget>
      </widget>
      <widget class="QWidget" name="gridLayoutWidget_3">
@@ -1243,6 +1374,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
     </property>
     <addaction name="actionExport_mdrt"/>
     <addaction name="actionImport_mdrt"/>
+    <addaction name="separator"/>
+    <addaction name="actionDark_Theme"/>
+    <addaction name="actionLight_Theme"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
@@ -1265,6 +1399,26 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
   <action name="actionLight">
    <property name="text">
     <string>Light</string>
+   </property>
+  </action>
+  <action name="actionDark_2">
+   <property name="text">
+    <string>Dark</string>
+   </property>
+  </action>
+  <action name="actionLight_2">
+   <property name="text">
+    <string>Light</string>
+   </property>
+  </action>
+  <action name="actionDark_Theme">
+   <property name="text">
+    <string>Dark Theme</string>
+   </property>
+  </action>
+  <action name="actionLight_Theme">
+   <property name="text">
+    <string>Light Theme</string>
    </property>
   </action>
  </widget>
