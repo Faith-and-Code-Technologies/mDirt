@@ -11,7 +11,7 @@ class RecipeGenerator:
             if self.recipes[recipe]["type"] == "crafting":
                 if not self.recipes[recipe]["shapeless"]:
                     with open(
-                        f'{self.namespaceDirectory}\\recipe\\{self.recipes[recipe]["name"]}.json',
+                        f'{self.namespaceDirectory}/recipe/{self.recipes[recipe]["name"]}.json',
                         "a",
                     ) as file:
                         letters = {
@@ -64,17 +64,17 @@ class RecipeGenerator:
                         elif recip[str(9)] in self.items:
                             idx = self.items[recip[str(9)]]
                             file.write(
-                                f'}},"result":{{ "id":"{idx["baseItem"]}", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:item_name":"{{\\"italic\\":false,\\"text\\":\\"{idx["displayName"]}\\"}}", "minecraft:custom_model_data": {idx["cmd"]} }} }} }}'
+                                f'}},"result":{{ "id":"{idx["baseItem"]}", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:item_name":"{{/"italic/":false,/"text/":/"{idx["displayName"]}/"}}", "minecraft:custom_model_data": {idx["cmd"]} }} }} }}'
                             )
                         elif recip[str(9)] in self.blocks:
                             idx = self.blocks[recip[str(9)]]
                             file.write(
-                                f'}},"result":{{ "id":"minecraft:item_frame", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:custom_model_data": {idx["cmd"]}, "minecraft:custom_name": "{{\\"italic\\":false,\\"text\\":\\"{idx["displayName"]}\\"}}", "minecraft:entity_data": {{ "id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{idx["name"]}"] }} }} }}'
+                                f'}},"result":{{ "id":"minecraft:item_frame", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:custom_model_data": {idx["cmd"]}, "minecraft:custom_name": "{{/"italic/":false,/"text/":/"{idx["displayName"]}/"}}", "minecraft:entity_data": {{ "id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{idx["name"]}"] }} }} }}'
                             )
 
                 else:
                     with open(
-                        f'{self.namespaceDirectory}\\recipe\\{self.recipes[recipe]["name"]}.json',
+                        f'{self.namespaceDirectory}/recipe/{self.recipes[recipe]["name"]}.json',
                         "a",
                     ) as file:
                         recip = self.recipes[recipe]["items"]
@@ -93,17 +93,17 @@ class RecipeGenerator:
                         elif recip[str(9)] in self.items:
                             idx = self.items[recip[str(9)]]
                             file.write(
-                                f'}},"result":{{ "id":"{idx["baseItem"]}", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:item_name":"{{\\"italic\\":false,\\"text\\":\\"{idx["displayName"]}\\"}}", "minecraft:custom_model_data": {idx["cmd"]}}} }} }}'
+                                f'}},"result":{{ "id":"{idx["baseItem"]}", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:item_name":"{{/"italic/":false,/"text/":/"{idx["displayName"]}/"}}", "minecraft:custom_model_data": {idx["cmd"]}}} }} }}'
                             )
                         elif recip[str(9)] in self.blocks:
                             idx = self.blocks[recip[str(9)]]
                             file.write(
-                                f'}},"result":{{ "id":"minecraft:item_frame", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:custom_model_data": {idx["cmd"]}, "minecraft:custom_name": "{{\\"italic\\":false,\\"text\\":\\"{idx["displayName"]}\\"}}", "minecraft:entity_data": {{ "id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{idx["name"]}"] }} }} }}'
+                                f'}},"result":{{ "id":"minecraft:item_frame", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:custom_model_data": {idx["cmd"]}, "minecraft:custom_name": "{{/"italic/":false,/"text/":/"{idx["displayName"]}/"}}", "minecraft:entity_data": {{ "id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{idx["name"]}"] }} }} }}'
                             )
 
             elif self.recipes[recipe]["type"] in ("smelting", "blasting", "smoking", "campfire_cooking"):
                 with open(
-                    f'{self.namespaceDirectory}\\recipe\\{self.recipes[recipe]["name"]}.json',
+                    f'{self.namespaceDirectory}/recipe/{self.recipes[recipe]["name"]}.json',
                     "a",
                 ) as file:
                     recip = self.recipes[recipe]["items"]
@@ -114,17 +114,17 @@ class RecipeGenerator:
                     elif recip[11] in self.items:
                         idx = self.items[recip[11]]
                         file.write(
-                            f'{{ "type": "minecraft:{self.recipes[recipe]["type"]}", "ingredient": "minecraft:{recip[10]}", "result": {{ "id": "minecraft:{recip[11]}", "components": {{"minecraft:item_name":"{{\\"italic\\":false,\\"text\\":\\"{idx["displayName"]}\\"}}", "minecraft:custom_model_data": {idx["cmd"]} }}}}'
+                            f'{{ "type": "minecraft:{self.recipes[recipe]["type"]}", "ingredient": "minecraft:{recip[10]}", "result": {{ "id": "minecraft:{recip[11]}", "components": {{"minecraft:item_name":"{{/"italic/":false,/"text/":/"{idx["displayName"]}/"}}", "minecraft:custom_model_data": {idx["cmd"]} }}}}'
                         )
                     elif recip[11] in self.blocks:
                         idx = self.blocks[recip[11]]
                         file.write(
-                            f'{{ "type": "minecraft:{self.recipes[recipe]["type"]}", "ingredient": "minecraft:{recip[10]}","result":{{ "id":"minecraft:item_frame", "components": {{ "minecraft:custom_model_data": {idx["cmd"]}, "minecraft:custom_name": "{{\\"italic\\":false,\\"text\\":\\"{idx["displayName"]}\\"}}", "minecraft:entity_data": {{ "id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{idx["name"]}"] }} }} }}'
+                            f'{{ "type": "minecraft:{self.recipes[recipe]["type"]}", "ingredient": "minecraft:{recip[10]}","result":{{ "id":"minecraft:item_frame", "components": {{ "minecraft:custom_model_data": {idx["cmd"]}, "minecraft:custom_name": "{{/"italic/":false,/"text/":/"{idx["displayName"]}/"}}", "minecraft:entity_data": {{ "id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{idx["name"]}"] }} }} }}'
                         )
 
             elif self.recipes[recipe]["type"] == "stonecutting":
                 with open(
-                        f'{self.namespaceDirectory}\\recipe\\{self.recipes[recipe]["name"]}.json',
+                        f'{self.namespaceDirectory}/recipe/{self.recipes[recipe]["name"]}.json',
                         "a",
                 ) as file:
                     recip = self.recipes[recipe]["items"]
@@ -135,10 +135,10 @@ class RecipeGenerator:
                     elif recip[11] in self.items:
                         idx = self.items[recip[11]]
                         file.write(
-                            f'{{ "type": "minecraft:{self.recipes[recipe]["type"]}", "ingredient": "minecraft:{recip[10]}", "result": {{ "id": "minecraft:{recip[11]}", "count":{self.recipes[recipe]["outputCount2"]}, "components": {{"minecraft:item_name":"{{\\"italic\\":false,\\"text\\":\\"{idx["displayName"]}\\"}}", "minecraft:custom_model_data": {idx["cmd"]} }}}}'
+                            f'{{ "type": "minecraft:{self.recipes[recipe]["type"]}", "ingredient": "minecraft:{recip[10]}", "result": {{ "id": "minecraft:{recip[11]}", "count":{self.recipes[recipe]["outputCount2"]}, "components": {{"minecraft:item_name":"{{/"italic/":false,/"text/":/"{idx["displayName"]}/"}}", "minecraft:custom_model_data": {idx["cmd"]} }}}}'
                         )
                     elif recip[11] in self.blocks:
                         idx = self.blocks[recip[11]]
                         file.write(
-                            f'{{ "type": "minecraft:{self.recipes[recipe]["type"]}", "ingredient": "minecraft:{recip[10]}","result":{{ "id":"minecraft:item_frame", "count":{self.recipes[recipe]["outputCount2"]}, "components": {{ "minecraft:custom_model_data": {idx["cmd"]}, "minecraft:custom_name": "{{\\"italic\\":false,\\"text\\":\\"{idx["displayName"]}\\"}}", "minecraft:entity_data": {{ "id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{idx["name"]}"] }} }} }}'
+                            f'{{ "type": "minecraft:{self.recipes[recipe]["type"]}", "ingredient": "minecraft:{recip[10]}","result":{{ "id":"minecraft:item_frame", "count":{self.recipes[recipe]["outputCount2"]}, "components": {{ "minecraft:custom_model_data": {idx["cmd"]}, "minecraft:custom_name": "{{/"italic/":false,/"text/":/"{idx["displayName"]}/"}}", "minecraft:entity_data": {{ "id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{idx["name"]}"] }} }} }}'
                         )
