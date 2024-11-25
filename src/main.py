@@ -42,7 +42,7 @@ def checkInputValid(input_, type_):
                 else (
                     "valid"
                     if type_ == "string"
-                    and re.match(r"^[^<>:\"/\\|?*\x00-\x1F]+$", input_.text())
+                    and re.match(r"^[^<>:\"//|?*\x00-\x1F]+$", input_.text())
                     and input_.text().strip() != ""
                     else (
                         "type"
@@ -704,27 +704,27 @@ class App(QMainWindow):
             self.outputDir, f"{self.packName} Resource Pack"
         )
         os.mkdir(self.resPackDirectory)
-        os.mkdir(f"{self.resPackDirectory}\\assets")
-        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft")
-        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\atlases")
-        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\models")
-        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\textures")
-        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\textures\\item")
-        os.mkdir(f"{self.resPackDirectory}\\assets\\minecraft\\models\\item")
+        os.mkdir(f"{self.resPackDirectory}/assets")
+        os.mkdir(f"{self.resPackDirectory}/assets/minecraft")
+        os.mkdir(f"{self.resPackDirectory}/assets/minecraft/atlases")
+        os.mkdir(f"{self.resPackDirectory}/assets/minecraft/models")
+        os.mkdir(f"{self.resPackDirectory}/assets/minecraft/textures")
+        os.mkdir(f"{self.resPackDirectory}/assets/minecraft/textures/item")
+        os.mkdir(f"{self.resPackDirectory}/assets/minecraft/models/item")
         os.mkdir(
-            f"{self.resPackDirectory}\\assets\\minecraft\\models\\{self.packNamespace}"
+            f"{self.resPackDirectory}/assets/minecraft/models/{self.packNamespace}"
         )
 
         # Create Atlas
         with open(
-            f"{self.resPackDirectory}\\assets\\minecraft\\atlases\\blocks.json", "w"
+            f"{self.resPackDirectory}/assets/minecraft/atlases/blocks.json", "w"
         ) as file:
             file.write(
                 f'{{"sources":[{{"type": "directory", "source": "{self.packNamespace}", "prefix": "{self.packNamespace}/"}}]}}'
             )
 
         # Pack.mcmeta
-        with open(f"{self.resPackDirectory}\\pack.mcmeta", "w") as pack:
+        with open(f"{self.resPackDirectory}/pack.mcmeta", "w") as pack:
             pack.write(
                 f'{{\n    "pack": {{\n        "pack_format": 42,\n        "description": "{self.packDescription}"\n    }}\n}}\n'
             )
@@ -753,7 +753,7 @@ class App(QMainWindow):
 
         self.packDirectory = os.path.join(self.outputDir, self.packName)
         os.mkdir(self.packDirectory)
-        os.mkdir(f"{self.packDirectory}\\data")
+        os.mkdir(f"{self.packDirectory}/data")
         self.namespaceDirectory = os.path.join(
             self.packDirectory, "data", self.packNamespace
         )
@@ -761,41 +761,41 @@ class App(QMainWindow):
         os.mkdir(self.minecraftDirectory)
         os.mkdir(self.namespaceDirectory)
 
-        with open(f"{self.packDirectory}\\pack.mcmeta", "w") as pack:
+        with open(f"{self.packDirectory}/pack.mcmeta", "w") as pack:
             pack.write(
                 '{\n    "pack": {\n        "pack_format": 57,\n        "description": "'
                 + self.packDescription
                 + '"\n    }\n}\n'
             )
 
-        os.mkdir(f"{self.namespaceDirectory}\\function")
+        os.mkdir(f"{self.namespaceDirectory}/function")
         if len(self.blocks) > 0:
-            os.mkdir(f"{self.namespaceDirectory}\\loot_table")
-            os.mkdir(f"{self.namespaceDirectory}\\advancement")
+            os.mkdir(f"{self.namespaceDirectory}/loot_table")
+            os.mkdir(f"{self.namespaceDirectory}/advancement")
         if len(self.recipes) > 0:
-            os.mkdir(f"{self.namespaceDirectory}\\recipe")
+            os.mkdir(f"{self.namespaceDirectory}/recipe")
 
-        os.mkdir(f"{self.minecraftDirectory}\\tags")
-        os.mkdir(f"{self.minecraftDirectory}\\tags\\function")
+        os.mkdir(f"{self.minecraftDirectory}/tags")
+        os.mkdir(f"{self.minecraftDirectory}/tags/function")
 
-        with open(f"{self.namespaceDirectory}\\function\\tick.mcfunction", "w") as tick:
+        with open(f"{self.namespaceDirectory}/function/tick.mcfunction", "w") as tick:
             if len(self.blocks) > 0:
                 tick.write(
                     f"{self.header}execute as @e[type=item_display,tag={self.packAuthor}.custom_block] at @s run function {self.packNamespace}:blocks/as_blocks"
                 )
             else:
                 tick.write(self.header)
-        with open(f"{self.namespaceDirectory}\\function\\load.mcfunction", "w") as load:
+        with open(f"{self.namespaceDirectory}/function/load.mcfunction", "w") as load:
             load.write(
                 f'{self.header}tellraw @a {{"text":"[mDirt 2] - Successfully loaded pack!","color":"red"}}'
             )
-        with open(f"{self.minecraftDirectory}\\tags\\function\\tick.json", "w") as tick:
+        with open(f"{self.minecraftDirectory}/tags/function/tick.json", "w") as tick:
             tick.write(
                 '{\n    "values":[\n        '
                 + f'"{self.packNamespace}'
                 + ':tick"\n        ]\n    }'
             )
-        with open(f"{self.minecraftDirectory}\\tags\\function\\load.json", "w") as load:
+        with open(f"{self.minecraftDirectory}/tags/function/load.json", "w") as load:
             load.write(
                 '{\n    "values":[\n        '
                 + f'"{self.packNamespace}'
