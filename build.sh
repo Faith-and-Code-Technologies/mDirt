@@ -1,0 +1,1 @@
+pyinstaller --noconfirm src/main.py --noconsole --name="mDirt-2.0-pr1-linux" --add-data "src/ui.py:." --add-data "src/select_item.py:." --add-data "src/generation/blocks.py:generation/" --add-data "src/generation/items.py:generation/" --add-data "src/generation/recipes.py:generation/" --add-data "lib/data.json:lib/"
