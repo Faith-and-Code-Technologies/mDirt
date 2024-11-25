@@ -154,8 +154,8 @@ class App(QMainWindow):
         self.ui.packGenerate.clicked.connect(self.generateDataPack)
 
     def setupData(self):
-        self.mainDirectory = f"{os.path.dirname(os.path.abspath(__file__))}\\.."
-        self.data = json.load(open(f"{self.mainDirectory}\\lib\\data.json", "r"))
+        self.mainDirectory = f"{os.path.dirname(os.path.abspath(__file__))}/.."
+        self.data = json.load(open(f"{self.mainDirectory}/lib/data.json", "r"))
 
         self.blocks = {}
         self.items = {}
@@ -533,6 +533,10 @@ class App(QMainWindow):
                 self.ui.smeltingInput.setText(item)
             case 11:
                 self.ui.smeltingOutput.setText(item)
+            case 12:
+                self.ui.stoneCuttingInput.setText(item)
+            case 13:
+                self.ui.stoneCuttingOutput.setText(item)
 
         self.block_popup.close()
 
@@ -611,6 +615,9 @@ class App(QMainWindow):
         self.ui.slot9.setText("")
         self.ui.smeltingInput.setText("")
         self.ui.smeltingOutput.setText("")
+        self.ui.stoneCuttingCount.setValue(1)
+        self.ui.stoneCuttingOutput.setText("")
+        self.ui.stoneCuttingInput.setText("")
 
     #######################
     # ERROR CHECKING      #
