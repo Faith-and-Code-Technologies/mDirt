@@ -162,9 +162,9 @@ QPushButton[flat=&quot;true&quot;]:pressed {
      <widget class="QLabel" name="titleLabel">
       <property name="geometry">
        <rect>
-        <x>350</x>
+        <x>340</x>
         <y>30</y>
-        <width>241</width>
+        <width>271</width>
         <height>51</height>
        </rect>
       </property>
@@ -489,7 +489,7 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
        <rect>
         <x>381</x>
         <y>11</y>
-        <width>34</width>
+        <width>41</width>
         <height>16</height>
        </rect>
       </property>
@@ -1365,7 +1365,7 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
      <x>0</x>
      <y>0</y>
      <width>981</width>
-     <height>33</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
