@@ -13,7 +13,6 @@ To get your blocks in game, run /function YOURNAMESPACE:give_blocks
 To get your items in game, run /function YOURNAMESPACE:give_items
 
 ## Coming Soon
-- Custom Item support for Block Drops
 - Custom Components for Custom Items.
 
 ## In Progress
