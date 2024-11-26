@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uigmKrfT.ui'
+## Form generated from reading UI file 'uiJRHaTh.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.0
 ##
@@ -138,7 +138,7 @@ class Ui_MainWindow(object):
         self.packGenerate.setGeometry(QRect(340, 270, 271, 31))
         self.titleLabel = QLabel(self.packDetailsTab)
         self.titleLabel.setObjectName(u"titleLabel")
-        self.titleLabel.setGeometry(QRect(350, 30, 241, 51))
+        self.titleLabel.setGeometry(QRect(340, 30, 271, 51))
         self.mainTab.addTab(self.packDetailsTab, "")
         self.blockTab = QWidget()
         self.blockTab.setObjectName(u"blockTab")
@@ -279,7 +279,7 @@ class Ui_MainWindow(object):
 
         self.blockModelLabel = QLabel(self.blockTab)
         self.blockModelLabel.setObjectName(u"blockModelLabel")
-        self.blockModelLabel.setGeometry(QRect(381, 11, 34, 16))
+        self.blockModelLabel.setGeometry(QRect(381, 11, 41, 16))
         self.blockModel = QComboBox(self.blockTab)
         self.blockModel.addItem("")
         self.blockModel.addItem("")
@@ -601,7 +601,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 981, 33))
+        self.menubar.setGeometry(QRect(0, 0, 981, 20))
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName(u"menuFile")
         MainWindow.setMenuBar(self.menubar)
