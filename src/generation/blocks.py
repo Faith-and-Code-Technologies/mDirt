@@ -4,12 +4,13 @@ import shutil
 
 
 class BlockGenerator:
-    def __init__(self, header, namespaceDir, packNamespace, packAuthor, blocks):
+    def __init__(self, header, namespaceDir, packNamespace, packAuthor, blocks, items):
         self.namespaceDirectory = namespaceDir
         self.packNamespace = packNamespace
         self.packAuthor = packAuthor
         self.header = header
         self.blocks = blocks
+        self.items = items
 
     def generate(self):
         os.mkdir(f"{self.namespaceDirectory}/function/blocks")
@@ -122,14 +123,25 @@ class BlockGenerator:
                 f'{self.namespaceDirectory}/loot_table/{self.blocks[block]["name"]}.json',
                 "w",
             ) as file:
-                if self.blocks[block]["blockDrop"] == "":
+                if self.blocks[block]["blockDrop"] == "self":
                     file.write(
                         f'{{"pools": [{{"rolls": 1,"entries": [{{"type": "minecraft:item","name": "minecraft:item_frame"}}],"functions": [{{"function": "minecraft:set_components","components": {{"minecraft:custom_model_data": {self.blocks[block]["cmd"]},"minecraft:custom_name": "{{/"italic/":false,/"text/":/"{self.blocks[block]["displayName"]}/"}}","minecraft:entity_data": {{"id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{self.blocks[block]["name"]}"]}}}}}}]}}]}}'
                     )
                 else:
-                    file.write(
-                        f'{{"pools": [{{"rolls": 1,"entries": [{{"type": "minecraft:item","name": "{self.blocks[block]["blockDrop"]}"}}]}}]}}'
-                    )
+                    if self.blocks[block]["blockDrop"] not in self.items and self.blocks[block]["blockDrop"] not in self.blocks:
+                        file.write(
+                            f'{{"pools": [{{"rolls": 1,"entries": [{{"type": "minecraft:item","name": "{self.blocks[block]["blockDrop"]}"}}]}}]}}'
+                        )
+                    elif self.blocks[block]["blockDrop"] in self.items:
+                        item = self.items[self.blocks[block]["blockDrop"]]
+                        file.write(
+                            f'{{"pools": [{{"rolls": 1,"entries": [{{"type": "minecraft:item","name": "{item["baseItem"]}","functions":[{{"function": "minecraft:set_components","components":{{item_name: \'{{"italic":false,"text":"{item["displayName"]}"}}\',custom_model_data: {item["cmd"]}}}}}]}}]}}]}}'
+                        )
+                    elif self.blocks[block]["blockDrop"] in self.blocks:
+                        blck = self.blocks[self.blocks[block]["blockDrop"]]
+                        file.write(
+                            f'{{"pools": [{{"rolls": 1,"entries": [{{"type": "minecraft:item","name": "minecraft:item_frame"}}],"functions": [{{"function": "minecraft:set_components","components": {{"minecraft:custom_model_data": {blck["cmd"]},"minecraft:custom_name": "{{/"italic/":false,/"text/":/"{blck["displayName"]}/"}}","minecraft:entity_data": {{"id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{blck["name"]}"]}}}}}}]}}]}}'
+                        )
 
 
 class BlockResourcer:
