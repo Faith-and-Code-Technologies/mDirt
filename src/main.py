@@ -5,7 +5,7 @@ import re
 import sys
 
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QImage, QPixmap
+from PySide6.QtGui import QImage, QPixmap, QActionEvent, QAction
 from PySide6.QtWidgets import (QApplication, QFileDialog, QMainWindow,
                                QMessageBox, QWidget)
 
@@ -114,7 +114,7 @@ class App(QMainWindow):
 
         self.ui.blockModel.activated.connect(self.getBlockModel)
 
-        self.ui.blockDropBox.dropEvent(self.loadBlockDropBox())
+        self.ui.mainTab.currentChanged.connect(self.loadBlockDropBox)
 
         # Item Signals
         self.ui.itemAddButton.clicked.connect(self.addItem)
@@ -268,14 +268,15 @@ class App(QMainWindow):
     #######################
 
     def loadBlockDropBox(self):
-        if self.ui.blockDropBox.count() == 0:
-            item_list = self.data["items"]
-            for block in self.blocks:
-                self.ui.blockDropBox.addItem(f'{self.blocks[block]["name"]}')
-            for item in self.items:
-                self.ui.blockDropBox.addItem(f'{self.items[item]["name"]}')
-            for item in item_list:
-                self.ui.blockDropBox.addItem(item)
+        self.ui.blockDropBox.clear()
+        item_list = self.data["items"]
+        self.ui.blockDropBox.addItem("self")
+        for block in self.blocks:
+            self.ui.blockDropBox.addItem(f'{self.blocks[block]["name"]}')
+        for item in self.items:
+            self.ui.blockDropBox.addItem(f'{self.items[item]["name"]}')
+        for item in item_list:
+            self.ui.blockDropBox.addItem(item)
 
     def getBlockModel(self):
         if self.ui.blockModel.currentText() == "Custom":
@@ -328,6 +329,8 @@ class App(QMainWindow):
             "model": self.ui.blockModel.currentText(),
             "cmd": self.parseCMD(self.featureNum),
         }
+
+        if self.blockProperties["cmd"] == "error": return
 
         self.blocks[self.blockProperties["name"]] = self.blockProperties
 
@@ -436,6 +439,8 @@ class App(QMainWindow):
             "model": self.ui.itemModel.currentText().lower(),
             "cmd": self.parseCMD(self.featureNum),
         }
+
+        if self.itemProperties["cmd"] == "error": return
 
         self.items[self.itemProperties["name"]] = self.itemProperties
         self.ui.itemList.addItem(self.itemProperties["name"])
@@ -813,6 +818,7 @@ class App(QMainWindow):
                 self.packNamespace,
                 self.packAuthor,
                 self.blocks,
+                self.items,
             )
 
             blockGenerator.generate()
