@@ -65,7 +65,7 @@ class ItemGenerator:
             if not rightClick["enabled"]: continue
 
             with open(f'{self.namespaceDirectory}/advancement/{self.items[item]["name"]}_use.json', 'w') as f:
-                    f.write(f'{{"criteria": {{"use_item":{{"trigger":"minecraft:using_item","condtions": {{"items": {{"predicates":{{"minecraft:custom_data":{{"{self.items[item]["name"]}":true}}}}}}}}}}}},"rewards":{{"function":"{self.packNamespace}:items/{self.items[item]["name"]}/{self.items[item]["name"]}"}}}}')
+                    f.write(f'{{"criteria": {{"use_item":{{"trigger":"minecraft:using_item","conditions": {{"item": {{"predicates":{{"minecraft:custom_data":{{"{self.items[item]["name"]}":true}}}}}}}}}}}},"rewards":{{"function":"{self.packNamespace}:items/{self.items[item]["name"]}/{self.items[item]["name"]}"}}}}')
 
             if rightClick["mode"] == "impulse":
                 with open(f'{self.namespaceDirectory}/advancement/{self.items[item]["name"]}_cooldown.json', 'w') as f:
