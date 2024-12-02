@@ -147,7 +147,7 @@ class App(QMainWindow):
         self.ui.stoneCuttingOutputButton.clicked.connect(lambda: self.getRecipeItem(13))
 
         # Enable / Disable Text Edit
-        self.ui.rightClickCheck.checkStateChanged.connect(self.enableRightClickFunc)
+        self.ui.itemRightClickCheck.checkStateChanged.connect(self.enableRightClickFunc)
         self.enableRightClickFunc()
 
         # Import & Export
@@ -408,10 +408,12 @@ class App(QMainWindow):
     #######################
     
     def enableRightClickFunc(self):
-        if self.ui.rightClickCheck.isChecked():
-            self.ui.rightClickFunc.setEnabled(True)
+        if self.ui.itemRightClickCheck.isChecked():
+            self.ui.itemRightClickFunc.setEnabled(True)
+            self.ui.itemRightClickMode.setEnabled(True)
         else:
-            self.ui.rightClickFunc.setEnabled(False)
+            self.ui.itemRightClickFunc.setEnabled(False)
+            self.ui.itemRightClickMode.setEnabled(False)
 
     def getItemModel(self):
         if self.ui.itemModel.currentText() == "Custom":
