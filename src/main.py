@@ -146,6 +146,10 @@ class App(QMainWindow):
         self.ui.stoneCuttingInputButton.clicked.connect(lambda: self.getRecipeItem(12))
         self.ui.stoneCuttingOutputButton.clicked.connect(lambda: self.getRecipeItem(13))
 
+        # Enable / Disable Text Edit
+        self.ui.rightClickCheck.checkStateChanged.connect(self.enableRightClickFunc)
+        self.enableRightClickFunc()
+
         # Import & Export
         self.ui.actionImport_mdrt.triggered.connect(self.importProject)
         self.ui.actionExport_mdrt.triggered.connect(self.exportProject)
@@ -402,6 +406,12 @@ class App(QMainWindow):
     #######################
     # ITEMS TAB           #
     #######################
+    
+    def enableRightClickFunc(self):
+        if self.ui.rightClickCheck.isChecked():
+            self.ui.rightClickFunc.setEnabled(True)
+        else:
+            self.ui.rightClickFunc.setEnabled(False)
 
     def getItemModel(self):
         if self.ui.itemModel.currentText() == "Custom":
@@ -431,6 +441,8 @@ class App(QMainWindow):
 
         self.featureNum += 1
 
+        rightClick = {"enabled":self.ui.itemRightClickCheck.isChecked(),"function":self.ui.itemRightClickFunc.toPlainText(),"mode":self.ui.itemRightClickMode.currentText().lower()}
+
         self.itemProperties = {
             "name": self.ui.itemName.text(),
             "displayName": self.ui.itemDisplayName.text(),
@@ -438,6 +450,7 @@ class App(QMainWindow):
             "texture": self.itemTexture,
             "model": self.ui.itemModel.currentText().lower(),
             "cmd": self.parseCMD(self.featureNum),
+            "rightClick": rightClick,
         }
 
         if self.itemProperties["cmd"] == "error": return
@@ -455,6 +468,8 @@ class App(QMainWindow):
         self.ui.itemDisplayName.setText(properties["displayName"])
         self.ui.itemBaseItem.setText(properties["baseItem"])
         self.ui.itemModel.setCurrentText(properties["model"])
+        self.ui.itemRightClickFunc.setPlainText(properties["right_click"])
+        self.ui.itemRightClickMode.setCurrentText(properties["right_click_mode"])
 
         self.itemTexture = properties["texture"]
 
@@ -472,6 +487,8 @@ class App(QMainWindow):
 
         self.items.pop(self.ui.itemList.item(curItem).text())
         self.ui.itemList.takeItem(curItem)
+
+    # TODO: Clear new item fields
 
     def clearItemFields(self):
         self.ui.itemName.setText("")
@@ -774,9 +791,10 @@ class App(QMainWindow):
             )
 
         os.mkdir(f"{self.namespaceDirectory}/function")
+        if len(self.blocks) > 0 or len(self.items) > 0:
+            os.mkdir(f"{self.namespaceDirectory}/advancement")
         if len(self.blocks) > 0:
             os.mkdir(f"{self.namespaceDirectory}/loot_table")
-            os.mkdir(f"{self.namespaceDirectory}/advancement")
         if len(self.recipes) > 0:
             os.mkdir(f"{self.namespaceDirectory}/recipe")
 
@@ -829,7 +847,10 @@ class App(QMainWindow):
 
         if len(self.items) > 0:
             itemGenerator = ItemGenerator(
-                self.header, self.namespaceDirectory, self.items
+                self.header, 
+                self.namespaceDirectory, 
+                self.items,
+                self.packNamespace
             )
 
             itemGenerator.generate()

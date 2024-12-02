@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiJRHaTh.ui'
+## Form generated from reading UI file 'uiVvTEVx.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.0
 ##
@@ -19,8 +19,9 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
 from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QCheckBox, QComboBox,
     QFormLayout, QGridLayout, QLabel, QLineEdit,
     QListWidget, QListWidgetItem, QMainWindow, QMenu,
-    QMenuBar, QPushButton, QRadioButton, QSizePolicy,
-    QSpinBox, QStatusBar, QTabWidget, QWidget)
+    QMenuBar, QPlainTextEdit, QPushButton, QRadioButton,
+    QSizePolicy, QSpinBox, QStatusBar, QTabWidget,
+    QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -339,6 +340,43 @@ class Ui_MainWindow(object):
         self.itemBaseItem.setObjectName(u"itemBaseItem")
 
         self.formLayout_3.setWidget(2, QFormLayout.FieldRole, self.itemBaseItem)
+
+        self.label_2 = QLabel(self.formLayoutWidget_3)
+        self.label_2.setObjectName(u"label_2")
+
+        self.formLayout_3.setWidget(3, QFormLayout.LabelRole, self.label_2)
+
+        self.itemRightClickCheck = QCheckBox(self.formLayoutWidget_3)
+        self.itemRightClickCheck.setObjectName(u"itemRightClickCheck")
+
+        self.formLayout_3.setWidget(3, QFormLayout.FieldRole, self.itemRightClickCheck)
+
+        self.itemRightClickFunc = QPlainTextEdit(self.formLayoutWidget_3)
+        self.itemRightClickFunc.setObjectName(u"itemRightClickFunc")
+
+        self.formLayout_3.setWidget(6, QFormLayout.SpanningRole, self.itemRightClickFunc)
+
+        self.label_3 = QLabel(self.formLayoutWidget_3)
+        self.label_3.setObjectName(u"label_3")
+
+        self.formLayout_3.setWidget(7, QFormLayout.LabelRole, self.label_3)
+
+        self.itemRightClickMode = QComboBox(self.formLayoutWidget_3)
+        self.itemRightClickMode.addItem("")
+        self.itemRightClickMode.addItem("")
+        self.itemRightClickMode.setObjectName(u"itemRightClickMode")
+
+        self.formLayout_3.setWidget(4, QFormLayout.FieldRole, self.itemRightClickMode)
+
+        self.label_4 = QLabel(self.formLayoutWidget_3)
+        self.label_4.setObjectName(u"label_4")
+
+        self.formLayout_3.setWidget(4, QFormLayout.LabelRole, self.label_4)
+
+        self.label_5 = QLabel(self.formLayoutWidget_3)
+        self.label_5.setObjectName(u"label_5")
+
+        self.formLayout_3.setWidget(5, QFormLayout.LabelRole, self.label_5)
 
         self.itemModelLabel = QLabel(self.itemTab)
         self.itemModelLabel.setObjectName(u"itemModelLabel")
@@ -689,6 +727,14 @@ class Ui_MainWindow(object):
         self.itemName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"ruby", None))
         self.itemBaseItemLabel.setText(QCoreApplication.translate("MainWindow", u"Base Item", None))
         self.itemBaseItem.setPlaceholderText(QCoreApplication.translate("MainWindow", u"minecraft:flint", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Right-Click Function?", None))
+        self.itemRightClickCheck.setText("")
+        self.label_3.setText("")
+        self.itemRightClickMode.setItemText(0, QCoreApplication.translate("MainWindow", u"Tick", None))
+        self.itemRightClickMode.setItemText(1, QCoreApplication.translate("MainWindow", u"Impulse", None))
+
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Right-Click Mode:", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Right-Click Function:", None))
         self.itemModelLabel.setText(QCoreApplication.translate("MainWindow", u"Model", None))
         self.itemModel.setItemText(0, QCoreApplication.translate("MainWindow", u"Normal", None))
         self.itemModel.setItemText(1, QCoreApplication.translate("MainWindow", u"Custom", None))
