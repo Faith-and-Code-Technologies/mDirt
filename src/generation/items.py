@@ -48,19 +48,28 @@ class ItemGenerator:
                 with open(f'{self.namespaceDirectory}/function/items/{self.items[item]["name"]}/execute.mcfunction', 'w') as f:
                     f.write(f'{self.header}'
                             f'{rightClick["function"]}')
+            
+            elif rightClick["mode"] == "tick":
+                with open(f'{self.namespaceDirectory}/function/items/{self.items[item]["name"]}/{self.items[item]["name"]}.mcfunction', 'w') as f:
+                    f.write(f'{self.header}'
+                            f'advancement revoke @s only {self.packNamespace}:{self.items[item]["name"]}_use\n'
+                            f'function {self.packNamespace}:items/{self.items[item]["name"]}/execute')
+                
+                with open(f'{self.namespaceDirectory}/function/items/{self.items[item]["name"]}/execute.mcfunction', 'w') as f:
+                    f.write(f'{self.header}'
+                            f'{rightClick["function"]}')
         
         # Item Cooldown & Item Use advancements
         for item in self.items:
             rightClick = self.items[item]["rightClick"]
             if not rightClick["enabled"]: continue
 
+            with open(f'{self.namespaceDirectory}/advancement/{self.items[item]["name"]}_use.json', 'w') as f:
+                    f.write(f'{{"criteria": {{"use_item":{{"trigger":"minecraft:using_item","condtions": {{"items": {{"predicates":{{"minecraft:custom_data":{{"{self.items[item]["name"]}":true}}}}}}}}}}}},"rewards":{{"function":"{self.packNamespace}:items/{self.items[item]["name"]}/{self.items[item]["name"]}"}}}}')
+
             if rightClick["mode"] == "impulse":
-                
                 with open(f'{self.namespaceDirectory}/advancement/{self.items[item]["name"]}_cooldown.json', 'w') as f:
                     f.write(f'{{"criteria": {{"tick":{{"trigger":"minecraft:tick"}}}},"rewards":{{"function":"{self.packNamespace}:items/{self.items[item]["name"]}/cooldown"}}}}')
-
-                with open(f'{self.namespaceDirectory}/advancement/{self.items[item]["name"]}_use.json', 'w') as f:
-                    f.write(f'{{"criteria": {{"use_item":{{"trigger":"minecraft:using_item","condtions": {{"items": {{"predicates":{{"minecraft:custom_data":{{"{self.items[item]["name"]}":true}}}}}}}}}}}},"rewards":{{"function":"{self.packNamespace}:items/{self.items[item]["name"]}/{self.items[item]["name"]}"}}}}')
         
         # Append Scoreboard Declerations Within Load mcfunction
         with open(f'{self.namespaceDirectory}/function/load.mcfunction', 'a') as f:
