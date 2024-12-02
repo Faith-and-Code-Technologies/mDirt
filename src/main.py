@@ -468,8 +468,9 @@ class App(QMainWindow):
         self.ui.itemDisplayName.setText(properties["displayName"])
         self.ui.itemBaseItem.setText(properties["baseItem"])
         self.ui.itemModel.setCurrentText(properties["model"])
-        self.ui.itemRightClickFunc.setPlainText(properties["right_click"])
-        self.ui.itemRightClickMode.setCurrentText(properties["right_click_mode"])
+        self.ui.itemRightClickFunc.setPlainText(properties["rightClick"]["function"])
+        self.ui.itemRightClickMode.setCurrentText(properties["rightClick"]["mode"])
+        self.ui.itemRightClickCheck.setChecked(properties["rightClick"]["enabled"])
 
         self.itemTexture = properties["texture"]
 
@@ -488,13 +489,14 @@ class App(QMainWindow):
         self.items.pop(self.ui.itemList.item(curItem).text())
         self.ui.itemList.takeItem(curItem)
 
-    # TODO: Clear new item fields
-
     def clearItemFields(self):
         self.ui.itemName.setText("")
         self.ui.itemDisplayName.setText("")
         self.ui.itemBaseItem.setText("")
         self.ui.itemModel.setCurrentText("Generated")
+        self.ui.itemRightClickFunc.clear()
+        self.ui.itemRightClickMode.setCurrentText("Tick")
+        self.ui.itemRightClickCheck.setChecked(False)
 
         self.ui.itemTexture.clear()
 
