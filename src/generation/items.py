@@ -4,21 +4,73 @@ import shutil
 
 
 class ItemGenerator:
-    def __init__(self, header, namespaceDirectory, items):
+    def __init__(self, header, namespaceDirectory, items, namespace):
         self.header = header
         self.namespaceDirectory = namespaceDirectory
         self.items = items
+        self.packNamespace = namespace
 
     def generate(self):
+        os.mkdir(f'{self.namespaceDirectory}/function/items')
+
+        # Give Items Function
         with open(
             f"{self.namespaceDirectory}/function/give_items.mcfunction", "a"
         ) as file:
             file.write(self.header)
             for item in self.items:
-                file.write(
-                    f'give @s {self.items[item]["baseItem"]}[item_name=\'{{"italic":false,"text":"{self.items[item]["displayName"]}"}}\',custom_model_data={self.items[item]["cmd"]}] 1\n'
-                )
+                rightClick = self.items[item]["rightClick"]
+                if not rightClick["enabled"]:
+                    file.write(f'give @s {self.items[item]["baseItem"]}[item_name=\'{{"italic":false,"text":"{self.items[item]["displayName"]}"}}\',custom_model_data={self.items[item]["cmd"]},custom_data={{"{self.items[item]["name"]}":true}}] 1\n')
+                else:
+                    file.write(f'give @s {self.items[item]["baseItem"]}[item_name=\'{{"italic":false,"text":"{self.items[item]["displayName"]}"}}\',custom_model_data={self.items[item]["cmd"]},custom_data={{"{self.items[item]["name"]}":true}},food={{can_always_eat:true,nutrition:0,saturation:0}},consumable={{animation:"none",consume_seconds:99999,has_consume_particles:false}}] 1\n')
+        
+        # Item mcfunction & Item Cooldown mcfunction & Item Execute mcfunction
+        for item in self.items:
+            os.mkdir(f'{self.namespaceDirectory}/function/items/{self.items[item]["name"]}')
+            rightClick = self.items[item]["rightClick"]
+            if not rightClick["enabled"]: continue
 
+            if rightClick["mode"] == "impulse":
+                with open(f'{self.namespaceDirectory}/function/items/{self.items[item]["name"]}/{self.items[item]["name"]}.mcfunction', 'w') as f:
+                    f.write(f'{self.header}'
+                            f'execute unless score @s {self.items[item]["name"]}_cooldown matches 1.. run function {self.packNamespace}:items/{self.items[item]["name"]}/execute\n'
+                            f'advancement revoke @s only {self.packNamespace}:{self.items[item]["name"]}_use\n'
+                            f'advancement revoke @s only {self.packNamespace}:{self.items[item]["name"]}_cooldown\n'
+                            f'scoreboard players set @s {self.items[item]["name"]}_cooldown 2\n')
+                
+                with open(f'{self.namespaceDirectory}/function/items/{self.items[item]["name"]}/cooldown.mcfunction', 'w') as f:
+                    f.write(f'{self.header}'
+                            f'scoreboard players remove @s {self.items[item]["name"]}_cooldown 1\n'
+                            f'execute if score @s {self.items[item]["name"]}_cooldown matches 1.. run return run advancement revoke @s only {self.packNamespace}:{self.items[item]["name"]}_cooldown\n'
+                            f'scoreboard players reset @s {self.items[item]["name"]}_cooldown\n')
+                
+                with open(f'{self.namespaceDirectory}/function/items/{self.items[item]["name"]}/execute.mcfunction', 'w') as f:
+                    f.write(f'{self.header}'
+                            f'{rightClick["function"]}')
+        
+        # Item Cooldown & Item Use advancements
+        for item in self.items:
+            rightClick = self.items[item]["rightClick"]
+            if not rightClick["enabled"]: continue
+
+            if rightClick["mode"] == "impulse":
+                
+                with open(f'{self.namespaceDirectory}/advancement/{self.items[item]["name"]}_cooldown.json', 'w') as f:
+                    f.write(f'{{"criteria": {{"tick":{{"trigger":"minecraft:tick"}}}},"rewards":{{"function":"{self.packNamespace}:items/{self.items[item]["name"]}/cooldown"}}}}')
+
+                with open(f'{self.namespaceDirectory}/advancement/{self.items[item]["name"]}_use.json', 'w') as f:
+                    f.write(f'{{"criteria": {{"use_item":{{"trigger":"minecraft:using_item","condtions": {{"items": {{"predicates":{{"minecraft:custom_data":{{"{self.items[item]["name"]}":true}}}}}}}}}}}},"rewards":{{"function":"{self.packNamespace}:items/{self.items[item]["name"]}/{self.items[item]["name"]}"}}}}')
+        
+        # Append Scoreboard Declerations Within Load mcfunction
+        with open(f'{self.namespaceDirectory}/function/load.mcfunction', 'a') as f:
+            for item in self.items:
+                rightClick = self.items[item]["rightClick"]
+                if not rightClick["enabled"]: continue
+
+                if rightClick["mode"] == "impulse":
+                    f.write(f'scoreboard objectives add {self.items[item]["name"]}_cooldown dummy\n')
+        
 
 class ItemResourcer:
     def __init__(self, resPackDirectory, packNamespace, exists, data, items):
