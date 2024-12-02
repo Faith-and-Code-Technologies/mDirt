@@ -78,7 +78,7 @@ class ItemGenerator:
                 if not rightClick["enabled"]: continue
 
                 if rightClick["mode"] == "impulse":
-                    f.write(f'scoreboard objectives add {self.items[item]["name"]}_cooldown dummy\n')
+                    f.write(f'\nscoreboard objectives add {self.items[item]["name"]}_cooldown dummy')
         
 
 class ItemResourcer:
