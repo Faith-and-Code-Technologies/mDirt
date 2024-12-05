@@ -6,8 +6,8 @@ from pathlib import Path
 import requests as rs
 
 def get_minecraft_files(version: str):
-    user_name = os.getlogin()
-    minecraft_path = f"C:/Users/{user_name}/AppData/Roaming/.minecraft/versions/{version}/{version}.jar"
+    #user_name = os.getlogin()
+    minecraft_path = f"/home/joel/.minecraft/versions/{version}/{version}.jar"
 
     if not os.path.exists(minecraft_path):
         return

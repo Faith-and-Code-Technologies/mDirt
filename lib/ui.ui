@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>981</width>
-    <height>740</height>
+    <width>975</width>
+    <height>721</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>mDirt - A Datapack Tool - v2.0</string>
+   <string>mDirt - A Datapack Tool - v2.1</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QPushButton[flat=&quot;true&quot;] {
@@ -67,6 +67,9 @@ QPushButton[flat=&quot;true&quot;]:pressed {
        </item>
        <item row="0" column="1">
         <widget class="QLineEdit" name="packName">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="placeholderText">
           <string>The Ruby Pack</string>
          </property>
@@ -81,6 +84,9 @@ QPushButton[flat=&quot;true&quot;]:pressed {
        </item>
        <item row="1" column="1">
         <widget class="QLineEdit" name="packNamespace">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="placeholderText">
           <string>rubypack</string>
          </property>
@@ -95,6 +101,9 @@ QPushButton[flat=&quot;true&quot;]:pressed {
        </item>
        <item row="2" column="1">
         <widget class="QLineEdit" name="packAuthor">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="placeholderText">
           <string>jupiterdev</string>
          </property>
@@ -109,6 +118,9 @@ QPushButton[flat=&quot;true&quot;]:pressed {
        </item>
        <item row="3" column="1">
         <widget class="QLineEdit" name="packDescription">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="placeholderText">
           <string>Adds Rubys, Ruby Blocks, etc.</string>
          </property>
@@ -123,6 +135,9 @@ QPushButton[flat=&quot;true&quot;]:pressed {
        </item>
        <item row="4" column="1">
         <widget class="QLineEdit" name="packCMDPrefix">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="placeholderText">
           <string>589</string>
          </property>
@@ -137,9 +152,17 @@ QPushButton[flat=&quot;true&quot;]:pressed {
        </item>
        <item row="5" column="1">
         <widget class="QComboBox" name="packVersion">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <item>
           <property name="text">
            <string>1.21.3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>1.21.4</string>
           </property>
          </item>
         </widget>
@@ -668,7 +691,12 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
       </property>
       <item>
        <property name="text">
-        <string>Normal</string>
+        <string>Generated</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Handheld</string>
        </property>
       </item>
       <item>
@@ -1416,7 +1444,7 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>981</width>
+     <width>975</width>
      <height>20</height>
     </rect>
    </property>
