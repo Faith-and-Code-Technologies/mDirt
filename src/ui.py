@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiVvTEVx.ui'
+## Form generated from reading UI file 'uiCVcWfC.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.0
+## Created by: Qt User Interface Compiler version 6.8.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -27,7 +27,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(981, 740)
+        MainWindow.resize(975, 721)
         MainWindow.setStyleSheet(u"QPushButton[flat=\"true\"] {\n"
 "    border: 2px solid #808080; /* Gray border */\n"
 "    border-radius: 6px;        /* Rounded corners */\n"
@@ -80,6 +80,7 @@ class Ui_MainWindow(object):
 
         self.packName = QLineEdit(self.formLayoutWidget)
         self.packName.setObjectName(u"packName")
+        self.packName.setEnabled(False)
 
         self.formLayout.setWidget(0, QFormLayout.FieldRole, self.packName)
 
@@ -90,6 +91,7 @@ class Ui_MainWindow(object):
 
         self.packNamespace = QLineEdit(self.formLayoutWidget)
         self.packNamespace.setObjectName(u"packNamespace")
+        self.packNamespace.setEnabled(False)
 
         self.formLayout.setWidget(1, QFormLayout.FieldRole, self.packNamespace)
 
@@ -100,6 +102,7 @@ class Ui_MainWindow(object):
 
         self.packAuthor = QLineEdit(self.formLayoutWidget)
         self.packAuthor.setObjectName(u"packAuthor")
+        self.packAuthor.setEnabled(False)
 
         self.formLayout.setWidget(2, QFormLayout.FieldRole, self.packAuthor)
 
@@ -110,6 +113,7 @@ class Ui_MainWindow(object):
 
         self.packDescription = QLineEdit(self.formLayoutWidget)
         self.packDescription.setObjectName(u"packDescription")
+        self.packDescription.setEnabled(False)
 
         self.formLayout.setWidget(3, QFormLayout.FieldRole, self.packDescription)
 
@@ -120,6 +124,7 @@ class Ui_MainWindow(object):
 
         self.packCMDPrefix = QLineEdit(self.formLayoutWidget)
         self.packCMDPrefix.setObjectName(u"packCMDPrefix")
+        self.packCMDPrefix.setEnabled(False)
 
         self.formLayout.setWidget(4, QFormLayout.FieldRole, self.packCMDPrefix)
 
@@ -130,7 +135,9 @@ class Ui_MainWindow(object):
 
         self.packVersion = QComboBox(self.formLayoutWidget)
         self.packVersion.addItem("")
+        self.packVersion.addItem("")
         self.packVersion.setObjectName(u"packVersion")
+        self.packVersion.setEnabled(False)
 
         self.formLayout.setWidget(5, QFormLayout.FieldRole, self.packVersion)
 
@@ -382,6 +389,7 @@ class Ui_MainWindow(object):
         self.itemModelLabel.setObjectName(u"itemModelLabel")
         self.itemModelLabel.setGeometry(QRect(400, 10, 49, 16))
         self.itemModel = QComboBox(self.itemTab)
+        self.itemModel.addItem("")
         self.itemModel.addItem("")
         self.itemModel.addItem("")
         self.itemModel.setObjectName(u"itemModel")
@@ -639,7 +647,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 981, 20))
+        self.menubar.setGeometry(QRect(0, 0, 975, 20))
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName(u"menuFile")
         MainWindow.setMenuBar(self.menubar)
@@ -664,7 +672,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"mDirt - A Datapack Tool - v2.0", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"mDirt - A Datapack Tool - v2.1", None))
         self.actionExport_mdrt.setText(QCoreApplication.translate("MainWindow", u"Export (*.mdrt)", None))
         self.actionImport_mdrt.setText(QCoreApplication.translate("MainWindow", u"Import (*.mdrt)", None))
         self.actionDark.setText(QCoreApplication.translate("MainWindow", u"Dark", None))
@@ -685,6 +693,7 @@ class Ui_MainWindow(object):
         self.packCMDPrefix.setPlaceholderText(QCoreApplication.translate("MainWindow", u"589", None))
         self.packVersionLabel.setText(QCoreApplication.translate("MainWindow", u"Version", None))
         self.packVersion.setItemText(0, QCoreApplication.translate("MainWindow", u"1.21.3", None))
+        self.packVersion.setItemText(1, QCoreApplication.translate("MainWindow", u"1.21.4", None))
 
         self.packGenerate.setText(QCoreApplication.translate("MainWindow", u"Generate Pack", None))
         self.titleLabel.setText(QCoreApplication.translate("MainWindow", u"mDirt - a tool made to help make Datapacks\n"
@@ -736,8 +745,9 @@ class Ui_MainWindow(object):
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Right-Click Mode:", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Right-Click Function:", None))
         self.itemModelLabel.setText(QCoreApplication.translate("MainWindow", u"Model", None))
-        self.itemModel.setItemText(0, QCoreApplication.translate("MainWindow", u"Normal", None))
-        self.itemModel.setItemText(1, QCoreApplication.translate("MainWindow", u"Custom", None))
+        self.itemModel.setItemText(0, QCoreApplication.translate("MainWindow", u"Generated", None))
+        self.itemModel.setItemText(1, QCoreApplication.translate("MainWindow", u"Handheld", None))
+        self.itemModel.setItemText(2, QCoreApplication.translate("MainWindow", u"Custom", None))
 
         self.itemTextureLabel.setText(QCoreApplication.translate("MainWindow", u"Texture", None))
         self.itemTextureButton.setText("")

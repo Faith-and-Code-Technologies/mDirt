@@ -1,17 +1,9 @@
-import datetime
-import json
-import os
-import re
-import sys
+import datetime, json, os, re, sys, details
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QImage, QPixmap, QActionEvent, QAction
-from PySide6.QtWidgets import (QApplication, QFileDialog, QMainWindow,
-                               QMessageBox, QWidget)
+from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QMessageBox, QWidget
 
-from generation.blocks import BlockGenerator, BlockResourcer
-from generation.items import ItemGenerator, ItemResourcer
-from generation.recipes import RecipeGenerator
 from select_item import Ui_Form
 from ui import Ui_MainWindow
 
@@ -97,8 +89,11 @@ class App(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        # Launch Details Menu
+        self.launchDetails()
+
         # Setup Needed Data
-        self.setupData()
+        
 
         # Block Signals
         self.ui.blockAddButton.clicked.connect(self.addBlock)
@@ -156,10 +151,56 @@ class App(QMainWindow):
 
         # Generate
         self.ui.packGenerate.clicked.connect(self.generateDataPack)
+    
+    def launchDetails(self):
+        self.details_popup = QWidget()
+        self.detail_form = details.Ui_Form()
+        self.detail_form.setupUi(self.details_popup)
+        self.details_popup.show()
 
+        self.detail_form.packGenerate.clicked.connect(lambda: self.closeDetailPopup(self.details_popup,
+                                                                                    self.detail_form.packName.text(), 
+                                                                                    self.detail_form.packNamespace.text(), 
+                                                                                    self.detail_form.packAuthor.text(), 
+                                                                                    self.detail_form.packCMDPrefix.text(), 
+                                                                                    self.detail_form.packDescription.text(), 
+                                                                                    self.detail_form.packVersion.currentText())
+                                                                                    )
+
+    def closeDetailPopup(self, detail_popup,
+                         packName,
+                         packNamespace,
+                         packAuthor,
+                         packPrefix,
+                         packDesc,
+                         packVer):
+        
+        self.packName = packName
+        self.packNamespace = packNamespace
+        self.packAuthor = packAuthor
+        self.packCMDPrefix = packPrefix
+        self.packDescription = packDesc
+        self.packVersion = packVer
+        self.ui.packName.setText(packName)
+        self.ui.packNamespace.setText(packNamespace)
+        self.ui.packAuthor.setText(packAuthor)
+        self.ui.packCMDPrefix.setText(packPrefix)
+        self.ui.packDescription.setText(packDesc)
+        self.ui.packVersion.setCurrentText(packVer)
+        
+        detail_popup.close()
+
+        self.setupData()
+        
     def setupData(self):
         self.mainDirectory = f"{os.path.dirname(os.path.abspath(__file__))}/.."
-        self.data = json.load(open(f"{self.mainDirectory}/lib/data.json", "r"))
+        self.data = json.load(open(f"{self.mainDirectory}/lib/{self.packVersion}_data.json", "r"))
+
+        dataformat =     {"1.21.3": 57, "1.21.4": 61}
+        resourceformat = {"1.21.3": 42, "1.21.4": 46}
+
+        self.dataFormat = dataformat[self.packVersion]
+        self.resourceFormat = resourceformat[self.packVersion]
 
         self.blocks = {}
         self.items = {}
@@ -172,7 +213,7 @@ class App(QMainWindow):
         self.header = """
         #####################################
         #   This File Was Created By mDirt  #
-        #               v2.0.0              #
+        #               v2.1.0              #
         #   Copyright 2024 by Jupiter Dev   #
         #####################################
         \n"""
@@ -196,7 +237,7 @@ class App(QMainWindow):
     # IMPORT & EXPORT     #
     #######################
 
-    def exportProject(self, version="2.0.0"):
+    def exportProject(self, version="2.1.0"):
         data = {
             "file_type": "mDirtProjectData",
             "version": version,
@@ -219,15 +260,13 @@ class App(QMainWindow):
                 },
             },
         }
-        file, _ = QFileDialog.getSaveFileName(
-            self, "Save mDirt Project", "", "mDirt File (*.mdrt)"
-        )
+        file, _ = QFileDialog.getExistingDirectory(self, "Save mDirt Project", "")
 
         if file:
             with open(file, "w") as f:
                 json.dump(data, f, indent=4)
 
-    def importProject(self, version="2.0.0"):
+    def importProject(self, version="2.1.0"):
         file, _ = QFileDialog.getOpenFileName(
             self, "Open mDirt Project", "", "mDirt File (*.mdrt)"
         )
@@ -727,33 +766,51 @@ class App(QMainWindow):
         #######################
 
         self.resPackDirectory = os.path.join(
-            self.outputDir, f"{self.packName} Resource Pack"
-        )
+                self.outputDir, f"{self.packName} Resource Pack"
+            )
         os.mkdir(self.resPackDirectory)
         os.mkdir(f"{self.resPackDirectory}/assets")
-        os.mkdir(f"{self.resPackDirectory}/assets/minecraft")
-        os.mkdir(f"{self.resPackDirectory}/assets/minecraft/atlases")
-        os.mkdir(f"{self.resPackDirectory}/assets/minecraft/models")
-        os.mkdir(f"{self.resPackDirectory}/assets/minecraft/textures")
-        os.mkdir(f"{self.resPackDirectory}/assets/minecraft/textures/item")
-        os.mkdir(f"{self.resPackDirectory}/assets/minecraft/models/item")
-        os.mkdir(
-            f"{self.resPackDirectory}/assets/minecraft/models/{self.packNamespace}"
-        )
 
-        # Create Atlas
-        with open(
-            f"{self.resPackDirectory}/assets/minecraft/atlases/blocks.json", "w"
-        ) as file:
-            file.write(
-                f'{{"sources":[{{"type": "directory", "source": "{self.packNamespace}", "prefix": "{self.packNamespace}/"}}]}}'
+        if self.packVersion   == "1.21.3":
+            os.mkdir(f"{self.resPackDirectory}/assets/minecraft")
+            os.mkdir(f"{self.resPackDirectory}/assets/minecraft/atlases")
+            os.mkdir(f"{self.resPackDirectory}/assets/minecraft/models")
+            os.mkdir(f"{self.resPackDirectory}/assets/minecraft/textures")
+            os.mkdir(f"{self.resPackDirectory}/assets/minecraft/textures/item")
+            os.mkdir(f"{self.resPackDirectory}/assets/minecraft/models/item")
+            os.mkdir(
+                f"{self.resPackDirectory}/assets/minecraft/models/{self.packNamespace}"
             )
+
+            # Create Atlas
+            with open(
+                f"{self.resPackDirectory}/assets/minecraft/atlases/blocks.json", "w"
+            ) as file:
+                file.write(
+                    f'{{"sources":[{{"type": "directory", "source": "{self.packNamespace}", "prefix": "{self.packNamespace}/"}}]}}'
+                )
+
+        elif self.packVersion == "1.21.4":
+            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}")
+            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/items")
+            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/models")
+            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/models/item")
+            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures")
+            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures/item")
 
         # Pack.mcmeta
         with open(f"{self.resPackDirectory}/pack.mcmeta", "w") as pack:
             pack.write(
-                f'{{\n    "pack": {{\n        "pack_format": 42,\n        "description": "{self.packDescription}"\n    }}\n}}\n'
+                f'{{\n    "pack": {{\n        "pack_format": {self.resourceFormat},\n        "description": "{self.packDescription}"\n    }}\n}}\n'
             )
+
+        if self.packVersion == "1.21.3":
+            from generation.v1_21_3.blocks import BlockResourcer
+            from generation.v1_21_3.items import ItemResourcer
+        
+        elif self.packVersion == "1.21.4":
+            from generation.v1_21_4.blocks import BlockResourcer
+            from generation.v1_21_4.items import ItemResourcer
 
         blockResourcer = BlockResourcer(
             self.resPackDirectory, self.packNamespace, self.blocks
@@ -789,7 +846,7 @@ class App(QMainWindow):
 
         with open(f"{self.packDirectory}/pack.mcmeta", "w") as pack:
             pack.write(
-                '{\n    "pack": {\n        "pack_format": 57,\n        "description": "'
+                f'{{\n    "pack": {{\n        "pack_format": {self.dataFormat},\n        "description": "'
                 + self.packDescription
                 + '"\n    }\n}\n'
             )
@@ -814,7 +871,7 @@ class App(QMainWindow):
                 tick.write(self.header)
         with open(f"{self.namespaceDirectory}/function/load.mcfunction", "w") as load:
             load.write(
-                f'{self.header}tellraw @a {{"text":"[mDirt 2] - Successfully loaded pack!","color":"red"}}'
+                f'{self.header}tellraw @a {{"text":"[mDirt 2.1] - Successfully loaded pack!","color":"red"}}'
             )
         with open(f"{self.minecraftDirectory}/tags/function/tick.json", "w") as tick:
             tick.write(
@@ -828,6 +885,16 @@ class App(QMainWindow):
                 + f'"{self.packNamespace}'
                 + ':load"\n        ]\n    }'
             )
+        
+        if self.packVersion == "1.21.3":
+            from generation.v1_21_3.blocks import BlockGenerator
+            from generation.v1_21_3.items import ItemGenerator
+            from generation.v1_21_3.recipes import RecipeGenerator
+        
+        elif self.packVersion == "1.21.4":
+            from generation.v1_21_4.blocks import BlockGenerator
+            from generation.v1_21_4.items import ItemGenerator
+            from generation.v1_21_4.recipes import RecipeGenerator
 
         #######################
         # CUSTOM BLOCKS       #
@@ -866,6 +933,7 @@ class App(QMainWindow):
         if len(self.recipes) > 0:
             recipeGenerator = RecipeGenerator(
                 self.namespaceDirectory,
+                self.packNamespace,
                 self.packAuthor,
                 self.blocks,
                 self.items,
