@@ -64,12 +64,12 @@ class RecipeGenerator:
                         if recip[9] in self.items:
                             idx = self.items[recip[9]]
                             file.write(
-                                f'}},"result":{{ "id":"{idx["baseItem"]}", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:item_name":"{{/"italic/":false,/"text/":/"{idx["displayName"]}/"}}", "minecraft:item_model":"{self.packNamespace}:{idx["name"]}" }} }} }}'
+                                f'}},"result":{{ "id":"{idx["baseItem"]}", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:item_name":"{{\\"italic\\":false,\\"text\\":\\"{idx["displayName"]}\\"}}", "minecraft:item_model":"{self.packNamespace}:{idx["name"]}" }} }} }}'
                             )
                         elif recip[9] in self.blocks:
                             idx = self.blocks[recip[9]]
                             file.write(
-                                f'}},"result":{{ "id":"minecraft:item_frame", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:item_model":"{self.packNamespace}:{idx["name"]}", "minecraft:custom_name": "{{/"italic/":false,/"text/":/"{idx["displayName"]}/"}}", "minecraft:entity_data": {{ "id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{idx["name"]}"] }} }} }}'
+                                f'}},"result":{{ "id":"minecraft:item_frame", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:item_model":"{self.packNamespace}:{idx["name"]}", "minecraft:custom_name": "{{\\"italic\\":false,\\"text\\":\\"{idx["displayName"]}\\"}}", "minecraft:entity_data": {{ "id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{idx["name"]}"] }} }} }} }}'
                             )
                         
                         else:
