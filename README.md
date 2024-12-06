@@ -4,9 +4,6 @@
 A tool for easily creating custom features using Minecraft Datapacks.
 **Only Supported for 1.21.3 and up! No previous versions will be added!**
 
-## Version Support
-v2.1.0 with support for Minecraft 1.21.4 is now released!
-
 ## How to use
 Download the latest release, and run it.
 If you don't understand a field, hover over it and read the tooltip!
