@@ -34,7 +34,7 @@ class RecipeGenerator:
 
                         for key in range(9):
                             try:
-                                value = recip[str(key)]
+                                value = recip[key]
                                 result.append(letters[key])
                             except KeyError:
                                 result.append(" ")
@@ -58,19 +58,23 @@ class RecipeGenerator:
                                 file.write(f'"{letters[int(key)]}":"minecraft:{value}"')
                                 if i < len(items) - 1:
                                     file.write(",")
-                        if not recip[str(9)] in self.items and not recip[9] in self.blocks:
-                            file.write(
-                                f'}},"result": {{ "id":"minecraft:{recip[str(9)]}", "count":{self.recipes[recipe]["outputCount"]}}}}}'
-                            )
-                        elif recip[str(9)] in self.items:
-                            idx = self.items[recip[str(9)]]
+                        
+                        print(recip)
+                        
+                        if recip[9] in self.items:
+                            idx = self.items[recip[9]]
                             file.write(
                                 f'}},"result":{{ "id":"{idx["baseItem"]}", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:item_name":"{{/"italic/":false,/"text/":/"{idx["displayName"]}/"}}", "minecraft:item_model":"{self.packNamespace}:{idx["name"]}" }} }} }}'
                             )
-                        elif recip[str(9)] in self.blocks:
-                            idx = self.blocks[recip[str(9)]]
+                        elif recip[9] in self.blocks:
+                            idx = self.blocks[recip[9]]
                             file.write(
                                 f'}},"result":{{ "id":"minecraft:item_frame", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:item_model":"{self.packNamespace}:{idx["name"]}", "minecraft:custom_name": "{{/"italic/":false,/"text/":/"{idx["displayName"]}/"}}", "minecraft:entity_data": {{ "id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{idx["name"]}"] }} }} }}'
+                            )
+                        
+                        else:
+                            file.write(
+                                f'}},"result": {{ "id":"minecraft:{recip[9]}", "count":{self.recipes[recipe]["outputCount"]}}}}}'
                             )
 
                 else:
@@ -87,17 +91,17 @@ class RecipeGenerator:
                                 file.write(f'"minecraft:{value}"')
                                 if ingredient < len(items) - 1:
                                     file.write(",")
-                        if not recip[str(9)] in self.items and not recip[str(9)] in self.blocks:
+                        if not recip[9] in self.items and not recip[9] in self.blocks:
                             file.write(
-                                f']],"result":{{"id": "minecraft:{recip[str(9)]}", "count":{self.recipes[recipe]["outputCount"]}}}}}'
+                                f']],"result":{{"id": "minecraft:{recip[9]}", "count":{self.recipes[recipe]["outputCount"]}}}}}'
                             )
-                        elif recip[str(9)] in self.items:
-                            idx = self.items[recip[str(9)]]
+                        elif recip[9] in self.items:
+                            idx = self.items[recip[9]]
                             file.write(
                                 f'}},"result":{{ "id":"{idx["baseItem"]}", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:item_name":"{{/"italic/":false,/"text/":/"{idx["displayName"]}/"}}", "minecraft:item_model":"{self.packNamespace}:{idx["name"]}"}} }} }}'
                             )
-                        elif recip[str(9)] in self.blocks:
-                            idx = self.blocks[recip[str(9)]]
+                        elif recip[9] in self.blocks:
+                            idx = self.blocks[recip[9]]
                             file.write(
                                 f'}},"result":{{ "id":"minecraft:item_frame", "count":{self.recipes[recipe]["outputCount"]}, "components": {{ "minecraft:item_model":"{self.packNamespace}:{idx["name"]}", "minecraft:custom_name": "{{/"italic/":false,/"text/":/"{idx["displayName"]}/"}}", "minecraft:entity_data": {{ "id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{idx["name"]}"] }} }} }}'
                             )
