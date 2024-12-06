@@ -21,9 +21,9 @@ class ItemGenerator:
             for item in self.items:
                 rightClick = self.items[item]["rightClick"]
                 if not rightClick["enabled"]:
-                    file.write(f'give @s {self.items[item]["baseItem"]}[item_name=\'{{"italic":false,"text":"{self.items[item]["displayName"]}"}}\',item_model={self.packNamespace}:{self.items[item]["name"]},custom_data={{"{self.items[item]["name"]}":true}}] 1\n')
+                    file.write(f'give @s {self.items[item]["baseItem"]}[item_name=\'{{"italic":false,"text":"{self.items[item]["displayName"]}"}}\',item_model="{self.packNamespace}:{self.items[item]["name"]}",custom_data={{"{self.items[item]["name"]}":true}}] 1\n')
                 else:
-                    file.write(f'give @s {self.items[item]["baseItem"]}[item_name=\'{{"italic":false,"text":"{self.items[item]["displayName"]}"}}\',item_model={self.packNamespace}:{self.items[item]["name"]},custom_data={{"{self.items[item]["name"]}":true}},food={{can_always_eat:true,nutrition:0,saturation:0}},consumable={{animation:"none",consume_seconds:99999,has_consume_particles:false}}] 1\n')
+                    file.write(f'give @s {self.items[item]["baseItem"]}[item_name=\'{{"italic":false,"text":"{self.items[item]["displayName"]}"}}\',item_model="{self.packNamespace}:{self.items[item]["name"]}",custom_data={{"{self.items[item]["name"]}":true}},food={{can_always_eat:true,nutrition:0,saturation:0}},consumable={{animation:"none",consume_seconds:99999,has_consume_particles:false}}] 1\n')
         
         # Item mcfunction & Item Cooldown mcfunction & Item Execute mcfunction
         for item in self.items:
@@ -107,7 +107,7 @@ class ItemResourcer:
                         model["textures"][texture] = f'item/{model["textures"][texture]}'
                     file.write(str(model).replace("'", '"'))
                 else:
-                    file.write(f'{{"parent":"minecraft:item/{self.items[item]["model"]}","textures":{{"layer0":"{self.packNamespace}:item/{self.items[item]["name"]}"}}}}')
+                    file.write(f'{{"parent":"minecraft:item/{self.items[item]["model"]}","textures":{{"layer0":"{self.packNamespace}:item/{os.path.splitext(os.path.basename(str(self.items[item]["texture"])))[-2]}"}}}}')
 
 
         # Copy Item Texture To Pack
