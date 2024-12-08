@@ -22,6 +22,9 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sets the details!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
    <property name="text">
     <string>OK</string>
    </property>
@@ -45,6 +48,9 @@
     </item>
     <item row="0" column="1">
      <widget class="QLineEdit" name="packName">
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of your Data &amp;amp; Resource packs!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
       <property name="placeholderText">
        <string>The Ruby Pack</string>
       </property>
@@ -59,6 +65,9 @@
     </item>
     <item row="1" column="1">
      <widget class="QLineEdit" name="packNamespace">
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The namespace for your packs. This is what the game uses to recognize your packs.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
       <property name="placeholderText">
        <string>rubypack</string>
       </property>
@@ -73,6 +82,9 @@
     </item>
     <item row="2" column="1">
      <widget class="QLineEdit" name="packAuthor">
+      <property name="whatsThis">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
       <property name="placeholderText">
        <string>jupiterdev</string>
       </property>
@@ -87,6 +99,9 @@
     </item>
     <item row="3" column="1">
      <widget class="QLineEdit" name="packDescription">
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The description for your packs!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
       <property name="placeholderText">
        <string>Adds Rubys, Ruby Blocks, etc.</string>
       </property>
@@ -101,6 +116,9 @@
     </item>
     <item row="4" column="1">
      <widget class="QLineEdit" name="packCMDPrefix">
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;LEGACY! Only used in 1.21.3. &lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Note that you still must fill it in!&lt;/span&gt;&lt;br/&gt;A 3 digit number used to figure out the Custom Model Data for your custom blocks &amp;amp; items.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
       <property name="placeholderText">
        <string>589</string>
       </property>
@@ -115,14 +133,17 @@
     </item>
     <item row="5" column="1">
      <widget class="QComboBox" name="packVersion">
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The version your packs will work for.&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;1.21.4 highly recommended!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
       <item>
        <property name="text">
-        <string>1.21.3</string>
+        <string>1.21.4</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>1.21.4</string>
+        <string>1.21.3</string>
        </property>
       </item>
      </widget>

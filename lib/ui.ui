@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>mDirt - A Datapack Tool - v2.1</string>
+   <string>mDirt - A Datapack Tool - v2.2</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QPushButton[flat=&quot;true&quot;] {
@@ -178,6 +178,9 @@ QPushButton[flat=&quot;true&quot;]:pressed {
         <height>31</height>
        </rect>
       </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Generates the Data &amp;amp; Resource packs, adding your cool stuff!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
       <property name="text">
        <string>Generate Pack</string>
       </property>
@@ -255,6 +258,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
        </item>
        <item row="0" column="1">
         <widget class="QLineEdit" name="blockDisplayName">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name you'll see for your block in your inventory!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="placeholderText">
           <string>Ruby Ore</string>
          </property>
@@ -262,6 +268,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
        </item>
        <item row="1" column="1">
         <widget class="QLineEdit" name="blockName">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;How the game refers to the block.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="placeholderText">
           <string>ruby_ore</string>
          </property>
@@ -269,6 +278,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
        </item>
        <item row="2" column="1">
         <widget class="QLineEdit" name="blockBaseBlock">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The block that your custom block hides inside of. This determines most of the sounds (other than the place sound), mining speed, etc. &lt;span style=&quot; font-weight:700;&quot;&gt;Do not use minecraft: in front of the block!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="placeholderText">
           <string>stone</string>
          </property>
@@ -276,6 +288,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
        </item>
        <item row="4" column="1">
         <widget class="QLineEdit" name="blockPlaceSound">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this is checked, it'll place like an oak log, directionally.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="placeholderText">
           <string>block.stone.place</string>
          </property>
@@ -283,6 +298,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
        </item>
        <item row="5" column="1">
         <widget class="QCheckBox" name="blockDirectional">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this is checked, it'll place like an oak log, directionally.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -290,6 +308,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
        </item>
        <item row="3" column="1">
         <widget class="QComboBox" name="blockDropBox">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The item or block that this block drops when it is broken. Self will drop itself, or you can choose any of your blocks or items, or you can choose any Minecraft block or item.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="editable">
           <bool>true</bool>
          </property>
@@ -305,6 +326,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
         <width>50</width>
         <height>50</height>
        </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The top texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="text">
        <string/>
@@ -322,6 +346,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
         <height>50</height>
        </rect>
       </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The back texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
       <property name="text">
        <string/>
       </property>
@@ -337,6 +364,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
         <width>50</width>
         <height>50</height>
        </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The right texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="text">
        <string/>
@@ -354,6 +384,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
         <height>50</height>
        </rect>
       </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The bottom texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use this texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
       <property name="text">
        <string/>
       </property>
@@ -370,6 +403,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
         <height>50</height>
        </rect>
       </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The left texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
       <property name="text">
        <string/>
       </property>
@@ -385,6 +421,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
         <width>50</width>
         <height>50</height>
        </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The front texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="text">
        <string/>
@@ -483,6 +522,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
       <layout class="QGridLayout" name="gridLayout">
        <item row="1" column="1">
         <widget class="QPushButton" name="blockAddButton">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Adds your new custom block to the list!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string>Add</string>
          </property>
@@ -490,6 +532,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
        </item>
        <item row="1" column="0">
         <widget class="QPushButton" name="blockEditButton">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Lets you edit a custom block you've already added.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string>Edit</string>
          </property>
@@ -497,13 +542,20 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
        </item>
        <item row="1" column="2">
         <widget class="QPushButton" name="blockRemoveButton">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Deletes a block from the list. &lt;span style=&quot; font-weight:700;&quot;&gt;Cannot be undone!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string>Remove</string>
          </property>
         </widget>
        </item>
        <item row="0" column="0" colspan="3">
-        <widget class="QListWidget" name="blockList"/>
+        <widget class="QListWidget" name="blockList">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The list of all blocks that will be generated when you press Generate Pack.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -528,6 +580,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
         <width>181</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The model of your block.&lt;/p&gt;&lt;p&gt;Block: A normal block.&lt;/p&gt;&lt;p&gt;Custom: A model you created in &lt;span style=&quot; font-weight:700;&quot;&gt;BlockBench&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <item>
        <property name="text">
@@ -580,6 +635,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
        </item>
        <item row="0" column="1">
         <widget class="QLineEdit" name="itemDisplayName">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of your custom item! This'll be what you see in your inventory.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="placeholderText">
           <string>Ruby</string>
          </property>
@@ -594,6 +652,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
        </item>
        <item row="1" column="1">
         <widget class="QLineEdit" name="itemName">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of your item that the game recognizes it as.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="placeholderText">
           <string>ruby</string>
          </property>
@@ -608,8 +669,11 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
        </item>
        <item row="2" column="1">
         <widget class="QLineEdit" name="itemBaseItem">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The Minecraft item your custom item is wrapped around. &lt;span style=&quot; font-weight:700;&quot;&gt;Do not add a minecraft: prefix to this item!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="placeholderText">
-          <string>minecraft:flint</string>
+          <string>flint</string>
          </property>
         </widget>
        </item>
@@ -622,13 +686,20 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
        </item>
        <item row="3" column="1">
         <widget class="QCheckBox" name="itemRightClickCheck">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Whether or not you want to have a set of special commands run whenever you rightclick your item.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string/>
          </property>
         </widget>
        </item>
        <item row="6" column="0" colspan="2">
-        <widget class="QPlainTextEdit" name="itemRightClickFunc"/>
+        <widget class="QPlainTextEdit" name="itemRightClickFunc">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A list of commands that will be run whenever you rightclick. &lt;span style=&quot; font-weight:700;&quot;&gt;The program does not check if this will work or not! Any problems made here are the fault of the user.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
        </item>
        <item row="7" column="0">
         <widget class="QLabel" name="label_3">
@@ -639,6 +710,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
        </item>
        <item row="4" column="1">
         <widget class="QComboBox" name="itemRightClickMode">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The mode of the right-click method.&lt;/p&gt;&lt;p&gt;Tick: The function runs 20 times per second as long as you are holding rightclick.&lt;br/&gt;Impulse: Runs once whenever you rightclick your item.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <item>
           <property name="text">
            <string>Tick</string>
@@ -689,6 +763,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The model your custom item will use.&lt;/p&gt;&lt;p&gt;Generated: Normal items.&lt;/p&gt;&lt;p&gt;Handheld: For thigns such as tools, swords, etc.&lt;/p&gt;&lt;p&gt;Custom: If you want to select a custom model you made in &lt;span style=&quot; font-weight:700;&quot;&gt;BlockBench&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
       <item>
        <property name="text">
         <string>Generated</string>
@@ -727,6 +804,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
         <height>50</height>
        </rect>
       </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The texture of your item!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
       <property name="text">
        <string/>
       </property>
@@ -759,6 +839,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
       <layout class="QGridLayout" name="gridLayout_3">
        <item row="4" column="2">
         <widget class="QPushButton" name="itemAddButton">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Adds your new custom item to the list!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string>Add</string>
          </property>
@@ -766,6 +849,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
        </item>
        <item row="4" column="1">
         <widget class="QPushButton" name="itemEditButton">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Lets you edit a custom item you've already added.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string>Edit</string>
          </property>
@@ -773,13 +859,20 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
        </item>
        <item row="4" column="3">
         <widget class="QPushButton" name="itemRemoveButton">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Deletes an item from the list. &lt;span style=&quot; font-weight:700;&quot;&gt;Cannot be undone!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string>Remove</string>
          </property>
         </widget>
        </item>
        <item row="3" column="1" colspan="3">
-        <widget class="QListWidget" name="itemList"/>
+        <widget class="QListWidget" name="itemList">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The list of all items that will be generated when you press Generate Pack.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -817,6 +910,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name the game uses to recognize your recipe.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
      </widget>
      <widget class="QTabWidget" name="recipeSubTabs">
       <property name="geometry">
@@ -843,6 +939,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
           <height>50</height>
          </rect>
         </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -858,6 +957,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
           <width>50</width>
           <height>50</height>
          </rect>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string/>
@@ -875,6 +977,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
           <height>50</height>
          </rect>
         </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -890,6 +995,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
           <width>50</width>
           <height>50</height>
          </rect>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string/>
@@ -907,6 +1015,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
           <height>50</height>
          </rect>
         </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -922,6 +1033,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
           <width>50</width>
           <height>50</height>
          </rect>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string/>
@@ -939,6 +1053,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
           <height>50</height>
          </rect>
         </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -954,6 +1071,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
           <width>50</width>
           <height>50</height>
          </rect>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string/>
@@ -971,6 +1091,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
           <height>50</height>
          </rect>
         </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -987,6 +1110,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
           <height>50</height>
          </rect>
         </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The output of the crafting recipe. Can have any Minecraft block or item, as well as any custom blocks or items.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -1002,6 +1128,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
           <width>88</width>
           <height>24</height>
          </rect>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The amount of your output. If this is higher than the max stack size of your output item, your datapack will crash!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="buttonSymbols">
          <enum>QAbstractSpinBox::ButtonSymbols::PlusMinus</enum>
@@ -1022,6 +1151,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
           <height>20</height>
          </rect>
         </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Makes the recipe shapeless.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="text">
          <string>Shapeless</string>
         </property>
@@ -1041,8 +1173,14 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
           <height>20</height>
          </rect>
         </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Makes the recipe normal.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="text">
          <string>Exactly Where Placed</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
         </property>
         <property name="autoRepeat">
          <bool>false</bool>
@@ -1218,6 +1356,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
           <height>50</height>
          </rect>
         </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The input for the smelting recipe.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -1233,6 +1374,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
           <width>50</width>
           <height>50</height>
          </rect>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The output for the smelting recipe.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string/>
@@ -1288,6 +1432,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
           <width>121</width>
           <height>22</height>
          </rect>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The block that this recipe is assigned to. For example, Campfire_Cooking will make it so this recipe is for a campfire.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <item>
          <property name="text">
@@ -1346,6 +1493,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
           <height>50</height>
          </rect>
         </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Input for a stonecutting recipe.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -1375,6 +1525,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
           <height>50</height>
          </rect>
         </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Output for the stonecutting recipe.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -1383,10 +1536,13 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
         <property name="geometry">
          <rect>
           <x>250</x>
-          <y>160</y>
+          <y>140</y>
           <width>88</width>
           <height>24</height>
          </rect>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The amount of your stonecutting output. If this is higher than the max stack size of your output item, your datapack will crash!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="buttonSymbols">
          <enum>QAbstractSpinBox::ButtonSymbols::PlusMinus</enum>
@@ -1412,6 +1568,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
       <layout class="QGridLayout" name="gridLayout_4">
        <item row="2" column="1">
         <widget class="QPushButton" name="recipeEditButton">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Lets you edit a custom recipe you've already added.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string>Edit</string>
          </property>
@@ -1419,6 +1578,9 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
        </item>
        <item row="2" column="2">
         <widget class="QPushButton" name="recipeAddButton">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Adds your new custom recipe to the list!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string>Add</string>
          </property>
@@ -1426,13 +1588,20 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
        </item>
        <item row="2" column="3">
         <widget class="QPushButton" name="recipeRemoveButton">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Deletes a recipe from the list. &lt;span style=&quot; font-weight:700;&quot;&gt;Cannot be undone!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string>Remove</string>
          </property>
         </widget>
        </item>
        <item row="1" column="1" colspan="3">
-        <widget class="QListWidget" name="recipeList"/>
+        <widget class="QListWidget" name="recipeList">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The list of all recipes that will be generated when you press Generate Pack.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -1455,8 +1624,6 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
     <addaction name="actionExport_mdrt"/>
     <addaction name="actionImport_mdrt"/>
     <addaction name="separator"/>
-    <addaction name="actionDark_Theme"/>
-    <addaction name="actionLight_Theme"/>
    </widget>
    <addaction name="menuFile"/>
   </widget>
