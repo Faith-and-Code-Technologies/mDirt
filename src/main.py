@@ -491,6 +491,7 @@ class App(QMainWindow):
             "texture": self.itemTexture,
             "model": self.ui.itemModel.currentText().lower(),
             "cmd": self.parseCMD(self.featureNum),
+            "stackSize": self.ui.itemStackSize.value(),
             "rightClick": rightClick,
         }
 
@@ -509,6 +510,7 @@ class App(QMainWindow):
         self.ui.itemDisplayName.setText(properties["displayName"])
         self.ui.itemBaseItem.setText(properties["baseItem"])
         self.ui.itemModel.setCurrentText(properties["model"])
+        self.ui.itemStackSize.setValue(properties["stackSize"])
         self.ui.itemRightClickFunc.setPlainText(properties["rightClick"]["function"])
         self.ui.itemRightClickMode.setCurrentText(properties["rightClick"]["mode"])
         self.ui.itemRightClickCheck.setChecked(properties["rightClick"]["enabled"])
@@ -535,6 +537,7 @@ class App(QMainWindow):
         self.ui.itemDisplayName.setText("")
         self.ui.itemBaseItem.setText("")
         self.ui.itemModel.setCurrentText("Generated")
+        self.ui.itemStackSize.setValue(64)
         self.ui.itemRightClickFunc.clear()
         self.ui.itemRightClickMode.setCurrentText("Tick")
         self.ui.itemRightClickCheck.setChecked(False)

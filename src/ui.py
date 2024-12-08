@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiwtBkAd.ui'
+## Form generated from reading UI file 'uipUYlaO.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -351,39 +351,50 @@ class Ui_MainWindow(object):
         self.label_2 = QLabel(self.formLayoutWidget_3)
         self.label_2.setObjectName(u"label_2")
 
-        self.formLayout_3.setWidget(3, QFormLayout.LabelRole, self.label_2)
+        self.formLayout_3.setWidget(4, QFormLayout.LabelRole, self.label_2)
 
         self.itemRightClickCheck = QCheckBox(self.formLayoutWidget_3)
         self.itemRightClickCheck.setObjectName(u"itemRightClickCheck")
 
-        self.formLayout_3.setWidget(3, QFormLayout.FieldRole, self.itemRightClickCheck)
+        self.formLayout_3.setWidget(4, QFormLayout.FieldRole, self.itemRightClickCheck)
 
         self.itemRightClickFunc = QPlainTextEdit(self.formLayoutWidget_3)
         self.itemRightClickFunc.setObjectName(u"itemRightClickFunc")
 
-        self.formLayout_3.setWidget(6, QFormLayout.SpanningRole, self.itemRightClickFunc)
+        self.formLayout_3.setWidget(7, QFormLayout.SpanningRole, self.itemRightClickFunc)
 
         self.label_3 = QLabel(self.formLayoutWidget_3)
         self.label_3.setObjectName(u"label_3")
 
-        self.formLayout_3.setWidget(7, QFormLayout.LabelRole, self.label_3)
+        self.formLayout_3.setWidget(8, QFormLayout.LabelRole, self.label_3)
 
         self.itemRightClickMode = QComboBox(self.formLayoutWidget_3)
         self.itemRightClickMode.addItem("")
         self.itemRightClickMode.addItem("")
         self.itemRightClickMode.setObjectName(u"itemRightClickMode")
 
-        self.formLayout_3.setWidget(4, QFormLayout.FieldRole, self.itemRightClickMode)
+        self.formLayout_3.setWidget(5, QFormLayout.FieldRole, self.itemRightClickMode)
 
         self.label_4 = QLabel(self.formLayoutWidget_3)
         self.label_4.setObjectName(u"label_4")
 
-        self.formLayout_3.setWidget(4, QFormLayout.LabelRole, self.label_4)
+        self.formLayout_3.setWidget(5, QFormLayout.LabelRole, self.label_4)
 
         self.label_5 = QLabel(self.formLayoutWidget_3)
         self.label_5.setObjectName(u"label_5")
 
-        self.formLayout_3.setWidget(5, QFormLayout.LabelRole, self.label_5)
+        self.formLayout_3.setWidget(6, QFormLayout.LabelRole, self.label_5)
+
+        self.label_6 = QLabel(self.formLayoutWidget_3)
+        self.label_6.setObjectName(u"label_6")
+
+        self.formLayout_3.setWidget(3, QFormLayout.LabelRole, self.label_6)
+
+        self.itemStackSize = QSpinBox(self.formLayoutWidget_3)
+        self.itemStackSize.setObjectName(u"itemStackSize")
+        self.itemStackSize.setMinimum(1)
+
+        self.formLayout_3.setWidget(3, QFormLayout.FieldRole, self.itemStackSize)
 
         self.itemModelLabel = QLabel(self.itemTab)
         self.itemModelLabel.setObjectName(u"itemModelLabel")
@@ -691,8 +702,8 @@ class Ui_MainWindow(object):
         self.packCMDPrefixLabel.setText(QCoreApplication.translate("MainWindow", u"CMD Prefix", None))
         self.packCMDPrefix.setPlaceholderText(QCoreApplication.translate("MainWindow", u"589", None))
         self.packVersionLabel.setText(QCoreApplication.translate("MainWindow", u"Version", None))
-        self.packVersion.setItemText(0, QCoreApplication.translate("MainWindow", u"1.21.3", None))
-        self.packVersion.setItemText(1, QCoreApplication.translate("MainWindow", u"1.21.4", None))
+        self.packVersion.setItemText(0, QCoreApplication.translate("MainWindow", u"1.21.4", None))
+        self.packVersion.setItemText(1, QCoreApplication.translate("MainWindow", u"1.21.3", None))
 
 #if QT_CONFIG(tooltip)
         self.packGenerate.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Generates the Data &amp; Resource packs, adding your cool stuff!</p></body></html>", None))
@@ -815,6 +826,10 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Right-Click Mode:", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Right-Click Function:", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Max Stack Size", None))
+#if QT_CONFIG(tooltip)
+        self.itemStackSize.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The stack size of your item! Can be anything from 1 to 99, and can be used for any base item!</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.itemModelLabel.setText(QCoreApplication.translate("MainWindow", u"Model", None))
         self.itemModel.setItemText(0, QCoreApplication.translate("MainWindow", u"Generated", None))
         self.itemModel.setItemText(1, QCoreApplication.translate("MainWindow", u"Handheld", None))
