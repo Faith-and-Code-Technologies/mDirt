@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'detailsNezKbS.ui'
+## Form generated from reading UI file 'detailsAufixl.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -105,21 +105,42 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Datapack Details", None))
+#if QT_CONFIG(tooltip)
+        self.packGenerate.setToolTip(QCoreApplication.translate("Form", u"<html><head/><body><p>Sets the details!</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.packGenerate.setText(QCoreApplication.translate("Form", u"OK", None))
         self.packNameLabel.setText(QCoreApplication.translate("Form", u"Pack Name", None))
+#if QT_CONFIG(tooltip)
+        self.packName.setToolTip(QCoreApplication.translate("Form", u"<html><head/><body><p>The name of your Data &amp; Resource packs!</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.packName.setPlaceholderText(QCoreApplication.translate("Form", u"The Ruby Pack", None))
         self.packNamespaceLabel.setText(QCoreApplication.translate("Form", u"Namespace", None))
+#if QT_CONFIG(tooltip)
+        self.packNamespace.setToolTip(QCoreApplication.translate("Form", u"<html><head/><body><p>The namespace for your packs. This is what the game uses to recognize your packs.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.packNamespace.setPlaceholderText(QCoreApplication.translate("Form", u"rubypack", None))
         self.packAuthorLabel.setText(QCoreApplication.translate("Form", u"Author", None))
+#if QT_CONFIG(whatsthis)
+        self.packAuthor.setWhatsThis(QCoreApplication.translate("Form", u"<html><head/><body><p>You!</p></body></html>", None))
+#endif // QT_CONFIG(whatsthis)
         self.packAuthor.setPlaceholderText(QCoreApplication.translate("Form", u"jupiterdev", None))
         self.packDescriptionLabel.setText(QCoreApplication.translate("Form", u"Description", None))
+#if QT_CONFIG(tooltip)
+        self.packDescription.setToolTip(QCoreApplication.translate("Form", u"<html><head/><body><p>The description for your packs!</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.packDescription.setPlaceholderText(QCoreApplication.translate("Form", u"Adds Rubys, Ruby Blocks, etc.", None))
         self.packCMDPrefixLabel.setText(QCoreApplication.translate("Form", u"CMD Prefix", None))
+#if QT_CONFIG(tooltip)
+        self.packCMDPrefix.setToolTip(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-weight:700;\">LEGACY! Only used in 1.21.3. </span><span style=\" font-style:italic;\">Note that you still must fill it in!</span><br/>A 3 digit number used to figure out the Custom Model Data for your custom blocks &amp; items.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.packCMDPrefix.setPlaceholderText(QCoreApplication.translate("Form", u"589", None))
         self.packVersionLabel.setText(QCoreApplication.translate("Form", u"Version", None))
-        self.packVersion.setItemText(0, QCoreApplication.translate("Form", u"1.21.3", None))
-        self.packVersion.setItemText(1, QCoreApplication.translate("Form", u"1.21.4", None))
+        self.packVersion.setItemText(0, QCoreApplication.translate("Form", u"1.21.4", None))
+        self.packVersion.setItemText(1, QCoreApplication.translate("Form", u"1.21.3", None))
 
+#if QT_CONFIG(tooltip)
+        self.packVersion.setToolTip(QCoreApplication.translate("Form", u"<html><head/><body><p>The version your packs will work for.<br/><span style=\" font-weight:700;\">1.21.4 highly recommended!</span></p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.titleLabel.setText(QCoreApplication.translate("Form", u"mDirt - a tool made to help make Datapacks\n"
 "Created By JupiterDev & JustJoshinDev 2024", None))
     # retranslateUi

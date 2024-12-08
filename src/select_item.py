@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'select-itemxyQDjm.ui'
+## Form generated from reading UI file 'select-itemaygDNU.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.0
+## Created by: Qt User Interface Compiler version 6.8.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -50,6 +50,12 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Select Item", None))
         self.label.setText(QCoreApplication.translate("Form", u"Select Your Item", None))
+#if QT_CONFIG(tooltip)
+        self.itemsBox.setToolTip(QCoreApplication.translate("Form", u"<html><head/><body><p>Sets the item!</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.pushButton.setToolTip(QCoreApplication.translate("Form", u"<html><head/><body><p>Sets the item!</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.pushButton.setText(QCoreApplication.translate("Form", u"OK", None))
     # retranslateUi
 

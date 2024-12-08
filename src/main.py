@@ -213,7 +213,7 @@ class App(QMainWindow):
         self.header = """
         #####################################
         #   This File Was Created By mDirt  #
-        #               v2.1.4              #
+        #               v2.2.0              #
         #   Copyright 2024 by Jupiter Dev   #
         #####################################
         \n"""
@@ -237,7 +237,7 @@ class App(QMainWindow):
     # IMPORT & EXPORT     #
     #######################
 
-    def exportProject(self, version="2.1.4"):
+    def exportProject(self, version="2.2.0"):
         data = {
             "file_type": "mDirtProjectData",
             "version": version,
@@ -266,7 +266,7 @@ class App(QMainWindow):
             with open(f'{file}/mDirtProject.mdrt', "w") as f:
                 json.dump(data, f, indent=4)
 
-    def importProject(self, version="2.1.4"):
+    def importProject(self, version="2.2.0"):
         file, _ = QFileDialog.getOpenFileName(
             self, "Open mDirt Project", "", "mDirt File (*.mdrt)"
         )
