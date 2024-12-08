@@ -157,12 +157,12 @@ QPushButton[flat=&quot;true&quot;]:pressed {
          </property>
          <item>
           <property name="text">
-           <string>1.21.3</string>
+           <string>1.21.4</string>
           </property>
          </item>
          <item>
           <property name="text">
-           <string>1.21.4</string>
+           <string>1.21.3</string>
           </property>
          </item>
         </widget>
@@ -677,14 +677,14 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="0">
+       <item row="4" column="0">
         <widget class="QLabel" name="label_2">
          <property name="text">
           <string>Right-Click Function?</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
+       <item row="4" column="1">
         <widget class="QCheckBox" name="itemRightClickCheck">
          <property name="toolTip">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Whether or not you want to have a set of special commands run whenever you rightclick your item.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -694,21 +694,21 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
          </property>
         </widget>
        </item>
-       <item row="6" column="0" colspan="2">
+       <item row="7" column="0" colspan="2">
         <widget class="QPlainTextEdit" name="itemRightClickFunc">
          <property name="toolTip">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A list of commands that will be run whenever you rightclick. &lt;span style=&quot; font-weight:700;&quot;&gt;The program does not check if this will work or not! Any problems made here are the fault of the user.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
-       <item row="7" column="0">
+       <item row="8" column="0">
         <widget class="QLabel" name="label_3">
          <property name="text">
           <string/>
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
+       <item row="5" column="1">
         <widget class="QComboBox" name="itemRightClickMode">
          <property name="toolTip">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The mode of the right-click method.&lt;/p&gt;&lt;p&gt;Tick: The function runs 20 times per second as long as you are holding rightclick.&lt;br/&gt;Impulse: Runs once whenever you rightclick your item.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -725,17 +725,34 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
          </item>
         </widget>
        </item>
-       <item row="4" column="0">
+       <item row="5" column="0">
         <widget class="QLabel" name="label_4">
          <property name="text">
           <string>Right-Click Mode:</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="0">
+       <item row="6" column="0">
         <widget class="QLabel" name="label_5">
          <property name="text">
           <string>Right-Click Function:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Max Stack Size</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QSpinBox" name="itemStackSize">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The stack size of your item! Can be anything from 1 to 99, and can be used for any base item!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="minimum">
+          <number>1</number>
          </property>
         </widget>
        </item>
