@@ -135,7 +135,7 @@ class BlockGenerator:
                     elif self.blocks[block]["blockDrop"] in self.items:
                         item = self.items[self.blocks[block]["blockDrop"]]
                         file.write(
-                            f'{{"pools": [{{"rolls": 1,"entries": [{{"type": "minecraft:item","name": "{item["baseItem"]}","functions":[{{"function": "minecraft:set_components","components":{{"minecraft:item_name": "{{\\"italic\\":false,\\"text\\":\\"{item["displayName"]}\\"}}","minecraft:item_model": "{self.packNamespace}:{item["name"]}"}}}}]}}]}}]}}'
+                            f'{{"pools": [{{"rolls": 1,"entries": [{{"type": "minecraft:item","name": "{item["baseItem"]}","functions":[{{"function": "minecraft:set_components","components":{{"minecraft:item_name": "{{\\"italic\\":false,\\"text\\":\\"{item["displayName"]}\\"}}","minecraft:max_stack_size":{item["stackSize"]},"minecraft:item_model": "{self.packNamespace}:{item["name"]}"}}}}]}}]}}]}}'
                         )
                     elif self.blocks[block]["blockDrop"] in self.blocks:
                         blck = self.blocks[self.blocks[block]["blockDrop"]]
