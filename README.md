@@ -24,7 +24,6 @@ To get your items in game, run /function YOURNAMESPACE:give_items
 
 ## Coming Soon
 - Custom Components for Custom Items.
-- Custom Paintings.
 - Custom Enchantments.
 
 ## In Progress
