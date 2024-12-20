@@ -12,8 +12,20 @@ To get your blocks in game, run /function YOURNAMESPACE:give_blocks
 
 To get your items in game, run /function YOURNAMESPACE:give_items
 
+## Feature Support
+**If a Feature is not listed for a version, that version will not get support for it!**
+| 1.21.3                      |  1.21.4                      |
+| ------------------------ |  ------------------------ |
+| Blocks  100% |                Blocks  100% | 
+| Items  80% |                  Items  80% |
+| Recipes  100% |               Recipes  100% |   
+|              | Paintings  0% |
+|              | Enchantments  0% |
+
 ## Coming Soon
 - Custom Components for Custom Items.
+- Custom Paintings.
+- Custom Enchantments.
 
 ## In Progress
 - MacOS native binary (@JustJoshinDev)
