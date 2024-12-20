@@ -115,6 +115,7 @@ class App(QMainWindow):
         self.ui.itemAddButton.clicked.connect(self.addItem)
         self.ui.itemEditButton.clicked.connect(self.editItem)
         self.ui.itemRemoveButton.clicked.connect(self.removeItem)
+
         self.ui.itemTextureButton.clicked.connect(self.getItemTexture)
 
         self.ui.itemModel.activated.connect(self.getItemModel)
@@ -140,6 +141,13 @@ class App(QMainWindow):
 
         self.ui.stoneCuttingInputButton.clicked.connect(lambda: self.getRecipeItem(12))
         self.ui.stoneCuttingOutputButton.clicked.connect(lambda: self.getRecipeItem(13))
+
+        # Painting Signals
+        self.ui.paintingAddButton.clicked.connect(self.addPainting)
+        self.ui.paintingEditButton.clicked.connect(self.editPainting)
+        self.ui.paintingRemoveButton.clicked.connect(self.removePainting)
+
+        self.ui.paintingTextureButton.clicked.connect(self.getPaintingTexture)
 
         # Enable / Disable Text Edit
         self.ui.itemRightClickCheck.checkStateChanged.connect(self.enableRightClickFunc)
@@ -205,15 +213,17 @@ class App(QMainWindow):
         self.blocks = {}
         self.items = {}
         self.recipes = {}
+        self.paintings = {}
 
         self.blockTexture = {}
         self.itemTexture = None
         self.recipe = {}
+        self.paintingTexture = None
 
         self.header = """
         #####################################
         #   This File Was Created By mDirt  #
-        #               v2.2.0              #
+        #               v2.3.0              #
         #   Copyright 2024 by Jupiter Dev   #
         #####################################
         \n"""
@@ -237,12 +247,12 @@ class App(QMainWindow):
     # IMPORT & EXPORT     #
     #######################
 
-    def exportProject(self, version="2.2.0"):
+    def exportProject(self, version="2.3.0"):
         data = {
             "file_type": "mDirtProjectData",
             "version": version,
             "metadata": {
-                "exported_at": datetime.datetime.now(datetime.UTC).isoformat() + "Z"
+                "exported_at": datetime.datetime.now(datetime.UTC).isoformat()
             },
             "content": {
                 "pack_info": {
@@ -260,13 +270,17 @@ class App(QMainWindow):
                 },
             },
         }
+
+        if self.ui.packVersion.currentText() == "1.21.4":
+            data["content"]["elements"]["paintings"] = self.paintings
+
         file = QFileDialog.getExistingDirectory(self, "Save mDirt Project", "")
 
         if file:
             with open(f'{file}/mDirtProject.mdrt', "w") as f:
                 json.dump(data, f, indent=4)
 
-    def importProject(self, version="2.2.0"):
+    def importProject(self, version="2.3.0"):
         file, _ = QFileDialog.getOpenFileName(
             self, "Open mDirt Project", "", "mDirt File (*.mdrt)"
         )
@@ -278,11 +292,11 @@ class App(QMainWindow):
             alert("Please Select a Valid File!")
             return
 
-        if data.get("file_type") != "mDirtProjectData":
+        if data["file_type"] != "mDirtProjectData":
             alert("Invalid File!")
             return
 
-        if data.get("version") != version:
+        if data["version"] != version:
             alert(f"Incompatible version!")
 
         self.ui.packName.setText(data["content"]["pack_info"]["packName"])
@@ -294,6 +308,11 @@ class App(QMainWindow):
         self.blocks = data["content"]["elements"]["blocks"]
         self.items = data["content"]["elements"]["items"]
         self.recipes = data["content"]["elements"]["recipes"]
+
+        if data["content"]["pack_info"]["version"] == "1.21.4":
+            self.paintings = data["content"]["elements"]["paintings"]
+            for painting in self.paintings:
+                self.ui.paintingList.addItem(self.paintings[painting]["name"])
 
         self.featureNum = 0
 
@@ -661,7 +680,7 @@ class App(QMainWindow):
     def removeRecipe(self, item=None):
         curItem = item
         if not item:
-            curItem = self.ui.itemList.currentRow()
+            curItem = self.ui.recipeList.currentRow()
 
         self.recipes.pop(self.ui.recipeList.item(curItem).text())
         self.ui.recipeList.takeItem(curItem)
@@ -686,6 +705,69 @@ class App(QMainWindow):
         self.ui.stoneCuttingCount.setValue(1)
         self.ui.stoneCuttingOutput.setText("")
         self.ui.stoneCuttingInput.setText("")
+
+    #######################
+    # PAINTINGS TAB       #
+    #######################
+
+    def getPaintingTexture(self):
+        self.paintingTexture, _ = QFileDialog.getOpenFileName(
+            self, "Open Texture File", "", "PNG Files (*.png)"
+        )
+
+        if not self.paintingTexture:
+            return
+        
+        image = QImage(self.paintingTexture)
+        pixmap = QPixmap.fromImage(image).scaled(
+            50, 50, Qt.AspectRatioMode.KeepAspectRatio
+        )
+
+        self.ui.paintingTexture.setPixmap(pixmap)
+
+    def addPainting(self):
+        self.paintingProperties = {
+            "name": self.ui.paintingName.text(),
+            "displayName": self.ui.paintingDisplayName.text(),
+            "width": self.ui.paintingWidth.value(),
+            "height": self.ui.paintingHeight.value(),
+            "placeable": self.ui.paintingPlaceable.isChecked(),
+            "texture": self.paintingTexture
+        }
+
+        self.paintings[self.paintingProperties["name"]] = self.paintingProperties
+        self.ui.paintingList.addItem(self.paintingProperties["name"])
+        self.clearPaintingFields()
+
+    def editPainting(self):
+        curItem = self.ui.paintingList.currentRow()
+        curItem = self.ui.paintingList.item(curItem).text()
+        properties = self.paintings[curItem]
+
+        self.ui.paintingDisplayName.setText(properties["displayName"])
+        self.ui.paintingName.setText(properties["name"])
+        self.ui.paintingWidth.setValue(properties["width"])
+        self.ui.paintingHeight.setValue(properties["height"])
+        self.ui.paintingPlaceable.setChecked(properties["placeable"])
+
+        self.removePainting(self.ui.paintingList.currentRow())
+
+    def removePainting(self, item=None):
+        curItem = item
+        if not item:
+            curItem = self.ui.paintingList.currentRow()
+        
+        self.paintings.pop(self.ui.paintingList.item(curItem).text())
+        self.ui.paintingList.takeItem(curItem)
+
+    def clearPaintingFields(self):
+        self.paintingTexture = None
+        self.ui.paintingDisplayName.setText("")
+        self.ui.paintingName.setText("")
+        self.ui.paintingWidth.setValue(1)
+        self.ui.paintingHeight.setValue(1)
+        self.ui.paintingPlaceable.setChecked(False)
+        self.ui.paintingTexture.clear()
 
     #######################
     # ERROR CHECKING      #
@@ -800,6 +882,7 @@ class App(QMainWindow):
             os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/models/item")
             os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures")
             os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures/item")
+            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures/painting")
 
         # Pack.mcmeta
         with open(f"{self.resPackDirectory}/pack.mcmeta", "w") as pack:
@@ -814,20 +897,34 @@ class App(QMainWindow):
         elif self.packVersion == "1.21.4":
             from generation.v1_21_4.blocks import BlockResourcer
             from generation.v1_21_4.items import ItemResourcer
+            from generation.v1_21_4.paintings import PaintingResourcer
 
-        blockResourcer = BlockResourcer(
-            self.resPackDirectory, self.packNamespace, self.blocks
-        )
-        blockResourcer.generate()
+        if len(self.blocks) > 0:
+            blockResourcer = BlockResourcer(
+                self.resPackDirectory, self.packNamespace, self.blocks
+            )
 
-        itemResourcer = ItemResourcer(
-            self.resPackDirectory,
-            self.packNamespace,
-            self.exists,
-            self.data,
-            self.items,
-        )
-        itemResourcer.generate()
+            blockResourcer.generate()
+
+        if len(self.items) > 0:
+            itemResourcer = ItemResourcer(
+                self.resPackDirectory,
+                self.packNamespace,
+                self.exists,
+                self.data,
+                self.items,
+            )
+
+            itemResourcer.generate()
+        
+        if len(self.paintings) > 0 and self.packVersion == "1.21.4":
+            paintingResourcer = PaintingResourcer(
+                self.resPackDirectory,
+                self.packNamespace,
+                self.paintings
+            )
+
+            paintingResourcer.generate()
 
     def generateDataPack(self):
 
@@ -874,7 +971,7 @@ class App(QMainWindow):
                 tick.write(self.header)
         with open(f"{self.namespaceDirectory}/function/load.mcfunction", "w") as load:
             load.write(
-                f'{self.header}tellraw @a {{"text":"[mDirt 2.1] - Successfully loaded pack!","color":"red"}}'
+                f'{self.header}tellraw @a {{"text":"[mDirt 2.3] - Successfully loaded pack!","color":"red"}}'
             )
         with open(f"{self.minecraftDirectory}/tags/function/tick.json", "w") as tick:
             tick.write(
@@ -898,6 +995,7 @@ class App(QMainWindow):
             from generation.v1_21_4.blocks import BlockGenerator
             from generation.v1_21_4.items import ItemGenerator
             from generation.v1_21_4.recipes import RecipeGenerator
+            from generation.v1_21_4.paintings import PaintingGenerator
 
         #######################
         # CUSTOM BLOCKS       #
@@ -944,6 +1042,22 @@ class App(QMainWindow):
             )
 
             recipeGenerator.generate()
+        
+        #######################
+        # CUSTOM PAINTINGS    #
+        #######################
+
+        if len(self.paintings) > 0 and self.packVersion == "1.21.4":
+            paintingGenerator = PaintingGenerator(
+                self.header,
+                self.namespaceDirectory,
+                self.packNamespace,
+                self.packAuthor,
+                self.paintings,
+                self.minecraftDirectory,
+            )
+
+            paintingGenerator.generate()
 
         #######################
         # RESOURCE PACK       #

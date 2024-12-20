@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uipUYlaO.ui'
+## Form generated from reading UI file 'uiXWHAlS.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -27,7 +27,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(975, 721)
+        MainWindow.resize(975, 718)
         MainWindow.setStyleSheet(u"QPushButton[flat=\"true\"] {\n"
 "    border: 2px solid #808080; /* Gray border */\n"
 "    border-radius: 6px;        /* Rounded corners */\n"
@@ -656,6 +656,127 @@ class Ui_MainWindow(object):
         self.gridLayout_4.addWidget(self.recipeList, 1, 1, 1, 3)
 
         self.mainTab.addTab(self.recipeTab, "")
+        self.paintingTab = QWidget()
+        self.paintingTab.setObjectName(u"paintingTab")
+        self.gridLayoutWidget_4 = QWidget(self.paintingTab)
+        self.gridLayoutWidget_4.setObjectName(u"gridLayoutWidget_4")
+        self.gridLayoutWidget_4.setGeometry(QRect(640, 10, 321, 341))
+        self.gridLayout_5 = QGridLayout(self.gridLayoutWidget_4)
+        self.gridLayout_5.setObjectName(u"gridLayout_5")
+        self.gridLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.paintingEditButton = QPushButton(self.gridLayoutWidget_4)
+        self.paintingEditButton.setObjectName(u"paintingEditButton")
+
+        self.gridLayout_5.addWidget(self.paintingEditButton, 2, 1, 1, 1)
+
+        self.paintingAddButton = QPushButton(self.gridLayoutWidget_4)
+        self.paintingAddButton.setObjectName(u"paintingAddButton")
+
+        self.gridLayout_5.addWidget(self.paintingAddButton, 2, 2, 1, 1)
+
+        self.paintingRemoveButton = QPushButton(self.gridLayoutWidget_4)
+        self.paintingRemoveButton.setObjectName(u"paintingRemoveButton")
+
+        self.gridLayout_5.addWidget(self.paintingRemoveButton, 2, 3, 1, 1)
+
+        self.paintingList = QListWidget(self.gridLayoutWidget_4)
+        self.paintingList.setObjectName(u"paintingList")
+
+        self.gridLayout_5.addWidget(self.paintingList, 1, 1, 1, 3)
+
+        self.formLayoutWidget_4 = QWidget(self.paintingTab)
+        self.formLayoutWidget_4.setObjectName(u"formLayoutWidget_4")
+        self.formLayoutWidget_4.setGeometry(QRect(9, 9, 361, 641))
+        self.formLayout_4 = QFormLayout(self.formLayoutWidget_4)
+        self.formLayout_4.setObjectName(u"formLayout_4")
+        self.formLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.paintingDisplayNameLabel = QLabel(self.formLayoutWidget_4)
+        self.paintingDisplayNameLabel.setObjectName(u"paintingDisplayNameLabel")
+
+        self.formLayout_4.setWidget(2, QFormLayout.LabelRole, self.paintingDisplayNameLabel)
+
+        self.paintingDisplayName = QLineEdit(self.formLayoutWidget_4)
+        self.paintingDisplayName.setObjectName(u"paintingDisplayName")
+
+        self.formLayout_4.setWidget(2, QFormLayout.FieldRole, self.paintingDisplayName)
+
+        self.paintingNameLabel = QLabel(self.formLayoutWidget_4)
+        self.paintingNameLabel.setObjectName(u"paintingNameLabel")
+
+        self.formLayout_4.setWidget(3, QFormLayout.LabelRole, self.paintingNameLabel)
+
+        self.paintingName = QLineEdit(self.formLayoutWidget_4)
+        self.paintingName.setObjectName(u"paintingName")
+
+        self.formLayout_4.setWidget(3, QFormLayout.FieldRole, self.paintingName)
+
+        self.paintingWidthLabel = QLabel(self.formLayoutWidget_4)
+        self.paintingWidthLabel.setObjectName(u"paintingWidthLabel")
+
+        self.formLayout_4.setWidget(4, QFormLayout.LabelRole, self.paintingWidthLabel)
+
+        self.paintingWidth = QSpinBox(self.formLayoutWidget_4)
+        self.paintingWidth.setObjectName(u"paintingWidth")
+        self.paintingWidth.setMinimum(1)
+        self.paintingWidth.setMaximum(16)
+
+        self.formLayout_4.setWidget(4, QFormLayout.FieldRole, self.paintingWidth)
+
+        self.paintingHeightLabel = QLabel(self.formLayoutWidget_4)
+        self.paintingHeightLabel.setObjectName(u"paintingHeightLabel")
+
+        self.formLayout_4.setWidget(5, QFormLayout.LabelRole, self.paintingHeightLabel)
+
+        self.paintingHeight = QSpinBox(self.formLayoutWidget_4)
+        self.paintingHeight.setObjectName(u"paintingHeight")
+        self.paintingHeight.setMinimum(1)
+        self.paintingHeight.setMaximum(16)
+
+        self.formLayout_4.setWidget(5, QFormLayout.FieldRole, self.paintingHeight)
+
+        self.paintingPlaceableLabel = QLabel(self.formLayoutWidget_4)
+        self.paintingPlaceableLabel.setObjectName(u"paintingPlaceableLabel")
+
+        self.formLayout_4.setWidget(6, QFormLayout.LabelRole, self.paintingPlaceableLabel)
+
+        self.paintingPlaceable = QCheckBox(self.formLayoutWidget_4)
+        self.paintingPlaceable.setObjectName(u"paintingPlaceable")
+        self.paintingPlaceable.setChecked(True)
+
+        self.formLayout_4.setWidget(6, QFormLayout.FieldRole, self.paintingPlaceable)
+
+        self.label_8 = QLabel(self.formLayoutWidget_4)
+        self.label_8.setObjectName(u"label_8")
+
+        self.formLayout_4.setWidget(0, QFormLayout.SpanningRole, self.label_8)
+
+        self.label_9 = QLabel(self.formLayoutWidget_4)
+        self.label_9.setObjectName(u"label_9")
+
+        self.formLayout_4.setWidget(1, QFormLayout.SpanningRole, self.label_9)
+
+        self.paintingTextureButton = QPushButton(self.paintingTab)
+        self.paintingTextureButton.setObjectName(u"paintingTextureButton")
+        self.paintingTextureButton.setGeometry(QRect(460, 40, 50, 50))
+        self.paintingTextureButton.setFlat(True)
+        self.paintingTexture = QLabel(self.paintingTab)
+        self.paintingTexture.setObjectName(u"paintingTexture")
+        self.paintingTexture.setGeometry(QRect(460, 40, 50, 50))
+        self.paintingTextureLabel = QLabel(self.paintingTab)
+        self.paintingTextureLabel.setObjectName(u"paintingTextureLabel")
+        self.paintingTextureLabel.setGeometry(QRect(400, 60, 58, 15))
+        self.mainTab.addTab(self.paintingTab, "")
+        self.gridLayoutWidget_4.raise_()
+        self.formLayoutWidget_4.raise_()
+        self.paintingTexture.raise_()
+        self.paintingTextureLabel.raise_()
+        self.paintingTextureButton.raise_()
+        self.enchantmentTab = QWidget()
+        self.enchantmentTab.setObjectName(u"enchantmentTab")
+        self.label_7 = QLabel(self.enchantmentTab)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setGeometry(QRect(410, 240, 201, 61))
+        self.mainTab.addTab(self.enchantmentTab, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -682,7 +803,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"mDirt - A Datapack Tool - v2.2", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"mDirt - A Datapack Tool - v2.3", None))
         self.actionExport_mdrt.setText(QCoreApplication.translate("MainWindow", u"Export (*.mdrt)", None))
         self.actionImport_mdrt.setText(QCoreApplication.translate("MainWindow", u"Import (*.mdrt)", None))
         self.actionDark.setText(QCoreApplication.translate("MainWindow", u"Dark", None))
@@ -824,8 +945,8 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(tooltip)
         self.itemRightClickMode.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The mode of the right-click method.</p><p>Tick: The function runs 20 times per second as long as you are holding rightclick.<br/>Impulse: Runs once whenever you rightclick your item.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Right-Click Mode:", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Right-Click Function:", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Right-Click Mode", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Right-Click Function", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Max Stack Size", None))
 #if QT_CONFIG(tooltip)
         self.itemStackSize.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The stack size of your item! Can be anything from 1 to 99, and can be used for any base item!</p></body></html>", None))
@@ -936,7 +1057,7 @@ class Ui_MainWindow(object):
         self.smeltingOutputButton.setText("")
         self.smeltingInput.setText("")
         self.smeltingOutput.setText("")
-        self.label.setText(QCoreApplication.translate("MainWindow", u"Mode:", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Mode", None))
         self.smeltingModeBox.setItemText(0, QCoreApplication.translate("MainWindow", u"Smelting", None))
         self.smeltingModeBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Smoking", None))
         self.smeltingModeBox.setItemText(2, QCoreApplication.translate("MainWindow", u"Blasting", None))
@@ -976,6 +1097,55 @@ class Ui_MainWindow(object):
         self.recipeList.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The list of all recipes that will be generated when you press Generate Pack.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.mainTab.setTabText(self.mainTab.indexOf(self.recipeTab), QCoreApplication.translate("MainWindow", u"Recipes", None))
+#if QT_CONFIG(tooltip)
+        self.paintingEditButton.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Lets you edit a custom painting you've already added.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.paintingEditButton.setText(QCoreApplication.translate("MainWindow", u"Edit", None))
+#if QT_CONFIG(tooltip)
+        self.paintingAddButton.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Adds your new custom painting to the list!</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.paintingAddButton.setText(QCoreApplication.translate("MainWindow", u"Add", None))
+#if QT_CONFIG(tooltip)
+        self.paintingRemoveButton.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Deletes a painting from the list. <span style=\" font-weight:700;\">Cannot be undone!</span></p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.paintingRemoveButton.setText(QCoreApplication.translate("MainWindow", u"Remove", None))
+#if QT_CONFIG(tooltip)
+        self.paintingList.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The list of all paintings that will be generated when you press Generate Pack.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.paintingDisplayNameLabel.setText(QCoreApplication.translate("MainWindow", u"Display Name", None))
+#if QT_CONFIG(tooltip)
+        self.paintingDisplayName.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The name of the painting your game recognizes.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.paintingDisplayName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Shrek Painting", None))
+        self.paintingNameLabel.setText(QCoreApplication.translate("MainWindow", u"Name", None))
+#if QT_CONFIG(tooltip)
+        self.paintingName.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The name of the painting your game recognizes.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.paintingName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"shrek_painting", None))
+        self.paintingWidthLabel.setText(QCoreApplication.translate("MainWindow", u"Width", None))
+#if QT_CONFIG(tooltip)
+        self.paintingWidth.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The width in blocks your painting will be.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.paintingHeightLabel.setText(QCoreApplication.translate("MainWindow", u"Height", None))
+#if QT_CONFIG(tooltip)
+        self.paintingHeight.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The height in blocks your painting will be.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.paintingPlaceableLabel.setText(QCoreApplication.translate("MainWindow", u"Accessible in Survival?", None))
+#if QT_CONFIG(tooltip)
+        self.paintingPlaceable.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Whether or not you can use the painting in Survival mode. Should almost always be True.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.paintingPlaceable.setText("")
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"WARNING: Minecraft marks Paintings as EXPERIMENTAL!", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"WARNING: If used before 1.21.4, crashes WILL occur!", None))
+#if QT_CONFIG(tooltip)
+        self.paintingTextureButton.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The texture of your painting!</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.paintingTextureButton.setText("")
+        self.paintingTexture.setText("")
+        self.paintingTextureLabel.setText(QCoreApplication.translate("MainWindow", u"Texture", None))
+        self.mainTab.setTabText(self.mainTab.indexOf(self.paintingTab), QCoreApplication.translate("MainWindow", u"Paintings", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"Coming Soon!", None))
+        self.mainTab.setTabText(self.mainTab.indexOf(self.enchantmentTab), QCoreApplication.translate("MainWindow", u"Enchantments", None))
         self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
     # retranslateUi
 
