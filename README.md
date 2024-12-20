@@ -19,7 +19,7 @@ To get your items in game, run /function YOURNAMESPACE:give_items
 | Blocks  100% |                Blocks  100% | 
 | Items  80% |                  Items  80% |
 | Recipes  100% |               Recipes  100% |   
-|              | Paintings  0% |
+|              | Paintings  100% |
 |              | Enchantments  0% |
 
 ## Coming Soon
