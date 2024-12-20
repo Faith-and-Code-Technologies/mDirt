@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>975</width>
-    <height>721</height>
+    <height>718</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>mDirt - A Datapack Tool - v2.2</string>
+   <string>mDirt - A Datapack Tool - v2.3</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QPushButton[flat=&quot;true&quot;] {
@@ -728,14 +728,14 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
        <item row="5" column="0">
         <widget class="QLabel" name="label_4">
          <property name="text">
-          <string>Right-Click Mode:</string>
+          <string>Right-Click Mode</string>
          </property>
         </widget>
        </item>
        <item row="6" column="0">
         <widget class="QLabel" name="label_5">
          <property name="text">
-          <string>Right-Click Function:</string>
+          <string>Right-Click Function</string>
          </property>
         </widget>
        </item>
@@ -1438,7 +1438,7 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
          </rect>
         </property>
         <property name="text">
-         <string>Mode:</string>
+         <string>Mode</string>
         </property>
        </widget>
        <widget class="QComboBox" name="smeltingModeBox">
@@ -1621,6 +1621,248 @@ Created By JupiterDev &amp; JustJoshinDev 2024</string>
         </widget>
        </item>
       </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="paintingTab">
+     <attribute name="title">
+      <string>Paintings</string>
+     </attribute>
+     <widget class="QWidget" name="gridLayoutWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>10</y>
+        <width>321</width>
+        <height>341</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="2" column="1">
+        <widget class="QPushButton" name="paintingEditButton">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Lets you edit a custom painting you've already added.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string>Edit</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QPushButton" name="paintingAddButton">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Adds your new custom painting to the list!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string>Add</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QPushButton" name="paintingRemoveButton">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Deletes a painting from the list. &lt;span style=&quot; font-weight:700;&quot;&gt;Cannot be undone!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string>Remove</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" colspan="3">
+        <widget class="QListWidget" name="paintingList">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The list of all paintings that will be generated when you press Generate Pack.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="formLayoutWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>9</x>
+        <y>9</y>
+        <width>361</width>
+        <height>641</height>
+       </rect>
+      </property>
+      <layout class="QFormLayout" name="formLayout_4">
+       <item row="2" column="0">
+        <widget class="QLabel" name="paintingDisplayNameLabel">
+         <property name="text">
+          <string>Display Name</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="paintingDisplayName">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the painting your game recognizes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="placeholderText">
+          <string>Shrek Painting</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="paintingNameLabel">
+         <property name="text">
+          <string>Name</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="paintingName">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the painting your game recognizes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="placeholderText">
+          <string>shrek_painting</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="paintingWidthLabel">
+         <property name="text">
+          <string>Width</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QSpinBox" name="paintingWidth">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The width in blocks your painting will be.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>16</number>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="paintingHeightLabel">
+         <property name="text">
+          <string>Height</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QSpinBox" name="paintingHeight">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The height in blocks your painting will be.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>16</number>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="paintingPlaceableLabel">
+         <property name="text">
+          <string>Accessible in Survival?</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QCheckBox" name="paintingPlaceable">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Whether or not you can use the painting in Survival mode. Should almost always be True.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>WARNING: Minecraft marks Paintings as EXPERIMENTAL!</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>WARNING: If used before 1.21.4, crashes WILL occur!</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QPushButton" name="paintingTextureButton">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>40</y>
+        <width>50</width>
+        <height>50</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The texture of your painting!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="paintingTexture">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>40</y>
+        <width>50</width>
+        <height>50</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="paintingTextureLabel">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>60</y>
+        <width>58</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Texture</string>
+      </property>
+     </widget>
+     <zorder>gridLayoutWidget_4</zorder>
+     <zorder>formLayoutWidget_4</zorder>
+     <zorder>paintingTexture</zorder>
+     <zorder>paintingTextureLabel</zorder>
+     <zorder>paintingTextureButton</zorder>
+    </widget>
+    <widget class="QWidget" name="enchantmentTab">
+     <attribute name="title">
+      <string>Enchantments</string>
+     </attribute>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>240</y>
+        <width>201</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Coming Soon!</string>
+      </property>
      </widget>
     </widget>
    </widget>
