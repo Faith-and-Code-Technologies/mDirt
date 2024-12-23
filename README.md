@@ -9,11 +9,11 @@ Download the latest release, and run it.
 If you don't understand a field, hover over it and read the tooltip!
 Fill in all the details, press "Generate Pack" when you are ready.
 
-To get your blocks in game, run /function YOURNAMESPACE:give_blocks
+To get your blocks in game, run `/function YOURNAMESPACE:give_blocks`
 
-To get your items in game, run /function YOURNAMESPACE:give_items
+To get your items in game, run `/function YOURNAMESPACE:give_items`
 
-To get your paintings in game, run /function YOURNAMESPACE:give_paintings
+To get your paintings in game, run `/function YOURNAMESPACE:give_paintings`
 
 ## Feature Support
 **If a Feature is not listed for a version, that version will not get support for it!**
