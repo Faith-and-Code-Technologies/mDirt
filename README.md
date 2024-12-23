@@ -23,8 +23,10 @@ To get your items in game, run /function YOURNAMESPACE:give_items
 |              | Enchantments  0% |
 
 ## Coming Soon
-- Custom Components for Custom Items.
-- Custom Enchantments.
+- Custom Components for Custom Items:
+  - To do this, I have to create a way to dynamically generate widgets easily without thousands of lines of boilerplate.
+- Custom Enchantments:
+  - This will not happen until after I create the system mentioned above.
 
 ## In Progress
 - MacOS native binary (@JustJoshinDev)
