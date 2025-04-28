@@ -2,10 +2,9 @@
 ## making Datapacks Is Really Tedious
 
 A tool for easily creating custom features using Minecraft Datapacks.
-**Only Supported for 1.21.3 and up! No previous versions will be added!**
+**Only Supported for 1.21.3 and 1.21.4! No previous versions will be added!**
 
-### Notice: Development has been stopped! I will update it for future versions, but expect NO new versions!
-### Notice: Linux binaries are being dropped for the time being!
+### Notice: Development will continue again in a few months
 
 ## How to use
 Download the latest release, and run it.
