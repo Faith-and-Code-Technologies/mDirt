@@ -204,8 +204,8 @@ class App(QMainWindow):
         self.mainDirectory = f"{os.path.dirname(os.path.abspath(__file__))}/.."
         self.data = json.load(open(f"{self.mainDirectory}/lib/{self.packVersion}_data.json", "r"))
 
-        dataformat =     {"1.21.3": 57, "1.21.4": 61}
-        resourceformat = {"1.21.3": 42, "1.21.4": 46}
+        dataformat =     {"1.21.3": 57, "1.21.4": 61, "1.21.5": 71}
+        resourceformat = {"1.21.3": 42, "1.21.4": 46, "1.21.5": 55}
 
         self.dataFormat = dataformat[self.packVersion]
         self.resourceFormat = resourceformat[self.packVersion]
@@ -223,8 +223,8 @@ class App(QMainWindow):
         self.header = """
         #####################################
         #   This File Was Created By mDirt  #
-        #               v2.3.0              #
-        #   Copyright 2024 by Jupiter Dev   #
+        #               v2.4.0              #
+        #   Copyright 2025 by Jupiter Dev   #
         #####################################
         \n"""
 
@@ -247,7 +247,7 @@ class App(QMainWindow):
     # IMPORT & EXPORT     #
     #######################
 
-    def exportProject(self, version="2.3.0"):
+    def exportProject(self, version="2.4.0"):
         data = {
             "file_type": "mDirtProjectData",
             "version": version,
@@ -271,7 +271,7 @@ class App(QMainWindow):
             },
         }
 
-        if self.ui.packVersion.currentText() == "1.21.4":
+        if self.ui.packVersion.currentText() != "1.21.3":
             data["content"]["elements"]["paintings"] = self.paintings
 
         file = QFileDialog.getExistingDirectory(self, "Save mDirt Project", "")
@@ -280,7 +280,7 @@ class App(QMainWindow):
             with open(f'{file}/mDirtProject.mdrt', "w") as f:
                 json.dump(data, f, indent=4)
 
-    def importProject(self, version="2.3.0"):
+    def importProject(self, version="2.4.0"):
         file, _ = QFileDialog.getOpenFileName(
             self, "Open mDirt Project", "", "mDirt File (*.mdrt)"
         )
@@ -309,7 +309,7 @@ class App(QMainWindow):
         self.items = data["content"]["elements"]["items"]
         self.recipes = data["content"]["elements"]["recipes"]
 
-        if data["content"]["pack_info"]["version"] == "1.21.4":
+        if data["content"]["pack_info"]["version"] != "1.21.3":
             self.paintings = data["content"]["elements"]["paintings"]
             for painting in self.paintings:
                 self.ui.paintingList.addItem(self.paintings[painting]["name"])
@@ -856,7 +856,7 @@ class App(QMainWindow):
         os.mkdir(self.resPackDirectory)
         os.mkdir(f"{self.resPackDirectory}/assets")
 
-        if self.packVersion   == "1.21.3":
+        if self.packVersion == "1.21.3":
             os.mkdir(f"{self.resPackDirectory}/assets/minecraft")
             os.mkdir(f"{self.resPackDirectory}/assets/minecraft/atlases")
             os.mkdir(f"{self.resPackDirectory}/assets/minecraft/models")
@@ -883,6 +883,15 @@ class App(QMainWindow):
             os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures")
             os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures/item")
             os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures/painting")
+        
+        elif self.packVersion == "1.21.5":
+            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}")
+            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/items")
+            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/models")
+            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/models/item")
+            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures")
+            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures/item")
+            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures/painting")
 
         # Pack.mcmeta
         with open(f"{self.resPackDirectory}/pack.mcmeta", "w") as pack:
@@ -898,6 +907,11 @@ class App(QMainWindow):
             from generation.v1_21_4.blocks import BlockResourcer
             from generation.v1_21_4.items import ItemResourcer
             from generation.v1_21_4.paintings import PaintingResourcer
+
+        elif self.packVersion == "1.21.5":
+            from generation.v1_21_5.blocks import BlockResourcer
+            from generation.v1_21_5.items import ItemResourcer
+            from generation.v1_21_5.paintings import PaintingResourcer
 
         if len(self.blocks) > 0:
             blockResourcer = BlockResourcer(
@@ -917,7 +931,7 @@ class App(QMainWindow):
 
             itemResourcer.generate()
         
-        if len(self.paintings) > 0 and self.packVersion == "1.21.4":
+        if len(self.paintings) > 0 and self.packVersion != "1.21.3":
             paintingResourcer = PaintingResourcer(
                 self.resPackDirectory,
                 self.packNamespace,
@@ -971,7 +985,7 @@ class App(QMainWindow):
                 tick.write(self.header)
         with open(f"{self.namespaceDirectory}/function/load.mcfunction", "w") as load:
             load.write(
-                f'{self.header}tellraw @a {{"text":"[mDirt 2.3] - Successfully loaded pack!","color":"red"}}'
+                f'{self.header}tellraw @a {{"text":"[mDirt 2.4] - Successfully loaded pack!","color":"red"}}'
             )
         with open(f"{self.minecraftDirectory}/tags/function/tick.json", "w") as tick:
             tick.write(
@@ -996,6 +1010,12 @@ class App(QMainWindow):
             from generation.v1_21_4.items import ItemGenerator
             from generation.v1_21_4.recipes import RecipeGenerator
             from generation.v1_21_4.paintings import PaintingGenerator
+        
+        elif self.packVersion == "1.21.5":
+            from generation.v1_21_5.blocks import BlockGenerator
+            from generation.v1_21_5.items import ItemGenerator
+            from generation.v1_21_5.recipes import RecipeGenerator
+            from generation.v1_21_5.paintings import PaintingGenerator
 
         #######################
         # CUSTOM BLOCKS       #
@@ -1047,7 +1067,7 @@ class App(QMainWindow):
         # CUSTOM PAINTINGS    #
         #######################
 
-        if len(self.paintings) > 0 and self.packVersion == "1.21.4":
+        if len(self.paintings) > 0 and self.packVersion != "1.21.3":
             paintingGenerator = PaintingGenerator(
                 self.header,
                 self.namespaceDirectory,

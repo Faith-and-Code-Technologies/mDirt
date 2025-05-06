@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiXWHAlS.ui'
+## Form generated from reading UI file 'uiEejReL.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -134,6 +134,7 @@ class Ui_MainWindow(object):
         self.formLayout.setWidget(5, QFormLayout.LabelRole, self.packVersionLabel)
 
         self.packVersion = QComboBox(self.formLayoutWidget)
+        self.packVersion.addItem("")
         self.packVersion.addItem("")
         self.packVersion.addItem("")
         self.packVersion.setObjectName(u"packVersion")
@@ -780,7 +781,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 975, 20))
+        self.menubar.setGeometry(QRect(0, 0, 975, 33))
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName(u"menuFile")
         MainWindow.setMenuBar(self.menubar)
@@ -803,7 +804,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"mDirt - A Datapack Tool - v2.3", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"mDirt - A Datapack Tool - v2.4", None))
         self.actionExport_mdrt.setText(QCoreApplication.translate("MainWindow", u"Export (*.mdrt)", None))
         self.actionImport_mdrt.setText(QCoreApplication.translate("MainWindow", u"Import (*.mdrt)", None))
         self.actionDark.setText(QCoreApplication.translate("MainWindow", u"Dark", None))
@@ -823,15 +824,16 @@ class Ui_MainWindow(object):
         self.packCMDPrefixLabel.setText(QCoreApplication.translate("MainWindow", u"CMD Prefix", None))
         self.packCMDPrefix.setPlaceholderText(QCoreApplication.translate("MainWindow", u"589", None))
         self.packVersionLabel.setText(QCoreApplication.translate("MainWindow", u"Version", None))
-        self.packVersion.setItemText(0, QCoreApplication.translate("MainWindow", u"1.21.4", None))
-        self.packVersion.setItemText(1, QCoreApplication.translate("MainWindow", u"1.21.3", None))
+        self.packVersion.setItemText(0, QCoreApplication.translate("MainWindow", u"1.21.5", None))
+        self.packVersion.setItemText(1, QCoreApplication.translate("MainWindow", u"1.21.4", None))
+        self.packVersion.setItemText(2, QCoreApplication.translate("MainWindow", u"1.21.3", None))
 
 #if QT_CONFIG(tooltip)
         self.packGenerate.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Generates the Data &amp; Resource packs, adding your cool stuff!</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.packGenerate.setText(QCoreApplication.translate("MainWindow", u"Generate Pack", None))
         self.titleLabel.setText(QCoreApplication.translate("MainWindow", u"mDirt - a tool made to help make Datapacks\n"
-"Created By JupiterDev & JustJoshinDev 2024", None))
+"Created By JupiterDev & JustJoshinDev 2025", None))
         self.mainTab.setTabText(self.mainTab.indexOf(self.packDetailsTab), QCoreApplication.translate("MainWindow", u"Datapack Details", None))
         self.blockDisplayNameLabel.setText(QCoreApplication.translate("MainWindow", u"Display Name", None))
         self.blockNameLabel.setText(QCoreApplication.translate("MainWindow", u"Name", None))

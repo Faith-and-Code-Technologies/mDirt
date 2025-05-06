@@ -138,6 +138,11 @@
       </property>
       <item>
        <property name="text">
+        <string>1.21.5</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
         <string>1.21.4</string>
        </property>
       </item>
@@ -161,7 +166,7 @@
    </property>
    <property name="text">
     <string>mDirt - a tool made to help make Datapacks
-Created By JupiterDev &amp; JustJoshinDev 2024</string>
+Created By JupiterDev &amp; JustJoshinDev 2025</string>
    </property>
   </widget>
  </widget>

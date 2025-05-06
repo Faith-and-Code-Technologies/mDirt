@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 
 def get_minecraft_files(version: str):
-    minecraft_path = f"/home/joel/.minecraft/versions/{version}/{version}.jar"
+    minecraft_path = f"C:/Users/wiseg/AppData/Roaming/.minecraft/versions/{version}/{version}.jar"
 
     if not os.path.exists(minecraft_path):
         return
@@ -44,4 +44,4 @@ def get_minecraft_files(version: str):
 
 blocks = []
 items = []
-get_minecraft_files("1.21.4")
+get_minecraft_files("1.21.5")

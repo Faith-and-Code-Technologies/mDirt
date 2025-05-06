@@ -2,9 +2,9 @@
 ## making Datapacks Is Really Tedious
 
 A tool for easily creating custom features using Minecraft Datapacks.
-**Only Supported for 1.21.3 and 1.21.4! No previous versions will be added!**
+**Supported for 1.21.3, 1.21.4, and now 1.21.5**
 
-### Notice: Development will continue again in a few months
+### Notice: 1.21.5 support has been released!
 
 ## How to use
 Download the latest release, and run it.
@@ -19,13 +19,13 @@ To get your paintings in game, run `/function YOURNAMESPACE:give_paintings`
 
 ## Feature Support
 **If a Feature is not listed for a version, that version will not get support for it!**
-| 1.21.3                      |  1.21.4                      |
-| ------------------------ |  ------------------------ |
-| Blocks  100% |                Blocks  100% | 
-| Items  80% |                  Items  80% |
-| Recipes  100% |               Recipes  100% |   
-|              | Paintings  100% |
-|              | Enchantments  0% |
+| 1.21.3 | 1.21.4 | 1.21.5 |
+| -- |  -- | -- |
+| Blocks  100% | Blocks  100% | Blocks  100% |
+| Items  80% | Items  80% | Items 80% |
+| Recipes  100% | Recipes  100% | Recipes 100% |
+|  | Paintings  100% | Paintings 100% |
+|  | Enchantments  0% | Enchantments 0% |
 
 ## Coming Soon
 - Custom Components for Custom Items:
