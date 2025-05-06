@@ -644,7 +644,7 @@ class App(QMainWindow):
             "outputCount": self.ui.slot9Count.value(),
             "outputCount2": self.ui.stoneCuttingCount.value(),
             "exact": self.ui.exactlyRadio.isChecked(),
-            "shapeless": self.ui.exactlyRadio.isChecked(),
+            "shapeless": self.ui.shapelessRadio.isChecked(),
             "type": mode
         }
 

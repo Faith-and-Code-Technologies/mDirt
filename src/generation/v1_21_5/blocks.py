@@ -114,7 +114,7 @@ class BlockGenerator:
             file.write(self.header)
             for block in self.blocks:
                 file.write(
-                    f'give @s item_frame[item_name=\'{{"italic":false,"text":"{self.blocks[block]["displayName"]}"}}\',item_model="{self.packNamespace}:{self.blocks[block]["name"]}",entity_data={{id:"minecraft:item_frame",Fixed:1b,Invisible:1b,Silent:1b,Invulnerable:1b,Facing:1,Tags:["{self.packAuthor}.item_frame_block","{self.packAuthor}.{self.blocks[block]["name"]}"]}}] 1\n'
+                    f'give @s item_frame[item_name={{italic:false,text:"{self.blocks[block]["displayName"]}"}},item_model="{self.packNamespace}:{self.blocks[block]["name"]}",entity_data={{id:"minecraft:item_frame",Fixed:1b,Invisible:1b,Silent:1b,Invulnerable:1b,Facing:1,Tags:["{self.packAuthor}.item_frame_block","{self.packAuthor}.{self.blocks[block]["name"]}"]}}] 1\n'
                 )
 
         # Loot Tables
@@ -125,7 +125,7 @@ class BlockGenerator:
             ) as file:
                 if self.blocks[block]["blockDrop"] == "self":
                     file.write(
-                        f'{{"pools": [{{"rolls": 1,"entries": [{{"type": "minecraft:item","name": "minecraft:item_frame"}}],"functions": [{{"function": "minecraft:set_components","components": {{"minecraft:item_model": "{self.packNamespace}:{self.blocks[block]["name"]}","minecraft:custom_name": "{{\\"italic\\":false,\\"text\\":\\"{self.blocks[block]["displayName"]}\\"}}","minecraft:entity_data": {{"id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{self.blocks[block]["name"]}"]}}}}}}]}}]}}'
+                        f'{{"pools": [{{"rolls": 1,"entries": [{{"type": "minecraft:item","name": "minecraft:item_frame"}}],"functions": [{{"function": "minecraft:set_components","components": {{"minecraft:item_model": "{self.packNamespace}:{self.blocks[block]["name"]}","minecraft:custom_name": {{"italic":false,"text":"{self.blocks[block]["displayName"]}"}},"minecraft:entity_data": {{"id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{self.blocks[block]["name"]}"]}}}}}}]}}]}}'
                     )
                 else:
                     if self.blocks[block]["blockDrop"] not in self.items and self.blocks[block]["blockDrop"] not in self.blocks:
@@ -135,12 +135,12 @@ class BlockGenerator:
                     elif self.blocks[block]["blockDrop"] in self.items:
                         item = self.items[self.blocks[block]["blockDrop"]]
                         file.write(
-                            f'{{"pools": [{{"rolls": 1,"entries": [{{"type": "minecraft:item","name": "{item["baseItem"]}","functions":[{{"function": "minecraft:set_components","components":{{"minecraft:item_name": "{{\\"italic\\":false,\\"text\\":\\"{item["displayName"]}\\"}}","minecraft:max_stack_size":{item["stackSize"]},"minecraft:item_model": "{self.packNamespace}:{item["name"]}"}}}}]}}]}}]}}'
+                            f'{{"pools": [{{"rolls": 1,"entries": [{{"type": "minecraft:item","name": "{item["baseItem"]}","functions":[{{"function": "minecraft:set_components","components":{{"minecraft:item_name": {{"italic":false,"text":"{item["displayName"]}"}},"minecraft:max_stack_size":{item["stackSize"]},"minecraft:item_model": "{self.packNamespace}:{item["name"]}"}}}}]}}]}}]}}'
                         )
                     elif self.blocks[block]["blockDrop"] in self.blocks:
                         blck = self.blocks[self.blocks[block]["blockDrop"]]
                         file.write(
-                            f'{{"pools": [{{"rolls": 1,"entries": [{{"type": "minecraft:item","name": "minecraft:item_frame"}}],"functions": [{{"function": "minecraft:set_components","components": {{"minecraft:item_model": "{self.packNamespace}:{blck["name"]}","minecraft:custom_name": "{{\\"italic\\":false,\\"text\\":\\"{blck["displayName"]}\\"}}","minecraft:entity_data": {{"id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{blck["name"]}"]}}}}}}]}}]}}'
+                            f'{{"pools": [{{"rolls": 1,"entries": [{{"type": "minecraft:item","name": "minecraft:item_frame"}}],"functions": [{{"function": "minecraft:set_components","components": {{"minecraft:item_model": "{self.packNamespace}:{blck["name"]}","minecraft:custom_name": {{"italic":false,"text":"{blck["displayName"]}"}},"minecraft:entity_data": {{"id": "minecraft:item_frame","Fixed": true,"Invisible": true,"Silent": true,"Invulnerable": true,"Facing": 1,"Tags": ["{self.packAuthor}.item_frame_block","{self.packAuthor}.{blck["name"]}"]}}}}}}]}}]}}'
                         )
 
 
