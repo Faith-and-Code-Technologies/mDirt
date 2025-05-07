@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>mDirt - A Datapack Tool - v2.4</string>
+   <string>mDirt - A Datapack Tool - v2.5</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QPushButton[flat=&quot;true&quot;] {
@@ -155,6 +155,11 @@ QPushButton[flat=&quot;true&quot;]:pressed {
          <property name="enabled">
           <bool>false</bool>
          </property>
+         <item>
+          <property name="text">
+           <string>1.21.6</string>
+          </property>
+         </item>
          <item>
           <property name="text">
            <string>1.21.5</string>

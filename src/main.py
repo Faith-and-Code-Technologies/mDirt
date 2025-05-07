@@ -1,11 +1,13 @@
-import datetime, json, os, re, sys, details
+import datetime, json, os, re, sys, details, ui_updater
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QImage, QPixmap, QActionEvent, QAction
-from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QMessageBox, QWidget
+from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QMessageBox, QWidget, QDialog
 
 from select_item import Ui_Form
 from ui import Ui_MainWindow
+
+from updater import Updater, ModuleGrabber
 
 
 def alert(message):
@@ -15,7 +17,6 @@ def alert(message):
     messageBox.setWindowTitle("Alert")
     messageBox.setStandardButtons(QMessageBox.StandardButton.Ok)
     messageBox.exec()
-
 
 def checkInputValid(input_, type_):
     return (
@@ -50,10 +51,12 @@ def checkInputValid(input_, type_):
         )
     )
 
-
 class App(QMainWindow):
     def __init__(self):
         super().__init__()
+        
+        self.appVersion = "2.1.0"
+        self.checkUpdate()
 
         # Make PyCharm stop yelling at me
         self.exists = {}
@@ -91,9 +94,6 @@ class App(QMainWindow):
 
         # Launch Details Menu
         self.launchDetails()
-
-        # Setup Needed Data
-        
 
         # Block Signals
         self.ui.blockAddButton.clicked.connect(self.addBlock)
@@ -154,8 +154,8 @@ class App(QMainWindow):
         self.enableRightClickFunc()
 
         # Import & Export
-        self.ui.actionImport_mdrt.triggered.connect(self.importProject)
-        self.ui.actionExport_mdrt.triggered.connect(self.exportProject)
+        self.ui.actionImport_mdrt.triggered.connect(lambda: self.importProject(self.appVersion))
+        self.ui.actionExport_mdrt.triggered.connect(lambda: self.exportProject(self.appVersion))
 
         # Generate
         self.ui.packGenerate.clicked.connect(self.generateDataPack)
@@ -198,14 +198,21 @@ class App(QMainWindow):
         
         detail_popup.close()
 
+        self.grabModule()
+
         self.setupData()
-        
+    
+    def grabModule(self):
+        self.moduleGrab = ModuleGrabber(
+            base_url="https://github.com/Faith-and-Code-Technologies/mDirt-2/tree/main/modules"
+        )
+
     def setupData(self):
         self.mainDirectory = f"{os.path.dirname(os.path.abspath(__file__))}/.."
         self.data = json.load(open(f"{self.mainDirectory}/lib/{self.packVersion}_data.json", "r"))
 
-        dataformat =     {"1.21.3": 57, "1.21.4": 61, "1.21.5": 71}
-        resourceformat = {"1.21.3": 42, "1.21.4": 46, "1.21.5": 55}
+        dataformat =     {"1.21.3": 57, "1.21.4": 61, "1.21.5": 71, "1.21.6": 76}
+        resourceformat = {"1.21.3": 42, "1.21.4": 46, "1.21.5": 55, "1.21.6": 60}
 
         self.dataFormat = dataformat[self.packVersion]
         self.resourceFormat = resourceformat[self.packVersion]
@@ -220,13 +227,26 @@ class App(QMainWindow):
         self.recipe = {}
         self.paintingTexture = None
 
-        self.header = """
+        self.header = f"""
         #####################################
         #   This File Was Created By mDirt  #
-        #               v2.4.0              #
+        #               v{self.appVersion}              #
         #   Copyright 2025 by Jupiter Dev   #
         #####################################
         \n"""
+
+    def checkUpdate(self):
+        self.updater = Updater(
+            repo_url="https://github.com/Faith-and-Code-Technologies/mDirt-2",
+            current_version=self.appVersion
+        )
+
+        if self.updater.is_update_available():
+            # self.update_popup = QDialog()
+            # self.update_form = ui_updater.Ui_Dialog()
+            # self.update_form.setupUi(self.update_popup)
+            # self.update_popup.show()
+            pass
 
     def parseCMD(self, num):
         if checkInputValid(self.ui.packCMDPrefix, "integer") == "empty":
@@ -247,7 +267,7 @@ class App(QMainWindow):
     # IMPORT & EXPORT     #
     #######################
 
-    def exportProject(self, version="2.4.0"):
+    def exportProject(self, version):
         data = {
             "file_type": "mDirtProjectData",
             "version": version,
@@ -280,7 +300,7 @@ class App(QMainWindow):
             with open(f'{file}/mDirtProject.mdrt', "w") as f:
                 json.dump(data, f, indent=4)
 
-    def importProject(self, version="2.4.0"):
+    def importProject(self, version):
         file, _ = QFileDialog.getOpenFileName(
             self, "Open mDirt Project", "", "mDirt File (*.mdrt)"
         )
@@ -892,6 +912,15 @@ class App(QMainWindow):
             os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures")
             os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures/item")
             os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures/painting")
+        
+        elif self.packVersion == "1.21.6":
+            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}")
+            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/items")
+            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/models")
+            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/models/item")
+            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures")
+            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures/item")
+            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures/painting")
 
         # Pack.mcmeta
         with open(f"{self.resPackDirectory}/pack.mcmeta", "w") as pack:
@@ -912,6 +941,11 @@ class App(QMainWindow):
             from generation.v1_21_5.blocks import BlockResourcer
             from generation.v1_21_5.items import ItemResourcer
             from generation.v1_21_5.paintings import PaintingResourcer
+        
+        elif self.packVersion == "1.21.6":
+            from generation.v1_21_6.blocks import BlockResourcer
+            from generation.v1_21_6.items import ItemResourcer
+            from generation.v1_21_6.paintings import PaintingResourcer
 
         if len(self.blocks) > 0:
             blockResourcer = BlockResourcer(
@@ -985,7 +1019,7 @@ class App(QMainWindow):
                 tick.write(self.header)
         with open(f"{self.namespaceDirectory}/function/load.mcfunction", "w") as load:
             load.write(
-                f'{self.header}tellraw @a {{"text":"[mDirt 2.4] - Successfully loaded pack!","color":"red"}}'
+                f'{self.header}tellraw @a {{"text":"[mDirt 2.5] - Successfully loaded pack!","color":"red"}}'
             )
         with open(f"{self.minecraftDirectory}/tags/function/tick.json", "w") as tick:
             tick.write(
@@ -1016,6 +1050,12 @@ class App(QMainWindow):
             from generation.v1_21_5.items import ItemGenerator
             from generation.v1_21_5.recipes import RecipeGenerator
             from generation.v1_21_5.paintings import PaintingGenerator
+        
+        elif self.packVersion == "1.21.6":
+            from generation.v1_21_6.blocks import BlockGenerator
+            from generation.v1_21_6.items import ItemGenerator
+            from generation.v1_21_6.recipes import RecipeGenerator
+            from generation.v1_21_6.paintings import PaintingGenerator
 
         #######################
         # CUSTOM BLOCKS       #

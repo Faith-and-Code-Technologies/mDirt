@@ -44,4 +44,4 @@ def get_minecraft_files(version: str):
 
 blocks = []
 items = []
-get_minecraft_files("1.21.5")
+get_minecraft_files("25w19a")
