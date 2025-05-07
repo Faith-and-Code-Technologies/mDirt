@@ -204,8 +204,9 @@ class App(QMainWindow):
     
     def grabModule(self):
         self.moduleGrab = ModuleGrabber(
-            base_url="https://github.com/Faith-and-Code-Technologies/mDirt-2/tree/main/modules"
+            base_url="https://github.com/Faith-and-Code-Technologies/mDirt-2/raw/main/"
         )
+        self.moduleGrab.update_module(version=self.packVersion)
 
     def setupData(self):
         self.mainDirectory = f"{os.path.dirname(os.path.abspath(__file__))}/.."

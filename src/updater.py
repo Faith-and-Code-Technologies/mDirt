@@ -9,36 +9,33 @@ import os
 import shutil
 import sys
 import subprocess
+from io import BytesIO
 
 class ModuleGrabber:
-    def __init__(self, base_url: str):
+    def __init__(self, base_url: str, download_folder: str = "src/generation"):
         self.base_url = base_url.rstrip("/")
+        self.download_folder = download_folder
 
-    def update_module(self, module_name: str, zip_filename: str) -> bool:
-        zip_url = f"{self.base_url}/{zip_filename}"
+    def update_module(self, version: str) -> bool:
+        formatted_version = self.format_version(version)
+        zip_url = f"{self.base_url}/modules/{formatted_version}.zip"
         response = requests.get(zip_url)
         if response.status_code != 200:
             return False
+        return self._extract_zip(response.content, formatted_version)
 
-        temp_extract_path = f"temp_update/{module_name}"
-
+    def _extract_zip(self, zip_data: bytes, module_name: str) -> bool:
         try:
-            with zipfile.ZipFile(io.BytesIO(response.content)) as zip_ref:
-                zip_ref.extractall(temp_extract_path)
-
-            extracted_folder = os.path.join(temp_extract_path, module_name)
-            target_folder = os.path.join("src", "generation", module_name)
-
-            if os.path.exists(target_folder):
-                shutil.rmtree(target_folder)
-
-            shutil.move(extracted_folder, target_folder)
-            shutil.rmtree("temp_update")
+            target_dir = os.path.join(self.download_folder, module_name)
+            os.makedirs(target_dir, exist_ok=True)
+            with zipfile.ZipFile(BytesIO(zip_data)) as zip_ref:
+                zip_ref.extractall(target_dir)
             return True
         except Exception:
-            if os.path.exists("temp_update"):
-                shutil.rmtree("temp_update")
             return False
+
+    def format_version(self, version: str) -> str:
+        return f"v{version.replace('.', '_')}"
 
 
 class Updater:
