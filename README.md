@@ -1,40 +1,85 @@
-# mDirt
-## making Datapacks Is Really Tedious
+# mDirt - A Minecraft Datapack Generator
+##### making Datapacks is really tedious
+Creating custom Minecraft datapacks can be time-consuming and complex. **mDirt** simplifies this process by providing an easy-to-use tool for generating datapacks with custom features like blocks, items, recipes, and more.
 
-A tool for easily creating custom features using Minecraft Datapacks.
-**Supported for 1.21.3, 1.21.4, and now 1.21.5**
+---
 
-### Notice: 1.21.5 support has been released!
+### 🛠️ **Supported Versions**
+- **Minecraft Versions Supported**: 1.21.3, 1.21.4, and 1.21.5  
+  - Full compatibility for **1.21.5** has been added.
 
-## How to use
-Download the latest release, and run it.
-If you don't understand a field, hover over it and read the tooltip!
-Fill in all the details, press "Generate Pack" when you are ready.
+---
 
-To get your blocks in game, run `/function YOURNAMESPACE:give_blocks`
+### 🚨 **Version 1.21.5 Support**
+We’ve now added official support for **Minecraft 1.21.5**, enabling you to create and export datapacks for the latest Minecraft version. This includes full feature compatibility for blocks, items, recipes, and paintings.
 
-To get your items in game, run `/function YOURNAMESPACE:give_items`
+---
 
-To get your paintings in game, run `/function YOURNAMESPACE:give_paintings`
+### 💻 **How to Use mDirt**
 
-## Feature Support
-**If a Feature is not listed for a version, that version will not get support for it!**
-| 1.21.3 | 1.21.4 | 1.21.5 |
-| -- |  -- | -- |
-| Blocks  100% | Blocks  100% | Blocks  100% |
-| Items  80% | Items  80% | Items 80% |
-| Recipes  100% | Recipes  100% | Recipes 100% |
-|  | Paintings  100% | Paintings 100% |
-|  | Enchantments  0% | Enchantments 0% |
+1. **Download and Install**
+   - Head over to the [Releases Page](https://github.com/Faith-and-Code-Technologies/mDirt-2/releases) and download the latest version of **mDirt**. 
+   - **Windows Only**: The release contains a pre-packaged binary created using **PyInstaller**, which means you don't need Python or any other dependencies to run the app.
+   - Once downloaded, extract the folder and simply **run the executable** (`mDirt.exe`), and you're ready to start generating custom Minecraft datapacks.
 
-## Coming Soon
-- Custom Components for Custom Items:
-  - To do this, I have to create a way to dynamically generate widgets easily without thousands of lines of boilerplate.
-- Custom Enchantments:
-  - This will not happen until after I create the system mentioned above.
+2. **Using the Interface**
+   - **Tooltips**: Hover over any field to get a description and guide on how to fill it out.
+   - **Fill in the Details**: Customize your datapack by entering information such as block names, item properties, recipe details, etc.
+   
+3. **Generate Your Datapack**
+   - Once all fields are filled out, click the **"Generate Pack"** button to create your datapack.
+   - mDirt will package everything into a datapack and ready it for export.
 
-## Credits
-The tool was made entirely by me, with lots of help from @JustJoshinDev.
-Some Datapack things, such as the method for creating custom blocks, was developed by others:
+4. **Deploying Your Datapack in Minecraft**
+  - Place the generated datapack into your world’s **datapacks** folder, and place the generated resourcepack into the **resourcepacks** folder.
+    - Be sure to enable the resourcepack!
+  - After generating the datapack, use the following commands in Minecraft to get your custom features:
+    - **Blocks**: `/function YOURNAMESPACE:give_blocks`
+    - **Items**: `/function YOURNAMESPACE:give_items`
+    - **Paintings**: `/function YOURNAMESPACE:give_paintings`
 
-[Admin](https://youtube.com/@WASDBuildTeam) for some custom block methods.
+---
+
+### 🧩 **Feature Support by Version**
+
+**Note**: If a feature is not listed for a specific version, that version **does not** support it.
+
+| Feature          | 1.21.3 | 1.21.4 | 1.21.5 |
+|------------------|--------|--------|--------|
+| **Blocks**       | ✅ 100%   | ✅ 100%   | ✅ 100%   |
+| **Items**        | ✅ 80%    | ✅ 80%    | ✅ 80%    |
+| **Recipes**      | ✅ 100%   | ✅ 100%   | ✅ 100%   |
+| **Paintings**    | ❌ -      | ✅ 100%   | ✅ 100%   |
+| **Enchantments** | ❌ -      | ❌ 0%     | ❌ 0%     |
+
+---
+
+### 🚀 **Coming Soon**
+
+- **Custom Components for Custom Items**
+  - We’re currently working on a system to generate dynamic components for custom items and blocks. This will help eliminate the need for writing complex boilerplate code, making the process easier and faster for users.
+  
+- **Custom Enchantments**
+  - Full support for creating custom enchantments will be available after the system for custom item components is completed. Stay tuned for future updates!
+
+---
+
+### 💡 **Tips & Best Practices**
+
+- **Namespaces**: Please ensure the Namespace the program asks you to define doesn't clash with any other datapack you may be using!
+- **Testing**: After generating your datapack, it's always a good idea to test it in a separate Minecraft world before adding it to your main world.
+- **Backing Up**: As always, back up your Minecraft world before applying new datapacks, especially when using custom features.
+
+---
+
+### 🙌 **Credits**
+
+- **mDirt** was created by **@TheJupiterDev** and **@JustJoshinDev**.
+- Special thanks to **[Admin](https://youtube.com/@WASDBuildTeam)** for his custom block generation method.
+  
+---
+
+### 🌍 **Get Involved**
+We welcome contributions and suggestions! If you have ideas or find bugs, please create an issue or open a pull request on the [GitHub Repository](https://github.com/Faith-and-Code-Technologies/mDirt-2).
+
+---
