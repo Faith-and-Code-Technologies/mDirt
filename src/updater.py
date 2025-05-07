@@ -16,6 +16,15 @@ import sys
 import zipfile
 import requests
 from io import BytesIO
+from PySide6.QtWidgets import QMessageBox
+
+def alert(message):
+    messageBox = QMessageBox()
+    messageBox.setIcon(QMessageBox.Icon.Information)
+    messageBox.setText(message)
+    messageBox.setWindowTitle("Alert")
+    messageBox.setStandardButtons(QMessageBox.StandardButton.Ok)
+    messageBox.exec()
 
 class ModuleGrabber:
     def __init__(self, base_url: str, download_folder: str = "src/generation", data_folder: str = "lib"):
@@ -33,6 +42,7 @@ class ModuleGrabber:
         zip_url = f"{self.base_url}/modules/{formatted_version}.zip"
         response = requests.get(zip_url)
         if response.status_code != 200:
+            alert(f"Error downloading mDirt Modules. Failed with status code {response.status_code}. Check your internet connection and try again. If the problem persists, submit an issue here: https://github.com/Faith-and-Code-Technologies/mDirt-2/issues")
             return False
         extracted = self._extract_zip(response.content, formatted_version)
         data_downloaded = self.download_data_file(version)
@@ -42,6 +52,7 @@ class ModuleGrabber:
         data_url = f"{self.base_url}/lib/{version}_data.json"
         response = requests.get(data_url)
         if response.status_code != 200:
+            alert(f"Error downloading mDirt Data. Failed with status code {response.status_code}. Check your internet connection and try again. If the problem persists, submit an issue here: https://github.com/Faith-and-Code-Technologies/mDirt-2/issues")
             return False
         try:
             # Ensure 'lib' is created at the root level of '_internal' when bundled
@@ -51,6 +62,7 @@ class ModuleGrabber:
                 f.write(response.content)
             return True
         except Exception:
+            alert(f"Error downloading mDirt Modules. Check your internet connection and try again. If the problem persists, submit an issue here: https://github.com/Faith-and-Code-Technologies/mDirt-2/issues")
             return False
 
     def _extract_zip(self, zip_data: bytes, module_name: str) -> bool:
@@ -62,6 +74,7 @@ class ModuleGrabber:
                 zip_ref.extractall(target_dir)
             return True
         except Exception:
+            alert(f"Error extracting mDirt Modules. Check your internet connection and try again. If the problem persists, submit an issue here: https://github.com/Faith-and-Code-Technologies/mDirt-2/issues")
             return False
 
     def format_version(self, version: str) -> str:
@@ -70,17 +83,11 @@ class ModuleGrabber:
 
 class Updater:
     def __init__(self, repo_url: str, current_version: str):
-        """
-        :param repo_url: GitHub repo URL (e.g., 'https://github.com/user/repo')
-        :param current_version: Current version of the app (e.g., '1.0.0')
-        """
-        self.repo_url = repo_url.rstrip("/")  # Remove trailing slashes if any
+        self.repo_url = repo_url.rstrip("/")
         self.current_version = current_version
-        # Construct the correct API URL to fetch the latest release
         self.api_url = f"https://api.github.com/repos/{self.repo_url.split('/')[-2]}/{self.repo_url.split('/')[-1]}/releases/latest"
         
     def get_latest_release_info(self):
-        """Fetch the latest release information from GitHub."""
         try:
             response = requests.get(self.api_url)
             if response.status_code != 200:
@@ -104,7 +111,6 @@ class Updater:
         if not release_info:
             return False
 
-        # Get the latest release ZIP link
         asset_url = next(
             (asset["browser_download_url"] for asset in release_info["assets"] if asset["name"].endswith(".zip")), 
             None
@@ -113,24 +119,20 @@ class Updater:
             return False
 
         try:
-            # Download the release ZIP
             response = requests.get(asset_url, stream=True)
             if response.status_code != 200:
                 return False
 
-            # Extract the ZIP to a temporary folder
             with zipfile.ZipFile(io.BytesIO(response.content)) as zip_ref:
                 zip_ref.extractall("app_update")
 
-            # Path to the extracted files
             extracted_exe_path = os.path.join("app_update", exe_name)
             current_exe_path = sys.argv[0]
 
             if not os.path.exists(extracted_exe_path):
                 shutil.rmtree("app_update")
                 return False
-
-            # Update all files, including the internal folder
+            
             internal_folder = os.path.join("app_update", "_internal")
             if os.path.exists(internal_folder):
                 target_internal_folder = os.path.join("_internal")
@@ -138,7 +140,6 @@ class Updater:
                     shutil.rmtree(target_internal_folder)
                 shutil.move(internal_folder, target_internal_folder)
 
-            # Replace the exe file (this requires a workaround to restart the app)
             updater_script = f"""
             import time, shutil, os
             time.sleep(1)
