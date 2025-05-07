@@ -60,7 +60,7 @@ class App(QMainWindow):
     def __init__(self):
         super().__init__()
         
-        self.appVersion = "2.5.0"
+        self.appVersion = "2.5.1"
         # self.checkUpdate()
 
         # Make PyCharm stop yelling at me
@@ -236,8 +236,8 @@ class App(QMainWindow):
         self.mainDirectory = f"{os.path.dirname(os.path.abspath(__file__))}/.."
         self.data = json.load(open(f"{self.mainDirectory}/lib/{self.packVersion}_data.json", "r"))
 
-        dataformat = self.version_json["dataformat"][self.packVersion]
-        resourceformat = self.version_json["resourceformat"][self.packVersion]
+        dataformat = self.version_json["dataformat"]
+        resourceformat = self.version_json["resourceformat"]
 
         self.dataFormat = dataformat[self.packVersion]
         self.resourceFormat = resourceformat[self.packVersion]
