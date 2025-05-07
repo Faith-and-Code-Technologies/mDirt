@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiVsPTGD.ui'
+## Form generated from reading UI file 'uiiDERog.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -688,70 +688,65 @@ class Ui_MainWindow(object):
         self.formLayout_4 = QFormLayout(self.formLayoutWidget_4)
         self.formLayout_4.setObjectName(u"formLayout_4")
         self.formLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.label_8 = QLabel(self.formLayoutWidget_4)
+        self.label_8.setObjectName(u"label_8")
+
+        self.formLayout_4.setWidget(0, QFormLayout.SpanningRole, self.label_8)
+
         self.paintingDisplayNameLabel = QLabel(self.formLayoutWidget_4)
         self.paintingDisplayNameLabel.setObjectName(u"paintingDisplayNameLabel")
 
-        self.formLayout_4.setWidget(2, QFormLayout.LabelRole, self.paintingDisplayNameLabel)
+        self.formLayout_4.setWidget(1, QFormLayout.LabelRole, self.paintingDisplayNameLabel)
 
         self.paintingDisplayName = QLineEdit(self.formLayoutWidget_4)
         self.paintingDisplayName.setObjectName(u"paintingDisplayName")
 
-        self.formLayout_4.setWidget(2, QFormLayout.FieldRole, self.paintingDisplayName)
+        self.formLayout_4.setWidget(1, QFormLayout.FieldRole, self.paintingDisplayName)
 
         self.paintingNameLabel = QLabel(self.formLayoutWidget_4)
         self.paintingNameLabel.setObjectName(u"paintingNameLabel")
 
-        self.formLayout_4.setWidget(3, QFormLayout.LabelRole, self.paintingNameLabel)
+        self.formLayout_4.setWidget(2, QFormLayout.LabelRole, self.paintingNameLabel)
 
         self.paintingName = QLineEdit(self.formLayoutWidget_4)
         self.paintingName.setObjectName(u"paintingName")
 
-        self.formLayout_4.setWidget(3, QFormLayout.FieldRole, self.paintingName)
+        self.formLayout_4.setWidget(2, QFormLayout.FieldRole, self.paintingName)
 
         self.paintingWidthLabel = QLabel(self.formLayoutWidget_4)
         self.paintingWidthLabel.setObjectName(u"paintingWidthLabel")
 
-        self.formLayout_4.setWidget(4, QFormLayout.LabelRole, self.paintingWidthLabel)
+        self.formLayout_4.setWidget(3, QFormLayout.LabelRole, self.paintingWidthLabel)
 
         self.paintingWidth = QSpinBox(self.formLayoutWidget_4)
         self.paintingWidth.setObjectName(u"paintingWidth")
         self.paintingWidth.setMinimum(1)
         self.paintingWidth.setMaximum(16)
 
-        self.formLayout_4.setWidget(4, QFormLayout.FieldRole, self.paintingWidth)
+        self.formLayout_4.setWidget(3, QFormLayout.FieldRole, self.paintingWidth)
 
         self.paintingHeightLabel = QLabel(self.formLayoutWidget_4)
         self.paintingHeightLabel.setObjectName(u"paintingHeightLabel")
 
-        self.formLayout_4.setWidget(5, QFormLayout.LabelRole, self.paintingHeightLabel)
+        self.formLayout_4.setWidget(4, QFormLayout.LabelRole, self.paintingHeightLabel)
 
         self.paintingHeight = QSpinBox(self.formLayoutWidget_4)
         self.paintingHeight.setObjectName(u"paintingHeight")
         self.paintingHeight.setMinimum(1)
         self.paintingHeight.setMaximum(16)
 
-        self.formLayout_4.setWidget(5, QFormLayout.FieldRole, self.paintingHeight)
+        self.formLayout_4.setWidget(4, QFormLayout.FieldRole, self.paintingHeight)
 
         self.paintingPlaceableLabel = QLabel(self.formLayoutWidget_4)
         self.paintingPlaceableLabel.setObjectName(u"paintingPlaceableLabel")
 
-        self.formLayout_4.setWidget(6, QFormLayout.LabelRole, self.paintingPlaceableLabel)
+        self.formLayout_4.setWidget(5, QFormLayout.LabelRole, self.paintingPlaceableLabel)
 
         self.paintingPlaceable = QCheckBox(self.formLayoutWidget_4)
         self.paintingPlaceable.setObjectName(u"paintingPlaceable")
         self.paintingPlaceable.setChecked(True)
 
-        self.formLayout_4.setWidget(6, QFormLayout.FieldRole, self.paintingPlaceable)
-
-        self.label_8 = QLabel(self.formLayoutWidget_4)
-        self.label_8.setObjectName(u"label_8")
-
-        self.formLayout_4.setWidget(0, QFormLayout.SpanningRole, self.label_8)
-
-        self.label_9 = QLabel(self.formLayoutWidget_4)
-        self.label_9.setObjectName(u"label_9")
-
-        self.formLayout_4.setWidget(1, QFormLayout.SpanningRole, self.label_9)
+        self.formLayout_4.setWidget(5, QFormLayout.FieldRole, self.paintingPlaceable)
 
         self.paintingTextureButton = QPushButton(self.paintingTab)
         self.paintingTextureButton.setObjectName(u"paintingTextureButton")
@@ -769,12 +764,6 @@ class Ui_MainWindow(object):
         self.paintingTexture.raise_()
         self.paintingTextureLabel.raise_()
         self.paintingTextureButton.raise_()
-        self.enchantmentTab = QWidget()
-        self.enchantmentTab.setObjectName(u"enchantmentTab")
-        self.label_7 = QLabel(self.enchantmentTab)
-        self.label_7.setObjectName(u"label_7")
-        self.label_7.setGeometry(QRect(410, 240, 201, 61))
-        self.mainTab.addTab(self.enchantmentTab, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -1107,6 +1096,7 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(tooltip)
         self.paintingList.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The list of all paintings that will be generated when you press Generate Pack.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"WARNING: Minecraft marks Paintings as EXPERIMENTAL!", None))
         self.paintingDisplayNameLabel.setText(QCoreApplication.translate("MainWindow", u"Display Name", None))
 #if QT_CONFIG(tooltip)
         self.paintingDisplayName.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The name of the painting your game recognizes.</p></body></html>", None))
@@ -1130,8 +1120,6 @@ class Ui_MainWindow(object):
         self.paintingPlaceable.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Whether or not you can use the painting in Survival mode. Should almost always be True.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.paintingPlaceable.setText("")
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"WARNING: Minecraft marks Paintings as EXPERIMENTAL!", None))
-        self.label_9.setText(QCoreApplication.translate("MainWindow", u"WARNING: If used before 1.21.4, crashes WILL occur!", None))
 #if QT_CONFIG(tooltip)
         self.paintingTextureButton.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The texture of your painting!</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
@@ -1139,8 +1127,6 @@ class Ui_MainWindow(object):
         self.paintingTexture.setText("")
         self.paintingTextureLabel.setText(QCoreApplication.translate("MainWindow", u"Texture", None))
         self.mainTab.setTabText(self.mainTab.indexOf(self.paintingTab), QCoreApplication.translate("MainWindow", u"Paintings", None))
-        self.label_7.setText(QCoreApplication.translate("MainWindow", u"Coming Soon!", None))
-        self.mainTab.setTabText(self.mainTab.indexOf(self.enchantmentTab), QCoreApplication.translate("MainWindow", u"Enchantments", None))
         self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
     # retranslateUi
 

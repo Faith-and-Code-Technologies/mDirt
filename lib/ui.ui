@@ -1676,14 +1676,21 @@ Created By JupiterDev &amp; JustJoshinDev 2025</string>
        </rect>
       </property>
       <layout class="QFormLayout" name="formLayout_4">
-       <item row="2" column="0">
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>WARNING: Minecraft marks Paintings as EXPERIMENTAL!</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
         <widget class="QLabel" name="paintingDisplayNameLabel">
          <property name="text">
           <string>Display Name</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
+       <item row="1" column="1">
         <widget class="QLineEdit" name="paintingDisplayName">
          <property name="toolTip">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the painting your game recognizes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1693,14 +1700,14 @@ Created By JupiterDev &amp; JustJoshinDev 2025</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="0">
+       <item row="2" column="0">
         <widget class="QLabel" name="paintingNameLabel">
          <property name="text">
           <string>Name</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="1">
+       <item row="2" column="1">
         <widget class="QLineEdit" name="paintingName">
          <property name="toolTip">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the painting your game recognizes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1710,14 +1717,14 @@ Created By JupiterDev &amp; JustJoshinDev 2025</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
+       <item row="3" column="0">
         <widget class="QLabel" name="paintingWidthLabel">
          <property name="text">
           <string>Width</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
+       <item row="3" column="1">
         <widget class="QSpinBox" name="paintingWidth">
          <property name="toolTip">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The width in blocks your painting will be.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1730,14 +1737,14 @@ Created By JupiterDev &amp; JustJoshinDev 2025</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="0">
+       <item row="4" column="0">
         <widget class="QLabel" name="paintingHeightLabel">
          <property name="text">
           <string>Height</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="1">
+       <item row="4" column="1">
         <widget class="QSpinBox" name="paintingHeight">
          <property name="toolTip">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The height in blocks your painting will be.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1750,14 +1757,14 @@ Created By JupiterDev &amp; JustJoshinDev 2025</string>
          </property>
         </widget>
        </item>
-       <item row="6" column="0">
+       <item row="5" column="0">
         <widget class="QLabel" name="paintingPlaceableLabel">
          <property name="text">
           <string>Accessible in Survival?</string>
          </property>
         </widget>
        </item>
-       <item row="6" column="1">
+       <item row="5" column="1">
         <widget class="QCheckBox" name="paintingPlaceable">
          <property name="toolTip">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Whether or not you can use the painting in Survival mode. Should almost always be True.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1767,20 +1774,6 @@ Created By JupiterDev &amp; JustJoshinDev 2025</string>
          </property>
          <property name="checked">
           <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0" colspan="2">
-        <widget class="QLabel" name="label_8">
-         <property name="text">
-          <string>WARNING: Minecraft marks Paintings as EXPERIMENTAL!</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0" colspan="2">
-        <widget class="QLabel" name="label_9">
-         <property name="text">
-          <string>WARNING: If used before 1.21.4, crashes WILL occur!</string>
          </property>
         </widget>
        </item>
@@ -1836,24 +1829,6 @@ Created By JupiterDev &amp; JustJoshinDev 2025</string>
      <zorder>paintingTexture</zorder>
      <zorder>paintingTextureLabel</zorder>
      <zorder>paintingTextureButton</zorder>
-    </widget>
-    <widget class="QWidget" name="enchantmentTab">
-     <attribute name="title">
-      <string>Enchantments</string>
-     </attribute>
-     <widget class="QLabel" name="label_7">
-      <property name="geometry">
-       <rect>
-        <x>410</x>
-        <y>240</y>
-        <width>201</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Coming Soon!</string>
-      </property>
-     </widget>
     </widget>
    </widget>
   </widget>

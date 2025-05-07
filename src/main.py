@@ -1,4 +1,4 @@
-import datetime, json, os, re, sys, details, ui_updater
+import datetime, json, os, re, sys, details, ui_updater, requests
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QImage, QPixmap, QActionEvent, QAction
@@ -60,7 +60,7 @@ class App(QMainWindow):
     def __init__(self):
         super().__init__()
         
-        self.appVersion = "2.1.0"
+        self.appVersion = "2.5.0"
         self.checkUpdate()
 
         # Make PyCharm stop yelling at me
@@ -96,6 +96,9 @@ class App(QMainWindow):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        # Grab supported versions
+        self.populateVersions()
 
         # Launch Details Menu
         self.launchDetails()
@@ -171,6 +174,9 @@ class App(QMainWindow):
         self.detail_form.setupUi(self.details_popup)
         self.details_popup.show()
 
+        for version in self.supportedVersions:
+            self.detail_form.packVersion.addItem(version)
+
         self.detail_form.packGenerate.clicked.connect(lambda: self.closeDetailPopup(self.details_popup,
                                                                                     self.detail_form.packName.text(), 
                                                                                     self.detail_form.packNamespace.text(), 
@@ -199,7 +205,7 @@ class App(QMainWindow):
         self.ui.packAuthor.setText(packAuthor)
         self.ui.packCMDPrefix.setText(packPrefix)
         self.ui.packDescription.setText(packDesc)
-        self.ui.packVersion.setCurrentText(packVer)
+        self.ui.packVersion.addItem(packVer)
         
         detail_popup.close()
 
@@ -207,6 +213,18 @@ class App(QMainWindow):
 
         self.setupData()
     
+    def populateVersions(self):
+        version_url = "https://raw.githubusercontent.com/Faith-and-Code-Technologies/mDirt-2/main/lib/version_list.json"
+        try:
+            response = requests.get(version_url)
+            if response.status_code == 200:
+                version_json = response.json()
+                self.supportedVersions = version_json["versions"]
+            else:
+                alert(f"Failed to download Supported Version list. Status code: {response.status_code}. Relaunch mDirt and try again. If the problem persists, submit an issue here: https://github.com/Faith-and-Code-Technologies/mDirt-2/issues")
+        except:
+            alert(f"Failed to download Supported Version list. Relaunch mDirt and try again. If the problem persists, submit an issue here: https://github.com/Faith-and-Code-Technologies/mDirt-2/issues")
+
     def grabModule(self):
         self.moduleGrab = ModuleGrabber(
             base_url="https://github.com/Faith-and-Code-Technologies/mDirt-2/raw/main/"
