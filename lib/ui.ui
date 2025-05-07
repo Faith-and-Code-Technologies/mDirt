@@ -155,26 +155,6 @@ QPushButton[flat=&quot;true&quot;]:pressed {
          <property name="enabled">
           <bool>false</bool>
          </property>
-         <item>
-          <property name="text">
-           <string>1.21.6</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1.21.5</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1.21.4</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1.21.3</string>
-          </property>
-         </item>
         </widget>
        </item>
       </layout>

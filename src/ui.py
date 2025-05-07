@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uigpzwpa.ui'
+## Form generated from reading UI file 'uiVsPTGD.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -134,10 +134,6 @@ class Ui_MainWindow(object):
         self.formLayout.setWidget(5, QFormLayout.LabelRole, self.packVersionLabel)
 
         self.packVersion = QComboBox(self.formLayoutWidget)
-        self.packVersion.addItem("")
-        self.packVersion.addItem("")
-        self.packVersion.addItem("")
-        self.packVersion.addItem("")
         self.packVersion.setObjectName(u"packVersion")
         self.packVersion.setEnabled(False)
 
@@ -825,11 +821,6 @@ class Ui_MainWindow(object):
         self.packCMDPrefixLabel.setText(QCoreApplication.translate("MainWindow", u"CMD Prefix", None))
         self.packCMDPrefix.setPlaceholderText(QCoreApplication.translate("MainWindow", u"589", None))
         self.packVersionLabel.setText(QCoreApplication.translate("MainWindow", u"Version", None))
-        self.packVersion.setItemText(0, QCoreApplication.translate("MainWindow", u"1.21.6", None))
-        self.packVersion.setItemText(1, QCoreApplication.translate("MainWindow", u"1.21.5", None))
-        self.packVersion.setItemText(2, QCoreApplication.translate("MainWindow", u"1.21.4", None))
-        self.packVersion.setItemText(3, QCoreApplication.translate("MainWindow", u"1.21.3", None))
-
 #if QT_CONFIG(tooltip)
         self.packGenerate.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Generates the Data &amp; Resource packs, adding your cool stuff!</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)

@@ -11,10 +11,22 @@ import sys
 import subprocess
 from io import BytesIO
 
+import os
+import sys
+import zipfile
+import requests
+from io import BytesIO
+
 class ModuleGrabber:
-    def __init__(self, base_url: str, download_folder: str = "src/generation"):
+    def __init__(self, base_url: str, download_folder: str = "src/generation", data_folder: str = "lib"):
         self.base_url = base_url.rstrip("/")
-        self.download_folder = download_folder
+        # If bundled into an exe, set paths to the '_internal' folder
+        if getattr(sys, 'frozen', False):
+            self.download_folder = os.path.join(os.path.dirname(sys.executable), '_internal', 'src', 'generation')
+            self.data_folder = os.path.join(os.path.dirname(sys.executable), '_internal', 'lib')
+        else:
+            self.download_folder = download_folder
+            self.data_folder = data_folder
 
     def update_module(self, version: str) -> bool:
         formatted_version = self.format_version(version)
@@ -22,10 +34,28 @@ class ModuleGrabber:
         response = requests.get(zip_url)
         if response.status_code != 200:
             return False
-        return self._extract_zip(response.content, formatted_version)
+        extracted = self._extract_zip(response.content, formatted_version)
+        data_downloaded = self.download_data_file(version)
+        return extracted and data_downloaded
+
+    def download_data_file(self, version: str) -> bool:
+        data_url = f"{self.base_url}/lib/{version}_data.json"
+        response = requests.get(data_url)
+        if response.status_code != 200:
+            return False
+        try:
+            # Ensure 'lib' is created at the root level of '_internal' when bundled
+            os.makedirs(self.data_folder, exist_ok=True)
+            target_path = os.path.join(self.data_folder, f"{version}_data.json")
+            with open(target_path, "wb") as f:
+                f.write(response.content)
+            return True
+        except Exception:
+            return False
 
     def _extract_zip(self, zip_data: bytes, module_name: str) -> bool:
         try:
+            # Ensure 'src/generation/module_name' is created at the root level of '_internal' when bundled
             target_dir = os.path.join(self.download_folder, module_name)
             os.makedirs(target_dir, exist_ok=True)
             with zipfile.ZipFile(BytesIO(zip_data)) as zip_ref:

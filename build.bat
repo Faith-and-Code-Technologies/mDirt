@@ -1,1 +1,10 @@
-pyinstaller --noconfirm src/main.py --noconsole --name="mDirt-2.4.0-windows" --add-data "src/ui.py:." --add-data "src/select_item.py:." --add-data "src/details.py:." --add-data "src/generation/v1_21_3/blocks.py:./generation/v1_21_3/" --add-data "src/generation/v1_21_3/items.py:./generation/v1_21_3/" --add-data "src/generation/v1_21_3/recipes.py:./generation/v1_21_3/" --add-data "src/generation/v1_21_4/blocks.py:./generation/v1_21_4/" --add-data "src/generation/v1_21_4/items.py:./generation/v1_21_4/" --add-data "src/generation/v1_21_4/recipes.py:./generation/v1_21_4/" --add-data "src/generation/v1_21_4/paintings.py:./generation/v1_21_4/" --add-data "src/generation/v1_21_5/blocks.py:./generation/v1_21_5/" --add-data "src/generation/v1_21_5/items.py:./generation/v1_21_5/" --add-data "src/generation/v1_21_5/recipes.py:./generation/v1_21_5/" --add-data "src/generation/v1_21_5/paintings.py:./generation/v1_21_5/" --add-data "lib/1.21.3_data.json:./lib/" --add-data "lib/1.21.4_data.json:./lib/" --add-data "lib/1.21.5_data.json:./lib/"
+pyinstaller src/main.py ^
+  --name mDirt ^
+  --windowed ^
+  --onedir ^
+  --add-data "src/details.py;src" ^
+  --add-data "src/select_item.py;src" ^
+  --add-data "src/ui_updater.py;src" ^
+  --add-data "src/ui.py;src" ^
+  --add-data "src/updater.py;src" ^
+  --add-data "lib;lib"

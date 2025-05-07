@@ -52,6 +52,11 @@ def checkInputValid(input_, type_):
     )
 
 class App(QMainWindow):
+
+    #######################
+    # APP SETUP STUFF     #
+    #######################
+    
     def __init__(self):
         super().__init__()
         
@@ -800,15 +805,17 @@ class App(QMainWindow):
 
         for block in self.blocks:
             if self.blocks[block]["baseBlock"] not in self.default_blocks:
+                block_name = self.blocks[block]["name"]
                 alert(
-                    f"Block '{self.blocks[block]["name"]}' has an unsupported Base Block!"
+                    f"Block '{block_name}' has an unsupported Base Block!"
                 )
                 return
 
         for item in self.items:
             if self.items[item]["baseItem"] not in self.default_items:
+                item_name = self.items[item]["name"]
                 alert(
-                    f"Item '{self.items[item]["name"]}' has an unsupported Base Item!"
+                    f"Item '{item_name}' has an unsupported Base Item!"
                 )
                 return
 

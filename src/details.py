@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'detailsRzMmTg.ui'
+## Form generated from reading UI file 'detailsvIhPGD.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -88,10 +88,6 @@ class Ui_Form(object):
         self.formLayout.setWidget(5, QFormLayout.LabelRole, self.packVersionLabel)
 
         self.packVersion = QComboBox(self.formLayoutWidget)
-        self.packVersion.addItem("")
-        self.packVersion.addItem("")
-        self.packVersion.addItem("")
-        self.packVersion.addItem("")
         self.packVersion.setObjectName(u"packVersion")
 
         self.formLayout.setWidget(5, QFormLayout.FieldRole, self.packVersion)
@@ -137,11 +133,6 @@ class Ui_Form(object):
 #endif // QT_CONFIG(tooltip)
         self.packCMDPrefix.setPlaceholderText(QCoreApplication.translate("Form", u"589", None))
         self.packVersionLabel.setText(QCoreApplication.translate("Form", u"Version", None))
-        self.packVersion.setItemText(0, QCoreApplication.translate("Form", u"1.21.6", None))
-        self.packVersion.setItemText(1, QCoreApplication.translate("Form", u"1.21.5", None))
-        self.packVersion.setItemText(2, QCoreApplication.translate("Form", u"1.21.4", None))
-        self.packVersion.setItemText(3, QCoreApplication.translate("Form", u"1.21.3", None))
-
 #if QT_CONFIG(tooltip)
         self.packVersion.setToolTip(QCoreApplication.translate("Form", u"<html><head/><body><p>The version your packs will work for.<br/><span style=\" font-weight:700;\">1.21.4 highly recommended!</span></p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
