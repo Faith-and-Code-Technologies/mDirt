@@ -10,12 +10,6 @@ import shutil
 import sys
 import subprocess
 from io import BytesIO
-
-import os
-import sys
-import zipfile
-import requests
-from io import BytesIO
 from PySide6.QtWidgets import QMessageBox
 
 def alert(message):

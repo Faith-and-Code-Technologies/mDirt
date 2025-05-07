@@ -1,7 +1,7 @@
-import datetime, json, os, re, sys, details, ui_updater, requests
+import datetime, json, os, re, sys, details, requests, importlib
 
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QImage, QPixmap, QActionEvent, QAction
+from PySide6.QtGui import QImage, QPixmap
 from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QMessageBox, QWidget, QDialog
 
 from select_item import Ui_Form
@@ -61,7 +61,7 @@ class App(QMainWindow):
         super().__init__()
         
         self.appVersion = "2.5.0"
-        self.checkUpdate()
+        # self.checkUpdate()
 
         # Make PyCharm stop yelling at me
         self.exists = {}
@@ -218,8 +218,9 @@ class App(QMainWindow):
         try:
             response = requests.get(version_url)
             if response.status_code == 200:
-                version_json = response.json()
-                self.supportedVersions = version_json["versions"]
+                self.version_json = response.json()
+                print(self.version_json)
+                self.supportedVersions = self.version_json["versions"]
             else:
                 alert(f"Failed to download Supported Version list. Status code: {response.status_code}. Relaunch mDirt and try again. If the problem persists, submit an issue here: https://github.com/Faith-and-Code-Technologies/mDirt-2/issues")
         except:
@@ -235,8 +236,8 @@ class App(QMainWindow):
         self.mainDirectory = f"{os.path.dirname(os.path.abspath(__file__))}/.."
         self.data = json.load(open(f"{self.mainDirectory}/lib/{self.packVersion}_data.json", "r"))
 
-        dataformat =     {"1.21.3": 57, "1.21.4": 61, "1.21.5": 71, "1.21.6": 76}
-        resourceformat = {"1.21.3": 42, "1.21.4": 46, "1.21.5": 55, "1.21.6": 60}
+        dataformat = self.version_json["dataformat"][self.packVersion]
+        resourceformat = self.version_json["resourceformat"][self.packVersion]
 
         self.dataFormat = dataformat[self.packVersion]
         self.resourceFormat = resourceformat[self.packVersion]
@@ -920,26 +921,8 @@ class App(QMainWindow):
                 file.write(
                     f'{{"sources":[{{"type": "directory", "source": "{self.packNamespace}", "prefix": "{self.packNamespace}/"}}]}}'
                 )
-
-        elif self.packVersion == "1.21.4":
-            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}")
-            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/items")
-            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/models")
-            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/models/item")
-            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures")
-            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures/item")
-            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures/painting")
         
-        elif self.packVersion == "1.21.5":
-            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}")
-            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/items")
-            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/models")
-            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/models/item")
-            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures")
-            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures/item")
-            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures/painting")
-        
-        elif self.packVersion == "1.21.6":
+        else:
             os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}")
             os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/items")
             os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/models")
@@ -954,24 +937,11 @@ class App(QMainWindow):
                 f'{{\n    "pack": {{\n        "pack_format": {self.resourceFormat},\n        "description": "{self.packDescription}"\n    }}\n}}\n'
             )
 
-        if self.packVersion == "1.21.3":
-            from generation.v1_21_3.blocks import BlockResourcer
-            from generation.v1_21_3.items import ItemResourcer
-        
-        elif self.packVersion == "1.21.4":
-            from generation.v1_21_4.blocks import BlockResourcer
-            from generation.v1_21_4.items import ItemResourcer
-            from generation.v1_21_4.paintings import PaintingResourcer
-
-        elif self.packVersion == "1.21.5":
-            from generation.v1_21_5.blocks import BlockResourcer
-            from generation.v1_21_5.items import ItemResourcer
-            from generation.v1_21_5.paintings import PaintingResourcer
-        
-        elif self.packVersion == "1.21.6":
-            from generation.v1_21_6.blocks import BlockResourcer
-            from generation.v1_21_6.items import ItemResourcer
-            from generation.v1_21_6.paintings import PaintingResourcer
+        version = self.packVersion.replace(".", "_")
+        BlockResourcer = importlib.import_module(f"generation.v{version}.blocks").BlockResourcer
+        ItemResourcer = importlib.import_module(f"generation.v{version}.items").ItemResourcer
+        if self.packVersion != "1.21.3":
+            PaintingResourcer = importlib.import_module(f"generation.v{version}.paintings").PaintingResourcer
 
         if len(self.blocks) > 0:
             blockResourcer = BlockResourcer(
@@ -1045,7 +1015,7 @@ class App(QMainWindow):
                 tick.write(self.header)
         with open(f"{self.namespaceDirectory}/function/load.mcfunction", "w") as load:
             load.write(
-                f'{self.header}tellraw @a {{"text":"[mDirt 2.5] - Successfully loaded pack!","color":"red"}}'
+                f'{self.header}tellraw @a {{"text":"[mDirt {self.appVersion}] - Successfully loaded pack!","color":"red"}}'
             )
         with open(f"{self.minecraftDirectory}/tags/function/tick.json", "w") as tick:
             tick.write(
@@ -1060,28 +1030,13 @@ class App(QMainWindow):
                 + ':load"\n        ]\n    }'
             )
         
-        if self.packVersion == "1.21.3":
-            from generation.v1_21_3.blocks import BlockGenerator
-            from generation.v1_21_3.items import ItemGenerator
-            from generation.v1_21_3.recipes import RecipeGenerator
-        
-        elif self.packVersion == "1.21.4":
-            from generation.v1_21_4.blocks import BlockGenerator
-            from generation.v1_21_4.items import ItemGenerator
-            from generation.v1_21_4.recipes import RecipeGenerator
-            from generation.v1_21_4.paintings import PaintingGenerator
-        
-        elif self.packVersion == "1.21.5":
-            from generation.v1_21_5.blocks import BlockGenerator
-            from generation.v1_21_5.items import ItemGenerator
-            from generation.v1_21_5.recipes import RecipeGenerator
-            from generation.v1_21_5.paintings import PaintingGenerator
-        
-        elif self.packVersion == "1.21.6":
-            from generation.v1_21_6.blocks import BlockGenerator
-            from generation.v1_21_6.items import ItemGenerator
-            from generation.v1_21_6.recipes import RecipeGenerator
-            from generation.v1_21_6.paintings import PaintingGenerator
+        version = self.packVersion.replace(".", "_")
+
+        BlockGenerator = importlib.import_module(f"generation.v{version}.blocks").BlockGenerator
+        ItemGenerator = importlib.import_module(f"generation.v{version}.items").ItemGenerator
+        RecipeGenerator = importlib.import_module(f"generation.v{version}.recipes").RecipeGenerator
+        if self.packVersion != "1.21.3":
+            PaintingGenerator = importlib.import_module(f"generation.v{version}.paintings").PaintingGenerator
 
         #######################
         # CUSTOM BLOCKS       #
