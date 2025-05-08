@@ -1,4 +1,4 @@
-import datetime, json, os, re, sys, details, requests, importlib
+import datetime, json, os, re, sys, details, requests, importlib, shutil
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QImage, QPixmap
