@@ -15,7 +15,7 @@ class ItemGenerator:
 
         # Give Items Function
         with open(
-            f"{self.namespaceDirectory}/function/give_items.mcfunction", "a"
+            f'{self.namespaceDirectory}/function/give_items.mcfunction', "a"
         ) as file:
             file.write(self.header)
             for item in self.items:
@@ -92,7 +92,7 @@ class ItemResourcer:
     def generate(self):
         # Write Base Item Model To Pack
         for item in self.items:
-            modelPath = f"{self.resPackDirectory}/assets/minecraft/models/item/"
+            modelPath = f'{self.resPackDirectory}/assets/minecraft/models/item/'
             if not os.path.exists(
                 f'{modelPath}{self.items[item]["baseItem"].removeprefix("minecraft:")}.json'
             ):
@@ -111,12 +111,12 @@ class ItemResourcer:
 
         # Remove Trailing Comma At Each Model
         for file in os.listdir(
-            f"{self.resPackDirectory}/assets/minecraft/models/item"
+            f'{self.resPackDirectory}/assets/minecraft/models/item'
         ):
             if file.endswith(".json") and not "item_frame" in file:
                 with open(
                     os.path.join(
-                        f"{self.resPackDirectory}/assets/minecraft/models/item/",
+                        f'{self.resPackDirectory}/assets/minecraft/models/item/',
                         file,
                     ),
                     "r+",
@@ -129,7 +129,7 @@ class ItemResourcer:
 
         # Copy / Write Item Model To Pack
         for item in self.items:
-            currentPath = f"{self.resPackDirectory}/assets/minecraft/models/{self.packNamespace}"
+            currentPath = f'{self.resPackDirectory}/assets/minecraft/models/{self.packNamespace}'
             with open(f'{currentPath}/{self.items[item]["name"]}.json', "w") as file:
                 if ".json" in self.items[item]["model"]:
                     with open(self.items[item]["model"], "r") as f:
@@ -145,12 +145,12 @@ class ItemResourcer:
                     )
 
         os.mkdir(
-            f"{self.resPackDirectory}/assets/minecraft/textures/{self.packNamespace}"
+            f'{self.resPackDirectory}/assets/minecraft/textures/{self.packNamespace}'
         )
 
         # Copy Item Texture To Pack
         for item in self.items:
-            currentPath = f"{self.resPackDirectory}/assets/minecraft/textures/{self.packNamespace}"
+            currentPath = f'{self.resPackDirectory}/assets/minecraft/textures/{self.packNamespace}'
             shutil.copy(
                 self.items[item]["texture"],
                 os.path.normpath(

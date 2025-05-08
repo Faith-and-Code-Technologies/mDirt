@@ -1,6 +1,5 @@
 pyinstaller src/main.py ^
-  --name mDirt ^
-  --windowed ^
+  --name mDirt-2.5.1 ^
   --onedir ^
   --add-data "src/details.py;src" ^
   --add-data "src/select_item.py;src" ^

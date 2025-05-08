@@ -234,7 +234,7 @@ class App(QMainWindow):
 
     def setupData(self):
         self.mainDirectory = f"{os.path.dirname(os.path.abspath(__file__))}/.."
-        self.data = json.load(open(f"{self.mainDirectory}/lib/{self.packVersion}_data.json", "r"))
+        self.data = json.load(open(os.path.join(getattr(sys, '_MEIPASS', os.getcwd()), f"lib/{self.packVersion}_data.json"), "r"))
 
         dataformat = self.version_json["dataformat"]
         resourceformat = self.version_json["resourceformat"]
@@ -938,10 +938,15 @@ class App(QMainWindow):
             )
 
         version = self.packVersion.replace(".", "_")
-        BlockResourcer = importlib.import_module(f"generation.v{version}.blocks").BlockResourcer
-        ItemResourcer = importlib.import_module(f"generation.v{version}.items").ItemResourcer
+
+        if getattr(sys, 'frozen', False):
+            internal = 'src.'
+        else:
+            internal = ''
+        BlockResourcer = importlib.import_module(f"{internal}generation.v{version}.blocks").BlockResourcer
+        ItemResourcer = importlib.import_module(f"{internal}generation.v{version}.items").ItemResourcer
         if self.packVersion != "1.21.3":
-            PaintingResourcer = importlib.import_module(f"generation.v{version}.paintings").PaintingResourcer
+            PaintingResourcer = importlib.import_module(f"{internal}generation.v{version}.paintings").PaintingResourcer
 
         if len(self.blocks) > 0:
             blockResourcer = BlockResourcer(
@@ -1032,11 +1037,16 @@ class App(QMainWindow):
         
         version = self.packVersion.replace(".", "_")
 
-        BlockGenerator = importlib.import_module(f"generation.v{version}.blocks").BlockGenerator
-        ItemGenerator = importlib.import_module(f"generation.v{version}.items").ItemGenerator
-        RecipeGenerator = importlib.import_module(f"generation.v{version}.recipes").RecipeGenerator
+        if getattr(sys, 'frozen', False):
+            internal = 'src.'
+        else:
+            internal = ''
+
+        BlockGenerator = importlib.import_module(f"{internal}generation.v{version}.blocks").BlockGenerator
+        ItemGenerator = importlib.import_module(f"{internal}generation.v{version}.items").ItemGenerator
+        RecipeGenerator = importlib.import_module(f"{internal}generation.v{version}.recipes").RecipeGenerator
         if self.packVersion != "1.21.3":
-            PaintingGenerator = importlib.import_module(f"generation.v{version}.paintings").PaintingGenerator
+            PaintingGenerator = importlib.import_module(f"{internal}generation.v{version}.paintings").PaintingGenerator
 
         #######################
         # CUSTOM BLOCKS       #

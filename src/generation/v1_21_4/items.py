@@ -15,7 +15,7 @@ class ItemGenerator:
 
         # Give Items Function
         with open(
-            f"{self.namespaceDirectory}/function/give_items.mcfunction", "a"
+            f'{self.namespaceDirectory}/function/give_items.mcfunction', "a"
         ) as file:
             file.write(self.header)
             for item in self.items:
@@ -91,14 +91,14 @@ class ItemResourcer:
     def generate(self):
         # Write Base Item Model To Pack
         for item in self.items:
-            modelPath = f"{self.resPackDirectory}/assets/{self.packNamespace}/items/"
+            modelPath = f'{self.resPackDirectory}/assets/{self.packNamespace}/items/'
 
             with open(f'{modelPath}{self.items[item]["name"]}.json', "a") as file:
                 file.write(f'{{"model": {{"type": "minecraft:model", "model": "{self.packNamespace}:item/{self.items[item]["name"]}"}}}}')
 
         # Copy / Write Item Model To Pack
         for item in self.items:
-            currentPath = f"{self.resPackDirectory}/assets/{self.packNamespace}/models/item"
+            currentPath = f'{self.resPackDirectory}/assets/{self.packNamespace}/models/item'
             with open(f'{currentPath}/{self.items[item]["name"]}.json', "w") as file:
                 if ".json" in self.items[item]["model"]:
                     with open(self.items[item]["model"], "r") as f:
@@ -112,7 +112,7 @@ class ItemResourcer:
 
         # Copy Item Texture To Pack
         for item in self.items:
-            currentPath = f"{self.resPackDirectory}/assets/{self.packNamespace}/textures/item"
+            currentPath = f'{self.resPackDirectory}/assets/{self.packNamespace}/textures/item'
             shutil.copy(
                 self.items[item]["texture"],
                 os.path.normpath(

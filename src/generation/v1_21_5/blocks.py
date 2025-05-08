@@ -13,11 +13,11 @@ class BlockGenerator:
         self.items = items
 
     def generate(self):
-        os.mkdir(f"{self.namespaceDirectory}/function/blocks")
+        os.mkdir(f'{self.namespaceDirectory}/function/blocks')
 
         # Placed Item Frame Advancement
         with open(
-            f"{self.namespaceDirectory}/advancement/placed_item_frame.json", "w"
+            f'{self.namespaceDirectory}/advancement/placed_item_frame.json', "w"
         ) as file:
             file.write(
                 f'{{"criteria": {{"requirement": {{"trigger": "minecraft:item_used_on_block","conditions": {{"location": [{{"condition": "minecraft:match_tool","predicate": {{"items": ["minecraft:item_frame"]}}}}]}}}}}}, "rewards": {{"function": "{self.packNamespace}:blocks/placed_item_frame"}}}}'
@@ -25,17 +25,17 @@ class BlockGenerator:
 
         # Placed Item Frame Function
         with open(
-            f"{self.namespaceDirectory}/function/blocks/placed_item_frame.mcfunction",
+            f'{self.namespaceDirectory}/function/blocks/placed_item_frame.mcfunction',
             "w",
         ) as file:
             file.write(
-                f"{self.header}advancement revoke @s only {self.packNamespace}:placed_item_frame\n"
-                f"execute as @e[tag={self.packAuthor}.item_frame_block,distance=..10] at @s run function {self.packNamespace}:blocks/check_placed_item_frame"
+                f'{self.header}advancement revoke @s only {self.packNamespace}:placed_item_frame\n'
+                f'execute as @e[tag={self.packAuthor}.item_frame_block,distance=..10] at @s run function {self.packNamespace}:blocks/check_placed_item_frame'
             )
 
         # Check Placed Item Frame, block/place Functions
         with open(
-            f"{self.namespaceDirectory}/function/blocks/check_placed_item_frame.mcfunction", "a"
+            f'{self.namespaceDirectory}/function/blocks/check_placed_item_frame.mcfunction', "a"
         ) as file:
             for block in self.blocks:
                 os.mkdir(
@@ -76,31 +76,31 @@ class BlockGenerator:
                             f'summon item_display ~ ~ ~ {{brightness:{{sky:15,block:0}},Tags:["{self.packAuthor}.{self.blocks[block]["name"]}","{self.packAuthor}.custom_block"],transformation:{{left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],translation:[0f,0.469f,0f],scale:[1.001f,1.001f,1.001f]}},item:{{id:"minecraft:item_frame",count:1,components:{{"minecraft:item_model":"{self.packNamespace}:{self.blocks[block]["name"]}"}}}}}}\n'
                         )
                 file.write(
-                    f"{self.header}execute as @s[tag={self.packAuthor}.{self.blocks[block]['name']}] run function {self.packNamespace}:blocks/{self.blocks[block]['name']}/place\n"
+                    f'{self.header}execute as @s[tag={self.packAuthor}.{self.blocks[block]["name"]}] run function {self.packNamespace}:blocks/{self.blocks[block]["name"]}/place\n'
                 )
             file.write("kill @s")
 
         # As Blocks, block/block, block/break Functions
         with open(
-            f"{self.namespaceDirectory}/function/blocks/as_blocks.mcfunction", "a"
+            f'{self.namespaceDirectory}/function/blocks/as_blocks.mcfunction', "a"
         ) as file:
             file.write(self.header)
             for block in self.blocks:
                 with open(
-                    f"{self.namespaceDirectory}/function/blocks/{block}/{block}.mcfunction",
+                    f'{self.namespaceDirectory}/function/blocks/{block}/{block}.mcfunction',
                     "w",
                 ) as file2:
                     file2.write(
                         f'{self.header}execute unless block ~ ~ ~ {self.blocks[block]["baseBlock"]} run function {self.packNamespace}:blocks/{self.blocks[block]["name"]}/break'
                     )
                 with open(
-                    f"{self.namespaceDirectory}/function/blocks/{block}/break.mcfunction",
+                    f'{self.namespaceDirectory}/function/blocks/{block}/break.mcfunction',
                     "a",
                 ) as file2:
                     file2.write(
                         f'{self.header}execute as @e[type=item,sort=nearest,limit=1,distance=..2,nbt={{OnGround:0b,Age:0s}}] run kill @s\n'
                         f'loot spawn ~ ~ ~ loot {self.packNamespace}:{self.blocks[block]["name"]}\n'
-                        f"kill @s"
+                        f'kill @s'
                     )
 
                 file.write(
@@ -109,7 +109,7 @@ class BlockGenerator:
 
         # Give Blocks Function
         with open(
-            f"{self.namespaceDirectory}/function/give_blocks.mcfunction", "a"
+            f'{self.namespaceDirectory}/function/give_blocks.mcfunction', "a"
         ) as file:
             file.write(self.header)
             for block in self.blocks:
@@ -153,13 +153,13 @@ class BlockResourcer:
     def generate(self):
         # Base Model For Blocks
         for block in self.blocks:
-            with open(f"{self.resPackDirectory}/assets/{self.packNamespace}/items/{self.blocks[block]["name"]}.json", "a") as file:
+            with open(f'{self.resPackDirectory}/assets/{self.packNamespace}/items/{self.blocks[block]["name"]}.json', "a") as file:
                 file.write(f'{{"model":{{"type":"minecraft:model","model":"{self.packNamespace}:item/{self.blocks[block]["name"]}"}}}}')
 
         # Copy Block Textures To Pack
         for block in self.blocks:
             texturePath = (
-                f"{self.resPackDirectory}/assets/{self.packNamespace}/textures/item/"
+                f'{self.resPackDirectory}/assets/{self.packNamespace}/textures/item/'
             )
 
             if ".json" not in self.blocks[block]["model"]:
@@ -179,7 +179,7 @@ class BlockResourcer:
                             ),
                         )
             else:
-                path = self.blocks[block]["textures"]['5']
+                path = self.blocks[block]["textures"]["5"]
                 if not os.path.exists(
                     os.path.join(
                         texturePath,
