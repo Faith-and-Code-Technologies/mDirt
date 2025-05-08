@@ -1,3 +1,1 @@
-{% for block in blocks %}
-    {{ header }}execute unless block ~ ~ ~ {{ blocks[block]["baseBlock"] }} run function {{ packNamespace }}:blocks/{{ blocks[block]["name"] }}/break
-{% endfor %}
+{{ header }}execute unless block ~ ~ ~ {{ blocks[block]["baseBlock"] }} run function {{ packNamespace }}:blocks/{{ block }}/break
