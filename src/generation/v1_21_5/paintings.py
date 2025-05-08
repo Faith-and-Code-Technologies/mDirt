@@ -25,7 +25,7 @@ class PaintingGenerator:
         os.mkdir(f'{self.minecraftDirectory}/tags/painting_variant')
         
         with open(f'{self.minecraftDirectory}/tags/painting_variant/placeable.json', 'a') as file:
-            file.write(f'{{"values":{str(self.placeableList).replace("'", '"')}}}')
+            file.write(f'{{"values":{str(self.placeableList).replace("\'", "\"")}}}')
         
         # Give Paintings McFunction
         with open(f'{self.namespaceDirectory}/function/give_paintings.mcfunction', 'a') as file:
