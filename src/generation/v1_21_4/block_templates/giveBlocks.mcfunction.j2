@@ -1,0 +1,4 @@
+{{ header }}
+{% for block in blocks %}
+    give @s item_frame[item_name=\'{"italic":false,"text":"{{ blocks[block]["displayName"] }}"}\',item_model="{{ packNamespace }}:{{ blocks[block]["name"] }}",entity_data={id:"minecraft:item_frame",Fixed:1b,Invisible:1b,Silent:1b,Invulnerable:1b,Facing:1,Tags:["{{ packAuthor }}.item_frame_block","{{ packAuthor }}.{{ blocks[block]["name"] }}"]}] 1
+{% endfor %}

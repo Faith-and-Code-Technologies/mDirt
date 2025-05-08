@@ -1,0 +1,5 @@
+{% for block in blocks %}
+    {{ header }}execute as @e[type=item,sort=nearest,limit=1,distance=..2,nbt={OnGround:0b,Age:0s}] run kill @s
+    loot spawn ~ ~ ~ loot {{ packNamespace }}:{{ blocks[block]["name"] }}
+    kill @s
+{% endfor %}

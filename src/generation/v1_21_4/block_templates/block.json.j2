@@ -1,0 +1,113 @@
+{% for block in blocks %}
+    {% if blocks[block]["blockDrop"] == "self" %}
+        {
+            "pools": [
+                {
+                    "rolls": 1,
+                    "entries": [
+                        {
+                            "type": "minecraft:item",
+                            "name": "minecraft:item_frame"
+                        }
+                    ],
+                    "functions": [
+                        {
+                            "function": "minecraft:set_components",
+                            "components": {
+                                "minecraft:item_model": "{{ packNamespace }}:{{ blocks[block]['name'] }}",
+                                "minecraft:custom_name": {{ {"italic": False, "text": blocks[block]["displayName"]} | tojson }},
+                                "minecraft:entity_data": {
+                                    "id": "minecraft:item_frame",
+                                    "Fixed": true,
+                                    "Invisible": true,
+                                    "Silent": true,
+                                    "Invulnerable": true,
+                                    "Facing": 1,
+                                    "Tags": [
+                                        "{{ packAuthor }}.item_frame_block",
+                                        "{{ packAuthor }}.{{ blocks[block]['name'] }}"
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    {% else %}
+        {% if (blocks[block]["blockDrop"] not in items) and (blocks[block]["blockDrop"] not in blocks) %}
+            {
+                "pools": [
+                    {
+                        "rolls": 1,
+                        "entries": [
+                            {
+                                "type": "minecraft:item",
+                                "name": "{{ blocks[block]['blockDrop'] }}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        {% elif blocks[block]["blockDrop"] in items %}
+            {
+                "pools": [
+                    {
+                        "rolls": 1,
+                        "entries": [
+                            {
+                                "type": "minecraft:item",
+                                "name": "{{ items[blocks[block]['blockDrop']]['baseItem'] }}",
+                                "functions": [
+                                    {
+                                        "function": "minecraft:set_components",
+                                        "components": {
+                                            "minecraft:item_name": {{ {"italic": False, "text": items[blocks[block]['blockDrop']]['displayName']} | tojson }},
+                                            "minecraft:max_stack_size": {{ items[blocks[block]['blockDrop']]['stackSize'] }},
+                                            "minecraft:item_model": "{{ packNamespace }}:{{ items[blocks[block]['blockDrop']]['name'] }}"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        {% elif blocks[block]["blockDrop"] in blocks %}
+            {
+                "pools": [
+                    {
+                        "rolls": 1,
+                        "entries": [
+                            {
+                                "type": "minecraft:item",
+                                "name": "minecraft:item_frame"
+                            }
+                        ],
+                        "functions": [
+                            {
+                                "function": "minecraft:set_components",
+                                "components": {
+                                    "minecraft:item_model": "{{ packNamespace }}:{{ blocks[blocks[block]['blockDrop']]['name'] }}",
+                                    "minecraft:custom_name": {{ {"italic": False, "text": blocks[blocks[block]['blockDrop']]['displayName']} | tojson }},
+                                    "minecraft:entity_data": {
+                                        "id": "minecraft:item_frame",
+                                        "Fixed": true,
+                                        "Invisible": true,
+                                        "Silent": true,
+                                        "Invulnerable": true,
+                                        "Facing": 1,
+                                        "Tags": [
+                                            "{{ packAuthor }}.item_frame_block",
+                                            "{{ packAuthor }}.{{ blocks[blocks[block]['blockDrop']]['name'] }}"
+                                        ]
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        {% endif %}
+    {% endif %}
+{% endfor %}
