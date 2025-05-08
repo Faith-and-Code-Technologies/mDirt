@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:{{ recipe_type }}",
+  "ingredient": {
+    "item": "minecraft:{{ ingredient }}"
+  },
+  "result": {
+    {% if output_id in items %}
+    "id": "minecraft:{{ output_id }}",
+    "components": {
+      "minecraft:item_name": {
+        "italic": false,
+        "text": "{{ items[output_id].displayName }}"
+      },
+      "minecraft:item_model": "{{ packNamespace }}:{{ items[output_id].name }}"
+    }
+    {% elif output_id in blocks %}
+    "id": "minecraft:item_frame",
+    "components": {
+      "minecraft:item_model": "{{ packNamespace }}:{{ blocks[output_id].name }}",
+      "minecraft:custom_name": {
+        "italic": false,
+        "text": "{{ blocks[output_id].displayName }}"
+      },
+      "minecraft:entity_data": {
+        "id": "minecraft:item_frame",
+        "Fixed": true,
+        "Invisible": true,
+        "Silent": true,
+        "Invulnerable": true,
+        "Facing": 1,
+        "Tags": [
+          "{{ packAuthor }}.item_frame_block",
+          "{{ packAuthor }}.{{ blocks[output_id].name }}"
+        ]
+      }
+    }
+    {% else %}
+    "id": "minecraft:{{ output_id }}"
+    {% endif %}
+  }
+}

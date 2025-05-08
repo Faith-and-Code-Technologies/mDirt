@@ -1,0 +1,51 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    {% for row in pattern %}
+    "{{ row }}"{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ],
+  "key": {
+    {% for letter, ingredient in key.items() %}
+    "{{ letter }}": { "item": "minecraft:{{ ingredient }}" }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  },
+  "result": {
+    {% if result_type == "item" %}
+    "id": "{{ item.baseItem }}",
+    "count": {{ output_count }},
+    "components": {
+      "minecraft:item_name": {
+        "italic": false,
+        "text": "{{ item.displayName }}"
+      },
+      "minecraft:item_model": "{{ packNamespace }}:{{ item.name }}"
+    }
+    {% elif result_type == "block" %}
+    "id": "minecraft:item_frame",
+    "count": {{ output_count }},
+    "components": {
+      "minecraft:item_model": "{{ packNamespace }}:{{ block.name }}",
+      "minecraft:custom_name": {
+        "italic": false,
+        "text": "{{ block.displayName }}"
+      },
+      "minecraft:entity_data": {
+        "id": "minecraft:item_frame",
+        "Fixed": true,
+        "Invisible": true,
+        "Silent": true,
+        "Invulnerable": true,
+        "Facing": 1,
+        "Tags": [
+          "{{ packAuthor }}.item_frame_block",
+          "{{ packAuthor }}.{{ block.name }}"
+        ]
+      }
+    }
+    {% else %}
+    "id": "minecraft:{{ vanilla_id }}",
+    "count": {{ output_count }}
+    {% endif %}
+  }
+}
