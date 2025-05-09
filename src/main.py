@@ -60,7 +60,7 @@ class App(QMainWindow):
     def __init__(self):
         super().__init__()
         
-        self.appVersion = "2.5.1"
+        self.appVersion = "3.0.0"
         # self.checkUpdate()
 
         # Make PyCharm stop yelling at me
@@ -175,7 +175,7 @@ class App(QMainWindow):
         self.details_popup.show()
 
         for version in self.supportedVersions:
-            self.detail_form.packVersion.addItem(version)
+            if version != "1.21.3": self.detail_form.packVersion.addItem(version)
 
         self.detail_form.packGenerate.clicked.connect(lambda: self.closeDetailPopup(self.details_popup,
                                                                                     self.detail_form.packName.text(), 
@@ -219,7 +219,6 @@ class App(QMainWindow):
             response = requests.get(version_url)
             if response.status_code == 200:
                 self.version_json = response.json()
-                print(self.version_json)
                 self.supportedVersions = self.version_json["versions"]
             else:
                 alert(f"Failed to download Supported Version list. Status code: {response.status_code}. Relaunch mDirt and try again. If the problem persists, submit an issue here: https://github.com/Faith-and-Code-Technologies/mDirt-2/issues")
@@ -356,7 +355,6 @@ class App(QMainWindow):
         for block in self.blocks:
             self.ui.blockList.addItem(self.blocks[block]["name"])
             self.featureNum += 1
-            print(self.blocks[block]["textures"])
         for item in self.items:
             self.ui.itemList.addItem(self.items[item]["name"])
             self.featureNum += 1

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiiDERog.ui'
+## Form generated from reading UI file 'uicMvAzW.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -69,7 +69,7 @@ class Ui_MainWindow(object):
         self.packDetailsTab.setObjectName(u"packDetailsTab")
         self.formLayoutWidget = QWidget(self.packDetailsTab)
         self.formLayoutWidget.setObjectName(u"formLayoutWidget")
-        self.formLayoutWidget.setGeometry(QRect(340, 90, 271, 171))
+        self.formLayoutWidget.setGeometry(QRect(340, 90, 271, 141))
         self.formLayout = QFormLayout(self.formLayoutWidget)
         self.formLayout.setObjectName(u"formLayout")
         self.formLayout.setContentsMargins(0, 0, 0, 0)
@@ -117,27 +117,16 @@ class Ui_MainWindow(object):
 
         self.formLayout.setWidget(3, QFormLayout.FieldRole, self.packDescription)
 
-        self.packCMDPrefixLabel = QLabel(self.formLayoutWidget)
-        self.packCMDPrefixLabel.setObjectName(u"packCMDPrefixLabel")
-
-        self.formLayout.setWidget(4, QFormLayout.LabelRole, self.packCMDPrefixLabel)
-
-        self.packCMDPrefix = QLineEdit(self.formLayoutWidget)
-        self.packCMDPrefix.setObjectName(u"packCMDPrefix")
-        self.packCMDPrefix.setEnabled(False)
-
-        self.formLayout.setWidget(4, QFormLayout.FieldRole, self.packCMDPrefix)
-
         self.packVersionLabel = QLabel(self.formLayoutWidget)
         self.packVersionLabel.setObjectName(u"packVersionLabel")
 
-        self.formLayout.setWidget(5, QFormLayout.LabelRole, self.packVersionLabel)
+        self.formLayout.setWidget(4, QFormLayout.LabelRole, self.packVersionLabel)
 
         self.packVersion = QComboBox(self.formLayoutWidget)
         self.packVersion.setObjectName(u"packVersion")
         self.packVersion.setEnabled(False)
 
-        self.formLayout.setWidget(5, QFormLayout.FieldRole, self.packVersion)
+        self.formLayout.setWidget(4, QFormLayout.FieldRole, self.packVersion)
 
         self.packGenerate = QPushButton(self.packDetailsTab)
         self.packGenerate.setObjectName(u"packGenerate")
@@ -790,7 +779,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"mDirt - A Datapack Tool - v2.5", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"mDirt - A Datapack Tool - v3.0", None))
         self.actionExport_mdrt.setText(QCoreApplication.translate("MainWindow", u"Export (*.mdrt)", None))
         self.actionImport_mdrt.setText(QCoreApplication.translate("MainWindow", u"Import (*.mdrt)", None))
         self.actionDark.setText(QCoreApplication.translate("MainWindow", u"Dark", None))
@@ -807,8 +796,6 @@ class Ui_MainWindow(object):
         self.packAuthor.setPlaceholderText(QCoreApplication.translate("MainWindow", u"jupiterdev", None))
         self.packDescriptionLabel.setText(QCoreApplication.translate("MainWindow", u"Description", None))
         self.packDescription.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Adds Rubys, Ruby Blocks, etc.", None))
-        self.packCMDPrefixLabel.setText(QCoreApplication.translate("MainWindow", u"CMD Prefix", None))
-        self.packCMDPrefix.setPlaceholderText(QCoreApplication.translate("MainWindow", u"589", None))
         self.packVersionLabel.setText(QCoreApplication.translate("MainWindow", u"Version", None))
 #if QT_CONFIG(tooltip)
         self.packGenerate.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Generates the Data &amp; Resource packs, adding your cool stuff!</p></body></html>", None))

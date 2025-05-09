@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'detailsvIhPGD.ui'
+## Form generated from reading UI file 'detailsvPGwld.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -28,7 +28,7 @@ class Ui_Form(object):
         self.packGenerate.setGeometry(QRect(40, 250, 271, 31))
         self.formLayoutWidget = QWidget(Form)
         self.formLayoutWidget.setObjectName(u"formLayoutWidget")
-        self.formLayoutWidget.setGeometry(QRect(40, 70, 271, 171))
+        self.formLayoutWidget.setGeometry(QRect(40, 70, 271, 141))
         self.formLayout = QFormLayout(self.formLayoutWidget)
         self.formLayout.setObjectName(u"formLayout")
         self.formLayout.setContentsMargins(0, 0, 0, 0)
@@ -72,25 +72,15 @@ class Ui_Form(object):
 
         self.formLayout.setWidget(3, QFormLayout.FieldRole, self.packDescription)
 
-        self.packCMDPrefixLabel = QLabel(self.formLayoutWidget)
-        self.packCMDPrefixLabel.setObjectName(u"packCMDPrefixLabel")
-
-        self.formLayout.setWidget(4, QFormLayout.LabelRole, self.packCMDPrefixLabel)
-
-        self.packCMDPrefix = QLineEdit(self.formLayoutWidget)
-        self.packCMDPrefix.setObjectName(u"packCMDPrefix")
-
-        self.formLayout.setWidget(4, QFormLayout.FieldRole, self.packCMDPrefix)
-
         self.packVersionLabel = QLabel(self.formLayoutWidget)
         self.packVersionLabel.setObjectName(u"packVersionLabel")
 
-        self.formLayout.setWidget(5, QFormLayout.LabelRole, self.packVersionLabel)
+        self.formLayout.setWidget(4, QFormLayout.LabelRole, self.packVersionLabel)
 
         self.packVersion = QComboBox(self.formLayoutWidget)
         self.packVersion.setObjectName(u"packVersion")
 
-        self.formLayout.setWidget(5, QFormLayout.FieldRole, self.packVersion)
+        self.formLayout.setWidget(4, QFormLayout.FieldRole, self.packVersion)
 
         self.titleLabel = QLabel(Form)
         self.titleLabel.setObjectName(u"titleLabel")
@@ -127,11 +117,6 @@ class Ui_Form(object):
         self.packDescription.setToolTip(QCoreApplication.translate("Form", u"<html><head/><body><p>The description for your packs!</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.packDescription.setPlaceholderText(QCoreApplication.translate("Form", u"Adds Rubys, Ruby Blocks, etc.", None))
-        self.packCMDPrefixLabel.setText(QCoreApplication.translate("Form", u"CMD Prefix", None))
-#if QT_CONFIG(tooltip)
-        self.packCMDPrefix.setToolTip(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-weight:700;\">LEGACY! Only used in 1.21.3. </span><span style=\" font-style:italic;\">Note that you still must fill it in!</span><br/>A 3 digit number used to figure out the Custom Model Data for your custom blocks &amp; items.</p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
-        self.packCMDPrefix.setPlaceholderText(QCoreApplication.translate("Form", u"589", None))
         self.packVersionLabel.setText(QCoreApplication.translate("Form", u"Version", None))
 #if QT_CONFIG(tooltip)
         self.packVersion.setToolTip(QCoreApplication.translate("Form", u"<html><head/><body><p>The version your packs will work for.<br/><span style=\" font-weight:700;\">1.21.4 highly recommended!</span></p></body></html>", None))
