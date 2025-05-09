@@ -351,11 +351,6 @@ class App(QMainWindow):
         self.items = data["content"]["elements"]["items"]
         self.recipes = data["content"]["elements"]["recipes"]
 
-        if data["content"]["pack_info"]["version"] != "1.21.3":
-            self.paintings = data["content"]["elements"]["paintings"]
-            for painting in self.paintings:
-                self.ui.paintingList.addItem(self.paintings[painting]["name"])
-
         self.featureNum = 0
 
         for block in self.blocks:

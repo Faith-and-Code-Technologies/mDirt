@@ -1,27 +1,28 @@
 {
-  "type": "minecraft:{{ recipe_type }}",
-  "ingredient": {
-    "item": "minecraft:{{ ingredient }}"
-  },
-  "result": {
-    {% if output_id in items %}
-    "id": "minecraft:{{ output_id }}",
-    "count": {{ output_count }},
+  "type": "minecraft:stonecutting",
+  "ingredient": "minecraft:{{ ingredient }}",
+  "result":
+  {% if result in items %}
+  {
+    "id": "{{ items[result]['baseItem'] }}",
+    "count": {{ outputCount }},
     "components": {
       "minecraft:item_name": {
         "italic": false,
-        "text": "{{ items[output_id].displayName }}"
+        "text": "{{ items[result]['displayName'] }}"
       },
-      "minecraft:item_model": "{{ packNamespace }}:{{ items[output_id].name }}"
+      "minecraft:item_model": "{{ packNamespace }}:{{ items[result]['name'] }}"
     }
-    {% elif output_id in blocks %}
+  }
+  {% elif result in blocks %}
+  {
     "id": "minecraft:item_frame",
-    "count": {{ output_count }},
+    "count": {{ outputCount }},
     "components": {
-      "minecraft:item_model": "{{ packNamespace }}:{{ blocks[output_id].name }}",
+      "minecraft:item_model": "{{ packNamespace }}:{{ blocks[result]['name'] }}",
       "minecraft:custom_name": {
         "italic": false,
-        "text": "{{ blocks[output_id].displayName }}"
+        "text": "{{ blocks[result]['displayName'] }}"
       },
       "minecraft:entity_data": {
         "id": "minecraft:item_frame",
@@ -32,12 +33,15 @@
         "Facing": 1,
         "Tags": [
           "{{ packAuthor }}.item_frame_block",
-          "{{ packAuthor }}.{{ blocks[output_id].name }}"
+          "{{ packAuthor }}.{{ blocks[result]['name'] }}"
         ]
       }
     }
-    {% else %}
-    "id": "minecraft:{{ output_id }}"
-    {% endif %}
   }
+  {% else %}
+  {
+    "id": "minecraft:{{ result }}",
+    "count": {{ outputCount }}
+  }
+  {% endif %}
 }

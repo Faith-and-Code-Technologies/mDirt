@@ -1,54 +1,51 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {% for item in recipes[recipe]["items"] %}
-      {% if item != none and item != "" and loop.index != 10 %}
-        {"item": "minecraft:{{ item }}"}{% if not loop.last %},{% endif %}
-      {% endif %}
+    {% for slot, item in ingredients.items() if slot != "9" %}
+    "minecraft:{{ item }}"{% if not loop.last %},{% endif %}
     {% endfor %}
   ],
-  "result": 
-    {% set output = recipes[recipe]["items"][9] %}
-    {% set output_count = recipes[recipe]["outputCount"] %}
-    {% if output not in items and output not in blocks %}
-      {"id": "minecraft:{{ output }}", "count": {{ output_count }}}
-    {% elif output in items %}
-      {% set item = items[output] %}
-      {
-        "id": "{{ item['baseItem'] }}",
-        "count": {{ output_count }},
-        "components": {
-          "minecraft:item_name": {
-            "italic": false,
-            "text": "{{ item['displayName'] }}"
-          },
-          "minecraft:item_model": "{{ packNamespace }}:{{ item= }}"
-        }
-      }
-    {% elif output in blocks %}
-      {% set block = blocks[output] %}
-      {
+  "result":
+  {% if ingredients["9"] in items %}
+  {
+    "id": "{{ items[ingredients['9']]['baseItem'] }}",
+    "count": {{ outputCount }},
+    "components": {
+      "minecraft:item_name": {
+        "italic": false,
+        "text": "{{ items[ingredients['9']]['displayName'] }}"
+      },
+      "minecraft:item_model": "{{ packNamespace }}:{{ items[ingredients['9']]['name'] }}"
+    }
+  }
+  {% elif ingredients["9"] in blocks %}
+  {
+    "id": "minecraft:item_frame",
+    "count": {{ outputCount }},
+    "components": {
+      "minecraft:item_model": "{{ packNamespace }}:{{ blocks[ingredients['9']]['name'] }}",
+      "minecraft:custom_name": {
+        "italic": false,
+        "text": "{{ blocks[ingredients['9']]['displayName'] }}"
+      },
+      "minecraft:entity_data": {
         "id": "minecraft:item_frame",
-        "count": {{ output_count }},
-        "components": {
-          "minecraft:item_model": "{{ packNamespace }}:{{ block }}",
-          "minecraft:custom_name": {
-            "italic": false,
-            "text": "{{ block['displayName'] }}"
-          },
-          "minecraft:entity_data": {
-            "id": "minecraft:item_frame",
-            "Fixed": true,
-            "Invisible": true,
-            "Silent": true,
-            "Invulnerable": true,
-            "Facing": 1,
-            "Tags": [
-              "{{ packAuthor }}.item_frame_block",
-              "{{ packAuthor }}.{{ block }}"
-            ]
-          }
-        }
+        "Fixed": true,
+        "Invisible": true,
+        "Silent": true,
+        "Invulnerable": true,
+        "Facing": 1,
+        "Tags": [
+          "{{ packAuthor }}.item_frame_block",
+          "{{ packAuthor }}.{{ blocks[ingredients['9']]['name'] }}"
+        ]
       }
-    {% endif %}
+    }
+  }
+  {% else %}
+  {
+    "id": "minecraft:{{ ingredients['9'] }}",
+    "count": {{ outputCount }}
+  }
+  {% endif %}
 }
