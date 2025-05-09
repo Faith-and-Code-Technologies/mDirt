@@ -21,7 +21,7 @@ class ItemGenerator:
         os.mkdir(f'{self.namespaceDirectory}/function/items')
 
         # Give Items Function
-        content = self.getTemplate('giveItems.mcfunciton.j2', {
+        content = self.getTemplate('giveItems.mcfunction.j2', {
             'header': self.header,
             'items': self.items,
             'packNamespace': self.packNamespace
@@ -34,66 +34,69 @@ class ItemGenerator:
         for item in self.items:
             os.mkdir(f'{self.namespaceDirectory}/function/items/{item}')
             rightClick = self.items[item]["rightClick"]
-            if not rightClick["enabled"]: continue
+            if rightClick["enabled"]:
 
-            # Item
-            content = self.getTemplate('item.mcfunction.j2', {
-                'header': self.header,
-                'item': item,
-                'packNamespace': self.packNamespace,
-                'mode': rightClick["mode"]
-            })
+                # Item
+                content = self.getTemplate('item.mcfunction.j2', {
+                    'header': self.header,
+                    'item': item,
+                    'packNamespace': self.packNamespace,
+                    'mode': rightClick["mode"]
+                })
 
-            with open(f'{self.namespaceDirectory}/function/items/{item}/{item}.mcfunction', 'w') as file:
-                file.write(content)
+                with open(f'{self.namespaceDirectory}/function/items/{item}/{item}.mcfunction', 'w') as file:
+                    file.write(content)
 
-            # Cooldown
-            content = self.getTemplate('cooldown.mcfunction.j2', {
-                'header': self.header,
-                'item': item,
-                'packNamespace': self.packNamespace,
-                'mode': rightClick["mode"]
-            })
+                # Cooldown
+                content = self.getTemplate('cooldown.mcfunction.j2', {
+                    'header': self.header,
+                    'item': item,
+                    'packNamespace': self.packNamespace,
+                    'mode': rightClick["mode"]
+                })
 
-            with open(f'{self.namespaceDirectory}/function/items/{item}/cooldown.mcfunction', 'w') as file:
-                file.write(content)
-            
-            # Execute
-            content = self.getTemplate('execute.mcfunciton.j2', {
-                'header': self.header,
-                'mode': rightClick["mode"]
-            })
+                with open(f'{self.namespaceDirectory}/function/items/{item}/cooldown.mcfunction', 'w') as file:
+                    file.write(content)
+                
+                # Execute
+                content = self.getTemplate('execute.mcfunction.j2', {
+                    'header': self.header,
+                    'rightClick': rightClick
+                })
+
+                with open(f'{self.namespaceDirectory}/function/items/{item}/execute.mcfunction', 'w') as file:
+                    file.write(content)
         
         # Cooldown & Use Advancements
         for item in self.items:
             rightClick = self.items[item]["rightClick"]
-            if not rightClick["enabled"]: continue
+            if rightClick["enabled"]:
 
-            # Use
-            content = self.getTemplate('itemUse.json.j2', {
-                'packNamespace': self.packNamespace,
-                'item': item
-            })
+                # Use
+                content = self.getTemplate('itemUse.json.j2', {
+                    'packNamespace': self.packNamespace,
+                    'item': item
+                })
 
-            with open(f'{self.namespaceDirectory}/advancement/{item}_use.json', 'w') as file:
-                file.write(content)
-            
-            # Cooldown
-            content = self.getTemplate('itemCooldown.json.j2', {
-                'packNamespace': self.packNamespace,
-                'item': item
-            })
-
-            if rightClick["mode"] == "impulse":
-                with open(f'{self.namespaceDirectory}/advancement/{item}_cooldown.json', 'w') as file:
+                with open(f'{self.namespaceDirectory}/advancement/{item}_use.json', 'w') as file:
                     file.write(content)
+                
+                # Cooldown
+                content = self.getTemplate('itemCooldown.json.j2', {
+                    'packNamespace': self.packNamespace,
+                    'item': item
+                })
+
+                if rightClick["mode"] == "impulse":
+                    with open(f'{self.namespaceDirectory}/advancement/{item}_cooldown.json', 'w') as file:
+                        file.write(content)
         
         # Append Scoreboard Declerations Within Load
         with open(f'{self.namespaceDirectory}/function/load.mcfunction', 'a') as f:
             for item in self.items:
                 rightClick = self.items[item]["rightClick"]
-                if not rightClick["enabled"]: continue
-                if rightClick["mode"] == "impulse": f.write(f'\nscoreboard objectives add {self.items[item]["name"]}_cooldown dummy')
+                if rightClick["enabled"]:
+                    if rightClick["mode"] == "impulse": f.write(f'\nscoreboard objectives add {self.items[item]["name"]}_cooldown dummy')
 
 
 class ItemResourcer:
@@ -129,7 +132,7 @@ class ItemResourcer:
         for item in self.items:
             currentPath = f'{self.resPackDirectory}/assets/{self.packNamespace}/models/item'
             content = self.getTemplate('model.json.j2', {
-                'item': item,
+                'model': self.items[item]["model"],
                 'packNamespace': self.packNamespace,
                 'texture': os.path.splitext(os.path.basename(str(self.items[item]["texture"])))[-2]
             })

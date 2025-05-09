@@ -88,7 +88,7 @@
                             "function": "minecraft:set_components",
                             "components": {
                                 "minecraft:item_model": "{{ packNamespace }}:{{ blocks[blocks[block]['blockDrop']]['name'] }}",
-                                "minecraft:custom_name": {{ {"italic": False, "text": blocks[blocks[block]['blockDrop']]['displayName']} | tojson }},
+                                "minecraft:custom_name": "{\"italic\": False, \"text\": \"{{ blocks[blocks[block]['blockDrop']]['displayName'] }}\" }",
                                 "minecraft:entity_data": {
                                     "id": "minecraft:item_frame",
                                     "Fixed": true,

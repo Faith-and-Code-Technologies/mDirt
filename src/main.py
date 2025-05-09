@@ -230,7 +230,7 @@ class App(QMainWindow):
         self.moduleGrab = ModuleGrabber(
             base_url="https://github.com/Faith-and-Code-Technologies/mDirt-2/raw/main/"
         )
-        self.moduleGrab.update_module(version=self.packVersion)
+        #self.moduleGrab.update_module(version=self.packVersion)
 
     def setupData(self):
         self.mainDirectory = f"{os.path.dirname(os.path.abspath(__file__))}/.."
@@ -316,9 +316,6 @@ class App(QMainWindow):
             },
         }
 
-        if self.ui.packVersion.currentText() != "1.21.3":
-            data["content"]["elements"]["paintings"] = self.paintings
-
         file = QFileDialog.getExistingDirectory(self, "Save mDirt Project", "")
 
         if file:
@@ -364,6 +361,7 @@ class App(QMainWindow):
         for block in self.blocks:
             self.ui.blockList.addItem(self.blocks[block]["name"])
             self.featureNum += 1
+            print(self.blocks[block]["textures"])
         for item in self.items:
             self.ui.itemList.addItem(self.items[item]["name"])
             self.featureNum += 1
