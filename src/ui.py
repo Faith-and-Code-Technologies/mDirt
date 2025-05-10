@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiXMDSoa.ui'
+## Form generated from reading UI file 'uiiLOMQc.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -77,6 +77,15 @@ class Ui_MainWindow(object):
         self.elementEditor = QStackedWidget(self.centralwidget)
         self.elementEditor.setObjectName(u"elementEditor")
         self.elementEditor.setGeometry(QRect(160, 0, 661, 611))
+        self.welcome = QWidget()
+        self.welcome.setObjectName(u"welcome")
+        self.label_7 = QLabel(self.welcome)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setGeometry(QRect(220, 90, 171, 16))
+        self.label_9 = QLabel(self.welcome)
+        self.label_9.setObjectName(u"label_9")
+        self.label_9.setGeometry(QRect(190, 110, 181, 16))
+        self.elementEditor.addWidget(self.welcome)
         self.details = QWidget()
         self.details.setObjectName(u"details")
         self.titleLabel = QLabel(self.details)
@@ -654,6 +663,8 @@ class Ui_MainWindow(object):
         self.actionSave.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.actionLoad.setText(QCoreApplication.translate("MainWindow", u"Load", None))
         self.actionExport.setText(QCoreApplication.translate("MainWindow", u"Export", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"Welcome to mDirt!", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"Create an element to get started!", None))
         self.titleLabel.setText(QCoreApplication.translate("MainWindow", u"mDirt - a tool made to help make Datapacks\n"
 "Created By JupiterDev & JustJoshinDev 2025", None))
         self.packNameLabel.setText(QCoreApplication.translate("MainWindow", u"Pack Name", None))
@@ -683,7 +694,7 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(tooltip)
         self.packGenerate.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Sets the details!</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
-        self.packGenerate.setText(QCoreApplication.translate("MainWindow", u"OK", None))
+        self.packGenerate.setText(QCoreApplication.translate("MainWindow", u"Generate", None))
 #if QT_CONFIG(tooltip)
         self.blockTextureButtonBottom.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The bottom texture of your block. <span style=\" font-weight:700;\">If you are using a Custom model, only use this texture!</span></p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
