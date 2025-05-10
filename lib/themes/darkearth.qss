@@ -1,4 +1,4 @@
-/*mDirt Dev Theme - Dark Earthy */
+/* mDirt Dev Theme - Dark Earthy */
 
 * {
     font-family: "JetBrains Mono", "Consolas", monospace;
@@ -10,6 +10,7 @@ QWidget {
     background-color: #1c1a16;
 }
 
+/* --- Buttons --- */
 QPushButton {
     background-color: #3b553c;
     color: #ffffff;
@@ -27,7 +28,14 @@ QPushButton:pressed {
     background-color: #36503a;
 }
 
-QLineEdit, QTextEdit {
+QPushButton:disabled {
+    background-color: #2b2a26;
+    color: #777;
+    border-color: #3a3a3a;
+}
+
+/* --- Text Inputs --- */
+QLineEdit, QTextEdit, QPlainTextEdit {
     background-color: #2b2a26;
     border: 1px solid #464642;
     border-radius: 4px;
@@ -35,14 +43,16 @@ QLineEdit, QTextEdit {
     color: #eaeaea;
 }
 
-QLineEdit:focus, QTextEdit:focus {
+QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
     border: 1px solid #7da87d;
 }
 
+/* --- Labels --- */
 QLabel {
     color: #ccc9b5;
 }
 
+/* --- Combo Box --- */
 QComboBox {
     background-color: #2b2a26;
     border: 1px solid #464642;
@@ -55,6 +65,52 @@ QComboBox:hover {
     border-color: #7da87d;
 }
 
+QComboBox QAbstractItemView {
+    background-color: #2b2a26;
+    selection-background-color: #4d6e4f;
+    selection-color: #ffffff;
+    border: 1px solid #5e7e5f;
+}
+
+/* --- Checkboxes --- */
+QCheckBox {
+    spacing: 6px;
+    color: #ccc9b5;
+}
+
+QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #5e7e5f;
+    border-radius: 3px;
+    background-color: #2b2a26;
+}
+
+QCheckBox::indicator:checked {
+    background-color: #4d6e4f;
+    border: 1px solid #89b089;
+}
+
+/* --- Radio Buttons --- */
+QRadioButton {
+    spacing: 6px;
+    color: #ccc9b5;
+}
+
+QRadioButton::indicator {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #5e7e5f;
+    border-radius: 8px;
+    background-color: #2b2a26;
+}
+
+QRadioButton::indicator:checked {
+    background-color: #4d6e4f;
+    border: 1px solid #89b089;
+}
+
+/* --- Tabs --- */
 QTabWidget::pane {
     border: 1px solid #5a5a50;
     border-radius: 6px;
@@ -73,6 +129,7 @@ QTabBar::tab:selected {
     color: #d7f7d4;
 }
 
+/* --- Scrollbars --- */
 QScrollBar:vertical, QScrollBar:horizontal {
     background: #1c1a16;
     border: none;
@@ -89,6 +146,96 @@ QScrollBar::handle:hover {
     background: #7da87d;
 }
 
+/* --- Group Boxes --- */
+QGroupBox {
+    border: 1px solid #464642;
+    border-radius: 5px;
+    margin-top: 6px;
+    padding: 10px;
+    color: #ccc9b5;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0 3px;
+    color: #d3d3c3;
+}
+
+/* --- Sliders --- */
+QSlider::groove:horizontal {
+    height: 6px;
+    background: #3b3731;
+    border-radius: 3px;
+}
+
+QSlider::handle:horizontal {
+    background: #7da87d;
+    border: 1px solid #5e7e5f;
+    width: 12px;
+    margin: -4px 0;
+    border-radius: 6px;
+}
+
+/* --- Spin Boxes --- */
+QSpinBox, QDoubleSpinBox {
+    background-color: #2b2a26;
+    border: 1px solid #464642;
+    border-radius: 4px;
+    padding: 2px 6px;
+    color: #e9e9e9;
+}
+
+QSpinBox::up-button, QSpinBox::down-button,
+QDoubleSpinBox::up-button, QDoubleSpinBox::down-button {
+    background-color: #3b553c;
+    border: none;
+    width: 16px;
+}
+
+/* --- Progress Bar --- */
+QProgressBar {
+    background-color: #2b2a26;
+    border: 1px solid #5e7e5f;
+    border-radius: 4px;
+    text-align: center;
+    color: #eaeaea;
+}
+
+QProgressBar::chunk {
+    background-color: #4d6e4f;
+    width: 10px;
+}
+
+/* --- Menu --- */
+QMenuBar {
+    background-color: #2b2a26;
+    color: #e9e9e9;
+}
+
+QMenuBar::item:selected {
+    background-color: #4d6e4f;
+}
+
+QMenu {
+    background-color: #2b2a26;
+    color: #e9e9e9;
+    border: 1px solid #5e7e5f;
+}
+
+QMenu::item:selected {
+    background-color: #4d6e4f;
+    color: #ffffff;
+}
+
+/* --- Status Bar --- */
+QStatusBar {
+    background-color: #1c1a16;
+    color: #aaaaaa;
+    border-top: 1px solid #2b2a26;
+}
+
+/* --- Tooltips --- */
 QToolTip {
     background-color: #3b553c;
     color: #f4f4f4;
