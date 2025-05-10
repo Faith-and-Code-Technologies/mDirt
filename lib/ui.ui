@@ -6,1182 +6,244 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>829</width>
-    <height>672</height>
+    <width>1003</width>
+    <height>737</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QPushButton[flat=&quot;true&quot;] {
-    border: 2px solid #808080;
+   <string notr="true">/*mDirt Dev Theme - Dark Earthy */
+
+* {
+    font-family: &quot;JetBrains Mono&quot;, &quot;Consolas&quot;, monospace;
+    font-size: 13px;
+    color: #e9e9e9;
+}
+
+QWidget {
+    background-color: #1c1a16;
+}
+
+QPushButton {
+    background-color: #3b553c;
+    color: #ffffff;
+    border: 1px solid #5e7e5f;
+    border-radius: 5px;
+    padding: 6px 10px;
+}
+
+QPushButton:hover {
+    background-color: #4d6e4f;
+    border-color: #89b089;
+}
+
+QPushButton:pressed {
+    background-color: #36503a;
+}
+
+QLineEdit, QTextEdit {
+    background-color: #2b2a26;
+    border: 1px solid #464642;
+    border-radius: 4px;
+    padding: 4px 6px;
+    color: #eaeaea;
+}
+
+QLineEdit:focus, QTextEdit:focus {
+    border: 1px solid #7da87d;
+}
+
+QLabel {
+    color: #ccc9b5;
+}
+
+QComboBox {
+    background-color: #2b2a26;
+    border: 1px solid #464642;
+    border-radius: 4px;
+    padding: 4px;
+    color: #ffffff;
+}
+
+QComboBox:hover {
+    border-color: #7da87d;
+}
+
+QTabWidget::pane {
+    border: 1px solid #5a5a50;
     border-radius: 6px;
+}
+
+QTabBar::tab {
+    background: #3b3731;
+    color: #b5b5a5;
     padding: 6px 12px;
-    color: #333333;
-    font-size: 14px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
 }
 
-QPushButton[flat=&quot;true&quot;]:hover {
-    border-color: #606060;
+QTabBar::tab:selected {
+    background: #4e4a40;
+    color: #d7f7d4;
 }
 
-QPushButton[flat=&quot;true&quot;]:pressed {
-    color: #000000;
+QScrollBar:vertical, QScrollBar:horizontal {
+    background: #1c1a16;
+    border: none;
+    width: 10px;
+    margin: 0px;
 }
-</string>
+
+QScrollBar::handle {
+    background: #575342;
+    border-radius: 4px;
+}
+
+QScrollBar::handle:hover {
+    background: #7da87d;
+}
+
+QToolTip {
+    background-color: #3b553c;
+    color: #f4f4f4;
+    border: 1px solid #7da87d;
+    padding: 4px;
+    border-radius: 4px;
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QListWidget" name="elementVeiwer">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>161</width>
-      <height>621</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="Line" name="line">
-    <property name="geometry">
-     <rect>
-      <x>-10</x>
-      <y>-10</y>
-      <width>801</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Orientation::Horizontal</enum>
-    </property>
-   </widget>
-   <widget class="QStackedWidget" name="elementEditor">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>0</y>
-      <width>661</width>
-      <height>611</height>
-     </rect>
-    </property>
-    <property name="currentIndex">
-     <number>0</number>
-    </property>
-    <widget class="QWidget" name="welcome">
-     <widget class="QLabel" name="label_7">
-      <property name="geometry">
-       <rect>
-        <x>220</x>
-        <y>90</y>
-        <width>171</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Welcome to mDirt!</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_9">
-      <property name="geometry">
-       <rect>
-        <x>190</x>
-        <y>110</y>
-        <width>181</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Create an element to get started!</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="details">
-     <widget class="QLabel" name="titleLabel">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>30</y>
-        <width>271</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>mDirt - a tool made to help make Datapacks
-Created By JupiterDev &amp; JustJoshinDev 2025</string>
-      </property>
-     </widget>
-     <widget class="QWidget" name="formLayoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>80</y>
-        <width>271</width>
-        <height>141</height>
-       </rect>
-      </property>
-      <layout class="QFormLayout" name="formLayout">
-       <item row="0" column="0">
-        <widget class="QLabel" name="packNameLabel">
-         <property name="text">
-          <string>Pack Name</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="packName">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of your Data &amp;amp; Resource packs!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="placeholderText">
-          <string>The Ruby Pack</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="packNamespaceLabel">
-         <property name="text">
-          <string>Namespace</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="packNamespace">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The namespace for your packs. This is what the game uses to recognize your packs.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="placeholderText">
-          <string>rubypack</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="packAuthorLabel">
-         <property name="text">
-          <string>Author</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLineEdit" name="packAuthor">
-         <property name="whatsThis">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="placeholderText">
-          <string>jupiterdev</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="packDescriptionLabel">
-         <property name="text">
-          <string>Description</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QLineEdit" name="packDescription">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The description for your packs!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="placeholderText">
-          <string>Adds Rubys, Ruby Blocks, etc.</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="packVersionLabel">
-         <property name="text">
-          <string>Version</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="QComboBox" name="packVersion">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The version your packs will work for.&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;1.21.4 highly recommended!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QPushButton" name="packGenerate">
-      <property name="geometry">
-       <rect>
-        <x>150</x>
-        <y>230</y>
-        <width>271</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sets the details!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="text">
-       <string>Generate</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="blockEditor">
-     <widget class="QPushButton" name="blockTextureButtonBottom">
-      <property name="geometry">
-       <rect>
-        <x>280</x>
-        <y>140</y>
-        <width>50</width>
-        <height>50</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The bottom texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use this texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="blockTextureButtonTop">
-      <property name="geometry">
-       <rect>
-        <x>280</x>
-        <y>40</y>
-        <width>50</width>
-        <height>50</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The top texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="blockTextureButtonLeft">
-      <property name="geometry">
-       <rect>
-        <x>230</x>
-        <y>90</y>
-        <width>50</width>
-        <height>50</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The left texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="blockTextureButtonBack">
-      <property name="geometry">
-       <rect>
-        <x>280</x>
-        <y>90</y>
-        <width>50</width>
-        <height>50</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The back texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="blockTextureButtonFront">
-      <property name="geometry">
-       <rect>
-        <x>380</x>
-        <y>90</y>
-        <width>50</width>
-        <height>50</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The front texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="blockTextureButtonRight">
-      <property name="geometry">
-       <rect>
-        <x>330</x>
-        <y>90</y>
-        <width>50</width>
-        <height>50</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The right texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QLabel" name="blockTextureLabel">
-      <property name="geometry">
-       <rect>
-        <x>220</x>
-        <y>10</y>
-        <width>49</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Texture:</string>
-      </property>
-     </widget>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>197</width>
-        <height>216</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="0">
-        <widget class="QLabel" name="blockDisplayNameLabel">
-         <property name="text">
-          <string>Display Name</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="blockDisplayName">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name you'll see for your block in your inventory!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="placeholderText">
-          <string>Ruby Ore</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="blockNameLabel">
-         <property name="text">
-          <string>Name</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="blockName">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;How the game refers to the block.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="placeholderText">
-          <string>ruby_ore</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="blockBaseBlockName">
-         <property name="text">
-          <string>Base Block</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLineEdit" name="blockBaseBlock">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The block that your custom block hides inside of. This determines most of the sounds (other than the place sound), mining speed, etc. &lt;span style=&quot; font-weight:700;&quot;&gt;Do not use minecraft: in front of the block!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="placeholderText">
-          <string>stone</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="blockDropLabel">
-         <property name="text">
-          <string>Drop</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QComboBox" name="blockDropBox">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The item or block that this block drops when it is broken. Self will drop itself, or you can choose any of your blocks or items, or you can choose any Minecraft block or item.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="editable">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="blockPlaceSoundLabel">
-         <property name="text">
-          <string>Place Sound</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="QLineEdit" name="blockPlaceSound">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this is checked, it'll place like an oak log, directionally.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="placeholderText">
-          <string>block.stone.place</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="blockDirectionalLabel">
-         <property name="text">
-          <string>Directional</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QCheckBox" name="blockDirectional">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this is checked, it'll place like an oak log, directionally.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="0">
-        <widget class="QLabel" name="blockModelLabel">
-         <property name="text">
-          <string>Model:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="1">
-        <widget class="QComboBox" name="blockModel">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The model of your block.&lt;/p&gt;&lt;p&gt;Block: A normal block.&lt;/p&gt;&lt;p&gt;Custom: A model you created in &lt;span style=&quot; font-weight:700;&quot;&gt;BlockBench&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>Block</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Custom</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="itemEditor">
-     <widget class="QComboBox" name="itemModel">
-      <property name="geometry">
-       <rect>
-        <x>420</x>
-        <y>10</y>
-        <width>121</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The model your custom item will use.&lt;/p&gt;&lt;p&gt;Generated: Normal items.&lt;/p&gt;&lt;p&gt;Handheld: For thigns such as tools, swords, etc.&lt;/p&gt;&lt;p&gt;Custom: If you want to select a custom model you made in &lt;span style=&quot; font-weight:700;&quot;&gt;BlockBench&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <item>
-       <property name="text">
-        <string>Generated</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Handheld</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Custom</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLabel" name="itemModelLabel">
-      <property name="geometry">
-       <rect>
-        <x>370</x>
-        <y>10</y>
-        <width>49</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Model</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="itemTextureLabel">
-      <property name="geometry">
-       <rect>
-        <x>370</x>
-        <y>60</y>
-        <width>49</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Texture</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="itemTextureButton">
-      <property name="geometry">
-       <rect>
-        <x>430</x>
-        <y>40</y>
-        <width>50</width>
-        <height>50</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The texture of your item!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_3">
-      <property name="geometry">
-       <rect>
-        <x>1</x>
-        <y>456</y>
-        <width>16</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>0</y>
-        <width>258</width>
-        <height>382</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_2">
-       <item row="5" column="1">
-        <widget class="QComboBox" name="itemRightClickMode">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The mode of the right-click method.&lt;/p&gt;&lt;p&gt;Tick: The function runs 20 times per second as long as you are holding rightclick.&lt;br/&gt;Impulse: Runs once whenever you rightclick your item.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>Tick</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Impulse</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="QCheckBox" name="itemRightClickCheck">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Whether or not you want to have a set of special commands run whenever you rightclick your item.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="itemNameLabel">
-         <property name="text">
-          <string>Name</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label_6">
-         <property name="text">
-          <string>Max Stack Size</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QSpinBox" name="itemStackSize">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The stack size of your item! Can be anything from 1 to 99, and can be used for any base item!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="minimum">
-          <number>1</number>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLineEdit" name="itemBaseItem">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The Minecraft item your custom item is wrapped around. &lt;span style=&quot; font-weight:700;&quot;&gt;Do not add a minecraft: prefix to this item!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="placeholderText">
-          <string>flint</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="itemDisplayNameLabel">
-         <property name="text">
-          <string>Display Name</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="itemDisplayName">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of your custom item! This'll be what you see in your inventory.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="placeholderText">
-          <string>Ruby</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="itemBaseItemLabel">
-         <property name="text">
-          <string>Base Item</string>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="0">
-        <widget class="QLabel" name="label_5">
-         <property name="text">
-          <string>Right-Click Function</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>Right-Click Function?</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="label_4">
-         <property name="text">
-          <string>Right-Click Mode</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="itemName">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of your item that the game recognizes it as.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="placeholderText">
-          <string>ruby</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="0" colspan="2">
-        <widget class="QPlainTextEdit" name="itemRightClickFunc">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A list of commands that will be run whenever you rightclick. &lt;span style=&quot; font-weight:700;&quot;&gt;The program does not check if this will work or not! Any problems made here are the fault of the user.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="recipeEditor">
-     <widget class="QLineEdit" name="recipeName">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>10</y>
-        <width>181</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name the game uses to recognize your recipe.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="recipeNameLabel">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>10</y>
-        <width>71</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Recipe Name</string>
-      </property>
-     </widget>
-     <widget class="QTabWidget" name="recipeSubTabs">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>40</y>
-        <width>511</width>
-        <height>351</height>
-       </rect>
-      </property>
+   <layout class="QFormLayout" name="formLayout_2">
+    <item row="0" column="1">
+     <widget class="QStackedWidget" name="elementEditor">
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="craftingTab">
-       <attribute name="title">
-        <string>Crafting</string>
-       </attribute>
-       <widget class="QPushButton" name="slot0Button">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>40</y>
-          <width>50</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="flat">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="slot1Button">
-        <property name="geometry">
-         <rect>
-          <x>90</x>
-          <y>40</y>
-          <width>50</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="flat">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="slot2Button">
-        <property name="geometry">
-         <rect>
-          <x>140</x>
-          <y>40</y>
-          <width>50</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="flat">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="slot3Button">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>90</y>
-          <width>50</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="flat">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="slot4Button">
-        <property name="geometry">
-         <rect>
-          <x>90</x>
-          <y>90</y>
-          <width>50</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="flat">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="slot5Button">
-        <property name="geometry">
-         <rect>
-          <x>140</x>
-          <y>90</y>
-          <width>50</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="flat">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="slot6Button">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>140</y>
-          <width>50</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="flat">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="slot7Button">
-        <property name="geometry">
-         <rect>
-          <x>90</x>
-          <y>140</y>
-          <width>50</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="flat">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="slot8Button">
-        <property name="geometry">
-         <rect>
-          <x>140</x>
-          <y>140</y>
-          <width>50</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="flat">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="slot9Button">
-        <property name="geometry">
-         <rect>
-          <x>250</x>
-          <y>90</y>
-          <width>50</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The output of the crafting recipe. Can have any Minecraft block or item, as well as any custom blocks or items.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="flat">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QSpinBox" name="slot9Count">
-        <property name="geometry">
-         <rect>
-          <x>250</x>
-          <y>140</y>
-          <width>88</width>
-          <height>24</height>
-         </rect>
-        </property>
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The amount of your output. If this is higher than the max stack size of your output item, your datapack will crash!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="buttonSymbols">
-         <enum>QAbstractSpinBox::ButtonSymbols::PlusMinus</enum>
-        </property>
-        <property name="minimum">
-         <number>1</number>
-        </property>
-        <property name="maximum">
-         <number>64</number>
-        </property>
-       </widget>
-       <widget class="QRadioButton" name="shapelessRadio">
-        <property name="geometry">
-         <rect>
-          <x>50</x>
-          <y>200</y>
-          <width>92</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Makes the recipe shapeless.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="text">
-         <string>Shapeless</string>
-        </property>
-        <property name="autoRepeat">
-         <bool>false</bool>
-        </property>
-        <property name="autoExclusive">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QRadioButton" name="exactlyRadio">
-        <property name="geometry">
-         <rect>
-          <x>50</x>
-          <y>230</y>
-          <width>161</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Makes the recipe normal.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="text">
-         <string>Exactly Where Placed</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-        <property name="autoRepeat">
-         <bool>false</bool>
-        </property>
-        <property name="autoExclusive">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QLabel" name="slot0">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>40</y>
-          <width>50</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QLabel" name="slot1">
-        <property name="geometry">
-         <rect>
-          <x>90</x>
-          <y>40</y>
-          <width>50</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QLabel" name="slot2">
-        <property name="geometry">
-         <rect>
-          <x>140</x>
-          <y>40</y>
-          <width>50</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QLabel" name="slot3">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>90</y>
-          <width>50</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QLabel" name="slot4">
-        <property name="geometry">
-         <rect>
-          <x>90</x>
-          <y>90</y>
-          <width>50</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QLabel" name="slot5">
-        <property name="geometry">
-         <rect>
-          <x>140</x>
-          <y>90</y>
-          <width>50</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QLabel" name="slot6">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>140</y>
-          <width>50</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QLabel" name="slot7">
-        <property name="geometry">
-         <rect>
-          <x>90</x>
-          <y>140</y>
-          <width>50</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QLabel" name="slot8">
-        <property name="geometry">
-         <rect>
-          <x>140</x>
-          <y>140</y>
-          <width>50</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <widget class="QLabel" name="slot9">
-        <property name="geometry">
-         <rect>
-          <x>250</x>
-          <y>90</y>
-          <width>50</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-       <zorder>slot9Count</zorder>
-       <zorder>shapelessRadio</zorder>
-       <zorder>exactlyRadio</zorder>
-       <zorder>slot0</zorder>
-       <zorder>slot1</zorder>
-       <zorder>slot2</zorder>
-       <zorder>slot3</zorder>
-       <zorder>slot4</zorder>
-       <zorder>slot5</zorder>
-       <zorder>slot6</zorder>
-       <zorder>slot7</zorder>
-       <zorder>slot8</zorder>
-       <zorder>slot9</zorder>
-       <zorder>slot6Button</zorder>
-       <zorder>slot1Button</zorder>
-       <zorder>slot2Button</zorder>
-       <zorder>slot7Button</zorder>
-       <zorder>slot0Button</zorder>
-       <zorder>slot4Button</zorder>
-       <zorder>slot3Button</zorder>
-       <zorder>slot8Button</zorder>
-       <zorder>slot9Button</zorder>
-       <zorder>slot5Button</zorder>
+      <widget class="QWidget" name="welcomeScreen">
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="QTextEdit" name="textEdit">
+          <property name="html">
+           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;title&gt;Welcome to mDirt&lt;/title&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'JetBrains Mono','Consolas','monospace'; font-size:13px; font-weight:400; font-style:normal;&quot; bgcolor=&quot;#1e1e1e&quot;&gt;
+&lt;h1 style=&quot; margin-top:18px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:xx-large; font-weight:700; color:#00e676;&quot;&gt;mDirt - A Minecraft Datapack Generator&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:xx-large; font-weight:700; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/h1&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-style:italic; color:#aaaaaa;&quot;&gt;Making Datapacks is really tedious... but not anymore.&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt;Creating custom Minecraft datapacks can be time-consuming and complex. &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0;&quot;&gt;mDirt&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; simplifies this process by providing an easy-to-use tool for generating datapacks with custom features like blocks, items, recipes, and more. &lt;/span&gt;&lt;/p&gt;
+&lt;h2 style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#00e676;&quot;&gt;🛠️ Supported Versions&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/h2&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0;&quot;&gt;Minecraft Versions Supported:&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; 1.21.3, 1.21.4, 1.21.5 &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0;&quot;&gt;Full compatibility&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; for &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; color:#ffeb3b; background-color:#2c2c2c;&quot;&gt;1.21.5&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; has been added. &lt;/span&gt;&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#00e676;&quot;&gt;Using the Interface&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/h3&gt;
+&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;
+&lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Tooltips:&lt;/span&gt; Hover over any field for help. &lt;/li&gt;
+&lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;Fill in details like block names, item properties, recipes, etc. &lt;/li&gt;&lt;/ul&gt;
+&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#00e676;&quot;&gt;Generate Your Datapack&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt;Click &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0;&quot;&gt;&amp;quot;Generate Pack&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; once you're done. Your datapack will be ready to export! &lt;/span&gt;&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#00e676;&quot;&gt;Deploying in Minecraft&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt;Place the datapack in &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; color:#ffeb3b; background-color:#2c2c2c;&quot;&gt;datapacks&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; folder and the resourcepack in &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; color:#ffeb3b; background-color:#2c2c2c;&quot;&gt;resourcepacks&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt;Use the following commands to get your features: &lt;/span&gt;&lt;/p&gt;
+&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;
+&lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;Blocks: &lt;span style=&quot; font-family:'Courier New'; color:#ffeb3b; background-color:#2c2c2c;&quot;&gt;/function YOURNAMESPACE:give_blocks&lt;/span&gt; &lt;/li&gt;
+&lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;Items: &lt;span style=&quot; font-family:'Courier New'; color:#ffeb3b; background-color:#2c2c2c;&quot;&gt;/function YOURNAMESPACE:give_items&lt;/span&gt; &lt;/li&gt;
+&lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;Paintings: &lt;span style=&quot; font-family:'Courier New'; color:#ffeb3b; background-color:#2c2c2c;&quot;&gt;/function YOURNAMESPACE:give_paintings&lt;/span&gt; &lt;/li&gt;&lt;/ul&gt;
+&lt;h2 style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#00e676;&quot;&gt;🧩 Feature Support by Version&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/h2&gt;
+&lt;table border=&quot;0&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; border-collapse:collapse;&quot; cellspacing=&quot;2&quot; cellpadding=&quot;0&quot;&gt;&lt;thead&gt;
+&lt;tr&gt;
+&lt;td bgcolor=&quot;#333333&quot; style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%; background-color:#333333;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0; background-color:#333333;&quot;&gt;Feature&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td bgcolor=&quot;#333333&quot; style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%; background-color:#333333;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0; background-color:#333333;&quot;&gt;1.21.3&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td bgcolor=&quot;#333333&quot; style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%; background-color:#333333;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0; background-color:#333333;&quot;&gt;1.21.4&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td bgcolor=&quot;#333333&quot; style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%; background-color:#333333;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0; background-color:#333333;&quot;&gt;1.21.5&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tr&gt;
+&lt;td style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt;Blocks&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#00e676;&quot;&gt;✅ 100%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#00e676;&quot;&gt;✅ 100%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#00e676;&quot;&gt;✅ 100%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt;Items&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#00e676;&quot;&gt;✅ 80%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#00e676;&quot;&gt;✅ 80%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#00e676;&quot;&gt;✅ 80%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt;Recipes&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#00e676;&quot;&gt;✅ 100%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#00e676;&quot;&gt;✅ 100%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#00e676;&quot;&gt;✅ 100%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt;Paintings&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#e53935;&quot;&gt;❌&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#00e676;&quot;&gt;✅ 100%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#00e676;&quot;&gt;✅ 100%&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt;Enchantments&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#e53935;&quot;&gt;❌&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#e53935;&quot;&gt;❌&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#e53935;&quot;&gt;❌&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;h2 style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#00e676;&quot;&gt;🚀 Coming Soon&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/h2&gt;
+&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;
+&lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;Custom Components for Items and Blocks &lt;/li&gt;
+&lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;Support for Custom Enchantments &lt;/li&gt;&lt;/ul&gt;
+&lt;h2 style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#00e676;&quot;&gt;💡 Tips &amp;amp; Best Practices&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/h2&gt;
+&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;
+&lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Namespaces:&lt;/span&gt; Avoid clashes with other datapacks. &lt;/li&gt;
+&lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Testing:&lt;/span&gt; Try it in a separate world first. &lt;/li&gt;
+&lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Backups:&lt;/span&gt; Always back up before applying new packs. &lt;/li&gt;&lt;/ul&gt;
+&lt;h2 style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#00e676;&quot;&gt;🛠 In Progress&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/h2&gt;
+&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;
+&lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;Internal system rewrite for future improvements &lt;/li&gt;
+&lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;Auto-Updater and Installer &lt;/li&gt;
+&lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;UI Redesign for a prettier and more productive experience &lt;/li&gt;&lt;/ul&gt;
+&lt;h2 style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#00e676;&quot;&gt;🙌 Credits&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/h2&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt;Created by &lt;/span&gt;&lt;a href=&quot;https://github.com/TheJupiterDev&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; text-decoration: underline; color:#4fc3f7;&quot;&gt;@TheJupiterDev&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; and &lt;/span&gt;&lt;a href=&quot;https://github.com/JustJoshinDev&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; text-decoration: underline; color:#4fc3f7;&quot;&gt;@JustJoshinDev&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt;Special thanks to Admin for the custom block generation method. &lt;/span&gt;&lt;/p&gt;
+&lt;h2 style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#00e676;&quot;&gt;🌍 Get Involved&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/h2&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt;We welcome contributions and suggestions! &lt;br /&gt;Found a bug? Have an idea? &lt;br /&gt;Visit the &lt;/span&gt;&lt;a href=&quot;https://github.com/JustJoshinDev/mDirt&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; text-decoration: underline; color:#4fc3f7;&quot;&gt;GitHub Repository&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; to file issues or open pull requests. &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#aaaaaa;&quot;&gt;© 2025 mDirt Project. Minecraft is a trademark of Mojang Studios. &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
-      <widget class="QWidget" name="smeltingTab">
-       <attribute name="title">
-        <string>Smelting</string>
-       </attribute>
-       <widget class="QPushButton" name="smeltingInputButton">
+      <widget class="QWidget" name="blockEditor">
+       <widget class="QPushButton" name="blockTextureButtonBottom">
         <property name="geometry">
          <rect>
-          <x>140</x>
-          <y>90</y>
+          <x>430</x>
+          <y>190</y>
           <width>50</width>
           <height>50</height>
          </rect>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The input for the smelting recipe.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The bottom texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use this texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string/>
@@ -1190,17 +252,17 @@ Created By JupiterDev &amp; JustJoshinDev 2025</string>
          <bool>true</bool>
         </property>
        </widget>
-       <widget class="QPushButton" name="smeltingOutputButton">
+       <widget class="QPushButton" name="blockTextureButtonTop">
         <property name="geometry">
          <rect>
-          <x>250</x>
+          <x>430</x>
           <y>90</y>
           <width>50</width>
           <height>50</height>
          </rect>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The output for the smelting recipe.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The top texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string/>
@@ -1209,97 +271,959 @@ Created By JupiterDev &amp; JustJoshinDev 2025</string>
          <bool>true</bool>
         </property>
        </widget>
-       <widget class="QLabel" name="smeltingInput">
+       <widget class="QPushButton" name="blockTextureButtonLeft">
         <property name="geometry">
          <rect>
-          <x>140</x>
-          <y>90</y>
+          <x>380</x>
+          <y>140</y>
           <width>50</width>
           <height>50</height>
          </rect>
         </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The left texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="text">
          <string/>
         </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
        </widget>
-       <widget class="QLabel" name="smeltingOutput">
+       <widget class="QPushButton" name="blockTextureButtonBack">
         <property name="geometry">
          <rect>
-          <x>250</x>
-          <y>90</y>
+          <x>430</x>
+          <y>140</y>
           <width>50</width>
           <height>50</height>
          </rect>
         </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The back texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="text">
          <string/>
         </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
        </widget>
-       <widget class="QLabel" name="label">
+       <widget class="QPushButton" name="blockTextureButtonFront">
         <property name="geometry">
          <rect>
-          <x>140</x>
-          <y>160</y>
+          <x>530</x>
+          <y>140</y>
+          <width>50</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The front texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="blockTextureButtonRight">
+        <property name="geometry">
+         <rect>
+          <x>480</x>
+          <y>140</y>
+          <width>50</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The right texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="blockTextureLabel">
+        <property name="geometry">
+         <rect>
+          <x>380</x>
+          <y>50</y>
           <width>49</width>
           <height>16</height>
          </rect>
         </property>
         <property name="text">
-         <string>Mode</string>
+         <string>Texture:</string>
         </property>
        </widget>
-       <widget class="QComboBox" name="smeltingModeBox">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
-          <x>180</x>
-          <y>160</y>
+          <x>10</x>
+          <y>10</y>
+          <width>197</width>
+          <height>216</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="0">
+          <widget class="QLabel" name="blockDisplayNameLabel">
+           <property name="text">
+            <string>Display Name</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="blockDisplayName">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name you'll see for your block in your inventory!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="placeholderText">
+            <string>Ruby Ore</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="blockNameLabel">
+           <property name="text">
+            <string>Name</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="blockName">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;How the game refers to the block.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="placeholderText">
+            <string>ruby_ore</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="blockBaseBlockName">
+           <property name="text">
+            <string>Base Block</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="blockBaseBlock">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The block that your custom block hides inside of. This determines most of the sounds (other than the place sound), mining speed, etc. &lt;span style=&quot; font-weight:700;&quot;&gt;Do not use minecraft: in front of the block!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="placeholderText">
+            <string>stone</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="blockDropLabel">
+           <property name="text">
+            <string>Drop</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QComboBox" name="blockDropBox">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The item or block that this block drops when it is broken. Self will drop itself, or you can choose any of your blocks or items, or you can choose any Minecraft block or item.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="editable">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="blockPlaceSoundLabel">
+           <property name="text">
+            <string>Place Sound</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="blockPlaceSound">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this is checked, it'll place like an oak log, directionally.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="placeholderText">
+            <string>block.stone.place</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="blockDirectionalLabel">
+           <property name="text">
+            <string>Directional</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QCheckBox" name="blockDirectional">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this is checked, it'll place like an oak log, directionally.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="blockModelLabel">
+           <property name="text">
+            <string>Model:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QComboBox" name="blockModel">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The model of your block.&lt;/p&gt;&lt;p&gt;Block: A normal block.&lt;/p&gt;&lt;p&gt;Custom: A model you created in &lt;span style=&quot; font-weight:700;&quot;&gt;BlockBench&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>Block</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Custom</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="recipieEditor">
+       <layout class="QFormLayout" name="formLayout">
+        <item row="0" column="0">
+         <widget class="QLabel" name="recipeNameLabel">
+          <property name="text">
+           <string>Recipe Name</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="recipeName">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name the game uses to recognize your recipe.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="2">
+         <widget class="QTabWidget" name="recipeSubTabs">
+          <property name="currentIndex">
+           <number>2</number>
+          </property>
+          <widget class="QWidget" name="craftingTab">
+           <attribute name="title">
+            <string>Crafting</string>
+           </attribute>
+           <widget class="QPushButton" name="slot0Button">
+            <property name="geometry">
+             <rect>
+              <x>40</x>
+              <y>40</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="slot1Button">
+            <property name="geometry">
+             <rect>
+              <x>90</x>
+              <y>40</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="slot2Button">
+            <property name="geometry">
+             <rect>
+              <x>140</x>
+              <y>40</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="slot3Button">
+            <property name="geometry">
+             <rect>
+              <x>40</x>
+              <y>90</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="slot4Button">
+            <property name="geometry">
+             <rect>
+              <x>90</x>
+              <y>90</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="slot5Button">
+            <property name="geometry">
+             <rect>
+              <x>140</x>
+              <y>90</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="slot6Button">
+            <property name="geometry">
+             <rect>
+              <x>40</x>
+              <y>140</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="slot7Button">
+            <property name="geometry">
+             <rect>
+              <x>90</x>
+              <y>140</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="slot8Button">
+            <property name="geometry">
+             <rect>
+              <x>140</x>
+              <y>140</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A slot representing a crafting table slot!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="slot9Button">
+            <property name="geometry">
+             <rect>
+              <x>250</x>
+              <y>90</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The output of the crafting recipe. Can have any Minecraft block or item, as well as any custom blocks or items.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QSpinBox" name="slot9Count">
+            <property name="geometry">
+             <rect>
+              <x>250</x>
+              <y>140</y>
+              <width>88</width>
+              <height>24</height>
+             </rect>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The amount of your output. If this is higher than the max stack size of your output item, your datapack will crash!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="buttonSymbols">
+             <enum>QAbstractSpinBox::ButtonSymbols::PlusMinus</enum>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>64</number>
+            </property>
+           </widget>
+           <widget class="QRadioButton" name="shapelessRadio">
+            <property name="geometry">
+             <rect>
+              <x>50</x>
+              <y>200</y>
+              <width>92</width>
+              <height>20</height>
+             </rect>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Makes the recipe shapeless.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>Shapeless</string>
+            </property>
+            <property name="autoRepeat">
+             <bool>false</bool>
+            </property>
+            <property name="autoExclusive">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QRadioButton" name="exactlyRadio">
+            <property name="geometry">
+             <rect>
+              <x>50</x>
+              <y>230</y>
+              <width>161</width>
+              <height>20</height>
+             </rect>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Makes the recipe normal.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>Exactly Where Placed</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <property name="autoRepeat">
+             <bool>false</bool>
+            </property>
+            <property name="autoExclusive">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QLabel" name="slot0">
+            <property name="geometry">
+             <rect>
+              <x>40</x>
+              <y>40</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QLabel" name="slot1">
+            <property name="geometry">
+             <rect>
+              <x>90</x>
+              <y>40</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QLabel" name="slot2">
+            <property name="geometry">
+             <rect>
+              <x>140</x>
+              <y>40</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QLabel" name="slot3">
+            <property name="geometry">
+             <rect>
+              <x>40</x>
+              <y>90</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QLabel" name="slot4">
+            <property name="geometry">
+             <rect>
+              <x>90</x>
+              <y>90</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QLabel" name="slot5">
+            <property name="geometry">
+             <rect>
+              <x>140</x>
+              <y>90</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QLabel" name="slot6">
+            <property name="geometry">
+             <rect>
+              <x>40</x>
+              <y>140</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QLabel" name="slot7">
+            <property name="geometry">
+             <rect>
+              <x>90</x>
+              <y>140</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QLabel" name="slot8">
+            <property name="geometry">
+             <rect>
+              <x>140</x>
+              <y>140</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QLabel" name="slot9">
+            <property name="geometry">
+             <rect>
+              <x>250</x>
+              <y>90</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <zorder>slot9Count</zorder>
+           <zorder>shapelessRadio</zorder>
+           <zorder>exactlyRadio</zorder>
+           <zorder>slot0</zorder>
+           <zorder>slot1</zorder>
+           <zorder>slot2</zorder>
+           <zorder>slot3</zorder>
+           <zorder>slot4</zorder>
+           <zorder>slot5</zorder>
+           <zorder>slot6</zorder>
+           <zorder>slot7</zorder>
+           <zorder>slot8</zorder>
+           <zorder>slot9</zorder>
+           <zorder>slot6Button</zorder>
+           <zorder>slot1Button</zorder>
+           <zorder>slot2Button</zorder>
+           <zorder>slot7Button</zorder>
+           <zorder>slot0Button</zorder>
+           <zorder>slot4Button</zorder>
+           <zorder>slot3Button</zorder>
+           <zorder>slot8Button</zorder>
+           <zorder>slot9Button</zorder>
+           <zorder>slot5Button</zorder>
+          </widget>
+          <widget class="QWidget" name="smeltingTab">
+           <attribute name="title">
+            <string>Smelting</string>
+           </attribute>
+           <widget class="QPushButton" name="smeltingInputButton">
+            <property name="geometry">
+             <rect>
+              <x>140</x>
+              <y>90</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The input for the smelting recipe.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="smeltingOutputButton">
+            <property name="geometry">
+             <rect>
+              <x>250</x>
+              <y>90</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The output for the smelting recipe.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QLabel" name="smeltingInput">
+            <property name="geometry">
+             <rect>
+              <x>140</x>
+              <y>90</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QLabel" name="smeltingOutput">
+            <property name="geometry">
+             <rect>
+              <x>250</x>
+              <y>90</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label">
+            <property name="geometry">
+             <rect>
+              <x>140</x>
+              <y>160</y>
+              <width>49</width>
+              <height>16</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Mode</string>
+            </property>
+           </widget>
+           <widget class="QComboBox" name="smeltingModeBox">
+            <property name="geometry">
+             <rect>
+              <x>180</x>
+              <y>160</y>
+              <width>121</width>
+              <height>22</height>
+             </rect>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The block that this recipe is assigned to. For example, Campfire_Cooking will make it so this recipe is for a campfire.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>Smelting</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Smoking</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Blasting</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Campfire_Cooking</string>
+             </property>
+            </item>
+           </widget>
+           <zorder>smeltingInput</zorder>
+           <zorder>smeltingOutput</zorder>
+           <zorder>smeltingOutputButton</zorder>
+           <zorder>smeltingInputButton</zorder>
+           <zorder>label</zorder>
+           <zorder>smeltingModeBox</zorder>
+          </widget>
+          <widget class="QWidget" name="tab_4">
+           <attribute name="title">
+            <string>Stonecutting</string>
+           </attribute>
+           <widget class="QPushButton" name="stoneCuttingInputButton">
+            <property name="geometry">
+             <rect>
+              <x>140</x>
+              <y>90</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QLabel" name="stoneCuttingInput">
+            <property name="geometry">
+             <rect>
+              <x>140</x>
+              <y>90</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Input for a stonecutting recipe.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="stoneCuttingOutputButton">
+            <property name="geometry">
+             <rect>
+              <x>250</x>
+              <y>90</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="flat">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QLabel" name="stoneCuttingOutput">
+            <property name="geometry">
+             <rect>
+              <x>250</x>
+              <y>90</y>
+              <width>50</width>
+              <height>50</height>
+             </rect>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Output for the stonecutting recipe.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QSpinBox" name="stoneCuttingCount">
+            <property name="geometry">
+             <rect>
+              <x>250</x>
+              <y>140</y>
+              <width>88</width>
+              <height>24</height>
+             </rect>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The amount of your stonecutting output. If this is higher than the max stack size of your output item, your datapack will crash!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="buttonSymbols">
+             <enum>QAbstractSpinBox::ButtonSymbols::PlusMinus</enum>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>64</number>
+            </property>
+           </widget>
+           <zorder>stoneCuttingInput</zorder>
+           <zorder>stoneCuttingCount</zorder>
+           <zorder>stoneCuttingOutput</zorder>
+           <zorder>stoneCuttingOutputButton</zorder>
+           <zorder>stoneCuttingInputButton</zorder>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="itemEditor">
+       <widget class="QComboBox" name="itemModel">
+        <property name="geometry">
+         <rect>
+          <x>420</x>
+          <y>10</y>
           <width>121</width>
           <height>22</height>
          </rect>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The block that this recipe is assigned to. For example, Campfire_Cooking will make it so this recipe is for a campfire.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The model your custom item will use.&lt;/p&gt;&lt;p&gt;Generated: Normal items.&lt;/p&gt;&lt;p&gt;Handheld: For thigns such as tools, swords, etc.&lt;/p&gt;&lt;p&gt;Custom: If you want to select a custom model you made in &lt;span style=&quot; font-weight:700;&quot;&gt;BlockBench&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <item>
          <property name="text">
-          <string>Smelting</string>
+          <string>Generated</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Smoking</string>
+          <string>Handheld</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Blasting</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Campfire_Cooking</string>
+          <string>Custom</string>
          </property>
         </item>
        </widget>
-       <zorder>smeltingInput</zorder>
-       <zorder>smeltingOutput</zorder>
-       <zorder>smeltingOutputButton</zorder>
-       <zorder>smeltingInputButton</zorder>
-       <zorder>label</zorder>
-       <zorder>smeltingModeBox</zorder>
-      </widget>
-      <widget class="QWidget" name="tab_4">
-       <attribute name="title">
-        <string>Stonecutting</string>
-       </attribute>
-       <widget class="QPushButton" name="stoneCuttingInputButton">
+       <widget class="QLabel" name="itemModelLabel">
         <property name="geometry">
          <rect>
-          <x>140</x>
-          <y>90</y>
+          <x>370</x>
+          <y>10</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Model</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="itemTextureLabel">
+        <property name="geometry">
+         <rect>
+          <x>370</x>
+          <y>60</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Texture</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="itemTextureButton">
+        <property name="geometry">
+         <rect>
+          <x>430</x>
+          <y>40</y>
           <width>50</width>
           <height>50</height>
          </rect>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The texture of your item!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string/>
@@ -1308,30 +1232,167 @@ Created By JupiterDev &amp; JustJoshinDev 2025</string>
          <bool>true</bool>
         </property>
        </widget>
-       <widget class="QLabel" name="stoneCuttingInput">
+       <widget class="QLabel" name="label_3">
         <property name="geometry">
          <rect>
-          <x>140</x>
-          <y>90</y>
-          <width>50</width>
-          <height>50</height>
+          <x>1</x>
+          <y>456</y>
+          <width>16</width>
+          <height>16</height>
          </rect>
-        </property>
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Input for a stonecutting recipe.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string/>
         </property>
        </widget>
-       <widget class="QPushButton" name="stoneCuttingOutputButton">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
-          <x>250</x>
-          <y>90</y>
+          <x>10</x>
+          <y>0</y>
+          <width>258</width>
+          <height>382</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <widget class="QLabel" name="itemDisplayNameLabel">
+           <property name="text">
+            <string>Display Name</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="itemDisplayName">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of your custom item! This'll be what you see in your inventory.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="placeholderText">
+            <string>Ruby</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="itemNameLabel">
+           <property name="text">
+            <string>Name</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="itemName">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of your item that the game recognizes it as.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="placeholderText">
+            <string>ruby</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="itemBaseItemLabel">
+           <property name="text">
+            <string>Base Item</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="itemBaseItem">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The Minecraft item your custom item is wrapped around. &lt;span style=&quot; font-weight:700;&quot;&gt;Do not add a minecraft: prefix to this item!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="placeholderText">
+            <string>flint</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>Max Stack Size</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QSpinBox" name="itemStackSize">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The stack size of your item! Can be anything from 1 to 99, and can be used for any base item!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="minimum">
+            <number>1</number>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Right-Click Function?</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QCheckBox" name="itemRightClickCheck">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Whether or not you want to have a set of special commands run whenever you rightclick your item.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>Right-Click Mode</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QComboBox" name="itemRightClickMode">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The mode of the right-click method.&lt;/p&gt;&lt;p&gt;Tick: The function runs 20 times per second as long as you are holding rightclick.&lt;br/&gt;Impulse: Runs once whenever you rightclick your item.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>Tick</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Impulse</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>Right-Click Function</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="0" colspan="2">
+          <widget class="QPlainTextEdit" name="itemRightClickFunc">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A list of commands that will be run whenever you rightclick. &lt;span style=&quot; font-weight:700;&quot;&gt;The program does not check if this will work or not! Any problems made here are the fault of the user.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="paintingEditor">
+       <widget class="QPushButton" name="paintingTextureButton">
+        <property name="geometry">
+         <rect>
+          <x>470</x>
+          <y>10</y>
           <width>50</width>
           <height>50</height>
          </rect>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The texture of your painting!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string/>
@@ -1340,195 +1401,197 @@ Created By JupiterDev &amp; JustJoshinDev 2025</string>
          <bool>true</bool>
         </property>
        </widget>
-       <widget class="QLabel" name="stoneCuttingOutput">
+       <widget class="QLabel" name="paintingTextureLabel">
         <property name="geometry">
          <rect>
-          <x>250</x>
-          <y>90</y>
-          <width>50</width>
-          <height>50</height>
+          <x>410</x>
+          <y>30</y>
+          <width>58</width>
+          <height>15</height>
          </rect>
-        </property>
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Output for the stonecutting recipe.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
-         <string/>
+         <string>Texture</string>
         </property>
        </widget>
-       <widget class="QSpinBox" name="stoneCuttingCount">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
-          <x>250</x>
-          <y>140</y>
-          <width>88</width>
-          <height>24</height>
+          <x>20</x>
+          <y>0</y>
+          <width>359</width>
+          <height>159</height>
          </rect>
         </property>
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The amount of your stonecutting output. If this is higher than the max stack size of your output item, your datapack will crash!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="buttonSymbols">
-         <enum>QAbstractSpinBox::ButtonSymbols::PlusMinus</enum>
-        </property>
-        <property name="minimum">
-         <number>1</number>
-        </property>
-        <property name="maximum">
-         <number>64</number>
-        </property>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="0" colspan="2">
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string>WARNING: Minecraft marks Paintings as EXPERIMENTAL!</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="paintingDisplayNameLabel">
+           <property name="text">
+            <string>Display Name</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="paintingDisplayName">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the painting your game recognizes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="placeholderText">
+            <string>Shrek Painting</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="paintingNameLabel">
+           <property name="text">
+            <string>Name</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="paintingName">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the painting your game recognizes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="placeholderText">
+            <string>shrek_painting</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="paintingWidthLabel">
+           <property name="text">
+            <string>Width</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QSpinBox" name="paintingWidth">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The width in blocks your painting will be.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>16</number>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="paintingHeightLabel">
+           <property name="text">
+            <string>Height</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QSpinBox" name="paintingHeight">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The height in blocks your painting will be.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>16</number>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="paintingPlaceableLabel">
+           <property name="text">
+            <string>Accessible in Survival?</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QCheckBox" name="paintingPlaceable">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Whether or not you can use the painting in Survival mode. Should almost always be True.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </widget>
      </widget>
-    </widget>
-    <widget class="QWidget" name="paintingEditor">
-     <widget class="QPushButton" name="paintingTextureButton">
-      <property name="geometry">
-       <rect>
-        <x>440</x>
-        <y>10</y>
-        <width>50</width>
-        <height>50</height>
-       </rect>
+    </item>
+    <item row="0" column="0">
+     <widget class="QTreeWidget" name="elementVeiwer">
+      <property name="minimumSize">
+       <size>
+        <width>211</width>
+        <height>0</height>
+       </size>
       </property>
-      <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The texture of your painting!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
+      <column>
+       <property name="text">
+        <string>Element Veiwer</string>
+       </property>
+       <property name="font">
+        <font>
+         <bold>true</bold>
+         <underline>true</underline>
+        </font>
+       </property>
+      </column>
+      <item>
+       <property name="text">
+        <string>Blocks</string>
+       </property>
+       <property name="font">
+        <font>
+         <underline>true</underline>
+        </font>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Items</string>
+       </property>
+       <property name="font">
+        <font>
+         <underline>true</underline>
+        </font>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Recipies</string>
+       </property>
+       <property name="font">
+        <font>
+         <underline>true</underline>
+        </font>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Paintings</string>
+       </property>
+       <property name="font">
+        <font>
+         <underline>true</underline>
+        </font>
+       </property>
+      </item>
      </widget>
-     <widget class="QLabel" name="paintingTextureLabel">
-      <property name="geometry">
-       <rect>
-        <x>390</x>
-        <y>30</y>
-        <width>58</width>
-        <height>15</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Texture</string>
-      </property>
-     </widget>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>0</y>
-        <width>359</width>
-        <height>186</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_3">
-       <item row="4" column="1">
-        <widget class="QSpinBox" name="paintingHeight">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The height in blocks your painting will be.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="minimum">
-          <number>1</number>
-         </property>
-         <property name="maximum">
-          <number>16</number>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="paintingPlaceableLabel">
-         <property name="text">
-          <string>Accessible in Survival?</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLineEdit" name="paintingName">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the painting your game recognizes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="placeholderText">
-          <string>shrek_painting</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="paintingHeightLabel">
-         <property name="text">
-          <string>Height</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="paintingDisplayName">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the painting your game recognizes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="placeholderText">
-          <string>Shrek Painting</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="paintingWidthLabel">
-         <property name="text">
-          <string>Width</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QCheckBox" name="paintingPlaceable">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Whether or not you can use the painting in Survival mode. Should almost always be True.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="paintingNameLabel">
-         <property name="text">
-          <string>Name</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QSpinBox" name="paintingWidth">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The width in blocks your painting will be.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="minimum">
-          <number>1</number>
-         </property>
-         <property name="maximum">
-          <number>16</number>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="paintingDisplayNameLabel">
-         <property name="text">
-          <string>Display Name</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0" colspan="2">
-        <widget class="QLabel" name="label_8">
-         <property name="text">
-          <string>WARNING: Minecraft marks Paintings as EXPERIMENTAL!</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </widget>
-   </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menuBar">
@@ -1536,7 +1599,7 @@ Created By JupiterDev &amp; JustJoshinDev 2025</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>829</width>
+     <width>1003</width>
      <height>33</height>
     </rect>
    </property>
@@ -1546,20 +1609,25 @@ Created By JupiterDev &amp; JustJoshinDev 2025</string>
     </property>
     <addaction name="separator"/>
     <addaction name="actionBlock"/>
-    <addaction name="actionItem"/>
-    <addaction name="actionRecipe"/>
-    <addaction name="actionPainting"/>
+    <addaction name="actionRecipie"/>
+    <addaction name="actionPaintings"/>
+    <addaction name="actionItems"/>
    </widget>
-   <widget class="QMenu" name="menuFile">
+   <widget class="QMenu" name="menuSave">
     <property name="title">
      <string>File</string>
     </property>
     <addaction name="actionSave"/>
     <addaction name="actionLoad"/>
-    <addaction name="actionExport"/>
    </widget>
-   <addaction name="menuFile"/>
+   <widget class="QMenu" name="menuExport">
+    <property name="title">
+     <string>Export Pack</string>
+    </property>
+   </widget>
+   <addaction name="menuSave"/>
    <addaction name="menuNew_Element"/>
+   <addaction name="menuExport"/>
   </widget>
   <action name="actionBlock">
    <property name="text">
@@ -1568,32 +1636,17 @@ Created By JupiterDev &amp; JustJoshinDev 2025</string>
   </action>
   <action name="actionRecipie">
    <property name="text">
-    <string>Recipe</string>
+    <string>Recipie</string>
    </property>
   </action>
   <action name="actionPaintings">
    <property name="text">
-    <string>Painting</string>
+    <string>Paintings</string>
    </property>
   </action>
   <action name="actionItems">
    <property name="text">
-    <string>Item</string>
-   </property>
-  </action>
-  <action name="actionItem">
-   <property name="text">
-    <string>Item</string>
-   </property>
-  </action>
-  <action name="actionRecipe">
-   <property name="text">
-    <string>Recipe</string>
-   </property>
-  </action>
-  <action name="actionPainting">
-   <property name="text">
-    <string>Painting</string>
+    <string>Items</string>
    </property>
   </action>
   <action name="actionSave">
@@ -1604,11 +1657,6 @@ Created By JupiterDev &amp; JustJoshinDev 2025</string>
   <action name="actionLoad">
    <property name="text">
     <string>Load</string>
-   </property>
-  </action>
-  <action name="actionExport">
-   <property name="text">
-    <string>Export</string>
    </property>
   </action>
  </widget>
