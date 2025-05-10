@@ -103,9 +103,9 @@ class App(QMainWindow):
         self.launchDetails()
 
         # Block Signals
-        self.ui.blockAddButton.clicked.connect(self.addBlock)
-        self.ui.blockEditButton.clicked.connect(self.editBlock)
-        self.ui.blockRemoveButton.clicked.connect(self.removeBlock)
+        # self.ui.blockAddButton.clicked.connect(self.addBlock)
+        # self.ui.blockEditButton.clicked.connect(self.editBlock)
+        # self.ui.blockRemoveButton.clicked.connect(self.removeBlock)
 
         self.ui.blockTextureButtonTop.clicked.connect(lambda: self.getBlockTexture(0))
         self.ui.blockTextureButtonLeft.clicked.connect(lambda: self.getBlockTexture(1))
@@ -116,21 +116,21 @@ class App(QMainWindow):
 
         self.ui.blockModel.activated.connect(self.getBlockModel)
 
-        self.ui.mainTab.currentChanged.connect(self.loadBlockDropBox)
+        # self.ui.mainTab.currentChanged.connect(self.loadBlockDropBox)
 
         # Item Signals
-        self.ui.itemAddButton.clicked.connect(self.addItem)
-        self.ui.itemEditButton.clicked.connect(self.editItem)
-        self.ui.itemRemoveButton.clicked.connect(self.removeItem)
+        # self.ui.itemAddButton.clicked.connect(self.addItem)
+        # self.ui.itemEditButton.clicked.connect(self.editItem)
+        # self.ui.itemRemoveButton.clicked.connect(self.removeItem)
 
         self.ui.itemTextureButton.clicked.connect(self.getItemTexture)
 
         self.ui.itemModel.activated.connect(self.getItemModel)
 
         # Recipe Signals
-        self.ui.recipeAddButton.clicked.connect(self.addRecipe)
-        self.ui.recipeEditButton.clicked.connect(self.editRecipe)
-        self.ui.recipeRemoveButton.clicked.connect(self.removeRecipe)
+        # self.ui.recipeAddButton.clicked.connect(self.addRecipe)
+        # self.ui.recipeEditButton.clicked.connect(self.editRecipe)
+        # self.ui.recipeRemoveButton.clicked.connect(self.removeRecipe)
 
         self.ui.slot0Button.clicked.connect(lambda: self.getRecipeItem(0))
         self.ui.slot1Button.clicked.connect(lambda: self.getRecipeItem(1))
@@ -150,9 +150,9 @@ class App(QMainWindow):
         self.ui.stoneCuttingOutputButton.clicked.connect(lambda: self.getRecipeItem(13))
 
         # Painting Signals
-        self.ui.paintingAddButton.clicked.connect(self.addPainting)
-        self.ui.paintingEditButton.clicked.connect(self.editPainting)
-        self.ui.paintingRemoveButton.clicked.connect(self.removePainting)
+        # self.ui.paintingAddButton.clicked.connect(self.addPainting)
+        # self.ui.paintingEditButton.clicked.connect(self.editPainting)
+        # self.ui.paintingRemoveButton.clicked.connect(self.removePainting)
 
         self.ui.paintingTextureButton.clicked.connect(self.getPaintingTexture)
 
@@ -161,8 +161,8 @@ class App(QMainWindow):
         self.enableRightClickFunc()
 
         # Import & Export
-        self.ui.actionImport_mdrt.triggered.connect(lambda: self.importProject(self.appVersion))
-        self.ui.actionExport_mdrt.triggered.connect(lambda: self.exportProject(self.appVersion))
+        # self.ui.actionImport_mdrt.triggered.connect(lambda: self.importProject(self.appVersion))
+        # self.ui.actionExport_mdrt.triggered.connect(lambda: self.exportProject(self.appVersion))
 
         # Generate
         self.ui.packGenerate.clicked.connect(self.generateDataPack)
@@ -188,7 +188,6 @@ class App(QMainWindow):
                          packName,
                          packNamespace,
                          packAuthor,
-                         packPrefix,
                          packDesc,
                          packVer):
         
