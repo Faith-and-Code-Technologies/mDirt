@@ -1,6 +1,6 @@
 /*mDirt Dev Theme - Dark Earthy */
 
- {
+* {
     font-family: "JetBrains Mono", "Consolas", monospace;
     font-size: 13px;
     color: #e9e9e9;

@@ -14,7 +14,22 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">QPushButton[flat=&quot;true&quot;] {
+    border: 2px solid #808080;
+    border-radius: 6px;
+    padding: 6px 12px;
+    color: #333333;
+    font-size: 14px;
+}
+
+QPushButton[flat=&quot;true&quot;]:hover {
+    border-color: #606060;
+}
+
+QPushButton[flat=&quot;true&quot;]:pressed {
+    color: #000000;
+}
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QListWidget" name="elementVeiwer">
@@ -23,7 +38,7 @@
       <x>0</x>
       <y>0</y>
       <width>161</width>
-      <height>541</height>
+      <height>621</height>
      </rect>
     </property>
    </widget>
@@ -46,18 +61,144 @@
       <x>160</x>
       <y>0</y>
       <width>661</width>
-      <height>541</height>
+      <height>611</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
+    <widget class="QWidget" name="details">
+     <widget class="QLabel" name="titleLabel">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>30</y>
+        <width>271</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>mDirt - a tool made to help make Datapacks
+Created By JupiterDev &amp; JustJoshinDev 2025</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="formLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>80</y>
+        <width>271</width>
+        <height>141</height>
+       </rect>
+      </property>
+      <layout class="QFormLayout" name="formLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="packNameLabel">
+         <property name="text">
+          <string>Pack Name</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="packName">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of your Data &amp;amp; Resource packs!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="placeholderText">
+          <string>The Ruby Pack</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="packNamespaceLabel">
+         <property name="text">
+          <string>Namespace</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="packNamespace">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The namespace for your packs. This is what the game uses to recognize your packs.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="placeholderText">
+          <string>rubypack</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="packAuthorLabel">
+         <property name="text">
+          <string>Author</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="packAuthor">
+         <property name="whatsThis">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="placeholderText">
+          <string>jupiterdev</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="packDescriptionLabel">
+         <property name="text">
+          <string>Description</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="packDescription">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The description for your packs!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="placeholderText">
+          <string>Adds Rubys, Ruby Blocks, etc.</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="packVersionLabel">
+         <property name="text">
+          <string>Version</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QComboBox" name="packVersion">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The version your packs will work for.&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;1.21.4 highly recommended!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QPushButton" name="packGenerate">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>230</y>
+        <width>271</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sets the details!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string>OK</string>
+      </property>
+     </widget>
+    </widget>
     <widget class="QWidget" name="blockEditor">
      <widget class="QPushButton" name="blockTextureButtonBottom">
       <property name="geometry">
        <rect>
-        <x>430</x>
-        <y>190</y>
+        <x>280</x>
+        <y>140</y>
         <width>50</width>
         <height>50</height>
        </rect>
@@ -75,8 +216,8 @@
      <widget class="QPushButton" name="blockTextureButtonTop">
       <property name="geometry">
        <rect>
-        <x>430</x>
-        <y>90</y>
+        <x>280</x>
+        <y>40</y>
         <width>50</width>
         <height>50</height>
        </rect>
@@ -94,8 +235,8 @@
      <widget class="QPushButton" name="blockTextureButtonLeft">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>140</y>
+        <x>230</x>
+        <y>90</y>
         <width>50</width>
         <height>50</height>
        </rect>
@@ -113,8 +254,8 @@
      <widget class="QPushButton" name="blockTextureButtonBack">
       <property name="geometry">
        <rect>
-        <x>430</x>
-        <y>140</y>
+        <x>280</x>
+        <y>90</y>
         <width>50</width>
         <height>50</height>
        </rect>
@@ -132,8 +273,8 @@
      <widget class="QPushButton" name="blockTextureButtonFront">
       <property name="geometry">
        <rect>
-        <x>530</x>
-        <y>140</y>
+        <x>380</x>
+        <y>90</y>
         <width>50</width>
         <height>50</height>
        </rect>
@@ -151,8 +292,8 @@
      <widget class="QPushButton" name="blockTextureButtonRight">
       <property name="geometry">
        <rect>
-        <x>480</x>
-        <y>140</y>
+        <x>330</x>
+        <y>90</y>
         <width>50</width>
         <height>50</height>
        </rect>
@@ -170,8 +311,8 @@
      <widget class="QLabel" name="blockTextureLabel">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>50</y>
+        <x>220</x>
+        <y>10</y>
         <width>49</width>
         <height>16</height>
        </rect>
@@ -180,7 +321,7 @@
        <string>Texture:</string>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -319,7 +460,230 @@
       </layout>
      </widget>
     </widget>
-    <widget class="QWidget" name="recipieEditor">
+    <widget class="QWidget" name="itemEditor">
+     <widget class="QComboBox" name="itemModel">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>10</y>
+        <width>121</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The model your custom item will use.&lt;/p&gt;&lt;p&gt;Generated: Normal items.&lt;/p&gt;&lt;p&gt;Handheld: For thigns such as tools, swords, etc.&lt;/p&gt;&lt;p&gt;Custom: If you want to select a custom model you made in &lt;span style=&quot; font-weight:700;&quot;&gt;BlockBench&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>Generated</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Handheld</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Custom</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="itemModelLabel">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>10</y>
+        <width>49</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Model</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="itemTextureLabel">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>60</y>
+        <width>49</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Texture</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="itemTextureButton">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>40</y>
+        <width>50</width>
+        <height>50</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The texture of your item!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>1</x>
+        <y>456</y>
+        <width>16</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>258</width>
+        <height>382</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="5" column="1">
+        <widget class="QComboBox" name="itemRightClickMode">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The mode of the right-click method.&lt;/p&gt;&lt;p&gt;Tick: The function runs 20 times per second as long as you are holding rightclick.&lt;br/&gt;Impulse: Runs once whenever you rightclick your item.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>Tick</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Impulse</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QCheckBox" name="itemRightClickCheck">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Whether or not you want to have a set of special commands run whenever you rightclick your item.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="itemNameLabel">
+         <property name="text">
+          <string>Name</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Max Stack Size</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QSpinBox" name="itemStackSize">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The stack size of your item! Can be anything from 1 to 99, and can be used for any base item!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="itemBaseItem">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The Minecraft item your custom item is wrapped around. &lt;span style=&quot; font-weight:700;&quot;&gt;Do not add a minecraft: prefix to this item!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="placeholderText">
+          <string>flint</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="itemDisplayNameLabel">
+         <property name="text">
+          <string>Display Name</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="itemDisplayName">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of your custom item! This'll be what you see in your inventory.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="placeholderText">
+          <string>Ruby</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="itemBaseItemLabel">
+         <property name="text">
+          <string>Base Item</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Right-Click Function</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Right-Click Function?</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Right-Click Mode</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="itemName">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of your item that the game recognizes it as.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="placeholderText">
+          <string>ruby</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0" colspan="2">
+        <widget class="QPlainTextEdit" name="itemRightClickFunc">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A list of commands that will be run whenever you rightclick. &lt;span style=&quot; font-weight:700;&quot;&gt;The program does not check if this will work or not! Any problems made here are the fault of the user.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="recipeEditor">
      <widget class="QLineEdit" name="recipeName">
       <property name="geometry">
        <rect>
@@ -338,7 +702,7 @@
        <rect>
         <x>20</x>
         <y>10</y>
-        <width>81</width>
+        <width>71</width>
         <height>16</height>
        </rect>
       </property>
@@ -989,234 +1353,11 @@
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="itemEditor">
-     <widget class="QComboBox" name="itemModel">
-      <property name="geometry">
-       <rect>
-        <x>420</x>
-        <y>10</y>
-        <width>121</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The model your custom item will use.&lt;/p&gt;&lt;p&gt;Generated: Normal items.&lt;/p&gt;&lt;p&gt;Handheld: For thigns such as tools, swords, etc.&lt;/p&gt;&lt;p&gt;Custom: If you want to select a custom model you made in &lt;span style=&quot; font-weight:700;&quot;&gt;BlockBench&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <item>
-       <property name="text">
-        <string>Generated</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Handheld</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Custom</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLabel" name="itemModelLabel">
-      <property name="geometry">
-       <rect>
-        <x>370</x>
-        <y>10</y>
-        <width>49</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Model</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="itemTextureLabel">
-      <property name="geometry">
-       <rect>
-        <x>370</x>
-        <y>60</y>
-        <width>49</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Texture</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="itemTextureButton">
-      <property name="geometry">
-       <rect>
-        <x>430</x>
-        <y>40</y>
-        <width>50</width>
-        <height>50</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The texture of your item!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="flat">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_3">
-      <property name="geometry">
-       <rect>
-        <x>1</x>
-        <y>456</y>
-        <width>16</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QWidget" name="">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>0</y>
-        <width>258</width>
-        <height>382</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="0">
-        <widget class="QLabel" name="itemDisplayNameLabel">
-         <property name="text">
-          <string>Display Name</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="itemDisplayName">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of your custom item! This'll be what you see in your inventory.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="placeholderText">
-          <string>Ruby</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="itemNameLabel">
-         <property name="text">
-          <string>Name</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="itemName">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of your item that the game recognizes it as.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="placeholderText">
-          <string>ruby</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="itemBaseItemLabel">
-         <property name="text">
-          <string>Base Item</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLineEdit" name="itemBaseItem">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The Minecraft item your custom item is wrapped around. &lt;span style=&quot; font-weight:700;&quot;&gt;Do not add a minecraft: prefix to this item!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="placeholderText">
-          <string>flint</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label_6">
-         <property name="text">
-          <string>Max Stack Size</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QSpinBox" name="itemStackSize">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The stack size of your item! Can be anything from 1 to 99, and can be used for any base item!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="minimum">
-          <number>1</number>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>Right-Click Function?</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="QCheckBox" name="itemRightClickCheck">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Whether or not you want to have a set of special commands run whenever you rightclick your item.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="label_4">
-         <property name="text">
-          <string>Right-Click Mode</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="1">
-        <widget class="QComboBox" name="itemRightClickMode">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The mode of the right-click method.&lt;/p&gt;&lt;p&gt;Tick: The function runs 20 times per second as long as you are holding rightclick.&lt;br/&gt;Impulse: Runs once whenever you rightclick your item.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>Tick</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Impulse</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="6" column="0">
-        <widget class="QLabel" name="label_5">
-         <property name="text">
-          <string>Right-Click Function</string>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="0" colspan="2">
-        <widget class="QPlainTextEdit" name="itemRightClickFunc">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A list of commands that will be run whenever you rightclick. &lt;span style=&quot; font-weight:700;&quot;&gt;The program does not check if this will work or not! Any problems made here are the fault of the user.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </widget>
     <widget class="QWidget" name="paintingEditor">
      <widget class="QPushButton" name="paintingTextureButton">
       <property name="geometry">
        <rect>
-        <x>430</x>
+        <x>440</x>
         <y>10</y>
         <width>50</width>
         <height>50</height>
@@ -1235,7 +1376,7 @@
      <widget class="QLabel" name="paintingTextureLabel">
       <property name="geometry">
        <rect>
-        <x>370</x>
+        <x>390</x>
         <y>30</y>
         <width>58</width>
         <height>15</height>
@@ -1245,84 +1386,16 @@
        <string>Texture</string>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>10</x>
         <y>0</y>
         <width>359</width>
-        <height>159</height>
+        <height>186</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_3">
-       <item row="0" column="0" colspan="2">
-        <widget class="QLabel" name="label_8">
-         <property name="text">
-          <string>WARNING: Minecraft marks Paintings as EXPERIMENTAL!</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="paintingDisplayNameLabel">
-         <property name="text">
-          <string>Display Name</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="paintingDisplayName">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the painting your game recognizes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="placeholderText">
-          <string>Shrek Painting</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="paintingNameLabel">
-         <property name="text">
-          <string>Name</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLineEdit" name="paintingName">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the painting your game recognizes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="placeholderText">
-          <string>shrek_painting</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="paintingWidthLabel">
-         <property name="text">
-          <string>Width</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QSpinBox" name="paintingWidth">
-         <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The width in blocks your painting will be.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="minimum">
-          <number>1</number>
-         </property>
-         <property name="maximum">
-          <number>16</number>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="paintingHeightLabel">
-         <property name="text">
-          <string>Height</string>
-         </property>
-        </widget>
-       </item>
        <item row="4" column="1">
         <widget class="QSpinBox" name="paintingHeight">
          <property name="toolTip">
@@ -1343,6 +1416,40 @@
          </property>
         </widget>
        </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="paintingName">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the painting your game recognizes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="placeholderText">
+          <string>shrek_painting</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="paintingHeightLabel">
+         <property name="text">
+          <string>Height</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="paintingDisplayName">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the painting your game recognizes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="placeholderText">
+          <string>Shrek Painting</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="paintingWidthLabel">
+         <property name="text">
+          <string>Width</string>
+         </property>
+        </widget>
+       </item>
        <item row="5" column="1">
         <widget class="QCheckBox" name="paintingPlaceable">
          <property name="toolTip">
@@ -1353,6 +1460,40 @@
          </property>
          <property name="checked">
           <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="paintingNameLabel">
+         <property name="text">
+          <string>Name</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QSpinBox" name="paintingWidth">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The width in blocks your painting will be.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>16</number>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="paintingDisplayNameLabel">
+         <property name="text">
+          <string>Display Name</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>WARNING: Minecraft marks Paintings as EXPERIMENTAL!</string>
          </property>
         </widget>
        </item>
@@ -1377,29 +1518,20 @@
     </property>
     <addaction name="separator"/>
     <addaction name="actionBlock"/>
-    <addaction name="actionRecipie"/>
-    <addaction name="actionPaintings"/>
-    <addaction name="actionItems"/>
+    <addaction name="actionItem"/>
+    <addaction name="actionRecipe"/>
+    <addaction name="actionPainting"/>
    </widget>
-   <widget class="QMenu" name="menuSave">
+   <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>Save</string>
+     <string>File</string>
     </property>
+    <addaction name="actionSave"/>
+    <addaction name="actionLoad"/>
+    <addaction name="actionExport"/>
    </widget>
-   <widget class="QMenu" name="menuLoad">
-    <property name="title">
-     <string>Load</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menuExport">
-    <property name="title">
-     <string>Export</string>
-    </property>
-   </widget>
+   <addaction name="menuFile"/>
    <addaction name="menuNew_Element"/>
-   <addaction name="menuSave"/>
-   <addaction name="menuLoad"/>
-   <addaction name="menuExport"/>
   </widget>
   <action name="actionBlock">
    <property name="text">
@@ -1408,17 +1540,47 @@
   </action>
   <action name="actionRecipie">
    <property name="text">
-    <string>Recipie</string>
+    <string>Recipe</string>
    </property>
   </action>
   <action name="actionPaintings">
    <property name="text">
-    <string>Paintings</string>
+    <string>Painting</string>
    </property>
   </action>
   <action name="actionItems">
    <property name="text">
-    <string>Items</string>
+    <string>Item</string>
+   </property>
+  </action>
+  <action name="actionItem">
+   <property name="text">
+    <string>Item</string>
+   </property>
+  </action>
+  <action name="actionRecipe">
+   <property name="text">
+    <string>Recipe</string>
+   </property>
+  </action>
+  <action name="actionPainting">
+   <property name="text">
+    <string>Painting</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionLoad">
+   <property name="text">
+    <string>Load</string>
+   </property>
+  </action>
+  <action name="actionExport">
+   <property name="text">
+    <string>Export</string>
    </property>
   </action>
  </widget>
