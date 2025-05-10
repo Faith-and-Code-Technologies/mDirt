@@ -72,6 +72,13 @@ We’ve now added official support for **Minecraft 1.21.5**, enabling you to cre
 
 ---
 
+### **In Progress:**
+- Rewriting system to make our lives easier in the future
+- Adding an Auto-Update and Installer
+- Re-vamping UI for productivity and so it looks pretty :)
+
+---
+
 ### 🙌 **Credits**
 
 - **mDirt** was created by **@TheJupiterDev** and **@JustJoshinDev**.
