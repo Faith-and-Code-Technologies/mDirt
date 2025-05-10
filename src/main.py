@@ -1,4 +1,4 @@
-import datetime, json, os, re, sys, details, requests, importlib, shutil
+import datetime, json, os, re, sys, details, requests, importlib, shutil, pickle
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QImage, QPixmap
@@ -76,7 +76,6 @@ class App(QMainWindow):
         self.packName = None
         self.default_items = None
         self.default_blocks = None
-        self.packCMDPrefix = None
         self.recipeProperties = None
         self.ui_form = None
         self.block_popup = None
@@ -181,7 +180,6 @@ class App(QMainWindow):
                                                                                     self.detail_form.packName.text(), 
                                                                                     self.detail_form.packNamespace.text(), 
                                                                                     self.detail_form.packAuthor.text(), 
-                                                                                    self.detail_form.packCMDPrefix.text(), 
                                                                                     self.detail_form.packDescription.text(), 
                                                                                     self.detail_form.packVersion.currentText())
                                                                                     )
@@ -197,13 +195,11 @@ class App(QMainWindow):
         self.packName = packName
         self.packNamespace = packNamespace
         self.packAuthor = packAuthor
-        self.packCMDPrefix = packPrefix
         self.packDescription = packDesc
         self.packVersion = packVer
         self.ui.packName.setText(packName)
         self.ui.packNamespace.setText(packNamespace)
         self.ui.packAuthor.setText(packAuthor)
-        self.ui.packCMDPrefix.setText(packPrefix)
         self.ui.packDescription.setText(packDesc)
         self.ui.packVersion.addItem(packVer)
         
@@ -272,21 +268,6 @@ class App(QMainWindow):
             # self.update_popup.show()
             pass
 
-    def parseCMD(self, num):
-        if checkInputValid(self.ui.packCMDPrefix, "integer") == "empty":
-            alert("Pack CMD Prefix is empty!")
-            return "error"
-        if checkInputValid(self.ui.packCMDPrefix, "integer") == "type":
-            alert("Pack CMD Prefix has unsupported characters!")
-            return "error"
-        elif checkInputValid(self.ui.packCMDPrefix, "integer") == "valid":
-            self.packCMDPrefix = self.ui.packCMDPrefix.text()
-
-        strNum = str(num)
-        numLen = len(strNum)
-        zeros = 7 - len(self.packCMDPrefix) - numLen
-        return f"{self.packCMDPrefix}{'0' * zeros}{strNum}"
-
     #######################
     # IMPORT & EXPORT     #
     #######################
@@ -303,7 +284,6 @@ class App(QMainWindow):
                     "packName": self.ui.packName.text(),
                     "packNamespace": self.ui.packNamespace.text(),
                     "author": self.ui.packAuthor.text(),
-                    "cmdPrefix": self.ui.packCMDPrefix.text(),
                     "description": self.ui.packDescription.text(),
                     "version": self.ui.packVersion.currentText(),
                 },
@@ -318,8 +298,8 @@ class App(QMainWindow):
         file = QFileDialog.getExistingDirectory(self, "Save mDirt Project", "")
 
         if file:
-            with open(f'{file}/mDirtProject.mdrt', "w") as f:
-                json.dump(data, f, indent=4)
+            with open(f'{file}/mDirtProject.mdrt', "wb") as f:
+                pickle.dump(data, f)
 
     def importProject(self, version):
         file, _ = QFileDialog.getOpenFileName(
@@ -327,8 +307,8 @@ class App(QMainWindow):
         )
 
         if file:
-            with open(file, "r") as f:
-                data = json.load(f)
+            with open(file, "rb") as f:
+                data = pickle.load(f)
         else:
             alert("Please Select a Valid File!")
             return
@@ -343,7 +323,6 @@ class App(QMainWindow):
         self.ui.packName.setText(data["content"]["pack_info"]["packName"])
         self.ui.packNamespace.setText(data["content"]["pack_info"]["packNamespace"])
         self.ui.packAuthor.setText(data["content"]["pack_info"]["author"])
-        self.ui.packCMDPrefix.setText(data["content"]["pack_info"]["cmdPrefix"])
         self.ui.packDescription.setText(data["content"]["pack_info"]["description"])
         self.ui.packVersion.setCurrentText(data["content"]["pack_info"]["version"])
         self.blocks = data["content"]["elements"]["blocks"]
@@ -425,10 +404,7 @@ class App(QMainWindow):
             "blockDrop": self.ui.blockDropBox.currentText(),
             "directional": self.ui.blockDirectional.isChecked(),
             "model": self.ui.blockModel.currentText(),
-            "cmd": self.parseCMD(self.featureNum),
         }
-
-        if self.blockProperties["cmd"] == "error": return
 
         self.blocks[self.blockProperties["name"]] = self.blockProperties
 
@@ -545,12 +521,9 @@ class App(QMainWindow):
             "baseItem": self.ui.itemBaseItem.text(),
             "texture": self.itemTexture,
             "model": self.ui.itemModel.currentText().lower(),
-            "cmd": self.parseCMD(self.featureNum),
             "stackSize": self.ui.itemStackSize.value(),
             "rightClick": rightClick,
         }
-
-        if self.itemProperties["cmd"] == "error": return
 
         self.items[self.itemProperties["name"]] = self.itemProperties
         self.ui.itemList.addItem(self.itemProperties["name"])
@@ -864,15 +837,6 @@ class App(QMainWindow):
             return
         elif checkInputValid(self.ui.packAuthor, "strict") == "valid":
             self.packAuthor = self.ui.packAuthor.text()
-
-        if checkInputValid(self.ui.packCMDPrefix, "integer") == "empty":
-            alert("Pack CMD Prefix is empty!")
-            return
-        if checkInputValid(self.ui.packCMDPrefix, "integer") == "type":
-            alert("Pack CMD Prefix has unsupported characters!")
-            return
-        elif checkInputValid(self.ui.packCMDPrefix, "integer") == "valid":
-            self.packCMDPrefix = self.ui.packCMDPrefix.text()
 
         self.outputDir = QFileDialog.getExistingDirectory(self, "Output Directory", "")
         if not self.outputDir:
