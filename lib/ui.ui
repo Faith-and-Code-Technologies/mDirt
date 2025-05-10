@@ -365,7 +365,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <rect>
           <x>10</x>
           <y>10</y>
-          <width>197</width>
+          <width>251</width>
           <height>216</height>
          </rect>
         </property>
@@ -1250,7 +1250,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <rect>
           <x>10</x>
           <y>0</y>
-          <width>258</width>
+          <width>321</width>
           <height>382</height>
          </rect>
         </property>
@@ -1571,7 +1571,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </item>
       <item>
        <property name="text">
-        <string>Recipies</string>
+        <string>Recipes</string>
        </property>
        <property name="font">
         <font>
@@ -1609,9 +1609,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
     </property>
     <addaction name="separator"/>
     <addaction name="actionBlock"/>
+    <addaction name="actionItems"/>
     <addaction name="actionRecipie"/>
     <addaction name="actionPaintings"/>
-    <addaction name="actionItems"/>
    </widget>
    <widget class="QMenu" name="menuSave">
     <property name="title">
@@ -1636,7 +1636,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
   </action>
   <action name="actionRecipie">
    <property name="text">
-    <string>Recipie</string>
+    <string>Recipe</string>
    </property>
   </action>
   <action name="actionPaintings">
