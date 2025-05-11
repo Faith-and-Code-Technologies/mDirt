@@ -1,4 +1,4 @@
-import datetime, json, os, re, sys, details, requests, importlib, shutil, pickle
+import datetime, json, os, re, sys, details, requests, importlib, shutil, pickle, html
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QImage, QPixmap
@@ -106,7 +106,7 @@ class App(QMainWindow):
         # self.ui.blockAddButton.clicked.connect(self.addBlock)
         # self.ui.blockEditButton.clicked.connect(self.editBlock)
         # self.ui.blockRemoveButton.clicked.connect(self.removeBlock)
-        self.ui.actionBlock.triggered.connect(self.addBlock)
+        self.ui.actionBlock.triggered.connect(self.newBlock)
 
         self.ui.blockTextureButtonTop.clicked.connect(lambda: self.getBlockTexture(0))
         self.ui.blockTextureButtonLeft.clicked.connect(lambda: self.getBlockTexture(1))
@@ -166,7 +166,7 @@ class App(QMainWindow):
         # self.ui.actionExport_mdrt.triggered.connect(lambda: self.exportProject(self.appVersion))
 
         # Generate
-        self.ui.packGenerate.clicked.connect(self.generateDataPack)
+        # self.ui.packGenerate.clicked.connect(self.generateDataPack)
     
     def launchDetails(self):
         self.details_popup = QWidget()
@@ -197,11 +197,11 @@ class App(QMainWindow):
         self.packAuthor = packAuthor
         self.packDescription = packDesc
         self.packVersion = packVer
-        self.ui.packName.setText(packName)
-        self.ui.packNamespace.setText(packNamespace)
-        self.ui.packAuthor.setText(packAuthor)
-        self.ui.packDescription.setText(packDesc)
-        self.ui.packVersion.addItem(packVer)
+        # self.ui.packName.setText(packName)
+        # self.ui.packNamespace.setText(packNamespace)
+        # self.ui.packAuthor.setText(packAuthor)
+        # self.ui.packDescription.setText(packDesc)
+        # self.ui.packVersion.addItem(packVer)
         
         detail_popup.close()
 
@@ -391,7 +391,10 @@ class App(QMainWindow):
         if textureId == 5:
             self.ui.blockTextureBottom.setPixmap(pixmap)
 
-    def addBlock(self):
+    def newBlock(self):
+        pass
+
+    def confirmBlock(self):
 
         self.featureNum += 1
 
@@ -509,7 +512,10 @@ class App(QMainWindow):
 
         self.ui.itemTexture.setPixmap(pixmap)
 
-    def addItem(self):
+    def newItem(self):
+        pass
+
+    def confirmItem(self):
 
         self.featureNum += 1
 
@@ -636,7 +642,10 @@ class App(QMainWindow):
 
         self.block_popup.close()
 
-    def addRecipe(self):
+    def newRecipe(self):
+        pass
+
+    def confirmRecipe(self):
 
         mode = "crafting"
 
@@ -734,7 +743,10 @@ class App(QMainWindow):
 
         self.ui.paintingTexture.setPixmap(pixmap)
 
-    def addPainting(self):
+    def newPainting(self):
+        pass
+
+    def confirmPainting(self):
         self.paintingProperties = {
             "name": self.ui.paintingName.text(),
             "displayName": self.ui.paintingDisplayName.text(),
