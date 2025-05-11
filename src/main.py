@@ -1,8 +1,8 @@
 import datetime, json, os, re, sys, details, requests, importlib, shutil, pickle, html
 
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QImage, QPixmap
-from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QMessageBox, QWidget, QDialog
+from PySide6.QtGui import QImage, QPixmap, QStandardItem
+from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QMessageBox, QWidget, QDialog, QTreeWidget, QTreeWidgetItem
 
 from select_item import Ui_Form
 from ui import Ui_MainWindow
@@ -99,11 +99,15 @@ class App(QMainWindow):
         # Grab supported versions
         self.populateVersions()
 
-        # Block Signals
-        # self.ui.blockAddButton.clicked.connect(self.addBlock)
-        # self.ui.blockEditButton.clicked.connect(self.editBlock)
-        # self.ui.blockRemoveButton.clicked.connect(self.removeBlock)
         self.ui.actionBlock.triggered.connect(self.newBlock)
+        self.ui.actionItems.triggered.connect(self.newItem)
+        self.ui.actionRecipie.triggered.connect(self.newRecipe)
+        self.ui.actionPaintings.triggered.connect(self.newPainting)
+
+        self.ui.blockConfirmButton.clicked.connect(self.confirmBlock)
+        self.ui.itemConfirmButton.clicked.connect(self.confirmItem)
+        self.ui.recipeConfirmButton.clicked.connect(self.confirmRecipe)
+        self.ui.paintingConfirmButton.clicked.connect(self.confirmPainting)
 
         self.ui.blockTextureButtonTop.clicked.connect(lambda: self.getBlockTexture(0))
         self.ui.blockTextureButtonLeft.clicked.connect(lambda: self.getBlockTexture(1))
@@ -112,23 +116,11 @@ class App(QMainWindow):
         self.ui.blockTextureButtonFront.clicked.connect(lambda: self.getBlockTexture(4))
         self.ui.blockTextureButtonBottom.clicked.connect(lambda: self.getBlockTexture(5))
 
-        self.ui.blockModel.activated.connect(self.getBlockModel)
-
-        # self.ui.mainTab.currentChanged.connect(self.loadBlockDropBox)
-
-        # Item Signals
-        # self.ui.itemAddButton.clicked.connect(self.addItem)
-        # self.ui.itemEditButton.clicked.connect(self.editItem)
-        # self.ui.itemRemoveButton.clicked.connect(self.removeItem)
+        self.ui.blockModel.activated.connect(self.getBlockModel) 
 
         self.ui.itemTextureButton.clicked.connect(self.getItemTexture)
 
         self.ui.itemModel.activated.connect(self.getItemModel)
-
-        # Recipe Signals
-        # self.ui.recipeAddButton.clicked.connect(self.addRecipe)
-        # self.ui.recipeEditButton.clicked.connect(self.editRecipe)
-        # self.ui.recipeRemoveButton.clicked.connect(self.removeRecipe)
 
         self.ui.slot0Button.clicked.connect(lambda: self.getRecipeItem(0))
         self.ui.slot1Button.clicked.connect(lambda: self.getRecipeItem(1))
@@ -165,6 +157,8 @@ class App(QMainWindow):
         # Generate
         # self.ui.packGenerate.clicked.connect(self.generateDataPack)
 
+        self.setupData()
+
     def populateVersions(self):
         version_url = "https://raw.githubusercontent.com/Faith-and-Code-Technologies/mDirt-2/main/lib/version_list.json"
         try:
@@ -185,18 +179,23 @@ class App(QMainWindow):
 
     def setupData(self):
         self.mainDirectory = f"{os.path.dirname(os.path.abspath(__file__))}/.."
-        self.data = json.load(open(os.path.join(getattr(sys, '_MEIPASS', os.getcwd()), f"lib/{self.packVersion}_data.json"), "r"))
+        #self.data = json.load(open(os.path.join(getattr(sys, '_MEIPASS', os.getcwd()), f"lib/{self.packVersion}_data.json"), "r"))
 
         dataformat = self.version_json["dataformat"]
         resourceformat = self.version_json["resourceformat"]
 
-        self.dataFormat = dataformat[self.packVersion]
-        self.resourceFormat = resourceformat[self.packVersion]
+        #self.dataFormat = dataformat[self.packVersion]
+        #self.resourceFormat = resourceformat[self.packVersion]
 
         self.blocks = {}
         self.items = {}
         self.recipes = {}
         self.paintings = {}
+
+        self.blocks_tree = QTreeWidgetItem(self.ui.elementVeiwer, ["Blocks"])
+        self.items_tree = QTreeWidgetItem(self.ui.elementVeiwer, ["Items"])
+        self.recipes_tree = QTreeWidgetItem(self.ui.elementVeiwer, ["Recipes"])
+        self.paintings_tree = QTreeWidgetItem(self.ui.elementVeiwer, ["Paintings"])
 
         self.blockTexture = {}
         self.itemTexture = None
@@ -348,7 +347,7 @@ class App(QMainWindow):
             self.ui.blockTextureBottom.setPixmap(pixmap)
 
     def newBlock(self):
-        pass
+        self.ui.elementEditor.setCurrentIndex(1)
 
     def confirmBlock(self):
 
@@ -366,8 +365,8 @@ class App(QMainWindow):
         }
 
         self.blocks[self.blockProperties["name"]] = self.blockProperties
-
-        self.ui.blockList.addItem(self.blockProperties["name"])
+ 
+        QTreeWidgetItem(self.blocks_tree, [self.blockProperties["name"]])
 
         self.clearBlockFields()
 
@@ -423,12 +422,12 @@ class App(QMainWindow):
         self.ui.blockDirectional.setChecked(False)
         self.ui.blockModel.setCurrentText("")
 
-        self.ui.blockTextureTop.clear()
-        self.ui.blockTextureLeft.clear()
-        self.ui.blockTextureBack.clear()
-        self.ui.blockTextureRight.clear()
-        self.ui.blockTextureFront.clear()
-        self.ui.blockTextureBottom.clear()
+        # self.ui.blockTextureTop.clear()
+        # self.ui.blockTextureLeft.clear()
+        # self.ui.blockTextureBack.clear()
+        # self.ui.blockTextureRight.clear()
+        # self.ui.blockTextureFront.clear()
+        # self.ui.blockTextureBottom.clear()
 
         self.blockTexture = {}
 
@@ -469,7 +468,7 @@ class App(QMainWindow):
         self.ui.itemTexture.setPixmap(pixmap)
 
     def newItem(self):
-        pass
+        self.ui.elementEditor.setCurrentIndex(3)
 
     def confirmItem(self):
 
@@ -488,7 +487,7 @@ class App(QMainWindow):
         }
 
         self.items[self.itemProperties["name"]] = self.itemProperties
-        self.ui.itemList.addItem(self.itemProperties["name"])
+        QTreeWidgetItem(self.items_tree, [self.itemProperties["name"]])
         self.clearItemFields()
 
     def editItem(self):
@@ -599,7 +598,7 @@ class App(QMainWindow):
         self.block_popup.close()
 
     def newRecipe(self):
-        pass
+        self.ui.elementEditor.setCurrentIndex(2)
 
     def confirmRecipe(self):
 
@@ -623,7 +622,7 @@ class App(QMainWindow):
         }
 
         self.recipes[self.recipeProperties["name"]] = self.recipeProperties
-        self.ui.recipeList.addItem(self.recipeProperties["name"])
+        QTreeWidgetItem(self.recipes_tree, [self.recipeProperties["name"]])
         self.clearRecipeFields()
 
     def editRecipe(self):
@@ -700,7 +699,7 @@ class App(QMainWindow):
         self.ui.paintingTexture.setPixmap(pixmap)
 
     def newPainting(self):
-        pass
+        self.ui.elementEditor.setCurrentIndex(4)
 
     def confirmPainting(self):
         self.paintingProperties = {
@@ -713,7 +712,7 @@ class App(QMainWindow):
         }
 
         self.paintings[self.paintingProperties["name"]] = self.paintingProperties
-        self.ui.paintingList.addItem(self.paintingProperties["name"])
+        QTreeWidgetItem(self.paintings_tree, [self.paintingProperties["name"]])
         self.clearPaintingFields()
 
     def editPainting(self):

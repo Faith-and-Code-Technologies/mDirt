@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiuxBluv.ui'
+## Form generated from reading UI file 'uiXwtACm.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -666,16 +666,6 @@ class Ui_MainWindow(object):
         __qtreewidgetitem = QTreeWidgetItem()
         __qtreewidgetitem.setFont(0, font);
         self.elementVeiwer.setHeaderItem(__qtreewidgetitem)
-        font1 = QFont()
-        font1.setUnderline(True)
-        __qtreewidgetitem1 = QTreeWidgetItem(self.elementVeiwer)
-        __qtreewidgetitem1.setFont(0, font1);
-        __qtreewidgetitem2 = QTreeWidgetItem(self.elementVeiwer)
-        __qtreewidgetitem2.setFont(0, font1);
-        __qtreewidgetitem3 = QTreeWidgetItem(self.elementVeiwer)
-        __qtreewidgetitem3.setFont(0, font1);
-        __qtreewidgetitem4 = QTreeWidgetItem(self.elementVeiwer)
-        __qtreewidgetitem4.setFont(0, font1);
         self.elementVeiwer.setObjectName(u"elementVeiwer")
         self.elementVeiwer.setMinimumSize(QSize(211, 0))
 
@@ -717,7 +707,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"mDirt - v3.0.0", None))
         self.actionBlock.setText(QCoreApplication.translate("MainWindow", u"Block", None))
         self.actionRecipie.setText(QCoreApplication.translate("MainWindow", u"Recipe", None))
         self.actionPaintings.setText(QCoreApplication.translate("MainWindow", u"Paintings", None))
@@ -1096,19 +1086,6 @@ class Ui_MainWindow(object):
         self.paintingConfirmButton.setText(QCoreApplication.translate("MainWindow", u"Confirm Painting", None))
         ___qtreewidgetitem = self.elementVeiwer.headerItem()
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"Element Viewer", None));
-
-        __sortingEnabled = self.elementVeiwer.isSortingEnabled()
-        self.elementVeiwer.setSortingEnabled(False)
-        ___qtreewidgetitem1 = self.elementVeiwer.topLevelItem(0)
-        ___qtreewidgetitem1.setText(0, QCoreApplication.translate("MainWindow", u"Blocks", None));
-        ___qtreewidgetitem2 = self.elementVeiwer.topLevelItem(1)
-        ___qtreewidgetitem2.setText(0, QCoreApplication.translate("MainWindow", u"Items", None));
-        ___qtreewidgetitem3 = self.elementVeiwer.topLevelItem(2)
-        ___qtreewidgetitem3.setText(0, QCoreApplication.translate("MainWindow", u"Recipes", None));
-        ___qtreewidgetitem4 = self.elementVeiwer.topLevelItem(3)
-        ___qtreewidgetitem4.setText(0, QCoreApplication.translate("MainWindow", u"Paintings", None));
-        self.elementVeiwer.setSortingEnabled(__sortingEnabled)
-
         self.menuNew_Element.setTitle(QCoreApplication.translate("MainWindow", u"New Element", None))
         self.menuSave.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
         self.menuExport.setTitle(QCoreApplication.translate("MainWindow", u"Export Pack", None))

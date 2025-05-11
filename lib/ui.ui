@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>mDirt - v3.0.0</string>
   </property>
   <property name="styleSheet">
    <string notr="true">/*mDirt Dev Theme - Dark Earthy */
@@ -1577,46 +1577,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </font>
        </property>
       </column>
-      <item>
-       <property name="text">
-        <string>Blocks</string>
-       </property>
-       <property name="font">
-        <font>
-         <underline>true</underline>
-        </font>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Items</string>
-       </property>
-       <property name="font">
-        <font>
-         <underline>true</underline>
-        </font>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Recipes</string>
-       </property>
-       <property name="font">
-        <font>
-         <underline>true</underline>
-        </font>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Paintings</string>
-       </property>
-       <property name="font">
-        <font>
-         <underline>true</underline>
-        </font>
-       </property>
-      </item>
      </widget>
     </item>
    </layout>
