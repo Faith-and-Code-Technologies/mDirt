@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiaYiRaX.ui'
+## Form generated from reading UI file 'uiQhtxiX.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -186,24 +186,72 @@ class Ui_MainWindow(object):
         self.blockTextureLabel.setGeometry(QRect(380, 50, 49, 16))
         self.layoutWidget = QWidget(self.blockEditor)
         self.layoutWidget.setObjectName(u"layoutWidget")
-        self.layoutWidget.setGeometry(QRect(10, 10, 241, 216))
+        self.layoutWidget.setGeometry(QRect(10, 10, 241, 251))
         self.gridLayout = QGridLayout(self.layoutWidget)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.blockDisplayNameLabel = QLabel(self.layoutWidget)
-        self.blockDisplayNameLabel.setObjectName(u"blockDisplayNameLabel")
+        self.blockDirectional = QCheckBox(self.layoutWidget)
+        self.blockDirectional.setObjectName(u"blockDirectional")
 
-        self.gridLayout.addWidget(self.blockDisplayNameLabel, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.blockDirectional, 5, 1, 1, 1)
+
+        self.blockModel = QComboBox(self.layoutWidget)
+        self.blockModel.addItem("")
+        self.blockModel.addItem("")
+        self.blockModel.setObjectName(u"blockModel")
+
+        self.gridLayout.addWidget(self.blockModel, 6, 1, 1, 1)
+
+        self.blockPlaceSoundLabel = QLabel(self.layoutWidget)
+        self.blockPlaceSoundLabel.setObjectName(u"blockPlaceSoundLabel")
+
+        self.gridLayout.addWidget(self.blockPlaceSoundLabel, 4, 0, 1, 1)
+
+        self.blockDropLabel = QLabel(self.layoutWidget)
+        self.blockDropLabel.setObjectName(u"blockDropLabel")
+
+        self.gridLayout.addWidget(self.blockDropLabel, 3, 0, 1, 1)
+
+        self.blockBaseBlock = QLineEdit(self.layoutWidget)
+        self.blockBaseBlock.setObjectName(u"blockBaseBlock")
+
+        self.gridLayout.addWidget(self.blockBaseBlock, 2, 1, 1, 1)
 
         self.blockDisplayName = QLineEdit(self.layoutWidget)
         self.blockDisplayName.setObjectName(u"blockDisplayName")
 
         self.gridLayout.addWidget(self.blockDisplayName, 0, 1, 1, 1)
 
+        self.blockDirectionalLabel = QLabel(self.layoutWidget)
+        self.blockDirectionalLabel.setObjectName(u"blockDirectionalLabel")
+
+        self.gridLayout.addWidget(self.blockDirectionalLabel, 5, 0, 1, 1)
+
+        self.blockPlaceSound = QLineEdit(self.layoutWidget)
+        self.blockPlaceSound.setObjectName(u"blockPlaceSound")
+
+        self.gridLayout.addWidget(self.blockPlaceSound, 4, 1, 1, 1)
+
+        self.blockDropBox = QComboBox(self.layoutWidget)
+        self.blockDropBox.setObjectName(u"blockDropBox")
+        self.blockDropBox.setEditable(True)
+
+        self.gridLayout.addWidget(self.blockDropBox, 3, 1, 1, 1)
+
+        self.blockModelLabel = QLabel(self.layoutWidget)
+        self.blockModelLabel.setObjectName(u"blockModelLabel")
+
+        self.gridLayout.addWidget(self.blockModelLabel, 6, 0, 1, 1)
+
         self.blockNameLabel = QLabel(self.layoutWidget)
         self.blockNameLabel.setObjectName(u"blockNameLabel")
 
         self.gridLayout.addWidget(self.blockNameLabel, 1, 0, 1, 1)
+
+        self.blockDisplayNameLabel = QLabel(self.layoutWidget)
+        self.blockDisplayNameLabel.setObjectName(u"blockDisplayNameLabel")
+
+        self.gridLayout.addWidget(self.blockDisplayNameLabel, 0, 0, 1, 1)
 
         self.blockName = QLineEdit(self.layoutWidget)
         self.blockName.setObjectName(u"blockName")
@@ -215,53 +263,10 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.blockBaseBlockName, 2, 0, 1, 1)
 
-        self.blockBaseBlock = QLineEdit(self.layoutWidget)
-        self.blockBaseBlock.setObjectName(u"blockBaseBlock")
+        self.blockConfirmButton = QPushButton(self.layoutWidget)
+        self.blockConfirmButton.setObjectName(u"blockConfirmButton")
 
-        self.gridLayout.addWidget(self.blockBaseBlock, 2, 1, 1, 1)
-
-        self.blockDropLabel = QLabel(self.layoutWidget)
-        self.blockDropLabel.setObjectName(u"blockDropLabel")
-
-        self.gridLayout.addWidget(self.blockDropLabel, 3, 0, 1, 1)
-
-        self.blockDropBox = QComboBox(self.layoutWidget)
-        self.blockDropBox.setObjectName(u"blockDropBox")
-        self.blockDropBox.setEditable(True)
-
-        self.gridLayout.addWidget(self.blockDropBox, 3, 1, 1, 1)
-
-        self.blockPlaceSoundLabel = QLabel(self.layoutWidget)
-        self.blockPlaceSoundLabel.setObjectName(u"blockPlaceSoundLabel")
-
-        self.gridLayout.addWidget(self.blockPlaceSoundLabel, 4, 0, 1, 1)
-
-        self.blockPlaceSound = QLineEdit(self.layoutWidget)
-        self.blockPlaceSound.setObjectName(u"blockPlaceSound")
-
-        self.gridLayout.addWidget(self.blockPlaceSound, 4, 1, 1, 1)
-
-        self.blockDirectionalLabel = QLabel(self.layoutWidget)
-        self.blockDirectionalLabel.setObjectName(u"blockDirectionalLabel")
-
-        self.gridLayout.addWidget(self.blockDirectionalLabel, 5, 0, 1, 1)
-
-        self.blockDirectional = QCheckBox(self.layoutWidget)
-        self.blockDirectional.setObjectName(u"blockDirectional")
-
-        self.gridLayout.addWidget(self.blockDirectional, 5, 1, 1, 1)
-
-        self.blockModelLabel = QLabel(self.layoutWidget)
-        self.blockModelLabel.setObjectName(u"blockModelLabel")
-
-        self.gridLayout.addWidget(self.blockModelLabel, 6, 0, 1, 1)
-
-        self.blockModel = QComboBox(self.layoutWidget)
-        self.blockModel.addItem("")
-        self.blockModel.addItem("")
-        self.blockModel.setObjectName(u"blockModel")
-
-        self.gridLayout.addWidget(self.blockModel, 6, 1, 1, 1)
+        self.gridLayout.addWidget(self.blockConfirmButton, 7, 0, 1, 2)
 
         self.elementEditor.addWidget(self.blockEditor)
         self.recipeEditor = QWidget()
@@ -457,6 +462,11 @@ class Ui_MainWindow(object):
 
         self.formLayout.setWidget(1, QFormLayout.SpanningRole, self.recipeSubTabs)
 
+        self.recipeConfirmButton = QPushButton(self.recipeEditor)
+        self.recipeConfirmButton.setObjectName(u"recipeConfirmButton")
+
+        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.recipeConfirmButton)
+
         self.elementEditor.addWidget(self.recipeEditor)
         self.itemEditor = QWidget()
         self.itemEditor.setObjectName(u"itemEditor")
@@ -485,35 +495,45 @@ class Ui_MainWindow(object):
         self.gridLayout_2 = QGridLayout(self.layoutWidget1)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.itemDisplayNameLabel = QLabel(self.layoutWidget1)
-        self.itemDisplayNameLabel.setObjectName(u"itemDisplayNameLabel")
+        self.label_4 = QLabel(self.layoutWidget1)
+        self.label_4.setObjectName(u"label_4")
 
-        self.gridLayout_2.addWidget(self.itemDisplayNameLabel, 0, 0, 1, 1)
-
-        self.itemDisplayName = QLineEdit(self.layoutWidget1)
-        self.itemDisplayName.setObjectName(u"itemDisplayName")
-
-        self.gridLayout_2.addWidget(self.itemDisplayName, 0, 1, 1, 1)
-
-        self.itemNameLabel = QLabel(self.layoutWidget1)
-        self.itemNameLabel.setObjectName(u"itemNameLabel")
-
-        self.gridLayout_2.addWidget(self.itemNameLabel, 1, 0, 1, 1)
-
-        self.itemName = QLineEdit(self.layoutWidget1)
-        self.itemName.setObjectName(u"itemName")
-
-        self.gridLayout_2.addWidget(self.itemName, 1, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.label_4, 5, 0, 1, 1)
 
         self.itemBaseItemLabel = QLabel(self.layoutWidget1)
         self.itemBaseItemLabel.setObjectName(u"itemBaseItemLabel")
 
         self.gridLayout_2.addWidget(self.itemBaseItemLabel, 2, 0, 1, 1)
 
+        self.itemRightClickFunc = QPlainTextEdit(self.layoutWidget1)
+        self.itemRightClickFunc.setObjectName(u"itemRightClickFunc")
+
+        self.gridLayout_2.addWidget(self.itemRightClickFunc, 7, 0, 1, 2)
+
+        self.itemRightClickCheck = QCheckBox(self.layoutWidget1)
+        self.itemRightClickCheck.setObjectName(u"itemRightClickCheck")
+
+        self.gridLayout_2.addWidget(self.itemRightClickCheck, 4, 1, 1, 1)
+
+        self.itemDisplayName = QLineEdit(self.layoutWidget1)
+        self.itemDisplayName.setObjectName(u"itemDisplayName")
+
+        self.gridLayout_2.addWidget(self.itemDisplayName, 0, 1, 1, 1)
+
+        self.label_5 = QLabel(self.layoutWidget1)
+        self.label_5.setObjectName(u"label_5")
+
+        self.gridLayout_2.addWidget(self.label_5, 6, 0, 1, 1)
+
         self.itemBaseItem = QLineEdit(self.layoutWidget1)
         self.itemBaseItem.setObjectName(u"itemBaseItem")
 
         self.gridLayout_2.addWidget(self.itemBaseItem, 2, 1, 1, 1)
+
+        self.itemName = QLineEdit(self.layoutWidget1)
+        self.itemName.setObjectName(u"itemName")
+
+        self.gridLayout_2.addWidget(self.itemName, 1, 1, 1, 1)
 
         self.label_6 = QLabel(self.layoutWidget1)
         self.label_6.setObjectName(u"label_6")
@@ -526,20 +546,15 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.itemStackSize, 3, 1, 1, 1)
 
+        self.itemNameLabel = QLabel(self.layoutWidget1)
+        self.itemNameLabel.setObjectName(u"itemNameLabel")
+
+        self.gridLayout_2.addWidget(self.itemNameLabel, 1, 0, 1, 1)
+
         self.label_2 = QLabel(self.layoutWidget1)
         self.label_2.setObjectName(u"label_2")
 
         self.gridLayout_2.addWidget(self.label_2, 4, 0, 1, 1)
-
-        self.itemRightClickCheck = QCheckBox(self.layoutWidget1)
-        self.itemRightClickCheck.setObjectName(u"itemRightClickCheck")
-
-        self.gridLayout_2.addWidget(self.itemRightClickCheck, 4, 1, 1, 1)
-
-        self.label_4 = QLabel(self.layoutWidget1)
-        self.label_4.setObjectName(u"label_4")
-
-        self.gridLayout_2.addWidget(self.label_4, 5, 0, 1, 1)
 
         self.itemRightClickMode = QComboBox(self.layoutWidget1)
         self.itemRightClickMode.addItem("")
@@ -548,15 +563,15 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.itemRightClickMode, 5, 1, 1, 1)
 
-        self.label_5 = QLabel(self.layoutWidget1)
-        self.label_5.setObjectName(u"label_5")
+        self.itemDisplayNameLabel = QLabel(self.layoutWidget1)
+        self.itemDisplayNameLabel.setObjectName(u"itemDisplayNameLabel")
 
-        self.gridLayout_2.addWidget(self.label_5, 6, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.itemDisplayNameLabel, 0, 0, 1, 1)
 
-        self.itemRightClickFunc = QPlainTextEdit(self.layoutWidget1)
-        self.itemRightClickFunc.setObjectName(u"itemRightClickFunc")
+        self.itemConfirmButton = QPushButton(self.layoutWidget1)
+        self.itemConfirmButton.setObjectName(u"itemConfirmButton")
 
-        self.gridLayout_2.addWidget(self.itemRightClickFunc, 7, 0, 1, 2)
+        self.gridLayout_2.addWidget(self.itemConfirmButton, 8, 0, 1, 2)
 
         self.elementEditor.addWidget(self.itemEditor)
         self.paintingEditor = QWidget()
@@ -570,10 +585,53 @@ class Ui_MainWindow(object):
         self.paintingTextureLabel.setGeometry(QRect(410, 30, 58, 15))
         self.layoutWidget2 = QWidget(self.paintingEditor)
         self.layoutWidget2.setObjectName(u"layoutWidget2")
-        self.layoutWidget2.setGeometry(QRect(20, 0, 359, 159))
+        self.layoutWidget2.setGeometry(QRect(10, 0, 359, 190))
         self.gridLayout_3 = QGridLayout(self.layoutWidget2)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.paintingHeightLabel = QLabel(self.layoutWidget2)
+        self.paintingHeightLabel.setObjectName(u"paintingHeightLabel")
+
+        self.gridLayout_3.addWidget(self.paintingHeightLabel, 4, 0, 1, 1)
+
+        self.paintingPlaceableLabel = QLabel(self.layoutWidget2)
+        self.paintingPlaceableLabel.setObjectName(u"paintingPlaceableLabel")
+
+        self.gridLayout_3.addWidget(self.paintingPlaceableLabel, 5, 0, 1, 1)
+
+        self.paintingNameLabel = QLabel(self.layoutWidget2)
+        self.paintingNameLabel.setObjectName(u"paintingNameLabel")
+
+        self.gridLayout_3.addWidget(self.paintingNameLabel, 2, 0, 1, 1)
+
+        self.paintingDisplayName = QLineEdit(self.layoutWidget2)
+        self.paintingDisplayName.setObjectName(u"paintingDisplayName")
+
+        self.gridLayout_3.addWidget(self.paintingDisplayName, 1, 1, 1, 1)
+
+        self.paintingWidthLabel = QLabel(self.layoutWidget2)
+        self.paintingWidthLabel.setObjectName(u"paintingWidthLabel")
+
+        self.gridLayout_3.addWidget(self.paintingWidthLabel, 3, 0, 1, 1)
+
+        self.paintingPlaceable = QCheckBox(self.layoutWidget2)
+        self.paintingPlaceable.setObjectName(u"paintingPlaceable")
+        self.paintingPlaceable.setChecked(True)
+
+        self.gridLayout_3.addWidget(self.paintingPlaceable, 5, 1, 1, 1)
+
+        self.paintingHeight = QSpinBox(self.layoutWidget2)
+        self.paintingHeight.setObjectName(u"paintingHeight")
+        self.paintingHeight.setMinimum(1)
+        self.paintingHeight.setMaximum(16)
+
+        self.gridLayout_3.addWidget(self.paintingHeight, 4, 1, 1, 1)
+
+        self.paintingName = QLineEdit(self.layoutWidget2)
+        self.paintingName.setObjectName(u"paintingName")
+
+        self.gridLayout_3.addWidget(self.paintingName, 2, 1, 1, 1)
+
         self.label_8 = QLabel(self.layoutWidget2)
         self.label_8.setObjectName(u"label_8")
 
@@ -584,26 +642,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addWidget(self.paintingDisplayNameLabel, 1, 0, 1, 1)
 
-        self.paintingDisplayName = QLineEdit(self.layoutWidget2)
-        self.paintingDisplayName.setObjectName(u"paintingDisplayName")
-
-        self.gridLayout_3.addWidget(self.paintingDisplayName, 1, 1, 1, 1)
-
-        self.paintingNameLabel = QLabel(self.layoutWidget2)
-        self.paintingNameLabel.setObjectName(u"paintingNameLabel")
-
-        self.gridLayout_3.addWidget(self.paintingNameLabel, 2, 0, 1, 1)
-
-        self.paintingName = QLineEdit(self.layoutWidget2)
-        self.paintingName.setObjectName(u"paintingName")
-
-        self.gridLayout_3.addWidget(self.paintingName, 2, 1, 1, 1)
-
-        self.paintingWidthLabel = QLabel(self.layoutWidget2)
-        self.paintingWidthLabel.setObjectName(u"paintingWidthLabel")
-
-        self.gridLayout_3.addWidget(self.paintingWidthLabel, 3, 0, 1, 1)
-
         self.paintingWidth = QSpinBox(self.layoutWidget2)
         self.paintingWidth.setObjectName(u"paintingWidth")
         self.paintingWidth.setMinimum(1)
@@ -611,28 +649,10 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addWidget(self.paintingWidth, 3, 1, 1, 1)
 
-        self.paintingHeightLabel = QLabel(self.layoutWidget2)
-        self.paintingHeightLabel.setObjectName(u"paintingHeightLabel")
+        self.paintingConfirmButton = QPushButton(self.layoutWidget2)
+        self.paintingConfirmButton.setObjectName(u"paintingConfirmButton")
 
-        self.gridLayout_3.addWidget(self.paintingHeightLabel, 4, 0, 1, 1)
-
-        self.paintingHeight = QSpinBox(self.layoutWidget2)
-        self.paintingHeight.setObjectName(u"paintingHeight")
-        self.paintingHeight.setMinimum(1)
-        self.paintingHeight.setMaximum(16)
-
-        self.gridLayout_3.addWidget(self.paintingHeight, 4, 1, 1, 1)
-
-        self.paintingPlaceableLabel = QLabel(self.layoutWidget2)
-        self.paintingPlaceableLabel.setObjectName(u"paintingPlaceableLabel")
-
-        self.gridLayout_3.addWidget(self.paintingPlaceableLabel, 5, 0, 1, 1)
-
-        self.paintingPlaceable = QCheckBox(self.layoutWidget2)
-        self.paintingPlaceable.setObjectName(u"paintingPlaceable")
-        self.paintingPlaceable.setChecked(True)
-
-        self.gridLayout_3.addWidget(self.paintingPlaceable, 5, 1, 1, 1)
+        self.gridLayout_3.addWidget(self.paintingConfirmButton, 6, 0, 1, 2)
 
         self.elementEditor.addWidget(self.paintingEditor)
 
@@ -716,119 +736,119 @@ class Ui_MainWindow(object):
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\">Creating custom Minecraft datapacks can be time-consuming and complex. </span><span style=\" font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0;\">mDirt</span><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\"> simplifies this process by providing an easy-to-use tool for generating datapacks with custom features like blocks, items, recipes, and more. </span></p>\n"
 "<h2 style=\" margin-top:0px; margin-bottom:12px; margin-left:0p"
                         "x; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#00e676;\">\ud83d\udee0\ufe0f Supported Versions</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;\"> </span></h2>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0;\">Minecraft Versions Supported:</span><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\"> 1.21.4, 1.21.5 </span></p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0;\">Full compatibility</span><span style=\" font-family:'Segoe UI','sans-serif'; color:#"
-                        "f0f0f0;\"> for </span><span style=\" font-family:'Courier New'; color:#ffeb3b; background-color:#2c2c2c;\">1.21.5</span><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\"> has been added. </span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0;\">Minecraft Versions Supported:</span><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\"> 1.21.3, 1.21.4, 1.21.5 </span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0;\">Full compatibility</span><span style=\" font-family:'Segoe UI','sans-serif';"
+                        " color:#f0f0f0;\"> for </span><span style=\" font-family:'Courier New'; color:#ffeb3b; background-color:#2c2c2c;\">1.21.5</span><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\"> has been added. </span></p>\n"
 "<h3 style=\" margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#00e676;\">Using the Interface</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#f0f0f0;\"> </span></h3>\n"
 "<ul style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\">\n"
-"<li style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\" style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-weight:700;\">Tooltips:</span> Hover over any field for help. </li>\n"
-"<l"
-                        "i style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\">Fill in details like block names, item properties, recipes, etc. </li>\n"
+"<li style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\" style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-weight:700;\">Tooltips:</span> Hover over any field for help. </li"
+                        ">\n"
+"<li style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\">Fill in details like block names, item properties, recipes, etc. </li>\n"
 "<li style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\" style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\">To get started, create a new element!</li></ul>\n"
 "<h3 style=\" margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#00e676;\">Generate Your Datapack</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#f0f0f0;\"> </span></h3>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-inde"
-                        "nt:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\">Click </span><span style=\" font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0;\">&quot;Generate Pack&quot;</span><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\"> once you're done. Your datapack will be ready to export! </span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-bl"
+                        "ock-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\">Click </span><span style=\" font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0;\">&quot;Generate Pack&quot;</span><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\"> once you're done. Your datapack will be ready to export! </span></p>\n"
 "<h3 style=\" margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#00e676;\">Deploying in Minecraft</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#f0f0f0;\"> </span></h3>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\">Place the datapack in </span><span"
-                        " style=\" font-family:'Courier New'; color:#ffeb3b; background-color:#2c2c2c;\">datapacks</span><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\"> folder and the resourcepack in </span><span style=\" font-family:'Courier New'; color:#ffeb3b; background-color:#2c2c2c;\">resourcepacks</span><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\">. </span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\">Place the datapack in </sp"
+                        "an><span style=\" font-family:'Courier New'; color:#ffeb3b; background-color:#2c2c2c;\">datapacks</span><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\"> folder and the resourcepack in </span><span style=\" font-family:'Courier New'; color:#ffeb3b; background-color:#2c2c2c;\">resourcepacks</span><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\">. </span></p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\">Use the following commands to get your features: </span></p>\n"
 "<ul style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\">\n"
-"<li style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\" style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\">Blocks: <span style=\" font-family:'C"
-                        "ourier New'; color:#ffeb3b; background-color:#2c2c2c;\">/function YOURNAMESPACE:give_blocks</span> </li>\n"
+"<li style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\" style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\">Blocks: <span style=\" font-f"
+                        "amily:'Courier New'; color:#ffeb3b; background-color:#2c2c2c;\">/function YOURNAMESPACE:give_blocks</span> </li>\n"
 "<li style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\">Items: <span style=\" font-family:'Courier New'; color:#ffeb3b; background-color:#2c2c2c;\">/function YOURNAMESPACE:give_items</span> </li>\n"
 "<li style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\" style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\">Paintings: <span style=\" font-family:'Courier New'; color:#ffeb3b; background-color:#2c2c2c;\">/function YOURNAMESPACE:give_paintings</span> </li></ul>\n"
-"<h2 style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-lar"
-                        "ge; font-weight:700; color:#00e676;\">\ud83e\udde9 Feature Support by Version</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;\"> </span></h2>\n"
+"<h2 style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-si"
+                        "ze:x-large; font-weight:700; color:#00e676;\">\ud83e\udde9 Feature Support by Version</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;\"> </span></h2>\n"
 "<table border=\"0\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; border-collapse:collapse;\" cellspacing=\"2\" cellpadding=\"0\"><thead>\n"
 "<tr>\n"
 "<td bgcolor=\"#333333\" style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%; background-color:#333333;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-weight:"
-                        "700; color:#f0f0f0; background-color:#333333;\">Feature</span></p></td>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%; background-color:#333333;\"><span style=\" font-family:'Segoe UI','sans-serif'; font"
+                        "-weight:700; color:#f0f0f0; background-color:#333333;\">Feature</span></p></td>\n"
 "<td bgcolor=\"#333333\" style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%; background-color:#333333;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0; background-color:#333333;\">1.21.3</span></p></td>\n"
-"<td bgcolor=\"#333333\" style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-col"
-                        "or:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
+"<td bgcolor=\"#333333\" style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bo"
+                        "ttom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%; background-color:#333333;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0; background-color:#333333;\">1.21.4</span></p></td>\n"
 "<td bgcolor=\"#333333\" style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%; background-col"
-                        "or:#333333;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0; background-color:#333333;\">1.21.5</span></p></td></tr></thead>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%; backgr"
+                        "ound-color:#333333;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0; background-color:#333333;\">1.21.5</span></p></td></tr></thead>\n"
 "<tr>\n"
 "<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\">Blocks</span></p></td>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444"
-                        "; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
+"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color"
+                        ":#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#00e676;\">\u2705 100%</span></p></td>\n"
 "<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#00e676;\">\u2705 100%</span></p></td>\n"
-"<td s"
-                        "tyle=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
+""
+                        "<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#00e676;\">\u2705 100%</span></p></td></tr>\n"
 "<tr>\n"
 "<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" sty"
-                        "le=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\">Items</span></p></td>\n"
+"<p align=\"center\""
+                        " style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\">Items</span></p></td>\n"
 "<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#00e676;\">\u2705 80%</span></p></td>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444"
-                        "; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
+"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#44"
+                        "4444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#00e676;\">\u2705 80%</span></p></td>\n"
 "<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'"
-                        "; color:#00e676;\">\u2705 80%</span></p></td></tr>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-se"
+                        "rif'; color:#00e676;\">\u2705 80%</span></p></td></tr>\n"
 "<tr>\n"
 "<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\">Recipes</span></p></td>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; bord"
-                        "er-left-style:solid;\">\n"
+"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; "
+                        "border-left-style:solid;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#00e676;\">\u2705 100%</span></p></td>\n"
 "<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#00e676;\">\u2705 100%</span></p></td>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; bo"
-                        "rder-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
+"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px"
+                        "; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#00e676;\">\u2705 100%</span></p></td></tr>\n"
 "<tr>\n"
 "<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0p"
-                        "x; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\">Paintings</span></p></td>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-inden"
+                        "t:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\">Paintings</span></p></td>\n"
 "<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#e53935;\">\u274c</span></p></td>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; "
-                        "border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
+"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:sol"
+                        "id; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#00e676;\">\u2705 100%</span></p></td>\n"
 "<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#00e676;\">\u2705 100%</span></p></td></tr>\n"
 "<tr>\n"
-"<td style=\" padding-left:0; padding-right:0"
-                        "; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
+"<td style=\" padding-left:0; padding-rig"
+                        "ht:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\">Enchantments</span></p></td>\n"
 "<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left"
-                        ":0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#e53935;\">\u274c</span></p></td>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-"
+                        "left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#e53935;\">\u274c</span></p></td>\n"
 "<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#e53935;\">\u274c</span></p></td>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#4444"
-                        "44; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
+"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#"
+                        "444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
 "<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#e53935;\">\u274c</span></p></td></tr></table>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
 "<h2 style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#00e676;\">\ud83d\ude80 Coming Soon</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;\"> </span></h2>\n"
-"<ul style=\"margin-top: 0px; margin-bottom: 0px; margin-lef"
-                        "t: 0px; margin-right: 0px; -qt-list-indent: 1;\">\n"
+"<ul style=\"margin-top: 0px; margin-bottom: 0px; margin"
+                        "-left: 0px; margin-right: 0px; -qt-list-indent: 1;\">\n"
 "<li style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\" style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\">Custom Components for Items and Blocks </li>\n"
 "<li style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\" style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\">Support for Custom Enchantments </li></ul>\n"
 "<h2 style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#00e676;\">\ud83d\udca1 Tips &amp; Best Practices</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;\"> </span></h2>\n"
-"<ul style=\"margin-top: 0px; margin-bottom: 0px; marg"
-                        "in-left: 0px; margin-right: 0px; -qt-list-indent: 1;\">\n"
+"<ul style=\"margin-top: 0px; margin-bottom: 0px; "
+                        "margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\">\n"
 "<li style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\" style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-weight:700;\">Namespaces:</span> Avoid clashes with other datapacks. </li>\n"
 "<li style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-weight:700;\">Testing:</span> Try it in a separate world first. </li>\n"
 "<li style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\" style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-weight:700;\">Backups:</span> Always back up before applying new packs. </li></ul>\n"
-"<h2 style=\" margin-top:0px; margin-bottom:12px; margi"
-                        "n-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#00e676;\">\ud83d\ude4c Credits</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;\"> </span></h2>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\">Created by </span><a href=\"https://github.com/TheJupiterDev\"><span style=\" font-family:'Segoe UI','sans-serif'; text-decoration: underline; color:#4fc3f7;\">@TheJupiterDev</span></a><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\"> and </span><a href=\"https://github.com/JustJoshinDev\"><span style=\" font-family:'Segoe UI','sans-serif'; text-decoration: underline; color:#4fc3f7;\">@JustJoshinDev</span></a><span style=\" font-family:'Segoe UI','s"
-                        "ans-serif'; color:#f0f0f0;\"> </span></p>\n"
+"<h2 style=\" margin-top:0px; margin-bottom:12px; m"
+                        "argin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#00e676;\">\ud83d\ude4c Credits</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;\"> </span></h2>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\">Created by </span><a href=\"https://github.com/TheJupiterDev\"><span style=\" font-family:'Segoe UI','sans-serif'; text-decoration: underline; color:#4fc3f7;\">@TheJupiterDev</span></a><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\"> and </span><a href=\"https://github.com/JustJoshinDev\"><span style=\" font-family:'Segoe UI','sans-serif'; text-decoration: underline; color:#4fc3f7;\">@JustJoshinDev</span></a><span style=\" font-family:'Segoe UI"
+                        "','sans-serif'; color:#f0f0f0;\"> </span></p>\n"
 "<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\">Special thanks to Admin for the custom block generation method. </span></p>\n"
 "<h2 style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#00e676;\">\ud83c\udf0d Get Involved</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;\"> </span></h2>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\">We welcome contributions and suggestions! <br />Found a bug? Have an idea? <br"
-                        " />Visit the </span><a href=\"https://github.com/JustJoshinDev/mDirt\"><span style=\" font-family:'Segoe UI','sans-serif'; text-decoration: underline; color:#4fc3f7;\">GitHub Repository</span></a><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\"> to file issues or open pull requests. </span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\">We welcome contributions and suggestions! <br />Found a bug? Have an idea?"
+                        " <br />Visit the </span><a href=\"https://github.com/JustJoshinDev/mDirt\"><span style=\" font-family:'Segoe UI','sans-serif'; text-decoration: underline; color:#4fc3f7;\">GitHub Repository</span></a><span style=\" font-family:'Segoe UI','sans-serif'; color:#f0f0f0;\"> to file issues or open pull requests. </span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; color:#aaaaaa;\">\u00a9 2025 mDirt Project. Minecraft is a trademark of Mojang Studios. </span></p></body></html>", None))
 #if QT_CONFIG(tooltip)
         self.blockTextureButtonBottom.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The bottom texture of your block. <span style=\" font-weight:700;\">If you are using a Custom model, only use this texture!</span></p></body></html>", None))
@@ -855,42 +875,43 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.blockTextureButtonRight.setText("")
         self.blockTextureLabel.setText(QCoreApplication.translate("MainWindow", u"Texture:", None))
-        self.blockDisplayNameLabel.setText(QCoreApplication.translate("MainWindow", u"Display Name", None))
-#if QT_CONFIG(tooltip)
-        self.blockDisplayName.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The name you'll see for your block in your inventory!</p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
-        self.blockDisplayName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Ruby Ore", None))
-        self.blockNameLabel.setText(QCoreApplication.translate("MainWindow", u"Name", None))
-#if QT_CONFIG(tooltip)
-        self.blockName.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>How the game refers to the block.</p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
-        self.blockName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"ruby_ore", None))
-        self.blockBaseBlockName.setText(QCoreApplication.translate("MainWindow", u"Base Block", None))
-#if QT_CONFIG(tooltip)
-        self.blockBaseBlock.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The block that your custom block hides inside of. This determines most of the sounds (other than the place sound), mining speed, etc. <span style=\" font-weight:700;\">Do not use minecraft: in front of the block!</span></p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
-        self.blockBaseBlock.setPlaceholderText(QCoreApplication.translate("MainWindow", u"stone", None))
-        self.blockDropLabel.setText(QCoreApplication.translate("MainWindow", u"Drop", None))
-#if QT_CONFIG(tooltip)
-        self.blockDropBox.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The item or block that this block drops when it is broken. Self will drop itself, or you can choose any of your blocks or items, or you can choose any Minecraft block or item.</p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
-        self.blockPlaceSoundLabel.setText(QCoreApplication.translate("MainWindow", u"Place Sound", None))
-#if QT_CONFIG(tooltip)
-        self.blockPlaceSound.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>When this is checked, it'll place like an oak log, directionally.</p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
-        self.blockPlaceSound.setPlaceholderText(QCoreApplication.translate("MainWindow", u"block.stone.place", None))
-        self.blockDirectionalLabel.setText(QCoreApplication.translate("MainWindow", u"Directional", None))
 #if QT_CONFIG(tooltip)
         self.blockDirectional.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>When this is checked, it'll place like an oak log, directionally.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.blockDirectional.setText("")
-        self.blockModelLabel.setText(QCoreApplication.translate("MainWindow", u"Model:", None))
         self.blockModel.setItemText(0, QCoreApplication.translate("MainWindow", u"Block", None))
         self.blockModel.setItemText(1, QCoreApplication.translate("MainWindow", u"Custom", None))
 
 #if QT_CONFIG(tooltip)
         self.blockModel.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The model of your block.</p><p>Block: A normal block.</p><p>Custom: A model you created in <span style=\" font-weight:700;\">BlockBench</span>.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
+        self.blockPlaceSoundLabel.setText(QCoreApplication.translate("MainWindow", u"Place Sound", None))
+        self.blockDropLabel.setText(QCoreApplication.translate("MainWindow", u"Drop", None))
+#if QT_CONFIG(tooltip)
+        self.blockBaseBlock.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The block that your custom block hides inside of. This determines most of the sounds (other than the place sound), mining speed, etc. <span style=\" font-weight:700;\">Do not use minecraft: in front of the block!</span></p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.blockBaseBlock.setPlaceholderText(QCoreApplication.translate("MainWindow", u"stone", None))
+#if QT_CONFIG(tooltip)
+        self.blockDisplayName.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The name you'll see for your block in your inventory!</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.blockDisplayName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Ruby Ore", None))
+        self.blockDirectionalLabel.setText(QCoreApplication.translate("MainWindow", u"Directional", None))
+#if QT_CONFIG(tooltip)
+        self.blockPlaceSound.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>When this is checked, it'll place like an oak log, directionally.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.blockPlaceSound.setPlaceholderText(QCoreApplication.translate("MainWindow", u"block.stone.place", None))
+#if QT_CONFIG(tooltip)
+        self.blockDropBox.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The item or block that this block drops when it is broken. Self will drop itself, or you can choose any of your blocks or items, or you can choose any Minecraft block or item.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.blockModelLabel.setText(QCoreApplication.translate("MainWindow", u"Model:", None))
+        self.blockNameLabel.setText(QCoreApplication.translate("MainWindow", u"Name", None))
+        self.blockDisplayNameLabel.setText(QCoreApplication.translate("MainWindow", u"Display Name", None))
+#if QT_CONFIG(tooltip)
+        self.blockName.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>How the game refers to the block.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.blockName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"ruby_ore", None))
+        self.blockBaseBlockName.setText(QCoreApplication.translate("MainWindow", u"Base Block", None))
+        self.blockConfirmButton.setText(QCoreApplication.translate("MainWindow", u"Confirm Block", None))
         self.recipeNameLabel.setText(QCoreApplication.translate("MainWindow", u"Recipe Name", None))
 #if QT_CONFIG(tooltip)
         self.recipeName.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The name the game uses to recognize your recipe.</p></body></html>", None))
@@ -991,6 +1012,7 @@ class Ui_MainWindow(object):
         self.stoneCuttingCount.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The amount of your stonecutting output. If this is higher than the max stack size of your output item, your datapack will crash!</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.recipeSubTabs.setTabText(self.recipeSubTabs.indexOf(self.tab_4), QCoreApplication.translate("MainWindow", u"Stonecutting", None))
+        self.recipeConfirmButton.setText(QCoreApplication.translate("MainWindow", u"Confirm Recipe", None))
         self.itemModel.setItemText(0, QCoreApplication.translate("MainWindow", u"Generated", None))
         self.itemModel.setItemText(1, QCoreApplication.translate("MainWindow", u"Handheld", None))
         self.itemModel.setItemText(2, QCoreApplication.translate("MainWindow", u"Custom", None))
@@ -1005,70 +1027,72 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.itemTextureButton.setText("")
         self.label_3.setText("")
-        self.itemDisplayNameLabel.setText(QCoreApplication.translate("MainWindow", u"Display Name", None))
-#if QT_CONFIG(tooltip)
-        self.itemDisplayName.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The name of your custom item! This'll be what you see in your inventory.</p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
-        self.itemDisplayName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Ruby", None))
-        self.itemNameLabel.setText(QCoreApplication.translate("MainWindow", u"Name", None))
-#if QT_CONFIG(tooltip)
-        self.itemName.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The name of your item that the game recognizes it as.</p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
-        self.itemName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"ruby", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Right-Click Mode", None))
         self.itemBaseItemLabel.setText(QCoreApplication.translate("MainWindow", u"Base Item", None))
 #if QT_CONFIG(tooltip)
-        self.itemBaseItem.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The Minecraft item your custom item is wrapped around. <span style=\" font-weight:700;\">Do not add a minecraft: prefix to this item!</span></p></body></html>", None))
+        self.itemRightClickFunc.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>A list of commands that will be run whenever you rightclick. <span style=\" font-weight:700;\">The program does not check if this will work or not! Any problems made here are the fault of the user.</span></p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
-        self.itemBaseItem.setPlaceholderText(QCoreApplication.translate("MainWindow", u"flint", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Max Stack Size", None))
-#if QT_CONFIG(tooltip)
-        self.itemStackSize.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The stack size of your item! Can be anything from 1 to 99, and can be used for any base item!</p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Right-Click Function?", None))
 #if QT_CONFIG(tooltip)
         self.itemRightClickCheck.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Whether or not you want to have a set of special commands run whenever you rightclick your item.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.itemRightClickCheck.setText("")
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Right-Click Mode", None))
+#if QT_CONFIG(tooltip)
+        self.itemDisplayName.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The name of your custom item! This'll be what you see in your inventory.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.itemDisplayName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Ruby", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Right-Click Function", None))
+#if QT_CONFIG(tooltip)
+        self.itemBaseItem.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The Minecraft item your custom item is wrapped around. <span style=\" font-weight:700;\">Do not add a minecraft: prefix to this item!</span></p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.itemBaseItem.setPlaceholderText(QCoreApplication.translate("MainWindow", u"flint", None))
+#if QT_CONFIG(tooltip)
+        self.itemName.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The name of your item that the game recognizes it as.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.itemName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"ruby", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Max Stack Size", None))
+#if QT_CONFIG(tooltip)
+        self.itemStackSize.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The stack size of your item! Can be anything from 1 to 99, and can be used for any base item!</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.itemNameLabel.setText(QCoreApplication.translate("MainWindow", u"Name", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Right-Click Function?", None))
         self.itemRightClickMode.setItemText(0, QCoreApplication.translate("MainWindow", u"Tick", None))
         self.itemRightClickMode.setItemText(1, QCoreApplication.translate("MainWindow", u"Impulse", None))
 
 #if QT_CONFIG(tooltip)
         self.itemRightClickMode.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The mode of the right-click method.</p><p>Tick: The function runs 20 times per second as long as you are holding rightclick.<br/>Impulse: Runs once whenever you rightclick your item.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Right-Click Function", None))
-#if QT_CONFIG(tooltip)
-        self.itemRightClickFunc.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>A list of commands that will be run whenever you rightclick. <span style=\" font-weight:700;\">The program does not check if this will work or not! Any problems made here are the fault of the user.</span></p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
+        self.itemDisplayNameLabel.setText(QCoreApplication.translate("MainWindow", u"Display Name", None))
+        self.itemConfirmButton.setText(QCoreApplication.translate("MainWindow", u"Confirm Item", None))
 #if QT_CONFIG(tooltip)
         self.paintingTextureButton.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The texture of your painting!</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.paintingTextureButton.setText("")
         self.paintingTextureLabel.setText(QCoreApplication.translate("MainWindow", u"Texture", None))
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"WARNING: Minecraft marks Paintings as EXPERIMENTAL!", None))
-        self.paintingDisplayNameLabel.setText(QCoreApplication.translate("MainWindow", u"Display Name", None))
+        self.paintingHeightLabel.setText(QCoreApplication.translate("MainWindow", u"Height", None))
+        self.paintingPlaceableLabel.setText(QCoreApplication.translate("MainWindow", u"Accessible in Survival?", None))
+        self.paintingNameLabel.setText(QCoreApplication.translate("MainWindow", u"Name", None))
 #if QT_CONFIG(tooltip)
         self.paintingDisplayName.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The name of the painting your game recognizes.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.paintingDisplayName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Shrek Painting", None))
-        self.paintingNameLabel.setText(QCoreApplication.translate("MainWindow", u"Name", None))
-#if QT_CONFIG(tooltip)
-        self.paintingName.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The name of the painting your game recognizes.</p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
-        self.paintingName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"shrek_painting", None))
         self.paintingWidthLabel.setText(QCoreApplication.translate("MainWindow", u"Width", None))
-#if QT_CONFIG(tooltip)
-        self.paintingWidth.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The width in blocks your painting will be.</p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
-        self.paintingHeightLabel.setText(QCoreApplication.translate("MainWindow", u"Height", None))
-#if QT_CONFIG(tooltip)
-        self.paintingHeight.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The height in blocks your painting will be.</p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
-        self.paintingPlaceableLabel.setText(QCoreApplication.translate("MainWindow", u"Accessible in Survival?", None))
 #if QT_CONFIG(tooltip)
         self.paintingPlaceable.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Whether or not you can use the painting in Survival mode. Should almost always be True.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.paintingPlaceable.setText("")
+#if QT_CONFIG(tooltip)
+        self.paintingHeight.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The height in blocks your painting will be.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.paintingName.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The name of the painting your game recognizes.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.paintingName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"shrek_painting", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"WARNING: Minecraft marks Paintings as EXPERIMENTAL!", None))
+        self.paintingDisplayNameLabel.setText(QCoreApplication.translate("MainWindow", u"Display Name", None))
+#if QT_CONFIG(tooltip)
+        self.paintingWidth.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The width in blocks your painting will be.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.paintingConfirmButton.setText(QCoreApplication.translate("MainWindow", u"Confirm Painting", None))
         ___qtreewidgetitem = self.elementVeiwer.headerItem()
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"Element Viewer", None));
 

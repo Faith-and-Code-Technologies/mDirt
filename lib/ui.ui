@@ -136,7 +136,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-style:italic; color:#aaaaaa;&quot;&gt;Making Datapacks is really tedious... but not anymore.&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt;Creating custom Minecraft datapacks can be time-consuming and complex. &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0;&quot;&gt;mDirt&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; simplifies this process by providing an easy-to-use tool for generating datapacks with custom features like blocks, items, recipes, and more. &lt;/span&gt;&lt;/p&gt;
 &lt;h2 style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#00e676;&quot;&gt;🛠️ Supported Versions&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/h2&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0;&quot;&gt;Minecraft Versions Supported:&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; 1.21.4, 1.21.5 &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0;&quot;&gt;Minecraft Versions Supported:&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; 1.21.3, 1.21.4, 1.21.5 &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0;&quot;&gt;Full compatibility&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; for &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; color:#ffeb3b; background-color:#2c2c2c;&quot;&gt;1.21.5&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; has been added. &lt;/span&gt;&lt;/p&gt;
 &lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#00e676;&quot;&gt;Using the Interface&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/h3&gt;
 &lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;
@@ -363,14 +363,58 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <x>10</x>
           <y>10</y>
           <width>241</width>
-          <height>216</height>
+          <height>251</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout">
-         <item row="0" column="0">
-          <widget class="QLabel" name="blockDisplayNameLabel">
+         <item row="5" column="1">
+          <widget class="QCheckBox" name="blockDirectional">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this is checked, it'll place like an oak log, directionally.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="text">
-            <string>Display Name</string>
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QComboBox" name="blockModel">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The model of your block.&lt;/p&gt;&lt;p&gt;Block: A normal block.&lt;/p&gt;&lt;p&gt;Custom: A model you created in &lt;span style=&quot; font-weight:700;&quot;&gt;BlockBench&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>Block</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Custom</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="blockPlaceSoundLabel">
+           <property name="text">
+            <string>Place Sound</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="blockDropLabel">
+           <property name="text">
+            <string>Drop</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="blockBaseBlock">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The block that your custom block hides inside of. This determines most of the sounds (other than the place sound), mining speed, etc. &lt;span style=&quot; font-weight:700;&quot;&gt;Do not use minecraft: in front of the block!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="placeholderText">
+            <string>stone</string>
            </property>
           </widget>
          </item>
@@ -384,10 +428,51 @@ li.checked::marker { content: &quot;\2612&quot;; }
            </property>
           </widget>
          </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="blockDirectionalLabel">
+           <property name="text">
+            <string>Directional</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="blockPlaceSound">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this is checked, it'll place like an oak log, directionally.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="placeholderText">
+            <string>block.stone.place</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QComboBox" name="blockDropBox">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The item or block that this block drops when it is broken. Self will drop itself, or you can choose any of your blocks or items, or you can choose any Minecraft block or item.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="editable">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="blockModelLabel">
+           <property name="text">
+            <string>Model:</string>
+           </property>
+          </widget>
+         </item>
          <item row="1" column="0">
           <widget class="QLabel" name="blockNameLabel">
            <property name="text">
             <string>Name</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="blockDisplayNameLabel">
+           <property name="text">
+            <string>Display Name</string>
            </property>
           </widget>
          </item>
@@ -408,89 +493,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
            </property>
           </widget>
          </item>
-         <item row="2" column="1">
-          <widget class="QLineEdit" name="blockBaseBlock">
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The block that your custom block hides inside of. This determines most of the sounds (other than the place sound), mining speed, etc. &lt;span style=&quot; font-weight:700;&quot;&gt;Do not use minecraft: in front of the block!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="placeholderText">
-            <string>stone</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="blockDropLabel">
+         <item row="7" column="0" colspan="2">
+          <widget class="QPushButton" name="blockConfirmButton">
            <property name="text">
-            <string>Drop</string>
+            <string>Confirm Block</string>
            </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QComboBox" name="blockDropBox">
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The item or block that this block drops when it is broken. Self will drop itself, or you can choose any of your blocks or items, or you can choose any Minecraft block or item.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="editable">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="blockPlaceSoundLabel">
-           <property name="text">
-            <string>Place Sound</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QLineEdit" name="blockPlaceSound">
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this is checked, it'll place like an oak log, directionally.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="placeholderText">
-            <string>block.stone.place</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="0">
-          <widget class="QLabel" name="blockDirectionalLabel">
-           <property name="text">
-            <string>Directional</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="1">
-          <widget class="QCheckBox" name="blockDirectional">
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this is checked, it'll place like an oak log, directionally.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="0">
-          <widget class="QLabel" name="blockModelLabel">
-           <property name="text">
-            <string>Model:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="1">
-          <widget class="QComboBox" name="blockModel">
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The model of your block.&lt;/p&gt;&lt;p&gt;Block: A normal block.&lt;/p&gt;&lt;p&gt;Custom: A model you created in &lt;span style=&quot; font-weight:700;&quot;&gt;BlockBench&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <item>
-            <property name="text">
-             <string>Block</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Custom</string>
-            </property>
-           </item>
           </widget>
          </item>
         </layout>
@@ -1153,6 +1160,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </widget>
          </widget>
         </item>
+        <item row="2" column="1">
+         <widget class="QPushButton" name="recipeConfirmButton">
+          <property name="text">
+           <string>Confirm Recipe</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="itemEditor">
@@ -1252,10 +1266,34 @@ li.checked::marker { content: &quot;\2612&quot;; }
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="0">
-          <widget class="QLabel" name="itemDisplayNameLabel">
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_4">
            <property name="text">
-            <string>Display Name</string>
+            <string>Right-Click Mode</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="itemBaseItemLabel">
+           <property name="text">
+            <string>Base Item</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="0" colspan="2">
+          <widget class="QPlainTextEdit" name="itemRightClickFunc">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A list of commands that will be run whenever you rightclick. &lt;span style=&quot; font-weight:700;&quot;&gt;The program does not check if this will work or not! Any problems made here are the fault of the user.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QCheckBox" name="itemRightClickCheck">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Whether or not you want to have a set of special commands run whenever you rightclick your item.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string/>
            </property>
           </widget>
          </item>
@@ -1269,27 +1307,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
            </property>
           </widget>
          </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="itemNameLabel">
+         <item row="6" column="0">
+          <widget class="QLabel" name="label_5">
            <property name="text">
-            <string>Name</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QLineEdit" name="itemName">
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of your item that the game recognizes it as.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="placeholderText">
-            <string>ruby</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="itemBaseItemLabel">
-           <property name="text">
-            <string>Base Item</string>
+            <string>Right-Click Function</string>
            </property>
           </widget>
          </item>
@@ -1300,6 +1321,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
            </property>
            <property name="placeholderText">
             <string>flint</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="itemName">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of your item that the game recognizes it as.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="placeholderText">
+            <string>ruby</string>
            </property>
           </widget>
          </item>
@@ -1320,27 +1351,17 @@ li.checked::marker { content: &quot;\2612&quot;; }
            </property>
           </widget>
          </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="itemNameLabel">
+           <property name="text">
+            <string>Name</string>
+           </property>
+          </widget>
+         </item>
          <item row="4" column="0">
           <widget class="QLabel" name="label_2">
            <property name="text">
             <string>Right-Click Function?</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QCheckBox" name="itemRightClickCheck">
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Whether or not you want to have a set of special commands run whenever you rightclick your item.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="0">
-          <widget class="QLabel" name="label_4">
-           <property name="text">
-            <string>Right-Click Mode</string>
            </property>
           </widget>
          </item>
@@ -1361,17 +1382,17 @@ li.checked::marker { content: &quot;\2612&quot;; }
            </item>
           </widget>
          </item>
-         <item row="6" column="0">
-          <widget class="QLabel" name="label_5">
+         <item row="0" column="0">
+          <widget class="QLabel" name="itemDisplayNameLabel">
            <property name="text">
-            <string>Right-Click Function</string>
+            <string>Display Name</string>
            </property>
           </widget>
          </item>
-         <item row="7" column="0" colspan="2">
-          <widget class="QPlainTextEdit" name="itemRightClickFunc">
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A list of commands that will be run whenever you rightclick. &lt;span style=&quot; font-weight:700;&quot;&gt;The program does not check if this will work or not! Any problems made here are the fault of the user.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <item row="8" column="0" colspan="2">
+          <widget class="QPushButton" name="itemConfirmButton">
+           <property name="text">
+            <string>Confirm Item</string>
            </property>
           </widget>
          </item>
@@ -1414,24 +1435,31 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
-          <x>20</x>
+          <x>10</x>
           <y>0</y>
           <width>359</width>
-          <height>159</height>
+          <height>190</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout_3">
-         <item row="0" column="0" colspan="2">
-          <widget class="QLabel" name="label_8">
+         <item row="4" column="0">
+          <widget class="QLabel" name="paintingHeightLabel">
            <property name="text">
-            <string>WARNING: Minecraft marks Paintings as EXPERIMENTAL!</string>
+            <string>Height</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="paintingDisplayNameLabel">
+         <item row="5" column="0">
+          <widget class="QLabel" name="paintingPlaceableLabel">
            <property name="text">
-            <string>Display Name</string>
+            <string>Accessible in Survival?</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="paintingNameLabel">
+           <property name="text">
+            <string>Name</string>
            </property>
           </widget>
          </item>
@@ -1445,23 +1473,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
            </property>
           </widget>
          </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="paintingNameLabel">
-           <property name="text">
-            <string>Name</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QLineEdit" name="paintingName">
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the painting your game recognizes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="placeholderText">
-            <string>shrek_painting</string>
-           </property>
-          </widget>
-         </item>
          <item row="3" column="0">
           <widget class="QLabel" name="paintingWidthLabel">
            <property name="text">
@@ -1469,23 +1480,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
            </property>
           </widget>
          </item>
-         <item row="3" column="1">
-          <widget class="QSpinBox" name="paintingWidth">
+         <item row="5" column="1">
+          <widget class="QCheckBox" name="paintingPlaceable">
            <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The width in blocks your painting will be.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Whether or not you can use the painting in Survival mode. Should almost always be True.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
-           <property name="minimum">
-            <number>1</number>
-           </property>
-           <property name="maximum">
-            <number>16</number>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="paintingHeightLabel">
            <property name="text">
-            <string>Height</string>
+            <string/>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
@@ -1502,23 +1506,47 @@ li.checked::marker { content: &quot;\2612&quot;; }
            </property>
           </widget>
          </item>
-         <item row="5" column="0">
-          <widget class="QLabel" name="paintingPlaceableLabel">
-           <property name="text">
-            <string>Accessible in Survival?</string>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="paintingName">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the painting your game recognizes.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="placeholderText">
+            <string>shrek_painting</string>
            </property>
           </widget>
          </item>
-         <item row="5" column="1">
-          <widget class="QCheckBox" name="paintingPlaceable">
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Whether or not you can use the painting in Survival mode. Should almost always be True.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
+         <item row="0" column="0" colspan="2">
+          <widget class="QLabel" name="label_8">
            <property name="text">
-            <string/>
+            <string>WARNING: Minecraft marks Paintings as EXPERIMENTAL!</string>
            </property>
-           <property name="checked">
-            <bool>true</bool>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="paintingDisplayNameLabel">
+           <property name="text">
+            <string>Display Name</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QSpinBox" name="paintingWidth">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The width in blocks your painting will be.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>16</number>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0" colspan="2">
+          <widget class="QPushButton" name="paintingConfirmButton">
+           <property name="text">
+            <string>Confirm Painting</string>
            </property>
           </widget>
          </item>

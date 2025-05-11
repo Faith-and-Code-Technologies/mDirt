@@ -106,6 +106,7 @@ class App(QMainWindow):
         # self.ui.blockAddButton.clicked.connect(self.addBlock)
         # self.ui.blockEditButton.clicked.connect(self.editBlock)
         # self.ui.blockRemoveButton.clicked.connect(self.removeBlock)
+        self.ui.actionBlock.triggered.connect(self.addBlock)
 
         self.ui.blockTextureButtonTop.clicked.connect(lambda: self.getBlockTexture(0))
         self.ui.blockTextureButtonLeft.clicked.connect(lambda: self.getBlockTexture(1))
