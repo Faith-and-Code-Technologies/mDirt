@@ -350,6 +350,9 @@ class App(QMainWindow):
         self.ui.elementEditor.setCurrentIndex(1)
 
     def confirmBlock(self):
+        if self.ui.blockName.text() == "":
+            alert("You cannot add an empty block!")
+            return
 
         self.featureNum += 1
 
@@ -471,6 +474,9 @@ class App(QMainWindow):
         self.ui.elementEditor.setCurrentIndex(3)
 
     def confirmItem(self):
+        if self.ui.itemName.text() == "":
+            alert("You cannot add an empty item!")
+            return
 
         self.featureNum += 1
 
@@ -601,6 +607,9 @@ class App(QMainWindow):
         self.ui.elementEditor.setCurrentIndex(2)
 
     def confirmRecipe(self):
+        if self.ui.recipeName.text() == "":
+            alert("You cannot add an empty recipe!")
+            return
 
         mode = "crafting"
 
@@ -702,6 +711,10 @@ class App(QMainWindow):
         self.ui.elementEditor.setCurrentIndex(4)
 
     def confirmPainting(self):
+        if self.ui.paintingName.text() == "":
+            alert("You cannot add an empty painting!")
+            return
+        
         self.paintingProperties = {
             "name": self.ui.paintingName.text(),
             "displayName": self.ui.paintingDisplayName.text(),

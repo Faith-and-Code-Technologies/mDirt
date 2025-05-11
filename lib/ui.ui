@@ -115,6 +115,27 @@ QToolTip {
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QFormLayout" name="formLayout_2">
+    <item row="0" column="0">
+     <widget class="QTreeWidget" name="elementVeiwer">
+      <property name="minimumSize">
+       <size>
+        <width>211</width>
+        <height>0</height>
+       </size>
+      </property>
+      <column>
+       <property name="text">
+        <string>Element Viewer</string>
+       </property>
+       <property name="font">
+        <font>
+         <bold>true</bold>
+         <underline>true</underline>
+        </font>
+       </property>
+      </column>
+     </widget>
+    </item>
     <item row="0" column="1">
      <widget class="QStackedWidget" name="elementEditor">
       <property name="currentIndex">
@@ -236,8 +257,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <widget class="QPushButton" name="blockTextureButtonBottom">
         <property name="geometry">
          <rect>
-          <x>430</x>
-          <y>190</y>
+          <x>330</x>
+          <y>150</y>
           <width>50</width>
           <height>50</height>
          </rect>
@@ -255,8 +276,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <widget class="QPushButton" name="blockTextureButtonTop">
         <property name="geometry">
          <rect>
-          <x>430</x>
-          <y>90</y>
+          <x>330</x>
+          <y>30</y>
           <width>50</width>
           <height>50</height>
          </rect>
@@ -274,8 +295,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <widget class="QPushButton" name="blockTextureButtonLeft">
         <property name="geometry">
          <rect>
-          <x>380</x>
-          <y>140</y>
+          <x>270</x>
+          <y>90</y>
           <width>50</width>
           <height>50</height>
          </rect>
@@ -293,8 +314,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <widget class="QPushButton" name="blockTextureButtonBack">
         <property name="geometry">
          <rect>
-          <x>430</x>
-          <y>140</y>
+          <x>330</x>
+          <y>90</y>
           <width>50</width>
           <height>50</height>
          </rect>
@@ -312,8 +333,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <widget class="QPushButton" name="blockTextureButtonFront">
         <property name="geometry">
          <rect>
-          <x>530</x>
-          <y>140</y>
+          <x>450</x>
+          <y>90</y>
           <width>50</width>
           <height>50</height>
          </rect>
@@ -331,8 +352,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <widget class="QPushButton" name="blockTextureButtonRight">
         <property name="geometry">
          <rect>
-          <x>480</x>
-          <y>140</y>
+          <x>390</x>
+          <y>90</y>
           <width>50</width>
           <height>50</height>
          </rect>
@@ -350,8 +371,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <widget class="QLabel" name="blockTextureLabel">
         <property name="geometry">
          <rect>
-          <x>380</x>
-          <y>50</y>
+          <x>260</x>
+          <y>10</y>
           <width>49</width>
           <height>16</height>
          </rect>
@@ -505,6 +526,98 @@ li.checked::marker { content: &quot;\2612&quot;; }
          </item>
         </layout>
        </widget>
+       <widget class="QLabel" name="blockTextureLabelLeft">
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>90</y>
+          <width>50</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="blockTextureLabelBottom">
+        <property name="geometry">
+         <rect>
+          <x>330</x>
+          <y>150</y>
+          <width>50</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="blockTextureLabelBack">
+        <property name="geometry">
+         <rect>
+          <x>330</x>
+          <y>90</y>
+          <width>50</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="blockTextureLabelTop">
+        <property name="geometry">
+         <rect>
+          <x>330</x>
+          <y>30</y>
+          <width>50</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="blockTextureLabelRight">
+        <property name="geometry">
+         <rect>
+          <x>390</x>
+          <y>90</y>
+          <width>50</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="blockTextureLabelFront">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>90</y>
+          <width>50</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <zorder>blockTextureLabelFront</zorder>
+       <zorder>blockTextureLabelRight</zorder>
+       <zorder>blockTextureLabelTop</zorder>
+       <zorder>blockTextureLabelBack</zorder>
+       <zorder>blockTextureLabelBottom</zorder>
+       <zorder>blockTextureLabelLeft</zorder>
+       <zorder>blockTextureButtonBottom</zorder>
+       <zorder>blockTextureButtonTop</zorder>
+       <zorder>blockTextureButtonLeft</zorder>
+       <zorder>blockTextureButtonBack</zorder>
+       <zorder>blockTextureButtonFront</zorder>
+       <zorder>blockTextureButtonRight</zorder>
+       <zorder>blockTextureLabel</zorder>
+       <zorder>layoutWidget</zorder>
       </widget>
       <widget class="QWidget" name="recipeEditor">
        <layout class="QFormLayout" name="formLayout">
@@ -1246,19 +1359,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <bool>true</bool>
         </property>
        </widget>
-       <widget class="QLabel" name="label_3">
-        <property name="geometry">
-         <rect>
-          <x>1</x>
-          <y>456</y>
-          <width>16</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
        <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
@@ -1401,6 +1501,25 @@ li.checked::marker { content: &quot;\2612&quot;; }
          </item>
         </layout>
        </widget>
+       <widget class="QLabel" name="itemTexture">
+        <property name="geometry">
+         <rect>
+          <x>430</x>
+          <y>40</y>
+          <width>50</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <zorder>itemTexture</zorder>
+       <zorder>itemModel</zorder>
+       <zorder>itemModelLabel</zorder>
+       <zorder>itemTextureLabel</zorder>
+       <zorder>itemTextureButton</zorder>
+       <zorder>layoutWidget</zorder>
       </widget>
       <widget class="QWidget" name="paintingEditor">
        <widget class="QPushButton" name="paintingTextureButton">
@@ -1555,28 +1674,24 @@ li.checked::marker { content: &quot;\2612&quot;; }
          </item>
         </layout>
        </widget>
+       <widget class="QLabel" name="paintingTexture">
+        <property name="geometry">
+         <rect>
+          <x>470</x>
+          <y>10</y>
+          <width>50</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <zorder>paintingTexture</zorder>
+       <zorder>paintingTextureButton</zorder>
+       <zorder>paintingTextureLabel</zorder>
+       <zorder>layoutWidget</zorder>
       </widget>
-     </widget>
-    </item>
-    <item row="0" column="0">
-     <widget class="QTreeWidget" name="elementVeiwer">
-      <property name="minimumSize">
-       <size>
-        <width>211</width>
-        <height>0</height>
-       </size>
-      </property>
-      <column>
-       <property name="text">
-        <string>Element Viewer</string>
-       </property>
-       <property name="font">
-        <font>
-         <bold>true</bold>
-         <underline>true</underline>
-        </font>
-       </property>
-      </column>
      </widget>
     </item>
    </layout>
