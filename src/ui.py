@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiPGlaXZ.ui'
+## Form generated from reading UI file 'uiuxBluv.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -151,6 +151,7 @@ class Ui_MainWindow(object):
         self.gridLayout_4.setObjectName(u"gridLayout_4")
         self.textEdit = QTextEdit(self.welcomeScreen)
         self.textEdit.setObjectName(u"textEdit")
+        self.textEdit.setReadOnly(True)
 
         self.gridLayout_4.addWidget(self.textEdit, 0, 0, 1, 1)
 

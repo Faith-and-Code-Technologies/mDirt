@@ -99,9 +99,6 @@ class App(QMainWindow):
         # Grab supported versions
         self.populateVersions()
 
-        # Launch Details Menu
-        self.launchDetails()
-
         # Block Signals
         # self.ui.blockAddButton.clicked.connect(self.addBlock)
         # self.ui.blockEditButton.clicked.connect(self.editBlock)
@@ -167,48 +164,7 @@ class App(QMainWindow):
 
         # Generate
         # self.ui.packGenerate.clicked.connect(self.generateDataPack)
-    
-    def launchDetails(self):
-        self.details_popup = QWidget()
-        self.detail_form = details.Ui_Form()
-        self.detail_form.setupUi(self.details_popup)
-        self.details_popup.show()
 
-        for version in self.supportedVersions:
-            if version != "1.21.3": self.detail_form.packVersion.addItem(version)
-
-        self.detail_form.packGenerate.clicked.connect(lambda: self.closeDetailPopup(self.details_popup,
-                                                                                    self.detail_form.packName.text(), 
-                                                                                    self.detail_form.packNamespace.text(), 
-                                                                                    self.detail_form.packAuthor.text(), 
-                                                                                    self.detail_form.packDescription.text(), 
-                                                                                    self.detail_form.packVersion.currentText())
-                                                                                    )
-
-    def closeDetailPopup(self, detail_popup,
-                         packName,
-                         packNamespace,
-                         packAuthor,
-                         packDesc,
-                         packVer):
-        
-        self.packName = packName
-        self.packNamespace = packNamespace
-        self.packAuthor = packAuthor
-        self.packDescription = packDesc
-        self.packVersion = packVer
-        # self.ui.packName.setText(packName)
-        # self.ui.packNamespace.setText(packNamespace)
-        # self.ui.packAuthor.setText(packAuthor)
-        # self.ui.packDescription.setText(packDesc)
-        # self.ui.packVersion.addItem(packVer)
-        
-        detail_popup.close()
-
-        self.grabModule()
-
-        self.setupData()
-    
     def populateVersions(self):
         version_url = "https://raw.githubusercontent.com/Faith-and-Code-Technologies/mDirt-2/main/lib/version_list.json"
         try:
