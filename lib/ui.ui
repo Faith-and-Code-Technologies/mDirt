@@ -141,7 +141,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#00e676;&quot;&gt;Using the Interface&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/h3&gt;
 &lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;
 &lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Tooltips:&lt;/span&gt; Hover over any field for help. &lt;/li&gt;
-&lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;Fill in details like block names, item properties, recipes, etc. &lt;/li&gt;&lt;/ul&gt;
+&lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;Fill in details like block names, item properties, recipes, etc. &lt;/li&gt;
+&lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;To get started, create a NEW ELEMENT!!!&lt;/li&gt;&lt;/ul&gt;
 &lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#00e676;&quot;&gt;Generate Your Datapack&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/h3&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt;Click &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0;&quot;&gt;&amp;quot;Generate Pack&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; once you're done. Your datapack will be ready to export! &lt;/span&gt;&lt;/p&gt;
 &lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#00e676;&quot;&gt;Deploying in Minecraft&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/h3&gt;
@@ -216,11 +217,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Namespaces:&lt;/span&gt; Avoid clashes with other datapacks. &lt;/li&gt;
 &lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Testing:&lt;/span&gt; Try it in a separate world first. &lt;/li&gt;
 &lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Backups:&lt;/span&gt; Always back up before applying new packs. &lt;/li&gt;&lt;/ul&gt;
-&lt;h2 style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#00e676;&quot;&gt;🛠 In Progress&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/h2&gt;
-&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;
-&lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;Internal system rewrite for future improvements &lt;/li&gt;
-&lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;Auto-Updater and Installer &lt;/li&gt;
-&lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;UI Redesign for a prettier and more productive experience &lt;/li&gt;&lt;/ul&gt;
 &lt;h2 style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#00e676;&quot;&gt;🙌 Credits&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/h2&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt;Created by &lt;/span&gt;&lt;a href=&quot;https://github.com/TheJupiterDev&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; text-decoration: underline; color:#4fc3f7;&quot;&gt;@TheJupiterDev&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; and &lt;/span&gt;&lt;a href=&quot;https://github.com/JustJoshinDev&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; text-decoration: underline; color:#4fc3f7;&quot;&gt;@JustJoshinDev&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt;Special thanks to Admin for the custom block generation method. &lt;/span&gt;&lt;/p&gt;
@@ -365,7 +361,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <rect>
           <x>10</x>
           <y>10</y>
-          <width>251</width>
+          <width>197</width>
           <height>216</height>
          </rect>
         </property>
@@ -1250,7 +1246,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <rect>
           <x>10</x>
           <y>0</y>
-          <width>321</width>
+          <width>258</width>
           <height>382</height>
          </rect>
         </property>
@@ -1571,7 +1567,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </item>
       <item>
        <property name="text">
-        <string>Recipes</string>
+        <string>Recipies</string>
        </property>
        <property name="font">
         <font>
@@ -1609,9 +1605,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
     </property>
     <addaction name="separator"/>
     <addaction name="actionBlock"/>
-    <addaction name="actionItems"/>
     <addaction name="actionRecipie"/>
     <addaction name="actionPaintings"/>
+    <addaction name="actionItems"/>
    </widget>
    <widget class="QMenu" name="menuSave">
     <property name="title">
@@ -1636,7 +1632,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
   </action>
   <action name="actionRecipie">
    <property name="text">
-    <string>Recipe</string>
+    <string>Recipie</string>
    </property>
   </action>
   <action name="actionPaintings">
