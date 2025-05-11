@@ -136,13 +136,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-style:italic; color:#aaaaaa;&quot;&gt;Making Datapacks is really tedious... but not anymore.&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt;Creating custom Minecraft datapacks can be time-consuming and complex. &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0;&quot;&gt;mDirt&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; simplifies this process by providing an easy-to-use tool for generating datapacks with custom features like blocks, items, recipes, and more. &lt;/span&gt;&lt;/p&gt;
 &lt;h2 style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#00e676;&quot;&gt;🛠️ Supported Versions&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/h2&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0;&quot;&gt;Minecraft Versions Supported:&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; 1.21.3, 1.21.4, 1.21.5 &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0;&quot;&gt;Minecraft Versions Supported:&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; 1.21.4, 1.21.5 &lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0;&quot;&gt;Full compatibility&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; for &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; color:#ffeb3b; background-color:#2c2c2c;&quot;&gt;1.21.5&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; has been added. &lt;/span&gt;&lt;/p&gt;
 &lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#00e676;&quot;&gt;Using the Interface&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/h3&gt;
 &lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;
 &lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Tooltips:&lt;/span&gt; Hover over any field for help. &lt;/li&gt;
 &lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;Fill in details like block names, item properties, recipes, etc. &lt;/li&gt;
-&lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;To get started, create a NEW ELEMENT!!!&lt;/li&gt;&lt;/ul&gt;
+&lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;To get started, create a new element!&lt;/li&gt;&lt;/ul&gt;
 &lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#00e676;&quot;&gt;Generate Your Datapack&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/h3&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt;Click &lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-weight:700; color:#f0f0f0;&quot;&gt;&amp;quot;Generate Pack&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot;&gt; once you're done. Your datapack will be ready to export! &lt;/span&gt;&lt;/p&gt;
 &lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#00e676;&quot;&gt;Deploying in Minecraft&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/h3&gt;
@@ -208,6 +208,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#e53935;&quot;&gt;❌&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;td style=&quot; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;&quot;&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; color:#e53935;&quot;&gt;❌&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h2 style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#00e676;&quot;&gt;🚀 Coming Soon&lt;/span&gt;&lt;span style=&quot; font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;&quot;&gt; &lt;/span&gt;&lt;/h2&gt;
 &lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;
 &lt;li style=&quot; font-family:'Segoe UI','sans-serif'; color:#f0f0f0;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;Custom Components for Items and Blocks &lt;/li&gt;
@@ -361,7 +362,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <rect>
           <x>10</x>
           <y>10</y>
-          <width>197</width>
+          <width>241</width>
           <height>216</height>
          </rect>
         </property>
@@ -495,7 +496,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </layout>
        </widget>
       </widget>
-      <widget class="QWidget" name="recipieEditor">
+      <widget class="QWidget" name="recipeEditor">
        <layout class="QFormLayout" name="formLayout">
         <item row="0" column="0">
          <widget class="QLabel" name="recipeNameLabel">
@@ -514,7 +515,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <item row="1" column="0" colspan="2">
          <widget class="QTabWidget" name="recipeSubTabs">
           <property name="currentIndex">
-           <number>2</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="craftingTab">
            <attribute name="title">
@@ -1246,7 +1247,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <rect>
           <x>10</x>
           <y>0</y>
-          <width>258</width>
+          <width>311</width>
           <height>382</height>
          </rect>
         </property>
@@ -1536,7 +1537,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </property>
       <column>
        <property name="text">
-        <string>Element Veiwer</string>
+        <string>Element Viewer</string>
        </property>
        <property name="font">
         <font>
