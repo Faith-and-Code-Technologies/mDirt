@@ -1,4 +1,4 @@
-import datetime, json, os, re, sys, details, requests, importlib, shutil, pickle, html, string
+import datetime, json, os, re, sys, requests, importlib, shutil, pickle, html, string
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QImage, QPixmap, QStandardItem
@@ -28,10 +28,28 @@ class App(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        # Connections
+        self.mainDirectory = f"{os.path.dirname(os.path.abspath(__file__))}/.."
+        self.ui.menuNew_Element.setEnabled(False)
+
+        # CONNECTIONS
         self.ui.actionNew_Project.triggered.connect(self.openProjectMenu)
         self.ui.createProjectButton.clicked.connect(self.newProject)
         self.ui.actionOpen_Project.triggered.connect(self.loadProjectUI)
+
+        self.ui.actionBlock.triggered.connect(self.newBlock)
+        # self.ui.actionItem.triggered.connect(self.newItem)
+        # self.ui.actionRecipe.triggered.connect(self.newRecipe)
+        # self.ui.actionPainting.triggered.connect(self.newPainting)
+
+        # Block Specific Connections
+        self.ui.blockTextureButtonTop.clicked.connect(lambda: self.addBlockTexture(0))
+        self.ui.blockTextureButtonLeft.clicked.connect(lambda: self.addBlockTexture(1))
+        self.ui.blockTextureButtonBack.clicked.connect(lambda: self.addBlockTexture(2))
+        self.ui.blockTextureButtonRight.clicked.connect(lambda: self.addBlockTexture(3))
+        self.ui.blockTextureButtonFront.clicked.connect(lambda: self.addBlockTexture(4))
+        self.ui.blockTextureButtonBottom.clicked.connect(lambda: self.addBlockTexture(5))
+
+        self.ui.blockConfirmButton.clicked.connect(self.addBlock)
 
     #######################
     # SETUP PROJECT       #
@@ -56,6 +74,7 @@ class App(QMainWindow):
     def openProjectMenu(self):
         self.pullSupportedVersions()                   # Pulls the supported version list from the server.
 
+        self.ui.packVersion.clear()
         for version in self.supportedVersions:
             self.ui.packVersion.addItem(version)       # Adds the versions to the dropdown.
 
@@ -122,6 +141,7 @@ class App(QMainWindow):
         self.setupProjectData()
 
         self.saveProjectAs()
+        self.ui.menuNew_Element.setEnabled(True) # Enable the Element buttons so user can add things to their pack
 
         self.ui.elementEditor.setCurrentIndex(0)
         self.ui.textEdit.setHtml(f"<h1>To get started with <strong>{self.packDetails["name"]}</strong>, create a New Element!</h1>")
@@ -196,7 +216,7 @@ class App(QMainWindow):
         self.projectForm = load_project.Ui_Form()
         self.projectForm.setupUi(self.projectList)
 
-        workspaceDirectory = f'{os.path.dirname(os.path.abspath(__file__))}/../workspaces'
+        workspaceDirectory = f'{self.mainDirectory}/workspaces'
         projects = []
 
         if os.path.exists(workspaceDirectory):
@@ -217,7 +237,7 @@ class App(QMainWindow):
             alert("Please select a valid project!")
             return
         
-        projectDirectory = f'{os.path.dirname(os.path.abspath(__file__))}/../workspaces/{projectNamespace}'
+        projectDirectory = f'{self.mainDirectory}/workspaces/{projectNamespace}'
         if not os.path.exists(projectDirectory):
             alert("This project doesn't exist or is corrupted!")
             return
@@ -239,6 +259,66 @@ class App(QMainWindow):
         
         self.projectList.close()
 
+    #######################
+    # BLOCKS TAB          #
+    #######################
+
+    def addBlockTexture(self, id_):
+        textureId = id_
+        texture, _ = QFileDialog.getOpenFileName(self, "Open Texture File", "", "PNG Files (*.png)")
+        if not texture:
+            return
+        
+        filename = os.path.basename(texture)
+        destinationPath = f'{self.mainDirectory}/workspaces/{self.packDetails["namespace"]}/assets/blocks/{filename}'
+        shutil.copyfile(texture, destinationPath)
+
+        self.blockTexture[textureId] = destinationPath
+
+        image = QImage(self.blockTexture[textureId])
+        pixmap = QPixmap.fromImage(image).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio)
+
+        if textureId == 0:
+            self.ui.blockTextureLabelTop.setPixmap(pixmap)
+        if textureId == 1:
+            self.ui.blockTextureLabelLeft.setPixmap(pixmap)
+        if textureId == 2:
+            self.ui.blockTextureLabelBack.setPixmap(pixmap)
+        if textureId == 3:
+            self.ui.blockTextureLabelRight.setPixmap(pixmap)
+        if textureId == 4:
+            self.ui.blockTextureLabelFront.setPixmap(pixmap)
+        if textureId == 5:
+            self.ui.blockTextureLabelBottom.setPixmap(pixmap)
+
+    def newBlock(self):
+        self.ui.elementEditor.setCurrentIndex(1)
+
+    def validateBlockDetails(self):
+        def validate(field, allowed_chars, field_name):
+            text = field.text()
+            if not text:
+                field.setStyleSheet("QLineEdit { border: 1px solid red; }")
+                alert("Please fill in all fields!")
+                return False
+            if any(c not in allowed_chars for c in text):
+                field.setStyleSheet("QLineEdit { border: 1px solid red; }")
+                alert(f"{field_name} contains an illegal character!")
+                return False
+            field.setStyleSheet("")
+            return True
+
+        if not validate(self.ui.blockDisplayName, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz _-!0123456789", "Display Name"):
+            return 0
+        if not validate(self.ui.blockName, "abcdefghijklmnopqrstuvwxyz_0123456789", "Name"):
+            return 0
+        if not self.ui.blockBaseBlock.text() in self.data["blocks"]:
+            return 0
+
+        return 1
+
+    def addBlock(self):
+        if self.validateBlockDetails == 0: return
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

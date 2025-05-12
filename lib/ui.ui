@@ -111,7 +111,18 @@ QToolTip {
     border: 1px solid #7da87d;
     padding: 4px;
     border-radius: 4px;
-}</string>
+}
+
+QPushButton:flat {
+    background-color: transparent;
+    color: black;
+}
+
+QPushButton:flat:hover {
+    text-decoration: underline;
+    color: #333;
+}
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QFormLayout" name="formLayout_2">
@@ -1840,9 +1851,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
     </property>
     <addaction name="separator"/>
     <addaction name="actionBlock"/>
-    <addaction name="actionItems"/>
-    <addaction name="actionRecipie"/>
-    <addaction name="actionPaintings"/>
+    <addaction name="actionItem"/>
+    <addaction name="actionRecipe"/>
+    <addaction name="actionPainting"/>
    </widget>
    <widget class="QMenu" name="menuSave">
     <property name="title">
@@ -1864,19 +1875,19 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>Block</string>
    </property>
   </action>
-  <action name="actionRecipie">
+  <action name="actionRecipe">
    <property name="text">
     <string>Recipe</string>
    </property>
   </action>
-  <action name="actionPaintings">
+  <action name="actionPainting">
    <property name="text">
-    <string>Paintings</string>
+    <string>Painting</string>
    </property>
   </action>
-  <action name="actionItems">
+  <action name="actionItem">
    <property name="text">
-    <string>Items</string>
+    <string>Item</string>
    </property>
   </action>
   <action name="actionSave">

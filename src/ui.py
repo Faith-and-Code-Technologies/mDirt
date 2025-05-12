@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiTDybhb.ui'
+## Form generated from reading UI file 'uibwswOf.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -126,15 +126,27 @@ class Ui_MainWindow(object):
 "    border: 1px solid #7da87d;\n"
 "    padding: 4px;\n"
 "    border-radius: 4px;\n"
-"}")
+"}\n"
+"\n"
+"QPushButton:flat {\n"
+"    background-color: t"
+                        "ransparent;\n"
+"    color: black;\n"
+"}\n"
+"\n"
+"QPushButton:flat:hover {\n"
+"    text-decoration: underline;\n"
+"    color: #333;\n"
+"}\n"
+"")
         self.actionBlock = QAction(MainWindow)
         self.actionBlock.setObjectName(u"actionBlock")
-        self.actionRecipie = QAction(MainWindow)
-        self.actionRecipie.setObjectName(u"actionRecipie")
-        self.actionPaintings = QAction(MainWindow)
-        self.actionPaintings.setObjectName(u"actionPaintings")
-        self.actionItems = QAction(MainWindow)
-        self.actionItems.setObjectName(u"actionItems")
+        self.actionRecipe = QAction(MainWindow)
+        self.actionRecipe.setObjectName(u"actionRecipe")
+        self.actionPainting = QAction(MainWindow)
+        self.actionPainting.setObjectName(u"actionPainting")
+        self.actionItem = QAction(MainWindow)
+        self.actionItem.setObjectName(u"actionItem")
         self.actionSave = QAction(MainWindow)
         self.actionSave.setObjectName(u"actionSave")
         self.actionLoad = QAction(MainWindow)
@@ -821,9 +833,9 @@ class Ui_MainWindow(object):
         self.menuBar.addAction(self.menuNew_Element.menuAction())
         self.menuNew_Element.addSeparator()
         self.menuNew_Element.addAction(self.actionBlock)
-        self.menuNew_Element.addAction(self.actionItems)
-        self.menuNew_Element.addAction(self.actionRecipie)
-        self.menuNew_Element.addAction(self.actionPaintings)
+        self.menuNew_Element.addAction(self.actionItem)
+        self.menuNew_Element.addAction(self.actionRecipe)
+        self.menuNew_Element.addAction(self.actionPainting)
         self.menuSave.addAction(self.actionNew_Project)
         self.menuSave.addAction(self.actionOpen_Project)
         self.menuSave.addSeparator()
@@ -844,9 +856,9 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"mDirt - v3.0.0", None))
         self.actionBlock.setText(QCoreApplication.translate("MainWindow", u"Block", None))
-        self.actionRecipie.setText(QCoreApplication.translate("MainWindow", u"Recipe", None))
-        self.actionPaintings.setText(QCoreApplication.translate("MainWindow", u"Paintings", None))
-        self.actionItems.setText(QCoreApplication.translate("MainWindow", u"Items", None))
+        self.actionRecipe.setText(QCoreApplication.translate("MainWindow", u"Recipe", None))
+        self.actionPainting.setText(QCoreApplication.translate("MainWindow", u"Painting", None))
+        self.actionItem.setText(QCoreApplication.translate("MainWindow", u"Item", None))
         self.actionSave.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.actionLoad.setText(QCoreApplication.translate("MainWindow", u"Load", None))
         self.actionExport_Pack.setText(QCoreApplication.translate("MainWindow", u"Export Pack", None))
