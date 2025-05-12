@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiSTaFBF.ui'
+## Form generated from reading UI file 'uiTDybhb.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -141,6 +141,16 @@ class Ui_MainWindow(object):
         self.actionLoad.setObjectName(u"actionLoad")
         self.actionExport_Pack = QAction(MainWindow)
         self.actionExport_Pack.setObjectName(u"actionExport_Pack")
+        self.actionNew_Project = QAction(MainWindow)
+        self.actionNew_Project.setObjectName(u"actionNew_Project")
+        self.actionOpen_Project = QAction(MainWindow)
+        self.actionOpen_Project.setObjectName(u"actionOpen_Project")
+        self.actionSave_2 = QAction(MainWindow)
+        self.actionSave_2.setObjectName(u"actionSave_2")
+        self.actionSave_As = QAction(MainWindow)
+        self.actionSave_As.setObjectName(u"actionSave_As")
+        self.actionExport_Project = QAction(MainWindow)
+        self.actionExport_Project.setObjectName(u"actionExport_Project")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.formLayout_2 = QFormLayout(self.centralwidget)
@@ -773,10 +783,10 @@ class Ui_MainWindow(object):
 
         self.formLayout_3.setWidget(4, QFormLayout.FieldRole, self.packAuthor)
 
-        self.packGenerate = QPushButton(self.formLayoutWidget)
-        self.packGenerate.setObjectName(u"packGenerate")
+        self.createProjectButton = QPushButton(self.formLayoutWidget)
+        self.createProjectButton.setObjectName(u"createProjectButton")
 
-        self.formLayout_3.setWidget(6, QFormLayout.SpanningRole, self.packGenerate)
+        self.formLayout_3.setWidget(6, QFormLayout.SpanningRole, self.createProjectButton)
 
         self.label_12 = QLabel(self.formLayoutWidget)
         self.label_12.setObjectName(u"label_12")
@@ -814,9 +824,13 @@ class Ui_MainWindow(object):
         self.menuNew_Element.addAction(self.actionItems)
         self.menuNew_Element.addAction(self.actionRecipie)
         self.menuNew_Element.addAction(self.actionPaintings)
-        self.menuSave.addAction(self.actionSave)
-        self.menuSave.addAction(self.actionLoad)
-        self.menuSave.addAction(self.actionExport_Pack)
+        self.menuSave.addAction(self.actionNew_Project)
+        self.menuSave.addAction(self.actionOpen_Project)
+        self.menuSave.addSeparator()
+        self.menuSave.addAction(self.actionSave_2)
+        self.menuSave.addAction(self.actionSave_As)
+        self.menuSave.addSeparator()
+        self.menuSave.addAction(self.actionExport_Project)
 
         self.retranslateUi(MainWindow)
 
@@ -836,6 +850,11 @@ class Ui_MainWindow(object):
         self.actionSave.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.actionLoad.setText(QCoreApplication.translate("MainWindow", u"Load", None))
         self.actionExport_Pack.setText(QCoreApplication.translate("MainWindow", u"Export Pack", None))
+        self.actionNew_Project.setText(QCoreApplication.translate("MainWindow", u"New Project", None))
+        self.actionOpen_Project.setText(QCoreApplication.translate("MainWindow", u"Open Project", None))
+        self.actionSave_2.setText(QCoreApplication.translate("MainWindow", u"Save", None))
+        self.actionSave_As.setText(QCoreApplication.translate("MainWindow", u"Save As...", None))
+        self.actionExport_Project.setText(QCoreApplication.translate("MainWindow", u"Export Project", None))
         ___qtreewidgetitem = self.elementVeiwer.headerItem()
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"Element Viewer", None));
         self.textEdit.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -1241,9 +1260,9 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.packAuthor.setPlaceholderText(QCoreApplication.translate("MainWindow", u"jupiterdev", None))
 #if QT_CONFIG(tooltip)
-        self.packGenerate.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Click once you have filled in the other details, and it will generate the packs!</p></body></html>", None))
+        self.createProjectButton.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Click once you have filled in the other details, and it will generate the packs!</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
-        self.packGenerate.setText(QCoreApplication.translate("MainWindow", u"Generate", None))
+        self.createProjectButton.setText(QCoreApplication.translate("MainWindow", u"Create Project", None))
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"Pack Details", None))
         self.menuNew_Element.setTitle(QCoreApplication.translate("MainWindow", u"New Element", None))
         self.menuSave.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
