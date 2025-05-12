@@ -36,8 +36,10 @@ class App(QMainWindow):
         self.ui.createProjectButton.clicked.connect(self.newProject)
         self.ui.actionOpen_Project.triggered.connect(self.loadProjectUI)
 
+        self.ui.elementVeiwer.itemDoubleClicked.connect(self.elementClicked)
+
         self.ui.actionBlock.triggered.connect(self.newBlock)
-        # self.ui.actionItem.triggered.connect(self.newItem)
+        self.ui.actionItem.triggered.connect(self.newItem)
         # self.ui.actionRecipe.triggered.connect(self.newRecipe)
         # self.ui.actionPainting.triggered.connect(self.newPainting)
 
@@ -49,7 +51,11 @@ class App(QMainWindow):
         self.ui.blockTextureButtonFront.clicked.connect(lambda: self.addBlockTexture(4))
         self.ui.blockTextureButtonBottom.clicked.connect(lambda: self.addBlockTexture(5))
 
+        self.ui.blockModel.currentTextChanged.connect(self.getBlockModel)
         self.ui.blockConfirmButton.clicked.connect(self.addBlock)
+
+        # Item Specific Connections
+        self.ui.itemConfirmButton.clicked.connect(self.addItem)
 
     #######################
     # SETUP PROJECT       #
@@ -259,6 +265,40 @@ class App(QMainWindow):
         
         self.projectList.close()
 
+        self.blocks_tree = QTreeWidgetItem(self.ui.elementVeiwer, ["Blocks"])
+        for name in self.blocks:
+            QTreeWidgetItem(self.blocks_tree, [name["name"]])
+        
+        self.items_tree = QTreeWidgetItem(self.ui.elementVeiwer, ["Items"])
+        for name in self.items:
+            QTreeWidgetItem(self.items_tree, [name["name"]])
+        
+        self.recipes_tree = QTreeWidgetItem(self.ui.elementVeiwer, ["Recipes"])
+        for name in self.recipes:
+            QTreeWidgetItem(self.recipes_tree, [name["name"]])
+        
+        self.paintings_tree = QTreeWidgetItem(self.ui.elementVeiwer, ["Paintings"])
+        for name in self.paintings:
+            QTreeWidgetItem(self.paintings, [name["name"]])
+
+    #######################
+    # ELEMENT MANAGER     #
+    #######################
+
+    def elementClicked(self, item, column):
+        element_type = item.parent()
+        if element_type is None: return
+
+        if element_type.text(column) == "Blocks":
+            self.editBlock(item.text(column))
+            
+        # if element_type == "Items":
+        #     self.editItem(item.text(column))
+        # if element_type == "Recipes":
+        #     self.editRecipe(item.text(column))
+        # if element_type == "Paintings":
+        #     self.editPainting(item.text(column))
+
     #######################
     # BLOCKS TAB          #
     #######################
@@ -278,21 +318,42 @@ class App(QMainWindow):
         image = QImage(self.blockTexture[textureId])
         pixmap = QPixmap.fromImage(image).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio)
 
-        if textureId == 0:
-            self.ui.blockTextureLabelTop.setPixmap(pixmap)
-        if textureId == 1:
-            self.ui.blockTextureLabelLeft.setPixmap(pixmap)
-        if textureId == 2:
-            self.ui.blockTextureLabelBack.setPixmap(pixmap)
-        if textureId == 3:
-            self.ui.blockTextureLabelRight.setPixmap(pixmap)
-        if textureId == 4:
-            self.ui.blockTextureLabelFront.setPixmap(pixmap)
-        if textureId == 5:
-            self.ui.blockTextureLabelBottom.setPixmap(pixmap)
+        label_map = {
+            0: self.ui.blockTextureLabelTop,
+            1: self.ui.blockTextureLabelLeft,
+            2: self.ui.blockTextureLabelBack,
+            3: self.ui.blockTextureLabelRight,
+            4: self.ui.blockTextureLabelFront,
+            5: self.ui.blockTextureLabelBottom,
+        }
+        label_map[textureId].setPixmap(pixmap)
 
     def newBlock(self):
+        self.populateBlockDrop()
         self.ui.elementEditor.setCurrentIndex(1)
+
+    def populateBlockDrop(self):
+        self.ui.blockDropBox.clear()
+        self.ui.blockDropBox.addItem('self')
+        for block in self.blocks:
+            self.ui.blockDropBox.addItem(block)
+        for item in self.items:
+            self.ui.blockDropBox.addItem(item)
+        for item in self.data["items"]:
+            self.ui.blockDropBox.addItem(item)
+
+    def getBlockModel(self):
+        if self.ui.blockModel.currentText() == "Custom":
+            fileDialog = QFileDialog()
+            filePath, _ = fileDialog.getOpenFileName(self, "Open JSON File", "", "JSON Files (*.json)")
+            fileName = os.path.basename(filePath)
+            destPath = f'{self.mainDirectory}/workspaces/{self.packDetails["namespace"]}/assets/blocks/{fileName}'
+
+            shutil.copy(filePath, destPath)
+
+            if filePath:
+                self.ui.blockModel.addItem(destPath)
+                self.ui.blockModel.setCurrentText(destPath)
 
     def validateBlockDetails(self):
         def validate(field, allowed_chars, field_name):
@@ -317,8 +378,147 @@ class App(QMainWindow):
 
         return 1
 
+    def clearBlockFields(self):
+        self.ui.blockName.setText("")
+        self.ui.blockDisplayName.setText("")
+        self.ui.blockBaseBlock.setText("")
+        self.ui.blockDropBox.setCurrentText("")
+        self.ui.blockPlaceSound.setText("")
+        self.ui.blockDirectional.setChecked(False)
+        self.ui.blockModel.setCurrentText("")
+
+        self.ui.blockTextureLabelTop.clear()
+        self.ui.blockTextureLabelLeft.clear()
+        self.ui.blockTextureLabelBack.clear()
+        self.ui.blockTextureLabelRight.clear()
+        self.ui.blockTextureLabelFront.clear()
+        self.ui.blockTextureLabelBottom.clear()
+
+        self.blockTexture = {}
+
+        self.ui.elementVeiwer.clearSelection()
+
+        self.populateBlockDrop()
+
     def addBlock(self):
-        if self.validateBlockDetails == 0: return
+        if self.validateBlockDetails() == 0: return
+
+        self.blockProperties = {
+            "name": self.ui.blockName.text(),
+            "displayName": self.ui.blockDisplayName.text(),
+            "baseBlock": self.ui.blockBaseBlock.text(),
+            "textures": self.blockTexture,
+            "placeSound": self.ui.blockPlaceSound.text(),
+            "blockDrop": self.ui.blockDropBox.currentText(),
+            "directional": self.ui.blockDirectional.isChecked(),
+            "model": self.ui.blockModel.currentText(),
+        }
+        if not self.blockProperties["name"] in self.blocks:
+            self.blocks[self.blockProperties["name"]] = self.blockProperties
+            QTreeWidgetItem(self.blocks_tree, [self.blockProperties["name"]])
+        else:
+            self.blocks[self.blockProperties["name"]] = self.blockProperties
+
+        self.clearBlockFields()
+
+    def editBlock(self, block):
+        properties = self.blocks[block]
+
+        self.ui.blockName.setText(properties["name"])
+        self.ui.blockDisplayName.setText(properties["displayName"])
+        self.ui.blockBaseBlock.setText(properties["baseBlock"])
+        self.ui.blockDropBox.setCurrentText(properties["blockDrop"])
+        self.ui.blockPlaceSound.setText(properties["placeSound"])
+        self.ui.blockDirectional.setChecked(properties["directional"])
+        self.ui.blockModel.setCurrentText(properties["model"])
+        self.blockTexture = properties["textures"]
+
+        for textureId in self.blockTexture:
+            image = QImage(self.blockTexture[textureId])
+            pixmap = QPixmap.fromImage(image).scaled(
+                50, 50, Qt.AspectRatioMode.KeepAspectRatio
+            )
+
+            if textureId == 0:
+                self.ui.blockTextureLabelTop.setPixmap(pixmap)
+            if textureId == 1:
+                self.ui.blockTextureLabelLeft.setPixmap(pixmap)
+            if textureId == 2:
+                self.ui.blockTextureLabelBack.setPixmap(pixmap)
+            if textureId == 3:
+                self.ui.blockTextureLabelRight.setPixmap(pixmap)
+            if textureId == 4:
+                self.ui.blockTextureLabelFront.setPixmap(pixmap)
+            if textureId == 5:
+                self.ui.blockTextureLabelBottom.setPixmap(pixmap)
+
+    #######################
+    # ITEMS TAB           #
+    #######################
+
+    def newItem(self):
+        self.ui.elementEditor.setCurrentIndex(3)
+
+    def validateItemDetails(self):
+        def validate(field, allowed_chars, field_name):
+            text = field.text()
+            if not text:
+                field.setStyleSheet("QLineEdit { border: 1px solid red; }")
+                alert("Please fill in all fields!")
+                return False
+            if any(c not in allowed_chars for c in text):
+                field.setStyleSheet("QLineEdit { border: 1px solid red; }")
+                alert(f"{field_name} contains an illegal character!")
+                return False
+            field.setStyleSheet("")
+            return True
+
+        if not validate(self.ui.itemDisplayName, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz _-!0123456789", "Display Name"):
+            return 0
+        if not validate(self.ui.itemName, "abcdefghijklmnopqrstuvwxyz_0123456789", "Item Name"):
+            return 0
+        if not self.ui.itemBaseItem.text() in self.data["items"]:
+            return 0
+        
+        return 1
+
+    def clearItemFields(self):
+        self.ui.itemName.setText("")
+        self.ui.itemDisplayName.setText("")
+        self.ui.itemBaseItem.setText("")
+        self.ui.itemModel.setCurrentText("Generated")
+        self.ui.itemStackSize.setValue(64)
+        self.ui.itemRightClickFunc.clear()
+        self.ui.itemRightClickMode.setCurrentText("Tick")
+        self.ui.itemRightClickCheck.setChecked(False)
+
+        self.ui.itemTexture.clear()
+
+        self.itemTexture = None
+
+        self.ui.elementVeiwer.clearSelection()
+
+    def addItem(self):
+        if self.validateItemDetails() == 0: return
+
+        rightClick = {"enabled":self.ui.itemRightClickCheck.isChecked(),"function":self.ui.itemRightClickFunc.toPlainText(),"mode":self.ui.itemRightClickMode.currentText().lower()}
+
+        self.itemProperties = {
+            "name": self.ui.itemName.text(),
+            "displayName": self.ui.itemDisplayName.text(),
+            "baseItem": self.ui.itemBaseItem.text(),
+            "texture": self.itemTexture,
+            "model": self.ui.itemModel.currentText().lower(),
+            "stackSize": self.ui.itemStackSize.value(),
+            "rightClick": rightClick,
+        }
+        if not self.itemProperties["name"] in self.items:
+            self.items[self.itemProperties["name"]] = self.itemProperties
+            QTreeWidgetItem(self.items_tree, [self.itemProperties["name"]])
+        else:
+            self.items[self.itemProperties["name"]] = self.itemProperties
+
+        self.clearItemFields()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
