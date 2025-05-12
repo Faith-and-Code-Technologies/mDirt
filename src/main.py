@@ -4,7 +4,7 @@ from PySide6.QtCore import Qt
 from PySide6.QtGui import QImage, QPixmap, QStandardItem
 from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QMessageBox, QWidget, QDialog, QTreeWidget, QTreeWidgetItem
 
-from select_item import Ui_Form
+import select_item, load_project
 from ui import Ui_MainWindow
 
 from updater import Updater, ModuleGrabber
@@ -31,6 +31,7 @@ class App(QMainWindow):
         # Connections
         self.ui.actionNew_Project.triggered.connect(self.openProjectMenu)
         self.ui.createProjectButton.clicked.connect(self.newProject)
+        self.ui.actionOpen_Project.triggered.connect(self.loadProjectUI)
 
     #######################
     # SETUP PROJECT       #
@@ -120,6 +121,8 @@ class App(QMainWindow):
         self.pullData()
         self.setupProjectData()
 
+        self.saveProjectAs()
+
         self.ui.elementEditor.setCurrentIndex(0)
         self.ui.textEdit.setHtml(f"<h1>To get started with <strong>{self.packDetails["name"]}</strong>, create a New Element!</h1>")
 
@@ -130,7 +133,7 @@ class App(QMainWindow):
             self.data = json.load(f)
         
         self.dataFormat = self.version_json["dataformat"][self.packDetails["version"]]
-        self.resouceFormat = self.version_json["resourceformat"][self.packDetails["version"]]
+        self.resourceFormat = self.version_json["resourceformat"][self.packDetails["version"]]
 
         self.blocks = {}
         self.items = {}
@@ -156,12 +159,86 @@ class App(QMainWindow):
     #######################
     # SAVE / LOAD         #
     #######################
-
+    
     def saveProject(self):
-        pass
+        self.saveProjectAs()
 
-    def loadProject(self):
-        pass
+    def saveProjectAs(self):
+        projectDirectory = f'{self.mainDirectory}/workspaces/{self.packDetails["namespace"]}'
+        os.makedirs(projectDirectory, exist_ok=True)
+
+        with open(f'{projectDirectory}/project.dat', 'w') as file:
+            data = {
+            "app_version": APP_VERSION,
+            "metadata": {
+                "last_edited": datetime.datetime.now(datetime.UTC).isoformat()
+            },
+            "packDetails": self.packDetails
+        }
+            json.dump(data, file, indent=4)
+            
+        with open(f'{projectDirectory}/blocks.json', 'w') as file:
+            json.dump(self.blocks, file, indent=4)
+        with open(f'{projectDirectory}/items.json', 'w') as file:
+            json.dump(self.items, file, indent=4)
+        with open(f'{projectDirectory}/recipes.json', 'w') as file:
+            json.dump(self.recipes, file, indent=4)
+        with open(f'{projectDirectory}/paintings.json', 'w') as file:
+            json.dump(self.paintings, file, indent=4)
+        
+        os.makedirs(f'{projectDirectory}/assets', exist_ok=True)
+        os.makedirs(f'{projectDirectory}/assets/blocks', exist_ok=True)
+        os.makedirs(f'{projectDirectory}/assets/items', exist_ok=True)
+        os.makedirs(f'{projectDirectory}/assets/paintings', exist_ok=True)
+
+    def loadProjectUI(self):
+        self.projectList = QWidget()
+        self.projectForm = load_project.Ui_Form()
+        self.projectForm.setupUi(self.projectList)
+
+        workspaceDirectory = f'{os.path.dirname(os.path.abspath(__file__))}/../workspaces'
+        projects = []
+
+        if os.path.exists(workspaceDirectory):
+            for name in os.listdir(workspaceDirectory):
+                path = os.path.join(workspaceDirectory, name)
+                if os.path.isdir(path):
+                    projects.append(name)
+        
+        self.projectForm.listWidget.clear()
+        self.projectForm.listWidget.addItems(projects)
+
+        self.projectForm.pushButton.clicked.connect(lambda: self.loadProject(self.projectForm.listWidget.item(self.projectForm.listWidget.currentRow()).text()))
+
+        self.projectList.show()
+
+    def loadProject(self, projectNamespace):
+        if projectNamespace == "":
+            alert("Please select a valid project!")
+            return
+        
+        projectDirectory = f'{os.path.dirname(os.path.abspath(__file__))}/../workspaces/{projectNamespace}'
+        if not os.path.exists(projectDirectory):
+            alert("This project doesn't exist or is corrupted!")
+            return
+        
+        with open(f'{projectDirectory}/project.dat', 'r') as file:
+            data = json.load(file)
+            self.packDetails = data["packDetails"]
+        if data["app_version"] != APP_VERSION:
+            alert("Warning: This project was created with a different version of the app, and may cause crashes or corruption!")
+        
+        with open(f'{projectDirectory}/blocks.json', 'r') as file:
+            self.blocks = json.load(file)
+        with open(f'{projectDirectory}/items.json', 'r') as file:
+            self.items = json.load(file)
+        with open(f'{projectDirectory}/recipes.json', 'r') as file:
+            self.recipes = json.load(file)
+        with open(f'{projectDirectory}/paintings.json', 'r') as file:
+            self.paintings = json.load(file)
+        
+        self.projectList.close()
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
