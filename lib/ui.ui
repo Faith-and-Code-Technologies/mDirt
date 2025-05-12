@@ -1359,7 +1359,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <bool>true</bool>
         </property>
        </widget>
-       <widget class="QWidget" name="layoutWidget">
+       <widget class="QWidget" name="layoutWidget1">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -1519,7 +1519,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <zorder>itemModelLabel</zorder>
        <zorder>itemTextureLabel</zorder>
        <zorder>itemTextureButton</zorder>
-       <zorder>layoutWidget</zorder>
+       <zorder>layoutWidget1</zorder>
       </widget>
       <widget class="QWidget" name="paintingEditor">
        <widget class="QPushButton" name="paintingTextureButton">
@@ -1554,7 +1554,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <string>Texture</string>
         </property>
        </widget>
-       <widget class="QWidget" name="layoutWidget">
+       <widget class="QWidget" name="layoutWidget2">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -1690,7 +1690,135 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <zorder>paintingTexture</zorder>
        <zorder>paintingTextureButton</zorder>
        <zorder>paintingTextureLabel</zorder>
-       <zorder>layoutWidget</zorder>
+       <zorder>layoutWidget2</zorder>
+      </widget>
+      <widget class="QWidget" name="details">
+       <widget class="QWidget" name="formLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>0</y>
+          <width>361</width>
+          <height>281</height>
+         </rect>
+        </property>
+        <layout class="QFormLayout" name="formLayout_3">
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Name:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="packName">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of your data and resource pack!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="placeholderText">
+            <string>The Ruby Pack</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>Namespace:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLineEdit" name="packNamespace">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The namespace of your pack.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Only lowercase and underscores. NO spaces.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="placeholderText">
+            <string>ruby_pack</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_9">
+           <property name="text">
+            <string>Version:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QComboBox" name="packVersion">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The version of Minecraft your pack will be made for.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;If you select 1.21.3, paintings will be skipped and NOT generated!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="placeholderText">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_10">
+           <property name="text">
+            <string>Description:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_11">
+           <property name="text">
+            <string>Author:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="packDescription">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The description of your pack that displays when enabling the resource/data packs.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="placeholderText">
+            <string>Adds Rubies, Ruby Blocks, and more!</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="packAuthor">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;You're name, or you're &lt;span style=&quot; font-style:italic;&quot;&gt;online&lt;/span&gt; name.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Only lowercase and underscores. NO spaces.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="placeholderText">
+            <string>jupiterdev</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0" colspan="2">
+          <widget class="QPushButton" name="packGenerate">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Click once you have filled in the other details, and it will generate the packs!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="text">
+            <string>Generate</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0" colspan="2">
+          <widget class="QLabel" name="label_12">
+           <property name="font">
+            <font>
+             <family>JetBrains Mono</family>
+             <pointsize>-1</pointsize>
+             <italic>false</italic>
+             <bold>false</bold>
+             <underline>true</underline>
+            </font>
+           </property>
+           <property name="text">
+            <string>Pack Details</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignmentFlag::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </widget>
      </widget>
     </item>
@@ -1722,15 +1850,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
     </property>
     <addaction name="actionSave"/>
     <addaction name="actionLoad"/>
-   </widget>
-   <widget class="QMenu" name="menuExport">
-    <property name="title">
-     <string>Export Pack</string>
-    </property>
+    <addaction name="actionExport_Pack"/>
    </widget>
    <addaction name="menuSave"/>
    <addaction name="menuNew_Element"/>
-   <addaction name="menuExport"/>
   </widget>
   <action name="actionBlock">
    <property name="text">
@@ -1760,6 +1883,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <action name="actionLoad">
    <property name="text">
     <string>Load</string>
+   </property>
+  </action>
+  <action name="actionExport_Pack">
+   <property name="text">
+    <string>Export Pack</string>
    </property>
   </action>
  </widget>

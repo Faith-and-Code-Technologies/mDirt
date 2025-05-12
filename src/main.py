@@ -155,9 +155,12 @@ class App(QMainWindow):
         # self.ui.actionExport_mdrt.triggered.connect(lambda: self.exportProject(self.appVersion))
 
         # Generate
-        # self.ui.packGenerate.clicked.connect(self.generateDataPack)
+        self.ui.actionExport_Pack.triggered.connect(self.openDetails)
 
         self.setupData()
+
+    def openDetails(self):
+        self.ui.elementEditor.setCurrentIndex(1)
 
     def populateVersions(self):
         version_url = "https://raw.githubusercontent.com/Faith-and-Code-Technologies/mDirt-2/main/lib/version_list.json"

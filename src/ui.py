@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uigwBobI.ui'
+## Form generated from reading UI file 'uiSTaFBF.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -139,6 +139,8 @@ class Ui_MainWindow(object):
         self.actionSave.setObjectName(u"actionSave")
         self.actionLoad = QAction(MainWindow)
         self.actionLoad.setObjectName(u"actionLoad")
+        self.actionExport_Pack = QAction(MainWindow)
+        self.actionExport_Pack.setObjectName(u"actionExport_Pack")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.formLayout_2 = QFormLayout(self.centralwidget)
@@ -313,7 +315,7 @@ class Ui_MainWindow(object):
         self.blockTextureButtonFront.raise_()
         self.blockTextureButtonRight.raise_()
         self.blockTextureLabel.raise_()
-        self.layoutWidget2.raise_()
+        self.layoutWidget.raise_()
         self.recipeEditor = QWidget()
         self.recipeEditor.setObjectName(u"recipeEditor")
         self.formLayout = QFormLayout(self.recipeEditor)
@@ -624,7 +626,7 @@ class Ui_MainWindow(object):
         self.itemModelLabel.raise_()
         self.itemTextureLabel.raise_()
         self.itemTextureButton.raise_()
-        self.layoutWidget2.raise_()
+        self.layoutWidget1.raise_()
         self.paintingEditor = QWidget()
         self.paintingEditor.setObjectName(u"paintingEditor")
         self.paintingTextureButton = QPushButton(self.paintingEditor)
@@ -713,6 +715,82 @@ class Ui_MainWindow(object):
         self.paintingTextureButton.raise_()
         self.paintingTextureLabel.raise_()
         self.layoutWidget2.raise_()
+        self.details = QWidget()
+        self.details.setObjectName(u"details")
+        self.formLayoutWidget = QWidget(self.details)
+        self.formLayoutWidget.setObjectName(u"formLayoutWidget")
+        self.formLayoutWidget.setGeometry(QRect(10, 0, 361, 281))
+        self.formLayout_3 = QFormLayout(self.formLayoutWidget)
+        self.formLayout_3.setObjectName(u"formLayout_3")
+        self.formLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.label_3 = QLabel(self.formLayoutWidget)
+        self.label_3.setObjectName(u"label_3")
+
+        self.formLayout_3.setWidget(1, QFormLayout.LabelRole, self.label_3)
+
+        self.packName = QLineEdit(self.formLayoutWidget)
+        self.packName.setObjectName(u"packName")
+
+        self.formLayout_3.setWidget(1, QFormLayout.FieldRole, self.packName)
+
+        self.label_7 = QLabel(self.formLayoutWidget)
+        self.label_7.setObjectName(u"label_7")
+
+        self.formLayout_3.setWidget(2, QFormLayout.LabelRole, self.label_7)
+
+        self.packNamespace = QLineEdit(self.formLayoutWidget)
+        self.packNamespace.setObjectName(u"packNamespace")
+
+        self.formLayout_3.setWidget(2, QFormLayout.FieldRole, self.packNamespace)
+
+        self.label_9 = QLabel(self.formLayoutWidget)
+        self.label_9.setObjectName(u"label_9")
+
+        self.formLayout_3.setWidget(5, QFormLayout.LabelRole, self.label_9)
+
+        self.packVersion = QComboBox(self.formLayoutWidget)
+        self.packVersion.setObjectName(u"packVersion")
+
+        self.formLayout_3.setWidget(5, QFormLayout.FieldRole, self.packVersion)
+
+        self.label_10 = QLabel(self.formLayoutWidget)
+        self.label_10.setObjectName(u"label_10")
+
+        self.formLayout_3.setWidget(3, QFormLayout.LabelRole, self.label_10)
+
+        self.label_11 = QLabel(self.formLayoutWidget)
+        self.label_11.setObjectName(u"label_11")
+
+        self.formLayout_3.setWidget(4, QFormLayout.LabelRole, self.label_11)
+
+        self.packDescription = QLineEdit(self.formLayoutWidget)
+        self.packDescription.setObjectName(u"packDescription")
+
+        self.formLayout_3.setWidget(3, QFormLayout.FieldRole, self.packDescription)
+
+        self.packAuthor = QLineEdit(self.formLayoutWidget)
+        self.packAuthor.setObjectName(u"packAuthor")
+
+        self.formLayout_3.setWidget(4, QFormLayout.FieldRole, self.packAuthor)
+
+        self.packGenerate = QPushButton(self.formLayoutWidget)
+        self.packGenerate.setObjectName(u"packGenerate")
+
+        self.formLayout_3.setWidget(6, QFormLayout.SpanningRole, self.packGenerate)
+
+        self.label_12 = QLabel(self.formLayoutWidget)
+        self.label_12.setObjectName(u"label_12")
+        font1 = QFont()
+        font1.setFamilies([u"JetBrains Mono"])
+        font1.setBold(False)
+        font1.setItalic(False)
+        font1.setUnderline(True)
+        self.label_12.setFont(font1)
+        self.label_12.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.formLayout_3.setWidget(0, QFormLayout.SpanningRole, self.label_12)
+
+        self.elementEditor.addWidget(self.details)
 
         self.formLayout_2.setWidget(0, QFormLayout.FieldRole, self.elementEditor)
 
@@ -727,13 +805,10 @@ class Ui_MainWindow(object):
         self.menuNew_Element.setObjectName(u"menuNew_Element")
         self.menuSave = QMenu(self.menuBar)
         self.menuSave.setObjectName(u"menuSave")
-        self.menuExport = QMenu(self.menuBar)
-        self.menuExport.setObjectName(u"menuExport")
         MainWindow.setMenuBar(self.menuBar)
 
         self.menuBar.addAction(self.menuSave.menuAction())
         self.menuBar.addAction(self.menuNew_Element.menuAction())
-        self.menuBar.addAction(self.menuExport.menuAction())
         self.menuNew_Element.addSeparator()
         self.menuNew_Element.addAction(self.actionBlock)
         self.menuNew_Element.addAction(self.actionItems)
@@ -741,6 +816,7 @@ class Ui_MainWindow(object):
         self.menuNew_Element.addAction(self.actionPaintings)
         self.menuSave.addAction(self.actionSave)
         self.menuSave.addAction(self.actionLoad)
+        self.menuSave.addAction(self.actionExport_Pack)
 
         self.retranslateUi(MainWindow)
 
@@ -759,6 +835,7 @@ class Ui_MainWindow(object):
         self.actionItems.setText(QCoreApplication.translate("MainWindow", u"Items", None))
         self.actionSave.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.actionLoad.setText(QCoreApplication.translate("MainWindow", u"Load", None))
+        self.actionExport_Pack.setText(QCoreApplication.translate("MainWindow", u"Export Pack", None))
         ___qtreewidgetitem = self.elementVeiwer.headerItem()
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"Element Viewer", None));
         self.textEdit.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -1138,8 +1215,37 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.paintingConfirmButton.setText(QCoreApplication.translate("MainWindow", u"Confirm Painting", None))
         self.paintingTexture.setText("")
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Name:", None))
+#if QT_CONFIG(tooltip)
+        self.packName.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The name of your data and resource pack!</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.packName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"The Ruby Pack", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"Namespace:", None))
+#if QT_CONFIG(tooltip)
+        self.packNamespace.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The namespace of your pack.</p><p><span style=\" font-weight:700;\">Only lowercase and underscores. NO spaces.</span></p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.packNamespace.setPlaceholderText(QCoreApplication.translate("MainWindow", u"ruby_pack", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"Version:", None))
+#if QT_CONFIG(tooltip)
+        self.packVersion.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The version of Minecraft your pack will be made for.</p><p><span style=\" font-weight:700;\">If you select 1.21.3, paintings will be skipped and NOT generated!</span></p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.packVersion.setPlaceholderText("")
+        self.label_10.setText(QCoreApplication.translate("MainWindow", u"Description:", None))
+        self.label_11.setText(QCoreApplication.translate("MainWindow", u"Author:", None))
+#if QT_CONFIG(tooltip)
+        self.packDescription.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The description of your pack that displays when enabling the resource/data packs.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.packDescription.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Adds Rubies, Ruby Blocks, and more!", None))
+#if QT_CONFIG(tooltip)
+        self.packAuthor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>You're name, or you're <span style=\" font-style:italic;\">online</span> name.</p><p><span style=\" font-weight:700;\">Only lowercase and underscores. NO spaces.</span></p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.packAuthor.setPlaceholderText(QCoreApplication.translate("MainWindow", u"jupiterdev", None))
+#if QT_CONFIG(tooltip)
+        self.packGenerate.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Click once you have filled in the other details, and it will generate the packs!</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.packGenerate.setText(QCoreApplication.translate("MainWindow", u"Generate", None))
+        self.label_12.setText(QCoreApplication.translate("MainWindow", u"Pack Details", None))
         self.menuNew_Element.setTitle(QCoreApplication.translate("MainWindow", u"New Element", None))
         self.menuSave.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
-        self.menuExport.setTitle(QCoreApplication.translate("MainWindow", u"Export Pack", None))
     # retranslateUi
 
