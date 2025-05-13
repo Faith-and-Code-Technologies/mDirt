@@ -36,7 +36,7 @@ class App(QMainWindow):
 
         if getattr(sys, 'frozen', False):
             # Binary mode
-            self.mainDirectory = Path(sys._MEIPASS) / "_internal"
+            self.mainDirectory = Path(sys._MEIPASS)
         else:
             # Dev mode
             self.mainDirectory = Path(__file__).resolve().parent
