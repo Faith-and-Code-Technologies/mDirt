@@ -33,7 +33,7 @@ class App(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        self.mainDirectory = f"{os.path.dirname(os.path.abspath(__file__))}/.."
+        self.mainDirectory = f'{os.path.dirname(os.path.abspath(__file__))}/..'
         self.ui.menuNew_Element.setEnabled(False)
 
         # CONNECTIONS
@@ -94,7 +94,7 @@ class App(QMainWindow):
     #######################
 
     def pullSupportedVersions(self):
-        version_url = f"{LIB_URL}/version_list.json"
+        version_url = f'{LIB_URL}/version_list.json'
         
         try:
             response = requests.get(version_url, timeout=5)
@@ -105,9 +105,9 @@ class App(QMainWindow):
             self.supportedVersions = data.get("versions", [])
 
         except requests.exceptions.RequestException as e:
-            alert(f"Failed to download supported versions. Error: {e}\n\nPlease relaunch mDirt and try again. If the problem persists, report it here:\n{ISSUE_URL}")
+            alert(f'Failed to download supported versions. Error: {e}\n\nPlease relaunch mDirt and try again. If the problem persists, report it here:\n{ISSUE_URL}')
         except ValueError:
-            alert(f"Received invalid JSON from server.\n\nPlease try again or report the issue:\n{ISSUE_URL}")
+            alert(f'Received invalid JSON from server.\n\nPlease try again or report the issue:\n{ISSUE_URL}')
 
     def openProjectMenu(self):
         self.pullSupportedVersions()                   # Pulls the supported version list from the server.
@@ -132,8 +132,8 @@ class App(QMainWindow):
 
     def pullData(self):
         version = self.packDetails["version"]
-        local_path = f"lib/{version}_data.json"
-        url = f"{LIB_URL}/{version}_data.json"
+        local_path = f'lib/{version}_data.json'
+        url = f'{LIB_URL}/{version}_data.json'
 
         if not os.path.exists(local_path):
             response = requests.get(url)
@@ -142,20 +142,20 @@ class App(QMainWindow):
                 with open(local_path, "wb") as f:
                     f.write(response.content)
             else:
-                alert(f"Failed to download data file for version {version}. (HTTP {response.status_code}). \nCheck your internet connection, and relaunch mDirt. If the issue persists, report it here:\n{ISSUE_URL}")
+                alert(f'Failed to download data file for version {version}. (HTTP {response.status_code}). \nCheck your internet connection, and relaunch mDirt. If the issue persists, report it here:\n{ISSUE_URL}')
 
             try: # Opens the JSON to ensure it is not corrupted.
                 with open(local_path, "r") as f:
                     json.load(f)
             except json.JSONDecodeError:
                 os.remove(local_path)
-                alert(f"Downloaded data file is corrupt or invalid JSON.\nCheck your internet connection, and relaunch mDirt. If the issue persists, report it here:\n{ISSUE_URL}")
+                alert(f'Downloaded data file is corrupt or invalid JSON.\nCheck your internet connection, and relaunch mDirt. If the issue persists, report it here:\n{ISSUE_URL}')
         self.grabModule()
 
     def grabModule(self):
         version = f'v{self.packDetails["version"].replace(".", "_")}'
         self.moduleGrab = ModuleDownloader()
-        #self.moduleGrab.download_and_extract(version)
+        self.moduleGrab.download_and_extract(version)
 
     def newProject(self):
         if self.validatePackDetails() == 0: return      # Make sure all fields aren't empty and only contain valid characters.
@@ -175,10 +175,10 @@ class App(QMainWindow):
         self.ui.menuNew_Element.setEnabled(True) # Enable the Element buttons so user can add things to their pack
 
         self.ui.elementEditor.setCurrentIndex(ElementPage.HOME)
-        self.ui.textEdit.setHtml(f"<h1>To get started with <strong>{self.packDetails["name"]}</strong>, create a New Element!</h1>")
+        self.ui.textEdit.setHtml(f'<h1>Welcome to mDirt. Create a new Element to get started.</h1>')
 
     def setupProjectData(self):
-        with open(f"{self.mainDirectory}/lib/{self.packDetails["version"]}_data.json", "r") as f:
+        with open(f'{self.mainDirectory}/lib/{self.packDetails["version"]}_data.json', "r") as f:
             self.data = json.load(f)
         
         self.dataFormat = self.version_json["dataformat"][self.packDetails["version"]]
@@ -225,7 +225,7 @@ class App(QMainWindow):
             data = {
             "app_version": APP_VERSION,
             "metadata": {
-                "last_edited": datetime.datetime.now(datetime.UTC).isoformat()
+                "last_edited": datetime.datetime.now(datetime.timezone.UTC).isoformat()
             },
             "packDetails": self.packDetails
         }
@@ -855,7 +855,7 @@ class App(QMainWindow):
     #######################
 
     def generateResourcePack(self):
-        self.resPackDirectory = os.path.join(self.outputDir, f"{self.packName} Resource Pack")
+        self.resPackDirectory = os.path.join(self.outputDir, f'{self.packName} Resource Pack')
         os.makedirs(self.resPackDirectory, exist_ok=True)
         assets_dir = os.path.join(self.resPackDirectory, "assets")
         os.makedirs(assets_dir, exist_ok=True)
@@ -880,7 +880,7 @@ class App(QMainWindow):
                     "sources": [{
                         "type": "directory",
                         "source": self.packNamespace,
-                        "prefix": f"{self.packNamespace}/"
+                        "prefix": f'{self.packNamespace}/'
                     }]
                 }, file, indent=4)
         else:
@@ -904,10 +904,10 @@ class App(QMainWindow):
 
         # Load resource generators
         internal = 'src.' if getattr(sys, 'frozen', False) else ''
-        BlockResourcer = importlib.import_module(f"{internal}generation.v{version}.blocks").BlockResourcer
-        ItemResourcer = importlib.import_module(f"{internal}generation.v{version}.items").ItemResourcer
+        BlockResourcer = importlib.import_module(f'{internal}generation.v{version}.blocks').BlockResourcer
+        ItemResourcer = importlib.import_module(f'{internal}generation.v{version}.items').ItemResourcer
         if not is_legacy:
-            PaintingResourcer = importlib.import_module(f"{internal}generation.v{version}.paintings").PaintingResourcer
+            PaintingResourcer = importlib.import_module(f'{internal}generation.v{version}.paintings').PaintingResourcer
 
         # Generate resources
         if self.blocks:
@@ -983,7 +983,7 @@ class App(QMainWindow):
         tick_path = os.path.join(self.namespaceDirectory, "function", "tick.mcfunction")
         with open(tick_path, "w") as tick:
             if self.blocks:
-                tick.write(f"{self.header}execute as @e[type=item_display,tag={self.packAuthor}.custom_block] at @s run function {self.packNamespace}:blocks/as_blocks")
+                tick.write(f'{self.header}execute as @e[type=item_display,tag={self.packAuthor}.custom_block] at @s run function {self.packNamespace}:blocks/as_blocks')
             else:
                 tick.write(self.header)
 
@@ -997,10 +997,10 @@ class App(QMainWindow):
         load_json_path = os.path.join(tags_function_dir, "load.json")
 
         with open(tick_json_path, "w") as tick:
-            json.dump({"values": [f"{self.packNamespace}:tick"]}, tick, indent=4)
+            json.dump({"values": [f'{self.packNamespace}:tick']}, tick, indent=4)
 
         with open(load_json_path, "w") as load:
-            json.dump({"values": [f"{self.packNamespace}:load"]}, load, indent=4)
+            json.dump({"values": [f'{self.packNamespace}:load']}, load, indent=4)
         
         version = self.packVersion.replace(".", "_")
 
@@ -1009,11 +1009,11 @@ class App(QMainWindow):
         else:
             internal = ''
 
-        BlockGenerator = importlib.import_module(f"{internal}generation.v{version}.blocks").BlockGenerator
-        ItemGenerator = importlib.import_module(f"{internal}generation.v{version}.items").ItemGenerator
-        RecipeGenerator = importlib.import_module(f"{internal}generation.v{version}.recipes").RecipeGenerator
+        BlockGenerator = importlib.import_module(f'{internal}generation.v{version}.blocks').BlockGenerator
+        ItemGenerator = importlib.import_module(f'{internal}generation.v{version}.items').ItemGenerator
+        RecipeGenerator = importlib.import_module(f'{internal}generation.v{version}.recipes').RecipeGenerator
         if self.packVersion != "1.21.3":
-            PaintingGenerator = importlib.import_module(f"{internal}generation.v{version}.paintings").PaintingGenerator
+            PaintingGenerator = importlib.import_module(f'{internal}generation.v{version}.paintings').PaintingGenerator
 
         #######################
         # CUSTOM BLOCKS       #
