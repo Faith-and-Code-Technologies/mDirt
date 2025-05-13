@@ -12,6 +12,8 @@ import ui.select_item as select_item
 import ui.load_project as load_project
 from ui.ui import Ui_MainWindow
 
+from module import ModuleDownloader
+
 APP_VERSION = '3.0.0'
 LIB_URL = 'https://raw.githubusercontent.com/Faith-and-Code-Technologies/mDirt/main/lib'
 ISSUE_URL = 'https://github.com/Faith-and-Code-Technologies/mDirt/issues'
@@ -147,6 +149,12 @@ class App(QMainWindow):
             except json.JSONDecodeError:
                 os.remove(local_path)
                 alert(f"Downloaded data file is corrupt or invalid JSON.\nCheck your internet connection, and relaunch mDirt. If the issue persists, report it here:\n{ISSUE_URL}")
+        self.grabModule()
+
+    def grabModule(self):
+        version = f'v{self.packDetails["version"].replace(".", "_")}'
+        self.moduleGrab = ModuleDownloader()
+        self.moduleGrab.download_and_extract(version)
 
     def newProject(self):
         if self.validatePackDetails() == 0: return      # Make sure all fields aren't empty and only contain valid characters.
