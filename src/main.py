@@ -55,6 +55,7 @@ class App(QMainWindow):
         self.ui.blockConfirmButton.clicked.connect(self.addBlock)
 
         # Item Specific Connections
+        self.ui.itemTextureButton.clicked.connect(self.addItemTexture)
         self.ui.itemConfirmButton.clicked.connect(self.addItem)
 
     #######################
@@ -290,10 +291,9 @@ class App(QMainWindow):
         if element_type is None: return
 
         if element_type.text(column) == "Blocks":
-            self.editBlock(item.text(column))
-            
-        # if element_type == "Items":
-        #     self.editItem(item.text(column))
+            self.editBlock(item.text(column)) 
+        elif element_type.text(column) == "Items":
+            self.editItem(item.text(column))
         # if element_type == "Recipes":
         #     self.editRecipe(item.text(column))
         # if element_type == "Paintings":
@@ -456,6 +456,22 @@ class App(QMainWindow):
     # ITEMS TAB           #
     #######################
 
+    def addItemTexture(self):
+        texture, _ = QFileDialog.getOpenFileName(self, "Open Texture File", "", "PNG Files (*.png)")
+        if not texture:
+            return
+        
+        filename = os.path.basename(texture)
+        destinationPath = f'{self.mainDirectory}/workspaces/{self.packDetails["namespace"]}/assets/items/{filename}'
+        shutil.copyfile(texture, destinationPath)
+
+        self.itemTexture = destinationPath
+
+        image = QImage(self.itemTexture)
+        pixmap = QPixmap.fromImage(image).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio)
+
+        self.ui.itemTexture.setPixmap(pixmap)
+
     def newItem(self):
         self.ui.elementEditor.setCurrentIndex(3)
 
@@ -478,7 +494,17 @@ class App(QMainWindow):
         if not validate(self.ui.itemName, "abcdefghijklmnopqrstuvwxyz_0123456789", "Item Name"):
             return 0
         if not self.ui.itemBaseItem.text() in self.data["items"]:
+            self.ui.itemBaseItem.setStyleSheet("QLineEdit { border: 1px solid red; }")
+            alert("Please input a Minecraft item to the Base Item field!")
             return 0
+        else:
+            self.ui.itemBaseItem.setStyleSheet("")
+        if self.itemTexture == None:
+            self.ui.itemTextureButton.setStyleSheet("QLineEdit { border: 1px solid red; }")
+            alert("Please select a valid texture!")
+            return 0
+        else:
+            self.ui.itemTextureButton.setStyleSheet("")
         
         return 1
 
@@ -512,13 +538,30 @@ class App(QMainWindow):
             "stackSize": self.ui.itemStackSize.value(),
             "rightClick": rightClick,
         }
+
         if not self.itemProperties["name"] in self.items:
-            self.items[self.itemProperties["name"]] = self.itemProperties
             QTreeWidgetItem(self.items_tree, [self.itemProperties["name"]])
-        else:
-            self.items[self.itemProperties["name"]] = self.itemProperties
+
+        self.items[self.itemProperties["name"]] = self.itemProperties
 
         self.clearItemFields()
+
+    def editItem(self, item):
+        properties = self.items[item]
+
+        self.ui.itemName.setText(properties["name"])
+        self.ui.itemDisplayName.setText(properties["displayName"])
+        self.ui.itemBaseItem.setText(properties["baseItem"])
+        self.ui.itemModel.setCurrentText(properties["model"])
+        self.ui.itemStackSize.setValue(properties["stackSize"])
+        self.ui.itemRightClickFunc.setPlainText(properties["rightClick"]["function"])
+        self.ui.itemRightClickMode.setCurrentText(properties["rightClick"]["mode"])
+        self.ui.itemRightClickCheck.setChecked(properties["rightClick"]["enabled"])
+        
+        self.itemTexture = properties["texture"]
+
+        pixmap = QPixmap.fromImage(QImage(properties["texture"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio)
+        self.ui.itemTexture.setPixmap(pixmap)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
