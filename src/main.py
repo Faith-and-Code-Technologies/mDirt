@@ -40,8 +40,8 @@ class App(QMainWindow):
 
         self.ui.actionBlock.triggered.connect(self.newBlock)
         self.ui.actionItem.triggered.connect(self.newItem)
-        # self.ui.actionRecipe.triggered.connect(self.newRecipe)
-        # self.ui.actionPainting.triggered.connect(self.newPainting)
+        self.ui.actionRecipe.triggered.connect(self.newRecipe)
+        self.ui.actionPainting.triggered.connect(self.newPainting)
 
         # Block Specific Connections
         self.ui.blockTextureButtonTop.clicked.connect(lambda: self.addBlockTexture(0))
@@ -57,6 +57,29 @@ class App(QMainWindow):
         # Item Specific Connections
         self.ui.itemTextureButton.clicked.connect(self.addItemTexture)
         self.ui.itemConfirmButton.clicked.connect(self.addItem)
+
+        # Recipe Specific Connections
+        self.ui.slot0Button.clicked.connect(lambda: self.getRecipeItem(0))
+        self.ui.slot1Button.clicked.connect(lambda: self.getRecipeItem(1))
+        self.ui.slot2Button.clicked.connect(lambda: self.getRecipeItem(2))
+        self.ui.slot3Button.clicked.connect(lambda: self.getRecipeItem(3))
+        self.ui.slot4Button.clicked.connect(lambda: self.getRecipeItem(4))
+        self.ui.slot5Button.clicked.connect(lambda: self.getRecipeItem(5))
+        self.ui.slot6Button.clicked.connect(lambda: self.getRecipeItem(6))
+        self.ui.slot7Button.clicked.connect(lambda: self.getRecipeItem(7))
+        self.ui.slot8Button.clicked.connect(lambda: self.getRecipeItem(8))
+        self.ui.slot9Button.clicked.connect(lambda: self.getRecipeItem(9))
+
+        self.ui.smeltingInputButton.clicked.connect(lambda: self.getRecipeItem(10))
+        self.ui.smeltingOutputButton.clicked.connect(lambda: self.getRecipeItem(11))
+
+        self.ui.stoneCuttingInputButton.clicked.connect(lambda: self.getRecipeItem(12))
+        self.ui.stoneCuttingOutputButton.clicked.connect(lambda: self.getRecipeItem(13))
+
+        self.ui.recipeConfirmButton.clicked.connect(self.addRecipe)
+
+        # Painting Specific Connections
+        self.ui.paintingTextureButton.clicked.connect(self.addPaintingTexture)
 
     #######################
     # SETUP PROJECT       #
@@ -294,8 +317,8 @@ class App(QMainWindow):
             self.editBlock(item.text(column)) 
         elif element_type.text(column) == "Items":
             self.editItem(item.text(column))
-        # if element_type == "Recipes":
-        #     self.editRecipe(item.text(column))
+        elif element_type.text(column) == "Recipes":
+            self.editRecipe(item.text(column))
         # if element_type == "Paintings":
         #     self.editPainting(item.text(column))
 
@@ -562,6 +585,182 @@ class App(QMainWindow):
 
         pixmap = QPixmap.fromImage(QImage(properties["texture"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio)
         self.ui.itemTexture.setPixmap(pixmap)
+
+    #######################
+    # RECIPES TAB         #
+    #######################
+
+    def getRecipeItem(self, id_):
+        slotId = id_
+        self.block_popup = QWidget()
+        self.ui_form = select_item.Ui_Form()
+        self.ui_form.setupUi(self.block_popup)
+
+        item_list = self.data["items"]
+
+        if slotId in (9, 11, 13):
+            for block in self.blocks: self.ui_form.itemsBox.addItem(f'{self.blocks[block]["name"]}')
+            for item in self.items: self.ui_form.itemsBox.addItem(f'{self.items[item]["name"]}')
+
+        for item in item_list: self.ui_form.itemsBox.addItem(item)
+
+        self.ui_form.pushButton.clicked.connect(lambda: self.recipeCloseForm(slotId, self.ui_form.itemsBox.currentText()))
+
+        self.block_popup.show()
+
+    def recipeCloseForm(self, id_, item):
+        self.recipe[id_] = item
+
+        match id_:
+            case 0:
+                self.ui.slot0.setText(item)
+            case 1:
+                self.ui.slot1.setText(item)
+            case 2:
+                self.ui.slot2.setText(item)
+            case 3:
+                self.ui.slot3.setText(item)
+            case 4:
+                self.ui.slot4.setText(item)
+            case 5:
+                self.ui.slot5.setText(item)
+            case 6:
+                self.ui.slot6.setText(item)
+            case 7:
+                self.ui.slot7.setText(item)
+            case 8:
+                self.ui.slot8.setText(item)
+            case 9:
+                self.ui.slot9.setText(item)
+            case 10:
+                self.ui.smeltingInput.setText(item)
+            case 11:
+                self.ui.smeltingOutput.setText(item)
+            case 12:
+                self.ui.stoneCuttingInput.setText(item)
+            case 13:
+                self.ui.stoneCuttingOutput.setText(item)
+
+        self.block_popup.close()
+
+    def newRecipe(self):
+        self.ui.elementEditor.setCurrentIndex(2)
+
+    def validateRecipeDetails(self):
+        def validate(field, allowed_chars, field_name):
+            text = field.text()
+            if not text:
+                field.setStyleSheet("QLineEdit { border: 1px solid red; }")
+                alert("Please fill in all fields!")
+                return False
+            if any(c not in allowed_chars for c in text):
+                field.setStyleSheet("QLineEdit { border: 1px solid red; }")
+                alert(f"{field_name} contains an illegal character!")
+                return False
+            field.setStyleSheet("")
+            return True
+        
+        if not validate(self.ui.recipeName, "abcdefghijklmnopqrstuvwxyz_0123456789", "Recipe Name"): 
+            return 0
+        if self.ui.slot9.text() == "" and self.ui.smeltingOutput.text() == "" and self.ui.stoneCuttingOutput.text() == "":
+            alert("Recipes require outputs! Please add one before confirming!")
+            return 0
+        
+        return 1
+
+    def clearRecipeFields(self):
+        self.recipe = {}
+        self.ui.recipeName.setText("")
+        self.ui.shapelessRadio.setChecked(False)
+        self.ui.exactlyRadio.setChecked(False)
+        self.ui.slot0.setText("")
+        self.ui.slot1.setText("")
+        self.ui.slot2.setText("")
+        self.ui.slot3.setText("")
+        self.ui.slot4.setText("")
+        self.ui.slot5.setText("")
+        self.ui.slot6.setText("")
+        self.ui.slot7.setText("")
+        self.ui.slot8.setText("")
+        self.ui.slot9.setText("")
+        self.ui.smeltingInput.setText("")
+        self.ui.smeltingOutput.setText("")
+        self.ui.stoneCuttingCount.setValue(1)
+        self.ui.stoneCuttingOutput.setText("")
+        self.ui.stoneCuttingInput.setText("")
+
+    def addRecipe(self):
+        if self.validateRecipeDetails == 0: return
+
+        mode = "crafting"
+
+        if self.ui.recipeSubTabs.tabText(self.ui.recipeSubTabs.currentIndex()).lower() == "crafting":
+            mode = "crafting"
+        elif self.ui.recipeSubTabs.tabText(self.ui.recipeSubTabs.currentIndex()).lower() == "smelting":
+            mode = self.ui.smeltingModeBox.currentText().lower()
+        elif self.ui.recipeSubTabs.tabText(self.ui.recipeSubTabs.currentIndex()).lower() == "stonecutting":
+            mode = "stonecutting"
+
+        self.recipeProperties = {
+            "name": self.ui.recipeName.text(),
+            "items": self.recipe,
+            "outputCount": self.ui.slot9Count.value(),
+            "outputCount2": self.ui.stoneCuttingCount.value(),
+            "exact": self.ui.exactlyRadio.isChecked(),
+            "shapeless": self.ui.shapelessRadio.isChecked(),
+            "type": mode
+        }
+
+        if not self.recipeProperties["name"] in self.recipes:
+            QTreeWidgetItem(self.recipes_tree, [self.recipeProperties["name"]])
+
+        self.recipes[self.recipeProperties["name"]] = self.recipeProperties
+
+        self.clearRecipeFields()
+
+    def editRecipe(self, item):
+        properties = self.recipes[item]
+
+        self.ui.recipeName.setText(properties["name"])
+        self.ui.shapelessRadio.setChecked(properties["shapeless"])
+        self.ui.exactlyRadio.setChecked(properties["exact"])
+        self.ui.slot9Count.setValue(properties["outputCount"])
+
+        self.ui.slot0.setText(properties["items"][0])
+        self.ui.slot1.setText(properties["items"][1])
+        self.ui.slot2.setText(properties["items"][2])
+        self.ui.slot3.setText(properties["items"][3])
+        self.ui.slot4.setText(properties["items"][4])
+        self.ui.slot5.setText(properties["items"][5])
+        self.ui.slot6.setText(properties["items"][6])
+        self.ui.slot7.setText(properties["items"][7])
+        self.ui.slot8.setText(properties["items"][8])
+        self.ui.slot9.setText(properties["items"][9])
+        self.ui.smeltingInput.setText(properties["items"][10])
+        self.ui.smeltingOutput.setText(properties["items"][11])
+
+    #######################
+    # PAINTINGS TAB       #
+    #######################
+
+    def addPaintingTexture(self):
+        texture, _ = QFileDialog.getOpenFileName(self, "Open Texture File", "", "PNG Files (*.png)")
+        if not texture:
+            return
+        
+        filename = os.path.basename(texture)
+        destinationPath = f'{self.mainDirectory}/workspaces/{self.packDetails["namespace"]}/assets/paintings/{filename}'
+        shutil.copyfile(texture, destinationPath)
+
+        self.paintingTexture = destinationPath
+
+        image = QImage(self.itemTexture)
+        pixmap = QPixmap.fromImage(image).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio)
+
+        self.ui.paintingTexture.setPixmap(pixmap)
+
+    def newPainting(self):
+        self.ui.elementEditor.setCurrentIndex(4)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

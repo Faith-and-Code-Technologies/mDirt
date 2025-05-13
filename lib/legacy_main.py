@@ -697,9 +697,7 @@ class App(QMainWindow):
     #######################
 
     def getPaintingTexture(self):
-        self.paintingTexture, _ = QFileDialog.getOpenFileName(
-            self, "Open Texture File", "", "PNG Files (*.png)"
-        )
+        self.paintingTexture, _ = QFileDialog.getOpenFileName(self, "Open Texture File", "", "PNG Files (*.png)")
 
         if not self.paintingTexture:
             return
