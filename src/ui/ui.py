@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uibwswOf.ui'
+## Form generated from reading UI file 'uiThoqYI.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -167,17 +167,17 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.formLayout_2 = QFormLayout(self.centralwidget)
         self.formLayout_2.setObjectName(u"formLayout_2")
-        self.elementVeiwer = QTreeWidget(self.centralwidget)
+        self.elementViewer = QTreeWidget(self.centralwidget)
         font = QFont()
         font.setBold(True)
         font.setUnderline(True)
         __qtreewidgetitem = QTreeWidgetItem()
         __qtreewidgetitem.setFont(0, font);
-        self.elementVeiwer.setHeaderItem(__qtreewidgetitem)
-        self.elementVeiwer.setObjectName(u"elementVeiwer")
-        self.elementVeiwer.setMinimumSize(QSize(211, 0))
+        self.elementViewer.setHeaderItem(__qtreewidgetitem)
+        self.elementViewer.setObjectName(u"elementViewer")
+        self.elementViewer.setMinimumSize(QSize(211, 0))
 
-        self.formLayout_2.setWidget(0, QFormLayout.LabelRole, self.elementVeiwer)
+        self.formLayout_2.setWidget(0, QFormLayout.LabelRole, self.elementViewer)
 
         self.elementEditor = QStackedWidget(self.centralwidget)
         self.elementEditor.setObjectName(u"elementEditor")
@@ -867,7 +867,7 @@ class Ui_MainWindow(object):
         self.actionSave_2.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.actionSave_As.setText(QCoreApplication.translate("MainWindow", u"Save As...", None))
         self.actionExport_Project.setText(QCoreApplication.translate("MainWindow", u"Export Project", None))
-        ___qtreewidgetitem = self.elementVeiwer.headerItem()
+        ___qtreewidgetitem = self.elementViewer.headerItem()
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"Element Viewer", None));
         self.textEdit.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><title>Welcome to mDirt</title><style type=\"text/css\">\n"

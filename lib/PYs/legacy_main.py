@@ -4,8 +4,8 @@ from PySide6.QtCore import Qt
 from PySide6.QtGui import QImage, QPixmap, QStandardItem
 from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QMessageBox, QWidget, QDialog, QTreeWidget, QTreeWidgetItem
 
-from select_item import Ui_Form
-from ui import Ui_MainWindow
+from ui.select_item import Ui_Form
+from ui.ui import Ui_MainWindow
 
 from updater import Updater, ModuleGrabber
 

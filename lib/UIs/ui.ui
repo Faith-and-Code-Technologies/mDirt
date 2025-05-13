@@ -127,7 +127,7 @@ QPushButton:flat:hover {
   <widget class="QWidget" name="centralwidget">
    <layout class="QFormLayout" name="formLayout_2">
     <item row="0" column="0">
-     <widget class="QTreeWidget" name="elementVeiwer">
+     <widget class="QTreeWidget" name="elementViewer">
       <property name="minimumSize">
        <size>
         <width>211</width>

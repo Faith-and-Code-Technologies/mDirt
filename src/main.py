@@ -1,11 +1,16 @@
-import datetime, json, os, re, sys, requests, importlib, shutil, string
+import datetime, json, os, sys, requests, importlib, shutil, string
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QImage, QPixmap
 from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QMessageBox, QWidget, QTreeWidgetItem
 
-import select_item, load_project
-from ui import Ui_MainWindow
+from utils.field_validator import FieldValidator
+from utils.field_resetter import FieldResetter
+from utils.enums import BlockFace, ElementPage
+
+import ui.select_item as select_item
+import ui.load_project as load_project
+from ui.ui import Ui_MainWindow
 
 APP_VERSION = '3.0.0'
 LIB_URL = 'https://raw.githubusercontent.com/Faith-and-Code-Technologies/mDirt/main/lib'
@@ -36,7 +41,7 @@ class App(QMainWindow):
         self.ui.actionExport_Project.triggered.connect(self.generateDatapack)
         self.ui.actionSave_2.triggered.connect(self.saveProject)
 
-        self.ui.elementVeiwer.itemDoubleClicked.connect(self.elementClicked)
+        self.ui.elementViewer.itemDoubleClicked.connect(self.elementClicked)
 
         self.ui.actionBlock.triggered.connect(self.newBlock)
         self.ui.actionItem.triggered.connect(self.newItem)
@@ -44,12 +49,12 @@ class App(QMainWindow):
         self.ui.actionPainting.triggered.connect(self.newPainting)
 
         # Block Specific Connections
-        self.ui.blockTextureButtonTop.clicked.connect(lambda: self.addBlockTexture(0))
-        self.ui.blockTextureButtonLeft.clicked.connect(lambda: self.addBlockTexture(1))
-        self.ui.blockTextureButtonBack.clicked.connect(lambda: self.addBlockTexture(2))
-        self.ui.blockTextureButtonRight.clicked.connect(lambda: self.addBlockTexture(3))
-        self.ui.blockTextureButtonFront.clicked.connect(lambda: self.addBlockTexture(4))
-        self.ui.blockTextureButtonBottom.clicked.connect(lambda: self.addBlockTexture(5))
+        self.ui.blockTextureButtonTop.clicked.connect(lambda: self.addBlockTexture(BlockFace.TOP))
+        self.ui.blockTextureButtonLeft.clicked.connect(lambda: self.addBlockTexture(BlockFace.LEFT))
+        self.ui.blockTextureButtonBack.clicked.connect(lambda: self.addBlockTexture(BlockFace.BACK))
+        self.ui.blockTextureButtonRight.clicked.connect(lambda: self.addBlockTexture(BlockFace.RIGHT))
+        self.ui.blockTextureButtonFront.clicked.connect(lambda: self.addBlockTexture(BlockFace.FRONT))
+        self.ui.blockTextureButtonBottom.clicked.connect(lambda: self.addBlockTexture(BlockFace.BOTTOM))
 
         self.ui.blockModel.currentTextChanged.connect(self.getBlockModel)
         self.ui.blockConfirmButton.clicked.connect(self.addBlock)
@@ -108,29 +113,16 @@ class App(QMainWindow):
         for version in self.supportedVersions:
             self.ui.packVersion.addItem(version)       # Adds the versions to the dropdown.
 
-        self.ui.elementEditor.setCurrentIndex(5)
+        self.ui.elementEditor.setCurrentIndex(ElementPage.PROJECT_SETUP)
     
     def validatePackDetails(self):
-        def validate(field, allowed_chars, field_name):
-            text = field.text()
-            if not text:
-                field.setStyleSheet("QLineEdit { border: 1px solid red; }")
-                alert("Please fill in all fields!")
-                return False
-            if any(c not in allowed_chars for c in text):
-                field.setStyleSheet("QLineEdit { border: 1px solid red; }")
-                alert(f"{field_name} contains an illegal character!")
-                return False
-            field.setStyleSheet("")
-            return True
-
-        if not validate(self.ui.packName, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz _-!0123456789", "Name"):
+        if not FieldValidator.validate_text_field(self.ui.packName, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz _-!0123456789", "Name"):
             return 0
-        if not validate(self.ui.packNamespace, "abcdefghijklmnopqrstuvwxyz_0123456789", "Namespace"):
+        if not FieldValidator.validate_text_field(self.ui.packNamespace, "abcdefghijklmnopqrstuvwxyz_0123456789", "Namespace"):
             return 0
-        if not validate(self.ui.packDescription, string.printable, "Description"):
+        if not FieldValidator.validate_text_field(self.ui.packDescription, string.printable, "Description"):
             return 0
-        if not validate(self.ui.packAuthor, "abcdefghijklmnopqrstuvwxyz_0123456789", "Author"):
+        if not FieldValidator.validate_text_field(self.ui.packAuthor, "abcdefghijklmnopqrstuvwxyz_0123456789", "Author"):
             return 0
 
         return 1
@@ -173,10 +165,10 @@ class App(QMainWindow):
         self.saveProjectAs()
         self.ui.menuNew_Element.setEnabled(True) # Enable the Element buttons so user can add things to their pack
 
-        self.ui.elementEditor.setCurrentIndex(0)
+        self.ui.elementEditor.setCurrentIndex(ElementPage.HOME)
         self.ui.textEdit.setHtml(f"<h1>To get started with <strong>{self.packDetails["name"]}</strong>, create a New Element!</h1>")
 
-    def setupProjectData(self):        
+    def setupProjectData(self):
         with open(f"{self.mainDirectory}/lib/{self.packDetails["version"]}_data.json", "r") as f:
             self.data = json.load(f)
         
@@ -190,10 +182,10 @@ class App(QMainWindow):
 
         self.exists = {}
 
-        self.blocks_tree = QTreeWidgetItem(self.ui.elementVeiwer, ["Blocks"])
-        self.items_tree = QTreeWidgetItem(self.ui.elementVeiwer, ["Items"])
-        self.recipes_tree = QTreeWidgetItem(self.ui.elementVeiwer, ["Recipes"])
-        self.paintings_tree = QTreeWidgetItem(self.ui.elementVeiwer, ["Paintings"])
+        self.blocks_tree = QTreeWidgetItem(self.ui.elementViewer, ["Blocks"])
+        self.items_tree = QTreeWidgetItem(self.ui.elementViewer, ["Items"])
+        self.recipes_tree = QTreeWidgetItem(self.ui.elementViewer, ["Recipes"])
+        self.paintings_tree = QTreeWidgetItem(self.ui.elementViewer, ["Paintings"])
 
         self.blockTexture = {}
         self.itemTexture = None
@@ -298,6 +290,10 @@ class App(QMainWindow):
         if data["app_version"] != APP_VERSION:
             alert("Warning: This project was created with a different version of the app, and may cause crashes or corruption!")
         
+        self.pullSupportedVersions()
+        self.pullData()
+        self.setupProjectData()
+
         with open(f'{projectDirectory}/blocks.json', 'r') as file:
             self.blocks = json.load(file)
         with open(f'{projectDirectory}/items.json', 'r') as file:
@@ -308,19 +304,19 @@ class App(QMainWindow):
             self.paintings = json.load(file)
         
         self.projectList.close()
-        self.setupProjectData()
+       
 
         for item in self.blocks:
-            QTreeWidgetItem(self.blocks_tree, [item["name"]])
+            QTreeWidgetItem(self.blocks_tree, [self.blocks[item]["name"]])
         
         for item in self.items:
-            QTreeWidgetItem(self.items_tree, [item["name"]])
+            QTreeWidgetItem(self.items_tree, [self.items[item]["name"]])
         
         for item in self.recipes:
-            QTreeWidgetItem(self.recipes_tree, [item["name"]])
+            QTreeWidgetItem(self.recipes_tree, [self.recipes[item]["name"]])
         
         for item in self.paintings:
-            QTreeWidgetItem(self.paintings, [item["name"]])
+            QTreeWidgetItem(self.paintings_tree, [self.paintings[item]["name"]])
 
     #######################
     # ELEMENT MANAGER     #
@@ -343,34 +339,34 @@ class App(QMainWindow):
     # BLOCKS TAB          #
     #######################
 
-    def addBlockTexture(self, id_):
-        textureId = id_
+    def addBlockTexture(self, face: BlockFace):
         texture, _ = QFileDialog.getOpenFileName(self, "Open Texture File", "", "PNG Files (*.png)")
         if not texture:
             return
-        
+
         filename = os.path.basename(texture)
         destinationPath = f'{self.mainDirectory}/workspaces/{self.packDetails["namespace"]}/assets/blocks/{filename}'
         shutil.copyfile(texture, destinationPath)
 
-        self.blockTexture[textureId] = destinationPath
+        self.blockTexture[face] = destinationPath
 
-        image = QImage(self.blockTexture[textureId])
+        image = QImage(self.blockTexture[face])
         pixmap = QPixmap.fromImage(image).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio)
 
         label_map = {
-            0: self.ui.blockTextureLabelTop,
-            1: self.ui.blockTextureLabelLeft,
-            2: self.ui.blockTextureLabelBack,
-            3: self.ui.blockTextureLabelRight,
-            4: self.ui.blockTextureLabelFront,
-            5: self.ui.blockTextureLabelBottom,
+            BlockFace.TOP: self.ui.blockTextureLabelTop,
+            BlockFace.LEFT: self.ui.blockTextureLabelLeft,
+            BlockFace.BACK: self.ui.blockTextureLabelBack,
+            BlockFace.RIGHT: self.ui.blockTextureLabelRight,
+            BlockFace.FRONT: self.ui.blockTextureLabelFront,
+            BlockFace.BOTTOM: self.ui.blockTextureLabelBottom,
         }
-        label_map[textureId].setPixmap(pixmap)
+
+        label_map[face].setPixmap(pixmap)
 
     def newBlock(self):
         self.populateBlockDrop()
-        self.ui.elementEditor.setCurrentIndex(1)
+        self.ui.elementEditor.setCurrentIndex(ElementPage.BLOCKS)
 
     def populateBlockDrop(self):
         self.ui.blockDropBox.clear()
@@ -389,55 +385,46 @@ class App(QMainWindow):
             fileName = os.path.basename(filePath)
             destPath = f'{self.mainDirectory}/workspaces/{self.packDetails["namespace"]}/assets/blocks/{fileName}'
 
-            shutil.copy(filePath, destPath)
-
             if filePath:
+                shutil.copy(filePath, destPath)
                 self.ui.blockModel.addItem(destPath)
                 self.ui.blockModel.setCurrentText(destPath)
 
     def validateBlockDetails(self):
-        def validate(field, allowed_chars, field_name):
-            text = field.text()
-            if not text:
-                field.setStyleSheet("QLineEdit { border: 1px solid red; }")
-                alert("Please fill in all fields!")
-                return False
-            if any(c not in allowed_chars for c in text):
-                field.setStyleSheet("QLineEdit { border: 1px solid red; }")
-                alert(f"{field_name} contains an illegal character!")
-                return False
-            field.setStyleSheet("")
-            return True
-
-        if not validate(self.ui.blockDisplayName, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz _-!0123456789", "Display Name"):
+        if not FieldValidator.validate_text_field(self.ui.blockDisplayName, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz _-!0123456789", "Display Name"):
             return 0
-        if not validate(self.ui.blockName, "abcdefghijklmnopqrstuvwxyz_0123456789", "Name"):
+        if not FieldValidator.validate_text_field(self.ui.blockName, "abcdefghijklmnopqrstuvwxyz_0123456789", "Name"):
             return 0
-        if not self.ui.blockBaseBlock.text() in self.data["blocks"]:
+        if not FieldValidator.validate_dropdown_selection(self.ui.blockBaseBlock, list(self.data["blocks"]), "Base Block"):
             return 0
 
         return 1
 
     def clearBlockFields(self):
-        self.ui.blockName.setText("")
-        self.ui.blockDisplayName.setText("")
-        self.ui.blockBaseBlock.setText("")
-        self.ui.blockDropBox.setCurrentText("")
-        self.ui.blockPlaceSound.setText("")
-        self.ui.blockDirectional.setChecked(False)
-        self.ui.blockModel.setCurrentText("")
+        FieldResetter.clear_line_edits(
+        self.ui.blockName,
+        self.ui.blockDisplayName,
+        self.ui.blockBaseBlock
+        )
 
-        self.ui.blockTextureLabelTop.clear()
-        self.ui.blockTextureLabelLeft.clear()
-        self.ui.blockTextureLabelBack.clear()
-        self.ui.blockTextureLabelRight.clear()
-        self.ui.blockTextureLabelFront.clear()
-        self.ui.blockTextureLabelBottom.clear()
+        FieldResetter.reset_combo_boxes(
+            self.ui.blockDropBox,
+            self.ui.blockModel
+        )
+
+        FieldResetter.clear_labels(
+            self.ui.blockTextureLabelTop,
+            self.ui.blockTextureLabelLeft,
+            self.ui.blockTextureLabelBack,
+            self.ui.blockTextureLabelRight,
+            self.ui.blockTextureLabelFront,
+            self.ui.blockTextureLabelBottom
+        )
+
+        FieldResetter.uncheck_boxes(self.ui.blockDirectional)
+        FieldResetter.clear_tree_selection(self.ui.elementViewer)
 
         self.blockTexture = {}
-
-        self.ui.elementVeiwer.clearSelection()
-
         self.populateBlockDrop()
 
     def addBlock(self):
@@ -473,24 +460,24 @@ class App(QMainWindow):
         self.ui.blockModel.setCurrentText(properties["model"])
         self.blockTexture = properties["textures"]
 
-        for textureId in self.blockTexture:
-            image = QImage(self.blockTexture[textureId])
-            pixmap = QPixmap.fromImage(image).scaled(
-                50, 50, Qt.AspectRatioMode.KeepAspectRatio
-            )
+        for face, path in self.blockTexture.items():
+            pixmap = QPixmap.fromImage(QImage(path)).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio)
 
-            if textureId == 0:
-                self.ui.blockTextureLabelTop.setPixmap(pixmap)
-            if textureId == 1:
-                self.ui.blockTextureLabelLeft.setPixmap(pixmap)
-            if textureId == 2:
-                self.ui.blockTextureLabelBack.setPixmap(pixmap)
-            if textureId == 3:
-                self.ui.blockTextureLabelRight.setPixmap(pixmap)
-            if textureId == 4:
-                self.ui.blockTextureLabelFront.setPixmap(pixmap)
-            if textureId == 5:
-                self.ui.blockTextureLabelBottom.setPixmap(pixmap)
+            label_map = {
+                BlockFace.TOP: self.ui.blockTextureLabelTop,
+                BlockFace.LEFT: self.ui.blockTextureLabelLeft,
+                BlockFace.BACK: self.ui.blockTextureLabelBack,
+                BlockFace.RIGHT: self.ui.blockTextureLabelRight,
+                BlockFace.FRONT: self.ui.blockTextureLabelFront,
+                BlockFace.BOTTOM: self.ui.blockTextureLabelBottom,
+            }
+
+            label = label_map.get(BlockFace(face))
+            if label:
+                label.setPixmap(pixmap)
+
+        
+        self.ui.elementEditor.setCurrentIndex(ElementPage.BLOCKS)
 
     #######################
     # ITEMS TAB           #
@@ -513,25 +500,12 @@ class App(QMainWindow):
         self.ui.itemTexture.setPixmap(pixmap)
 
     def newItem(self):
-        self.ui.elementEditor.setCurrentIndex(3)
+        self.ui.elementEditor.setCurrentIndex(ElementPage.ITEMS)
 
     def validateItemDetails(self):
-        def validate(field, allowed_chars, field_name):
-            text = field.text()
-            if not text:
-                field.setStyleSheet("QLineEdit { border: 1px solid red; }")
-                alert("Please fill in all fields!")
-                return False
-            if any(c not in allowed_chars for c in text):
-                field.setStyleSheet("QLineEdit { border: 1px solid red; }")
-                alert(f"{field_name} contains an illegal character!")
-                return False
-            field.setStyleSheet("")
-            return True
-
-        if not validate(self.ui.itemDisplayName, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz _-!0123456789", "Display Name"):
+        if not FieldValidator.validate_text_field(self.ui.itemDisplayName, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz _-!0123456789", "Display Name"):
             return 0
-        if not validate(self.ui.itemName, "abcdefghijklmnopqrstuvwxyz_0123456789", "Item Name"):
+        if not FieldValidator.validate_text_field(self.ui.itemName, "abcdefghijklmnopqrstuvwxyz_0123456789", "Item Name"):
             return 0
         if not self.ui.itemBaseItem.text() in self.data["items"]:
             self.ui.itemBaseItem.setStyleSheet("QLineEdit { border: 1px solid red; }")
@@ -549,20 +523,36 @@ class App(QMainWindow):
         return 1
 
     def clearItemFields(self):
-        self.ui.itemName.setText("")
-        self.ui.itemDisplayName.setText("")
-        self.ui.itemBaseItem.setText("")
-        self.ui.itemModel.setCurrentText("Generated")
-        self.ui.itemStackSize.setValue(64)
-        self.ui.itemRightClickFunc.clear()
-        self.ui.itemRightClickMode.setCurrentText("Tick")
-        self.ui.itemRightClickCheck.setChecked(False)
+        FieldResetter.clear_line_edits(
+            self.ui.itemName,
+            self.ui.itemDisplayName,
+            self.ui.itemBaseItem
+        )
 
-        self.ui.itemTexture.clear()
+        FieldResetter.reset_combo_boxes(
+            self.ui.itemModel,
+            self.ui.itemRightClickMode
+        )
+
+        FieldResetter.reset_spin_boxes(
+            self.ui.itemStackSize
+        )
+
+        FieldResetter.clear_text_edits(
+            self.ui.itemRightClickFunc
+        )
+
+        FieldResetter.clear_labels(
+            self.ui.itemTexture
+        )
+
+        FieldResetter.uncheck_boxes(
+            self.ui.itemRightClickCheck
+        )
+
+        FieldResetter.clear_tree_selection(self.ui.elementViewer)
 
         self.itemTexture = None
-
-        self.ui.elementVeiwer.clearSelection()
 
     def addItem(self):
         if self.validateItemDetails() == 0: return
@@ -602,6 +592,8 @@ class App(QMainWindow):
 
         pixmap = QPixmap.fromImage(QImage(properties["texture"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio)
         self.ui.itemTexture.setPixmap(pixmap)
+
+        self.ui.elementEditor.setCurrentIndex(ElementPage.ITEMS)
 
     #######################
     # RECIPES TAB         #
@@ -661,23 +653,10 @@ class App(QMainWindow):
         self.block_popup.close()
 
     def newRecipe(self):
-        self.ui.elementEditor.setCurrentIndex(2)
+        self.ui.elementEditor.setCurrentIndex(ElementPage.RECIPES)
 
     def validateRecipeDetails(self):
-        def validate(field, allowed_chars, field_name):
-            text = field.text()
-            if not text:
-                field.setStyleSheet("QLineEdit { border: 1px solid red; }")
-                alert("Please fill in all fields!")
-                return False
-            if any(c not in allowed_chars for c in text):
-                field.setStyleSheet("QLineEdit { border: 1px solid red; }")
-                alert(f"{field_name} contains an illegal character!")
-                return False
-            field.setStyleSheet("")
-            return True
-        
-        if not validate(self.ui.recipeName, "abcdefghijklmnopqrstuvwxyz_0123456789", "Recipe Name"): 
+        if not FieldValidator.validate_text_field(self.ui.recipeName, "abcdefghijklmnopqrstuvwxyz_0123456789", "Recipe Name"): 
             return 0
         if self.ui.slot9.text() == "" and self.ui.smeltingOutput.text() == "" and self.ui.stoneCuttingOutput.text() == "":
             alert("Recipes require outputs! Please add one before confirming!")
@@ -686,25 +665,35 @@ class App(QMainWindow):
         return 1
 
     def clearRecipeFields(self):
+        FieldResetter.clear_line_edits(
+            self.ui.recipeName,
+            self.ui.slot0,
+            self.ui.slot1,
+            self.ui.slot2,
+            self.ui.slot3,
+            self.ui.slot4,
+            self.ui.slot5,
+            self.ui.slot6,
+            self.ui.slot7,
+            self.ui.slot8,
+            self.ui.slot9,
+            self.ui.smeltingInput,
+            self.ui.smeltingOutput,
+            self.ui.stoneCuttingInput,
+            self.ui.stoneCuttingOutput
+        )
+
+        FieldResetter.reset_spin_boxes(
+            self.ui.stoneCuttingCount,
+            self.ui.slot9Count
+        )
+
+        FieldResetter.uncheck_boxes(
+            self.ui.shapelessRadio,
+            self.ui.exactlyRadio
+        )
+
         self.recipe = {}
-        self.ui.recipeName.setText("")
-        self.ui.shapelessRadio.setChecked(False)
-        self.ui.exactlyRadio.setChecked(False)
-        self.ui.slot0.setText("")
-        self.ui.slot1.setText("")
-        self.ui.slot2.setText("")
-        self.ui.slot3.setText("")
-        self.ui.slot4.setText("")
-        self.ui.slot5.setText("")
-        self.ui.slot6.setText("")
-        self.ui.slot7.setText("")
-        self.ui.slot8.setText("")
-        self.ui.slot9.setText("")
-        self.ui.smeltingInput.setText("")
-        self.ui.smeltingOutput.setText("")
-        self.ui.stoneCuttingCount.setValue(1)
-        self.ui.stoneCuttingOutput.setText("")
-        self.ui.stoneCuttingInput.setText("")
 
     def addRecipe(self):
         if self.validateRecipeDetails() == 0: return
@@ -756,6 +745,8 @@ class App(QMainWindow):
         self.ui.smeltingInput.setText(properties["items"][10])
         self.ui.smeltingOutput.setText(properties["items"][11])
 
+        self.ui.elementEditor.setCurrentIndex(ElementPage.RECIPES)
+
     #######################
     # PAINTINGS TAB       #
     #######################
@@ -771,31 +762,18 @@ class App(QMainWindow):
 
         self.paintingTexture = destinationPath
 
-        image = QImage(self.itemTexture)
+        image = QImage(self.paintingTexture)
         pixmap = QPixmap.fromImage(image).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio)
 
         self.ui.paintingTexture.setPixmap(pixmap)
 
     def newPainting(self):
-        self.ui.elementEditor.setCurrentIndex(4)
+        self.ui.elementEditor.setCurrentIndex(ElementPage.PAINTINGS)
 
-    def validatePaintingDetails(self):
-        def validate(field, allowed_chars, field_name):
-            text = field.text()
-            if not text:
-                field.setStyleSheet("QLineEdit { border: 1px solid red; }")
-                alert("Please fill in all fields!")
-                return False
-            if any(c not in allowed_chars for c in text):
-                field.setStyleSheet("QLineEdit { border: 1px solid red; }")
-                alert(f"{field_name} contains an illegal character!")
-                return False
-            field.setStyleSheet("")
-            return True
-        
-        if not validate(self.ui.paintingDisplayName, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz _-!0123456789", "Display Name"):
+    def validatePaintingDetails(self): 
+        if not FieldValidator.validate_text_field(self.ui.paintingDisplayName, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz _-!0123456789", "Display Name"):
             return 0
-        if not validate(self.ui.paintingName, "abcdefghijklmnopqrstuvwxyz_0123456789", "Item Name"):
+        if not FieldValidator.validate_text_field(self.ui.paintingName, "abcdefghijklmnopqrstuvwxyz_0123456789", "Item Name"):
             return 0
         if self.paintingTexture == None:
             self.ui.paintingTextureButton.setStyleSheet("QLineEdit { border: 1px solid red; }")
@@ -807,13 +785,25 @@ class App(QMainWindow):
         return 1
 
     def clearPaintingFields(self):
+        FieldResetter.clear_line_edits(
+            self.ui.paintingDisplayName,
+            self.ui.paintingName
+        )
+
+        FieldResetter.reset_spin_boxes(
+            self.ui.paintingWidth,
+            self.ui.paintingHeight
+        )
+
+        FieldResetter.clear_labels(
+            self.ui.paintingTexture
+        )
+
+        FieldResetter.uncheck_boxes(
+            self.ui.paintingPlaceable
+        )
+
         self.paintingTexture = None
-        self.ui.paintingDisplayName.setText("")
-        self.ui.paintingName.setText("")
-        self.ui.paintingWidth.setValue(1)
-        self.ui.paintingHeight.setValue(1)
-        self.ui.paintingPlaceable.setChecked(False)
-        self.ui.paintingTexture.clear()
 
     def addPainting(self):
         if self.validatePaintingDetails() == 0: return
@@ -846,6 +836,8 @@ class App(QMainWindow):
         self.paintingTexture = properties["texture"]
         pixmap = QPixmap.fromImage(QImage(properties["texture"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio)
         self.ui.paintingTexture.setPixmap(pixmap)
+
+        self.ui.elementEditor.setCurrentIndex(ElementPage.PAINTINGS)
 
     #######################
     # PACK GENERATION     #
