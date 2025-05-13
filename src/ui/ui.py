@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiThoqYI.ui'
+## Form generated from reading UI file 'uiHqdtIv.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -19,9 +19,10 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
 from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QCheckBox, QComboBox,
     QFormLayout, QGridLayout, QHeaderView, QLabel,
     QLineEdit, QMainWindow, QMenu, QMenuBar,
-    QPlainTextEdit, QPushButton, QRadioButton, QSizePolicy,
-    QSpinBox, QStackedWidget, QStatusBar, QTabWidget,
-    QTextEdit, QTreeWidget, QTreeWidgetItem, QWidget)
+    QPlainTextEdit, QPushButton, QRadioButton, QScrollArea,
+    QSizePolicy, QSlider, QSpinBox, QStackedWidget,
+    QStatusBar, QTabWidget, QTextEdit, QTreeWidget,
+    QTreeWidgetItem, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -138,6 +139,38 @@ class Ui_MainWindow(object):
 "    text-decoration: underline;\n"
 "    color: #333;\n"
 "}\n"
+"\n"
+"QMenuBar::item:hover {\n"
+"    background-color: #3b553c;\n"
+"    color: #ffffff;\n"
+"}\n"
+"\n"
+"QMenuBar::item:selected {\n"
+"    background-color: #4d6e4f;\n"
+"    color: #d7f7d4;\n"
+"}\n"
+"\n"
+"\n"
+"QMenu::item:hover {\n"
+"    background-color: #3b553c;\n"
+"    color: #ffffff;\n"
+"}\n"
+"\n"
+"QMenu::item:selected {\n"
+"    background-color: #4d6e4f;\n"
+"    color: #d7f7d4;\n"
+"}\n"
+"\n"
+"QAction:hover {\n"
+"    background-color: #3b553c;\n"
+"    color: #ffffff;\n"
+"}\n"
+"\n"
+"QAction:selected {\n"
+"    background-color: #4d6e4f;\n"
+"    color: #d7f7d4;\n"
+"}\n"
+"\n"
 "")
         self.actionBlock = QAction(MainWindow)
         self.actionBlock.setObjectName(u"actionBlock")
@@ -163,6 +196,8 @@ class Ui_MainWindow(object):
         self.actionSave_As.setObjectName(u"actionSave_As")
         self.actionExport_Project = QAction(MainWindow)
         self.actionExport_Project.setObjectName(u"actionExport_Project")
+        self.actionSettings = QAction(MainWindow)
+        self.actionSettings.setObjectName(u"actionSettings")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.formLayout_2 = QFormLayout(self.centralwidget)
@@ -813,6 +848,287 @@ class Ui_MainWindow(object):
         self.formLayout_3.setWidget(0, QFormLayout.SpanningRole, self.label_12)
 
         self.elementEditor.addWidget(self.details)
+        self.settings = QWidget()
+        self.settings.setObjectName(u"settings")
+        self.scrollArea = QScrollArea(self.settings)
+        self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setGeometry(QRect(0, -10, 711, 681))
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollAreaWidgetContents = QWidget()
+        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 699, 752))
+        self.verticalLayout_2 = QVBoxLayout(self.scrollAreaWidgetContents)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.label_13 = QLabel(self.scrollAreaWidgetContents)
+        self.label_13.setObjectName(u"label_13")
+
+        self.verticalLayout_2.addWidget(self.label_13)
+
+        self.formLayout_4 = QFormLayout()
+        self.formLayout_4.setObjectName(u"formLayout_4")
+        self.label_14 = QLabel(self.scrollAreaWidgetContents)
+        self.label_14.setObjectName(u"label_14")
+
+        self.formLayout_4.setWidget(0, QFormLayout.LabelRole, self.label_14)
+
+        self.settingsAutoSaveInt = QComboBox(self.scrollAreaWidgetContents)
+        self.settingsAutoSaveInt.addItem("")
+        self.settingsAutoSaveInt.addItem("")
+        self.settingsAutoSaveInt.addItem("")
+        self.settingsAutoSaveInt.setObjectName(u"settingsAutoSaveInt")
+
+        self.formLayout_4.setWidget(0, QFormLayout.FieldRole, self.settingsAutoSaveInt)
+
+        self.label_15 = QLabel(self.scrollAreaWidgetContents)
+        self.label_15.setObjectName(u"label_15")
+
+        self.formLayout_4.setWidget(1, QFormLayout.LabelRole, self.label_15)
+
+        self.settingsOpenLastCheckbox = QCheckBox(self.scrollAreaWidgetContents)
+        self.settingsOpenLastCheckbox.setObjectName(u"settingsOpenLastCheckbox")
+
+        self.formLayout_4.setWidget(1, QFormLayout.FieldRole, self.settingsOpenLastCheckbox)
+
+        self.label_16 = QLabel(self.scrollAreaWidgetContents)
+        self.label_16.setObjectName(u"label_16")
+
+        self.formLayout_4.setWidget(2, QFormLayout.LabelRole, self.label_16)
+
+        self.settingsWorkspacePathCombo = QLineEdit(self.scrollAreaWidgetContents)
+        self.settingsWorkspacePathCombo.setObjectName(u"settingsWorkspacePathCombo")
+
+        self.formLayout_4.setWidget(2, QFormLayout.FieldRole, self.settingsWorkspacePathCombo)
+
+        self.label_17 = QLabel(self.scrollAreaWidgetContents)
+        self.label_17.setObjectName(u"label_17")
+
+        self.formLayout_4.setWidget(3, QFormLayout.LabelRole, self.label_17)
+
+        self.settingsLanguageCombo = QComboBox(self.scrollAreaWidgetContents)
+        self.settingsLanguageCombo.addItem("")
+        self.settingsLanguageCombo.setObjectName(u"settingsLanguageCombo")
+
+        self.formLayout_4.setWidget(3, QFormLayout.FieldRole, self.settingsLanguageCombo)
+
+
+        self.verticalLayout_2.addLayout(self.formLayout_4)
+
+        self.label_18 = QLabel(self.scrollAreaWidgetContents)
+        self.label_18.setObjectName(u"label_18")
+
+        self.verticalLayout_2.addWidget(self.label_18)
+
+        self.formLayout_5 = QFormLayout()
+        self.formLayout_5.setObjectName(u"formLayout_5")
+        self.label_19 = QLabel(self.scrollAreaWidgetContents)
+        self.label_19.setObjectName(u"label_19")
+
+        self.formLayout_5.setWidget(0, QFormLayout.LabelRole, self.label_19)
+
+        self.label_20 = QLabel(self.scrollAreaWidgetContents)
+        self.label_20.setObjectName(u"label_20")
+
+        self.formLayout_5.setWidget(1, QFormLayout.LabelRole, self.label_20)
+
+        self.label_21 = QLabel(self.scrollAreaWidgetContents)
+        self.label_21.setObjectName(u"label_21")
+
+        self.formLayout_5.setWidget(2, QFormLayout.LabelRole, self.label_21)
+
+        self.settingsThemeCombo = QComboBox(self.scrollAreaWidgetContents)
+        self.settingsThemeCombo.addItem("")
+        self.settingsThemeCombo.addItem("")
+        self.settingsThemeCombo.setObjectName(u"settingsThemeCombo")
+
+        self.formLayout_5.setWidget(0, QFormLayout.FieldRole, self.settingsThemeCombo)
+
+        self.settingsFontSizeSlider = QSlider(self.scrollAreaWidgetContents)
+        self.settingsFontSizeSlider.setObjectName(u"settingsFontSizeSlider")
+        self.settingsFontSizeSlider.setMinimum(10)
+        self.settingsFontSizeSlider.setMaximum(20)
+        self.settingsFontSizeSlider.setValue(13)
+        self.settingsFontSizeSlider.setOrientation(Qt.Orientation.Horizontal)
+
+        self.formLayout_5.setWidget(1, QFormLayout.FieldRole, self.settingsFontSizeSlider)
+
+        self.settingsTipsCheckbox = QCheckBox(self.scrollAreaWidgetContents)
+        self.settingsTipsCheckbox.setObjectName(u"settingsTipsCheckbox")
+        self.settingsTipsCheckbox.setChecked(True)
+
+        self.formLayout_5.setWidget(2, QFormLayout.FieldRole, self.settingsTipsCheckbox)
+
+
+        self.verticalLayout_2.addLayout(self.formLayout_5)
+
+        self.label_22 = QLabel(self.scrollAreaWidgetContents)
+        self.label_22.setObjectName(u"label_22")
+
+        self.verticalLayout_2.addWidget(self.label_22)
+
+        self.formLayout_6 = QFormLayout()
+        self.formLayout_6.setObjectName(u"formLayout_6")
+        self.label_23 = QLabel(self.scrollAreaWidgetContents)
+        self.label_23.setObjectName(u"label_23")
+
+        self.formLayout_6.setWidget(0, QFormLayout.LabelRole, self.label_23)
+
+        self.settingsConfirmElementDeleteCheckbox = QCheckBox(self.scrollAreaWidgetContents)
+        self.settingsConfirmElementDeleteCheckbox.setObjectName(u"settingsConfirmElementDeleteCheckbox")
+        self.settingsConfirmElementDeleteCheckbox.setChecked(True)
+
+        self.formLayout_6.setWidget(0, QFormLayout.FieldRole, self.settingsConfirmElementDeleteCheckbox)
+
+        self.label_24 = QLabel(self.scrollAreaWidgetContents)
+        self.label_24.setObjectName(u"label_24")
+
+        self.formLayout_6.setWidget(1, QFormLayout.LabelRole, self.label_24)
+
+        self.settingsExperimentsCheckbox = QCheckBox(self.scrollAreaWidgetContents)
+        self.settingsExperimentsCheckbox.setObjectName(u"settingsExperimentsCheckbox")
+
+        self.formLayout_6.setWidget(1, QFormLayout.FieldRole, self.settingsExperimentsCheckbox)
+
+
+        self.verticalLayout_2.addLayout(self.formLayout_6)
+
+        self.label_25 = QLabel(self.scrollAreaWidgetContents)
+        self.label_25.setObjectName(u"label_25")
+
+        self.verticalLayout_2.addWidget(self.label_25)
+
+        self.formLayout_7 = QFormLayout()
+        self.formLayout_7.setObjectName(u"formLayout_7")
+        self.label_26 = QLabel(self.scrollAreaWidgetContents)
+        self.label_26.setObjectName(u"label_26")
+
+        self.formLayout_7.setWidget(0, QFormLayout.LabelRole, self.label_26)
+
+        self.settingsExportLocation = QLineEdit(self.scrollAreaWidgetContents)
+        self.settingsExportLocation.setObjectName(u"settingsExportLocation")
+
+        self.formLayout_7.setWidget(0, QFormLayout.FieldRole, self.settingsExportLocation)
+
+        self.label_27 = QLabel(self.scrollAreaWidgetContents)
+        self.label_27.setObjectName(u"label_27")
+
+        self.formLayout_7.setWidget(1, QFormLayout.LabelRole, self.label_27)
+
+        self.settingsPackFormatOverride = QLineEdit(self.scrollAreaWidgetContents)
+        self.settingsPackFormatOverride.setObjectName(u"settingsPackFormatOverride")
+
+        self.formLayout_7.setWidget(1, QFormLayout.FieldRole, self.settingsPackFormatOverride)
+
+        self.label_28 = QLabel(self.scrollAreaWidgetContents)
+        self.label_28.setObjectName(u"label_28")
+
+        self.formLayout_7.setWidget(2, QFormLayout.LabelRole, self.label_28)
+
+        self.settingsVerboseLoggingCheckbox = QCheckBox(self.scrollAreaWidgetContents)
+        self.settingsVerboseLoggingCheckbox.setObjectName(u"settingsVerboseLoggingCheckbox")
+
+        self.formLayout_7.setWidget(2, QFormLayout.FieldRole, self.settingsVerboseLoggingCheckbox)
+
+        self.label_29 = QLabel(self.scrollAreaWidgetContents)
+        self.label_29.setObjectName(u"label_29")
+
+        self.formLayout_7.setWidget(3, QFormLayout.LabelRole, self.label_29)
+
+        self.label_34 = QLabel(self.scrollAreaWidgetContents)
+        self.label_34.setObjectName(u"label_34")
+
+        self.formLayout_7.setWidget(4, QFormLayout.LabelRole, self.label_34)
+
+        self.settingsClearTempCheckbox = QCheckBox(self.scrollAreaWidgetContents)
+        self.settingsClearTempCheckbox.setObjectName(u"settingsClearTempCheckbox")
+        self.settingsClearTempCheckbox.setChecked(True)
+
+        self.formLayout_7.setWidget(3, QFormLayout.FieldRole, self.settingsClearTempCheckbox)
+
+        self.settingsAskOverwriteCheckbox = QCheckBox(self.scrollAreaWidgetContents)
+        self.settingsAskOverwriteCheckbox.setObjectName(u"settingsAskOverwriteCheckbox")
+
+        self.formLayout_7.setWidget(4, QFormLayout.FieldRole, self.settingsAskOverwriteCheckbox)
+
+
+        self.verticalLayout_2.addLayout(self.formLayout_7)
+
+        self.label_30 = QLabel(self.scrollAreaWidgetContents)
+        self.label_30.setObjectName(u"label_30")
+
+        self.verticalLayout_2.addWidget(self.label_30)
+
+        self.formLayout_8 = QFormLayout()
+        self.formLayout_8.setObjectName(u"formLayout_8")
+        self.label_31 = QLabel(self.scrollAreaWidgetContents)
+        self.label_31.setObjectName(u"label_31")
+
+        self.formLayout_8.setWidget(0, QFormLayout.LabelRole, self.label_31)
+
+        self.settingsCheckUpdatesCheckbox = QCheckBox(self.scrollAreaWidgetContents)
+        self.settingsCheckUpdatesCheckbox.setObjectName(u"settingsCheckUpdatesCheckbox")
+        self.settingsCheckUpdatesCheckbox.setChecked(True)
+
+        self.formLayout_8.setWidget(0, QFormLayout.FieldRole, self.settingsCheckUpdatesCheckbox)
+
+        self.label_32 = QLabel(self.scrollAreaWidgetContents)
+        self.label_32.setObjectName(u"label_32")
+
+        self.formLayout_8.setWidget(1, QFormLayout.LabelRole, self.label_32)
+
+        self.settingsUpdateURL = QLineEdit(self.scrollAreaWidgetContents)
+        self.settingsUpdateURL.setObjectName(u"settingsUpdateURL")
+
+        self.formLayout_8.setWidget(1, QFormLayout.FieldRole, self.settingsUpdateURL)
+
+        self.label_33 = QLabel(self.scrollAreaWidgetContents)
+        self.label_33.setObjectName(u"label_33")
+
+        self.formLayout_8.setWidget(2, QFormLayout.LabelRole, self.label_33)
+
+        self.settingsReportUsageCheckbox = QCheckBox(self.scrollAreaWidgetContents)
+        self.settingsReportUsageCheckbox.setObjectName(u"settingsReportUsageCheckbox")
+
+        self.formLayout_8.setWidget(2, QFormLayout.FieldRole, self.settingsReportUsageCheckbox)
+
+        self.label_35 = QLabel(self.scrollAreaWidgetContents)
+        self.label_35.setObjectName(u"label_35")
+
+        self.formLayout_8.setWidget(3, QFormLayout.LabelRole, self.label_35)
+
+        self.settingsTimeoutSpinbox = QSpinBox(self.scrollAreaWidgetContents)
+        self.settingsTimeoutSpinbox.setObjectName(u"settingsTimeoutSpinbox")
+        self.settingsTimeoutSpinbox.setMinimum(1)
+        self.settingsTimeoutSpinbox.setMaximum(20)
+        self.settingsTimeoutSpinbox.setValue(5)
+
+        self.formLayout_8.setWidget(3, QFormLayout.FieldRole, self.settingsTimeoutSpinbox)
+
+        self.label_36 = QLabel(self.scrollAreaWidgetContents)
+        self.label_36.setObjectName(u"label_36")
+
+        self.formLayout_8.setWidget(4, QFormLayout.LabelRole, self.label_36)
+
+        self.settingsDownloadVersionsCheckbox = QCheckBox(self.scrollAreaWidgetContents)
+        self.settingsDownloadVersionsCheckbox.setObjectName(u"settingsDownloadVersionsCheckbox")
+        self.settingsDownloadVersionsCheckbox.setChecked(True)
+
+        self.formLayout_8.setWidget(4, QFormLayout.FieldRole, self.settingsDownloadVersionsCheckbox)
+
+
+        self.verticalLayout_2.addLayout(self.formLayout_8)
+
+        self.settingsApplyButton = QPushButton(self.scrollAreaWidgetContents)
+        self.settingsApplyButton.setObjectName(u"settingsApplyButton")
+
+        self.verticalLayout_2.addWidget(self.settingsApplyButton)
+
+        self.settingsRestoreDefaultsButton = QPushButton(self.scrollAreaWidgetContents)
+        self.settingsRestoreDefaultsButton.setObjectName(u"settingsRestoreDefaultsButton")
+
+        self.verticalLayout_2.addWidget(self.settingsRestoreDefaultsButton)
+
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.elementEditor.addWidget(self.settings)
 
         self.formLayout_2.setWidget(0, QFormLayout.FieldRole, self.elementEditor)
 
@@ -843,6 +1159,8 @@ class Ui_MainWindow(object):
         self.menuSave.addAction(self.actionSave_As)
         self.menuSave.addSeparator()
         self.menuSave.addAction(self.actionExport_Project)
+        self.menuSave.addSeparator()
+        self.menuSave.addAction(self.actionSettings)
 
         self.retranslateUi(MainWindow)
 
@@ -867,6 +1185,7 @@ class Ui_MainWindow(object):
         self.actionSave_2.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.actionSave_As.setText(QCoreApplication.translate("MainWindow", u"Save As...", None))
         self.actionExport_Project.setText(QCoreApplication.translate("MainWindow", u"Export Project", None))
+        self.actionSettings.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
         ___qtreewidgetitem = self.elementViewer.headerItem()
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"Element Viewer", None));
         self.textEdit.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -1276,6 +1595,52 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.createProjectButton.setText(QCoreApplication.translate("MainWindow", u"Create Project", None))
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"Pack Details", None))
+        self.label_13.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">General</span></p></body></html>", None))
+        self.label_14.setText(QCoreApplication.translate("MainWindow", u"Auto-save Interval", None))
+        self.settingsAutoSaveInt.setItemText(0, QCoreApplication.translate("MainWindow", u"Off", None))
+        self.settingsAutoSaveInt.setItemText(1, QCoreApplication.translate("MainWindow", u"1 Minute", None))
+        self.settingsAutoSaveInt.setItemText(2, QCoreApplication.translate("MainWindow", u"5 Minutes", None))
+
+        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Open Last Project On Launch", None))
+        self.settingsOpenLastCheckbox.setText("")
+        self.label_16.setText(QCoreApplication.translate("MainWindow", u"Workspace Path", None))
+        self.settingsWorkspacePathCombo.setText(QCoreApplication.translate("MainWindow", u"mDirt/workspaces", None))
+        self.label_17.setText(QCoreApplication.translate("MainWindow", u"Language", None))
+        self.settingsLanguageCombo.setItemText(0, QCoreApplication.translate("MainWindow", u"English", None))
+
+        self.label_18.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Appearance</span></p></body></html>", None))
+        self.label_19.setText(QCoreApplication.translate("MainWindow", u"Theme", None))
+        self.label_20.setText(QCoreApplication.translate("MainWindow", u"Font Size", None))
+        self.label_21.setText(QCoreApplication.translate("MainWindow", u"Show Tips on Startup", None))
+        self.settingsThemeCombo.setItemText(0, QCoreApplication.translate("MainWindow", u"Earthy Dark", None))
+        self.settingsThemeCombo.setItemText(1, QCoreApplication.translate("MainWindow", u"Sky Light", None))
+
+        self.settingsTipsCheckbox.setText("")
+        self.label_22.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Editor Preferences</span></p></body></html>", None))
+        self.label_23.setText(QCoreApplication.translate("MainWindow", u"Confirm Before Deleting Elements", None))
+        self.settingsConfirmElementDeleteCheckbox.setText("")
+        self.label_24.setText(QCoreApplication.translate("MainWindow", u"Enable Experiments", None))
+        self.settingsExperimentsCheckbox.setText("")
+        self.label_25.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">File &amp; Export</span></p></body></html>", None))
+        self.label_26.setText(QCoreApplication.translate("MainWindow", u"Default Export Location", None))
+        self.label_27.setText(QCoreApplication.translate("MainWindow", u"Pack Format Override", None))
+        self.label_28.setText(QCoreApplication.translate("MainWindow", u"Enable Verbose Logging", None))
+        self.settingsVerboseLoggingCheckbox.setText("")
+        self.label_29.setText(QCoreApplication.translate("MainWindow", u"Clear Temporary Files on Exit", None))
+        self.label_34.setText(QCoreApplication.translate("MainWindow", u"Ask Before Overwriting Files", None))
+        self.settingsClearTempCheckbox.setText("")
+        self.settingsAskOverwriteCheckbox.setText("")
+        self.label_30.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Network &amp; Updates</span></p></body></html>", None))
+        self.label_31.setText(QCoreApplication.translate("MainWindow", u"Check for Updates on Launch", None))
+        self.settingsCheckUpdatesCheckbox.setText("")
+        self.label_32.setText(QCoreApplication.translate("MainWindow", u"Custom Update URL", None))
+        self.label_33.setText(QCoreApplication.translate("MainWindow", u"Report Anonymous Usage Data", None))
+        self.settingsReportUsageCheckbox.setText("")
+        self.label_35.setText(QCoreApplication.translate("MainWindow", u"Timeout for Online Operations:", None))
+        self.label_36.setText(QCoreApplication.translate("MainWindow", u"Download Minecraft Versions", None))
+        self.settingsDownloadVersionsCheckbox.setText("")
+        self.settingsApplyButton.setText(QCoreApplication.translate("MainWindow", u"Apply", None))
+        self.settingsRestoreDefaultsButton.setText(QCoreApplication.translate("MainWindow", u"Restore Defaults", None))
         self.menuNew_Element.setTitle(QCoreApplication.translate("MainWindow", u"New Element", None))
         self.menuSave.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
     # retranslateUi
