@@ -138,7 +138,7 @@ class App(QMainWindow):
 
     def pullData(self):
         version = self.packDetails["version"]
-        local_path = f'lib/{version}_data.json'
+        local_path = self.mainDirectory / 'lib' / f'{version}_data.json'
         url = f'{LIB_URL}/{version}_data.json'
 
         if not os.path.exists(local_path):
@@ -160,7 +160,7 @@ class App(QMainWindow):
 
     def grabModule(self):
         version = f'v{self.packDetails["version"].replace(".", "_")}'
-        self.moduleGrab = ModuleDownloader()
+        self.moduleGrab = ModuleDownloader(self.mainDirectory / 'src' / 'generation')
         self.moduleGrab.download_and_extract(version)
 
     def newProject(self):
@@ -223,11 +223,11 @@ class App(QMainWindow):
         self.saveProjectAs()
 
     def saveProjectAs(self):
-        projectDirectory = f'{self.mainDirectory}/workspaces/{self.packDetails["namespace"]}'
+        projectDirectory = self.mainDirectory / 'workspaces' / f'{self.packDetails["namespace"]}'
         
         os.makedirs(projectDirectory, exist_ok=True)
 
-        with open(f'{projectDirectory}/project.dat', 'w') as file:
+        with open(projectDirectory / 'project.dat', 'w') as file:
             data = {
             "app_version": APP_VERSION,
             "metadata": {
@@ -237,21 +237,21 @@ class App(QMainWindow):
         }
             json.dump(data, file, indent=4)
             
-        with open(f'{projectDirectory}/blocks.json', 'w') as file:
+        with open(projectDirectory / 'blocks.json', 'w') as file:
             json.dump(self.blocks, file, indent=4)
-        with open(f'{projectDirectory}/items.json', 'w') as file:
+        with open(projectDirectory / 'items.json', 'w') as file:
             json.dump(self.items, file, indent=4)
-        with open(f'{projectDirectory}/recipes.json', 'w') as file:
+        with open(projectDirectory / 'recipes.json', 'w') as file:
             json.dump(self.recipes, file, indent=4)
-        with open(f'{projectDirectory}/paintings.json', 'w') as file:
+        with open(projectDirectory / 'paintings.json', 'w') as file:
             json.dump(self.paintings, file, indent=4)
         
-        os.makedirs(f'{projectDirectory}/assets', exist_ok=True)
-        os.makedirs(f'{projectDirectory}/assets/blocks', exist_ok=True)
-        os.makedirs(f'{projectDirectory}/assets/items', exist_ok=True)
-        os.makedirs(f'{projectDirectory}/assets/paintings', exist_ok=True)
+        os.makedirs(projectDirectory / 'assets', exist_ok=True)
+        os.makedirs(projectDirectory / 'assets' / 'blocks', exist_ok=True)
+        os.makedirs(projectDirectory / 'assets' / 'items', exist_ok=True)
+        os.makedirs(projectDirectory / 'assets' / 'paintings', exist_ok=True)
 
-        manifestPath = os.path.join(self.mainDirectory, "workspaces", "manifest.json")
+        manifestPath = self.mainDirectory / 'workspaces' / 'manifest.json'
 
         # Load existing manifest if it exists, otherwise start fresh
         if os.path.exists(manifestPath):
