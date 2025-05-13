@@ -1,13 +1,11 @@
-import datetime, json, os, re, sys, requests, importlib, shutil, pickle, html, string
+import datetime, json, os, re, sys, requests, importlib, shutil, string
 
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QImage, QPixmap, QStandardItem
-from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QMessageBox, QWidget, QDialog, QTreeWidget, QTreeWidgetItem
+from PySide6.QtGui import QImage, QPixmap
+from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QMessageBox, QWidget, QTreeWidgetItem
 
 import select_item, load_project
 from ui import Ui_MainWindow
-
-from updater import Updater, ModuleGrabber
 
 APP_VERSION = '3.0.0'
 LIB_URL = 'https://raw.githubusercontent.com/Faith-and-Code-Technologies/mDirt/main/lib'
@@ -36,6 +34,7 @@ class App(QMainWindow):
         self.ui.createProjectButton.clicked.connect(self.newProject)
         self.ui.actionOpen_Project.triggered.connect(self.loadProjectUI)
         self.ui.actionExport_Project.triggered.connect(self.generateDatapack)
+        self.ui.actionSave_2.triggered.connect(self.saveProject)
 
         self.ui.elementVeiwer.itemDoubleClicked.connect(self.elementClicked)
 
@@ -177,9 +176,7 @@ class App(QMainWindow):
         self.ui.elementEditor.setCurrentIndex(0)
         self.ui.textEdit.setHtml(f"<h1>To get started with <strong>{self.packDetails["name"]}</strong>, create a New Element!</h1>")
 
-    def setupProjectData(self):
-        self.mainDirectory = f"{os.path.dirname(os.path.abspath(__file__))}/.."
-        
+    def setupProjectData(self):        
         with open(f"{self.mainDirectory}/lib/{self.packDetails["version"]}_data.json", "r") as f:
             self.data = json.load(f)
         
@@ -218,6 +215,7 @@ class App(QMainWindow):
 
     def saveProjectAs(self):
         projectDirectory = f'{self.mainDirectory}/workspaces/{self.packDetails["namespace"]}'
+        
         os.makedirs(projectDirectory, exist_ok=True)
 
         with open(f'{projectDirectory}/project.dat', 'w') as file:
@@ -244,20 +242,39 @@ class App(QMainWindow):
         os.makedirs(f'{projectDirectory}/assets/items', exist_ok=True)
         os.makedirs(f'{projectDirectory}/assets/paintings', exist_ok=True)
 
+        manifestPath = os.path.join(self.mainDirectory, "workspaces", "manifest.json")
+
+        # Load existing manifest if it exists, otherwise start fresh
+        if os.path.exists(manifestPath):
+            with open(manifestPath, 'r') as f:
+                manifest = json.load(f)
+        else:
+            manifest = {"workspaces": []}
+
+        # Add current workspace if it's not already listed
+        namespace = self.packDetails["namespace"]
+        if namespace not in manifest["workspaces"]:
+            manifest["workspaces"].append(namespace)
+            with open(manifestPath, 'w') as f:
+                json.dump(manifest, f, indent=4)
+
     def loadProjectUI(self):
         self.projectList = QWidget()
         self.projectForm = load_project.Ui_Form()
         self.projectForm.setupUi(self.projectList)
 
-        workspaceDirectory = f'{self.mainDirectory}/workspaces'
+        manifest_path = os.path.join(self.mainDirectory, "workspaces", "manifest.json")
         projects = []
 
-        if os.path.exists(workspaceDirectory):
-            for name in os.listdir(workspaceDirectory):
-                path = os.path.join(workspaceDirectory, name)
-                if os.path.isdir(path):
-                    projects.append(name)
-        
+        if os.path.exists(manifest_path):
+            try:
+                with open(manifest_path, 'r') as f:
+                    manifest = json.load(f)
+                if "workspaces" in manifest and isinstance(manifest["workspaces"], list):
+                    projects = manifest["workspaces"]
+            except json.JSONDecodeError:
+                alert("There was an error reading the manifest.json!\nIt is either missing or malformed.")
+
         self.projectForm.listWidget.clear()
         self.projectForm.listWidget.addItems(projects)
 
@@ -291,22 +308,19 @@ class App(QMainWindow):
             self.paintings = json.load(file)
         
         self.projectList.close()
+        self.setupProjectData()
 
-        self.blocks_tree = QTreeWidgetItem(self.ui.elementVeiwer, ["Blocks"])
-        for name in self.blocks:
-            QTreeWidgetItem(self.blocks_tree, [name["name"]])
+        for item in self.blocks:
+            QTreeWidgetItem(self.blocks_tree, [item["name"]])
         
-        self.items_tree = QTreeWidgetItem(self.ui.elementVeiwer, ["Items"])
-        for name in self.items:
-            QTreeWidgetItem(self.items_tree, [name["name"]])
+        for item in self.items:
+            QTreeWidgetItem(self.items_tree, [item["name"]])
         
-        self.recipes_tree = QTreeWidgetItem(self.ui.elementVeiwer, ["Recipes"])
-        for name in self.recipes:
-            QTreeWidgetItem(self.recipes_tree, [name["name"]])
+        for item in self.recipes:
+            QTreeWidgetItem(self.recipes_tree, [item["name"]])
         
-        self.paintings_tree = QTreeWidgetItem(self.ui.elementVeiwer, ["Paintings"])
-        for name in self.paintings:
-            QTreeWidgetItem(self.paintings, [name["name"]])
+        for item in self.paintings:
+            QTreeWidgetItem(self.paintings, [item["name"]])
 
     #######################
     # ELEMENT MANAGER     #
