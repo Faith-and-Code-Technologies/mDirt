@@ -15,3 +15,4 @@ class ElementPage(IntEnum):
     PAINTINGS = 4
     PROJECT_SETUP = 5
     HOME = 0
+    SETTINGS = 6

@@ -9,6 +9,8 @@ from utils.field_validator import FieldValidator
 from utils.field_resetter import FieldResetter
 from utils.enums import BlockFace, ElementPage
 
+from settings import SettingsManager
+
 import ui.select_item as select_item
 import ui.load_project as load_project
 from ui.ui import Ui_MainWindow
@@ -16,6 +18,7 @@ from ui.ui import Ui_MainWindow
 from module import ModuleDownloader
 
 APP_VERSION = '3.0.0'
+FULL_APP_VERSION = '3.0.0-beta.2'
 LIB_URL = 'https://raw.githubusercontent.com/Faith-and-Code-Technologies/mDirt/main/lib'
 ISSUE_URL = 'https://github.com/Faith-and-Code-Technologies/mDirt/issues'
 
@@ -42,12 +45,15 @@ class App(QMainWindow):
             self.mainDirectory = Path(__file__).resolve().parent
         self.ui.menuNew_Element.setEnabled(False)
 
+        self.settings = SettingsManager()
+
         # CONNECTIONS
         self.ui.actionNew_Project.triggered.connect(self.openProjectMenu)
         self.ui.createProjectButton.clicked.connect(self.newProject)
         self.ui.actionOpen_Project.triggered.connect(self.loadProjectUI)
         self.ui.actionExport_Project.triggered.connect(self.generateDatapack)
         self.ui.actionSave_2.triggered.connect(self.saveProject)
+        self.ui.actionSettings.triggered.connect(self.openSettings)
 
         self.ui.elementViewer.itemDoubleClicked.connect(self.elementClicked)
 
@@ -334,6 +340,22 @@ class App(QMainWindow):
         
         for item in self.paintings:
             QTreeWidgetItem(self.paintings_tree, [self.paintings[item]["name"]])
+
+    #######################
+    # SETTINGS            #
+    #######################
+
+    def openSettings(self):
+        self.ui.elementEditor.setCurrentIndex(ElementPage.SETTINGS)
+    
+    def refreshSettings(self):
+        self.ui.settingsAutoSaveInt.setCurrentText(self.settings.get('general', 'auto_save_interval'))
+        self.ui.settingsOpenLastCheckbox.setChecked(self.settings.get('general', 'open_last_project'))
+        self.ui.settingsWorkspacePathCombo.setText(self.settings.get('general', 'workspace_path'))
+        self.ui.settingsLanguageCombo.setCurrentText(self.settings.get('general', 'language'))
+        self.ui.settingsThemeCombo.setCurrentText(self.settings.get('appearance', 'theme'))
+        self.ui.settingsFontSizeSlider.setValue(self.settings.get('appearance', 'font_size'))
+        self.ui.settingsTipsCheckbox.setChecked(self.settings.get('appearance', 'show_tips'))
 
     #######################
     # ELEMENT MANAGER     #

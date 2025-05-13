@@ -1869,7 +1869,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <rect>
           <x>0</x>
           <y>-10</y>
-          <width>711</width>
+          <width>721</width>
           <height>681</height>
          </rect>
         </property>
@@ -1881,8 +1881,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>699</width>
-           <height>752</height>
+           <width>709</width>
+           <height>746</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -2210,7 +2210,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
             <item row="3" column="0">
              <widget class="QLabel" name="label_35">
               <property name="text">
-               <string>Timeout for Online Operations:</string>
+               <string>Timeout for Online Operations</string>
               </property>
              </widget>
             </item>

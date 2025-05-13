@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiHqdtIv.ui'
+## Form generated from reading UI file 'uimRNesG.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -852,11 +852,11 @@ class Ui_MainWindow(object):
         self.settings.setObjectName(u"settings")
         self.scrollArea = QScrollArea(self.settings)
         self.scrollArea.setObjectName(u"scrollArea")
-        self.scrollArea.setGeometry(QRect(0, -10, 711, 681))
+        self.scrollArea.setGeometry(QRect(0, -10, 721, 681))
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 699, 752))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 709, 746))
         self.verticalLayout_2 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.label_13 = QLabel(self.scrollAreaWidgetContents)
@@ -1636,7 +1636,7 @@ class Ui_MainWindow(object):
         self.label_32.setText(QCoreApplication.translate("MainWindow", u"Custom Update URL", None))
         self.label_33.setText(QCoreApplication.translate("MainWindow", u"Report Anonymous Usage Data", None))
         self.settingsReportUsageCheckbox.setText("")
-        self.label_35.setText(QCoreApplication.translate("MainWindow", u"Timeout for Online Operations:", None))
+        self.label_35.setText(QCoreApplication.translate("MainWindow", u"Timeout for Online Operations", None))
         self.label_36.setText(QCoreApplication.translate("MainWindow", u"Download Minecraft Versions", None))
         self.settingsDownloadVersionsCheckbox.setText("")
         self.settingsApplyButton.setText(QCoreApplication.translate("MainWindow", u"Apply", None))
