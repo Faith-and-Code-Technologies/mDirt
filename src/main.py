@@ -272,7 +272,7 @@ class App(QMainWindow):
         self.projectForm = load_project.Ui_Form()
         self.projectForm.setupUi(self.projectList)
 
-        manifest_path = os.path.join(self.mainDirectory, "workspaces", "manifest.json")
+        manifest_path = self.mainDirectory / 'workspaces' / 'manifest.json'
         projects = []
 
         if os.path.exists(manifest_path):
@@ -296,12 +296,12 @@ class App(QMainWindow):
             alert("Please select a valid project!")
             return
         
-        projectDirectory = f'{self.mainDirectory}/workspaces/{projectNamespace}'
+        projectDirectory = self.mainDirectory / 'workspaces' / f'{self.packDetails["namespace"]}'
         if not os.path.exists(projectDirectory):
             alert("This project doesn't exist or is corrupted!")
             return
         
-        with open(f'{projectDirectory}/project.dat', 'r') as file:
+        with open(projectDirectory / 'project.dat', 'r') as file:
             data = json.load(file)
             self.packDetails = data["packDetails"]
         if data["app_version"] != APP_VERSION:
@@ -311,13 +311,13 @@ class App(QMainWindow):
         self.pullData()
         self.setupProjectData()
 
-        with open(f'{projectDirectory}/blocks.json', 'r') as file:
+        with open(projectDirectory / 'blocks.json', 'r') as file:
             self.blocks = json.load(file)
-        with open(f'{projectDirectory}/items.json', 'r') as file:
+        with open(projectDirectory / 'items.json', 'r') as file:
             self.items = json.load(file)
-        with open(f'{projectDirectory}/recipes.json', 'r') as file:
+        with open(projectDirectory / 'recipes.json', 'r') as file:
             self.recipes = json.load(file)
-        with open(f'{projectDirectory}/paintings.json', 'r') as file:
+        with open(projectDirectory / 'paintings.json', 'r') as file:
             self.paintings = json.load(file)
         
         self.projectList.close()
