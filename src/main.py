@@ -87,6 +87,7 @@ class App(QMainWindow):
 
         # Painting Specific Connections
         self.ui.paintingTextureButton.clicked.connect(self.addPaintingTexture)
+        self.ui.paintingConfirmButton.clicked.connect(self.addPainting)
 
     #######################
     # SETUP PROJECT       #
@@ -154,7 +155,7 @@ class App(QMainWindow):
     def grabModule(self):
         version = f'v{self.packDetails["version"].replace(".", "_")}'
         self.moduleGrab = ModuleDownloader()
-        self.moduleGrab.download_and_extract(version)
+        #self.moduleGrab.download_and_extract(version)
 
     def newProject(self):
         if self.validatePackDetails() == 0: return      # Make sure all fields aren't empty and only contain valid characters.
@@ -182,6 +183,8 @@ class App(QMainWindow):
         
         self.dataFormat = self.version_json["dataformat"][self.packDetails["version"]]
         self.resourceFormat = self.version_json["resourceformat"][self.packDetails["version"]]
+
+        self.ui.menuNew_Element.setEnabled(True)
 
         self.blocks = {}
         self.items = {}
@@ -480,7 +483,7 @@ class App(QMainWindow):
                 BlockFace.BOTTOM: self.ui.blockTextureLabelBottom,
             }
 
-            label = label_map.get(BlockFace(face))
+            label = label_map.get(BlockFace(int(face)))
             if label:
                 label.setPixmap(pixmap)
 
