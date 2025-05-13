@@ -1,4 +1,5 @@
 import datetime, json, os, sys, requests, importlib, shutil, string
+from pathlib import Path
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QImage, QPixmap
@@ -33,7 +34,12 @@ class App(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        self.mainDirectory = f'{os.path.dirname(os.path.abspath(__file__))}/..'
+        if getattr(sys, 'frozen', False):
+            # Binary mode
+            self.mainDirectory = Path(sys._MEIPASS) / "_internal"
+        else:
+            # Dev mode
+            self.mainDirectory = Path(__file__).resolve().parent
         self.ui.menuNew_Element.setEnabled(False)
 
         # CONNECTIONS
