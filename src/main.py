@@ -225,7 +225,7 @@ class App(QMainWindow):
             data = {
             "app_version": APP_VERSION,
             "metadata": {
-                "last_edited": datetime.datetime.now(datetime.timezone.UTC).isoformat()
+                "last_edited": datetime.datetime.now(datetime.timezone.utc).isoformat()
             },
             "packDetails": self.packDetails
         }

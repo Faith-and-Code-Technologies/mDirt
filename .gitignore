@@ -2,3 +2,6 @@ __pycache__/
 *.py[cod]
 workspaces/*
 internal_todo.txt
+*.spec
+build/*
+dist/*
