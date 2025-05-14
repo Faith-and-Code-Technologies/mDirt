@@ -5,6 +5,6 @@ pyinstaller src/main.py ^
   --add-data "lib;lib" ^
   --add-data "src;src" ^
   --add-data "workspaces;workspaces" ^
-  --add-data "version.json;" ^
+  --add-data "src/version.json;" ^
   --hidden-import=jinja2 ^
   --hidden-import=jinja2.ext

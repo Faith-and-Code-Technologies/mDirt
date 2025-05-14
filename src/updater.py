@@ -7,12 +7,8 @@ import tempfile
 import subprocess
 import requests
 from packaging import version
-from PySide6.QtWidgets import (
-    QApplication, QWidget, QVBoxLayout, QLabel,
-    QPushButton, QMessageBox, QProgressBar
-)
-from PySide6.QtGui import QFont
-from PySide6.QtCore import Qt, QThread, Signal
+import tkinter as tk
+from tkinter import messagebox, ttk
 
 # --- Constants ---
 if getattr(sys, 'frozen', False):
@@ -45,25 +41,26 @@ def get_latest_release(allow_beta: bool):
     raise Exception("No valid releases found.")
 
 # --- Helper Threaded Worker ---
-class UpdateWorker(QThread):
-    progress = Signal(int)
-    status = Signal(str)
-    finished = Signal()
+class UpdateWorker:
+    def __init__(self, progress_callback, status_callback, finish_callback):
+        self.progress_callback = progress_callback
+        self.status_callback = status_callback
+        self.finish_callback = finish_callback
 
     def run(self):
-        self.status.emit("Checking for updates...")
+        self.status_callback("Checking for updates...")
         try:
             release_data = get_latest_release(include_beta)
         except Exception as e:
-            self.status.emit(f"Error: {str(e)}")
+            self.status_callback(f"Error: {str(e)}")
             return
         
         latest_tag = release_data['tag_name']
         if version.parse(latest_tag) <= version.parse(current_version):
-            self.status.emit("No updates available.")
+            self.status_callback("No updates available.")
             return
         
-        self.status.emit(f"New version found: {latest_tag}. Downloading...")
+        self.status_callback(f"New version found: {latest_tag}. Downloading...")
 
         zip_url = None
         zip_name = None
@@ -75,7 +72,7 @@ class UpdateWorker(QThread):
                 break
 
         if not zip_url:
-            self.status.emit("No .zip asset found.")
+            self.status_callback("No .zip asset found.")
             return
 
         zip_path = os.path.join(BASE_DIR, zip_name)
@@ -87,9 +84,9 @@ class UpdateWorker(QThread):
                     f.write(chunk)
                     downloaded += len(chunk)
                     if total:
-                        self.progress.emit(int(downloaded * 100 / total))
+                        self.progress_callback(int(downloaded * 100 / total))
 
-        self.status.emit("Extracting update...")
+        self.status_callback("Extracting update...")
         temp_path = tempfile.mkdtemp()
         with zipfile.ZipFile(zip_path, 'r') as zip_ref:
             zip_ref.extractall(temp_path)
@@ -138,47 +135,45 @@ class UpdateWorker(QThread):
         if new_executable and os.path.isfile(new_executable):
             subprocess.Popen([new_executable], cwd=BASE_DIR)
 
-        self.finished.emit()
+        self.finish_callback()
 
 # --- Main UI ---
-class UpdaterUI(QWidget):
+class UpdaterUI(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("mDirt Updater")
-        self.setFixedSize(400, 200)
+        self.title("mDirt Updater")
+        self.geometry("400x250")  # Increased the height to allow for proper spacing
+        self.resizable(False, False)
 
-        layout = QVBoxLayout()
+        # UI components
+        self.title_label = tk.Label(self, text="mDirt Updater", font=("Segoe UI", 20, "bold"))
+        self.title_label.pack(pady=20)
 
-        self.title = QLabel("mDirt Updater")
-        self.title.setFont(QFont("Segoe UI", 20, QFont.Bold))
-        self.title.setAlignment(Qt.AlignCenter)
-        layout.addWidget(self.title)
+        self.status_label = tk.Label(self, text="Waiting to start...", font=("Segoe UI", 12))
+        self.status_label.pack(pady=10)
 
-        self.status = QLabel("Waiting to start...")
-        self.status.setAlignment(Qt.AlignCenter)
-        layout.addWidget(self.status)
+        self.progress_bar = ttk.Progressbar(self, length=300, mode="determinate")
+        self.progress_bar.pack(pady=10)
 
-        self.progress = QProgressBar()
-        self.progress.setValue(0)
-        layout.addWidget(self.progress)
-
-        self.button = QPushButton("Check for Updates")
-        self.button.clicked.connect(self.start_update)
-        layout.addWidget(self.button)
-
-        self.setLayout(layout)
+        self.check_button = tk.Button(self, text="Check for Updates", command=self.start_update, font=("Segoe UI", 12), height=2)  # Increased button height
+        self.check_button.pack(pady=20)  # Increased padding for better spacing
 
     def start_update(self):
-        self.button.setEnabled(False)
-        self.worker = UpdateWorker()
-        self.worker.progress.connect(self.progress.setValue)
-        self.worker.status.connect(self.status.setText)
-        self.worker.finished.connect(self.close)
-        self.worker.start()
+        self.check_button.config(state=tk.DISABLED)
+        worker = UpdateWorker(self.update_progress, self.update_status, self.finish_update)
+        worker.run()
+
+    def update_progress(self, value):
+        self.progress_bar["value"] = value
+
+    def update_status(self, status):
+        self.status_label.config(text=status)
+
+    def finish_update(self):
+        self.check_button.config(state=tk.NORMAL)
+        messagebox.showinfo("Update Finished", "The update was completed successfully.")
 
 # --- App Run ---
 if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ui = UpdaterUI()
-    ui.show()
-    sys.exit(app.exec())
+    app = UpdaterUI()
+    app.mainloop()
