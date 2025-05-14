@@ -3,19 +3,30 @@ import os
 
 DEFAULT_SETTINGS = {
     "general": {
-        "auto_save_interval": "5 min",
+        "auto_save_interval": "5 Minutes",
         "open_last_project": True,
         "workspace_path": "default",
         "language": "English",
     },
-    "appearance": {"theme": "Earthy Dark", "font_size": 13, "show_tips": True},
-    "editor": {"confirm_deletes": True, "enable_experiments": False},
+    "appearance": {
+        "theme": "Earthy Dark", 
+        "font_size": 13, 
+        "show_tips": True
+        },
+    "editor": {
+        "confirm_deletes": True, 
+        "enable_experiments": False
+        },
     "file_export": {
         "default_export_location": "default",
         "pack_format_override": "",
         "verbose_logging": False,
     },
-    "network": {"check_updates": True, "custom_update_url": "", "get_betas": False},
+    "network": {
+        "check_updates": True, 
+        "custom_update_url": "", 
+        "get_betas": False
+        },
 }
 
 

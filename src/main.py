@@ -1,7 +1,7 @@
 import datetime, json, os, sys, requests, importlib, shutil, string, subprocess
 from pathlib import Path
 
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QTimer
 from PySide6.QtGui import QImage, QPixmap
 from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QMessageBox, QWidget, QTreeWidgetItem
 
@@ -52,6 +52,10 @@ class App(QMainWindow):
 
         self.settings = SettingsManager()
 
+        self.autoSaveTimer = QTimer(self)
+        self.autoSaveTimer.timeout.connect(self.saveProject)
+        self.setAutoSaveInterval()
+
         # CONNECTIONS
         self.ui.actionNew_Project.triggered.connect(self.openProjectMenu)
         self.ui.createProjectButton.clicked.connect(self.newProject)
@@ -59,6 +63,8 @@ class App(QMainWindow):
         self.ui.actionExport_Project.triggered.connect(self.generateDatapack)
         self.ui.actionSave_2.triggered.connect(self.saveProject)
         self.ui.actionSettings.triggered.connect(self.openSettings)
+
+        self.ui.settingsApplyButton.clicked.connect(self.saveSettings)
 
         self.ui.elementViewer.itemDoubleClicked.connect(self.elementClicked)
 
@@ -362,10 +368,38 @@ class App(QMainWindow):
     # SETTINGS            #
     #######################
 
+    def setAutoSaveInterval(self):
+        mode = self.settings.get('general', 'auto_save_interval').lower()
+        if mode == "1 minute":
+            self.autoSaveTimer.start(60 * 1000)
+        elif mode == "5 minutes":
+            self.autoSaveTimer.start(5 * 60 * 1000)
+        elif mode == "off":
+            self.autoSaveTimer.stop()
+
     def openSettings(self):
         self.refreshSettings()
         self.ui.elementEditor.setCurrentIndex(ElementPage.SETTINGS)
     
+    def saveSettings(self):
+        self.settings.set('general', 'auto_save_interval', self.ui.settingsAutoSaveInt.currentText())
+        self.settings.set('general', 'open_last_project', self.ui.settingsOpenLastCheckbox.isChecked())
+        self.settings.set('general', 'workspace_path', self.ui.settingsWorkspacePathCombo.text())
+        self.settings.set('general', 'language', self.ui.settingsLanguageCombo.currentText())
+        self.settings.set('appearance', 'theme', self.ui.settingsThemeCombo.currentText())
+        self.settings.set('appearance', 'font_size', self.ui.settingsFontSizeSlider.value())
+        self.settings.set('appearance', 'show_tips', self.ui.settingsTipsCheckbox.isChecked())
+        self.settings.set('editor', 'confirm_deletes', self.ui.settingsConfirmElementDeleteCheckbox.isChecked())
+        self.settings.set('editor', 'enable_experiments', self.ui.settingsExperimentsCheckbox.isChecked())
+        self.settings.set('file_export', 'default_export_location', self.ui.settingsExportLocation.text())
+        self.settings.set('file_export', 'pack_format_override', self.ui.settingsPackFormatOverride.text())
+        self.settings.set('file_export', 'verbose_logging', self.ui.settingsVerboseLoggingCheckbox.isChecked())
+        self.settings.set('network', 'check_updates', self.ui.settingsCheckUpdatesCheckbox.isChecked())
+        self.settings.set('network', 'custom_update_url', self.ui.settingsUpdateURL.text())
+        self.settings.set('network', 'get_betas', self.ui.settingsBetaUpdatesCheckbox.isChecked())
+
+        self.settings.save_settings()
+
     def refreshSettings(self):
         self.ui.settingsAutoSaveInt.setCurrentText(self.settings.get('general', 'auto_save_interval'))
         self.ui.settingsOpenLastCheckbox.setChecked(self.settings.get('general', 'open_last_project'))
@@ -382,6 +416,8 @@ class App(QMainWindow):
         self.ui.settingsCheckUpdatesCheckbox.setChecked(self.settings.get('network', 'check_updates'))
         self.ui.settingsUpdateURL.setText(self.settings.get('network', 'custom_update_url'))
         self.ui.settingsBetaUpdatesCheckbox.setChecked(self.settings.get('network', 'get_betas'))
+
+        self.setAutoSaveInterval()
 
     #######################
     # ELEMENT MANAGER     #
