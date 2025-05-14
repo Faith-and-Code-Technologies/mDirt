@@ -346,6 +346,7 @@ class App(QMainWindow):
     #######################
 
     def openSettings(self):
+        self.refreshSettings()
         self.ui.elementEditor.setCurrentIndex(ElementPage.SETTINGS)
     
     def refreshSettings(self):
@@ -356,6 +357,18 @@ class App(QMainWindow):
         self.ui.settingsThemeCombo.setCurrentText(self.settings.get('appearance', 'theme'))
         self.ui.settingsFontSizeSlider.setValue(self.settings.get('appearance', 'font_size'))
         self.ui.settingsTipsCheckbox.setChecked(self.settings.get('appearance', 'show_tips'))
+        self.ui.settingsConfirmElementDeleteCheckbox.setChecked(self.settings.get('editor', 'confirm_deletes'))
+        self.ui.settingsExperimentsCheckbox.setChecked(self.settings.get('editor', 'enable_experiments'))
+        self.ui.settingsExportLocation.setText(self.settings.get('file_export', 'default_export_location'))
+        self.ui.settingsPackFormatOverride.setText(self.settings.get('file_export', 'pack_format_override'))
+        self.ui.settingsVerboseLoggingCheckbox.setChecked(self.settings.get('file_export', 'verbose_logging'))
+        self.ui.settingsClearTempCheckbox.setChecked(self.settings.get('file_export', 'clear_temp_files'))
+        self.ui.settingsAskOverwriteCheckbox.setChecked(self.settings.get('file_export', 'ask_before_overwrite'))
+        self.ui.settingsCheckUpdatesCheckbox.setChecked(self.settings.get('network', 'check_updates'))
+        self.ui.settingsUpdateURL.setText(self.settings.get('network', 'custom_update_url'))
+        self.ui.settingsReportUsageCheckbox.setChecked(self.settings.get('network', 'report_usage'))
+        self.ui.settingsTimeoutSpinbox.setValue(self.settings.get('network', 'online_timeout'))
+        self.ui.settingsDownloadVersionsCheckbox.setChecked(self.settings.get('network', 'download_mc_versions'))
 
     #######################
     # ELEMENT MANAGER     #

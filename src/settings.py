@@ -37,6 +37,7 @@ class SettingsManager:
     def __init__(self, settings_path="settings.json"):
         self.settings_path = settings_path
         self.settings = self.load_settings()
+        self.save_settings()
 
     def load_settings(self):
         if os.path.exists(self.settings_path):
