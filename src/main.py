@@ -303,7 +303,7 @@ class App(QMainWindow):
             alert("Please select a valid project!")
             return
         
-        projectDirectory = self.mainDirectory / 'workspaces' / f'{self.packDetails["namespace"]}'
+        projectDirectory = self.mainDirectory / 'workspaces' / f'{projectNamespace}'
         if not os.path.exists(projectDirectory):
             alert("This project doesn't exist or is corrupted!")
             return
@@ -1008,31 +1008,61 @@ class App(QMainWindow):
         with open(os.path.join(self.packDirectory, "pack.mcmeta"), "w") as f:
             json.dump(pack_meta, f, indent=4)
 
-        # Create feature folders
-        os.makedirs(os.path.join(self.namespaceDirectory, "function"), exist_ok=True)
-        if self.blocks or self.items:
-            os.makedirs(os.path.join(self.namespaceDirectory, "advancement"), exist_ok=True)
-        if self.blocks:
-            os.makedirs(os.path.join(self.namespaceDirectory, "loot_table"), exist_ok=True)
-        if self.recipes:
-            os.makedirs(os.path.join(self.namespaceDirectory, "recipe"), exist_ok=True)
+        is_legacy = self.packVersion == "1.21.3"
 
-        # Create tags folders
-        tags_function_dir = os.path.join(self.minecraftDirectory, "tags", "function")
-        os.makedirs(tags_function_dir, exist_ok=True)
-
-        # Write tick.mcfunction
-        tick_path = os.path.join(self.namespaceDirectory, "function", "tick.mcfunction")
-        with open(tick_path, "w") as tick:
+        if is_legacy:
+            # Create feature folders
+            os.makedirs(os.path.join(self.namespaceDirectory, "functions"), exist_ok=True)
+            if self.blocks or self.items:
+                os.makedirs(os.path.join(self.namespaceDirectory, "advancements"), exist_ok=True)
             if self.blocks:
-                tick.write(f'{self.header}execute as @e[type=item_display,tag={self.packAuthor}.custom_block] at @s run function {self.packNamespace}:blocks/as_blocks')
-            else:
-                tick.write(self.header)
+                os.makedirs(os.path.join(self.namespaceDirectory, "loot_tables"), exist_ok=True)
+            if self.recipes:
+                os.makedirs(os.path.join(self.namespaceDirectory, "recipes"), exist_ok=True)
 
-        # Write load.mcfunction
-        load_path = os.path.join(self.namespaceDirectory, "function", "load.mcfunction")
-        with open(load_path, "w") as load:
-            load.write(f'{self.header}tellraw @a {{"text":"[mDirt {APP_VERSION}] - Successfully loaded pack!","color":"red"}}')
+            # Create tags folders
+            tags_function_dir = os.path.join(self.minecraftDirectory, "tags", "functions")
+            os.makedirs(tags_function_dir, exist_ok=True)
+
+            # Write tick.mcfunction
+            tick_path = os.path.join(self.namespaceDirectory, "functions", "tick.mcfunction")
+            with open(tick_path, "w") as tick:
+                if self.blocks:
+                    tick.write(f'{self.header}execute as @e[type=item_display,tag={self.packAuthor}.custom_block] at @s run function {self.packNamespace}:blocks/as_blocks')
+                else:
+                    tick.write(self.header)
+
+            # Write load.mcfunction
+            load_path = os.path.join(self.namespaceDirectory, "functions", "load.mcfunction")
+            with open(load_path, "w") as load:
+                load.write(f'{self.header}tellraw @a {{"text":"[mDirt {APP_VERSION}] - Successfully loaded pack!","color":"red"}}')
+
+        else:
+            # Create feature folders
+            os.makedirs(os.path.join(self.namespaceDirectory, "function"), exist_ok=True)
+            if self.blocks or self.items:
+                os.makedirs(os.path.join(self.namespaceDirectory, "advancement"), exist_ok=True)
+            if self.blocks:
+                os.makedirs(os.path.join(self.namespaceDirectory, "loot_table"), exist_ok=True)
+            if self.recipes:
+                os.makedirs(os.path.join(self.namespaceDirectory, "recipe"), exist_ok=True)
+
+            # Create tags folders
+            tags_function_dir = os.path.join(self.minecraftDirectory, "tags", "function")
+            os.makedirs(tags_function_dir, exist_ok=True)
+
+            # Write tick.mcfunction
+            tick_path = os.path.join(self.namespaceDirectory, "function", "tick.mcfunction")
+            with open(tick_path, "w") as tick:
+                if self.blocks:
+                    tick.write(f'{self.header}execute as @e[type=item_display,tag={self.packAuthor}.custom_block] at @s run function {self.packNamespace}:blocks/as_blocks')
+                else:
+                    tick.write(self.header)
+
+            # Write load.mcfunction
+            load_path = os.path.join(self.namespaceDirectory, "function", "load.mcfunction")
+            with open(load_path, "w") as load:
+                load.write(f'{self.header}tellraw @a {{"text":"[mDirt {APP_VERSION}] - Successfully loaded pack!","color":"red"}}')
 
         # Write tick/load JSON tags
         tick_json_path = os.path.join(tags_function_dir, "tick.json")

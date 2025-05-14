@@ -306,6 +306,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <height>50</height>
          </rect>
         </property>
+        <property name="acceptDrops">
+         <bool>true</bool>
+        </property>
         <property name="toolTip">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The bottom texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use this texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
@@ -324,6 +327,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <width>50</width>
           <height>50</height>
          </rect>
+        </property>
+        <property name="acceptDrops">
+         <bool>true</bool>
         </property>
         <property name="toolTip">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The top texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -344,6 +350,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <height>50</height>
          </rect>
         </property>
+        <property name="acceptDrops">
+         <bool>true</bool>
+        </property>
         <property name="toolTip">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The left texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
@@ -362,6 +371,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <width>50</width>
           <height>50</height>
          </rect>
+        </property>
+        <property name="acceptDrops">
+         <bool>true</bool>
         </property>
         <property name="toolTip">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The back texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -382,6 +394,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <height>50</height>
          </rect>
         </property>
+        <property name="acceptDrops">
+         <bool>true</bool>
+        </property>
         <property name="toolTip">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The front texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
@@ -400,6 +415,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <width>50</width>
           <height>50</height>
          </rect>
+        </property>
+        <property name="acceptDrops">
+         <bool>true</bool>
         </property>
         <property name="toolTip">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The right texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1392,6 +1410,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <height>50</height>
          </rect>
         </property>
+        <property name="acceptDrops">
+         <bool>true</bool>
+        </property>
         <property name="toolTip">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The texture of your item!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
@@ -1573,6 +1594,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <width>50</width>
           <height>50</height>
          </rect>
+        </property>
+        <property name="acceptDrops">
+         <bool>true</bool>
         </property>
         <property name="toolTip">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The texture of your painting!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uimRNesG.ui'
+## Form generated from reading UI file 'uiwEMDRV.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -232,26 +232,32 @@ class Ui_MainWindow(object):
         self.blockTextureButtonBottom = QPushButton(self.blockEditor)
         self.blockTextureButtonBottom.setObjectName(u"blockTextureButtonBottom")
         self.blockTextureButtonBottom.setGeometry(QRect(330, 150, 50, 50))
+        self.blockTextureButtonBottom.setAcceptDrops(True)
         self.blockTextureButtonBottom.setFlat(True)
         self.blockTextureButtonTop = QPushButton(self.blockEditor)
         self.blockTextureButtonTop.setObjectName(u"blockTextureButtonTop")
         self.blockTextureButtonTop.setGeometry(QRect(330, 30, 50, 50))
+        self.blockTextureButtonTop.setAcceptDrops(True)
         self.blockTextureButtonTop.setFlat(True)
         self.blockTextureButtonLeft = QPushButton(self.blockEditor)
         self.blockTextureButtonLeft.setObjectName(u"blockTextureButtonLeft")
         self.blockTextureButtonLeft.setGeometry(QRect(270, 90, 50, 50))
+        self.blockTextureButtonLeft.setAcceptDrops(True)
         self.blockTextureButtonLeft.setFlat(True)
         self.blockTextureButtonBack = QPushButton(self.blockEditor)
         self.blockTextureButtonBack.setObjectName(u"blockTextureButtonBack")
         self.blockTextureButtonBack.setGeometry(QRect(330, 90, 50, 50))
+        self.blockTextureButtonBack.setAcceptDrops(True)
         self.blockTextureButtonBack.setFlat(True)
         self.blockTextureButtonFront = QPushButton(self.blockEditor)
         self.blockTextureButtonFront.setObjectName(u"blockTextureButtonFront")
         self.blockTextureButtonFront.setGeometry(QRect(450, 90, 50, 50))
+        self.blockTextureButtonFront.setAcceptDrops(True)
         self.blockTextureButtonFront.setFlat(True)
         self.blockTextureButtonRight = QPushButton(self.blockEditor)
         self.blockTextureButtonRight.setObjectName(u"blockTextureButtonRight")
         self.blockTextureButtonRight.setGeometry(QRect(390, 90, 50, 50))
+        self.blockTextureButtonRight.setAcceptDrops(True)
         self.blockTextureButtonRight.setFlat(True)
         self.blockTextureLabel = QLabel(self.blockEditor)
         self.blockTextureLabel.setObjectName(u"blockTextureLabel")
@@ -589,6 +595,7 @@ class Ui_MainWindow(object):
         self.itemTextureButton = QPushButton(self.itemEditor)
         self.itemTextureButton.setObjectName(u"itemTextureButton")
         self.itemTextureButton.setGeometry(QRect(430, 40, 50, 50))
+        self.itemTextureButton.setAcceptDrops(True)
         self.itemTextureButton.setFlat(True)
         self.layoutWidget1 = QWidget(self.itemEditor)
         self.layoutWidget1.setObjectName(u"layoutWidget1")
@@ -689,6 +696,7 @@ class Ui_MainWindow(object):
         self.paintingTextureButton = QPushButton(self.paintingEditor)
         self.paintingTextureButton.setObjectName(u"paintingTextureButton")
         self.paintingTextureButton.setGeometry(QRect(470, 10, 50, 50))
+        self.paintingTextureButton.setAcceptDrops(True)
         self.paintingTextureButton.setFlat(True)
         self.paintingTextureLabel = QLabel(self.paintingEditor)
         self.paintingTextureLabel.setObjectName(u"paintingTextureLabel")
