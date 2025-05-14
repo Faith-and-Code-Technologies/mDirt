@@ -42,7 +42,7 @@ class App(QMainWindow):
             self.mainDirectory = Path(sys._MEIPASS)
         else:
             # Dev mode
-            self.mainDirectory = Path(__file__).resolve().parent
+            self.mainDirectory = Path(__file__).resolve().parent.parent
         self.ui.menuNew_Element.setEnabled(False)
 
         self.settings = SettingsManager()
@@ -166,7 +166,8 @@ class App(QMainWindow):
 
     def grabModule(self):
         version = f'v{self.packDetails["version"].replace(".", "_")}'
-        self.moduleGrab = ModuleDownloader(self.mainDirectory / 'src' / 'generation')
+        dir = self.mainDirectory / 'src' / 'generation'
+        self.moduleGrab = ModuleDownloader(target_dir=dir)
         self.moduleGrab.download_and_extract(version)
 
     def newProject(self):
