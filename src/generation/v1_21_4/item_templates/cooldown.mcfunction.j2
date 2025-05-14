@@ -1,6 +1,0 @@
-{{ header }}
-{% if mode == "impulse" %}
-    scoreboard players remove @s {{ item }}_cooldown 1
-    execute if score @s {{ item }}_cooldown matches 1.. run return run advancement revoke @s only {{ packNamespace }}:{{ item }}_cooldown
-    scoreboard players reset @s {{ item }}_cooldown
-{% endif %}
