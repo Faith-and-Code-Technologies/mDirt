@@ -17,7 +17,7 @@ def get_minecraft_files(version: str):
     zip_file_path = zip_path.with_suffix(".zip")
     os.rename(zip_path, zip_file_path)
 
-    extract_folder = current_directory / 'FileSsSsS'
+    extract_folder = current_directory / 'extracted_files'
     extract_folder.mkdir(exist_ok=True)
 
     with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
@@ -44,4 +44,4 @@ def get_minecraft_files(version: str):
 
 blocks = []
 items = []
-get_minecraft_files("25w19a")
+get_minecraft_files("25w20a")
