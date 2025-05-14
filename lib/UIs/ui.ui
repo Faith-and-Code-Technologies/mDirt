@@ -1906,7 +1906,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <x>0</x>
            <y>0</y>
            <width>709</width>
-           <height>746</height>
+           <height>690</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -1928,6 +1928,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </item>
             <item row="0" column="1">
              <widget class="QComboBox" name="settingsAutoSaveInt">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;How often you want your project to auto-save.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <item>
                <property name="text">
                 <string>Off</string>
@@ -1954,6 +1957,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </item>
             <item row="1" column="1">
              <widget class="QCheckBox" name="settingsOpenLastCheckbox">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Whether or not mDirt should open your most recent project on launch.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="text">
                <string/>
               </property>
@@ -1968,6 +1974,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </item>
             <item row="2" column="1">
              <widget class="QLineEdit" name="settingsWorkspacePathCombo">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The location where your workspaces can be found.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="text">
                <string>mDirt/workspaces</string>
               </property>
@@ -1982,6 +1991,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </item>
             <item row="3" column="1">
              <widget class="QComboBox" name="settingsLanguageCombo">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The language of mDirt.&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Only English is supported for now.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <item>
                <property name="text">
                 <string>English</string>
@@ -2023,6 +2035,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </item>
             <item row="0" column="1">
              <widget class="QComboBox" name="settingsThemeCombo">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The mDirt theme.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <item>
                <property name="text">
                 <string>Earthy Dark</string>
@@ -2037,6 +2052,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </item>
             <item row="1" column="1">
              <widget class="QSlider" name="settingsFontSizeSlider">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The font size for texts across the app.&lt;br/&gt;Changing may lead to some minor graphical glitches.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="minimum">
                <number>10</number>
               </property>
@@ -2053,6 +2071,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </item>
             <item row="2" column="1">
              <widget class="QCheckBox" name="settingsTipsCheckbox">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Whether or not the mDirt Welcome screen should show tips.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="text">
                <string/>
               </property>
@@ -2081,6 +2102,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </item>
             <item row="0" column="1">
              <widget class="QCheckBox" name="settingsConfirmElementDeleteCheckbox">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Whether or not it asks for confirmation before deleting elements.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="text">
                <string/>
               </property>
@@ -2098,6 +2122,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </item>
             <item row="1" column="1">
              <widget class="QCheckBox" name="settingsExperimentsCheckbox">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Whether or not you want to use Experimental elements.&lt;br/&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;This may lead to corruption of your workspaces!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="text">
                <string/>
               </property>
@@ -2122,7 +2149,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
              </widget>
             </item>
             <item row="0" column="1">
-             <widget class="QLineEdit" name="settingsExportLocation"/>
+             <widget class="QLineEdit" name="settingsExportLocation">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The location where mDirt will export your packs.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
             </item>
             <item row="1" column="0">
              <widget class="QLabel" name="label_27">
@@ -2132,7 +2163,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="QLineEdit" name="settingsPackFormatOverride"/>
+             <widget class="QLineEdit" name="settingsPackFormatOverride">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;EXPERIMENTAL!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;DO NOT TOUCH IF YOU DON'T KNOW WHAT YOU ARE DOING!&lt;br/&gt;&lt;/span&gt;Lets you select a new Data &amp;amp; Resource Pack format, as well as use custom Modules.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
             </item>
             <item row="2" column="0">
              <widget class="QLabel" name="label_28">
@@ -2143,37 +2178,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </item>
             <item row="2" column="1">
              <widget class="QCheckBox" name="settingsVerboseLoggingCheckbox">
-              <property name="text">
-               <string/>
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Whether or not mDirt should create a `.log` file and log everything its doing.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="label_29">
-              <property name="text">
-               <string>Clear Temporary Files on Exit</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="label_34">
-              <property name="text">
-               <string>Ask Before Overwriting Files</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QCheckBox" name="settingsClearTempCheckbox">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="1">
-             <widget class="QCheckBox" name="settingsAskOverwriteCheckbox">
               <property name="text">
                <string/>
               </property>
@@ -2199,6 +2206,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
             </item>
             <item row="0" column="1">
              <widget class="QCheckBox" name="settingsCheckUpdatesCheckbox">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Whether or not mDirt should check for updates when it startsup.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;It will not install the update without confirmation.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="text">
                <string/>
               </property>
@@ -2215,56 +2225,26 @@ li.checked::marker { content: &quot;\2612&quot;; }
              </widget>
             </item>
             <item row="1" column="1">
-             <widget class="QLineEdit" name="settingsUpdateURL"/>
+             <widget class="QLineEdit" name="settingsUpdateURL">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A custom URL to download mDirt updates from.&lt;br/&gt;Mostly used for developer testing. &lt;span style=&quot; font-weight:700;&quot;&gt;Do not use if you do not know what you're doing!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
             </item>
             <item row="2" column="0">
-             <widget class="QLabel" name="label_33">
+             <widget class="QLabel" name="label_29">
               <property name="text">
-               <string>Report Anonymous Usage Data</string>
+               <string>Use mDirt Beta</string>
               </property>
              </widget>
             </item>
             <item row="2" column="1">
-             <widget class="QCheckBox" name="settingsReportUsageCheckbox">
+             <widget class="QCheckBox" name="settingsBetaUpdatesCheckbox">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Whether or not you want to download the latest Beta rather than latest stable release when updating.&lt;/p&gt;&lt;p&gt;Betas are usually mostly stable, but stable releases are always more stable.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
               <property name="text">
                <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="label_35">
-              <property name="text">
-               <string>Timeout for Online Operations</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QSpinBox" name="settingsTimeoutSpinbox">
-              <property name="minimum">
-               <number>1</number>
-              </property>
-              <property name="maximum">
-               <number>20</number>
-              </property>
-              <property name="value">
-               <number>5</number>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="label_36">
-              <property name="text">
-               <string>Download Minecraft Versions</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="1">
-             <widget class="QCheckBox" name="settingsDownloadVersionsCheckbox">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="checked">
-               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -2272,13 +2252,29 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </item>
           <item>
            <widget class="QPushButton" name="settingsApplyButton">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Apply the new settings.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string>Apply</string>
             </property>
            </widget>
           </item>
           <item>
+           <widget class="QPushButton" name="pushButton">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Close the settings menu without applying the settings.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>Cancel</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="settingsRestoreDefaultsButton">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Restore settings to their defaults.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string>Restore Defaults</string>
             </property>

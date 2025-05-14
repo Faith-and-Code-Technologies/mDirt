@@ -363,13 +363,9 @@ class App(QMainWindow):
         self.ui.settingsExportLocation.setText(self.settings.get('file_export', 'default_export_location'))
         self.ui.settingsPackFormatOverride.setText(self.settings.get('file_export', 'pack_format_override'))
         self.ui.settingsVerboseLoggingCheckbox.setChecked(self.settings.get('file_export', 'verbose_logging'))
-        self.ui.settingsClearTempCheckbox.setChecked(self.settings.get('file_export', 'clear_temp_files'))
-        self.ui.settingsAskOverwriteCheckbox.setChecked(self.settings.get('file_export', 'ask_before_overwrite'))
         self.ui.settingsCheckUpdatesCheckbox.setChecked(self.settings.get('network', 'check_updates'))
         self.ui.settingsUpdateURL.setText(self.settings.get('network', 'custom_update_url'))
-        self.ui.settingsReportUsageCheckbox.setChecked(self.settings.get('network', 'report_usage'))
-        self.ui.settingsTimeoutSpinbox.setValue(self.settings.get('network', 'online_timeout'))
-        self.ui.settingsDownloadVersionsCheckbox.setChecked(self.settings.get('network', 'download_mc_versions'))
+        self.ui.settingsBetaUpdatesCheckbox.setChecked(self.settings.get('network', 'get_betas'))
 
     #######################
     # ELEMENT MANAGER     #

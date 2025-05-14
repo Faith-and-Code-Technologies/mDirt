@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiwEMDRV.ui'
+## Form generated from reading UI file 'uiDoicIJ.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -864,7 +864,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 709, 746))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 709, 690))
         self.verticalLayout_2 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.label_13 = QLabel(self.scrollAreaWidgetContents)
@@ -1036,27 +1036,6 @@ class Ui_MainWindow(object):
 
         self.formLayout_7.setWidget(2, QFormLayout.FieldRole, self.settingsVerboseLoggingCheckbox)
 
-        self.label_29 = QLabel(self.scrollAreaWidgetContents)
-        self.label_29.setObjectName(u"label_29")
-
-        self.formLayout_7.setWidget(3, QFormLayout.LabelRole, self.label_29)
-
-        self.label_34 = QLabel(self.scrollAreaWidgetContents)
-        self.label_34.setObjectName(u"label_34")
-
-        self.formLayout_7.setWidget(4, QFormLayout.LabelRole, self.label_34)
-
-        self.settingsClearTempCheckbox = QCheckBox(self.scrollAreaWidgetContents)
-        self.settingsClearTempCheckbox.setObjectName(u"settingsClearTempCheckbox")
-        self.settingsClearTempCheckbox.setChecked(True)
-
-        self.formLayout_7.setWidget(3, QFormLayout.FieldRole, self.settingsClearTempCheckbox)
-
-        self.settingsAskOverwriteCheckbox = QCheckBox(self.scrollAreaWidgetContents)
-        self.settingsAskOverwriteCheckbox.setObjectName(u"settingsAskOverwriteCheckbox")
-
-        self.formLayout_7.setWidget(4, QFormLayout.FieldRole, self.settingsAskOverwriteCheckbox)
-
 
         self.verticalLayout_2.addLayout(self.formLayout_7)
 
@@ -1088,39 +1067,15 @@ class Ui_MainWindow(object):
 
         self.formLayout_8.setWidget(1, QFormLayout.FieldRole, self.settingsUpdateURL)
 
-        self.label_33 = QLabel(self.scrollAreaWidgetContents)
-        self.label_33.setObjectName(u"label_33")
+        self.label_29 = QLabel(self.scrollAreaWidgetContents)
+        self.label_29.setObjectName(u"label_29")
 
-        self.formLayout_8.setWidget(2, QFormLayout.LabelRole, self.label_33)
+        self.formLayout_8.setWidget(2, QFormLayout.LabelRole, self.label_29)
 
-        self.settingsReportUsageCheckbox = QCheckBox(self.scrollAreaWidgetContents)
-        self.settingsReportUsageCheckbox.setObjectName(u"settingsReportUsageCheckbox")
+        self.settingsBetaUpdatesCheckbox = QCheckBox(self.scrollAreaWidgetContents)
+        self.settingsBetaUpdatesCheckbox.setObjectName(u"settingsBetaUpdatesCheckbox")
 
-        self.formLayout_8.setWidget(2, QFormLayout.FieldRole, self.settingsReportUsageCheckbox)
-
-        self.label_35 = QLabel(self.scrollAreaWidgetContents)
-        self.label_35.setObjectName(u"label_35")
-
-        self.formLayout_8.setWidget(3, QFormLayout.LabelRole, self.label_35)
-
-        self.settingsTimeoutSpinbox = QSpinBox(self.scrollAreaWidgetContents)
-        self.settingsTimeoutSpinbox.setObjectName(u"settingsTimeoutSpinbox")
-        self.settingsTimeoutSpinbox.setMinimum(1)
-        self.settingsTimeoutSpinbox.setMaximum(20)
-        self.settingsTimeoutSpinbox.setValue(5)
-
-        self.formLayout_8.setWidget(3, QFormLayout.FieldRole, self.settingsTimeoutSpinbox)
-
-        self.label_36 = QLabel(self.scrollAreaWidgetContents)
-        self.label_36.setObjectName(u"label_36")
-
-        self.formLayout_8.setWidget(4, QFormLayout.LabelRole, self.label_36)
-
-        self.settingsDownloadVersionsCheckbox = QCheckBox(self.scrollAreaWidgetContents)
-        self.settingsDownloadVersionsCheckbox.setObjectName(u"settingsDownloadVersionsCheckbox")
-        self.settingsDownloadVersionsCheckbox.setChecked(True)
-
-        self.formLayout_8.setWidget(4, QFormLayout.FieldRole, self.settingsDownloadVersionsCheckbox)
+        self.formLayout_8.setWidget(2, QFormLayout.FieldRole, self.settingsBetaUpdatesCheckbox)
 
 
         self.verticalLayout_2.addLayout(self.formLayout_8)
@@ -1129,6 +1084,11 @@ class Ui_MainWindow(object):
         self.settingsApplyButton.setObjectName(u"settingsApplyButton")
 
         self.verticalLayout_2.addWidget(self.settingsApplyButton)
+
+        self.pushButton = QPushButton(self.scrollAreaWidgetContents)
+        self.pushButton.setObjectName(u"pushButton")
+
+        self.verticalLayout_2.addWidget(self.pushButton)
 
         self.settingsRestoreDefaultsButton = QPushButton(self.scrollAreaWidgetContents)
         self.settingsRestoreDefaultsButton.setObjectName(u"settingsRestoreDefaultsButton")
@@ -1609,13 +1569,25 @@ class Ui_MainWindow(object):
         self.settingsAutoSaveInt.setItemText(1, QCoreApplication.translate("MainWindow", u"1 Minute", None))
         self.settingsAutoSaveInt.setItemText(2, QCoreApplication.translate("MainWindow", u"5 Minutes", None))
 
+#if QT_CONFIG(tooltip)
+        self.settingsAutoSaveInt.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>How often you want your project to auto-save.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_15.setText(QCoreApplication.translate("MainWindow", u"Open Last Project On Launch", None))
+#if QT_CONFIG(tooltip)
+        self.settingsOpenLastCheckbox.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Whether or not mDirt should open your most recent project on launch.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.settingsOpenLastCheckbox.setText("")
         self.label_16.setText(QCoreApplication.translate("MainWindow", u"Workspace Path", None))
+#if QT_CONFIG(tooltip)
+        self.settingsWorkspacePathCombo.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The location where your workspaces can be found.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.settingsWorkspacePathCombo.setText(QCoreApplication.translate("MainWindow", u"mDirt/workspaces", None))
         self.label_17.setText(QCoreApplication.translate("MainWindow", u"Language", None))
         self.settingsLanguageCombo.setItemText(0, QCoreApplication.translate("MainWindow", u"English", None))
 
+#if QT_CONFIG(tooltip)
+        self.settingsLanguageCombo.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The language of mDirt.<br/><span style=\" font-weight:700;\">Only English is supported for now.</span></p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_18.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Appearance</span></p></body></html>", None))
         self.label_19.setText(QCoreApplication.translate("MainWindow", u"Theme", None))
         self.label_20.setText(QCoreApplication.translate("MainWindow", u"Font Size", None))
@@ -1623,31 +1595,67 @@ class Ui_MainWindow(object):
         self.settingsThemeCombo.setItemText(0, QCoreApplication.translate("MainWindow", u"Earthy Dark", None))
         self.settingsThemeCombo.setItemText(1, QCoreApplication.translate("MainWindow", u"Sky Light", None))
 
+#if QT_CONFIG(tooltip)
+        self.settingsThemeCombo.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The mDirt theme.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.settingsFontSizeSlider.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The font size for texts across the app.<br/>Changing may lead to some minor graphical glitches.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.settingsTipsCheckbox.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Whether or not the mDirt Welcome screen should show tips.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.settingsTipsCheckbox.setText("")
         self.label_22.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Editor Preferences</span></p></body></html>", None))
         self.label_23.setText(QCoreApplication.translate("MainWindow", u"Confirm Before Deleting Elements", None))
+#if QT_CONFIG(tooltip)
+        self.settingsConfirmElementDeleteCheckbox.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Whether or not it asks for confirmation before deleting elements.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.settingsConfirmElementDeleteCheckbox.setText("")
         self.label_24.setText(QCoreApplication.translate("MainWindow", u"Enable Experiments", None))
+#if QT_CONFIG(tooltip)
+        self.settingsExperimentsCheckbox.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Whether or not you want to use Experimental elements.<br/><span style=\" font-weight:700;\">This may lead to corruption of your workspaces!</span></p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.settingsExperimentsCheckbox.setText("")
         self.label_25.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">File &amp; Export</span></p></body></html>", None))
         self.label_26.setText(QCoreApplication.translate("MainWindow", u"Default Export Location", None))
+#if QT_CONFIG(tooltip)
+        self.settingsExportLocation.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The location where mDirt will export your packs.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_27.setText(QCoreApplication.translate("MainWindow", u"Pack Format Override", None))
+#if QT_CONFIG(tooltip)
+        self.settingsPackFormatOverride.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:700;\">EXPERIMENTAL!</span></p><p><span style=\" font-weight:700;\">DO NOT TOUCH IF YOU DON'T KNOW WHAT YOU ARE DOING!<br/></span>Lets you select a new Data &amp; Resource Pack format, as well as use custom Modules.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_28.setText(QCoreApplication.translate("MainWindow", u"Enable Verbose Logging", None))
+#if QT_CONFIG(tooltip)
+        self.settingsVerboseLoggingCheckbox.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Whether or not mDirt should create a `.log` file and log everything its doing.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.settingsVerboseLoggingCheckbox.setText("")
-        self.label_29.setText(QCoreApplication.translate("MainWindow", u"Clear Temporary Files on Exit", None))
-        self.label_34.setText(QCoreApplication.translate("MainWindow", u"Ask Before Overwriting Files", None))
-        self.settingsClearTempCheckbox.setText("")
-        self.settingsAskOverwriteCheckbox.setText("")
         self.label_30.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Network &amp; Updates</span></p></body></html>", None))
         self.label_31.setText(QCoreApplication.translate("MainWindow", u"Check for Updates on Launch", None))
+#if QT_CONFIG(tooltip)
+        self.settingsCheckUpdatesCheckbox.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Whether or not mDirt should check for updates when it startsup.</p><p><span style=\" font-style:italic;\">It will not install the update without confirmation.</span></p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.settingsCheckUpdatesCheckbox.setText("")
         self.label_32.setText(QCoreApplication.translate("MainWindow", u"Custom Update URL", None))
-        self.label_33.setText(QCoreApplication.translate("MainWindow", u"Report Anonymous Usage Data", None))
-        self.settingsReportUsageCheckbox.setText("")
-        self.label_35.setText(QCoreApplication.translate("MainWindow", u"Timeout for Online Operations", None))
-        self.label_36.setText(QCoreApplication.translate("MainWindow", u"Download Minecraft Versions", None))
-        self.settingsDownloadVersionsCheckbox.setText("")
+#if QT_CONFIG(tooltip)
+        self.settingsUpdateURL.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>A custom URL to download mDirt updates from.<br/>Mostly used for developer testing. <span style=\" font-weight:700;\">Do not use if you do not know what you're doing!</span></p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.label_29.setText(QCoreApplication.translate("MainWindow", u"Use mDirt Beta", None))
+#if QT_CONFIG(tooltip)
+        self.settingsBetaUpdatesCheckbox.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Whether or not you want to download the latest Beta rather than latest stable release when updating.</p><p>Betas are usually mostly stable, but stable releases are always more stable.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.settingsBetaUpdatesCheckbox.setText("")
+#if QT_CONFIG(tooltip)
+        self.settingsApplyButton.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Apply the new settings.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.settingsApplyButton.setText(QCoreApplication.translate("MainWindow", u"Apply", None))
+#if QT_CONFIG(tooltip)
+        self.pushButton.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Close the settings menu without applying the settings.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Cancel", None))
+#if QT_CONFIG(tooltip)
+        self.settingsRestoreDefaultsButton.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Restore settings to their defaults.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.settingsRestoreDefaultsButton.setText(QCoreApplication.translate("MainWindow", u"Restore Defaults", None))
         self.menuNew_Element.setTitle(QCoreApplication.translate("MainWindow", u"New Element", None))
         self.menuSave.setTitle(QCoreApplication.translate("MainWindow", u"File", None))

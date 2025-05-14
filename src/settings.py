@@ -20,16 +20,12 @@ DEFAULT_SETTINGS = {
     "file_export": {
         "default_export_location": "default",
         "pack_format_override": "",
-        "verbose_logging": False,
-        "clear_temp_files": True,
-        "ask_before_overwrite": False
+        "verbose_logging": False
     },
     "network": {
         "check_updates": True,
         "custom_update_url": "",
-        "report_usage": False,
-        "online_timeout": 5,
-        "download_mc_versions": True
+        "get_betas": False
     }
 }
 
