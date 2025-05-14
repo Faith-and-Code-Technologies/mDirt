@@ -8,7 +8,8 @@ import subprocess
 import requests
 from packaging import version
 import tkinter as tk
-from tkinter import messagebox, ttk
+from tkinter import messagebox
+from tkinter import ttk
 
 # --- Constants ---
 if getattr(sys, 'frozen', False):
@@ -37,10 +38,9 @@ def get_latest_release(allow_beta: bool):
     for release in releases:
         if allow_beta or not release.get("prerelease", False):
             return release
-
     raise Exception("No valid releases found.")
 
-# --- Helper Threaded Worker ---
+# --- Worker for update ---
 class UpdateWorker:
     def __init__(self, progress_callback, status_callback, finish_callback):
         self.progress_callback = progress_callback
@@ -54,12 +54,12 @@ class UpdateWorker:
         except Exception as e:
             self.status_callback(f"Error: {str(e)}")
             return
-        
+
         latest_tag = release_data['tag_name']
         if version.parse(latest_tag) <= version.parse(current_version):
             self.status_callback("No updates available.")
             return
-        
+
         self.status_callback(f"New version found: {latest_tag}. Downloading...")
 
         zip_url = None
@@ -91,7 +91,6 @@ class UpdateWorker:
         with zipfile.ZipFile(zip_path, 'r') as zip_ref:
             zip_ref.extractall(temp_path)
 
-        # Get extracted folder (first one inside temp_path)
         extracted_root = next((os.path.join(temp_path, d) for d in os.listdir(temp_path)), None)
 
         # Delete old .exes (except self and new)
@@ -116,16 +115,13 @@ class UpdateWorker:
             else:
                 shutil.copy2(s, d)
 
-        # Update version
         config['CURRENT_VERSION'] = latest_tag
         with open(VERSION_FILE, 'w') as f:
             json.dump(config, f, indent=4)
 
-        # Cleanup
         os.remove(zip_path)
         shutil.rmtree(temp_path)
 
-        # Launch the new .exe
         new_executable = None
         for exe in new_exes:
             if exe != os.path.basename(sys.executable):
@@ -139,41 +135,90 @@ class UpdateWorker:
 
 # --- Main UI ---
 class UpdaterUI(tk.Tk):
-    def __init__(self):
+    def __init__(self, update_found: bool):
         super().__init__()
+
+        if not update_found:
+            self.quit()
+
         self.title("mDirt Updater")
-        self.geometry("400x250")  # Increased the height to allow for proper spacing
+        self.geometry("400x250")
+        self.configure(bg="#2e2e2e")
         self.resizable(False, False)
 
-        # UI components
-        self.title_label = tk.Label(self, text="mDirt Updater", font=("Segoe UI", 20, "bold"))
-        self.title_label.pack(pady=20)
+        self.title_label = tk.Label(self, text="mDirt Updater", font=("Segoe UI", 18, "bold"), fg="#ffffff", bg="#2e2e2e")
+        self.title_label.pack(pady=(20, 10))
 
-        self.status_label = tk.Label(self, text="Waiting to start...", font=("Segoe UI", 12))
+        self.status_label = tk.Label(self, text="A new update is available!\nDo you want to download it?", font=("Segoe UI", 12), fg="#ffffff", bg="#2e2e2e")
         self.status_label.pack(pady=10)
 
-        self.progress_bar = ttk.Progressbar(self, length=300, mode="determinate")
-        self.progress_bar.pack(pady=10)
+        self.progress = ttk.Progressbar(self, length=300, mode='determinate')
+        self.progress.pack(pady=(5, 15))
 
-        self.check_button = tk.Button(self, text="Check for Updates", command=self.start_update, font=("Segoe UI", 12), height=2)  # Increased button height
-        self.check_button.pack(pady=20)  # Increased padding for better spacing
+        btn_frame = tk.Frame(self, bg="#2e2e2e")
+        btn_frame.pack(pady=10)
+
+        button_style = {
+            "font": ("Segoe UI", 11),
+            "width": 10,
+            "height": 1,
+            "bg": "#4CAF50",
+            "fg": "#ffffff",
+            "activebackground": "#45a049",
+            "activeforeground": "#ffffff",
+            "relief": "flat",
+            "bd": 0
+        }
+
+        self.yes_btn = tk.Button(btn_frame, text="Yes", command=self.start_update, **button_style)
+        self.yes_btn.grid(row=0, column=0, padx=10)
+
+        self.no_btn = tk.Button(btn_frame, text="No", command=self.quit, **button_style)
+        self.no_btn.grid(row=0, column=1, padx=10)
+
+        self.center_window()
 
     def start_update(self):
-        self.check_button.config(state=tk.DISABLED)
+        self.yes_btn.config(state=tk.DISABLED)
+        self.no_btn.config(state=tk.DISABLED)
         worker = UpdateWorker(self.update_progress, self.update_status, self.finish_update)
-        worker.run()
+        self.after(100, worker.run)
 
     def update_progress(self, value):
-        self.progress_bar["value"] = value
+        self.progress['value'] = value
+        self.update_idletasks()
 
     def update_status(self, status):
         self.status_label.config(text=status)
+        self.update_idletasks()
 
     def finish_update(self):
-        self.check_button.config(state=tk.NORMAL)
         messagebox.showinfo("Update Finished", "The update was completed successfully.")
+        self.quit()
 
-# --- App Run ---
+    def center_window(self):
+        self.update_idletasks()
+        width = self.winfo_width()
+        height = self.winfo_height()
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+        x = int((screen_width / 2) - (width / 2))
+        y = int((screen_height / 2) - (height / 2))
+        self.geometry(f"+{x}+{y}")
+
+# --- Check Before Running ---
+def check_for_update():
+    try:
+        release_data = get_latest_release(include_beta)
+    except Exception as e:
+        print(f"Error: {str(e)}")
+        return False
+    latest_tag = release_data['tag_name']
+    return version.parse(latest_tag) > version.parse(current_version)
+
 if __name__ == '__main__':
-    app = UpdaterUI()
-    app.mainloop()
+    if check_for_update():
+        app = UpdaterUI(update_found=True)
+        app.mainloop()
+    else:
+        sys.exit()
