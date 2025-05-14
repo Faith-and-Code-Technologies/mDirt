@@ -1,4 +1,13 @@
-import datetime, json, os, sys, requests, importlib, shutil, string, subprocess
+import datetime
+import json
+import os
+import sys
+import requests
+import importlib
+import shutil
+import string
+import subprocess
+import logging
 from pathlib import Path
 
 from PySide6.QtCore import Qt, QTimer
@@ -9,12 +18,11 @@ from utils.field_validator import FieldValidator
 from utils.field_resetter import FieldResetter
 from utils.enums import BlockFace, ElementPage
 
-from settings import SettingsManager
-
 import ui.select_item as select_item
 import ui.load_project as load_project
 from ui.ui import Ui_MainWindow
 
+from settings import SettingsManager
 from module import ModuleDownloader
 
 APP_VERSION = '3.0.0'
@@ -55,6 +63,31 @@ class App(QMainWindow):
         self.autoSaveTimer = QTimer(self)
         self.autoSaveTimer.timeout.connect(self.saveProject)
         self.setAutoSaveInterval()
+
+        self.logger = logging.getLogger("mDirt")
+        self.logger.setLevel(logging.DEBUG)
+        self.formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+
+        self.file_handler = logging.FileHandler("mdirt.log", mode='w')
+        self.file_handler.setFormatter(self.formatter)
+
+        self.console_handler = logging.StreamHandler()
+        self.console_handler.setFormatter(self.formatter)
+
+        self.logger.addHandler(self.file_handler)
+        self.logger.addHandler(self.console_handler)
+
+        if self.settings.get("file_export", "verbose_logging"):
+            self.logger.setLevel(logging.DEBUG)
+        else:
+            self.logger.setLevel(logging.WARNING)
+
+        self.disableUnusedSettings()
+
+        if self.settings.get('general', 'open_last_project'):
+            project = self.settings.get('data', 'last_project_path')
+            if os.path.exists(project):
+                self.loadProject(self.settings.get('data', 'last_project_namespace'))
 
         # CONNECTIONS
         self.ui.actionNew_Project.triggered.connect(self.openProjectMenu)
@@ -255,6 +288,9 @@ class App(QMainWindow):
 
     def saveProjectAs(self):
         projectDirectory = self.mainDirectory / 'workspaces' / f'{self.packDetails["namespace"]}'
+        self.settings.set('data', 'last_project_path', str(projectDirectory))
+        self.settings.set('data', 'last_project_namespace', self.packDetails["namespace"])
+        self.settings.save_settings()
         
         os.makedirs(projectDirectory, exist_ok=True)
 
@@ -351,9 +387,11 @@ class App(QMainWindow):
         with open(projectDirectory / 'paintings.json', 'r') as file:
             self.paintings = json.load(file)
         
-        self.projectList.close()
+        try:
+            self.projectList.close()
+        except:
+            pass
        
-
         for item in self.blocks:
             QTreeWidgetItem(self.blocks_tree, [self.blocks[item]["name"]])
         
@@ -369,6 +407,12 @@ class App(QMainWindow):
     #######################
     # SETTINGS            #
     #######################
+
+    def disableUnusedSettings(self):
+        self.ui.settingsLanguageCombo.setDisabled(True)
+        self.ui.settingsExperimentsCheckbox.setDisabled(True)
+        self.ui.settingsPackFormatOverride.setDisabled(True)
+        self.ui.settingsUpdateURL.setDisabled(True)
 
     def setAutoSaveInterval(self):
         mode = self.settings.get('general', 'auto_save_interval').lower()
@@ -402,8 +446,12 @@ class App(QMainWindow):
 
         self.settings.save_settings()
 
+        alert("Settings updated!")
+
     def restoreSettings(self):
         self.settings.reset_to_defaults()
+        self.refreshSettings()
+        alert("Settings have been restored to defaults!")
 
     def cancelSettings(self):
         self.ui.elementEditor.setCurrentIndex(ElementPage.HOME)
@@ -1222,5 +1270,6 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = App()
     window.show()
+    app.styleHints().setColorScheme(Qt.ColorScheme.Dark)
     app.setStyle("Fusion")
     sys.exit(app.exec())

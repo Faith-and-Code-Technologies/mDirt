@@ -27,6 +27,10 @@ DEFAULT_SETTINGS = {
         "custom_update_url": "", 
         "get_betas": False
         },
+    "data": {
+        "last_project_path": "",
+        "last_project_namespace": ""
+    }
 }
 
 

@@ -6,3 +6,4 @@ internal_todo.txt
 build/*
 dist/*
 settings.json
+*.log
