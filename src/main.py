@@ -1,4 +1,4 @@
-import datetime, json, os, sys, requests, importlib, shutil, string
+import datetime, json, os, sys, requests, importlib, shutil, string, subprocess
 from pathlib import Path
 
 from PySide6.QtCore import Qt
@@ -22,11 +22,16 @@ FULL_APP_VERSION = '3.0.0-beta.2'
 LIB_URL = 'https://raw.githubusercontent.com/Faith-and-Code-Technologies/mDirt/main/lib'
 ISSUE_URL = 'https://github.com/Faith-and-Code-Technologies/mDirt/issues'
 
-def alert(message):
+def alert(message, type_='information'):
     messageBox = QMessageBox()
-    messageBox.setIcon(QMessageBox.Icon.Information)
+    if type_ == 'information':
+        messageBox.setIcon(QMessageBox.Icon.Information)
+    elif type_ == 'warning':
+        messageBox.setIcon(QMessageBox.Icon.Warning)
+    elif type_ == 'critical':
+        messageBox.setIcon(QMessageBox.Icon.Critical)
     messageBox.setText(message)
-    messageBox.setWindowTitle("Alert")
+    messageBox.setWindowTitle("mDirt Alert")
     messageBox.setStandardButtons(QMessageBox.StandardButton.Ok)
     messageBox.exec()
 
@@ -100,6 +105,17 @@ class App(QMainWindow):
         # Painting Specific Connections
         self.ui.paintingTextureButton.clicked.connect(self.addPaintingTexture)
         self.ui.paintingConfirmButton.clicked.connect(self.addPainting)
+
+        self.checkUpdates()
+
+    def checkUpdates(self):
+        if not self.settings.get('network', 'check_updates'): return
+        updaterPath = self.mainDirectory / 'mDirtUpdater.exe'
+        if os.path.exists(updaterPath):
+            subprocess.Popen(updaterPath)
+            sys.exit()
+        else:
+            alert("The mDirt Updater is missing! Reinstall mDirt to fix it.", 'critical')
 
     #######################
     # SETUP PROJECT       #
