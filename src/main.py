@@ -65,6 +65,8 @@ class App(QMainWindow):
         self.ui.actionSettings.triggered.connect(self.openSettings)
 
         self.ui.settingsApplyButton.clicked.connect(self.saveSettings)
+        self.ui.settingsRestoreDefaultsButton.clicked.connect(self.restoreSettings)
+        self.ui.settingsCancelButton.clicked.connect(self.cancelSettings)
 
         self.ui.elementViewer.itemDoubleClicked.connect(self.elementClicked)
 
@@ -399,6 +401,12 @@ class App(QMainWindow):
         self.settings.set('network', 'get_betas', self.ui.settingsBetaUpdatesCheckbox.isChecked())
 
         self.settings.save_settings()
+
+    def restoreSettings(self):
+        self.settings.reset_to_defaults()
+
+    def cancelSettings(self):
+        self.ui.elementEditor.setCurrentIndex(ElementPage.HOME)
 
     def refreshSettings(self):
         self.ui.settingsAutoSaveInt.setCurrentText(self.settings.get('general', 'auto_save_interval'))

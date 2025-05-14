@@ -2261,7 +2261,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="settingsCancelButton">
             <property name="toolTip">
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Close the settings menu without applying the settings.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
