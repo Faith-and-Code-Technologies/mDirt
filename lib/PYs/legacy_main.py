@@ -2,7 +2,16 @@ import datetime, json, os, re, sys, details, requests, importlib, shutil, pickle
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QImage, QPixmap, QStandardItem
-from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QMessageBox, QWidget, QDialog, QTreeWidget, QTreeWidgetItem
+from PySide6.QtWidgets import (
+    QApplication,
+    QFileDialog,
+    QMainWindow,
+    QMessageBox,
+    QWidget,
+    QDialog,
+    QTreeWidget,
+    QTreeWidgetItem,
+)
 
 from ui.select_item import Ui_Form
 from ui.ui import Ui_MainWindow
@@ -17,6 +26,7 @@ def alert(message):
     messageBox.setWindowTitle("Alert")
     messageBox.setStandardButtons(QMessageBox.StandardButton.Ok)
     messageBox.exec()
+
 
 def checkInputValid(input_, type_):
     return (
@@ -51,15 +61,16 @@ def checkInputValid(input_, type_):
         )
     )
 
+
 class App(QMainWindow):
 
     #######################
     # APP SETUP STUFF     #
     #######################
-    
+
     def __init__(self):
         super().__init__()
-        
+
         self.appVersion = "3.0.0"
         # self.checkUpdate()
 
@@ -114,9 +125,11 @@ class App(QMainWindow):
         self.ui.blockTextureButtonBack.clicked.connect(lambda: self.getBlockTexture(2))
         self.ui.blockTextureButtonRight.clicked.connect(lambda: self.getBlockTexture(3))
         self.ui.blockTextureButtonFront.clicked.connect(lambda: self.getBlockTexture(4))
-        self.ui.blockTextureButtonBottom.clicked.connect(lambda: self.getBlockTexture(5))
+        self.ui.blockTextureButtonBottom.clicked.connect(
+            lambda: self.getBlockTexture(5)
+        )
 
-        self.ui.blockModel.activated.connect(self.getBlockModel) 
+        self.ui.blockModel.activated.connect(self.getBlockModel)
 
         self.ui.itemTextureButton.clicked.connect(self.getItemTexture)
 
@@ -171,25 +184,37 @@ class App(QMainWindow):
                 self.version_json = response.json()
                 self.supportedVersions = self.version_json["versions"]
             else:
-                alert(f"Failed to download Supported Version list. Status code: {response.status_code}. Relaunch mDirt and try again. If the problem persists, submit an issue here: https://github.com/Faith-and-Code-Technologies/mDirt-2/issues")
+                alert(
+                    f"Failed to download Supported Version list. Status code: {response.status_code}. Relaunch mDirt and try again. If the problem persists, submit an issue here: https://github.com/Faith-and-Code-Technologies/mDirt-2/issues"
+                )
         except:
-            alert(f"Failed to download Supported Version list. Relaunch mDirt and try again. If the problem persists, submit an issue here: https://github.com/Faith-and-Code-Technologies/mDirt-2/issues")
+            alert(
+                f"Failed to download Supported Version list. Relaunch mDirt and try again. If the problem persists, submit an issue here: https://github.com/Faith-and-Code-Technologies/mDirt-2/issues"
+            )
 
     def grabModule(self):
         self.moduleGrab = ModuleGrabber(
             base_url="https://github.com/Faith-and-Code-Technologies/mDirt-2/raw/main/"
         )
-        #self.moduleGrab.update_module(version=self.packVersion)
+        # self.moduleGrab.update_module(version=self.packVersion)
 
     def setupData(self):
         self.mainDirectory = f"{os.path.dirname(os.path.abspath(__file__))}/.."
-        self.data = json.load(open(os.path.join(getattr(sys, '_MEIPASS', os.getcwd()), f"lib/{self.packVersion}_data.json"), "r"))
+        self.data = json.load(
+            open(
+                os.path.join(
+                    getattr(sys, "_MEIPASS", os.getcwd()),
+                    f"lib/{self.packVersion}_data.json",
+                ),
+                "r",
+            )
+        )
 
         dataformat = self.version_json["dataformat"]
         resourceformat = self.version_json["resourceformat"]
 
-        #self.dataFormat = dataformat[self.packVersion]
-        #self.resourceFormat = resourceformat[self.packVersion]
+        # self.dataFormat = dataformat[self.packVersion]
+        # self.resourceFormat = resourceformat[self.packVersion]
 
         self.blocks = {}
         self.items = {}
@@ -217,7 +242,7 @@ class App(QMainWindow):
     def checkUpdate(self):
         self.updater = Updater(
             repo_url="https://github.com/Faith-and-Code-Technologies/mDirt-2",
-            current_version=self.appVersion
+            current_version=self.appVersion,
         )
 
         if self.updater.is_update_available():
@@ -257,7 +282,7 @@ class App(QMainWindow):
         file = QFileDialog.getExistingDirectory(self, "Save mDirt Project", "")
 
         if file:
-            with open(f'{file}/mDirtProject.mdrt', "wb") as f:
+            with open(f"{file}/mDirtProject.mdrt", "wb") as f:
                 pickle.dump(data, f)
 
     def importProject(self, version):
@@ -372,7 +397,7 @@ class App(QMainWindow):
         }
 
         self.blocks[self.blockProperties["name"]] = self.blockProperties
- 
+
         QTreeWidgetItem(self.blocks_tree, [self.blockProperties["name"]])
 
         self.clearBlockFields()
@@ -441,7 +466,7 @@ class App(QMainWindow):
     #######################
     # ITEMS TAB           #
     #######################
-    
+
     def enableRightClickFunc(self):
         if self.ui.itemRightClickCheck.isChecked():
             self.ui.itemRightClickFunc.setEnabled(True)
@@ -484,7 +509,11 @@ class App(QMainWindow):
 
         self.featureNum += 1
 
-        rightClick = {"enabled":self.ui.itemRightClickCheck.isChecked(),"function":self.ui.itemRightClickFunc.toPlainText(),"mode":self.ui.itemRightClickMode.currentText().lower()}
+        rightClick = {
+            "enabled": self.ui.itemRightClickCheck.isChecked(),
+            "function": self.ui.itemRightClickFunc.toPlainText(),
+            "mode": self.ui.itemRightClickMode.currentText().lower(),
+        }
 
         self.itemProperties = {
             "name": self.ui.itemName.text(),
@@ -617,11 +646,20 @@ class App(QMainWindow):
 
         mode = "crafting"
 
-        if self.ui.recipeSubTabs.tabText(self.ui.recipeSubTabs.currentIndex()).lower() == "crafting":
+        if (
+            self.ui.recipeSubTabs.tabText(self.ui.recipeSubTabs.currentIndex()).lower()
+            == "crafting"
+        ):
             mode = "crafting"
-        elif self.ui.recipeSubTabs.tabText(self.ui.recipeSubTabs.currentIndex()).lower() == "smelting":
+        elif (
+            self.ui.recipeSubTabs.tabText(self.ui.recipeSubTabs.currentIndex()).lower()
+            == "smelting"
+        ):
             mode = self.ui.smeltingModeBox.currentText().lower()
-        elif self.ui.recipeSubTabs.tabText(self.ui.recipeSubTabs.currentIndex()).lower() == "stonecutting":
+        elif (
+            self.ui.recipeSubTabs.tabText(self.ui.recipeSubTabs.currentIndex()).lower()
+            == "stonecutting"
+        ):
             mode = "stonecutting"
 
         self.recipeProperties = {
@@ -631,7 +669,7 @@ class App(QMainWindow):
             "outputCount2": self.ui.stoneCuttingCount.value(),
             "exact": self.ui.exactlyRadio.isChecked(),
             "shapeless": self.ui.shapelessRadio.isChecked(),
-            "type": mode
+            "type": mode,
         }
 
         self.recipes[self.recipeProperties["name"]] = self.recipeProperties
@@ -697,11 +735,13 @@ class App(QMainWindow):
     #######################
 
     def getPaintingTexture(self):
-        self.paintingTexture, _ = QFileDialog.getOpenFileName(self, "Open Texture File", "", "PNG Files (*.png)")
+        self.paintingTexture, _ = QFileDialog.getOpenFileName(
+            self, "Open Texture File", "", "PNG Files (*.png)"
+        )
 
         if not self.paintingTexture:
             return
-        
+
         image = QImage(self.paintingTexture)
         pixmap = QPixmap.fromImage(image).scaled(
             50, 50, Qt.AspectRatioMode.KeepAspectRatio
@@ -716,14 +756,14 @@ class App(QMainWindow):
         if self.ui.paintingName.text() == "":
             alert("You cannot add an empty painting!")
             return
-        
+
         self.paintingProperties = {
             "name": self.ui.paintingName.text(),
             "displayName": self.ui.paintingDisplayName.text(),
             "width": self.ui.paintingWidth.value(),
             "height": self.ui.paintingHeight.value(),
             "placeable": self.ui.paintingPlaceable.isChecked(),
-            "texture": self.paintingTexture
+            "texture": self.paintingTexture,
         }
 
         self.paintings[self.paintingProperties["name"]] = self.paintingProperties
@@ -747,7 +787,7 @@ class App(QMainWindow):
         curItem = item
         if not item:
             curItem = self.ui.paintingList.currentRow()
-        
+
         self.paintings.pop(self.ui.paintingList.item(curItem).text())
         self.ui.paintingList.takeItem(curItem)
 
@@ -771,17 +811,13 @@ class App(QMainWindow):
         for block in self.blocks:
             if self.blocks[block]["baseBlock"] not in self.default_blocks:
                 block_name = self.blocks[block]["name"]
-                alert(
-                    f"Block '{block_name}' has an unsupported Base Block!"
-                )
+                alert(f"Block '{block_name}' has an unsupported Base Block!")
                 return
 
         for item in self.items:
             if self.items[item]["baseItem"] not in self.default_items:
                 item_name = self.items[item]["name"]
-                alert(
-                    f"Item '{item_name}' has an unsupported Base Item!"
-                )
+                alert(f"Item '{item_name}' has an unsupported Base Item!")
                 return
 
         if checkInputValid(self.ui.packName, "string") == "empty":
@@ -835,8 +871,8 @@ class App(QMainWindow):
         #######################
 
         self.resPackDirectory = os.path.join(
-                self.outputDir, f"{self.packName} Resource Pack"
-            )
+            self.outputDir, f"{self.packName} Resource Pack"
+        )
         os.mkdir(self.resPackDirectory)
         os.mkdir(f"{self.resPackDirectory}/assets")
 
@@ -858,15 +894,19 @@ class App(QMainWindow):
                 file.write(
                     f'{{"sources":[{{"type": "directory", "source": "{self.packNamespace}", "prefix": "{self.packNamespace}/"}}]}}'
                 )
-        
+
         else:
             os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}")
             os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/items")
             os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/models")
             os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/models/item")
             os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures")
-            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures/item")
-            os.mkdir(f"{self.resPackDirectory}/assets/{self.packNamespace}/textures/painting")
+            os.mkdir(
+                f"{self.resPackDirectory}/assets/{self.packNamespace}/textures/item"
+            )
+            os.mkdir(
+                f"{self.resPackDirectory}/assets/{self.packNamespace}/textures/painting"
+            )
 
         # Pack.mcmeta
         with open(f"{self.resPackDirectory}/pack.mcmeta", "w") as pack:
@@ -876,14 +916,20 @@ class App(QMainWindow):
 
         version = self.packVersion.replace(".", "_")
 
-        if getattr(sys, 'frozen', False):
-            internal = 'src.'
+        if getattr(sys, "frozen", False):
+            internal = "src."
         else:
-            internal = ''
-        BlockResourcer = importlib.import_module(f"{internal}generation.v{version}.blocks").BlockResourcer
-        ItemResourcer = importlib.import_module(f"{internal}generation.v{version}.items").ItemResourcer
+            internal = ""
+        BlockResourcer = importlib.import_module(
+            f"{internal}generation.v{version}.blocks"
+        ).BlockResourcer
+        ItemResourcer = importlib.import_module(
+            f"{internal}generation.v{version}.items"
+        ).ItemResourcer
         if self.packVersion != "1.21.3":
-            PaintingResourcer = importlib.import_module(f"{internal}generation.v{version}.paintings").PaintingResourcer
+            PaintingResourcer = importlib.import_module(
+                f"{internal}generation.v{version}.paintings"
+            ).PaintingResourcer
 
         if len(self.blocks) > 0:
             blockResourcer = BlockResourcer(
@@ -902,12 +948,10 @@ class App(QMainWindow):
             )
 
             itemResourcer.generate()
-        
+
         if len(self.paintings) > 0 and self.packVersion != "1.21.3":
             paintingResourcer = PaintingResourcer(
-                self.resPackDirectory,
-                self.packNamespace,
-                self.paintings
+                self.resPackDirectory, self.packNamespace, self.paintings
             )
 
             paintingResourcer.generate()
@@ -971,19 +1015,27 @@ class App(QMainWindow):
                 + f'"{self.packNamespace}'
                 + ':load"\n        ]\n    }'
             )
-        
+
         version = self.packVersion.replace(".", "_")
 
-        if getattr(sys, 'frozen', False):
-            internal = 'src.'
+        if getattr(sys, "frozen", False):
+            internal = "src."
         else:
-            internal = ''
+            internal = ""
 
-        BlockGenerator = importlib.import_module(f"{internal}generation.v{version}.blocks").BlockGenerator
-        ItemGenerator = importlib.import_module(f"{internal}generation.v{version}.items").ItemGenerator
-        RecipeGenerator = importlib.import_module(f"{internal}generation.v{version}.recipes").RecipeGenerator
+        BlockGenerator = importlib.import_module(
+            f"{internal}generation.v{version}.blocks"
+        ).BlockGenerator
+        ItemGenerator = importlib.import_module(
+            f"{internal}generation.v{version}.items"
+        ).ItemGenerator
+        RecipeGenerator = importlib.import_module(
+            f"{internal}generation.v{version}.recipes"
+        ).RecipeGenerator
         if self.packVersion != "1.21.3":
-            PaintingGenerator = importlib.import_module(f"{internal}generation.v{version}.paintings").PaintingGenerator
+            PaintingGenerator = importlib.import_module(
+                f"{internal}generation.v{version}.paintings"
+            ).PaintingGenerator
 
         #######################
         # CUSTOM BLOCKS       #
@@ -1007,10 +1059,7 @@ class App(QMainWindow):
 
         if len(self.items) > 0:
             itemGenerator = ItemGenerator(
-                self.header, 
-                self.namespaceDirectory, 
-                self.items,
-                self.packNamespace
+                self.header, self.namespaceDirectory, self.items, self.packNamespace
             )
 
             itemGenerator.generate()
@@ -1030,7 +1079,7 @@ class App(QMainWindow):
             )
 
             recipeGenerator.generate()
-        
+
         #######################
         # CUSTOM PAINTINGS    #
         #######################

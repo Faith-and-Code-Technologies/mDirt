@@ -12,20 +12,21 @@ from tkinter import messagebox
 from tkinter import ttk
 
 # --- Constants ---
-if getattr(sys, 'frozen', False):
+if getattr(sys, "frozen", False):
     BASE_DIR = os.path.dirname(sys.executable)
 else:
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-VERSION_FILE = os.path.join(BASE_DIR, 'version.json')
+VERSION_FILE = os.path.join(BASE_DIR, "version.json")
 
 # --- Load Config ---
-with open(VERSION_FILE, 'r') as f:
+with open(VERSION_FILE, "r") as f:
     config = json.load(f)
 
-github_url = config['GITHUB_URL']
-current_version = config['CURRENT_VERSION']
-include_beta = config.get('INCLUDE_BETA', False)
+github_url = config["GITHUB_URL"]
+current_version = config["CURRENT_VERSION"]
+include_beta = config.get("INCLUDE_BETA", False)
+
 
 # --- Fetch Latest Release ---
 def get_latest_release(allow_beta: bool):
@@ -39,6 +40,7 @@ def get_latest_release(allow_beta: bool):
         if allow_beta or not release.get("prerelease", False):
             return release
     raise Exception("No valid releases found.")
+
 
 # --- Worker for update ---
 class UpdateWorker:
@@ -55,7 +57,7 @@ class UpdateWorker:
             self.status_callback(f"Error: {str(e)}")
             return
 
-        latest_tag = release_data['tag_name']
+        latest_tag = release_data["tag_name"]
         if version.parse(latest_tag) <= version.parse(current_version):
             self.status_callback("No updates available.")
             return
@@ -65,10 +67,10 @@ class UpdateWorker:
         zip_url = None
         zip_name = None
 
-        for asset in release_data['assets']:
-            if asset['name'].endswith('.zip'):
-                zip_url = asset['browser_download_url']
-                zip_name = asset['name']
+        for asset in release_data["assets"]:
+            if asset["name"].endswith(".zip"):
+                zip_url = asset["browser_download_url"]
+                zip_name = asset["name"]
                 break
 
         if not zip_url:
@@ -77,8 +79,8 @@ class UpdateWorker:
 
         zip_path = os.path.join(BASE_DIR, zip_name)
         with requests.get(zip_url, stream=True) as r:
-            with open(zip_path, 'wb') as f:
-                total = int(r.headers.get('content-length', 0))
+            with open(zip_path, "wb") as f:
+                total = int(r.headers.get("content-length", 0))
                 downloaded = 0
                 for chunk in r.iter_content(chunk_size=8192):
                     f.write(chunk)
@@ -88,14 +90,16 @@ class UpdateWorker:
 
         self.status_callback("Extracting update...")
         temp_path = tempfile.mkdtemp()
-        with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+        with zipfile.ZipFile(zip_path, "r") as zip_ref:
             zip_ref.extractall(temp_path)
 
-        extracted_root = next((os.path.join(temp_path, d) for d in os.listdir(temp_path)), None)
+        extracted_root = next(
+            (os.path.join(temp_path, d) for d in os.listdir(temp_path)), None
+        )
 
         # Delete old .exes (except self and new)
-        existing_exes = [f for f in os.listdir(BASE_DIR) if f.endswith('.exe')]
-        new_exes = [f for f in os.listdir(extracted_root) if f.endswith('.exe')]
+        existing_exes = [f for f in os.listdir(BASE_DIR) if f.endswith(".exe")]
+        new_exes = [f for f in os.listdir(extracted_root) if f.endswith(".exe")]
 
         for exe in existing_exes:
             if exe != os.path.basename(sys.executable) and exe not in new_exes:
@@ -115,8 +119,8 @@ class UpdateWorker:
             else:
                 shutil.copy2(s, d)
 
-        config['CURRENT_VERSION'] = latest_tag
-        with open(VERSION_FILE, 'w') as f:
+        config["CURRENT_VERSION"] = latest_tag
+        with open(VERSION_FILE, "w") as f:
             json.dump(config, f, indent=4)
 
         os.remove(zip_path)
@@ -133,6 +137,7 @@ class UpdateWorker:
 
         self.finish_callback()
 
+
 # --- Main UI ---
 class UpdaterUI(tk.Tk):
     def __init__(self, update_found: bool):
@@ -146,13 +151,25 @@ class UpdaterUI(tk.Tk):
         self.configure(bg="#2e2e2e")
         self.resizable(False, False)
 
-        self.title_label = tk.Label(self, text="mDirt Updater", font=("Segoe UI", 18, "bold"), fg="#ffffff", bg="#2e2e2e")
+        self.title_label = tk.Label(
+            self,
+            text="mDirt Updater",
+            font=("Segoe UI", 18, "bold"),
+            fg="#ffffff",
+            bg="#2e2e2e",
+        )
         self.title_label.pack(pady=(20, 10))
 
-        self.status_label = tk.Label(self, text="A new update is available!\nDo you want to download it?", font=("Segoe UI", 12), fg="#ffffff", bg="#2e2e2e")
+        self.status_label = tk.Label(
+            self,
+            text="A new update is available!\nDo you want to download it?",
+            font=("Segoe UI", 12),
+            fg="#ffffff",
+            bg="#2e2e2e",
+        )
         self.status_label.pack(pady=10)
 
-        self.progress = ttk.Progressbar(self, length=300, mode='determinate')
+        self.progress = ttk.Progressbar(self, length=300, mode="determinate")
         self.progress.pack(pady=(5, 15))
 
         btn_frame = tk.Frame(self, bg="#2e2e2e")
@@ -167,10 +184,12 @@ class UpdaterUI(tk.Tk):
             "activebackground": "#45a049",
             "activeforeground": "#ffffff",
             "relief": "flat",
-            "bd": 0
+            "bd": 0,
         }
 
-        self.yes_btn = tk.Button(btn_frame, text="Yes", command=self.start_update, **button_style)
+        self.yes_btn = tk.Button(
+            btn_frame, text="Yes", command=self.start_update, **button_style
+        )
         self.yes_btn.grid(row=0, column=0, padx=10)
 
         self.no_btn = tk.Button(btn_frame, text="No", command=self.quit, **button_style)
@@ -181,11 +200,13 @@ class UpdaterUI(tk.Tk):
     def start_update(self):
         self.yes_btn.config(state=tk.DISABLED)
         self.no_btn.config(state=tk.DISABLED)
-        worker = UpdateWorker(self.update_progress, self.update_status, self.finish_update)
+        worker = UpdateWorker(
+            self.update_progress, self.update_status, self.finish_update
+        )
         self.after(100, worker.run)
 
     def update_progress(self, value):
-        self.progress['value'] = value
+        self.progress["value"] = value
         self.update_idletasks()
 
     def update_status(self, status):
@@ -206,6 +227,7 @@ class UpdaterUI(tk.Tk):
         y = int((screen_height / 2) - (height / 2))
         self.geometry(f"+{x}+{y}")
 
+
 # --- Check Before Running ---
 def check_for_update():
     try:
@@ -213,10 +235,11 @@ def check_for_update():
     except Exception as e:
         print(f"Error: {str(e)}")
         return False
-    latest_tag = release_data['tag_name']
+    latest_tag = release_data["tag_name"]
     return version.parse(latest_tag) > version.parse(current_version)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     if check_for_update():
         app = UpdaterUI(update_found=True)
         app.mainloop()

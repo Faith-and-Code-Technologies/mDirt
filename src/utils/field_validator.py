@@ -1,7 +1,10 @@
 from PySide6.QtWidgets import QLineEdit, QMessageBox
 
+
 class FieldValidator:
-    def validate_text_field(field: QLineEdit, allowed_chars: str, field_name: str) -> bool:
+    def validate_text_field(
+        field: QLineEdit, allowed_chars: str, field_name: str
+    ) -> bool:
         text = field.text()
 
         if not text:
@@ -17,7 +20,9 @@ class FieldValidator:
         field.setStyleSheet("")
         return True
 
-    def validate_dropdown_selection(field: QLineEdit, options: list[str], field_name: str) -> bool:
+    def validate_dropdown_selection(
+        field: QLineEdit, options: list[str], field_name: str
+    ) -> bool:
         value = field.text()
         if value not in options:
             field.setStyleSheet("QLineEdit { border: 1px solid red; }")

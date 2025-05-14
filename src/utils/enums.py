@@ -1,5 +1,6 @@
 from enum import IntEnum
 
+
 class BlockFace(IntEnum):
     TOP = 0
     LEFT = 1
@@ -7,6 +8,7 @@ class BlockFace(IntEnum):
     RIGHT = 3
     FRONT = 4
     BOTTOM = 5
+
 
 class ElementPage(IntEnum):
     BLOCKS = 1

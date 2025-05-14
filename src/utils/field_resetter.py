@@ -1,4 +1,13 @@
-from PySide6.QtWidgets import QLineEdit, QTextEdit, QComboBox, QSpinBox, QLabel, QCheckBox, QTreeWidget
+from PySide6.QtWidgets import (
+    QLineEdit,
+    QTextEdit,
+    QComboBox,
+    QSpinBox,
+    QLabel,
+    QCheckBox,
+    QTreeWidget,
+)
+
 
 class FieldResetter:
     def clear_line_edits(*fields: QLineEdit):

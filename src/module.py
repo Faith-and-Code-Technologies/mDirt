@@ -3,6 +3,7 @@ import requests
 import zipfile
 import io
 
+
 class ModuleDownloader:
     """
     Downloads and extracts versioned modules from the mDirt GitHub repository.
@@ -37,6 +38,7 @@ class ModuleDownloader:
         except zipfile.BadZipFile:
             return False
         return True
+
 
 if __name__ == "__main__":
     downloader = ModuleDownloader()
