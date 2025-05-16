@@ -6,5 +6,6 @@ pyinstaller src/main.py ^
   --add-data "src;src" ^
   --add-data "workspaces;workspaces" ^
   --add-data "src/version.json;" ^
+  --add-data "mDirtUpdater.exe;" ^
   --hidden-import=jinja2 ^
   --hidden-import=jinja2.ext
