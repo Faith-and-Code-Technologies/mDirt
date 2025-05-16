@@ -1,4 +1,0 @@
-{{ header }}
-{% for item in items %}
-    give @s {{ items[item]["baseItem"] }}[item_name={"italic":false,"text":"{{ items[item]["displayName"] }}"},item_model="{{ packNamespace }}:{{ items[item]["name"] }}",custom_data={ {{ items[item]["name"] }}:true },max_stack_size={{ items[item]["stackSize"] }}{% if items[item]["rightClick"]["enabled"] %},food={can_always_eat:true,nutrition:0,saturation:0},consumable={animation:"none",consume_seconds:99999,has_consume_particles:false}{% endif %}] 1
-{% endfor %}

@@ -1837,7 +1837,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The location where your workspaces can be found.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="text">
-               <string>mDirt/workspaces</string>
+               <string>default</string>
               </property>
              </widget>
             </item>

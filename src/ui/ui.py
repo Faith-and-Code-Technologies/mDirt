@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uihxbzYZ.ui'
+## Form generated from reading UI file 'uiQbGFGf.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -1440,7 +1440,7 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(tooltip)
         self.settingsWorkspacePathCombo.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The location where your workspaces can be found.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
-        self.settingsWorkspacePathCombo.setText(QCoreApplication.translate("MainWindow", u"mDirt/workspaces", None))
+        self.settingsWorkspacePathCombo.setText(QCoreApplication.translate("MainWindow", u"default", None))
         self.label_17.setText(QCoreApplication.translate("MainWindow", u"Language", None))
         self.settingsLanguageCombo.setItemText(0, QCoreApplication.translate("MainWindow", u"English", None))
 

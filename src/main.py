@@ -46,6 +46,8 @@ class App(QMainWindow):
             self.mainDirectory = Path(__file__).resolve().parent.parent
         self.ui.menuNew_Element.setEnabled(False)
 
+        self.workspacePath = "default"
+
         self.settings = SettingsManager()
 
         self.autoSaveTimer = QTimer(self)
@@ -81,7 +83,7 @@ class App(QMainWindow):
         self.ui.actionNew_Project.triggered.connect(self.openProjectMenu)
         self.ui.createProjectButton.clicked.connect(self.newProject)
         self.ui.actionOpen_Project.triggered.connect(self.loadProjectUI)
-        self.ui.actionExport_Project.triggered.connect(self.generateDatapack)
+        self.ui.actionExport_Project.triggered.connect(self.generate)
         self.ui.actionSave_2.triggered.connect(self.saveProject)
         self.ui.actionSettings.triggered.connect(self.openSettings)
 
@@ -142,9 +144,10 @@ class App(QMainWindow):
         updaterPath = self.mainDirectory / 'mDirtUpdater.exe'
         if os.path.exists(updaterPath):
             subprocess.Popen(updaterPath)
-            sys.exit()
+            # sys.exit() <- Need to do this only if there IS an update available, AND the user decides to INSTALL it
         else:
             alert("The mDirt Updater is missing! Reinstall mDirt to fix it.", 'critical')
+            # sys.exit() <- PROBABLY want ot do this, cuz it MIGHT mean other things are broken. Eh. Can't be bothered
 
     #######################
     # SETUP PROJECT       #
@@ -433,6 +436,7 @@ class App(QMainWindow):
         self.settings.set('network', 'get_betas', self.ui.settingsBetaUpdatesCheckbox.isChecked())
 
         self.settings.save_settings()
+        self.refreshSettings()
 
         alert("Settings updated!")
 
@@ -462,6 +466,7 @@ class App(QMainWindow):
         self.ui.settingsBetaUpdatesCheckbox.setChecked(self.settings.get('network', 'get_betas'))
 
         self.setAutoSaveInterval()
+        self.workspacePath = self.settings.get('general', 'workspace_path')
 
     #######################
     # ELEMENT MANAGER     #
@@ -1066,106 +1071,7 @@ class App(QMainWindow):
             )
             paintingResourcer.generate()
 
-    def generateDatapack(self):
-        self.outputDir = QFileDialog.getExistingDirectory(self, "Output Directory", "")
-        if not self.outputDir:
-            alert("Please select a valid output directory!")
-            return
-        
-        self.packName = self.packDetails["name"]
-        self.packNamespace = self.packDetails["namespace"]
-        self.packDescription = self.packDetails["description"]
-        self.packAuthor = self.packDetails["author"]
-        self.packVersion = self.packDetails["version"]
-        
-        self.packDirectory = os.path.join(self.outputDir, self.packName)
-
-        # Create base directories
-        os.makedirs(self.packDirectory, exist_ok=True)
-        os.makedirs(os.path.join(self.packDirectory, "data"), exist_ok=True)
-
-        self.namespaceDirectory = os.path.join(self.packDirectory, "data", self.packNamespace)
-        self.minecraftDirectory = os.path.join(self.packDirectory, "data", "minecraft")
-
-        os.makedirs(self.minecraftDirectory, exist_ok=True)
-        os.makedirs(self.namespaceDirectory, exist_ok=True)
-
-        # Write pack.mcmeta
-        pack_meta = {
-            "pack": {
-                "pack_format": self.dataFormat,
-                "description": self.packDescription
-            }
-        }
-        with open(os.path.join(self.packDirectory, "pack.mcmeta"), "w") as f:
-            json.dump(pack_meta, f, indent=4)
-
-        is_legacy = self.packVersion == "1.21.3"
-
-        if is_legacy:
-            # Create feature folders
-            os.makedirs(os.path.join(self.namespaceDirectory, "functions"), exist_ok=True)
-            if self.blocks or self.items:
-                os.makedirs(os.path.join(self.namespaceDirectory, "advancements"), exist_ok=True)
-            if self.blocks:
-                os.makedirs(os.path.join(self.namespaceDirectory, "loot_tables"), exist_ok=True)
-            if self.recipes:
-                os.makedirs(os.path.join(self.namespaceDirectory, "recipes"), exist_ok=True)
-
-            # Create tags folders
-            tags_function_dir = os.path.join(self.minecraftDirectory, "tags", "functions")
-            os.makedirs(tags_function_dir, exist_ok=True)
-
-            # Write tick.mcfunction
-            tick_path = os.path.join(self.namespaceDirectory, "functions", "tick.mcfunction")
-            with open(tick_path, "w") as tick:
-                if self.blocks:
-                    tick.write(f'{self.header}execute as @e[type=item_display,tag={self.packAuthor}.custom_block] at @s run function {self.packNamespace}:blocks/as_blocks')
-                else:
-                    tick.write(self.header)
-
-            # Write load.mcfunction
-            load_path = os.path.join(self.namespaceDirectory, "functions", "load.mcfunction")
-            with open(load_path, "w") as load:
-                load.write(f'{self.header}tellraw @a {{"text":"[mDirt {APP_VERSION}] - Successfully loaded pack!","color":"red"}}')
-
-        else:
-            # Create feature folders
-            os.makedirs(os.path.join(self.namespaceDirectory, "function"), exist_ok=True)
-            if self.blocks or self.items:
-                os.makedirs(os.path.join(self.namespaceDirectory, "advancement"), exist_ok=True)
-            if self.blocks:
-                os.makedirs(os.path.join(self.namespaceDirectory, "loot_table"), exist_ok=True)
-            if self.recipes:
-                os.makedirs(os.path.join(self.namespaceDirectory, "recipe"), exist_ok=True)
-
-            # Create tags folders
-            tags_function_dir = os.path.join(self.minecraftDirectory, "tags", "function")
-            os.makedirs(tags_function_dir, exist_ok=True)
-
-            # Write tick.mcfunction
-            tick_path = os.path.join(self.namespaceDirectory, "function", "tick.mcfunction")
-            with open(tick_path, "w") as tick:
-                if self.blocks:
-                    tick.write(f'{self.header}execute as @e[type=item_display,tag={self.packAuthor}.custom_block] at @s run function {self.packNamespace}:blocks/as_blocks')
-                else:
-                    tick.write(self.header)
-
-            # Write load.mcfunction
-            load_path = os.path.join(self.namespaceDirectory, "function", "load.mcfunction")
-            with open(load_path, "w") as load:
-                load.write(f'{self.header}tellraw @a {{"text":"[mDirt {APP_VERSION}] - Successfully loaded pack!","color":"red"}}')
-
-        # Write tick/load JSON tags
-        tick_json_path = os.path.join(tags_function_dir, "tick.json")
-        load_json_path = os.path.join(tags_function_dir, "load.json")
-
-        with open(tick_json_path, "w") as tick:
-            json.dump({"values": [f'{self.packNamespace}:tick']}, tick, indent=4)
-
-        with open(load_json_path, "w") as load:
-            json.dump({"values": [f'{self.packNamespace}:load']}, load, indent=4)
-        
+    def generate(self):    
         version = self.packVersion.replace(".", "_")
 
         if getattr(sys, 'frozen', False):
@@ -1173,83 +1079,22 @@ class App(QMainWindow):
         else:
             internal = ''
 
-        BlockGenerator = importlib.import_module(f'{internal}generation.v{version}.blocks').BlockGenerator
-        ItemGenerator = importlib.import_module(f'{internal}generation.v{version}.items').ItemGenerator
-        RecipeGenerator = importlib.import_module(f'{internal}generation.v{version}.recipes').RecipeGenerator
-        if self.packVersion != "1.21.3":
-            PaintingGenerator = importlib.import_module(f'{internal}generation.v{version}.paintings').PaintingGenerator
+        generator = importlib.import_module(f'{internal}generation.v{version}.generator').Generator()
 
-        #######################
-        # CUSTOM BLOCKS       #
-        #######################
+        generator = generator(
+            APP_VERSION,
+            self.packDetails,
+            self.dataFormat,
+            self.resourceFormat,
+            self.header,
+            self.blocks,
+            self.items,
+            self.recipes,
+            self.paintings,
+            self.data
+        )
 
-        if self.blocks:
-            blockGenerator = BlockGenerator(
-                self.header,
-                self.namespaceDirectory,
-                self.packNamespace,
-                self.packAuthor,
-                self.blocks,
-                self.items,
-            )
-
-            blockGenerator.generate()
-
-        #######################
-        # CUSTOM ITEMS        #
-        #######################
-
-        if self.items:
-            itemGenerator = ItemGenerator(
-                self.header, 
-                self.namespaceDirectory, 
-                self.items,
-                self.packNamespace
-            )
-
-            itemGenerator.generate()
-
-        #######################
-        # CUSTOM RECIPES      #
-        #######################
-
-        if self.recipes:
-            recipeGenerator = RecipeGenerator(
-                self.namespaceDirectory,
-                self.packNamespace,
-                self.packAuthor,
-                self.blocks,
-                self.items,
-                self.recipes,
-            )
-
-            recipeGenerator.generate()
-        
-        #######################
-        # CUSTOM PAINTINGS    #
-        #######################
-
-        if self.paintings and self.packVersion != "1.21.3":
-            paintingGenerator = PaintingGenerator(
-                self.header,
-                self.namespaceDirectory,
-                self.packNamespace,
-                self.packAuthor,
-                self.paintings,
-                self.minecraftDirectory,
-            )
-
-            paintingGenerator.generate()
-
-        #######################
-        # RESOURCE PACK       #
-        #######################
-
-        self.generateResourcePack()
-
-        #######################
-        # FINISH GENERATE     #
-        #######################
+        generator.generateDatapack()
 
         alert("Pack Generated!")
 

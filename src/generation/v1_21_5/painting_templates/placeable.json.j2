@@ -1,7 +1,0 @@
-{
-  "values": [
-    {% for painting in paintings %}
-    "{{ packNamespace }}:{{ paintings[painting]['name'] }}"{% if not loop.last %},{% endif %}
-    {% endfor %}
-  ]
-}
