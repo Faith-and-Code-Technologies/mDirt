@@ -17,6 +17,7 @@ from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QMessageBo
 from utils.field_validator import FieldValidator
 from utils.field_resetter import FieldResetter
 from utils.enums import BlockFace, ElementPage
+from utils.alert import alert
 
 import ui.select_item as select_item
 import ui.load_project as load_project
@@ -29,19 +30,6 @@ APP_VERSION = '3.0.0'
 FULL_APP_VERSION = '3.0.0-beta.2'
 LIB_URL = 'https://raw.githubusercontent.com/Faith-and-Code-Technologies/mDirt/main/lib'
 ISSUE_URL = 'https://github.com/Faith-and-Code-Technologies/mDirt/issues'
-
-def alert(message, type_='information'):
-    messageBox = QMessageBox()
-    if type_ == 'information':
-        messageBox.setIcon(QMessageBox.Icon.Information)
-    elif type_ == 'warning':
-        messageBox.setIcon(QMessageBox.Icon.Warning)
-    elif type_ == 'critical':
-        messageBox.setIcon(QMessageBox.Icon.Critical)
-    messageBox.setText(message)
-    messageBox.setWindowTitle("mDirt Alert")
-    messageBox.setStandardButtons(QMessageBox.StandardButton.Ok)
-    messageBox.exec()
 
 class App(QMainWindow):
     def __init__(self):

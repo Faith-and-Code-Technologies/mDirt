@@ -1,0 +1,57 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    {% for row in ["012", "345", "678"] %}
+    "{% for index in row %}{{ letters[index] if index in ingredients else ' ' }}{% endfor %}"{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ],
+  "key": {
+    {% for index, letter in letters.items() if index in ingredients and index != "9" %}
+    "{{ letter }}": "minecraft:{{ ingredients[index] }}"{% if not loop.last %},{% endif %}
+    {% endfor %}
+  },
+  "result":
+  {% if ingredients["9"] in items %}
+  {
+    "id": "{{ items[ingredients['9']]['baseItem'] }}",
+    "count": {{ outputCount }},
+    "components": {
+      "minecraft:item_name": {
+        "italic": false,
+        "text": "{{ items[ingredients['9']]['displayName'] }}"
+      },
+      "minecraft:item_model": "{{ packNamespace }}:{{ items[ingredients['9']]['name'] }}"
+    }
+  }
+  {% elif ingredients["9"] in blocks %}
+  {
+    "id": "minecraft:item_frame",
+    "count": {{ outputCount }},
+    "components": {
+      "minecraft:item_model": "{{ packNamespace }}:{{ blocks[ingredients['9']]['name'] }}",
+      "minecraft:custom_name": {
+        "italic": false,
+        "text": "{{ blocks[ingredients['9']]['displayName'] }}"
+      },
+      "minecraft:entity_data": {
+        "id": "minecraft:item_frame",
+        "Fixed": true,
+        "Invisible": true,
+        "Silent": true,
+        "Invulnerable": true,
+        "Facing": 1,
+        "Tags": [
+          "{{ packAuthor }}.item_frame_block",
+          "{{ packAuthor }}.{{ blocks[ingredients['9']]['name'] }}"
+        ]
+      }
+    }
+  }
+  {% else %}
+  {
+    "id": "minecraft:{{ ingredients['9'] }}",
+    "count": {{ outputCount }}
+  }
+  {% endif %}
+}
