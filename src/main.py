@@ -143,6 +143,7 @@ class App(QMainWindow):
 
         # Settings Specific Connections
         self.ui.settingsWorkspacePathButton.clicked.connect(self.workspacePathChanged)
+        self.ui.settingsDefaultExportButton.clicked.connect(self.exportPathChanged)
 
         self.checkUpdates()
 
@@ -431,6 +432,10 @@ class App(QMainWindow):
         loc = QFileDialog.getExistingDirectory(self, "Select Workspace Directory", "")
         self.ui.settingsWorkspacePathButton.setText(loc)
 
+    def exportPathChanged(self):
+        loc = QFileDialog.getExistingDirectory(self, "Select Export Directory", "")
+        self.ui.settingsDefaultExportButton.setText(loc)
+
     def openSettings(self):
         self.refreshSettings()
         self.ui.elementEditor.setCurrentIndex(ElementPage.SETTINGS)
@@ -445,7 +450,7 @@ class App(QMainWindow):
         self.settings.set('appearance', 'show_tips', self.ui.settingsTipsCheckbox.isChecked())
         self.settings.set('editor', 'confirm_deletes', self.ui.settingsConfirmElementDeleteCheckbox.isChecked())
         self.settings.set('editor', 'enable_experiments', self.ui.settingsExperimentsCheckbox.isChecked())
-        self.settings.set('file_export', 'default_export_location', self.ui.settingsExportLocation.text())
+        self.settings.set('file_export', 'default_export_location', self.ui.settingsDefaultExportButton.text())
         self.settings.set('file_export', 'pack_format_override', self.ui.settingsPackFormatOverride.text())
         self.settings.set('file_export', 'verbose_logging', self.ui.settingsVerboseLoggingCheckbox.isChecked())
         self.settings.set('network', 'check_updates', self.ui.settingsCheckUpdatesCheckbox.isChecked())
@@ -475,7 +480,7 @@ class App(QMainWindow):
         self.ui.settingsTipsCheckbox.setChecked(self.settings.get('appearance', 'show_tips'))
         self.ui.settingsConfirmElementDeleteCheckbox.setChecked(self.settings.get('editor', 'confirm_deletes'))
         self.ui.settingsExperimentsCheckbox.setChecked(self.settings.get('editor', 'enable_experiments'))
-        self.ui.settingsExportLocation.setText(self.settings.get('file_export', 'default_export_location'))
+        self.ui.settingsDefaultExportButton.setText(self.settings.get('file_export', 'default_export_location'))
         self.ui.settingsPackFormatOverride.setText(self.settings.get('file_export', 'pack_format_override'))
         self.ui.settingsVerboseLoggingCheckbox.setChecked(self.settings.get('file_export', 'verbose_logging'))
         self.ui.settingsCheckUpdatesCheckbox.setChecked(self.settings.get('network', 'check_updates'))
@@ -1021,6 +1026,11 @@ class App(QMainWindow):
 
         generator = importlib.import_module(f'{internal}generation.v{version}.generator').Generator()
 
+        loc = self.settings.get('file_export', 'defeault_export_location')
+        if loc == 'default':
+            loc = self.mainDirectory / 'exports'
+            os.makedirs(loc, exist_ok=True)
+
         generator = generator(
             APP_VERSION,
             self.packDetails,
@@ -1031,7 +1041,8 @@ class App(QMainWindow):
             self.items,
             self.recipes,
             self.paintings,
-            self.data
+            self.data,
+            loc
         )
 
         generator.generateDatapack()

@@ -2004,13 +2004,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </property>
              </widget>
             </item>
-            <item row="0" column="1">
-             <widget class="QLineEdit" name="settingsExportLocation">
-              <property name="toolTip">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The location where mDirt will export your packs.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-             </widget>
-            </item>
             <item row="1" column="0">
              <widget class="QLabel" name="label_27">
               <property name="text">
@@ -2039,6 +2032,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </property>
               <property name="text">
                <string/>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QToolButton" name="settingsDefaultExportButton">
+              <property name="text">
+               <string>default</string>
               </property>
              </widget>
             </item>

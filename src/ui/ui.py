@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiWUeLpV.ui'
+## Form generated from reading UI file 'uieDyCpk.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -869,11 +869,6 @@ class Ui_MainWindow(object):
 
         self.formLayout_7.setWidget(0, QFormLayout.LabelRole, self.label_26)
 
-        self.settingsExportLocation = QLineEdit(self.scrollAreaWidgetContents)
-        self.settingsExportLocation.setObjectName(u"settingsExportLocation")
-
-        self.formLayout_7.setWidget(0, QFormLayout.FieldRole, self.settingsExportLocation)
-
         self.label_27 = QLabel(self.scrollAreaWidgetContents)
         self.label_27.setObjectName(u"label_27")
 
@@ -893,6 +888,11 @@ class Ui_MainWindow(object):
         self.settingsVerboseLoggingCheckbox.setObjectName(u"settingsVerboseLoggingCheckbox")
 
         self.formLayout_7.setWidget(2, QFormLayout.FieldRole, self.settingsVerboseLoggingCheckbox)
+
+        self.settingsDefaultExportButton = QToolButton(self.scrollAreaWidgetContents)
+        self.settingsDefaultExportButton.setObjectName(u"settingsDefaultExportButton")
+
+        self.formLayout_7.setWidget(0, QFormLayout.FieldRole, self.settingsDefaultExportButton)
 
 
         self.verticalLayout_2.addLayout(self.formLayout_7)
@@ -1474,9 +1474,6 @@ class Ui_MainWindow(object):
         self.settingsExperimentsCheckbox.setText("")
         self.label_25.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">File &amp; Export</span></p></body></html>", None))
         self.label_26.setText(QCoreApplication.translate("MainWindow", u"Default Export Location", None))
-#if QT_CONFIG(tooltip)
-        self.settingsExportLocation.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The location where mDirt will export your packs.</p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
         self.label_27.setText(QCoreApplication.translate("MainWindow", u"Pack Format Override", None))
 #if QT_CONFIG(tooltip)
         self.settingsPackFormatOverride.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:700;\">EXPERIMENTAL!</span></p><p><span style=\" font-weight:700;\">DO NOT TOUCH IF YOU DON'T KNOW WHAT YOU ARE DOING!<br/></span>Lets you select a new Data &amp; Resource Pack format, as well as use custom Modules.</p></body></html>", None))
@@ -1486,6 +1483,7 @@ class Ui_MainWindow(object):
         self.settingsVerboseLoggingCheckbox.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Whether or not mDirt should create a `.log` file and log everything its doing.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.settingsVerboseLoggingCheckbox.setText("")
+        self.settingsDefaultExportButton.setText(QCoreApplication.translate("MainWindow", u"default", None))
         self.label_30.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Network &amp; Updates</span></p></body></html>", None))
         self.label_31.setText(QCoreApplication.translate("MainWindow", u"Check for Updates on Launch", None))
 #if QT_CONFIG(tooltip)
