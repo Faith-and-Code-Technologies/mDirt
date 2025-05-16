@@ -10,6 +10,8 @@ from packaging import version
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
+import threading
+import psutil
 
 # --- Constants ---
 if getattr(sys, "frozen", False):
@@ -97,6 +99,16 @@ class UpdateWorker:
             (os.path.join(temp_path, d) for d in os.listdir(temp_path)), None
         )
 
+        
+        for proc in psutil.process_iter(['pid', 'name', 'exe']):
+            try:
+                if proc.info['exe'] and proc.info['exe'].endswith(".exe"):
+                    exe_name = os.path.basename(proc.info['exe'])
+                    if exe_name != os.path.basename(sys.executable) and exe_name in os.listdir(BASE_DIR):
+                        proc.terminate()
+                        proc.wait(timeout=5)
+            except Exception:
+                pass
         # Delete old .exes (except self and new)
         existing_exes = [f for f in os.listdir(BASE_DIR) if f.endswith(".exe")]
         new_exes = [f for f in os.listdir(extracted_root) if f.endswith(".exe")]
@@ -203,7 +215,7 @@ class UpdaterUI(tk.Tk):
         worker = UpdateWorker(
             self.update_progress, self.update_status, self.finish_update
         )
-        self.after(100, worker.run)
+        threading.Thread(target=worker.run, daemon=True).start()
 
     def update_progress(self, value):
         self.progress["value"] = value

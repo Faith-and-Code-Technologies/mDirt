@@ -35,7 +35,7 @@ DEFAULT_SETTINGS = {
 
 
 class SettingsManager:
-    def __init__(self, settings_path="settings.json", beta_path="src/version.json"):
+    def __init__(self, settings_path="settings.json", beta_path="version.json"):
         self.settings_path = settings_path
         self.beta_path = beta_path
         self.settings = self.load_settings()

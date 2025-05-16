@@ -203,10 +203,9 @@ class App(QMainWindow):
         updaterPath = self.mainDirectory / 'mDirtUpdater.exe'
         if os.path.exists(updaterPath):
             subprocess.Popen(updaterPath)
-            # sys.exit() <- Need to do this only if there IS an update available, AND the user decides to INSTALL it
         else:
             alert("The mDirt Updater is missing! Reinstall mDirt to fix it.", 'critical')
-            # sys.exit() <- PROBABLY want ot do this, cuz it MIGHT mean other things are broken. Eh. Can't be bothered
+            sys.exit(1)
 
     #######################
     # SETUP PROJECT       #
