@@ -10,9 +10,9 @@ import subprocess
 import logging
 from pathlib import Path
 
-from PySide6.QtCore import Qt, QTimer
-from PySide6.QtGui import QImage, QPixmap, QFont
-from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QMessageBox, QWidget, QTreeWidgetItem
+from PySide6.QtCore import Qt, QTimer, QEvent, QObject
+from PySide6.QtGui import QImage, QPixmap, QFont, QDropEvent, QDragEnterEvent
+from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QWidget, QTreeWidgetItem
 
 from utils.field_validator import FieldValidator
 from utils.field_resetter import FieldResetter
@@ -30,6 +30,43 @@ APP_VERSION = '3.0.0'
 FULL_APP_VERSION = '3.0.0-beta.2'
 LIB_URL = 'https://raw.githubusercontent.com/Faith-and-Code-Technologies/mDirt/main/lib'
 ISSUE_URL = 'https://github.com/Faith-and-Code-Technologies/mDirt/issues'
+
+
+class DropHandler(QObject):
+    def __init__(self, button, func):
+        super().__init__()
+        self.button = button
+        self.func = func
+        self.png_path = None
+        self.button.setAcceptDrops(True)
+        self.button.installEventFilter(self)
+
+    def eventFilter(self, watched, event):
+        if watched == self.button:
+            if event.type() == QEvent.DragEnter:
+                return self.dragEnter(event)
+            elif event.type() == QEvent.Drop:
+                return self.dropEvent(event)
+        return False
+
+    def dragEnter(self, event: QDragEnterEvent):
+        if event.mimeData().hasUrls():
+            for url in event.mimeData().urls():
+                if url.toLocalFile().lower().endswith('.png'):
+                    event.acceptProposedAction()
+                    return True
+        event.ignore()
+        return True
+
+    def dropEvent(self, event: QDropEvent):
+        for url in event.mimeData().urls():
+            path = url.toLocalFile()
+            if path.lower().endswith('.png'):
+                self.png_path = path
+                self.func(path)
+                break
+        return True
+
 
 class App(QMainWindow):
     def __init__(self):
@@ -110,12 +147,24 @@ class App(QMainWindow):
         self.ui.blockTextureButtonFront.clicked.connect(lambda: self.addBlockTexture(BlockFace.FRONT))
         self.ui.blockTextureButtonBottom.clicked.connect(lambda: self.addBlockTexture(BlockFace.BOTTOM))
 
+        self.dropTop = DropHandler(self.ui.blockTextureButtonTop, lambda path: self.addBlockTexture(BlockFace.TOP, path))
+        self.dropLeft = DropHandler(self.ui.blockTextureButtonLeft, lambda path: self.addBlockTexture(BlockFace.LEFT, path))
+        self.dropBack = DropHandler(self.ui.blockTextureButtonBack, lambda path: self.addBlockTexture(BlockFace.BACK, path))
+        self.dropRight = DropHandler(self.ui.blockTextureButtonRight, lambda path: self.addBlockTexture(BlockFace.RIGHT, path))
+        self.dropFront = DropHandler(self.ui.blockTextureButtonFront, lambda path: self.addBlockTexture(BlockFace.FRONT, path))
+        self.dropBottom = DropHandler(self.ui.blockTextureButtonBottom, lambda path: self.addBlockTexture(BlockFace.BOTTOM, path))
+
+        self.dropBlockModel = DropHandler(self.ui.blockModel, self.getBlockModel)
+
         self.ui.blockModel.currentTextChanged.connect(self.getBlockModel)
         self.ui.blockConfirmButton.clicked.connect(self.addBlock)
 
         # Item Specific Connections
         self.ui.itemTextureButton.clicked.connect(self.addItemTexture)
         self.ui.itemConfirmButton.clicked.connect(self.addItem)
+
+        self.dropItem = DropHandler(self.ui.itemTextureButton, self.addItemTexture)
+        self.dropItemModel = DropHandler(self.ui.itemModel, self.getItemModel)
 
         # Recipe Specific Connections
         self.ui.slot0Button.clicked.connect(lambda: self.getRecipeItem(0))
@@ -140,6 +189,8 @@ class App(QMainWindow):
         # Painting Specific Connections
         self.ui.paintingTextureButton.clicked.connect(self.addPaintingTexture)
         self.ui.paintingConfirmButton.clicked.connect(self.addPainting)
+
+        self.dropPainting = DropHandler(self.ui.paintingTextureButton, self.addPaintingTexture)
 
         # Settings Specific Connections
         self.ui.settingsWorkspacePathButton.clicked.connect(self.workspacePathChanged)
@@ -512,10 +563,13 @@ class App(QMainWindow):
     # BLOCKS TAB          #
     #######################
 
-    def addBlockTexture(self, face: BlockFace):
-        texture, _ = QFileDialog.getOpenFileName(self, "Open Texture File", "", "PNG Files (*.png)")
-        if not texture:
-            return
+    def addBlockTexture(self, face: BlockFace, path=None):
+        if not path:
+            texture, _ = QFileDialog.getOpenFileName(self, "Open Texture File", "", "PNG Files (*.png)")
+            if not texture:
+                return
+        else:
+            texture = path
 
         filename = os.path.basename(texture)
         destinationPath = f'{self.mainDirectory}/workspaces/{self.packDetails["namespace"]}/assets/blocks/{filename}'
@@ -551,17 +605,25 @@ class App(QMainWindow):
         for item in self.data["items"]:
             self.ui.blockDropBox.addItem(item)
 
-    def getBlockModel(self):
-        if self.ui.blockModel.currentText() == "Custom":
-            fileDialog = QFileDialog()
-            filePath, _ = fileDialog.getOpenFileName(self, "Open JSON File", "", "JSON Files (*.json)")
+    def getBlockModel(self, path=None):
+        if path:
+            filePath = path
             fileName = os.path.basename(filePath)
             destPath = f'{self.mainDirectory}/workspaces/{self.packDetails["namespace"]}/assets/blocks/{fileName}'
-
-            if filePath:
-                shutil.copy(filePath, destPath)
-                self.ui.blockModel.addItem(destPath)
-                self.ui.blockModel.setCurrentText(destPath)
+            shutil.copy(filePath, destPath)
+            self.ui.blockModel.addItem(destPath)
+            self.ui.blockModel.setCurrentText(destPath)
+        
+        elif self.ui.blockModel.currentText() != "Custom": return
+        
+        fileDialog = QFileDialog()
+        filePath, _ = fileDialog.getOpenFileName(self, "Open JSON File", "", "JSON Files (*.json)")
+        if filePath:
+            fileName = os.path.basename(filePath)
+            destPath = f'{self.mainDirectory}/workspaces/{self.packDetails["namespace"]}/assets/blocks/{fileName}'
+            shutil.copy(filePath, destPath)
+            self.ui.blockModel.addItem(destPath)
+            self.ui.blockModel.setCurrentText(destPath)
 
     def validateBlockDetails(self):
         if not FieldValidator.validate_text_field(self.ui.blockDisplayName, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz _-!0123456789", "Display Name"):
@@ -656,10 +718,13 @@ class App(QMainWindow):
     # ITEMS TAB           #
     #######################
 
-    def addItemTexture(self):
-        texture, _ = QFileDialog.getOpenFileName(self, "Open Texture File", "", "PNG Files (*.png)")
-        if not texture:
-            return
+    def addItemTexture(self, path=None):
+        if not path:
+            texture, _ = QFileDialog.getOpenFileName(self, "Open Texture File", "", "PNG Files (*.png)")
+            if not texture:
+                return
+        else:
+            texture = path
         
         filename = os.path.basename(texture)
         destinationPath = f'{self.mainDirectory}/workspaces/{self.packDetails["namespace"]}/assets/items/{filename}'
@@ -674,6 +739,26 @@ class App(QMainWindow):
 
     def newItem(self):
         self.ui.elementEditor.setCurrentIndex(ElementPage.ITEMS)
+
+    def getItemModel(self, path=None):
+        if path:
+            filePath = path
+            fileName = os.path.basename(filePath)
+            destPath = f'{self.mainDirectory}/workspaces/{self.packDetails["namespace"]}/assets/items/{fileName}'
+            shutil.copy(filePath, destPath)
+            self.ui.itemModel.addItem(destPath)
+            self.ui.itemModel.setCurrentText(destPath)
+        
+        elif self.ui.itemModel.currentText() != "Custom": return
+        
+        fileDialog = QFileDialog()
+        filePath, _ = fileDialog.getOpenFileName(self, "Open JSON File", "", "JSON Files (*.json)")
+        if filePath:
+            fileName = os.path.basename(filePath)
+            destPath = f'{self.mainDirectory}/workspaces/{self.packDetails["namespace"]}/assets/items/{fileName}'
+            shutil.copy(filePath, destPath)
+            self.ui.itemModel.addItem(destPath)
+            self.ui.itemModel.setCurrentText(destPath)
 
     def validateItemDetails(self):
         if not FieldValidator.validate_text_field(self.ui.itemDisplayName, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz _-!0123456789", "Display Name"):
@@ -924,11 +1009,14 @@ class App(QMainWindow):
     # PAINTINGS TAB       #
     #######################
 
-    def addPaintingTexture(self):
-        texture, _ = QFileDialog.getOpenFileName(self, "Open Texture File", "", "PNG Files (*.png)")
-        if not texture:
-            return
-        
+    def addPaintingTexture(self, path=None):
+        if not path:
+            texture, _ = QFileDialog.getOpenFileName(self, "Open Texture File", "", "PNG Files (*.png)")
+            if not texture:
+                return
+        else:
+            texture = path
+
         filename = os.path.basename(texture)
         destinationPath = f'{self.mainDirectory}/workspaces/{self.packDetails["namespace"]}/assets/paintings/{filename}'
         shutil.copyfile(texture, destinationPath)

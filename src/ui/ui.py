@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uieDyCpk.ui'
+## Form generated from reading UI file 'uiyLbakX.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -29,7 +29,17 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1003, 737)
-        MainWindow.setStyleSheet(u"")
+        MainWindow.setStyleSheet(u"QPushButton[flat=\"true\"] {\n"
+"    background-color: transparent;\n"
+"    color: black;\n"
+"    border: 2px solid rgb(0, 0, 0);\n"
+"}\n"
+"\n"
+"QPushButton[flat=\"true\"]:hover {\n"
+"    text-decoration: underline;\n"
+"    color: #333;\n"
+"}\n"
+"")
         self.actionBlock = QAction(MainWindow)
         self.actionBlock.setObjectName(u"actionBlock")
         self.actionRecipe = QAction(MainWindow)

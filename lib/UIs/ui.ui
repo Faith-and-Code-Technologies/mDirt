@@ -14,7 +14,17 @@
    <string>mDirt - v3.0.0</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">QPushButton[flat=&quot;true&quot;] {
+    background-color: transparent;
+    color: black;
+    border: 2px solid rgb(0, 0, 0);
+}
+
+QPushButton[flat=&quot;true&quot;]:hover {
+    text-decoration: underline;
+    color: #333;
+}
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QFormLayout" name="formLayout_2">
