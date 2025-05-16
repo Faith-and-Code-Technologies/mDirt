@@ -200,7 +200,7 @@ class App(QMainWindow):
 
     def checkUpdates(self):
         if not self.settings.get('network', 'check_updates'): return
-        updaterPath = self.mainDirectory / 'mDirtUpdater.exe'
+        updaterPath = self.mainDirectory.parent / 'mDirtUpdater.exe'
         if os.path.exists(updaterPath):
             subprocess.Popen(updaterPath)
         else:

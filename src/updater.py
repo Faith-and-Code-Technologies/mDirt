@@ -12,12 +12,13 @@ from tkinter import messagebox
 from tkinter import ttk
 import threading
 import psutil
+import pathlib
 
 # --- Constants ---
 if getattr(sys, "frozen", False):
-    BASE_DIR = os.path.dirname(sys.executable)
+    BASE_DIR = pathlib.Path(sys.executable).resolve().parent
 else:
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    BASE_DIR = pathlib.Path(__file__).resolve().parent
 
 VERSION_FILE = os.path.join(BASE_DIR, "version.json")
 
