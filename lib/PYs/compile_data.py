@@ -28,23 +28,30 @@ def get_minecraft_files(version: str):
 
     items_path = extract_folder / "assets/minecraft/items"
     blocks_path = extract_folder / "assets/minecraft/blockstates"
+    biome_path = extract_folder / "data/minecraft/worldgen/biome"
 
     for file in items_path.glob("*.json"):
         items.append(file.name.removesuffix(".json"))
 
     for file in blocks_path.glob("*.json"):
         blocks.append(file.name.removesuffix(".json"))
+    
+    for file in biome_path.glob("*.json"):
+        biomes.append(file.name.removesuffix(".json"))
+    
 
     zip_file_path.unlink()
     shutil.rmtree(extract_folder)
 
     blocks.sort()
     items.sort()
+    biomes.sort()
 
     with open(f"lib/{version}_data.json", "w") as f:
-        json.dump({"blocks": blocks, "items": items}, f, indent=4)
+        json.dump({"blocks": blocks, "items": items, "biomes": biomes}, f, indent=4)
 
 
 blocks = []
 items = []
-get_minecraft_files("25w20a")
+biomes = []
+get_minecraft_files("1.21.5")
