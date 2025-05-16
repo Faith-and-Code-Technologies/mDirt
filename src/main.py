@@ -192,6 +192,9 @@ class App(QMainWindow):
 
         self.dropPainting = DropHandler(self.ui.paintingTextureButton, self.addPaintingTexture)
 
+        # Structure Specific Connections
+        self.ui.structureBiomesBox.toggled.connect(self.hideBiomeList)
+
         # Settings Specific Connections
         self.ui.settingsWorkspacePathButton.clicked.connect(self.workspacePathChanged)
         self.ui.settingsDefaultExportButton.clicked.connect(self.exportPathChanged)
@@ -205,7 +208,7 @@ class App(QMainWindow):
             subprocess.Popen(updaterPath)
         else:
             alert("The mDirt Updater is missing! Reinstall mDirt to fix it.", 'critical')
-            sys.exit(1)
+            #sys.exit(1)
 
     #######################
     # SETUP PROJECT       #
@@ -1098,6 +1101,18 @@ class App(QMainWindow):
         self.ui.paintingTexture.setPixmap(pixmap)
 
         self.ui.elementEditor.setCurrentIndex(ElementPage.PAINTINGS)
+
+    #######################
+    # PAINTINGS TAB       #
+    #######################
+
+    def hideBiomeList(self, state):
+        layout = self.ui.structureBiomesBox.layout()
+        for i in range(layout.count()):
+            item = layout.itemAt(i)
+            widget = item.widget()
+            if widget is not None:
+                widget.setVisible(state)
 
     #######################
     # PACK GENERATION     #

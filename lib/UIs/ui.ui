@@ -52,7 +52,7 @@ QPushButton[flat=&quot;true&quot;]:hover {
     <item row="0" column="1">
      <widget class="QStackedWidget" name="elementEditor">
       <property name="currentIndex">
-       <number>0</number>
+       <number>7</number>
       </property>
       <widget class="QWidget" name="welcomeScreen">
        <layout class="QGridLayout" name="gridLayout_4">
@@ -2150,6 +2150,157 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </widget>
        </widget>
       </widget>
+      <widget class="QWidget" name="structureEditor">
+       <widget class="QWidget" name="formLayoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>321</width>
+          <height>308</height>
+         </rect>
+        </property>
+        <layout class="QFormLayout" name="formLayout_9">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_33">
+           <property name="text">
+            <string>Name:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="structureName"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_34">
+           <property name="text">
+            <string>Biomes:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_35">
+           <property name="text">
+            <string>Location:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QComboBox" name="structureLocation"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_36">
+           <property name="text">
+            <string>Terrain Adaptation:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QComboBox" name="structureTerrainAdaptation"/>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_37">
+           <property name="text">
+            <string>Start Height:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QSpinBox" name="structureStartHeight"/>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="label_38">
+           <property name="text">
+            <string>Project Start to Heightmap:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QComboBox" name="structurePSTH"/>
+         </item>
+         <item row="7" column="0">
+          <widget class="QLabel" name="label_39">
+           <property name="text">
+            <string>Spacing:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1">
+          <widget class="QSpinBox" name="structureSpacing"/>
+         </item>
+         <item row="8" column="0">
+          <widget class="QLabel" name="label_40">
+           <property name="text">
+            <string>Seperation:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="1">
+          <widget class="QSpinBox" name="structureSeperation"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_41">
+           <property name="text">
+            <string>Structure:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QToolButton" name="structureNBTButton">
+           <property name="text">
+            <string>...</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QGroupBox" name="structureBiomesBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="title">
+            <string>Biomes</string>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <layout class="QFormLayout" name="formLayout_11">
+            <item row="0" column="0">
+             <widget class="QCheckBox" name="checkBox">
+              <property name="text">
+               <string>CheckBox</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLabel" name="label_42">
+              <property name="text">
+               <string>TextLabel</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QCheckBox" name="checkBox_2">
+              <property name="text">
+               <string>CheckBox</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLabel" name="label_43">
+              <property name="text">
+               <string>TextLabel</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -2173,6 +2324,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <addaction name="actionItem"/>
     <addaction name="actionRecipe"/>
     <addaction name="actionPainting"/>
+    <addaction name="actionStructure"/>
    </widget>
    <widget class="QMenu" name="menuSave">
     <property name="title">
@@ -2254,6 +2406,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <action name="actionSettings">
    <property name="text">
     <string>Settings</string>
+   </property>
+  </action>
+  <action name="actionStructure">
+   <property name="text">
+    <string>Structure</string>
    </property>
   </action>
  </widget>

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiyLbakX.ui'
+## Form generated from reading UI file 'uiwWhbgn.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -17,12 +17,13 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
 from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QCheckBox, QComboBox,
-    QFormLayout, QGridLayout, QHeaderView, QLabel,
-    QLineEdit, QMainWindow, QMenu, QMenuBar,
-    QPlainTextEdit, QPushButton, QRadioButton, QScrollArea,
-    QSizePolicy, QSlider, QSpinBox, QStackedWidget,
-    QStatusBar, QTabWidget, QTextEdit, QToolButton,
-    QTreeWidget, QTreeWidgetItem, QVBoxLayout, QWidget)
+    QFormLayout, QGridLayout, QGroupBox, QHeaderView,
+    QLabel, QLineEdit, QMainWindow, QMenu,
+    QMenuBar, QPlainTextEdit, QPushButton, QRadioButton,
+    QScrollArea, QSizePolicy, QSlider, QSpinBox,
+    QStackedWidget, QStatusBar, QTabWidget, QTextEdit,
+    QToolButton, QTreeWidget, QTreeWidgetItem, QVBoxLayout,
+    QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -66,6 +67,8 @@ class Ui_MainWindow(object):
         self.actionExport_Project.setObjectName(u"actionExport_Project")
         self.actionSettings = QAction(MainWindow)
         self.actionSettings.setObjectName(u"actionSettings")
+        self.actionStructure = QAction(MainWindow)
+        self.actionStructure.setObjectName(u"actionStructure")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.formLayout_2 = QFormLayout(self.centralwidget)
@@ -965,6 +968,133 @@ class Ui_MainWindow(object):
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.elementEditor.addWidget(self.settings)
+        self.structureEditor = QWidget()
+        self.structureEditor.setObjectName(u"structureEditor")
+        self.formLayoutWidget_2 = QWidget(self.structureEditor)
+        self.formLayoutWidget_2.setObjectName(u"formLayoutWidget_2")
+        self.formLayoutWidget_2.setGeometry(QRect(10, 10, 321, 308))
+        self.formLayout_9 = QFormLayout(self.formLayoutWidget_2)
+        self.formLayout_9.setObjectName(u"formLayout_9")
+        self.formLayout_9.setContentsMargins(0, 0, 0, 0)
+        self.label_33 = QLabel(self.formLayoutWidget_2)
+        self.label_33.setObjectName(u"label_33")
+
+        self.formLayout_9.setWidget(0, QFormLayout.LabelRole, self.label_33)
+
+        self.structureName = QLineEdit(self.formLayoutWidget_2)
+        self.structureName.setObjectName(u"structureName")
+
+        self.formLayout_9.setWidget(0, QFormLayout.FieldRole, self.structureName)
+
+        self.label_34 = QLabel(self.formLayoutWidget_2)
+        self.label_34.setObjectName(u"label_34")
+
+        self.formLayout_9.setWidget(2, QFormLayout.LabelRole, self.label_34)
+
+        self.label_35 = QLabel(self.formLayoutWidget_2)
+        self.label_35.setObjectName(u"label_35")
+
+        self.formLayout_9.setWidget(3, QFormLayout.LabelRole, self.label_35)
+
+        self.structureLocation = QComboBox(self.formLayoutWidget_2)
+        self.structureLocation.setObjectName(u"structureLocation")
+
+        self.formLayout_9.setWidget(3, QFormLayout.FieldRole, self.structureLocation)
+
+        self.label_36 = QLabel(self.formLayoutWidget_2)
+        self.label_36.setObjectName(u"label_36")
+
+        self.formLayout_9.setWidget(4, QFormLayout.LabelRole, self.label_36)
+
+        self.structureTerrainAdaptation = QComboBox(self.formLayoutWidget_2)
+        self.structureTerrainAdaptation.setObjectName(u"structureTerrainAdaptation")
+
+        self.formLayout_9.setWidget(4, QFormLayout.FieldRole, self.structureTerrainAdaptation)
+
+        self.label_37 = QLabel(self.formLayoutWidget_2)
+        self.label_37.setObjectName(u"label_37")
+
+        self.formLayout_9.setWidget(5, QFormLayout.LabelRole, self.label_37)
+
+        self.structureStartHeight = QSpinBox(self.formLayoutWidget_2)
+        self.structureStartHeight.setObjectName(u"structureStartHeight")
+
+        self.formLayout_9.setWidget(5, QFormLayout.FieldRole, self.structureStartHeight)
+
+        self.label_38 = QLabel(self.formLayoutWidget_2)
+        self.label_38.setObjectName(u"label_38")
+
+        self.formLayout_9.setWidget(6, QFormLayout.LabelRole, self.label_38)
+
+        self.structurePSTH = QComboBox(self.formLayoutWidget_2)
+        self.structurePSTH.setObjectName(u"structurePSTH")
+
+        self.formLayout_9.setWidget(6, QFormLayout.FieldRole, self.structurePSTH)
+
+        self.label_39 = QLabel(self.formLayoutWidget_2)
+        self.label_39.setObjectName(u"label_39")
+
+        self.formLayout_9.setWidget(7, QFormLayout.LabelRole, self.label_39)
+
+        self.structureSpacing = QSpinBox(self.formLayoutWidget_2)
+        self.structureSpacing.setObjectName(u"structureSpacing")
+
+        self.formLayout_9.setWidget(7, QFormLayout.FieldRole, self.structureSpacing)
+
+        self.label_40 = QLabel(self.formLayoutWidget_2)
+        self.label_40.setObjectName(u"label_40")
+
+        self.formLayout_9.setWidget(8, QFormLayout.LabelRole, self.label_40)
+
+        self.structureSeperation = QSpinBox(self.formLayoutWidget_2)
+        self.structureSeperation.setObjectName(u"structureSeperation")
+
+        self.formLayout_9.setWidget(8, QFormLayout.FieldRole, self.structureSeperation)
+
+        self.label_41 = QLabel(self.formLayoutWidget_2)
+        self.label_41.setObjectName(u"label_41")
+
+        self.formLayout_9.setWidget(1, QFormLayout.LabelRole, self.label_41)
+
+        self.structureNBTButton = QToolButton(self.formLayoutWidget_2)
+        self.structureNBTButton.setObjectName(u"structureNBTButton")
+
+        self.formLayout_9.setWidget(1, QFormLayout.FieldRole, self.structureNBTButton)
+
+        self.structureBiomesBox = QGroupBox(self.formLayoutWidget_2)
+        self.structureBiomesBox.setObjectName(u"structureBiomesBox")
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.structureBiomesBox.sizePolicy().hasHeightForWidth())
+        self.structureBiomesBox.setSizePolicy(sizePolicy)
+        self.structureBiomesBox.setCheckable(True)
+        self.formLayout_11 = QFormLayout(self.structureBiomesBox)
+        self.formLayout_11.setObjectName(u"formLayout_11")
+        self.checkBox = QCheckBox(self.structureBiomesBox)
+        self.checkBox.setObjectName(u"checkBox")
+
+        self.formLayout_11.setWidget(0, QFormLayout.LabelRole, self.checkBox)
+
+        self.label_42 = QLabel(self.structureBiomesBox)
+        self.label_42.setObjectName(u"label_42")
+
+        self.formLayout_11.setWidget(0, QFormLayout.FieldRole, self.label_42)
+
+        self.checkBox_2 = QCheckBox(self.structureBiomesBox)
+        self.checkBox_2.setObjectName(u"checkBox_2")
+
+        self.formLayout_11.setWidget(1, QFormLayout.LabelRole, self.checkBox_2)
+
+        self.label_43 = QLabel(self.structureBiomesBox)
+        self.label_43.setObjectName(u"label_43")
+
+        self.formLayout_11.setWidget(1, QFormLayout.FieldRole, self.label_43)
+
+
+        self.formLayout_9.setWidget(2, QFormLayout.FieldRole, self.structureBiomesBox)
+
+        self.elementEditor.addWidget(self.structureEditor)
 
         self.formLayout_2.setWidget(0, QFormLayout.FieldRole, self.elementEditor)
 
@@ -988,6 +1118,7 @@ class Ui_MainWindow(object):
         self.menuNew_Element.addAction(self.actionItem)
         self.menuNew_Element.addAction(self.actionRecipe)
         self.menuNew_Element.addAction(self.actionPainting)
+        self.menuNew_Element.addAction(self.actionStructure)
         self.menuSave.addAction(self.actionNew_Project)
         self.menuSave.addAction(self.actionOpen_Project)
         self.menuSave.addSeparator()
@@ -1000,7 +1131,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.elementEditor.setCurrentIndex(0)
+        self.elementEditor.setCurrentIndex(7)
         self.recipeSubTabs.setCurrentIndex(0)
 
 
@@ -1022,6 +1153,7 @@ class Ui_MainWindow(object):
         self.actionSave_As.setText(QCoreApplication.translate("MainWindow", u"Save As...", None))
         self.actionExport_Project.setText(QCoreApplication.translate("MainWindow", u"Export Project", None))
         self.actionSettings.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
+        self.actionStructure.setText(QCoreApplication.translate("MainWindow", u"Structure", None))
         ___qtreewidgetitem = self.elementViewer.headerItem()
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"Element Viewer", None));
         self.textEdit.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -1521,6 +1653,21 @@ class Ui_MainWindow(object):
         self.settingsRestoreDefaultsButton.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Restore settings to their defaults.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.settingsRestoreDefaultsButton.setText(QCoreApplication.translate("MainWindow", u"Restore Defaults", None))
+        self.label_33.setText(QCoreApplication.translate("MainWindow", u"Name:", None))
+        self.label_34.setText(QCoreApplication.translate("MainWindow", u"Biomes:", None))
+        self.label_35.setText(QCoreApplication.translate("MainWindow", u"Location:", None))
+        self.label_36.setText(QCoreApplication.translate("MainWindow", u"Terrain Adaptation:", None))
+        self.label_37.setText(QCoreApplication.translate("MainWindow", u"Start Height:", None))
+        self.label_38.setText(QCoreApplication.translate("MainWindow", u"Project Start to Heightmap:", None))
+        self.label_39.setText(QCoreApplication.translate("MainWindow", u"Spacing:", None))
+        self.label_40.setText(QCoreApplication.translate("MainWindow", u"Seperation:", None))
+        self.label_41.setText(QCoreApplication.translate("MainWindow", u"Structure:", None))
+        self.structureNBTButton.setText(QCoreApplication.translate("MainWindow", u"...", None))
+        self.structureBiomesBox.setTitle(QCoreApplication.translate("MainWindow", u"Biomes", None))
+        self.checkBox.setText(QCoreApplication.translate("MainWindow", u"CheckBox", None))
+        self.label_42.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.checkBox_2.setText(QCoreApplication.translate("MainWindow", u"CheckBox", None))
+        self.label_43.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.menuNew_Element.setTitle(QCoreApplication.translate("MainWindow", u"New Element", None))
         self.menuSave.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
     # retranslateUi
