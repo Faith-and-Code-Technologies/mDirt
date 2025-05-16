@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiQbGFGf.ui'
+## Form generated from reading UI file 'uiWUeLpV.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -21,8 +21,8 @@ from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QCheckBox, QCombo
     QLineEdit, QMainWindow, QMenu, QMenuBar,
     QPlainTextEdit, QPushButton, QRadioButton, QScrollArea,
     QSizePolicy, QSlider, QSpinBox, QStackedWidget,
-    QStatusBar, QTabWidget, QTextEdit, QTreeWidget,
-    QTreeWidgetItem, QVBoxLayout, QWidget)
+    QStatusBar, QTabWidget, QTextEdit, QToolButton,
+    QTreeWidget, QTreeWidgetItem, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -760,11 +760,6 @@ class Ui_MainWindow(object):
 
         self.formLayout_4.setWidget(2, QFormLayout.LabelRole, self.label_16)
 
-        self.settingsWorkspacePathCombo = QLineEdit(self.scrollAreaWidgetContents)
-        self.settingsWorkspacePathCombo.setObjectName(u"settingsWorkspacePathCombo")
-
-        self.formLayout_4.setWidget(2, QFormLayout.FieldRole, self.settingsWorkspacePathCombo)
-
         self.label_17 = QLabel(self.scrollAreaWidgetContents)
         self.label_17.setObjectName(u"label_17")
 
@@ -775,6 +770,11 @@ class Ui_MainWindow(object):
         self.settingsLanguageCombo.setObjectName(u"settingsLanguageCombo")
 
         self.formLayout_4.setWidget(3, QFormLayout.FieldRole, self.settingsLanguageCombo)
+
+        self.settingsWorkspacePathButton = QToolButton(self.scrollAreaWidgetContents)
+        self.settingsWorkspacePathButton.setObjectName(u"settingsWorkspacePathButton")
+
+        self.formLayout_4.setWidget(2, QFormLayout.FieldRole, self.settingsWorkspacePathButton)
 
 
         self.verticalLayout_2.addLayout(self.formLayout_4)
@@ -810,9 +810,9 @@ class Ui_MainWindow(object):
 
         self.settingsFontSizeSlider = QSlider(self.scrollAreaWidgetContents)
         self.settingsFontSizeSlider.setObjectName(u"settingsFontSizeSlider")
-        self.settingsFontSizeSlider.setMinimum(10)
+        self.settingsFontSizeSlider.setMinimum(5)
         self.settingsFontSizeSlider.setMaximum(20)
-        self.settingsFontSizeSlider.setValue(13)
+        self.settingsFontSizeSlider.setValue(9)
         self.settingsFontSizeSlider.setOrientation(Qt.Orientation.Horizontal)
 
         self.formLayout_5.setWidget(1, QFormLayout.FieldRole, self.settingsFontSizeSlider)
@@ -1437,16 +1437,13 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.settingsOpenLastCheckbox.setText("")
         self.label_16.setText(QCoreApplication.translate("MainWindow", u"Workspace Path", None))
-#if QT_CONFIG(tooltip)
-        self.settingsWorkspacePathCombo.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The location where your workspaces can be found.</p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
-        self.settingsWorkspacePathCombo.setText(QCoreApplication.translate("MainWindow", u"default", None))
         self.label_17.setText(QCoreApplication.translate("MainWindow", u"Language", None))
         self.settingsLanguageCombo.setItemText(0, QCoreApplication.translate("MainWindow", u"English", None))
 
 #if QT_CONFIG(tooltip)
         self.settingsLanguageCombo.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The language of mDirt.<br/><span style=\" font-weight:700;\">Only English is supported for now.</span></p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
+        self.settingsWorkspacePathButton.setText(QCoreApplication.translate("MainWindow", u"...", None))
         self.label_18.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">Appearance</span></p></body></html>", None))
         self.label_19.setText(QCoreApplication.translate("MainWindow", u"Theme", None))
         self.label_20.setText(QCoreApplication.translate("MainWindow", u"Font Size", None))

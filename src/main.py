@@ -11,7 +11,7 @@ import logging
 from pathlib import Path
 
 from PySide6.QtCore import Qt, QTimer
-from PySide6.QtGui import QImage, QPixmap
+from PySide6.QtGui import QImage, QPixmap, QFont
 from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QMessageBox, QWidget, QTreeWidgetItem
 
 from utils.field_validator import FieldValidator
@@ -78,6 +78,10 @@ class App(QMainWindow):
             project = self.settings.get('data', 'last_project_path')
             if os.path.exists(project):
                 self.loadProject(self.settings.get('data', 'last_project_namespace'))
+        
+        showTips = self.settings.get('appearance', 'show_tips')
+        if not showTips:
+            self.ui.textEdit.setText("")
 
         # CONNECTIONS
         self.ui.actionNew_Project.triggered.connect(self.openProjectMenu)
@@ -136,6 +140,9 @@ class App(QMainWindow):
         # Painting Specific Connections
         self.ui.paintingTextureButton.clicked.connect(self.addPaintingTexture)
         self.ui.paintingConfirmButton.clicked.connect(self.addPainting)
+
+        # Settings Specific Connections
+        self.ui.settingsWorkspacePathButton.clicked.connect(self.workspacePathChanged)
 
         self.checkUpdates()
 
@@ -278,7 +285,13 @@ class App(QMainWindow):
         self.saveProjectAs()
 
     def saveProjectAs(self):
-        projectDirectory = self.mainDirectory / 'workspaces' / f'{self.packDetails["namespace"]}'
+        if self.workspacePath == 'default':
+            projectDirectory = self.mainDirectory / 'workspaces' / f'{self.packDetails["namespace"]}'
+        else:
+            if os.path.exists(self.workspacePath):
+                projectDirectory = self.workspacePath
+            else:
+                projectDirectory = self.mainDirectory / 'workspaces' / f'{self.packDetails["namespace"]}'
         self.settings.set('data', 'last_project_path', str(projectDirectory))
         self.settings.set('data', 'last_project_namespace', self.packDetails["namespace"])
         self.settings.save_settings()
@@ -414,6 +427,10 @@ class App(QMainWindow):
         elif mode == "off":
             self.autoSaveTimer.stop()
 
+    def workspacePathChanged(self):
+        loc = QFileDialog.getExistingDirectory(self, "Select Workspace Directory", "")
+        self.ui.settingsWorkspacePathButton.setText(loc)
+
     def openSettings(self):
         self.refreshSettings()
         self.ui.elementEditor.setCurrentIndex(ElementPage.SETTINGS)
@@ -421,7 +438,7 @@ class App(QMainWindow):
     def saveSettings(self):
         self.settings.set('general', 'auto_save_interval', self.ui.settingsAutoSaveInt.currentText())
         self.settings.set('general', 'open_last_project', self.ui.settingsOpenLastCheckbox.isChecked())
-        self.settings.set('general', 'workspace_path', self.ui.settingsWorkspacePathCombo.text())
+        self.settings.set('general', 'workspace_path', self.ui.settingsWorkspacePathButton.text())
         self.settings.set('general', 'language', self.ui.settingsLanguageCombo.currentText())
         self.settings.set('appearance', 'theme', self.ui.settingsThemeCombo.currentText())
         self.settings.set('appearance', 'font_size', self.ui.settingsFontSizeSlider.value())
@@ -451,7 +468,7 @@ class App(QMainWindow):
     def refreshSettings(self):
         self.ui.settingsAutoSaveInt.setCurrentText(self.settings.get('general', 'auto_save_interval'))
         self.ui.settingsOpenLastCheckbox.setChecked(self.settings.get('general', 'open_last_project'))
-        self.ui.settingsWorkspacePathCombo.setText(self.settings.get('general', 'workspace_path'))
+        self.ui.settingsWorkspacePathButton.setText(self.settings.get('general', 'workspace_path'))
         self.ui.settingsLanguageCombo.setCurrentText(self.settings.get('general', 'language'))
         self.ui.settingsThemeCombo.setCurrentText(self.settings.get('appearance', 'theme'))
         self.ui.settingsFontSizeSlider.setValue(self.settings.get('appearance', 'font_size'))
@@ -467,6 +484,7 @@ class App(QMainWindow):
 
         self.setAutoSaveInterval()
         self.workspacePath = self.settings.get('general', 'workspace_path')
+        self.setFont(QFont("Segoe UI", self.settings.get('appearance', 'font_size')))
 
     #######################
     # ELEMENT MANAGER     #

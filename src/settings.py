@@ -10,7 +10,7 @@ DEFAULT_SETTINGS = {
     },
     "appearance": {
         "theme": "Earthy Dark", 
-        "font_size": 13, 
+        "font_size": 9, 
         "show_tips": True
         },
     "editor": {
