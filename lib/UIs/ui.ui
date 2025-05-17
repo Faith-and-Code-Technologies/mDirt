@@ -352,7 +352,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <x>10</x>
           <y>10</y>
           <width>241</width>
-          <height>251</height>
+          <height>280</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout">
@@ -1531,7 +1531,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <x>10</x>
           <y>0</y>
           <width>359</width>
-          <height>190</height>
+          <height>215</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout_3">
@@ -1809,7 +1809,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>707</width>
+           <width>294</width>
            <height>753</height>
           </rect>
          </property>
