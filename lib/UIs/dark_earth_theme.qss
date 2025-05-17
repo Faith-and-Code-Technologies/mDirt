@@ -1,0 +1,119 @@
+
+/* General palette */
+* {
+    color: #EAE3D2;
+    background-color: #2D1F1B;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 14px;
+}
+
+/* QMainWindow */
+QMainWindow {
+    background-color: #2D1F1B;
+}
+
+/* QLabel */
+QLabel {
+    color: #EAE3D2;
+}
+
+/* QPushButton */
+QPushButton {
+    background-color: #4E3B31;
+    color: #EAE3D2;
+    border: 1px solid #7D5A4F;
+    border-radius: 5px;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #5F463A;
+}
+QPushButton:pressed {
+    background-color: #3D2C25;
+}
+
+/* QLineEdit */
+QLineEdit {
+    background-color: #3A2A24;
+    color: #EAE3D2;
+    border: 1px solid #7D5A4F;
+    border-radius: 3px;
+    padding: 4px;
+}
+
+/* QPlainTextEdit */
+QPlainTextEdit {
+    background-color: #3A2A24;
+    color: #EAE3D2;
+    border: 1px solid #7D5A4F;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+/* QComboBox */
+QComboBox {
+    background-color: #3A2A24;
+    color: #EAE3D2;
+    border: 1px solid #7D5A4F;
+    border-radius: 3px;
+    padding: 4px;
+}
+QComboBox QAbstractItemView {
+    background-color: #2D1F1B;
+    color: #EAE3D2;
+    border: 1px solid #7D5A4F;
+    selection-background-color: #5F463A;
+}
+
+/* QCheckBox */
+QCheckBox {
+    color: #EAE3D2;
+}
+QCheckBox::indicator {
+    width: 14px;
+    height: 14px;
+}
+QCheckBox::indicator:unchecked {
+    border: 1px solid #7D5A4F;
+    background-color: #3A2A24;
+}
+QCheckBox::indicator:checked {
+    background-color: #7D5A4F;
+    border: 1px solid #A88070;
+}
+
+/* QGroupBox */
+QGroupBox {
+    border: 1px solid #7D5A4F;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+QGroupBox:title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0 3px;
+    color: #EAE3D2;
+}
+
+/* QMenuBar */
+QMenuBar {
+    background-color: #2D1F1B;
+}
+QMenuBar::item {
+    background: transparent;
+    color: #EAE3D2;
+    padding: 5px 10px;
+}
+QMenuBar::item:selected {
+    background: #5F463A;
+}
+
+/* QMenu */
+QMenu {
+    background-color: #2D1F1B;
+    color: #EAE3D2;
+    border: 1px solid #7D5A4F;
+}
+QMenu::item:selected {
+    background-color: #5F463A;
+}
