@@ -17,6 +17,101 @@ QLabel {
     color: #EAE3D2;
 }
 
+/* Spin Boxes */
+QSpinBox,
+QDoubleSpinBox {
+    background-color: #3e2f28;
+    color: #f5f5dc;
+    border: 1px solid #8d6e63;
+    border-radius: 4px;
+    padding: 2px 6px;
+}
+
+QSpinBox::up-button,
+QDoubleSpinBox::up-button,
+QSpinBox::down-button,
+QDoubleSpinBox::down-button {
+    subcontrol-origin: border;
+    width: 16px;
+    background-color: #5a3e36;
+    border: 1px solid #8d6e63;
+    border-radius: 2px;
+}
+
+QSpinBox::up-button:hover,
+QDoubleSpinBox::up-button:hover,
+QSpinBox::down-button:hover,
+QDoubleSpinBox::down-button:hover {
+    background-color: #6d4c41;
+}
+
+QSpinBox::up-arrow,
+QDoubleSpinBox::up-arrow,
+QSpinBox::down-arrow,
+QDoubleSpinBox::down-arrow {
+    width: 10px;
+    height: 10px;
+}
+
+/* Sliders */
+QSlider::groove:horizontal {
+    border: 1px solid #5a3e36;
+    height: 6px;
+    background: #3e2f28;
+    margin: 0px;
+    border-radius: 3px;
+}
+
+QSlider::handle:horizontal {
+    background: #8d6e63;
+    border: 1px solid #5a3e36;
+    width: 12px;
+    margin: -6px 0;
+    border-radius: 6px;
+}
+
+QSlider::groove:vertical {
+    border: 1px solid #5a3e36;
+    width: 6px;
+    background: #3e2f28;
+    margin: 0px;
+    border-radius: 3px;
+}
+
+QSlider::handle:vertical {
+    background: #8d6e63;
+    border: 1px solid #5a3e36;
+    height: 12px;
+    margin: 0 -6px;
+    border-radius: 6px;
+}
+
+/* Tree Widgets */
+QTreeWidget,
+QTreeView {
+    background-color: #3e2f28;
+    color: #e6ccb2;
+    border: 1px solid #5a3e36;
+    alternate-background-color: #4a352f;
+    show-decoration-selected: 1;
+}
+
+QTreeView::item:selected {
+    background-color: #6d4c41;
+    color: #fff3e0;
+}
+
+QTreeView::branch {
+    background-color: transparent;
+}
+
+QHeaderView::section {
+    background-color: #5a3e36;
+    color: #f5f5dc;
+    border: 1px solid #8d6e63;
+    padding: 4px;
+}
+
 /* QPushButton */
 QPushButton {
     background-color: #4E3B31;
