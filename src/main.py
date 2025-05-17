@@ -27,7 +27,7 @@ from settings import SettingsManager
 from module import ModuleDownloader
 
 APP_VERSION = '3.0.0'
-FULL_APP_VERSION = '3.0.0-beta.2'
+FULL_APP_VERSION = '3.0.0-beta.3'
 LIB_URL = 'https://raw.githubusercontent.com/Faith-and-Code-Technologies/mDirt/main/lib'
 ISSUE_URL = 'https://github.com/Faith-and-Code-Technologies/mDirt/issues'
 
@@ -119,6 +119,12 @@ class App(QMainWindow):
         showTips = self.settings.get('appearance', 'show_tips')
         if not showTips:
             self.ui.textEdit.setText("")
+
+        # Get the theme, apply it. In the future, turn to a set of functions in order to support multiple themes.
+        stylesheetFile = self.mainDirectory / 'lib' / 'UIs' / 'dark_earth_theme.qss'
+        with open(stylesheetFile, 'r') as f:
+            self.darkEarthTheme = f.read()
+        self.setStyleSheet(self.darkEarthTheme)
 
         # CONNECTIONS
         self.ui.actionNew_Project.triggered.connect(self.openProjectMenu)

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiwWhbgn.ui'
+## Form generated from reading UI file 'uiCwuYlT.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -30,15 +30,126 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1003, 737)
-        MainWindow.setStyleSheet(u"QPushButton[flat=\"true\"] {\n"
-"    background-color: transparent;\n"
-"    color: black;\n"
-"    border: 2px solid rgb(0, 0, 0);\n"
+        MainWindow.setStyleSheet(u"\n"
+"/* General palette */\n"
+"* {\n"
+"    color: #EAE3D2;\n"
+"    background-color: #2D1F1B;\n"
+"    font-family: \"Segoe UI\", sans-serif;\n"
+"    font-size: 14px;\n"
 "}\n"
 "\n"
-"QPushButton[flat=\"true\"]:hover {\n"
-"    text-decoration: underline;\n"
-"    color: #333;\n"
+"/* QMainWindow */\n"
+"QMainWindow {\n"
+"    background-color: #2D1F1B;\n"
+"}\n"
+"\n"
+"/* QLabel */\n"
+"QLabel {\n"
+"    color: #EAE3D2;\n"
+"}\n"
+"\n"
+"/* QPushButton */\n"
+"QPushButton {\n"
+"    background-color: #4E3B31;\n"
+"    color: #EAE3D2;\n"
+"    border: 1px solid #7D5A4F;\n"
+"    border-radius: 5px;\n"
+"    padding: 5px;\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: #5F463A;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #3D2C25;\n"
+"}\n"
+"\n"
+"/* QLineEdit */\n"
+"QLineEdit {\n"
+"    background-color: #3A2A24;\n"
+"    color: #EAE3D2;\n"
+"    border: 1px solid #7D5A4F;\n"
+"    border-radius: 3px;\n"
+"    padding: 4px;\n"
+"}\n"
+"\n"
+"/* QPlainTextEdit */\n"
+"QPlainTextEdit {\n"
+"    background-color: #3A2A24;\n"
+"    color: #EAE3D2;\n"
+"    border: 1px solid #7D5A4F;\n"
+"    border-radius: 4px;\n"
+"    pad"
+                        "ding: 4px;\n"
+"}\n"
+"\n"
+"/* QComboBox */\n"
+"QComboBox {\n"
+"    background-color: #3A2A24;\n"
+"    color: #EAE3D2;\n"
+"    border: 1px solid #7D5A4F;\n"
+"    border-radius: 3px;\n"
+"    padding: 4px;\n"
+"}\n"
+"QComboBox QAbstractItemView {\n"
+"    background-color: #2D1F1B;\n"
+"    color: #EAE3D2;\n"
+"    border: 1px solid #7D5A4F;\n"
+"    selection-background-color: #5F463A;\n"
+"}\n"
+"\n"
+"/* QCheckBox */\n"
+"QCheckBox {\n"
+"    color: #EAE3D2;\n"
+"}\n"
+"QCheckBox::indicator {\n"
+"    width: 14px;\n"
+"    height: 14px;\n"
+"}\n"
+"QCheckBox::indicator:unchecked {\n"
+"    border: 1px solid #7D5A4F;\n"
+"    background-color: #3A2A24;\n"
+"}\n"
+"QCheckBox::indicator:checked {\n"
+"    background-color: #7D5A4F;\n"
+"    border: 1px solid #A88070;\n"
+"}\n"
+"\n"
+"/* QGroupBox */\n"
+"QGroupBox {\n"
+"    border: 1px solid #7D5A4F;\n"
+"    border-radius: 5px;\n"
+"    margin-top: 10px;\n"
+"}\n"
+"QGroupBox:title {\n"
+"    subcontrol-origin: margin;\n"
+"    subcontrol-position: top left;\n"
+"    padding: 0 3px;\n"
+"    col"
+                        "or: #EAE3D2;\n"
+"}\n"
+"\n"
+"/* QMenuBar */\n"
+"QMenuBar {\n"
+"    background-color: #2D1F1B;\n"
+"}\n"
+"QMenuBar::item {\n"
+"    background: transparent;\n"
+"    color: #EAE3D2;\n"
+"    padding: 5px 10px;\n"
+"}\n"
+"QMenuBar::item:selected {\n"
+"    background: #5F463A;\n"
+"}\n"
+"\n"
+"/* QMenu */\n"
+"QMenu {\n"
+"    background-color: #2D1F1B;\n"
+"    color: #EAE3D2;\n"
+"    border: 1px solid #7D5A4F;\n"
+"}\n"
+"QMenu::item:selected {\n"
+"    background-color: #5F463A;\n"
 "}\n"
 "")
         self.actionBlock = QAction(MainWindow)
@@ -135,7 +246,7 @@ class Ui_MainWindow(object):
         self.blockTextureLabel.setGeometry(QRect(260, 10, 49, 16))
         self.layoutWidget = QWidget(self.blockEditor)
         self.layoutWidget.setObjectName(u"layoutWidget")
-        self.layoutWidget.setGeometry(QRect(10, 10, 241, 251))
+        self.layoutWidget.setGeometry(QRect(10, 10, 241, 280))
         self.gridLayout = QGridLayout(self.layoutWidget)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
@@ -574,7 +685,7 @@ class Ui_MainWindow(object):
         self.paintingTextureLabel.setGeometry(QRect(410, 30, 58, 15))
         self.layoutWidget2 = QWidget(self.paintingEditor)
         self.layoutWidget2.setObjectName(u"layoutWidget2")
-        self.layoutWidget2.setGeometry(QRect(10, 0, 359, 190))
+        self.layoutWidget2.setGeometry(QRect(10, 0, 359, 215))
         self.gridLayout_3 = QGridLayout(self.layoutWidget2)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
@@ -717,7 +828,7 @@ class Ui_MainWindow(object):
         self.label_12 = QLabel(self.formLayoutWidget)
         self.label_12.setObjectName(u"label_12")
         font1 = QFont()
-        font1.setFamilies([u"JetBrains Mono"])
+        font1.setFamilies([u"Segoe UI"])
         font1.setBold(False)
         font1.setItalic(False)
         font1.setUnderline(True)
@@ -735,7 +846,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 719, 679))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 294, 753))
         self.verticalLayout_2 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.label_13 = QLabel(self.scrollAreaWidgetContents)
@@ -972,7 +1083,7 @@ class Ui_MainWindow(object):
         self.structureEditor.setObjectName(u"structureEditor")
         self.formLayoutWidget_2 = QWidget(self.structureEditor)
         self.formLayoutWidget_2.setObjectName(u"formLayoutWidget_2")
-        self.formLayoutWidget_2.setGeometry(QRect(10, 10, 321, 308))
+        self.formLayoutWidget_2.setGeometry(QRect(10, 10, 338, 348))
         self.formLayout_9 = QFormLayout(self.formLayoutWidget_2)
         self.formLayout_9.setObjectName(u"formLayout_9")
         self.formLayout_9.setContentsMargins(0, 0, 0, 0)
@@ -1104,7 +1215,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
         self.menuBar = QMenuBar(MainWindow)
         self.menuBar.setObjectName(u"menuBar")
-        self.menuBar.setGeometry(QRect(0, 0, 1003, 33))
+        self.menuBar.setGeometry(QRect(0, 0, 1003, 30))
         self.menuNew_Element = QMenu(self.menuBar)
         self.menuNew_Element.setObjectName(u"menuNew_Element")
         self.menuSave = QMenu(self.menuBar)
@@ -1131,7 +1242,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.elementEditor.setCurrentIndex(7)
+        self.elementEditor.setCurrentIndex(0)
         self.recipeSubTabs.setCurrentIndex(0)
 
 
@@ -1157,133 +1268,33 @@ class Ui_MainWindow(object):
         ___qtreewidgetitem = self.elementViewer.headerItem()
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"Element Viewer", None));
         self.textEdit.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><title>Welcome to mDirt</title><style type=\"text/css\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\" bgcolor=\"#1e1e1e\">\n"
-"<h1 style=\" margin-top:18px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:xx-large; font-weight:700; color:#00e676;\">mDirt - A Minecraft Datapack Generator</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:xx-large; font-weight:700; color:#f0f0f0;\"> </span></h1>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-le"
-                        "ft:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; font-style:italic; color:#aaaaaa;\">Making Datapacks is really tedious... but not anymore.</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\"> </span></p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\">Creating custom Minecraft datapacks can be time-consuming and complex. </span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; font-weight:700; color:#f0f0f0;\">mDirt</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\"> simplifies this process by providing an easy-to-use tool for generating datapacks with custom features like blocks, items, recipes, and more. </span></p>\n"
-"<h2 style=\" "
-                        "margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#00e676;\">Supported Versions</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;\"> </span></h2>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; font-weight:700; color:#f0f0f0;\">Minecraft Versions Supported:</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\"> 1.21.3, 1.21.4, 1.21.5 </span></p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; font-weight:700; color:#f0f0f0;"
-                        "\">Full compatibility</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\"> for </span><span style=\" font-family:'Courier New'; font-size:13px; color:#ffeb3b; background-color:#2c2c2c;\">1.21.5</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\"> has been added. </span></p>\n"
-"<h3 style=\" margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#00e676;\">Using the Interface</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#f0f0f0;\"> </span></h3>\n"
+"</style></head><body style=\" font-family:'Segoe UI','sans-serif'; font-size:14px; font-weight:400; font-style:normal;\" bgcolor=\"#2c1f1a\">\n"
+"<h1 style=\" margin-top:18px; margin-bottom:19px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:xx-large; font-weight:700; color:#d4a373;\">Welcome to mDirt</span><span style=\" font-size:xx-large; font-weight:700; color:#e6ccb2;\"> </span></h1>\n"
+"<p style=\" margin-top:12px; margin-bottom:19px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" color:#e6ccb2;\">(making Datapac"
+                        "ks is really tedious... But not anymore!)</span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:19px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-weight:700; color:#e6ccb2;\">mDirt</span><span style=\" color:#e6ccb2;\"> is a powerful and user-friendly datapack editor for Minecraft, designed to make creating, editing, and managing datapacks easier than ever. </span></p>\n"
+"<h2 style=\" margin-top:41px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:x-large; font-weight:700; color:#e6b800;\">Getting Started</span><span style=\" font-size:x-large; font-weight:700; color:#e6ccb2;\"> </span></h2>\n"
 "<ul style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\">\n"
-"<li style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\" style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; "
-                        "-qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-weight:700;\">Tooltips:</span> Hover over any field for help. </li>\n"
-"<li style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\">Fill in details like block names, item properties, recipes, etc. </li>\n"
-"<li style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\" style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\">To get started, create a new element!</li></ul>\n"
-"<h3 style=\" margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#00e676;\">Generate Your Datapack</span><span style=\" font-family:'Segoe UI"
-                        "','sans-serif'; font-size:large; font-weight:700; color:#f0f0f0;\"> </span></h3>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\">Click </span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; font-weight:700; color:#f0f0f0;\">&quot;Generate Pack&quot;</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\"> once you're done. Your datapack will be ready to export! </span></p>\n"
-"<h3 style=\" margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#00e676;\">Deploying in Minecraft</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:large; font-weight:700; color:#f0f0f0;\"> </span></h3>\n"
-"<p style=\" m"
-                        "argin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\">Place the datapack in </span><span style=\" font-family:'Courier New'; font-size:13px; color:#ffeb3b; background-color:#2c2c2c;\">datapacks</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\"> folder and the resourcepack in </span><span style=\" font-family:'Courier New'; font-size:13px; color:#ffeb3b; background-color:#2c2c2c;\">resourcepacks</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\">. </span></p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\">Use the following commands to get your features: </span></p>\n"
-"<ul style=\"margin-top: 0px"
-                        "; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\">\n"
-"<li style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\" style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\">Blocks: <span style=\" font-family:'Courier New'; color:#ffeb3b; background-color:#2c2c2c;\">/function YOURNAMESPACE:give_blocks</span> </li>\n"
-"<li style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\">Items: <span style=\" font-family:'Courier New'; color:#ffeb3b; background-color:#2c2c2c;\">/function YOURNAMESPACE:give_items</span> </li>\n"
-"<li style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height"
-                        ":160%;\">Paintings: <span style=\" font-family:'Courier New'; color:#ffeb3b; background-color:#2c2c2c;\">/function YOURNAMESPACE:give_paintings</span> </li></ul>\n"
-"<h2 style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#00e676;\">Feature Support by Version</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;\"> </span></h2>\n"
-"<table border=\"0\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; border-collapse:collapse;\" cellspacing=\"2\" cellpadding=\"0\"><thead>\n"
-"<tr>\n"
-"<td bgcolor=\"#333333\" style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#44"
-                        "4444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%; background-color:#333333;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; font-weight:700; color:#f0f0f0; background-color:#333333;\">Feature</span></p></td>\n"
-"<td bgcolor=\"#333333\" style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%; background-color:#333333;\"><s"
-                        "pan style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; font-weight:700; color:#f0f0f0; background-color:#333333;\">1.21.3</span></p></td>\n"
-"<td bgcolor=\"#333333\" style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%; background-color:#333333;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; font-weight:700; color:#f0f0f0; background-color:#333333;\">1.21.4</span></p></td>\n"
-"<td bgcolor=\"#333333\" style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:"
-                        "1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%; background-color:#333333;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; font-weight:700; color:#f0f0f0; background-color:#333333;\">1.21.5</span></p></td></tr></thead>\n"
-"<tr>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-botto"
-                        "m:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\">Blocks</span></p></td>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#00e676;\">\u2705 100%</span></p></td>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444"
-                        "; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#00e676;\">\u2705 100%</span></p></td>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe"
-                        " UI','sans-serif'; font-size:13px; color:#00e676;\">\u2705 100%</span></p></td></tr>\n"
-"<tr>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\">Items</span></p></td>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-ri"
-                        "ght-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#00e676;\">\u2705 80%</span></p></td>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#00e676;\">\u2705 80%</span></p></td>\n"
-"<td style=\" padding-left:0; padding-"
-                        "right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#00e676;\">\u2705 80%</span></p></td></tr>\n"
-"<tr>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:"
-                        "0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\">Recipes</span></p></td>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#00e676;\">\u2705 100%</span></p></td>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border"
-                        "-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#00e676;\">\u2705 100%</span></p></td>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" "
-                        "font-family:'Segoe UI','sans-serif'; font-size:13px; color:#00e676;\">\u2705 100%</span></p></td></tr>\n"
-"<tr>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\">Paintings</span></p></td>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-"
-                        "style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#e53935;\">\u274c</span></p></td>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#00e676;\">\u2705 100%</span></p></td>\n"
-"<td style=\" paddi"
-                        "ng-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#00e676;\">\u2705 100%</span></p></td></tr>\n"
-"<tr>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" "
-                        "style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\">Enchantments</span></p></td>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#e53935;\">\u274c</span></p></td>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; bor"
-                        "der-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#e53935;\">\u274c</span></p></td>\n"
-"<td style=\" padding-left:0; padding-right:0; padding-top:0; padding-bottom:0; border-top:1px; border-right:1px; border-bottom:1px; border-left:1px; border-top-color:#444444; border-right-color:#444444; border-bottom-color:#444444; border-left-color:#444444; border-top-style:solid; border-right-style:solid; border-bottom-style:solid; border-left-style:solid;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\">"
-                        "<span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#e53935;\">\u274c</span></p></td></tr></table>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'JetBrains Mono','Consolas','monospace'; font-size:13px;\"><br /></p>\n"
-"<h2 style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#00e676;\">Coming Soon</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;\"> </span></h2>\n"
+"<li style=\" color:#e6ccb2;\" style=\" margin-top:12px; margin-bottom:10px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Create a new d"
+                        "atapack project </li>\n"
+"<li style=\" color:#e6ccb2;\" style=\" margin-top:0px; margin-bottom:10px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Open an existing datapack folder </li>\n"
+"<li style=\" color:#e6ccb2;\" style=\" margin-top:0px; margin-bottom:10px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Use built-in templates and generators </li>\n"
+"<li style=\" color:#e6ccb2;\" style=\" margin-top:0px; margin-bottom:12px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Preview and test functions in real time </li></ul>\n"
+"<h2 style=\" margin-top:41px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:x-large; font-weight:700; color:#e6b800;\">Features</span><span style=\" font-size:x-large; font-weight:700; color:#e6ccb2;\"> </span></h2>\n"
 "<ul style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\">\n"
-"<li style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\" style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-blo"
-                        "ck-indent:0; text-indent:0px; line-height:160%;\">Custom Components for Items and Blocks </li>\n"
-"<li style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\" style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\">Support for Custom Enchantments </li></ul>\n"
-"<h2 style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#00e676;\">Tips and Best Practices</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;\"> </span></h2>\n"
-"<ul style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\">\n"
-"<li style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\" style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; ma"
-                        "rgin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-weight:700;\">Namespaces:</span> Avoid clashes with other datapacks. </li>\n"
-"<li style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-weight:700;\">Testing:</span> Try it in a separate world first. </li>\n"
-"<li style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\" style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-weight:700;\">Backups:</span> Always back up before applying new packs. </li></ul>\n"
-"<h2 style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; f"
-                        "ont-weight:700; color:#00e676;\">Credits</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;\"> </span></h2>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\">Created by </span><a href=\"https://github.com/TheJupiterDev\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; text-decoration: underline; color:#4fc3f7;\">@TheJupiterDev</span></a><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\"> and </span><a href=\"https://github.com/JustJoshinDev\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; text-decoration: underline; color:#4fc3f7;\">@JustJoshinDev</span></a><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\"> </span></p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12p"
-                        "x; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\">Special thanks to Admin for the custom block generation method. </span></p>\n"
-"<h2 style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#00e676;\">Get Involved</span><span style=\" font-family:'Segoe UI','sans-serif'; font-size:x-large; font-weight:700; color:#f0f0f0;\"> </span></h2>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\">We welcome contributions and suggestions! <br />Found a bug? Have an idea? <br />Visit the </span><a href=\"https://github.com/JustJoshinDev/mDirt\"><s"
-                        "pan style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; text-decoration: underline; color:#4fc3f7;\">GitHub Repository</span></a><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#f0f0f0;\"> to file issues or open pull requests. </span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-family:'Segoe UI','sans-serif'; font-size:13px; color:#aaaaaa;\">\u00a9 2025 mDirt Project. Minecraft is a trademark of Mojang Studios. </span></p></body></html>", None))
+""
+                        "<li style=\" color:#e6ccb2;\" style=\" margin-top:12px; margin-bottom:10px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Drag-and-drop file management </li>\n"
+"<li style=\" color:#e6ccb2;\" style=\" margin-top:0px; margin-bottom:10px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Syntax highlighting and function tools </li>\n"
+"<li style=\" color:#e6ccb2;\" style=\" margin-top:0px; margin-bottom:10px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Datapack packaging and exporting </li>\n"
+"<li style=\" color:#e6ccb2;\" style=\" margin-top:0px; margin-bottom:12px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Lightweight and fast interface </li></ul>\n"
+"<p style=\" margin-top:12px; margin-bottom:19px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" color:#e6ccb2;\">Need help? </span><a href=\"https://github.com/yourproject/mDirt/wiki\"><"
+                        "span style=\" text-decoration: underline; color:#f0a500;\">View the documentation</span></a><span style=\" color:#e6ccb2;\"> or </span><a href=\"https://github.com/yourproject/mDirt/issues\"><span style=\" text-decoration: underline; color:#f0a500;\">report an issue</span></a><span style=\" color:#e6ccb2;\">. </span></p>\n"
+"<p style=\" margin-top:16px; margin-bottom:16px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-size:12px; font-style:italic; color:#aa9c8e;\">Version 3.0.0-beta-3 | \u00a9 2025 mDirt Project</span></p></body></html>", None))
 #if QT_CONFIG(tooltip)
         self.blockTextureButtonBottom.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The bottom texture of your block. <span style=\" font-weight:700;\">If you are using a Custom model, only use this texture!</span></p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
