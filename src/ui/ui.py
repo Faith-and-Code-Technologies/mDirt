@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uidZBwaT.ui'
+## Form generated from reading UI file 'uixNudkJ.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -30,128 +30,7 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1003, 737)
-        MainWindow.setStyleSheet(u"\n"
-"/* General palette */\n"
-"* {\n"
-"    color: #EAE3D2;\n"
-"    background-color: #2D1F1B;\n"
-"    font-family: \"Segoe UI\", sans-serif;\n"
-"    font-size: 14px;\n"
-"}\n"
-"\n"
-"/* QMainWindow */\n"
-"QMainWindow {\n"
-"    background-color: #2D1F1B;\n"
-"}\n"
-"\n"
-"/* QLabel */\n"
-"QLabel {\n"
-"    color: #EAE3D2;\n"
-"}\n"
-"\n"
-"/* QPushButton */\n"
-"QPushButton {\n"
-"    background-color: #4E3B31;\n"
-"    color: #EAE3D2;\n"
-"    border: 1px solid #7D5A4F;\n"
-"    border-radius: 5px;\n"
-"    padding: 5px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: #5F463A;\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: #3D2C25;\n"
-"}\n"
-"\n"
-"/* QLineEdit */\n"
-"QLineEdit {\n"
-"    background-color: #3A2A24;\n"
-"    color: #EAE3D2;\n"
-"    border: 1px solid #7D5A4F;\n"
-"    border-radius: 3px;\n"
-"    padding: 4px;\n"
-"}\n"
-"\n"
-"/* QPlainTextEdit */\n"
-"QPlainTextEdit {\n"
-"    background-color: #3A2A24;\n"
-"    color: #EAE3D2;\n"
-"    border: 1px solid #7D5A4F;\n"
-"    border-radius: 4px;\n"
-"    pad"
-                        "ding: 4px;\n"
-"}\n"
-"\n"
-"/* QComboBox */\n"
-"QComboBox {\n"
-"    background-color: #3A2A24;\n"
-"    color: #EAE3D2;\n"
-"    border: 1px solid #7D5A4F;\n"
-"    border-radius: 3px;\n"
-"    padding: 4px;\n"
-"}\n"
-"QComboBox QAbstractItemView {\n"
-"    background-color: #2D1F1B;\n"
-"    color: #EAE3D2;\n"
-"    border: 1px solid #7D5A4F;\n"
-"    selection-background-color: #5F463A;\n"
-"}\n"
-"\n"
-"/* QCheckBox */\n"
-"QCheckBox {\n"
-"    color: #EAE3D2;\n"
-"}\n"
-"QCheckBox::indicator {\n"
-"    width: 14px;\n"
-"    height: 14px;\n"
-"}\n"
-"QCheckBox::indicator:unchecked {\n"
-"    border: 1px solid #7D5A4F;\n"
-"    background-color: #3A2A24;\n"
-"}\n"
-"QCheckBox::indicator:checked {\n"
-"    background-color: #7D5A4F;\n"
-"    border: 1px solid #A88070;\n"
-"}\n"
-"\n"
-"/* QGroupBox */\n"
-"QGroupBox {\n"
-"    border: 1px solid #7D5A4F;\n"
-"    border-radius: 5px;\n"
-"    margin-top: 10px;\n"
-"}\n"
-"QGroupBox:title {\n"
-"    subcontrol-origin: margin;\n"
-"    subcontrol-position: top left;\n"
-"    padding: 0 3px;\n"
-"    col"
-                        "or: #EAE3D2;\n"
-"}\n"
-"\n"
-"/* QMenuBar */\n"
-"QMenuBar {\n"
-"    background-color: #2D1F1B;\n"
-"}\n"
-"QMenuBar::item {\n"
-"    background: transparent;\n"
-"    color: #EAE3D2;\n"
-"    padding: 5px 10px;\n"
-"}\n"
-"QMenuBar::item:selected {\n"
-"    background: #5F463A;\n"
-"}\n"
-"\n"
-"/* QMenu */\n"
-"QMenu {\n"
-"    background-color: #2D1F1B;\n"
-"    color: #EAE3D2;\n"
-"    border: 1px solid #7D5A4F;\n"
-"}\n"
-"QMenu::item:selected {\n"
-"    background-color: #5F463A;\n"
-"}\n"
-"")
+        MainWindow.setStyleSheet(u"")
         self.actionBlock = QAction(MainWindow)
         self.actionBlock.setObjectName(u"actionBlock")
         self.actionRecipe = QAction(MainWindow)
@@ -846,7 +725,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 294, 753))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 719, 679))
         self.verticalLayout_2 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.label_13 = QLabel(self.scrollAreaWidgetContents)
@@ -1215,7 +1094,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
         self.menuBar = QMenuBar(MainWindow)
         self.menuBar.setObjectName(u"menuBar")
-        self.menuBar.setGeometry(QRect(0, 0, 1003, 30))
+        self.menuBar.setGeometry(QRect(0, 0, 1003, 33))
         self.menuNew_Element = QMenu(self.menuBar)
         self.menuNew_Element.setObjectName(u"menuNew_Element")
         self.menuSave = QMenu(self.menuBar)
@@ -1273,28 +1152,8 @@ class Ui_MainWindow(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Segoe UI','sans-serif'; font-size:14px; font-weight:400; font-style:normal;\" bgcolor=\"#2c1f1a\">\n"
-"<h1 style=\" margin-top:18px; margin-bottom:19px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:xx-large; font-weight:700; color:#d4a373;\">Welcome to mDirt</span><span style=\" font-size:xx-large; font-weight:700; color:#e6ccb2;\"> </span></h1>\n"
-"<p style=\" margin-top:12px; margin-bottom:19px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" color:#e6ccb2;\">(making Datapac"
-                        "ks is really tedious... But not anymore!)</span></p>\n"
-"<p style=\" margin-top:12px; margin-bottom:19px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-weight:700; color:#e6ccb2;\">mDirt</span><span style=\" color:#e6ccb2;\"> is a powerful and user-friendly datapack editor for Minecraft, designed to make creating, editing, and managing datapacks easier than ever. </span></p>\n"
-"<h2 style=\" margin-top:41px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:x-large; font-weight:700; color:#e6b800;\">Getting Started</span><span style=\" font-size:x-large; font-weight:700; color:#e6ccb2;\"> </span></h2>\n"
-"<ul style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\">\n"
-"<li style=\" color:#e6ccb2;\" style=\" margin-top:12px; margin-bottom:10px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Create a new d"
-                        "atapack project </li>\n"
-"<li style=\" color:#e6ccb2;\" style=\" margin-top:0px; margin-bottom:10px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Open an existing datapack folder </li>\n"
-"<li style=\" color:#e6ccb2;\" style=\" margin-top:0px; margin-bottom:10px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Use built-in templates and generators </li>\n"
-"<li style=\" color:#e6ccb2;\" style=\" margin-top:0px; margin-bottom:12px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Preview and test functions in real time </li></ul>\n"
-"<h2 style=\" margin-top:41px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:x-large; font-weight:700; color:#e6b800;\">Features</span><span style=\" font-size:x-large; font-weight:700; color:#e6ccb2;\"> </span></h2>\n"
-"<ul style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\">\n"
-""
-                        "<li style=\" color:#e6ccb2;\" style=\" margin-top:12px; margin-bottom:10px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Drag-and-drop file management </li>\n"
-"<li style=\" color:#e6ccb2;\" style=\" margin-top:0px; margin-bottom:10px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Syntax highlighting and function tools </li>\n"
-"<li style=\" color:#e6ccb2;\" style=\" margin-top:0px; margin-bottom:10px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Datapack packaging and exporting </li>\n"
-"<li style=\" color:#e6ccb2;\" style=\" margin-top:0px; margin-bottom:12px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Lightweight and fast interface </li></ul>\n"
-"<p style=\" margin-top:12px; margin-bottom:19px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" color:#e6ccb2;\">Need help? </span><a href=\"https://github.com/yourproject/mDirt/wiki\"><"
-                        "span style=\" text-decoration: underline; color:#f0a500;\">View the documentation</span></a><span style=\" color:#e6ccb2;\"> or </span><a href=\"https://github.com/yourproject/mDirt/issues\"><span style=\" text-decoration: underline; color:#f0a500;\">report an issue</span></a><span style=\" color:#e6ccb2;\">. </span></p>\n"
-"<p style=\" margin-top:16px; margin-bottom:16px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><span style=\" font-size:12px; font-style:italic; color:#aa9c8e;\">Version 3.0.0-beta-3 | \u00a9 2025 mDirt Project</span></p></body></html>", None))
+"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:16px; margin-bottom:16px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><br /></p></body></html>", None))
 #if QT_CONFIG(tooltip)
         self.blockTextureButtonBottom.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The bottom texture of your block. <span style=\" font-weight:700;\">If you are using a Custom model, only use this texture!</span></p></body></html>", None))
 #endif // QT_CONFIG(tooltip)

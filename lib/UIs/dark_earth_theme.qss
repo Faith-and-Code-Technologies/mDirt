@@ -212,3 +212,7 @@ QMenu {
 QMenu::item:selected {
     background-color: #5F463A;
 }
+
+QPushButton:flat{
+    background-color: transparent;
+}

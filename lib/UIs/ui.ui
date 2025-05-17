@@ -14,126 +14,7 @@
    <string>mDirt - v3.0.0</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">
-/* General palette */
-* {
-    color: #EAE3D2;
-    background-color: #2D1F1B;
-    font-family: &quot;Segoe UI&quot;, sans-serif;
-    font-size: 14px;
-}
-
-/* QMainWindow */
-QMainWindow {
-    background-color: #2D1F1B;
-}
-
-/* QLabel */
-QLabel {
-    color: #EAE3D2;
-}
-
-/* QPushButton */
-QPushButton {
-    background-color: #4E3B31;
-    color: #EAE3D2;
-    border: 1px solid #7D5A4F;
-    border-radius: 5px;
-    padding: 5px;
-}
-QPushButton:hover {
-    background-color: #5F463A;
-}
-QPushButton:pressed {
-    background-color: #3D2C25;
-}
-
-/* QLineEdit */
-QLineEdit {
-    background-color: #3A2A24;
-    color: #EAE3D2;
-    border: 1px solid #7D5A4F;
-    border-radius: 3px;
-    padding: 4px;
-}
-
-/* QPlainTextEdit */
-QPlainTextEdit {
-    background-color: #3A2A24;
-    color: #EAE3D2;
-    border: 1px solid #7D5A4F;
-    border-radius: 4px;
-    padding: 4px;
-}
-
-/* QComboBox */
-QComboBox {
-    background-color: #3A2A24;
-    color: #EAE3D2;
-    border: 1px solid #7D5A4F;
-    border-radius: 3px;
-    padding: 4px;
-}
-QComboBox QAbstractItemView {
-    background-color: #2D1F1B;
-    color: #EAE3D2;
-    border: 1px solid #7D5A4F;
-    selection-background-color: #5F463A;
-}
-
-/* QCheckBox */
-QCheckBox {
-    color: #EAE3D2;
-}
-QCheckBox::indicator {
-    width: 14px;
-    height: 14px;
-}
-QCheckBox::indicator:unchecked {
-    border: 1px solid #7D5A4F;
-    background-color: #3A2A24;
-}
-QCheckBox::indicator:checked {
-    background-color: #7D5A4F;
-    border: 1px solid #A88070;
-}
-
-/* QGroupBox */
-QGroupBox {
-    border: 1px solid #7D5A4F;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-QGroupBox:title {
-    subcontrol-origin: margin;
-    subcontrol-position: top left;
-    padding: 0 3px;
-    color: #EAE3D2;
-}
-
-/* QMenuBar */
-QMenuBar {
-    background-color: #2D1F1B;
-}
-QMenuBar::item {
-    background: transparent;
-    color: #EAE3D2;
-    padding: 5px 10px;
-}
-QMenuBar::item:selected {
-    background: #5F463A;
-}
-
-/* QMenu */
-QMenu {
-    background-color: #2D1F1B;
-    color: #EAE3D2;
-    border: 1px solid #7D5A4F;
-}
-QMenu::item:selected {
-    background-color: #5F463A;
-}
-</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QFormLayout" name="formLayout_2">
@@ -177,24 +58,8 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI','sans-serif'; font-size:14px; font-weight:400; font-style:normal;&quot; bgcolor=&quot;#2c1f1a&quot;&gt;
-&lt;h1 style=&quot; margin-top:18px; margin-bottom:19px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:xx-large; font-weight:700; color:#d4a373;&quot;&gt;Welcome to mDirt&lt;/span&gt;&lt;span style=&quot; font-size:xx-large; font-weight:700; color:#e6ccb2;&quot;&gt; &lt;/span&gt;&lt;/h1&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:19px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; color:#e6ccb2;&quot;&gt;(making Datapacks is really tedious... But not anymore!)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:19px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-weight:700; color:#e6ccb2;&quot;&gt;mDirt&lt;/span&gt;&lt;span style=&quot; color:#e6ccb2;&quot;&gt; is a powerful and user-friendly datapack editor for Minecraft, designed to make creating, editing, and managing datapacks easier than ever. &lt;/span&gt;&lt;/p&gt;
-&lt;h2 style=&quot; margin-top:41px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:x-large; font-weight:700; color:#e6b800;&quot;&gt;Getting Started&lt;/span&gt;&lt;span style=&quot; font-size:x-large; font-weight:700; color:#e6ccb2;&quot;&gt; &lt;/span&gt;&lt;/h2&gt;
-&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;
-&lt;li style=&quot; color:#e6ccb2;&quot; style=&quot; margin-top:12px; margin-bottom:10px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Create a new datapack project &lt;/li&gt;
-&lt;li style=&quot; color:#e6ccb2;&quot; style=&quot; margin-top:0px; margin-bottom:10px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Open an existing datapack folder &lt;/li&gt;
-&lt;li style=&quot; color:#e6ccb2;&quot; style=&quot; margin-top:0px; margin-bottom:10px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Use built-in templates and generators &lt;/li&gt;
-&lt;li style=&quot; color:#e6ccb2;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Preview and test functions in real time &lt;/li&gt;&lt;/ul&gt;
-&lt;h2 style=&quot; margin-top:41px; margin-bottom:8px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:x-large; font-weight:700; color:#e6b800;&quot;&gt;Features&lt;/span&gt;&lt;span style=&quot; font-size:x-large; font-weight:700; color:#e6ccb2;&quot;&gt; &lt;/span&gt;&lt;/h2&gt;
-&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;
-&lt;li style=&quot; color:#e6ccb2;&quot; style=&quot; margin-top:12px; margin-bottom:10px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Drag-and-drop file management &lt;/li&gt;
-&lt;li style=&quot; color:#e6ccb2;&quot; style=&quot; margin-top:0px; margin-bottom:10px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Syntax highlighting and function tools &lt;/li&gt;
-&lt;li style=&quot; color:#e6ccb2;&quot; style=&quot; margin-top:0px; margin-bottom:10px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Datapack packaging and exporting &lt;/li&gt;
-&lt;li style=&quot; color:#e6ccb2;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:29px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Lightweight and fast interface &lt;/li&gt;&lt;/ul&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:19px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; color:#e6ccb2;&quot;&gt;Need help? &lt;/span&gt;&lt;a href=&quot;https://github.com/yourproject/mDirt/wiki&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#f0a500;&quot;&gt;View the documentation&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; color:#e6ccb2;&quot;&gt; or &lt;/span&gt;&lt;a href=&quot;https://github.com/yourproject/mDirt/issues&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#f0a500;&quot;&gt;report an issue&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; color:#e6ccb2;&quot;&gt;. &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:16px; margin-bottom:16px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-size:12px; font-style:italic; color:#aa9c8e;&quot;&gt;Version 3.0.0-beta-3 | © 2025 mDirt Project&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:16px; margin-bottom:16px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
@@ -1774,7 +1639,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <property name="font">
             <font>
              <family>Segoe UI</family>
-             <pointsize>-1</pointsize>
              <italic>false</italic>
              <bold>false</bold>
              <underline>true</underline>
@@ -1809,8 +1673,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>294</width>
-           <height>753</height>
+           <width>719</width>
+           <height>679</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -2347,7 +2211,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <x>0</x>
      <y>0</y>
      <width>1003</width>
-     <height>30</height>
+     <height>33</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuNew_Element">

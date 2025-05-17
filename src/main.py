@@ -126,6 +126,12 @@ class App(QMainWindow):
             self.darkEarthTheme = f.read()
         self.setStyleSheet(self.darkEarthTheme)
 
+        # Load Welcome Screen, apply it.
+        htmlFile = self.mainDirectory / 'src' / 'ui' / 'welcome_screen.html'
+        with open(htmlFile, 'r') as f:
+            self.welcomeScreen = f.read()
+        self.ui.textEdit.setHtml(self.welcomeScreen)
+
         # CONNECTIONS
         self.ui.actionNew_Project.triggered.connect(self.openProjectMenu)
         self.ui.createProjectButton.clicked.connect(self.newProject)
@@ -1042,7 +1048,7 @@ class App(QMainWindow):
     def newPainting(self):
         self.ui.elementEditor.setCurrentIndex(ElementPage.PAINTINGS)
 
-    def validatePaintingDetails(self): 
+    def validatePaintingDetails(self):
         if not FieldValidator.validate_text_field(self.ui.paintingDisplayName, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz _-!0123456789", "Display Name"):
             return 0
         if not FieldValidator.validate_text_field(self.ui.paintingName, "abcdefghijklmnopqrstuvwxyz_0123456789", "Item Name"):
@@ -1127,7 +1133,7 @@ class App(QMainWindow):
     # PACK GENERATION     #
     #######################
 
-    def generate(self):    
+    def generate(self):
         version = self.packVersion.replace(".", "_")
 
         if getattr(sys, 'frozen', False):
