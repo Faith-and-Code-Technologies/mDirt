@@ -315,10 +315,13 @@ class App(QMainWindow):
 
         self.exists = {}
 
-        self.blocks_tree = QTreeWidgetItem(self.ui.elementViewer, ["Blocks"])
-        self.items_tree = QTreeWidgetItem(self.ui.elementViewer, ["Items"])
-        self.recipes_tree = QTreeWidgetItem(self.ui.elementViewer, ["Recipes"])
-        self.paintings_tree = QTreeWidgetItem(self.ui.elementViewer, ["Paintings"])
+        try:
+            self.blocks_tree
+        except:
+            self.blocks_tree = QTreeWidgetItem(self.ui.elementViewer, ["Blocks"])
+            self.items_tree = QTreeWidgetItem(self.ui.elementViewer, ["Items"])
+            self.recipes_tree = QTreeWidgetItem(self.ui.elementViewer, ["Recipes"])
+            self.paintings_tree = QTreeWidgetItem(self.ui.elementViewer, ["Paintings"])
 
         self.blockTexture = {}
         self.itemTexture = None
@@ -1103,7 +1106,7 @@ class App(QMainWindow):
         self.ui.elementEditor.setCurrentIndex(ElementPage.PAINTINGS)
 
     #######################
-    # PAINTINGS TAB       #
+    # STRUCTURES TAB      #
     #######################
 
     def hideBiomeList(self, state):
