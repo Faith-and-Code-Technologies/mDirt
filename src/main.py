@@ -1269,14 +1269,14 @@ class App(QMainWindow):
         else:
             internal = ''
 
-        generator = importlib.import_module(f'{internal}generation.v{version}.generator').Generator()
+        generator = importlib.import_module(f'{internal}generation.v{version}.generator').Generator
 
         loc = self.settings.get('file_export', 'default_export_location')
         if loc == 'default':
             loc = self.mainDirectory / 'exports'
             os.makedirs(loc, exist_ok=True)
 
-        generator = generator(
+        generatorA = generator(
             APP_VERSION,
             self.packDetails,
             self.dataFormat,
@@ -1291,7 +1291,7 @@ class App(QMainWindow):
             loc
         )
 
-        generator.generateDatapack()
+        generatorA.generateDatapack()
 
         alert("Pack Generated!")
 
