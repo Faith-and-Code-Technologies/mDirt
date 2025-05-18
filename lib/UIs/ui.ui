@@ -2060,8 +2060,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <rect>
           <x>10</x>
           <y>10</y>
-          <width>338</width>
-          <height>348</height>
+          <width>268</width>
+          <height>262</height>
          </rect>
         </property>
         <layout class="QFormLayout" name="formLayout_9">
@@ -2074,73 +2074,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
          </item>
          <item row="0" column="1">
           <widget class="QLineEdit" name="structureName"/>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_34">
-           <property name="text">
-            <string>Biomes:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_35">
-           <property name="text">
-            <string>Location:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QComboBox" name="structureLocation"/>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="label_36">
-           <property name="text">
-            <string>Terrain Adaptation:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QComboBox" name="structureTerrainAdaptation"/>
-         </item>
-         <item row="5" column="0">
-          <widget class="QLabel" name="label_37">
-           <property name="text">
-            <string>Start Height:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="1">
-          <widget class="QSpinBox" name="structureStartHeight"/>
-         </item>
-         <item row="6" column="0">
-          <widget class="QLabel" name="label_38">
-           <property name="text">
-            <string>Project Start to Heightmap:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="1">
-          <widget class="QComboBox" name="structurePSTH"/>
-         </item>
-         <item row="7" column="0">
-          <widget class="QLabel" name="label_39">
-           <property name="text">
-            <string>Spacing:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="1">
-          <widget class="QSpinBox" name="structureSpacing"/>
-         </item>
-         <item row="8" column="0">
-          <widget class="QLabel" name="label_40">
-           <property name="text">
-            <string>Seperation:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="8" column="1">
-          <widget class="QSpinBox" name="structureSeperation"/>
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="label_41">
@@ -2156,53 +2089,112 @@ li.checked::marker { content: &quot;\2612&quot;; }
            </property>
           </widget>
          </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_35">
+           <property name="text">
+            <string>Location:</string>
+           </property>
+          </widget>
+         </item>
          <item row="2" column="1">
-          <widget class="QGroupBox" name="structureBiomesBox">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
+          <widget class="QComboBox" name="structureLocation"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_36">
+           <property name="text">
+            <string>Terrain Adaptation:</string>
            </property>
-           <property name="title">
-            <string>Biomes</string>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QComboBox" name="structureTerrainAdaptation"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_37">
+           <property name="text">
+            <string>Start Height:</string>
            </property>
-           <property name="checkable">
-            <bool>true</bool>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QSpinBox" name="structureStartHeight"/>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_38">
+           <property name="text">
+            <string>Project Start to Heightmap:</string>
            </property>
-           <layout class="QFormLayout" name="formLayout_11">
-            <item row="0" column="0">
-             <widget class="QCheckBox" name="checkBox">
-              <property name="text">
-               <string>CheckBox</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLabel" name="label_42">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QCheckBox" name="checkBox_2">
-              <property name="text">
-               <string>CheckBox</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLabel" name="label_43">
-              <property name="text">
-               <string>TextLabel</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QComboBox" name="structurePSTH"/>
+         </item>
+         <item row="6" column="0">
+          <widget class="QLabel" name="label_39">
+           <property name="text">
+            <string>Spacing:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="1">
+          <widget class="QSpinBox" name="structureSpacing"/>
+         </item>
+         <item row="7" column="0">
+          <widget class="QLabel" name="label_40">
+           <property name="text">
+            <string>Seperation:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1">
+          <widget class="QSpinBox" name="structureSeperation"/>
+         </item>
+         <item row="8" column="0" colspan="2">
+          <widget class="QPushButton" name="structureConfirmButton">
+           <property name="text">
+            <string>Confirm Structure</string>
+           </property>
           </widget>
          </item>
         </layout>
+       </widget>
+       <widget class="QScrollArea" name="biomeScrollArea">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>10</y>
+          <width>431</width>
+          <height>621</height>
+         </rect>
+        </property>
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="scrollAreaWidgetContents_2">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>429</width>
+           <height>619</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <widget class="QWidget" name="viomeScrollContents" native="true">
+            <layout class="QVBoxLayout" name="verticalLayout_3">
+             <item>
+              <widget class="QLabel" name="biomeScrollContents">
+               <property name="text">
+                <string>Biomes</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
        </widget>
       </widget>
      </widget>

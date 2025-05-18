@@ -12,7 +12,7 @@ from pathlib import Path
 
 from PySide6.QtCore import Qt, QTimer, QEvent, QObject
 from PySide6.QtGui import QImage, QPixmap, QFont, QDropEvent, QDragEnterEvent
-from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QWidget, QTreeWidgetItem
+from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QWidget, QTreeWidgetItem, QCheckBox, QVBoxLayout
 
 from utils.field_validator import FieldValidator
 from utils.field_resetter import FieldResetter
@@ -144,6 +144,7 @@ class App(QMainWindow):
         self.ui.actionItem.triggered.connect(self.newItem)
         self.ui.actionRecipe.triggered.connect(self.newRecipe)
         self.ui.actionPainting.triggered.connect(self.newPainting)
+        self.ui.actionStructure.triggered.connect(self.newStructure)
 
         # Block Specific Connections
         self.ui.blockTextureButtonTop.clicked.connect(lambda: self.addBlockTexture(BlockFace.TOP))
@@ -199,7 +200,6 @@ class App(QMainWindow):
         self.dropPainting = DropHandler(self.ui.paintingTextureButton, self.addPaintingTexture)
 
         # Structure Specific Connections
-        self.ui.structureBiomesBox.toggled.connect(self.hideBiomeList)
 
         # Settings Specific Connections
         self.ui.settingsWorkspacePathButton.clicked.connect(self.workspacePathChanged)
@@ -325,6 +325,7 @@ class App(QMainWindow):
 
         if self.packDetails["version"] == "1.21.3":
             self.ui.actionPainting.setDisabled(True)
+            self.ui.actionStructure.setDisabled(True)
 
         try:
             self.blocks_tree
@@ -334,6 +335,7 @@ class App(QMainWindow):
             self.recipes_tree = QTreeWidgetItem(self.ui.elementViewer, ["Recipes"])
             if self.packDetails["version"] != "1.21.3":
                 self.paintings_tree = QTreeWidgetItem(self.ui.elementViewer, ["Paintings"])
+                self.structures_tree = QTreeWidgetItem(self.ui.elementViewer, ["Structures"])
 
         self.blockTexture = {}
         self.itemTexture = None
@@ -1134,13 +1136,19 @@ class App(QMainWindow):
     # STRUCTURES TAB      #
     #######################
 
-    def hideBiomeList(self, state):
-        layout = self.ui.structureBiomesBox.layout()
-        for i in range(layout.count()):
-            item = layout.itemAt(i)
-            widget = item.widget()
-            if widget is not None:
-                widget.setVisible(state)
+    def newStructure(self):
+        self.ui.elementEditor.setCurrentIndex(ElementPage.STRUCTURES)
+        self.loadBiomeList()
+
+    def loadBiomeList(self):
+        self.biomeCheckboxes = {}
+        biomeList = self.data["biomes"]
+
+        for biome in biomeList:
+            checkbox = QCheckBox(biome)
+            self.biomeCheckboxes[biome] = checkbox
+            self.ui.verticalLayout_3.addWidget(checkbox)
+
 
     #######################
     # PACK GENERATION     #

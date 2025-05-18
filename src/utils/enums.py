@@ -18,3 +18,4 @@ class ElementPage(IntEnum):
     PROJECT_SETUP = 5
     HOME = 0
     SETTINGS = 6
+    STRUCTURES = 7
