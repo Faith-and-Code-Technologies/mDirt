@@ -325,7 +325,7 @@ class App(QMainWindow):
         self.items = {}
         self.recipes = {}
         self.paintings = {}
-        self.structures = ()
+        self.structures = {}
 
         self.exists = {}
 
@@ -605,6 +605,8 @@ class App(QMainWindow):
             self.editRecipe(item.text(column))
         elif element_type.text(column) == "Paintings":
             self.editPainting(item.text(column))
+        elif element_type.text(column) == "Structures":
+            self.editStructure(item.text(column))
 
     #######################
     # BLOCKS TAB          #
@@ -1252,12 +1254,15 @@ class App(QMainWindow):
         self.ui.elementEditor.setCurrentIndex(ElementPage.HOME)
         alert("Element added successfully!")
 
+    def editStructure(self):
+        pass
+
     #######################
     # PACK GENERATION     #
     #######################
 
     def generate(self):
-        version = self.packVersion.replace(".", "_")
+        version = self.packDetails["version"].replace(".", "_")
 
         if getattr(sys, 'frozen', False):
             internal = 'src.'

@@ -1,10 +1,10 @@
 import os
 import json
 
-import blocks
-import items
-import recipes
-import paintings
+from . import blocks
+from . import items
+from . import recipes
+from . import paintings
 
 class Generator():
     def __init__(self, app_ver, packDetails, dataFormat, resourceFormat, header, blocks, items, recipes, paintings, data, directory):
