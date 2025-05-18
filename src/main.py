@@ -1266,7 +1266,7 @@ class App(QMainWindow):
 
         generator = importlib.import_module(f'{internal}generation.v{version}.generator').Generator()
 
-        loc = self.settings.get('file_export', 'defeault_export_location')
+        loc = self.settings.get('file_export', 'default_export_location')
         if loc == 'default':
             loc = self.mainDirectory / 'exports'
             os.makedirs(loc, exist_ok=True)
@@ -1281,6 +1281,7 @@ class App(QMainWindow):
             self.items,
             self.recipes,
             self.paintings,
+            self.structures,
             self.data,
             loc
         )
