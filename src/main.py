@@ -327,13 +327,17 @@ class App(QMainWindow):
 
         self.exists = {}
 
+        if self.packDetails["version"] == "1.21.3":
+            self.ui.actionPainting.setDisabled(True)
+
         try:
             self.blocks_tree
         except:
             self.blocks_tree = QTreeWidgetItem(self.ui.elementViewer, ["Blocks"])
             self.items_tree = QTreeWidgetItem(self.ui.elementViewer, ["Items"])
             self.recipes_tree = QTreeWidgetItem(self.ui.elementViewer, ["Recipes"])
-            self.paintings_tree = QTreeWidgetItem(self.ui.elementViewer, ["Paintings"])
+            if self.packDetails["version"] != "1.21.3":
+                self.paintings_tree = QTreeWidgetItem(self.ui.elementViewer, ["Paintings"])
 
         self.blockTexture = {}
         self.itemTexture = None
@@ -558,6 +562,16 @@ class App(QMainWindow):
         self.setAutoSaveInterval()
         self.workspacePath = self.settings.get('general', 'workspace_path')
         self.setFont(QFont("Segoe UI", self.settings.get('appearance', 'font_size')))
+        theme = self.settings.get('appearance', 'theme').lower()
+        if theme == "dark":
+            app.styleHints().setColorScheme(Qt.ColorScheme.Dark)
+        elif theme == "light":
+            app.styleHints().setColorScheme(Qt.ColorScheme.Light)
+        elif "espresso" in theme:
+            stylesheetFile = self.mainDirectory / 'lib' / 'UIs' / 'espresso.qss'
+            with open(stylesheetFile, 'r') as f:
+                espressoTheme = f.read()
+            self.setStyleSheet(espressoTheme)
 
     #######################
     # ELEMENT MANAGER     #
