@@ -33,9 +33,10 @@ ISSUE_URL = 'https://github.com/Faith-and-Code-Technologies/mDirt/issues'
 
 
 class DropHandler(QObject):
-    def __init__(self, button, func):
+    def __init__(self, button, filetype, func):
         super().__init__()
         self.button = button
+        self.filetype = filetype
         self.func = func
         self.png_path = None
         self.button.setAcceptDrops(True)
@@ -52,7 +53,7 @@ class DropHandler(QObject):
     def dragEnter(self, event: QDragEnterEvent):
         if event.mimeData().hasUrls():
             for url in event.mimeData().urls():
-                if url.toLocalFile().lower().endswith('.png'):
+                if url.toLocalFile().lower().endswith(self.filetype):
                     event.acceptProposedAction()
                     return True
         event.ignore()
@@ -61,7 +62,7 @@ class DropHandler(QObject):
     def dropEvent(self, event: QDropEvent):
         for url in event.mimeData().urls():
             path = url.toLocalFile()
-            if path.lower().endswith('.png'):
+            if path.lower().endswith(self.filetype):
                 self.png_path = path
                 self.func(path)
                 break
@@ -154,14 +155,14 @@ class App(QMainWindow):
         self.ui.blockTextureButtonFront.clicked.connect(lambda: self.addBlockTexture(BlockFace.FRONT))
         self.ui.blockTextureButtonBottom.clicked.connect(lambda: self.addBlockTexture(BlockFace.BOTTOM))
 
-        self.dropTop = DropHandler(self.ui.blockTextureButtonTop, lambda path: self.addBlockTexture(BlockFace.TOP, path))
-        self.dropLeft = DropHandler(self.ui.blockTextureButtonLeft, lambda path: self.addBlockTexture(BlockFace.LEFT, path))
-        self.dropBack = DropHandler(self.ui.blockTextureButtonBack, lambda path: self.addBlockTexture(BlockFace.BACK, path))
-        self.dropRight = DropHandler(self.ui.blockTextureButtonRight, lambda path: self.addBlockTexture(BlockFace.RIGHT, path))
-        self.dropFront = DropHandler(self.ui.blockTextureButtonFront, lambda path: self.addBlockTexture(BlockFace.FRONT, path))
-        self.dropBottom = DropHandler(self.ui.blockTextureButtonBottom, lambda path: self.addBlockTexture(BlockFace.BOTTOM, path))
+        self.dropTop = DropHandler(self.ui.blockTextureButtonTop, '.png', lambda path: self.addBlockTexture(BlockFace.TOP, path))
+        self.dropLeft = DropHandler(self.ui.blockTextureButtonLeft, '.png', lambda path: self.addBlockTexture(BlockFace.LEFT, path))
+        self.dropBack = DropHandler(self.ui.blockTextureButtonBack, '.png', lambda path: self.addBlockTexture(BlockFace.BACK, path))
+        self.dropRight = DropHandler(self.ui.blockTextureButtonRight, '.png', lambda path: self.addBlockTexture(BlockFace.RIGHT, path))
+        self.dropFront = DropHandler(self.ui.blockTextureButtonFront, '.png', lambda path: self.addBlockTexture(BlockFace.FRONT, path))
+        self.dropBottom = DropHandler(self.ui.blockTextureButtonBottom, '.png', lambda path: self.addBlockTexture(BlockFace.BOTTOM, path))
 
-        self.dropBlockModel = DropHandler(self.ui.blockModel, self.getBlockModel)
+        self.dropBlockModel = DropHandler(self.ui.blockModel, '.json', self.getBlockModel)
 
         self.ui.blockModel.currentTextChanged.connect(self.getBlockModel)
         self.ui.blockConfirmButton.clicked.connect(self.addBlock)
@@ -170,8 +171,8 @@ class App(QMainWindow):
         self.ui.itemTextureButton.clicked.connect(self.addItemTexture)
         self.ui.itemConfirmButton.clicked.connect(self.addItem)
 
-        self.dropItem = DropHandler(self.ui.itemTextureButton, self.addItemTexture)
-        self.dropItemModel = DropHandler(self.ui.itemModel, self.getItemModel)
+        self.dropItem = DropHandler(self.ui.itemTextureButton, '.png', self.addItemTexture)
+        self.dropItemModel = DropHandler(self.ui.itemModel, '.json', self.getItemModel)
 
         # Recipe Specific Connections
         self.ui.slot0Button.clicked.connect(lambda: self.getRecipeItem(0))
@@ -197,9 +198,13 @@ class App(QMainWindow):
         self.ui.paintingTextureButton.clicked.connect(self.addPaintingTexture)
         self.ui.paintingConfirmButton.clicked.connect(self.addPainting)
 
-        self.dropPainting = DropHandler(self.ui.paintingTextureButton, self.addPaintingTexture)
+        self.dropPainting = DropHandler(self.ui.paintingTextureButton, '.png', self.addPaintingTexture)
 
         # Structure Specific Connections
+        self.ui.structureNBTButton.clicked.connect(self.addStructureNBT)
+        self.ui.structureConfirmButton.clicked.connect(self.addStructure)
+
+        self.dropStructure = DropHandler(self.ui.structureNBTButton, '.nbt', self.addStructureNBT)
 
         # Settings Specific Connections
         self.ui.settingsWorkspacePathButton.clicked.connect(self.workspacePathChanged)
@@ -320,6 +325,7 @@ class App(QMainWindow):
         self.items = {}
         self.recipes = {}
         self.paintings = {}
+        self.structures = ()
 
         self.exists = {}
 
@@ -341,6 +347,7 @@ class App(QMainWindow):
         self.itemTexture = None
         self.recipe = {}
         self.paintingTexture = None
+        self.structure = None
 
         self.header = f"""#####################################
 #   This File Was Created By mDirt  #
@@ -387,11 +394,14 @@ class App(QMainWindow):
             json.dump(self.recipes, file, indent=4)
         with open(projectDirectory / 'paintings.json', 'w') as file:
             json.dump(self.paintings, file, indent=4)
+        with open(projectDirectory / 'structures.json', 'w') as file:
+            json.dump(self.structures, file, indent=4)
         
         os.makedirs(projectDirectory / 'assets', exist_ok=True)
         os.makedirs(projectDirectory / 'assets' / 'blocks', exist_ok=True)
         os.makedirs(projectDirectory / 'assets' / 'items', exist_ok=True)
         os.makedirs(projectDirectory / 'assets' / 'paintings', exist_ok=True)
+        os.makedirs(projectDirectory / 'assets' / 'structures', exist_ok=True)
 
         manifestPath = self.mainDirectory / 'workspaces' / 'manifest.json'
 
@@ -461,6 +471,8 @@ class App(QMainWindow):
             self.recipes = json.load(file)
         with open(projectDirectory / 'paintings.json', 'r') as file:
             self.paintings = json.load(file)
+        with open(projectDirectory / 'structures.json', 'r') as file:
+            self.structures = json.load(file)
         
         try:
             self.projectList.close()
@@ -478,6 +490,9 @@ class App(QMainWindow):
         
         for item in self.paintings:
             QTreeWidgetItem(self.paintings_tree, [self.paintings[item]["name"]])
+        
+        for item in self.structures:
+            QTreeWidgetItem(self.structures_tree, [self.structures[item]["name"]])
 
     #######################
     # SETTINGS            #
@@ -715,6 +730,9 @@ class App(QMainWindow):
 
         self.clearBlockFields()
 
+        self.ui.elementEditor.setCurrentIndex(ElementPage.HOME)
+        alert("Element added successfully!")
+
     def editBlock(self, block):
         properties = self.blocks[block]
 
@@ -866,6 +884,9 @@ class App(QMainWindow):
 
         self.clearItemFields()
 
+        self.ui.elementEditor.setCurrentIndex(ElementPage.HOME)
+        alert("Element added successfully!")
+
     def editItem(self, item):
         properties = self.items[item]
 
@@ -1014,6 +1035,9 @@ class App(QMainWindow):
 
         self.clearRecipeFields()
 
+        self.ui.elementEditor.setCurrentIndex(ElementPage.HOME)
+        alert("Element added successfully!")
+
     def editRecipe(self, recipe):
         properties = self.recipes[recipe]
 
@@ -1066,7 +1090,7 @@ class App(QMainWindow):
     def validatePaintingDetails(self):
         if not FieldValidator.validate_text_field(self.ui.paintingDisplayName, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz _-!0123456789", "Display Name"):
             return 0
-        if not FieldValidator.validate_text_field(self.ui.paintingName, "abcdefghijklmnopqrstuvwxyz_0123456789", "Item Name"):
+        if not FieldValidator.validate_text_field(self.ui.paintingName, "abcdefghijklmnopqrstuvwxyz_0123456789", "Painting Name"):
             return 0
         if self.paintingTexture == None:
             self.ui.paintingTextureButton.setStyleSheet("QLineEdit { border: 1px solid red; }")
@@ -1117,6 +1141,9 @@ class App(QMainWindow):
 
         self.clearPaintingFields()
 
+        self.ui.elementEditor.setCurrentIndex(ElementPage.HOME)
+        alert("Element added successfully!")
+
     def editPainting(self, painting):
         properties = self.paintings[painting]
 
@@ -1136,6 +1163,21 @@ class App(QMainWindow):
     # STRUCTURES TAB      #
     #######################
 
+    def addStructureNBT(self, path=None):
+        if not path:
+            nbt, _ = QFileDialog.getOpenFileName(self, "Open Structure File", "", "NBT Files (*.nbt)")
+            if not nbt:
+                return
+        else:
+            nbt = path
+        
+        filename = os.path.basename(nbt)
+        destinationPath = f'{self.mainDirectory}/workspaces/{self.packDetails["namespace"]}/assets/structures/{filename}'
+        shutil.copyfile(nbt, destinationPath)
+
+        self.structure = destinationPath
+        self.ui.structureNBTButton.setText(filename)
+
     def newStructure(self):
         self.ui.elementEditor.setCurrentIndex(ElementPage.STRUCTURES)
         self.loadBiomeList()
@@ -1148,7 +1190,67 @@ class App(QMainWindow):
             checkbox = QCheckBox(biome)
             self.biomeCheckboxes[biome] = checkbox
             self.ui.verticalLayout_3.addWidget(checkbox)
+    
+    def getCheckedBiomes(self):
+        return [text for text, checkbox in self.biomeCheckboxes.items() if checkbox.isChecked()]
 
+    def validateStructureDetails(self):
+        if not FieldValidator.validate_text_field(self.ui.structureName, "abcdefghijklmnopqrstuvwxyz_0123456789", "Structure Name"):
+            return 0
+        if self.structure == None:
+            self.ui.structureNBTButton.setsetStyleSheet("QLineEdit { border: 1px solid red; }")
+            alert("Please select a valid structure!")
+            return 0
+        else:
+            self.ui.structureNBTButton.setsetStyleSheet("")
+        
+        return 1
+
+    def clearStructureFields(self):
+        FieldResetter.clear_line_edits(
+            self.ui.structureName
+        )
+
+        FieldResetter.reset_spin_boxes(
+            self.ui.structureStartHeight,
+            self.ui.structureSpacing,
+            self.ui.structureSeperation
+        )
+
+        FieldResetter.reset_combo_boxes(
+            self.ui.structureLocation,
+            self.ui.structureTerrainAdaptation,
+            self.ui.structurePSTH
+        )
+
+        self.ui.structureNBTButton.setText("...")
+        self.structure = None
+        self.loadBiomeList()
+        
+    def addStructure(self):
+        if self.validateStructureDetails() == 0: return
+
+        self.structureProperties = {
+            "name": self.ui.structureName.text(),
+            "structure": self.structure,
+            "step": self.ui.structureLocation.currentText(),
+            "terrain_adaptation": self.ui.structureTerrainAdaptation.currentText(),
+            "start_height": self.ui.structureStartHeight.value(),
+            "psth": self.ui.structurePSTH.currentText(),
+            "spacing": self.ui.structureSpacing.value(),
+            "seperation": self.ui.structureSeperation.value(),
+            "biomes": self.getCheckedBiomes()
+        }
+
+        if not self.structureProperties["name"] in self.structures:
+            QTreeWidgetItem(self.structures_tree, [self.structureProperties["name"]])
+        
+        self.structures[self.structureProperties["name"]] = self.structureProperties
+
+        self.clearStructureFields()
+
+        self.ui.elementEditor.setCurrentIndex(ElementPage.HOME)
+        alert("Element added successfully!")
 
     #######################
     # PACK GENERATION     #

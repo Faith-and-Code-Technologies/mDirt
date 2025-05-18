@@ -2060,7 +2060,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <rect>
           <x>10</x>
           <y>10</y>
-          <width>268</width>
+          <width>361</width>
           <height>262</height>
          </rect>
         </property>
@@ -2092,12 +2092,68 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <item row="2" column="0">
           <widget class="QLabel" name="label_35">
            <property name="text">
-            <string>Location:</string>
+            <string>Step:</string>
            </property>
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QComboBox" name="structureLocation"/>
+          <widget class="QComboBox" name="structureLocation">
+           <item>
+            <property name="text">
+             <string>Raw generation</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Lakes</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Local modifications</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Underground structures</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Surface structures</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Strongholds</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Underground ores</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Underground decoration</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Fluid springs</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Vegetal decoration</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Top layer modification</string>
+            </property>
+           </item>
+          </widget>
          </item>
          <item row="3" column="0">
           <widget class="QLabel" name="label_36">
@@ -2107,7 +2163,33 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </widget>
          </item>
          <item row="3" column="1">
-          <widget class="QComboBox" name="structureTerrainAdaptation"/>
+          <widget class="QComboBox" name="structureTerrainAdaptation">
+           <item>
+            <property name="text">
+             <string>None</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Beard thin</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Beard box</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Bury</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Encapsulate</string>
+            </property>
+           </item>
+          </widget>
          </item>
          <item row="4" column="0">
           <widget class="QLabel" name="label_37">
@@ -2117,7 +2199,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </widget>
          </item>
          <item row="4" column="1">
-          <widget class="QSpinBox" name="structureStartHeight"/>
+          <widget class="QSpinBox" name="structureStartHeight">
+           <property name="minimum">
+            <number>-64</number>
+           </property>
+           <property name="maximum">
+            <number>312</number>
+           </property>
+          </widget>
          </item>
          <item row="5" column="0">
           <widget class="QLabel" name="label_38">
@@ -2127,7 +2216,38 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </widget>
          </item>
          <item row="5" column="1">
-          <widget class="QComboBox" name="structurePSTH"/>
+          <widget class="QComboBox" name="structurePSTH">
+           <item>
+            <property name="text">
+             <string>Motion blocking</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Motion blocking no leaves</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Ocean floor</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Ocean floor worldgen</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>World surface</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>World surface worldgen</string>
+            </property>
+           </item>
+          </widget>
          </item>
          <item row="6" column="0">
           <widget class="QLabel" name="label_39">
@@ -2137,7 +2257,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </widget>
          </item>
          <item row="6" column="1">
-          <widget class="QSpinBox" name="structureSpacing"/>
+          <widget class="QSpinBox" name="structureSpacing">
+           <property name="maximum">
+            <number>4096</number>
+           </property>
+          </widget>
          </item>
          <item row="7" column="0">
           <widget class="QLabel" name="label_40">
@@ -2147,7 +2271,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </widget>
          </item>
          <item row="7" column="1">
-          <widget class="QSpinBox" name="structureSeperation"/>
+          <widget class="QSpinBox" name="structureSeperation">
+           <property name="maximum">
+            <number>4096</number>
+           </property>
+          </widget>
          </item>
          <item row="8" column="0" colspan="2">
           <widget class="QPushButton" name="structureConfirmButton">
@@ -2161,9 +2289,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <widget class="QScrollArea" name="biomeScrollArea">
         <property name="geometry">
          <rect>
-          <x>290</x>
+          <x>380</x>
           <y>10</y>
-          <width>431</width>
+          <width>341</width>
           <height>621</height>
          </rect>
         </property>
@@ -2175,7 +2303,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>429</width>
+           <width>339</width>
            <height>619</height>
           </rect>
          </property>

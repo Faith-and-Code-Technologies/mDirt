@@ -18,9 +18,9 @@ class FieldResetter:
         for field in fields:
             field.clear()
 
-    def reset_combo_boxes(*boxes: QComboBox, default_text=""):
+    def reset_combo_boxes(*boxes: QComboBox):
         for box in boxes:
-            box.setCurrentText(default_text)
+            box.setCurrentIndex(0)
 
     def reset_spin_boxes(*boxes: QSpinBox, default_value=0):
         for box in boxes:

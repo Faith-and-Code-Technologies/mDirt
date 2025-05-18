@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiTGyVCv.ui'
+## Form generated from reading UI file 'uiVqJUnt.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -962,7 +962,7 @@ class Ui_MainWindow(object):
         self.structureEditor.setObjectName(u"structureEditor")
         self.formLayoutWidget_2 = QWidget(self.structureEditor)
         self.formLayoutWidget_2.setObjectName(u"formLayoutWidget_2")
-        self.formLayoutWidget_2.setGeometry(QRect(10, 10, 268, 262))
+        self.formLayoutWidget_2.setGeometry(QRect(10, 10, 361, 262))
         self.formLayout_9 = QFormLayout(self.formLayoutWidget_2)
         self.formLayout_9.setObjectName(u"formLayout_9")
         self.formLayout_9.setContentsMargins(0, 0, 0, 0)
@@ -992,6 +992,17 @@ class Ui_MainWindow(object):
         self.formLayout_9.setWidget(2, QFormLayout.LabelRole, self.label_35)
 
         self.structureLocation = QComboBox(self.formLayoutWidget_2)
+        self.structureLocation.addItem("")
+        self.structureLocation.addItem("")
+        self.structureLocation.addItem("")
+        self.structureLocation.addItem("")
+        self.structureLocation.addItem("")
+        self.structureLocation.addItem("")
+        self.structureLocation.addItem("")
+        self.structureLocation.addItem("")
+        self.structureLocation.addItem("")
+        self.structureLocation.addItem("")
+        self.structureLocation.addItem("")
         self.structureLocation.setObjectName(u"structureLocation")
 
         self.formLayout_9.setWidget(2, QFormLayout.FieldRole, self.structureLocation)
@@ -1002,6 +1013,11 @@ class Ui_MainWindow(object):
         self.formLayout_9.setWidget(3, QFormLayout.LabelRole, self.label_36)
 
         self.structureTerrainAdaptation = QComboBox(self.formLayoutWidget_2)
+        self.structureTerrainAdaptation.addItem("")
+        self.structureTerrainAdaptation.addItem("")
+        self.structureTerrainAdaptation.addItem("")
+        self.structureTerrainAdaptation.addItem("")
+        self.structureTerrainAdaptation.addItem("")
         self.structureTerrainAdaptation.setObjectName(u"structureTerrainAdaptation")
 
         self.formLayout_9.setWidget(3, QFormLayout.FieldRole, self.structureTerrainAdaptation)
@@ -1013,6 +1029,8 @@ class Ui_MainWindow(object):
 
         self.structureStartHeight = QSpinBox(self.formLayoutWidget_2)
         self.structureStartHeight.setObjectName(u"structureStartHeight")
+        self.structureStartHeight.setMinimum(-64)
+        self.structureStartHeight.setMaximum(312)
 
         self.formLayout_9.setWidget(4, QFormLayout.FieldRole, self.structureStartHeight)
 
@@ -1022,6 +1040,12 @@ class Ui_MainWindow(object):
         self.formLayout_9.setWidget(5, QFormLayout.LabelRole, self.label_38)
 
         self.structurePSTH = QComboBox(self.formLayoutWidget_2)
+        self.structurePSTH.addItem("")
+        self.structurePSTH.addItem("")
+        self.structurePSTH.addItem("")
+        self.structurePSTH.addItem("")
+        self.structurePSTH.addItem("")
+        self.structurePSTH.addItem("")
         self.structurePSTH.setObjectName(u"structurePSTH")
 
         self.formLayout_9.setWidget(5, QFormLayout.FieldRole, self.structurePSTH)
@@ -1033,6 +1057,7 @@ class Ui_MainWindow(object):
 
         self.structureSpacing = QSpinBox(self.formLayoutWidget_2)
         self.structureSpacing.setObjectName(u"structureSpacing")
+        self.structureSpacing.setMaximum(4096)
 
         self.formLayout_9.setWidget(6, QFormLayout.FieldRole, self.structureSpacing)
 
@@ -1043,6 +1068,7 @@ class Ui_MainWindow(object):
 
         self.structureSeperation = QSpinBox(self.formLayoutWidget_2)
         self.structureSeperation.setObjectName(u"structureSeperation")
+        self.structureSeperation.setMaximum(4096)
 
         self.formLayout_9.setWidget(7, QFormLayout.FieldRole, self.structureSeperation)
 
@@ -1053,11 +1079,11 @@ class Ui_MainWindow(object):
 
         self.biomeScrollArea = QScrollArea(self.structureEditor)
         self.biomeScrollArea.setObjectName(u"biomeScrollArea")
-        self.biomeScrollArea.setGeometry(QRect(290, 10, 431, 621))
+        self.biomeScrollArea.setGeometry(QRect(380, 10, 341, 621))
         self.biomeScrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 429, 619))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 339, 619))
         self.verticalLayout = QVBoxLayout(self.scrollAreaWidgetContents_2)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.viomeScrollContents = QWidget(self.scrollAreaWidgetContents_2)
@@ -1516,10 +1542,35 @@ class Ui_MainWindow(object):
         self.label_33.setText(QCoreApplication.translate("MainWindow", u"Name:", None))
         self.label_41.setText(QCoreApplication.translate("MainWindow", u"Structure:", None))
         self.structureNBTButton.setText(QCoreApplication.translate("MainWindow", u"...", None))
-        self.label_35.setText(QCoreApplication.translate("MainWindow", u"Location:", None))
+        self.label_35.setText(QCoreApplication.translate("MainWindow", u"Step:", None))
+        self.structureLocation.setItemText(0, QCoreApplication.translate("MainWindow", u"Raw generation", None))
+        self.structureLocation.setItemText(1, QCoreApplication.translate("MainWindow", u"Lakes", None))
+        self.structureLocation.setItemText(2, QCoreApplication.translate("MainWindow", u"Local modifications", None))
+        self.structureLocation.setItemText(3, QCoreApplication.translate("MainWindow", u"Underground structures", None))
+        self.structureLocation.setItemText(4, QCoreApplication.translate("MainWindow", u"Surface structures", None))
+        self.structureLocation.setItemText(5, QCoreApplication.translate("MainWindow", u"Strongholds", None))
+        self.structureLocation.setItemText(6, QCoreApplication.translate("MainWindow", u"Underground ores", None))
+        self.structureLocation.setItemText(7, QCoreApplication.translate("MainWindow", u"Underground decoration", None))
+        self.structureLocation.setItemText(8, QCoreApplication.translate("MainWindow", u"Fluid springs", None))
+        self.structureLocation.setItemText(9, QCoreApplication.translate("MainWindow", u"Vegetal decoration", None))
+        self.structureLocation.setItemText(10, QCoreApplication.translate("MainWindow", u"Top layer modification", None))
+
         self.label_36.setText(QCoreApplication.translate("MainWindow", u"Terrain Adaptation:", None))
+        self.structureTerrainAdaptation.setItemText(0, QCoreApplication.translate("MainWindow", u"None", None))
+        self.structureTerrainAdaptation.setItemText(1, QCoreApplication.translate("MainWindow", u"Beard thin", None))
+        self.structureTerrainAdaptation.setItemText(2, QCoreApplication.translate("MainWindow", u"Beard box", None))
+        self.structureTerrainAdaptation.setItemText(3, QCoreApplication.translate("MainWindow", u"Bury", None))
+        self.structureTerrainAdaptation.setItemText(4, QCoreApplication.translate("MainWindow", u"Encapsulate", None))
+
         self.label_37.setText(QCoreApplication.translate("MainWindow", u"Start Height:", None))
         self.label_38.setText(QCoreApplication.translate("MainWindow", u"Project Start to Heightmap:", None))
+        self.structurePSTH.setItemText(0, QCoreApplication.translate("MainWindow", u"Motion blocking", None))
+        self.structurePSTH.setItemText(1, QCoreApplication.translate("MainWindow", u"Motion blocking no leaves", None))
+        self.structurePSTH.setItemText(2, QCoreApplication.translate("MainWindow", u"Ocean floor", None))
+        self.structurePSTH.setItemText(3, QCoreApplication.translate("MainWindow", u"Ocean floor worldgen", None))
+        self.structurePSTH.setItemText(4, QCoreApplication.translate("MainWindow", u"World surface", None))
+        self.structurePSTH.setItemText(5, QCoreApplication.translate("MainWindow", u"World surface worldgen", None))
+
         self.label_39.setText(QCoreApplication.translate("MainWindow", u"Spacing:", None))
         self.label_40.setText(QCoreApplication.translate("MainWindow", u"Seperation:", None))
         self.structureConfirmButton.setText(QCoreApplication.translate("MainWindow", u"Confirm Structure", None))
