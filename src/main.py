@@ -120,12 +120,6 @@ class App(QMainWindow):
         if not showTips:
             self.ui.textEdit.setText("")
 
-        # Get the theme, apply it. In the future, turn to a set of functions in order to support multiple themes.
-        stylesheetFile = self.mainDirectory / 'lib' / 'UIs' / 'dark_earth_theme.qss'
-        with open(stylesheetFile, 'r') as f:
-            self.darkEarthTheme = f.read()
-        self.setStyleSheet(self.darkEarthTheme)
-
         # Load Welcome Screen, apply it.
         htmlFile = self.mainDirectory / 'src' / 'ui' / 'welcome_screen.html'
         with open(htmlFile, 'r') as f:
@@ -210,6 +204,8 @@ class App(QMainWindow):
         # Settings Specific Connections
         self.ui.settingsWorkspacePathButton.clicked.connect(self.workspacePathChanged)
         self.ui.settingsDefaultExportButton.clicked.connect(self.exportPathChanged)
+
+        self.refreshSettings()
 
         self.checkUpdates()
 
@@ -563,10 +559,13 @@ class App(QMainWindow):
         self.workspacePath = self.settings.get('general', 'workspace_path')
         self.setFont(QFont("Segoe UI", self.settings.get('appearance', 'font_size')))
         theme = self.settings.get('appearance', 'theme').lower()
+        self.setStyleSheet("QPushButton:flat{background-color: transparent; border: 2px solid vlack;}")
         if theme == "dark":
             app.styleHints().setColorScheme(Qt.ColorScheme.Dark)
+            app.setStyle('Fusion')
         elif theme == "light":
             app.styleHints().setColorScheme(Qt.ColorScheme.Light)
+            app.setStyle('Fusion')
         elif "espresso" in theme:
             stylesheetFile = self.mainDirectory / 'lib' / 'UIs' / 'espresso.qss'
             with open(stylesheetFile, 'r') as f:
@@ -1185,6 +1184,5 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = App()
     window.show()
-    app.styleHints().setColorScheme(Qt.ColorScheme.Dark)
     app.setStyle("Fusion")
     sys.exit(app.exec())
