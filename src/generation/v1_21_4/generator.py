@@ -5,6 +5,7 @@ import blocks
 import items
 import recipes
 import paintings
+import structures
 
 class Generator():
     def __init__(self, app_ver, packDetails, dataFormat, resourceFormat, header, blocks, items, recipes, paintings, structures, data, directory):
@@ -200,6 +201,13 @@ class Generator():
             )
 
             paintingGenerator.generate()
+        
+        #######################
+        # CUSTOM STRUCTURES   #
+        #######################
+
+        #if self.structures:
+            #structureGenerator = 
 
         #######################
         # RESOURCE PACK       #
