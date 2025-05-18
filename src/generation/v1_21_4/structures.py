@@ -23,6 +23,16 @@ class StructureGenerator:
         os.makedirs(os.path.join(self.namespaceDirectory, "worldgen", "structure_set"), exist_ok=True)
         os.makedirs(os.path.join(self.namespaceDirectory, "worldgen", "template_pool"), exist_ok=True)
 
+        # Create dictionary of `Project Start to Heightmap` things
+        psth = {
+            'Motion blocking': 'MOTION_BLOCKING',
+            'Motion blocking no leaves': 'MOTION_BLOCKING_NO_LEAVES',
+            'Ocean floor': 'OCEAN_FLOOR',
+            'Ocean floor worldgen': 'OCEAN_FLOOR_WG',
+            'World surface': 'WORLD_SURFACE',
+            'World surface worldgen': 'WORLD_SURFACE_WG'
+        }
+
         # Loop through all structures
         for structure in self.structures:
             struct = self.structures[structure]
@@ -30,7 +40,7 @@ class StructureGenerator:
             # Write to worldgen/structure/.json
             content = self.getTemplate('structure.json.j2', {
                 'biomes': struct['biomes'],
-                'step': struct['step'],
+                'step': struct['step'].replace(' ', '_').lower(),
                 'terrain_adaptation': struct['terrain_adaptation'],
                 'namespace': self.packNamespace,
                 'name': struct['name'],

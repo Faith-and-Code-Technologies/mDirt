@@ -1202,7 +1202,7 @@ class App(QMainWindow):
             alert("Please select a valid structure!")
             return 0
         else:
-            self.ui.structureNBTButton.setsetStyleSheet("")
+            self.ui.structureNBTButton.setStyleSheet("")
         
         return 1
 
