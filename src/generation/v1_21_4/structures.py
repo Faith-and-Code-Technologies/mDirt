@@ -41,7 +41,7 @@ class StructureGenerator:
             content = self.getTemplate('structure.json.j2', {
                 'biomes': struct['biomes'],
                 'step': struct['step'].replace(' ', '_').lower(),
-                'terrain_adaptation': struct['terrain_adaptation'].replace(' ', '_').lower(),
+                'terrain_adaptation': struct['terrain_adaptation'],
                 'namespace': self.packNamespace,
                 'name': struct['name'],
                 'start_height': struct['start_height'],
