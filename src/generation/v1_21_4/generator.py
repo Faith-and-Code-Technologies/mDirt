@@ -5,10 +5,9 @@ import blocks
 import items
 import recipes
 import paintings
-import structures
 
 class Generator():
-    def __init__(self, app_ver, packDetails, dataFormat, resourceFormat, header, blocks, items, recipes, paintings, structures, data, directory):
+    def __init__(self, app_ver, packDetails, dataFormat, resourceFormat, header, blocks, items, recipes, paintings, data, directory):
         self.APP_VERSION = app_ver
         self.packDetails = packDetails
         self.dataFormat = dataFormat
@@ -18,7 +17,6 @@ class Generator():
         self.items = items
         self.recipes = recipes
         self.paintings = paintings
-        self.structures = structures
         self.outputDir = directory
 
     def generateResourcePack(self):
@@ -107,9 +105,6 @@ class Generator():
             os.makedirs(os.path.join(self.namespaceDirectory, "loot_table"), exist_ok=True)
         if self.recipes:
             os.makedirs(os.path.join(self.namespaceDirectory, "recipe"), exist_ok=True)
-        if self.structures:
-            os.makedirs(os.path.join(self.namespaceDirectory, "structure"), exist_ok=True)
-            os.makedirs(os.path.join(self.namespaceDirectory, "worldgen"), exist_ok=True)
 
         # Create tags folders
         tags_function_dir = os.path.join(self.minecraftDirectory, "tags", "function")
@@ -142,7 +137,6 @@ class Generator():
         itemGenerator = items.ItemGenerator()
         recipeGenerator = recipes.RecipeGenerator()
         paintingGenerator = paintings.PaintingGenerator()
-        structureGenerator = structures.StructureGenerator()
 
         #######################
         # CUSTOM BLOCKS       #
@@ -205,18 +199,6 @@ class Generator():
             )
 
             paintingGenerator.generate()
-        
-        #######################
-        # CUSTOM STRUCTURES   #
-        #######################
-
-        if self.structures:
-            structureGenerator = structureGenerator(
-                self.namespaceDirectory,
-                self.packNamespace,
-                self.packAuthor,
-                self.structures
-            )
 
         #######################
         # RESOURCE PACK       #
