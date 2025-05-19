@@ -44,8 +44,8 @@ class StructureGenerator:
                 'terrain_adaptation': struct['terrain_adaptation'].lower(),
                 'namespace': self.packNamespace,
                 'name': struct['name'],
-                'start_height': psth[struct['start_height']],
-                'psth': struct['psth']
+                'start_height': struct['start_height'],
+                'psth': psth[struct['psth']]
             })
 
             path = os.path.join(self.namespaceDirectory, "worldgen", "structure", f'{struct['name']}.json')
