@@ -7,3 +7,4 @@ build/*
 dist/*
 settings.json
 *.log
+exports/*
