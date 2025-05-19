@@ -45,9 +45,9 @@ class Generator():
             }, pack, indent=4)
 
         # Load resource generators
-        blockResourcer = blocks.BlockResourcer()
-        itemResourcer = items.ItemResourcer()
-        paintingResourcer = paintings.PaintingResourcer()
+        blockResourcer = blocks.BlockResourcer
+        itemResourcer = items.ItemResourcer
+        paintingResourcer = paintings.PaintingResourcer
 
         # Generate resources
         if self.blocks:
