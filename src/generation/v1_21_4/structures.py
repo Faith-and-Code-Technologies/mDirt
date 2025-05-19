@@ -41,10 +41,10 @@ class StructureGenerator:
             content = self.getTemplate('structure.json.j2', {
                 'biomes': struct['biomes'],
                 'step': struct['step'].replace(' ', '_').lower(),
-                'terrain_adaptation': struct['terrain_adaptation'],
+                'terrain_adaptation': struct['terrain_adaptation'].lower(),
                 'namespace': self.packNamespace,
                 'name': struct['name'],
-                'start_height': struct['start_height'],
+                'start_height': psth[struct['start_height']],
                 'psth': struct['psth']
             })
 
@@ -77,4 +77,4 @@ class StructureGenerator:
             # Copy Structure .nbt
             path = os.path.join(self.namespaceDirectory, 'structure')
             destPath = os.path.join(path, os.path.splitext(os.path.basename(str(struct["structure"])))[-2])
-            shutil.copy(struct['structure'], os.path.normpath(f'{destPath}.png'))
+            shutil.copy(struct['structure'], os.path.normpath(f'{destPath}.nbt'))
