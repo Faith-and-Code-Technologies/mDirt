@@ -138,11 +138,11 @@ class Generator():
         with open(load_json_path, "w") as load:
             json.dump({"values": [f'{self.packNamespace}:load']}, load, indent=4)
 
-        blockGenerator = blocks.BlockGenerator()
-        itemGenerator = items.ItemGenerator()
-        recipeGenerator = recipes.RecipeGenerator()
-        paintingGenerator = paintings.PaintingGenerator()
-        structureGenerator = structures.StructureGenerator()
+        blockGenerator = blocks.BlockGenerator
+        itemGenerator = items.ItemGenerator
+        recipeGenerator = recipes.RecipeGenerator
+        paintingGenerator = paintings.PaintingGenerator
+        structureGenerator = structures.StructureGenerator
 
         #######################
         # CUSTOM BLOCKS       #

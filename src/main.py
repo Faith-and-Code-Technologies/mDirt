@@ -1276,7 +1276,7 @@ class App(QMainWindow):
             loc = self.mainDirectory / 'exports'
             os.makedirs(loc, exist_ok=True)
 
-        generatorA = generator(
+        generator = generator(
             APP_VERSION,
             self.packDetails,
             self.dataFormat,
@@ -1291,7 +1291,7 @@ class App(QMainWindow):
             loc
         )
 
-        generatorA.generateDatapack()
+        generator.generateDatapack()
 
         alert("Pack Generated!")
 
