@@ -11,11 +11,12 @@ class BlockFace(IntEnum):
 
 
 class ElementPage(IntEnum):
+    HOME = 0
     BLOCKS = 1
     RECIPES = 2
     ITEMS = 3
     PAINTINGS = 4
     PROJECT_SETUP = 5
-    HOME = 0
     SETTINGS = 6
     STRUCTURES = 7
+    ENCHANTMENTS = 8

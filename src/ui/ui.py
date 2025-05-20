@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiVqJUnt.ui'
+## Form generated from reading UI file 'uiAFHOrh.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -58,6 +58,8 @@ class Ui_MainWindow(object):
         self.actionSettings.setObjectName(u"actionSettings")
         self.actionStructure = QAction(MainWindow)
         self.actionStructure.setObjectName(u"actionStructure")
+        self.actionEnchantment = QAction(MainWindow)
+        self.actionEnchantment.setObjectName(u"actionEnchantment")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.formLayout_2 = QFormLayout(self.centralwidget)
@@ -1100,6 +1102,21 @@ class Ui_MainWindow(object):
 
         self.biomeScrollArea.setWidget(self.scrollAreaWidgetContents_2)
         self.elementEditor.addWidget(self.structureEditor)
+        self.enchantmentEditor = QWidget()
+        self.enchantmentEditor.setObjectName(u"enchantmentEditor")
+        self.verticalLayout_4 = QVBoxLayout(self.enchantmentEditor)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.enchantmentScrollWidget = QScrollArea(self.enchantmentEditor)
+        self.enchantmentScrollWidget.setObjectName(u"enchantmentScrollWidget")
+        self.enchantmentScrollWidget.setWidgetResizable(True)
+        self.scrollAreaWidgetContents_3 = QWidget()
+        self.scrollAreaWidgetContents_3.setObjectName(u"scrollAreaWidgetContents_3")
+        self.scrollAreaWidgetContents_3.setGeometry(QRect(0, 0, 703, 645))
+        self.enchantmentScrollWidget.setWidget(self.scrollAreaWidgetContents_3)
+
+        self.verticalLayout_4.addWidget(self.enchantmentScrollWidget)
+
+        self.elementEditor.addWidget(self.enchantmentEditor)
 
         self.formLayout_2.setWidget(0, QFormLayout.FieldRole, self.elementEditor)
 
@@ -1118,12 +1135,13 @@ class Ui_MainWindow(object):
 
         self.menuBar.addAction(self.menuSave.menuAction())
         self.menuBar.addAction(self.menuNew_Element.menuAction())
-        self.menuNew_Element.addSeparator()
         self.menuNew_Element.addAction(self.actionBlock)
         self.menuNew_Element.addAction(self.actionItem)
         self.menuNew_Element.addAction(self.actionRecipe)
         self.menuNew_Element.addAction(self.actionPainting)
         self.menuNew_Element.addAction(self.actionStructure)
+        self.menuNew_Element.addAction(self.actionEnchantment)
+        self.menuNew_Element.addSeparator()
         self.menuSave.addAction(self.actionNew_Project)
         self.menuSave.addAction(self.actionOpen_Project)
         self.menuSave.addSeparator()
@@ -1159,6 +1177,7 @@ class Ui_MainWindow(object):
         self.actionExport_Project.setText(QCoreApplication.translate("MainWindow", u"Export Project", None))
         self.actionSettings.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
         self.actionStructure.setText(QCoreApplication.translate("MainWindow", u"Structure", None))
+        self.actionEnchantment.setText(QCoreApplication.translate("MainWindow", u"Enchantment", None))
         ___qtreewidgetitem = self.elementViewer.headerItem()
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"Element Viewer", None));
         self.textEdit.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"

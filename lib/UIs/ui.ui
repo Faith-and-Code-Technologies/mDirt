@@ -2325,6 +2325,27 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </widget>
        </widget>
       </widget>
+      <widget class="QWidget" name="enchantmentEditor">
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QScrollArea" name="enchantmentScrollWidget">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents_3">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>703</width>
+             <height>645</height>
+            </rect>
+           </property>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -2343,12 +2364,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <property name="title">
      <string>New Element</string>
     </property>
-    <addaction name="separator"/>
     <addaction name="actionBlock"/>
     <addaction name="actionItem"/>
     <addaction name="actionRecipe"/>
     <addaction name="actionPainting"/>
     <addaction name="actionStructure"/>
+    <addaction name="actionEnchantment"/>
+    <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menuSave">
     <property name="title">
@@ -2435,6 +2457,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <action name="actionStructure">
    <property name="text">
     <string>Structure</string>
+   </property>
+  </action>
+  <action name="actionEnchantment">
+   <property name="text">
+    <string>Enchantment</string>
    </property>
   </action>
  </widget>
