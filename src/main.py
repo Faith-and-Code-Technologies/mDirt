@@ -1254,8 +1254,26 @@ class App(QMainWindow):
         self.ui.elementEditor.setCurrentIndex(ElementPage.HOME)
         alert("Element added successfully!")
 
-    def editStructure(self):
-        pass
+    def editStructure(self, struct):
+        properties = self.structures[struct]
+
+        self.structure = properties["structure"]
+
+        self.ui.structureName.setText(properties["name"])
+        self.ui.structureNBTButton.setText(os.path.basename(self.structure))
+        self.ui.structureLocation.setCurrentText(properties["step"])
+        self.ui.structureTerrainAdaptation.setCurrentText(properties["terrain_adaptation"])
+        self.ui.structureStartHeight.setValue(properties["start_height"])
+        self.ui.structurePSTH.setCurrentText(properties["psth"])
+        self.ui.structureSpacing.setValue(properties["spacing"])
+        self.ui.structureSeperation.setValue(properties["seperation"])
+
+        self.loadBiomeList()
+        for biome in properties["biomes"]:
+            if biome in self.biomeCheckboxes:
+                self.biomeCheckboxes[biome].setChecked(True)
+
+        self.ui.elementEditor.setCurrentIndex(ElementPage.STRUCTURES)
 
     #######################
     # PACK GENERATION     #
