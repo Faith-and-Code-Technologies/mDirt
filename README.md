@@ -2,6 +2,8 @@
 ##### making Datapacks is really tedious
 Creating custom Minecraft datapacks can be time-consuming and complex. **mDirt** simplifies this process by providing an easy-to-use tool for generating datapacks with custom features like blocks, items, recipes, and more.
 
+> ⚠️ mDirt development is currently paused. Please stay tuned for more news on the future of the program.
+
 ---
 
 ### 🛠️ **Supported Versions**
@@ -69,12 +71,6 @@ We’ve now added official support for **Minecraft 1.21.5**, enabling you to cre
 - **Namespaces**: Please ensure the Namespace the program asks you to define doesn't clash with any other datapack you may be using!
 - **Testing**: After generating your datapack, it's always a good idea to test it in a separate Minecraft world before adding it to your main world.
 - **Backing Up**: As always, back up your Minecraft world before applying new datapacks, especially when using custom features.
-
----
-
-### **In Progress:**
-- Adding an Auto-Updater
-- New Features
 
 ---
 
