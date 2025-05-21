@@ -44,6 +44,7 @@ We’ve now added official support for **Minecraft 1.21.5**, enabling you to cre
 
 ### 🧩 **Feature Support by Version**
 **As of v2.5.1**
+---
 **Note**: If a feature is not listed for a specific version, that version **does not** support it.
 
 | Feature          | 1.21.3 | 1.21.4 | 1.21.5 |
