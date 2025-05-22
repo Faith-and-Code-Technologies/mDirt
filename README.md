@@ -59,11 +59,10 @@ We’ve now added official support for **Minecraft 1.21.5**, enabling you to cre
 
 ### 🚀 **Coming Soon**
 
-- **Custom Components for Custom Items**
-  - We’re currently working on a system to generate dynamic components for custom items and blocks. This will help eliminate the need for writing complex boilerplate code, making the process easier and faster for users.
-  
-- **Custom Enchantments**
-  - Full support for creating custom enchantments will be available after the system for custom item components is completed. Stay tuned for future updates!
+- **JSON to UI**
+  - We’re currently working on a system to generate dynamic UI elements. This will make it possible to add JSON elements such as custom Enchantments, Advancements, Loot Tables, and so many more.
+  - It will also make it possible to use ALL components on custom items!
+  - **Update**: The system itself has been built, and we are working on implementing it into mDirt.
 
 ---
 
@@ -83,6 +82,6 @@ We’ve now added official support for **Minecraft 1.21.5**, enabling you to cre
 ---
 
 ### 🌍 **Get Involved**
-We welcome contributions and suggestions! If you have ideas or find bugs, please create an issue or open a pull request on the [GitHub Repository](https://github.com/Faith-and-Code-Technologies/mDirt-2).
+We welcome contributions and suggestions! If you have ideas or find bugs, please create an issue or open a pull request on the [GitHub Repository](https://github.com/Faith-and-Code-Technologies/mDirt).
 
 ---
