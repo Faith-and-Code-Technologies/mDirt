@@ -105,4 +105,4 @@ def get_minecraft_files(version: str):
         json.dump({"blocks": blocks, "items": items, "biomes": biomes, "enchantments": enchantments, "blockstates": blockstates_data}, f, indent=4)
 
 
-get_minecraft_files("1.21.5")
+get_minecraft_files("25w21a")
