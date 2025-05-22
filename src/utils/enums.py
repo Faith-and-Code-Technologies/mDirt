@@ -20,3 +20,4 @@ class ElementPage(IntEnum):
     SETTINGS = 6
     STRUCTURES = 7
     ENCHANTMENTS = 8
+    EDITOR = 9

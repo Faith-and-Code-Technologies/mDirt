@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiAFHOrh.ui'
+## Form generated from reading UI file 'uiMhzcLp.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.1
 ##
@@ -17,12 +17,13 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
 from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QCheckBox, QComboBox,
-    QFormLayout, QGridLayout, QHeaderView, QLabel,
-    QLineEdit, QMainWindow, QMenu, QMenuBar,
-    QPlainTextEdit, QPushButton, QRadioButton, QScrollArea,
-    QSizePolicy, QSlider, QSpinBox, QStackedWidget,
-    QStatusBar, QTabWidget, QTextEdit, QToolButton,
-    QTreeWidget, QTreeWidgetItem, QVBoxLayout, QWidget)
+    QFormLayout, QFrame, QGridLayout, QHeaderView,
+    QLabel, QLineEdit, QMainWindow, QMenu,
+    QMenuBar, QPlainTextEdit, QPushButton, QRadioButton,
+    QScrollArea, QSizePolicy, QSlider, QSpinBox,
+    QSplitter, QStackedWidget, QStatusBar, QTabWidget,
+    QTextEdit, QToolButton, QTreeWidget, QTreeWidgetItem,
+    QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -1117,6 +1118,48 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.addWidget(self.enchantmentScrollWidget)
 
         self.elementEditor.addWidget(self.enchantmentEditor)
+        self.fileEditor = QWidget()
+        self.fileEditor.setObjectName(u"fileEditor")
+        self.gridLayout_5 = QGridLayout(self.fileEditor)
+        self.gridLayout_5.setObjectName(u"gridLayout_5")
+        self.frame = QFrame(self.fileEditor)
+        self.frame.setObjectName(u"frame")
+        self.frame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Shadow.Raised)
+        self.gridLayout_6 = QGridLayout(self.frame)
+        self.gridLayout_6.setObjectName(u"gridLayout_6")
+        self.feEditor = QSplitter(self.frame)
+        self.feEditor.setObjectName(u"feEditor")
+        self.feEditor.setOrientation(Qt.Orientation.Horizontal)
+        self.feFileExplorer = QTreeWidget(self.feEditor)
+        __qtreewidgetitem1 = QTreeWidgetItem()
+        __qtreewidgetitem1.setText(0, u"1");
+        self.feFileExplorer.setHeaderItem(__qtreewidgetitem1)
+        self.feFileExplorer.setObjectName(u"feFileExplorer")
+        self.feEditor.addWidget(self.feFileExplorer)
+        self.formLayoutWidget_3 = QWidget(self.feEditor)
+        self.formLayoutWidget_3.setObjectName(u"formLayoutWidget_3")
+        self.feEditorPanel = QFormLayout(self.formLayoutWidget_3)
+        self.feEditorPanel.setObjectName(u"feEditorPanel")
+        self.feEditorPanel.setContentsMargins(0, 0, 0, 0)
+        self.feLineNumWidget = QWidget(self.formLayoutWidget_3)
+        self.feLineNumWidget.setObjectName(u"feLineNumWidget")
+
+        self.feEditorPanel.setWidget(0, QFormLayout.LabelRole, self.feLineNumWidget)
+
+        self.feCodeEdit = QTextEdit(self.formLayoutWidget_3)
+        self.feCodeEdit.setObjectName(u"feCodeEdit")
+
+        self.feEditorPanel.setWidget(0, QFormLayout.FieldRole, self.feCodeEdit)
+
+        self.feEditor.addWidget(self.formLayoutWidget_3)
+
+        self.gridLayout_6.addWidget(self.feEditor, 0, 0, 1, 1)
+
+
+        self.gridLayout_5.addWidget(self.frame, 0, 0, 1, 1)
+
+        self.elementEditor.addWidget(self.fileEditor)
 
         self.formLayout_2.setWidget(0, QFormLayout.FieldRole, self.elementEditor)
 
