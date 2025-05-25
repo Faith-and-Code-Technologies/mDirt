@@ -1304,9 +1304,9 @@ class App(QMainWindow):
             self.items,
             self.recipes,
             self.paintings,
-            self.structures,
             self.data,
-            loc
+            loc,
+            self.structures,
         )
 
         generator.generateDatapack()

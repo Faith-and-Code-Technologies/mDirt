@@ -7,7 +7,7 @@ from . import recipes
 from . import paintings
 
 class Generator():
-    def __init__(self, app_ver, packDetails, dataFormat, resourceFormat, header, blocks, items, recipes, paintings, structures, data, directory):
+    def __init__(self, app_ver, packDetails, dataFormat, resourceFormat, header, blocks, items, recipes, paintings, data, directory, structures=None):
         self.APP_VERSION = app_ver
         self.packDetails = packDetails
         self.dataFormat = dataFormat
