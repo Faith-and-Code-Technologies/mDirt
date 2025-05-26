@@ -126,7 +126,7 @@
             "type": "object",
             "title": "Effects",
             "description": "Map of effect components by type",
-            "patternProperties": {
+            "properties": {
                 "^.*$": {
                     "oneOf": [
                         {
