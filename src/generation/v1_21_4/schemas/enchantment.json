@@ -7,25 +7,28 @@
             "title": "Description"
         },
         "exclusive_set": {
-            "type": "string",
+            "type": "array",
             "title": "Exclusive Set",
-            "x-enum-source": "enchantments",
-            "x-multiselect": true,
-            "default": [""]
+            "items": {
+                "type": "string",
+                "enumSource": "enchantments"
+            }
         },
         "supported_items": {
-            "type": "string",
+            "type": "array",
             "title": "Supported Items",
-            "x-enum-source": "items",
-            "x-multiselect": true,
-            "default": [""]
+            "items": {
+                "type": "string",
+                "enumSource": "items"
+            }
         },
         "primary_items": {
-            "type": "string",
+            "type": "array",
             "title": "Primary Items",
-            "x-enum-source": "items",
-            "x-multiselect": true,
-            "default": [""]
+            "items": {
+                "type": "string",
+                "enumSource": "items"
+            }
         },
         "weight": {
             "type": "integer",
@@ -89,32 +92,28 @@
             "default": 1
         },
         "slots": {
-            "type": "string",
+            "type": "array",
             "title": "Slots",
-            "enum": [
-                "any",
-                "hand",
-                "mainhand",
-                "offhand",
-                "armor",
-                "feet",
-                "legs",
-                "chest",
-                "head",
-                "body"
-            ],
-            "default": [""]
+            "items": {
+                "type": "string",
+                "enum": [
+                    "any",
+                    "hand",
+                    "mainhand",
+                    "offhand",
+                    "armor",
+                    "feet",
+                    "legs",
+                    "chest",
+                    "head",
+                    "body"
+                ]
+            }
         },
         "effects": {
-            "x-multiple-group": {
-                "armor_effectiveness": {
-                    "type": "object",
-                    "title": "Armor Effectiveness",
-                    "properties": {
-                        
-                    }
-                }
-            }
+            "type": "array",
+            "title": "Effects",
+            "items": {}
         }
     }
 }

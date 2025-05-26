@@ -1,6 +1,6 @@
 import sys
 import json
-from PySide6.QtWidgets import QApplication, QPushButton, QLayout
+from PySide6.QtWidgets import QApplication
 from koreui import load_schema, JsonSchemaForm
 
 if __name__ == "__main__":
@@ -9,9 +9,9 @@ if __name__ == "__main__":
     schema = load_schema("src/generation/v1_21_4/schemas/enchantment.json")
 
     with open('lib/1.21.4_data.json', 'r') as f:
-        data = json.load(f)
+        datas = json.load(f)
 
-    form = JsonSchemaForm(schema, "Enchantment")
+    form = JsonSchemaForm(schema, data=datas, title="Enchantment", toolbar=True)
     form.show()
 
     sys.exit(app.exec())
