@@ -59,10 +59,9 @@ We’ve now added official support for **Minecraft 1.21.5**, enabling you to cre
 
 ### 🚀 **Coming Soon**
 
-- **JSON to UI**
-  - We’re currently working on a system to generate dynamic UI elements. This will make it possible to add JSON elements such as custom Enchantments, Advancements, Loot Tables, and so many more.
-  - It will also make it possible to use ALL components on custom items!
-  - **Update**: The system itself has been built, and we are working on implementing it into mDirt.
+- **KoreUI**
+  - We have created a Python package that converts JSON Schemas to a PySide6 UI. With this system, we will be able to support Advancements, Loot Tables, Predicates, and so much more.
+  - Please stay tuned for the implementation - manually creating JSON files that are thousands of lines long will take some time.
 
 ---
 
