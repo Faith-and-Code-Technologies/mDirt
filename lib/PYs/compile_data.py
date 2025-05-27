@@ -50,6 +50,7 @@ effects = []
 damage_types = []
 sound_events = []
 entities = []
+game_events = []
 
 def get_minecraft_files(version: str, soundver: str):
     if platform.system() == "Windows":
@@ -88,6 +89,7 @@ def get_minecraft_files(version: str, soundver: str):
     damage_types_path = extract_folder / "data/minecraft/damage_type"
     sounds_json_path = Path(__file__).parent / "sounds.json"
     entity_path = extract_folder / "assets/minecraft/textures/entity" # top level folders & .pngs
+    vibrations_file = extract_folder / "data/minecraft/tags/game_event/vibrations.json"
 
 
     for file in items_path.glob("*.json"):
@@ -166,6 +168,13 @@ def get_minecraft_files(version: str, soundver: str):
         elif item.is_file() and item.suffix == ".png":
             entities.append(item.name.removesuffix(".png"))
 
+    with open(vibrations_file, "r") as f:
+        try:
+            data = json.load(f)
+            if isinstance(data.get("values"), list):
+                game_events.extend(data["values"])
+        except json.JSONDecodeError:
+            print(f"Failed to parse {vibrations_file}")
 
     zip_file_path.unlink()
     sounds_json_path.unlink()
@@ -179,6 +188,7 @@ def get_minecraft_files(version: str, soundver: str):
     damage_types.sort()
     sound_events.sort()
     entities.sort()
+    game_events.sort()
 
     with open(f"lib/{version}_data.json", "w") as f:
         json.dump({"blocks": blocks, 
@@ -189,8 +199,9 @@ def get_minecraft_files(version: str, soundver: str):
                    "damage_types": damage_types, 
                    "sound_events": sound_events,
                    "entities": entities,
-                   "blockstates": blockstates_data
+                   "blockstates": blockstates_data,
+                   "game_events": game_events
                    }, f, indent=4)
 
 
-get_minecraft_files("25w21a", "1.21.4")
+get_minecraft_files("25w21a", "1.21.5")
