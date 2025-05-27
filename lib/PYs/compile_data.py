@@ -4,17 +4,63 @@ import zipfile
 import json
 from pathlib import Path
 from collections import defaultdict
+import platform
+
+def get_sounds_json(target_version=None):
+    system = platform.system()
+    if system == "Windows":
+        mc_assets = os.path.expandvars(r"%APPDATA%\.minecraft\assets")
+    elif system == "Darwin":
+        mc_assets = os.path.expanduser(r"~/Library/Application Support/minecraft/assets")
+    else:
+        mc_assets = os.path.expanduser(r"~/.minecraft/assets")
+
+    index_dir = os.path.join(mc_assets, "indexes")
+    versions = [f for f in os.listdir(index_dir) if f.endswith(".json")]
+
+    if target_version:
+        index_file = target_version.split('.')[0] + '.' + target_version.split('.')[1] + ".json" if '.' in target_version else target_version + ".json"
+        if index_file not in versions:
+            print(f"Version {target_version} not found. Available: {[v.rstrip('.json') for v in versions]}")
+            return
+    else:
+        index_file = max(versions, key=lambda v: (v != "pre-1.6", v))
+
+    index_path = os.path.join(index_dir, index_file)
+
+    with open(index_path, "r") as f:
+        data = json.load(f)
+
+    entry = "minecraft/sounds.json"
+    if entry in data["objects"]:
+        h = data["objects"][entry]["hash"]
+        src = os.path.join(mc_assets, "objects", h[:2], h)
+        dst = os.path.join(os.path.dirname(__file__), "sounds.json")
+        shutil.copyfile(src, dst)
+        print(f"Copied sounds.json from {index_file} to {dst}")
+    else:
+        print("sounds.json not found in index.")
 
 blocks = []
 items = []
 biomes = []
 enchantments = []
 blockstates_data = {}
+effects = []
+damage_types = []
+sound_events = []
+entities = []
 
-def get_minecraft_files(version: str):
-    minecraft_path = (
-        f"C:/Users/wiseg/AppData/Roaming/.minecraft/versions/{version}/{version}.jar"
-    )
+def get_minecraft_files(version: str, soundver: str):
+    if platform.system() == "Windows":
+        base_path = os.path.expandvars(r"%APPDATA%\.minecraft")
+    elif platform.system() == "Darwin":
+        base_path = os.path.expanduser("~/Library/Application Support/minecraft")
+    else:
+        base_path = os.path.expanduser("~/.minecraft")
+
+    minecraft_path = os.path.join(base_path, "versions", version, f"{version}.jar")
+
 
     if not os.path.exists(minecraft_path):
         return
@@ -32,10 +78,17 @@ def get_minecraft_files(version: str):
     with zipfile.ZipFile(zip_file_path, "r") as zip_ref:
         zip_ref.extractall(extract_folder)
 
+    get_sounds_json(target_version=soundver)
+
     items_path = extract_folder / "assets/minecraft/items"
     blocks_path = extract_folder / "assets/minecraft/blockstates"
     biome_path = extract_folder / "data/minecraft/worldgen/biome"
     enchantment_path = extract_folder / "data/minecraft/enchantment"
+    effects_path = extract_folder / "assets/minecraft/textures/mob_effect"
+    damage_types_path = extract_folder / "data/minecraft/damage_type"
+    sounds_json_path = Path(__file__).parent / "sounds.json"
+    entity_path = extract_folder / "assets/minecraft/textures/entity" # top level folders & .pngs
+
 
     for file in items_path.glob("*.json"):
         items.append(file.name.removesuffix(".json"))
@@ -93,16 +146,51 @@ def get_minecraft_files(version: str):
     for file in enchantment_path.glob("*.json"):
         enchantments.append(file.name.removesuffix(".json"))
 
+    for file in effects_path.glob("*.png"):
+        effects.append(file.name.removesuffix(".png"))
+    
+    for file in damage_types_path.glob("*.json"):
+        damage_types.append(file.name.removesuffix(".json"))
+
+    if sounds_json_path.exists():
+        with open(sounds_json_path, "r") as f:
+            try:
+                sound_data = json.load(f)
+                sound_events.extend(sound_data.keys())
+            except json.JSONDecodeError:
+                print("Failed to parse sounds.json.")
+
+    for item in entity_path.iterdir():
+        if item.is_dir():
+            entities.append(item.name)
+        elif item.is_file() and item.suffix == ".png":
+            entities.append(item.name.removesuffix(".png"))
+
+
     zip_file_path.unlink()
+    sounds_json_path.unlink()
     shutil.rmtree(extract_folder)
 
     blocks.sort()
     items.sort()
     biomes.sort()
     enchantments.sort()
+    effects.sort()
+    damage_types.sort()
+    sound_events.sort()
+    entities.sort()
 
     with open(f"lib/{version}_data.json", "w") as f:
-        json.dump({"blocks": blocks, "items": items, "biomes": biomes, "enchantments": enchantments, "blockstates": blockstates_data}, f, indent=4)
+        json.dump({"blocks": blocks, 
+                   "items": items, 
+                   "biomes": biomes, 
+                   "enchantments": enchantments, 
+                   "effects": effects, 
+                   "damage_types": damage_types, 
+                   "sound_events": sound_events,
+                   "entities": entities,
+                   "blockstates": blockstates_data
+                   }, f, indent=4)
 
 
-get_minecraft_files("25w21a")
+get_minecraft_files("25w21a", "1.21.4")
