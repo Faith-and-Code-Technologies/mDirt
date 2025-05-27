@@ -459,7 +459,7 @@
                     "properties": {
                         "mctype": {
                             "type": "string",
-                            "const": "miencraft:set_block_properties"
+                            "const": "minecraft:set_block_properties"
                         },
                         "offset": {
                             "type": "object",
@@ -640,6 +640,42 @@
                         "join_team": {
                             "type": "boolean",
                             "title": "Join Team"
+                        }
+                    }
+                }
+            ]
+        },
+        "locationBasedEffects": {
+            "title": "Location Based Effects",
+            "oneOf": [
+                {
+                    "type": "object",
+                    "title": "Attribute",
+                    "properties": {
+                        "mctype": {
+                            "type": "string",
+                            "const": "minecraft:attribute"
+                        },
+                        "attribute": {
+                            "type": "string",
+                            "title": "Attribute",
+                            "enumSource": "attributes"
+                        },
+                        "amount": {
+                            "$ref": "#/definitions/levelBasedValue"
+                        },
+                        "operation": {
+                            "type": "string",
+                            "title": "Operation",
+                            "enum": [
+                                "add_value",
+                                "add_multiplied_base",
+                                "add_multiplied_total"
+                            ]
+                        },
+                        "id": {
+                            "type": "string",
+                            "title": "id"
                         }
                     }
                 }
