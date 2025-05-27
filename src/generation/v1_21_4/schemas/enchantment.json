@@ -681,6 +681,80 @@
                 }
             ]
         },
+        "valueEffects": {
+            "title": "Value Effects",
+            "oneOf": [
+                {
+                    "type": "object",
+                    "title": "Set",
+                    "properties": {
+                        "mctype": {
+                            "type": "string",
+                            "const": "minecraft:set"
+                        },
+                        "value": {
+                            "$ref": "#/definitions/levelBasedValue"
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "title": "Add",
+                    "properties": {
+                        "mctype": {
+                            "type": "string",
+                            "const": "minecraft:add"
+                        },
+                        "value": {
+                            "$ref": "#/definitions/levelBasedValue"
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "title": "Multiply",
+                    "properties": {
+                        "mctype": {
+                            "type": "string",
+                            "const": "minecraft:multiply"
+                        },
+                        "factor": {
+                            "$ref": "#/definitions/levelBasedValue"
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "title": "Remove Binomial",
+                    "properties": {
+                        "mctype": {
+                            "type": "string",
+                            "const": "minecraft:remove_binomial"
+                        },
+                        "chance": {
+                            "$ref": "#/definitions/levelBasedValue"
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "title": "All Of",
+                    "properties": {
+                        "mctype": {
+                            "type": "string",
+                            "const": "minecraft:all_of"
+                        },
+                        "effects": {
+                            "type": "array",
+                            "title": "Effects",
+                            "items": {
+                                "$ref": "#/definitions/valueEffects"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
         "blockPredicate": {
 
         },
