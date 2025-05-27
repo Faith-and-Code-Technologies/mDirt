@@ -126,9 +126,7 @@
             "type": "object",
             "title": "Effects",
             "description": "Map of effect components by type",
-            "properties": {
-                "^.*$": {
-                    "oneOf": [
+                "oneOf": [
                         {
                             "type": "object",
                             "title": "Damage Protection",
@@ -468,8 +466,7 @@
                             "required": ["type", "amount"]
                         }
                     ]
-                }
-            }
+            
         }
     },
     "definitions": {
@@ -657,7 +654,6 @@
                         "volume": {
                             "type": "object",
                             "title": "Volume",
-                            "properties": {
                                 "oneOf": [
                                 {
                                     "float": {
@@ -673,12 +669,11 @@
                                     }
                                 }
                             ]
-                            }
+                            
                         },
                         "pitch": {
                             "type": "object",
                             "title": "Pitch",
-                            "properties": {
                                 "oneOf": [
                                 {
                                     "float": {
@@ -694,7 +689,6 @@
                                     }
                                 }
                             ]
-                            }
                         }
                     }
                 },
