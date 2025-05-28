@@ -5,6 +5,7 @@ from . import blocks
 from . import items
 from . import recipes
 from . import paintings
+from . import structures
 
 class Generator():
     def __init__(self, app_ver, packDetails, dataFormat, resourceFormat, header, blocks, items, recipes, paintings, data, directory, structures=None):
@@ -44,9 +45,9 @@ class Generator():
             }, pack, indent=4)
 
         # Load resource generators
-        blockResourcer = blocks.BlockResourcer()
-        itemResourcer = items.ItemResourcer()
-        paintingResourcer = paintings.PaintingResourcer()
+        blockResourcer = blocks.BlockResourcer
+        itemResourcer = items.ItemResourcer
+        paintingResourcer = paintings.PaintingResourcer
 
         # Generate resources
         if self.blocks:
@@ -106,6 +107,9 @@ class Generator():
             os.makedirs(os.path.join(self.namespaceDirectory, "loot_table"), exist_ok=True)
         if self.recipes:
             os.makedirs(os.path.join(self.namespaceDirectory, "recipe"), exist_ok=True)
+        if self.structures:
+            os.makedirs(os.path.join(self.namespaceDirectory, "structure"), exist_ok=True)
+            os.makedirs(os.path.join(self.namespaceDirectory, "worldgen"), exist_ok=True)
 
         # Create tags folders
         tags_function_dir = os.path.join(self.minecraftDirectory, "tags", "function")
@@ -134,10 +138,11 @@ class Generator():
         with open(load_json_path, "w") as load:
             json.dump({"values": [f'{self.packNamespace}:load']}, load, indent=4)
 
-        blockGenerator = blocks.BlockGenerator()
-        itemGenerator = items.ItemGenerator()
-        recipeGenerator = recipes.RecipeGenerator()
-        paintingGenerator = paintings.PaintingGenerator()
+        blockGenerator = blocks.BlockGenerator
+        itemGenerator = items.ItemGenerator
+        recipeGenerator = recipes.RecipeGenerator
+        paintingGenerator = paintings.PaintingGenerator
+        structureGenerator = structures.StructureGenerator
 
         #######################
         # CUSTOM BLOCKS       #
@@ -200,6 +205,19 @@ class Generator():
             )
 
             paintingGenerator.generate()
+        
+        #######################
+        # CUSTOM STRUCTURES   #
+        #######################
+
+        if self.structures:
+            structureGenerator = structureGenerator(
+                self.namespaceDirectory,
+                self.packNamespace,
+                self.packAuthor,
+                self.structures
+            )
+            structureGenerator.generate()
 
         #######################
         # RESOURCE PACK       #
