@@ -204,4 +204,4 @@ def get_minecraft_files(version: str, soundver: str):
                    }, f, indent=4)
 
 
-get_minecraft_files("25w21a", "1.21.5")
+get_minecraft_files("1.21.6-pre1", "1.21.5")
