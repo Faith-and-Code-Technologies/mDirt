@@ -21,7 +21,7 @@ We’ve now added official support for **Minecraft 1.21.5**, enabling you to cre
 
 1. **Download and Install**
    - Head over to the [Releases Page](https://github.com/Faith-and-Code-Technologies/mDirt/releases) and download the latest version of **mDirt**. 
-   - **Windows Only**: The release contains a pre-packaged binary created using **PyInstaller**, which means you don't need Python or any other dependencies to run the app.
+   - **Windows Only**: The release contains a pre-packaged binary created using **PyInstaller**, which means you don't need Python or any other dependencies installed to run the app.
    - Once downloaded, extract the folder and simply **run the executable** (`mDirt.exe`), and you're ready to start generating custom Minecraft datapacks.
 
 2. **Using the Interface**
