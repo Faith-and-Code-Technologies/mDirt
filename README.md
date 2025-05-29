@@ -2,7 +2,7 @@
 ##### making Datapacks is really tedious
 Creating custom Minecraft datapacks can be time-consuming and complex. **mDirt** simplifies this process by providing an easy-to-use tool for generating datapacks with custom features like blocks, items, recipes, and more.
 
-> ⚠️ mDirt v3.0 will be releasing in June.
+> ⚠️ Development for mDirt v3.0 is in process but is going to take some time.
 
 ---
 
@@ -59,9 +59,10 @@ We’ve now added official support for **Minecraft 1.21.5**, enabling you to cre
 
 ### 🚀 **Coming Soon**
 
-- **KoreUI**
-  - We have created a Python package that converts JSON Schemas to a PySide6 UI. With this system, we will be able to support Advancements, Loot Tables, Predicates, and so much more.
-  - Please stay tuned for the implementation - manually creating JSON files that are thousands of lines long will take some time.
+- **mcdoc**
+  - We are currently working through using the `mcdoc` language as found [here](https://github.com/SpyglassMC/Spyglass/tree/main/packages/mcdoc).
+  - To do this, we have to port the language to Python.
+  - This will take a lot of time, and v3.0 will not release until it is done.
 
 ---
 
