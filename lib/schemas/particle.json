@@ -1,3 +1,327 @@
 {
-    
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "particle": {
+            "title": "Particle",
+            "type": "object",
+            "properties": {
+                "particle": {
+                    "type": "string",
+                    "enumSource": "particles"
+                }
+            },
+            "required": ["particle"],
+            "allOf": [
+                {
+                    "if": {
+                        "properties": {
+                            "particle": { "const": "block" }
+                        }
+                    },
+                    "then": {
+                        "required": [ "block_states" ],
+                        "properties": {
+                            "block_states": {
+                                "oneOf": [
+                                    {
+                                        "title": "Block State",
+                                        "type": "object",
+                                        "properties": {
+                                            "block_state": {
+                                                "$ref": "utils/block_state.json#/blockState"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "title": "Resource Location",
+                                        "type": "string"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "particle": { "const": "block_crumble" }
+                        }
+                    },
+                    "then": {
+                        "required": [ "block_states" ],
+                        "properties": {
+                            "block_states": {
+                                "oneOf": [
+                                    {
+                                        "title": "Block State",
+                                        "type": "object",
+                                        "properties": {
+                                            "block_state": {
+                                                "$ref": "utils/block_state.json#/blockState"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "title": "Resource Location",
+                                        "type": "string"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "particle": { "const": "block_marker" }
+                        }
+                    },
+                    "then": {
+                        "required": [ "block_states" ],
+                        "properties": {
+                            "block_states": {
+                                "oneOf": [
+                                    {
+                                        "title": "Block State",
+                                        "type": "object",
+                                        "properties": {
+                                            "block_state": {
+                                                "$ref": "utils/block_state.json#/blockState"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "title": "Resource Location",
+                                        "type": "string"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "particle": { "const": "dust_pillar" }
+                        }
+                    },
+                    "then": {
+                        "required": [ "block_states" ],
+                        "properties": {
+                            "block_states": {
+                                "oneOf": [
+                                    {
+                                        "title": "Block State",
+                                        "type": "object",
+                                        "properties": {
+                                            "block_state": {
+                                                "$ref": "utils/block_state.json#/blockState"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "title": "Resource Location",
+                                        "type": "string"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "particle": { "const": "falling_dust" }
+                        }
+                    },
+                    "then": {
+                        "required": [ "block_states" ],
+                        "properties": {
+                            "block_states": {
+                                "oneOf": [
+                                    {
+                                        "title": "Block State",
+                                        "type": "object",
+                                        "properties": {
+                                            "block_state": {
+                                                "$ref": "utils/block_state.json#/blockState"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "title": "Resource Location",
+                                        "type": "string"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "if": { "properties": { "particle": { "const": "minecraft:dust" } } },
+                    "then": {
+                        "required": ["color", "scale"],
+                        "properties": {
+                            "color": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number",
+                                    "minimum": 0.0,
+                                    "maximum": 1.0
+                                },
+                                "minItems": 3,
+                                "maxItems": 3
+                            },
+                            "scale": {
+                                "type": "number",
+                                "minimum": 1.0
+                            }
+                        }
+                        }
+                    },
+
+                    {
+                    "if": { "properties": { "particle": { "const": "minecraft:dust_color_transition" } } },
+                    "then": {
+                        "required": ["from_color", "to_color", "scale"],
+                        "properties": {
+                        "from_color": {
+                            "type": "array",
+                            "items": {
+                            "type": "number",
+                            "minimum": 0.0,
+                            "maximum": 1.0
+                            },
+                            "minItems": 3,
+                            "maxItems": 3
+                        },
+                        "to_color": {
+                            "type": "array",
+                            "items": {
+                            "type": "number",
+                            "minimum": 0.0,
+                            "maximum": 1.0
+                            },
+                            "minItems": 3,
+                            "maxItems": 3
+                        },
+                        "scale": {
+                            "type": "number",
+                            "minimum": 1.0
+                        }
+                        }
+                    }
+                    },
+
+                    {
+                    "if": { "properties": { "particle": { "const": "minecraft:entity_effect" } } },
+                    "then": {
+                        "oneOf": [
+                        {
+                            "required": ["color"],
+                            "properties": {
+                            "color": {
+                                "type": "array",
+                                "items": {
+                                "type": "number",
+                                "minimum": 0.0,
+                                "maximum": 1.0
+                                },
+                                "minItems": 4,
+                                "maxItems": 4
+                            }
+                            }
+                        },
+                        {
+                            "required": ["color"],
+                            "properties": {
+                            "color": {
+                                "type": "integer",
+                                "minimum": 0
+                            }
+                            }
+                        }
+                        ]
+                    }
+                    },
+
+                    {
+                    "if": { "properties": { "particle": { "const": "minecraft:item" } } },
+                    "then": {
+                        "required": ["item"],
+                        "properties": {
+                        "item": {
+                            "oneOf": [
+                                {
+                                    "type": "object",
+                                    "title": "Item Stack",
+                                    "properties": {
+                                        "item_stack": {
+                                            "$ref": "item_stack.json#/definitions/itemStack"
+                                        }
+                                    },
+                                    "required": ["item_stack"]
+                                },
+                                {
+                                    "type": "string",
+                                    "title": "Resource Location"
+                                }
+                            ]
+                        }
+                        }
+                    }
+                    },
+
+                    {
+                    "if": { "properties": { "particle": { "const": "minecraft:sculk_charge" } } },
+                    "then": {
+                        "required": ["roll"],
+                        "properties": {
+                        "roll": { "type": "number" }
+                        }
+                    }
+                    },
+
+                    {
+                    "if": { "properties": { "particle": { "const": "minecraft:shriek" } } },
+                    "then": {
+                        "required": ["delay"],
+                        "properties": {
+                        "delay": { "type": "integer" }
+                        }
+                    }
+                    },
+
+                    {
+                    "if": { "properties": { "particle": { "const": "minecraft:trail" } } },
+                    "then": {
+                        "required": ["target", "color", "duration"],
+                        "properties": {
+                        "target": {
+                            "type": "array",
+                            "items": { "type": "number" },
+                            "minItems": 3,
+                            "maxItems": 3
+                        },
+                        "color": { "type": "integer" },
+                        "duration": { "type": "integer" }
+                        }
+                    }
+                    },
+
+                    {
+                    "if": { "properties": { "particle": { "const": "minecraft:vibration" } } },
+                    "then": {
+                        "required": ["destination", "arrival_in_ticks"],
+                        "properties": {
+                        "destination": { 
+                            "$ref": "utils/position_source.json#/definitions/positionSource"
+                        },
+                        "arrival_in_ticks": { "type": "integer" }
+                        }
+                    }
+                    }
+            ]
+        }
+    }
 }

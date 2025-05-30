@@ -1,6 +1,8 @@
 {
+    "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
     "title": "Data Component",
+    "$comment": "This schema is not anywhere NEAR done :(",
     "oneOf": [
         {
             "type": "object",

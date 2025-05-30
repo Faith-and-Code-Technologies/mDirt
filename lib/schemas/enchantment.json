@@ -614,10 +614,10 @@
                             ]
                         },
                         "small_particle": {
-                            "$ref": "particle.json"
+                            "$ref": "particle.json#/definitions/particle"
                         },
                         "large_particle": {
-                            "$ref": "particle.json"
+                            "$ref": "particle.json#/definitions/particle"
                         },
                         "sound": {
                             "type": "string",
@@ -848,7 +848,7 @@
                             "const": "minecraft:spawn_particles"
                         },
                         "particle": {
-                            "$ref": "particle.json"
+                            "$ref": "particle.json#/definitions/particle"
                         },
                         "horizontal_position": {
                             "type": "object",
