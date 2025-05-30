@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "noise": {
+            "type": "object",
+            "title": "Noise",
+            "properties": {
+                "firstOctave": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "amplitudes": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                }
+            }
+        }
+    }
+}

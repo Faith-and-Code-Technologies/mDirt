@@ -1,5 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
+    "$comment": "This schema is DONE except for adding in `required: []` fields.",
     "type": "object",
     "title": "Enchantment",
     "properties": {

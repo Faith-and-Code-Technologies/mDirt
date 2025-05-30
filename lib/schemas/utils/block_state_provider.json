@@ -87,14 +87,14 @@
                             "type": "integer"
                         },
                         "noise": {
-                            "$ref": "noise.json/#definitions/noise"
+                            "$ref": "../worldgen/noise.json/#definitions/noise"
                         },
                         "scale": {
                             "type": "number",
                             "minimum": 0
                         },
                         "slow_noise": {
-                            "$ref": "noise.json/#definitions/noise"
+                            "$ref": "../worldgen/noise.json/#definitions/noise"
                         },
                         "slow_scale": {
                             "type": "number",
@@ -129,7 +129,7 @@
                             "type": "integer"
                         },
                         "noise": {
-                            "$ref": "noise.json/#definitions/noise"
+                            "$ref": "../worldgen/noise.json#/definitions/noise"
                         },
                         "scale": {
                             "type": "number",
@@ -145,21 +145,13 @@
                             "minimum": -1.0,
                             "maximum": 1.0
                         },
-                        "default_state": {
-                            "$ref": "block_state.json#/definitions/blockState"
-                        },
-                        "low_states": {
-
-                        },
-                        "high_states": {
-
-                        }
-                    },
-                    "$comment": "BRO. IDFK WHAT TF IM DOING. I need to check if the NOISE value is more than or less than the threshold, and show/hide different widgets of that is true.",
-                    "$comment": "But the Noise is defined in a seperate schema (utils/noise.json) SO IDFK HOW TF TO GET THAT CRAP????? KMS",
-                    "if": {
-                        "properties": {
-                            
+                        "states": {
+                            "$comment": "This is where this schema begins to derail from from the Minecraft Wiki. Here should have three different block states arrays, doing the same thing. For JSON Schema to work with this, the authors of this schema were required to flatten it down into one.",
+                            "type": "array",
+                            "title": "States",
+                            "items": {
+                                "$ref": "block_state.json#/definitions/blockState"
+                            }
                         }
                     }
                 }

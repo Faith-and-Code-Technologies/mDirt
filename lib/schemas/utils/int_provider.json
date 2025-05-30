@@ -2,7 +2,94 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
         "intProvider": {
-            
+            "oneOf": [
+                {
+                    "type": "object",
+                    "title": "constant",
+                    "properties": {
+                        "value": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "title": "uniform",
+                    "properties": {
+                        "min_inclusive": {
+                            "type": "integer"
+                        },
+                        "max_inclusive": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "title": "biased_to_bottom",
+                    "properties": {
+                        "min_inclusive": {
+                            "type": "integer"
+                        },
+                        "max_inclusive": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "title": "clamped",
+                    "properties": {
+                        "min_inclusive": {
+                            "type": "integer"
+                        },
+                        "max_inclusive": {
+                            "type": "integer"
+                        },
+                        "source": {
+                            "$ref": "#/definitions/intProvider"
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "title": "clamped_normal",
+                    "properties": {
+                        "mean": {
+                            "type": "number"
+                        },
+                        "deviation": {
+                            "type": "number"
+                        },
+                        "min_inclusive": {
+                            "type": "integer"
+                        },
+                        "max_inclusive": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "title": "weighted_list",
+                    "properties": {
+                        "distribution": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "$ref": "#/definitions/intProvider"
+                                    },
+                                    "weight": {
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
         }
     }
 }
