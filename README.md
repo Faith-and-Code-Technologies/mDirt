@@ -59,8 +59,12 @@ We’ve now added official support for **Minecraft 1.21.5**, enabling you to cre
 
 ### 🚀 **Coming Soon**
 
-- We are currently trying to find the best way to create larger generators without having to create each widget by hand, as that is generally considered bad practice.
-- We have explored many alternatives and it will take us some time to decide what we will be settling on.
+- Schemas
+  - To create more complex generators (specifically ones that are recursive), we need a more powerful UI creation solution.
+  - We have created **KoreUI** to load JSON Schemas and convert them into PySide6 widgets.
+  - However, to power KoreUI, we have to create dozens of long, rather complicated JSON Schemas.
+  - We are currently creating them as quickly as possible, but writing thousands of lines of JSON by hand will take some time.
+  - We appreciate your patience!
 
 ---
 
