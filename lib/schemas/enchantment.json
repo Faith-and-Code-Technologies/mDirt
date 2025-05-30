@@ -127,349 +127,348 @@
             "title": "Effects",
             "description": "Map of effect components by type",
             "oneOf": [
-                    {
-                        "type": "object",
-                        "title": "Damage Protection",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "const": "minecraft:damage_protection"
-                            },
-                            "damage_type": {
-                                "type": "string",
-                                "title": "Damage Type",
-                                "enumSource": "damage_types"
-                            },
-                            "amount": {
-                                "$ref": "#/definitions/levelBasedValue"
-                            }
-                        },
-                        "required": ["type", "damage_type", "amount"]
-                    },
-                    {
-                        "type": "object", 
-                        "title": "Damage Immunity",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "const": "minecraft:damage_immunity"
-                            },
-                            "damage_type": {
-                                "type": "string",
-                                "title": "Damage Type",
-                                "enumSource": "damage_types"
-                            }
-                        },
-                        "required": ["type", "damage_type"]
-                    },
-                    {
-                        "type": "object",
-                        "title": "Attribute",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "const": "minecraft:attribute"
-                            },
-                            "attribute": {
-                                "type": "string",
-                                "title": "Attribute",
-                                "enumSource": "attributes"
-                            },
-                            "operation": {
-                                "type": "string",
-                                "title": "Operation",
-                                "enum": ["add_value", "add_multiplied_base", "add_multiplied_total"]
-                            },
-                            "amount": {
-                                "$ref": "#/definitions/levelBasedValue"
-                            },
-                            "id": {
-                                "type": "string",
-                                "title": "ID",
-                                "description": "Unique identifier for this attribute modifier"
-                            }
-                        },
-                        "required": ["type", "attribute", "operation", "amount"]
-                    },
-                    {
-                        "type": "object",
-                        "title": "All Damage Multiplication",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "const": "minecraft:all_damage_multiplication"
-                            },
-                            "amount": {
-                                "$ref": "#/definitions/levelBasedValue"
-                            }
-                        },
-                        "required": ["type", "amount"]
-                    },
-                    {
-                        "type": "object",
-                        "title": "Ammo Use",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "const": "minecraft:ammo_use"
-                            },
-                            "amount": {
-                                "$ref": "#/definitions/levelBasedValue"
-                            }
-                        },
-                        "required": ["type", "amount"]
-                    },
-                    {
-                        "type": "object",
-                        "title": "Armor Effectiveness",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "const": "minecraft:armor_effectiveness"
-                            },
-                            "amount": {
-                                "$ref": "#/definitions/levelBasedValue"
-                            }
-                        },
-                        "required": ["type", "amount"]
-                    },
-                    {
-                        "type": "object",
-                        "title": "Block Experience",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "const": "minecraft:block_experience"
-                            },
-                            "amount": {
-                                "$ref": "#/definitions/levelBasedValue"
-                            }
-                        },
-                        "required": ["type", "amount"]
-                    },
-                    {
-                        "type": "object",
-                        "title": "Crossbow Charge Time",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "const": "minecraft:crossbow_charge_time"
-                            },
-                            "amount": {
-                                "$ref": "#/definitions/levelBasedValue"
-                            }
-                        },
-                        "required": ["type", "amount"]
-                    },
-                    {
-                        "type": "object",
-                        "title": "Equipment Drops",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "const": "minecraft:equipment_drops"
-                            },
-                            "amount": {
-                                "$ref": "#/definitions/levelBasedValue"
-                            }
-                        },
-                        "required": ["type", "amount"]
-                    },
-                    {
-                        "type": "object",
-                        "title": "Fishing Luck",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "const": "minecraft:fishing_luck"
-                            },
-                            "amount": {
-                                "$ref": "#/definitions/levelBasedValue"
-                            }
-                        },
-                        "required": ["type", "amount"]
-                    },
-                    {
-                        "type": "object",
-                        "title": "Fishing Time Reduction",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "const": "minecraft:fishing_time_reduction"
-                            },
-                            "amount": {
-                                "$ref": "#/definitions/levelBasedValue"
-                            }
-                        },
-                        "required": ["type", "amount"]
-                    },
-                    {
-                        "type": "object",
-                        "title": "Item Damage",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "const": "minecraft:item_damage"
-                            },
-                            "amount": {
-                                "$ref": "#/definitions/levelBasedValue"
-                            }
-                        },
-                        "required": ["type", "amount"]
-                    },
-                    {
-                        "type": "object",
-                        "title": "Knockback",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "const": "minecraft:knockback"
-                            },
-                            "amount": {
-                                "$ref": "#/definitions/levelBasedValue"
-                            }
-                        },
-                        "required": ["type", "amount"]
-                    },
-                    {
-                        "type": "object",
-                        "title": "Location Changed",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "const": "minecraft:location_changed"
-                            },
-                            "amount": {
-                                "$ref": "#/definitions/levelBasedValue"
-                            }
-                        },
-                        "required": ["type", "amount"]
-                    },
-                    {
-                        "type": "object",
-                        "title": "Mob Experience",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "const": "minecraft:mob_experience"
-                            },
-                            "amount": {
-                                "$ref": "#/definitions/levelBasedValue"
-                            }
-                        },
-                        "required": ["type", "amount"]
-                    },
-                    {
-                        "type": "object",
-                        "title": "Post Attack",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "const": "minecraft:post_attack"
-                            },
-                            "effect": {
-                                "type": "string",
-                                "title": "Effect",
-                                "enumSource": "effects"
-                            },
-                            "level": {
-                                "$ref": "#/definitions/levelBasedValue"
-                            },
-                            "duration": {
-                                "$ref": "#/definitions/levelBasedValue"
-                            }
-                        },
-                        "required": ["type", "effect", "level", "duration"]
-                    },
-                    {
-                        "type": "object",
-                        "title": "Projectile Count",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "const": "minecraft:projectile_count"
-                            },
-                            "amount": {
-                                "$ref": "#/definitions/levelBasedValue"
-                            }
-                        },
-                        "required": ["type", "amount"]
-                    },
-                    {
-                        "type": "object",
-                        "title": "Projectile Piercing",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "const": "minecraft:projectile_piercing"
-                            },
-                            "amount": {
-                                "$ref": "#/definitions/levelBasedValue"
-                            }
-                        },
-                        "required": ["type", "amount"]
-                    },
-                    {
-                        "type": "object",
-                        "title": "Projectile Spread",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "const": "minecraft:projectile_spread"
-                            },
-                            "amount": {
-                                "$ref": "#/definitions/levelBasedValue"
-                            }
-                        },
-                        "required": ["type", "amount"]
-                    },
-                    {
-                        "type": "object",
-                        "title": "Repair With XP",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "const": "minecraft:repair_with_xp"
-                            },
-                            "amount": {
-                                "$ref": "#/definitions/levelBasedValue"
-                            }
-                        },
-                        "required": ["type", "amount"]
-                    },
-                    {
-                        "type": "object",
-                        "title": "Trident Return Acceleration",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "const": "minecraft:trident_return_acceleration"
-                            },
-                            "amount": {
-                                "$ref": "#/definitions/levelBasedValue"
-                            }
-                        },
-                        "required": ["type", "amount"]
-                    },
-                    {
-                        "type": "object",
-                        "title": "Trident Spin Attack Damage",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "const": "minecraft:trident_spin_attack_damage"
-                            },
-                            "amount": {
-                                "$ref": "#/definitions/levelBasedValue"
-                            }
-                        },
-                        "required": ["type", "amount"]
+                {
+                    "title": "armor_effectiveness",
+                    "type": "object",
+                    "properties": {
+                        "valueEffectComp": {
+                            "$ref": "#/definitions/valueEffectComponent"
+                        }
                     }
-                ]
+                },
+                {
+                    "title": "damage",
+                    "type": "object",
+                    "properties": {
+                        "valueEffectComp": {
+                            "$ref": "#/definitions/valueEffectComponent"
+                        }
+                    }
+                },
+                {
+                    "title": "damage_protection",
+                    "type": "object",
+                    "properties": {
+                        "valueEffectComp": {
+                            "$ref": "#/definitions/valueEffectComponent"
+                        }
+                    }
+                },
+                {
+                    "title": "smash_damage_per_fallen_block",
+                    "type": "object",
+                    "properties": {
+                        "valueEffectComp": {
+                            "$ref": "#/definitions/valueEffectComponent"
+                        }
+                    }
+                },
+                {
+                    "title": "knockback",
+                    "type": "object",
+                    "properties": {
+                        "valueEffectComp": {
+                            "$ref": "#/definitions/valueEffectComponent"
+                        }
+                    }
+                },
+                {
+                    "title": "equipment_drops",
+                    "type": "object",
+                    "properties": {
+                        "valueEffectComp": {
+                            "$ref": "#/definitions/valueEffectComponent"
+                        }
+                    }
+                },
+                {
+                    "title": "ammo_use",
+                    "type": "object",
+                    "properties": {
+                        "valueEffectComp": {
+                            "$ref": "#/definitions/valueEffectComponent"
+                        }
+                    }
+                },
+                {
+                    "title": "projectile_piercing",
+                    "type": "object",
+                    "properties": {
+                        "valueEffectComp": {
+                            "$ref": "#/definitions/valueEffectComponent"
+                        }
+                    }
+                },
+                {
+                    "title": "block_experience",
+                    "type": "object",
+                    "properties": {
+                        "valueEffectComp": {
+                            "$ref": "#/definitions/valueEffectComponent"
+                        }
+                    }
+                },
+                {
+                    "title": "repair_with_xp",
+                    "type": "object",
+                    "properties": {
+                        "valueEffectComp": {
+                            "$ref": "#/definitions/valueEffectComponent"
+                        }
+                    }
+                },
+                {
+                    "title": "item_damage",
+                    "type": "object",
+                    "properties": {
+                        "valueEffectComp": {
+                            "$ref": "#/definitions/valueEffectComponent"
+                        }
+                    }
+                },
+                {
+                    "title": "projectile_count",
+                    "type": "object",
+                    "properties": {
+                        "valueEffectComp": {
+                            "$ref": "#/definitions/valueEffectComponent"
+                        }
+                    }
+                },
+                {
+                    "title": "trident_return_acceleration",
+                    "type": "object",
+                    "properties": {
+                        "valueEffectComp": {
+                            "$ref": "#/definitions/valueEffectComponent"
+                        }
+                    }
+                },
+                {
+                    "title": "projectile_speed",
+                    "type": "object",
+                    "properties": {
+                        "valueEffectComp": {
+                            "$ref": "#/definitions/valueEffectComponent"
+                        }
+                    }
+                },
+                {
+                    "title": "fishing_time_reduction",
+                    "type": "object",
+                    "properties": {
+                        "valueEffectComp": {
+                            "$ref": "#/definitions/valueEffectComponent"
+                        }
+                    }
+                },
+                {
+                    "title": "fishing_luck_bonus",
+                    "type": "object",
+                    "properties": {
+                        "valueEffectComp": {
+                            "$ref": "#/definitions/valueEffectComponent"
+                        }
+                    }
+                },
+                {
+                    "title": "mob_experience",
+                    "type": "object",
+                    "properties": {
+                        "valueEffectComp": {
+                            "$ref": "#/definitions/valueEffectComponent"
+                        }
+                    }
+                },
+                {
+                    "title": "crossbow_charge_time",
+                    "type": "object",
+                    "properties": {
+                        "effect": {
+                            "$ref": "#/definitions/valueEffects"
+                        }
+                    }
+                },
+                {
+                    "title": "trident_spin_attack_strength",
+                    "type": "object",
+                    "properties": {
+                        "effect": {
+                            "$ref": "#/definitions/valueEffects"
+                        }
+                    }
+                },
+                {
+                    "title": "hit_block",
+                    "type": "object",
+                    "properties": {
+                        "entityEffectComp": {
+                            "$ref": "#/definitions/entityEffectComponent"
+                        }
+                    }
+                },
+                {
+                    "title": "tick",
+                    "type": "object",
+                    "properties": {
+                        "entityEffectComp": {
+                            "$ref": "#/definitions/entityEffectComponent"
+                        }
+                    }
+                },
+                {
+                    "title": "projectile_spawned",
+                    "type": "object",
+                    "properties": {
+                        "entityEffectComp": {
+                            "$ref": "#/definitions/entityEffectComponent"
+                        }
+                    }
+                },
+                {
+                    "title": "post_attack",
+                    "type": "object",
+                    "properties": {
+                        "entityEffectComp": {
+                            "$ref": "#/definitions/entityEffectComponent"
+                        },
+                        "enchanted": {
+                            "title": "enchanted",
+                            "type": "string",
+                            "enum": [
+                                "attacker",
+                                "victim",
+                                "damaging_entity"
+                            ]
+                        },
+                        "affected": {
+                            "title": "affected",
+                            "type": "string",
+                            "enum": [
+                                "attacker",
+                                "victim",
+                                "damaging_entity"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "title": "location_changed",
+                    "type": "object",
+                    "properties": {
+                        "effect": {
+                            "$ref": "#/definitions/locationBasedEffects"
+                        },
+                        "requirements": {
+                            "$ref": "predicate.json"
+                        }
+                    }
+                },
+                {
+                    "title": "damage_immunity",
+                    "type": "object",
+                    "properties": {
+                        "effect": {
+                            "type": "string",
+                            "const": ""
+                        },
+                        "requirements": {
+                            "$ref": "predicate.json"
+                        }
+                    }
+                },
+                {
+                    "title": "prevent_equipment_drop",
+                    "type": "object",
+                    "properties": {
+                        
+                    }
+                },
+                {
+                    "title": "prevent_armor_change",
+                    "type": "object",
+                    "properties": {
+
+                    }
+                },
+                {
+                    "title": "attributes",
+                    "type": "object",
+                    "properties": {
+                        "attributes": {
+                            "$ref": "#/definitions/attributeEffects"
+                        }
+                    }
+                },
+                {
+                    "title": "crossbow_charging_sounds",
+                    "type": "object",
+                    "properties": {
+                        "sounds": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "start": {
+                                        "type": "string",
+                                        "title": "Start",
+                                        "enumSource": "sound_events"
+                                    },
+                                    "mid": {
+                                        "type": "string",
+                                        "title": "Mid",
+                                        "enumSource": "sound_events"
+                                    },
+                                    "end": {
+                                        "type": "string",
+                                        "title": "End",
+                                        "enumSource": "sound_events"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "title": "trident_sound",
+                    "type": "object",
+                    "properties": {
+                        "sounds": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enumSource": "sound_events"
+                            }
+                        }
+                    }
+                }
+            ]
             
         }
     },
     "definitions": {
+        "valueEffectComponent": {
+            "type": "object",
+            "properties": {
+                "effect": {
+                    "$ref": "#/definitions/valueEffects"
+                },
+                "requirements": {
+                    "$ref": "predicate.json"
+                }
+            }
+        },
+        "entityEffectComponent": {
+            "type": "object",
+            "properties": {
+                "effect": {
+                    "$ref": "#/definitions/entityEffects"
+                },
+                "requirements": {
+                    "$ref": "predicate.json"
+                }
+            }
+        },
         "entityEffects": {
             "title": "Entity Effects",
             "description": "Affect entities by an enchantment component.",
@@ -988,25 +987,7 @@
                             "const": "minecraft:attribute"
                         },
                         "attribute": {
-                            "type": "string",
-                            "title": "Attribute",
-                            "enumSource": "attributes"
-                        },
-                        "amount": {
-                            "$ref": "#/definitions/levelBasedValue"
-                        },
-                        "operation": {
-                            "type": "string",
-                            "title": "Operation",
-                            "enum": [
-                                "add_value",
-                                "add_multiplied_base",
-                                "add_multiplied_total"
-                            ]
-                        },
-                        "id": {
-                            "type": "string",
-                            "title": "id"
+                            "$ref": "#/definitions/attributeEffects"
                         }
                     }
                 }
@@ -1085,6 +1066,32 @@
                     }
                 }
             ]
+        },
+        "attributeEffects": {
+            "title": "Attribute Effects",
+            "type": "object",
+            "properties": {
+                "attribute": {
+                    "type": "string",
+                    "title": "attribute"
+                },
+                "amount": {
+                    "$ref": "#/definitions/levelBasedValue"
+                },
+                "operation": {
+                    "type": "string",
+                    "title": "operation",
+                    "enum": [
+                        "add_value",
+                        "add_multiplied_base",
+                        "add_multiplied_total"
+                    ]
+                },
+                "id": {
+                    "type": "string",
+                    "title": "id"
+                }
+            }
         },
         "blockPredicate": {
 
