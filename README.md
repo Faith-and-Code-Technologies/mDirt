@@ -59,10 +59,8 @@ We’ve now added official support for **Minecraft 1.21.5**, enabling you to cre
 
 ### 🚀 **Coming Soon**
 
-- **mcdoc**
-  - We are currently working through using the `mcdoc` language as found [here](https://github.com/SpyglassMC/Spyglass/tree/main/packages/mcdoc).
-  - To do this, we have to port the language to Python.
-  - This will take a lot of time, and v3.0 will not release until it is done.
+- We are currently trying to find the best way to create larger generators without having to create each widget by hand, as that is generally considered bad practice.
+- We have explored many alternatives and it will take us some time to decide what we will be settling on.
 
 ---
 
