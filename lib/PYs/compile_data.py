@@ -3,8 +3,13 @@ import shutil
 import zipfile
 import json
 from pathlib import Path
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 import platform
+
+def infer_jsonschema_type(values):
+    if all(v in ("true", "false") for v in values):
+        return "boolean", None
+    return "string", sorted(values)
 
 def get_sounds_json(target_version=None):
     system = platform.system()
@@ -95,6 +100,8 @@ def get_minecraft_files(version: str, soundver: str):
     for file in items_path.glob("*.json"):
         items.append(file.name.removesuffix(".json"))
 
+    blockstates_schema = {}
+
     for file in blocks_path.glob("*.json"):
         block_name = file.name.removesuffix(".json")
         blocks.append(block_name)
@@ -127,7 +134,6 @@ def get_minecraft_files(version: str, soundver: str):
                             if isinstance(value, list):
                                 for v in value:
                                     if isinstance(v, dict):
-                                        # Convert dict to JSON string
                                         state_values[key].add(json.dumps(v, sort_keys=True))
                                     else:
                                         state_values[key].add(str(v))
@@ -138,8 +144,19 @@ def get_minecraft_files(version: str, soundver: str):
                                     state_values[key].add(str(value))
 
             if state_values:
-                blockstates_data[block_name] = {
-                    key: sorted(list(vals)) for key, vals in state_values.items()
+                properties = OrderedDict()
+                for key, values in sorted(state_values.items()):
+                    inferred_type, enum_vals = infer_jsonschema_type(values)
+                    schema = {"type": inferred_type}
+                    if enum_vals:
+                        schema["enum"] = enum_vals
+                    properties[key] = schema
+
+                blockstates_schema[block_name] = {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "type": "object",
+                    "properties": properties,
+                    "required": []
                 }
 
     for file in biome_path.glob("*.json"):
@@ -191,17 +208,19 @@ def get_minecraft_files(version: str, soundver: str):
     game_events.sort()
 
     with open(f"lib/{version}_data.json", "w") as f:
-        json.dump({"blocks": blocks, 
-                   "items": items, 
-                   "biomes": biomes, 
-                   "enchantments": enchantments, 
-                   "effects": effects, 
-                   "damage_types": damage_types, 
-                   "sound_events": sound_events,
-                   "entities": entities,
-                   "blockstates": blockstates_data,
-                   "game_events": game_events
-                   }, f, indent=4)
+        json.dump({
+            "blocks": blocks,
+            "items": items,
+            "biomes": biomes,
+            "enchantments": enchantments,
+            "effects": effects,
+            "damage_types": damage_types,
+            "sound_events": sound_events,
+            "entities": entities,
+            "game_events": game_events
+        }, f, indent=4)
 
+    with open(f"lib/{version}_blockstates.json", "w") as f:
+        json.dump(blockstates_schema, f, indent=4)
 
 get_minecraft_files("1.21.6-pre1", "1.21.5")
