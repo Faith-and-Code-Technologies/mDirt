@@ -664,7 +664,7 @@
                                 },
                                 {
                                     "objects": {
-                                        "$ref": "#/definitions/floatProvider"
+                                        "$ref": "utils/float_provider.json#/definitions/floatProvider"
                                     }
                                 }
                             ]
@@ -684,7 +684,7 @@
                                 },
                                 {
                                     "objects": {
-                                        "$ref": "#/definitions/floatProvider"
+                                        "$ref": "utils/float_provider.json#/definitions/floatProvider"
                                     }
                                 }
                             ]
@@ -700,7 +700,7 @@
                             "const": "minecraft:replace_block"
                         },
                         "block_state": {
-                            "$ref": "#/definitions/blockStateProvider"
+                            "$ref": "utils/block_predicate.json#/definitions/blockStateProvider"
                         },
                         "offset": {
                             "type": "object",
@@ -723,7 +723,7 @@
                             "enumSource": "game_events"
                         },
                         "predicate": {
-                            "$ref": "#/definitions/blockPredicate"
+                            "$ref": "utils/block_predicate.json#/definitions/blockPredicate"
                         }
                     }
                 },
@@ -736,7 +736,7 @@
                             "const": "minecraft:replace_disk"
                         },
                         "block_state": {
-                            "$ref": "#/definitions/blockStateProvider"
+                            "$ref": "utils/block_predicate.json#/definitions/blockStateProvider"
                         },
                         "offset": {
                             "type": "object",
@@ -765,7 +765,7 @@
                             "enumSource": "game_events"
                         },
                         "predicate": {
-                            "$ref": "#/definitions/blockPredicate"
+                            "$ref": "utils/block_predicate.json#/definitions/blockPredicate"
                         }
                     }
                 },
@@ -920,7 +920,7 @@
                                 },
                                 {
                                     "objects": {
-                                        "$ref": "#/definitions/floatProvider"
+                                        "$ref": "utils/float_provider.json#/definitions/floatProvider"
                                     }
                                 }
                             ],
@@ -940,7 +940,7 @@
                                 },
                                 {
                                     "objects": {
-                                        "$ref": "#/definitions/floatProvider"
+                                        "$ref": "utils/float_provider.json#/definitions/floatProvider"
                                     }
                                 }
                             ],
@@ -1097,9 +1097,6 @@
 
         },
         "blockStateProvider": {
-
-        },
-        "floatProvider": {
             
         },
         "levelBasedValue": {
