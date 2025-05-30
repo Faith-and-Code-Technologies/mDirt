@@ -2,7 +2,18 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "definitions": {
         "itemStack": {
-            
+            "type": "object",
+            "title": "Item Stack",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "enumSource": "items"
+                },
+                "components": {
+                    "$ref": "data_component.json#/definitions/dataComponent"
+                }
+            },
+            "required": ["id"]
         }
     } 
 }

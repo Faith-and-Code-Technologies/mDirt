@@ -1,165 +1,168 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "title": "Data Component",
     "$comment": "This schema is not anywhere NEAR done :(",
-    "oneOf": [
-        {
-            "type": "object",
-            "title": "Attribute Modifiers",
-            "properties": {
-                "attribute_type": {
-                    "type": "string",
-                    "title": "Type"
+    "definitions": {
+        "dataComponent": {
+            "title": "Data Component",
+            "oneOf": [
+                {
+                    "type": "object",
+                    "title": "Attribute Modifiers",
+                    "properties": {
+                        "attribute_type": {
+                            "type": "string",
+                            "title": "Type"
+                        },
+                        "slot": {
+                            "type": "string",
+                            "title": "Slot",
+                            "enum": [
+                                "any",
+                                "hand",
+                                "armor",
+                                "mainhand",
+                                "offhand",
+                                "head",
+                                "chest",
+                                "legs",
+                                "feet",
+                                "body"
+                            ]
+                        },
+                        "id": {
+                            "type": "string",
+                            "title": "ID"
+                        },
+                        "amount": {
+                            "type": "number",
+                            "title": "Amount"
+                        },
+                        "operation": {
+                            "type": "string",
+                            "title": "Operation",
+                            "enum": [
+                                "add_value",
+                                "add_multiplied_base",
+                                "add_multiplied_total"
+                            ]
+                        }
+                    }
                 },
-                "slot": {
-                    "type": "string",
-                    "title": "Slot",
-                    "enum": [
-                        "any",
-                        "hand",
-                        "armor",
-                        "mainhand",
-                        "offhand",
-                        "head",
-                        "chest",
-                        "legs",
-                        "feet",
-                        "body"
-                    ]
-                },
-                "id": {
-                    "type": "string",
-                    "title": "ID"
-                },
-                "amount": {
-                    "type": "number",
-                    "title": "Amount"
-                },
-                "operation": {
-                    "type": "string",
-                    "title": "Operation",
-                    "enum": [
-                        "add_value",
-                        "add_multiplied_base",
-                        "add_multiplied_total"
-                    ]
-                }
-            }
-        },
-        {
-            "type": "object",
-            "title": "Banner Patterns",
-            "properties": {
-                "patterns": {
-                    "type": "array",
-                    "title": "Patterns",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "color": {
-                                "type": "string",
-                                "title": "Color"
-                            },
-                            "pattern": {
+                {
+                    "type": "object",
+                    "title": "Banner Patterns",
+                    "properties": {
+                        "patterns": {
+                            "type": "array",
+                            "title": "Patterns",
+                            "items": {
                                 "type": "object",
-                                "title": "Pattern",
-                                "oneOf": [
-                                    {
-                                        "type": "object",
-                                        "title": "Asset ID",
-                                        "properties": {
-                                            "asset_id": {
-                                                "type": "string",
-                                                "title": "Asset ID",
-                                                "enumSource": "banner_patterns"
-                                            }
-                                        }
+                                "properties": {
+                                    "color": {
+                                        "type": "string",
+                                        "title": "Color"
                                     },
-                                    {
+                                    "pattern": {
                                         "type": "object",
-                                        "title": "Banner Pattern Definition",
-                                        "properties": {
-                                            "asset_id": {
-                                                "type": "string",
+                                        "title": "Pattern",
+                                        "oneOf": [
+                                            {
+                                                "type": "object",
                                                 "title": "Asset ID",
-                                                "enumSource": "banner_patterns"
+                                                "properties": {
+                                                    "asset_id": {
+                                                        "type": "string",
+                                                        "title": "Asset ID",
+                                                        "enumSource": "banner_patterns"
+                                                    }
+                                                }
                                             },
-                                            "translation_key": {
-                                                "type": "string",
-                                                "title": "Translation Key"
+                                            {
+                                                "type": "object",
+                                                "title": "Banner Pattern Definition",
+                                                "properties": {
+                                                    "asset_id": {
+                                                        "type": "string",
+                                                        "title": "Asset ID",
+                                                        "enumSource": "banner_patterns"
+                                                    },
+                                                    "translation_key": {
+                                                        "type": "string",
+                                                        "title": "Translation Key"
+                                                    }
+                                                }
                                             }
-                                        }
+                                        ]
                                     }
-                                ]
+                                }
                             }
                         }
                     }
-                }
-            }
-        },
-        {
-            "type": "object",
-            "title": "Base Color",
-            "properties": {
-                "base_color": {
-                    "type": "string",
+                },
+                {
+                    "type": "object",
                     "title": "Base Color",
-                    "enum": [
-                        "white",
-                        "orange",
-                        "magenta",
-                        "light_blue",
-                        "yellow",
-                        "lime",
-                        "pink",
-                        "gray",
-                        "light_gray",
-                        "cyan",
-                        "purple",
-                        "blue",
-                        "brown",
-                        "green",
-                        "red",
-                        "black"
-                    ]
-                }
-            }
-        },
-        {
-            "type": "object",
-            "title": "Bees",
-            "properties": {
-                "bees": {
-                    "type": "array",
+                    "properties": {
+                        "base_color": {
+                            "type": "string",
+                            "title": "Base Color",
+                            "enum": [
+                                "white",
+                                "orange",
+                                "magenta",
+                                "light_blue",
+                                "yellow",
+                                "lime",
+                                "pink",
+                                "gray",
+                                "light_gray",
+                                "cyan",
+                                "purple",
+                                "blue",
+                                "brown",
+                                "green",
+                                "red",
+                                "black"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "type": "object",
                     "title": "Bees",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "entity_data": {
-                                "$ref": "src/generation/v1_21_4/schemas/entity_data.json"
-                            },
-                            "min_ticks_in_hive": {
-                                "type": "integer",
-                                "title": "Min Ticks In Hive"
-                            },
-                            "ticks_in_hive": {
-                                "type": "integer",
-                                "title": "Ticks In Hive"
+                    "properties": {
+                        "bees": {
+                            "type": "array",
+                            "title": "Bees",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "entity_data": {
+                                        "$ref": "src/generation/v1_21_4/schemas/entity_data.json"
+                                    },
+                                    "min_ticks_in_hive": {
+                                        "type": "integer",
+                                        "title": "Min Ticks In Hive"
+                                    },
+                                    "ticks_in_hive": {
+                                        "type": "integer",
+                                        "title": "Ticks In Hive"
+                                    }
+                                }
                             }
                         }
                     }
+                },
+                {
+                    "type": "object",
+                    "title": "Block Entity Data",
+                    "properties": {
+                        "block_entity_data": {
+                            "$ref": ""
+                        }
+                    }
                 }
-            }
-        },
-        {
-            "type": "object",
-            "title": "Block Entity Data",
-            "properties": {
-                "block_entity_data": {
-                    "$ref": ""
-                }
-            }
+            ]
         }
-    ]
+    }
 }
