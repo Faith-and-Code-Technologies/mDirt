@@ -153,7 +153,6 @@ def get_minecraft_files(version: str, soundver: str):
                     properties[key] = schema
 
                 blockstates_schema[block_name] = {
-                    "$schema": "http://json-schema.org/draft-07/schema#",
                     "type": "object",
                     "properties": properties,
                     "required": []
@@ -219,8 +218,22 @@ def get_minecraft_files(version: str, soundver: str):
             "entities": entities,
             "game_events": game_events
         }, f, indent=4)
+    
+    blockstate_oneof = {
+        "definitions": {
+            "blockStates": {
+                "oneOf": []
+            }
+        }
+    }
+
+    for block_name, schema in blockstates_schema.items():
+        schema["title"] = block_name
+        blockstate_oneof["definitions"]["blockStates"]["oneOf"].append(schema)
+
+    blockstate_oneof["$schema"] = "http://json-schema.org/draft-07/schema#"
 
     with open(f"lib/{version}_blockstates.json", "w") as f:
-        json.dump(blockstates_schema, f, indent=4)
+        json.dump(blockstate_oneof, f, indent=4)
 
-get_minecraft_files("1.21.6-pre1", "1.21.5")
+get_minecraft_files("1.21.4", "1.21.4")

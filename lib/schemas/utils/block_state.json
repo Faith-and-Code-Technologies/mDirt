@@ -5,9 +5,8 @@
             "type": "object",
             "title": "Block State",
             "properties": {
-                "name": {
-                    "type": "string",
-                    "enumSource": "blocks"
+                "blockstate": {
+                    "$ref": "blockstates.json#/definitions/blockStates"
                 }
             }
         }
