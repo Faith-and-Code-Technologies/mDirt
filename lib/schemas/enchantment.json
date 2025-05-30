@@ -1,4 +1,5 @@
 {
+    "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
     "title": "Enchantment",
     "properties": {
@@ -655,16 +656,25 @@
                             "title": "Volume",
                                 "oneOf": [
                                 {
-                                    "float": {
-                                        "type": "number",
-                                        "title": "Volume",
-                                        "minimum": 0.00001,
-                                        "maximum": 10.0
+                                    "type": "object",
+                                    "title": "Float",
+                                    "properties": {
+                                        "float": {
+                                            "type": "number",
+                                            "title": "Volume",
+                                            "minimum": 0.00001,
+                                            "maximum": 10.0
+                                        }
                                     }
+                                        
                                 },
                                 {
-                                    "objects": {
-                                        "$ref": "utils/float_provider.json#/definitions/floatProvider"
+                                    "type": "object",
+                                    "title": "Object",
+                                    "properties": {
+                                            "objects": {
+                                            "$ref": "utils/float_provider.json#/definitions/floatProvider"
+                                        }
                                     }
                                 }
                             ]
@@ -674,17 +684,25 @@
                             "type": "object",
                             "title": "Pitch",
                                 "oneOf": [
-                                {
-                                    "float": {
-                                        "type": "number",
-                                        "title": "Pitch",
-                                        "minimum": 0.00001,
-                                        "maximum": 2.0
+                                {   
+                                    "type": "object",
+                                    "title": "Float",
+                                    "properties": {
+                                        "float": {
+                                            "type": "number",
+                                            "title": "Pitch",
+                                            "minimum": 0.00001,
+                                            "maximum": 2.0
+                                        }
                                     }
                                 },
-                                {
-                                    "objects": {
-                                        "$ref": "utils/float_provider.json#/definitions/floatProvider"
+                                {   
+                                    "type": "object",
+                                    "title": "Object",
+                                    "properties": {
+                                        "objects": {
+                                            "$ref": "utils/float_provider.json#/definitions/floatProvider"
+                                        }
                                     }
                                 }
                             ]
@@ -911,16 +929,24 @@
                         },
                         "horizontal_velocity": {
                             "oneOf": [
-                                {
-                                    "float": {
-                                        "type": "number",
-                                        "title": "Base",
-                                        "default": 0
+                                {   
+                                    "type": "object",
+                                    "title": "Float",
+                                    "properties": {
+                                        "float": {
+                                            "type": "number",
+                                            "title": "Base",
+                                            "default": 0
+                                        }
                                     }
                                 },
                                 {
-                                    "objects": {
-                                        "$ref": "utils/float_provider.json#/definitions/floatProvider"
+                                    "type": "object",
+                                    "title": "Object",
+                                    "properties": {
+                                        "objects": {
+                                            "$ref": "utils/float_provider.json#/definitions/floatProvider"
+                                        }
                                     }
                                 }
                             ],
@@ -932,15 +958,23 @@
                         "vertical_velocity": {
                             "oneOf": [
                                 {
-                                    "float": {
-                                        "type": "number",
-                                        "title": "Base",
-                                        "default": 0
+                                    "type": "object",
+                                    "title": "Float",
+                                    "properties": {
+                                        "float": {
+                                            "type": "number",
+                                            "title": "Base",
+                                            "default": 0
+                                        }
                                     }
                                 },
                                 {
-                                    "objects": {
-                                        "$ref": "utils/float_provider.json#/definitions/floatProvider"
+                                    "type": "object",
+                                    "title": "Object",
+                                    "properties": {
+                                        "objects": {
+                                            "$ref": "utils/float_provider.json#/definitions/floatProvider"
+                                        }
                                     }
                                 }
                             ],
@@ -1092,12 +1126,6 @@
                     "title": "id"
                 }
             }
-        },
-        "blockPredicate": {
-
-        },
-        "blockStateProvider": {
-            
         },
         "levelBasedValue": {
             "title": "Level Based Value",
