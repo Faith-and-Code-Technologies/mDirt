@@ -1,3 +1,114 @@
 {
-
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Entity Data",
+    "description": "Schema for defining Minecraft entity data.",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "string",
+            "title": "Entity ID",
+            "description": "The unique identifier for the entity, e.g., 'minecraft:zombie'."
+        },
+        "pos": {
+            "type": "array",
+            "title": "Position",
+            "description": "The position of the entity in the world.",
+            "items": {
+                "type": "number"
+            },
+            "minItems": 3,
+            "maxItems": 3
+        },
+        "motion": {
+            "type": "array",
+            "title": "Motion",
+            "description": "The velocity of the entity.",
+            "items": {
+                "type": "number"
+            },
+            "minItems": 3,
+            "maxItems": 3
+        },
+        "rotation": {
+            "type": "array",
+            "title": "Rotation",
+            "description": "The rotation of the entity (yaw and pitch).",
+            "items": {
+                "type": "number"
+            },
+            "minItems": 2,
+            "maxItems": 2
+        },
+        "custom_name": {
+            "type": "string",
+            "title": "Custom Name",
+            "description": "The custom name of the entity, if any."
+        },
+        "health": {
+            "type": "number",
+            "title": "Health",
+            "description": "The current health of the entity."
+        },
+        "tags": {
+            "type": "array",
+            "title": "Tags",
+            "description": "A list of tags associated with the entity.",
+            "items": {
+                "type": "string"
+            }
+        },
+        "is_baby": {
+            "type": "boolean",
+            "title": "Is Baby",
+            "description": "Whether the entity is a baby (for ageable entities)."
+        },
+        "armor_items": {
+            "type": "array",
+            "title": "Armor Items",
+            "description": "The armor items worn by the entity.",
+            "items": {
+                "$ref": "item_stack.json#/definitions/itemStack"
+            },
+            "minItems": 4,
+            "maxItems": 4
+        },
+        "hand_items": {
+            "type": "array",
+            "title": "Hand Items",
+            "description": "The items held in the entity's hands.",
+            "items": {
+                "$ref": "item_stack.json#/definitions/itemStack"
+            },
+            "minItems": 2,
+            "maxItems": 2
+        },
+        "effects": {
+            "type": "array",
+            "title": "Effects",
+            "description": "The status effects applied to the entity.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "title": "Effect ID",
+                        "description": "The ID of the effect, e.g., 'minecraft:speed'."
+                    },
+                    "amplifier": {
+                        "type": "integer",
+                        "title": "Amplifier",
+                        "description": "The strength of the effect."
+                    },
+                    "duration": {
+                        "type": "integer",
+                        "title": "Duration",
+                        "description": "The duration of the effect in ticks."
+                    }
+                },
+                "required": ["id", "amplifier", "duration"]
+            }
+        }
+    },
+    "required": ["id", "pos"],
+    "additionalProperties": false
 }
