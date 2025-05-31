@@ -1,3 +1,259 @@
 {
-    
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Predicate",
+    "description": "Schema for defining Minecraft predicates.",
+    "type": "object",
+    "properties": {
+        "condition": {
+            "type": "string",
+            "title": "Condition",
+            "description": "The type of condition to evaluate.",
+            "enum": [
+                "minecraft:entity_properties",
+                "minecraft:location_check",
+                "minecraft:damage_source_properties",
+                "minecraft:time_check",
+                "minecraft:weather_check",
+                "minecraft:reference",
+                "minecraft:inverted",
+                "minecraft:alternative",
+                "minecraft:match_tool"
+            ]
+        }
+    },
+    "required": ["condition"],
+    "oneOf": [
+        {
+            "title": "Entity Properties",
+            "description": "Checks properties of an entity.",
+            "properties": {
+                "condition": { "const": "minecraft:entity_properties" },
+                "entity": {
+                    "type": "string",
+                    "enum": ["this", "attacker", "direct_attacker", "attacking_player"],
+                    "description": "The entity to evaluate."
+                },
+                "predicate": {
+                    "type": "object",
+                    "title": "Entity Predicate",
+                    "description": "The predicate applied to the entity.",
+                    "properties": {
+                        "type": {
+                            "type": "array",
+                            "description": "The entity type(s) to test. Can be a single ID, a tag (prefixed with #), or an array of IDs."
+                        },
+                        "components": {
+                            "type": "object",
+                            "description": "Matches exact item component values. Each key corresponds to a component to test."
+                        },
+                        "distance": {
+                            "type": "object",
+                            "description": "Tests the distance to the entity.",
+                            "properties": {
+                                "absolute": { "type": "number", "description": "Distance in 3D space." },
+                                "horizontal": { "type": "number", "description": "Horizontal distance (ignoring Y)." },
+                                "x": { "type": "number", "description": "Difference in X-coordinates." },
+                                "y": { "type": "number", "description": "Difference in Y-coordinates." },
+                                "z": { "type": "number", "description": "Difference in Z-coordinates." }
+                            }
+                        },
+                        "effects": {
+                            "type": "object",
+                            "description": "Tests active status effects on the entity.",
+                            "properties": {
+                                "effect_type":{
+                                    "title": "Effect Type",
+                                    "type": "object",
+                                    "description": "The type of effect.",
+                                    "properties": {
+                                        "amplifier": {
+                                            "type": "object",
+                                            "properties": {
+                                                "min": { "type": "integer" },
+                                                "max": { "type": "integer" }
+                                            }
+                                        },
+                                        "duration": {
+                                            "type": "object",
+                                            "properties": {
+                                                "min": { "type": "integer" },
+                                                "max": { "type": "integer" }
+                                            }
+                                        },
+                                        "ambient": { "type": "boolean" },
+                                        "visible": { "type": "boolean" }
+                                    }
+                                }
+                            }
+                        },
+                        "equipment": {},
+
+                        "flags": {
+                            "type": "object",
+                            "description": "Tests flags of the entity.",
+                            "properties": {
+                                "is_baby": { "type": "boolean" },
+                                "is_on_fire": { "type": "boolean" },
+                                "is_sneaking": { "type": "boolean" },
+                                "is_sprinting": { "type": "boolean" },
+                                "is_swimming": { "type": "boolean" },
+                                "is_on_ground": { "type": "boolean" },
+                                "is_flying": { "type": "boolean" }
+                            }
+                        },
+                        "location": {},
+
+                        "movement": {
+                            "type": "object",
+                            "description": "Tests the movement of the entity.",
+                            "properties": {
+                                "x": { "type": "number" },
+                                "y": { "type": "number" },
+                                "z": { "type": "number" },
+                                "speed": { "type": "number" },
+                                "horizontal_speed": { "type": "number" },
+                                "vertical_speed": { "type": "number" },
+                                "fall_distance": { "type": "number" }
+                            }
+                        },
+                        "team": {
+                            "type": "string",
+                            "description": "The team of the entity."
+                        },
+                        "targeted_entity": {},
+
+                        "vehicle": {}
+                    }
+                }
+            },
+            "required": ["entity", "predicate"]
+        },
+        {
+            "title": "Location Check",
+            "description": "Checks properties of a specific location.",
+            "properties": {
+                "condition": { "const": "minecraft:location_check" },
+                "offset": {
+                    "type": "object",
+                    "title": "Location Offset",
+                    "description": "The x, y, and z offsets for the location check.",
+                    "properties": {
+                        "x": { "type": "number", "description": "X offset." },
+                        "y": { "type": "number", "description": "Y offset." },
+                        "z": { "type": "number", "description": "Z offset." }
+                    },
+                    "required": ["x", "y", "z"]
+                },
+                "predicate": {
+                    "type": "object",
+                    "title": "Location Predicate",
+                    "description": "The predicate to apply at the specified location.",
+                    "properties": {
+                        "biomes": { "type": "array", "items": { "type": "string" }, "description": "A list of biomes to check." },
+                        "block": { "type": "object", "description": "A block predicate to check." },
+                        "dimension": { "type": "string", "description": "The dimension to check, e.g., 'minecraft:overworld'." },
+                        "fluid": { "type": "string", "description": "The fluid to check, e.g., 'minecraft:water'." },
+                        "light": { "type": "object", "description": "The light level to check." },
+                        "can_see_sky": { "type": "boolean", "description": "Whether the position can see the sky." },
+                        "structures": { "type": "array", "items": { "type": "string" }, "description": "A list of structures to check." }
+                    }
+                }
+            },
+            "required": ["offset", "predicate"]
+        },
+        {
+            "title": "Damage Source Properties",
+            "description": "Checks properties of a damage source.",
+            "properties": {
+                "condition": { "const": "minecraft:damage_source_properties" },
+                "predicate": {
+                    "type": "object",
+                    "description": "The damage source properties to check."
+                }
+            },
+            "required": ["predicate"]
+        },
+        {
+            "title": "Time Check",
+            "description": "Checks the current time.",
+            "properties": {
+                "condition": { "const": "minecraft:time_check" },
+                "value": {
+                    "type": ["integer", "object"],
+                    "description": "An integer or a range object with min/max.",
+                    "properties": {
+                        "min": { "type": "integer", "description": "Minimum time value." },
+                        "max": { "type": "integer", "description": "Maximum time value." }
+                    }
+                },
+                "period": {
+                    "type": "integer",
+                    "description": "The period for the time check."
+                }
+            },
+            "required": ["value"]
+        },
+        {
+            "title": "Weather Check",
+            "description": "Checks the current weather.",
+            "properties": {
+                "condition": { "const": "minecraft:weather_check" },
+                "raining": {
+                    "type": "boolean",
+                    "description": "Whether it is currently raining."
+                },
+                "thundering": {
+                    "type": "boolean",
+                    "description": "Whether it is currently thundering."
+                }
+            }
+        },
+        {
+            "title": "Reference",
+            "description": "References another predicate.",
+            "properties": {
+                "condition": { "const": "minecraft:reference" },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the referenced predicate."
+                }
+            },
+            "required": ["name"]
+        },
+        {
+            "title": "Inverted",
+            "description": "Inverts the result of another predicate.",
+            "properties": {
+                "condition": { "const": "minecraft:inverted" },
+                "predicate": { "$ref": "#" }
+            },
+            "required": ["predicate"]
+        },
+        {
+            "title": "Alternative",
+            "description": "Combines multiple predicates with OR logic.",
+            "properties": {
+                "condition": { "const": "minecraft:alternative" },
+                "terms": {
+                    "type": "array",
+                    "items": { "$ref": "#" },
+                    "description": "A list of alternative predicates."
+                }
+            },
+            "required": ["terms"]
+        },
+        {
+            "title": "Match Tool",
+            "description": "Checks properties of a tool.",
+            "properties": {
+                "condition": { "const": "minecraft:match_tool" },
+                "predicate": {
+                    "type": "object",
+                    "description": "The tool properties to match."
+                }
+            },
+            "required": ["predicate"]
+        }
+    ],
+    "additionalProperties": false
 }
