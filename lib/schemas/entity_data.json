@@ -108,7 +108,5 @@
                 "required": ["id", "amplifier", "duration"]
             }
         }
-    },
-    "required": ["id", "pos"],
-    "additionalProperties": false
+    }
 }
