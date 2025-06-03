@@ -227,13 +227,60 @@ def get_minecraft_files(version: str, soundver: str):
         }
     }
 
-    for block_name, schema in blockstates_schema.items():
-        schema["title"] = block_name
-        blockstate_oneof["definitions"]["blockStates"]["oneOf"].append(schema)
+    blockstate_oneof = {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "definitions": {
+            "blockStates": {
+                "oneOf": []
+            }
+        }
+    }
 
-    blockstate_oneof["$schema"] = "http://json-schema.org/draft-07/schema#"
+    for block_name in blocks:
+        state_schema = blockstates_schema.get(block_name)
 
+        if state_schema:
+            # Block has defined state properties
+            properties_schema = {
+                **state_schema,
+                "additionalProperties": False
+            }
+        else:
+            # Block has no states — allow empty object only
+            properties_schema = {
+                "type": "object",
+                "maxProperties": 0
+            }
+
+        wrapped_schema = {
+            "type": "object",
+            "properties": {
+                "block": {
+                    "type": "string",
+                    "title": "Block",
+                    "const": block_name
+                },
+                "properties": properties_schema
+            },
+            "required": ["block"],
+            "additionalProperties": False
+        }
+
+        blockstate_oneof["definitions"]["blockStates"]["oneOf"].append(wrapped_schema)
+
+    # Save full version (detailed oneOf)
     with open(f"lib/{version}_blockstates.json", "w") as f:
         json.dump(blockstate_oneof, f, indent=4)
 
-get_minecraft_files("1.21.4", "1.21.4")
+    # Save simple original version (just definitions)
+    blockstates_simple = {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "definitions": {
+            "blockStates": blockstates_schema
+        }
+    }
+
+    with open(f"lib/{version}_blockstates_simple.json", "w") as f:
+        json.dump(blockstates_simple, f, indent=4)
+
+get_minecraft_files("1.21.5", "1.21.5")
