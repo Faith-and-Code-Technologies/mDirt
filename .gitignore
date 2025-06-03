@@ -1,10 +1,6 @@
-__pycache__/
-*.py[cod]
-workspaces/*
+exports/
+venv/
+workspaces/
 internal_todo.txt
-*.spec
-build/*
-dist/*
+mdirt.log
 settings.json
-*.log
-exports/*
