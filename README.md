@@ -57,12 +57,10 @@ We’ve now added official support for **Minecraft 1.21.5**, enabling you to cre
 
 ### 🚀 **Coming Soon**
 
-- Schemas
-  - To create more complex generators (specifically ones that are recursive), we need a more powerful UI creation solution.
-  - We have created **KoreUI** to load JSON Schemas and convert them into PySide6 widgets.
-  - However, to power KoreUI, we have to create dozens of long, rather complicated JSON Schemas.
-  - We are currently creating them as quickly as possible, but writing thousands of lines of JSON by hand will take some time.
-  - We appreciate your patience!
+- v3.0
+  - As you may know, v3 has been in development for a couple of months. We had been planning on implementing a new system for the backend to make things like Enchantments, Predicates, Loot Tables, etc. possible.
+  - But due to the extreme amount of work that will go into that, we have delayed it until v3.1 or v4.0
+  - v3.0 is now almost finished, and does still come with some MAJOR changes, and two new features. Stay tuned!
 
 ---
 
