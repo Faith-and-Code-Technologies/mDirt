@@ -146,6 +146,7 @@ class App(QMainWindow):
         self.ui.actionRecipe.triggered.connect(self.newRecipe)
         self.ui.actionPainting.triggered.connect(self.newPainting)
         self.ui.actionStructure.triggered.connect(self.newStructure)
+        self.ui.actionEquipmentSet.triggered.connect(self.newEquipment)
 
         # Block Specific Connections
         self.ui.blockTextureButtonTop.clicked.connect(lambda: self.addBlockTexture(BlockFace.TOP))
@@ -205,6 +206,31 @@ class App(QMainWindow):
         self.ui.structureConfirmButton.clicked.connect(self.addStructure)
 
         self.dropStructure = DropHandler(self.ui.structureNBTButton, '.nbt', self.addStructureNBT)
+
+        # Equipment Specific Connections
+        button_map = [
+            ("helmet", "Model"),
+            ("chestplate", "Model"),
+            ("leggings", "Model"),
+            ("boots", "Model"),
+            ("helmet", "Item"),
+            ("chestplate", "Item"),
+            ("leggings", "Item"),
+            ("boots", "Item"),
+        ]
+
+        for part, type_ in button_map:
+            btn_attr = f"{part}{type_}"
+            label_attr = f"{btn_attr}Label"
+            
+            button = getattr(self.ui, btn_attr)
+            label = getattr(self.ui, label_attr)
+
+            button.clicked.connect(
+                lambda _, t=type_, p=part, l=label: self.addEquipmentTexture(t, p, l)
+            )
+
+        self.ui.equipmentConfirmButton.clicked.connect(self.addEquipment)
 
         # Settings Specific Connections
         self.ui.settingsWorkspacePathButton.clicked.connect(self.workspacePathChanged)
@@ -326,12 +352,14 @@ class App(QMainWindow):
         self.recipes = {}
         self.paintings = {}
         self.structures = {}
+        self.equipment = {}
 
         self.exists = {}
 
         if self.packDetails["version"] == "1.21.3":
             self.ui.actionPainting.setDisabled(True)
             self.ui.actionStructure.setDisabled(True)
+            self.ui.actionEquipmentSet.setDisabled(True)
 
         try:
             self.blocks_tree
@@ -342,12 +370,15 @@ class App(QMainWindow):
             if self.packDetails["version"] != "1.21.3":
                 self.paintings_tree = QTreeWidgetItem(self.ui.elementViewer, ["Paintings"])
                 self.structures_tree = QTreeWidgetItem(self.ui.elementViewer, ["Structures"])
+                self.equipment_tree = QTreeWidgetItem(self.ui.elementViewer, ["Equipment"])
 
         self.blockTexture = {}
         self.itemTexture = None
         self.recipe = {}
         self.paintingTexture = None
         self.structure = None
+        self.equipmentTexture = {}
+        self.equipmentModel = {}
 
         self.header = f"""#####################################
 #   This File Was Created By mDirt  #
@@ -607,6 +638,8 @@ class App(QMainWindow):
             self.editPainting(item.text(column))
         elif element_type.text(column) == "Structures":
             self.editStructure(item.text(column))
+        elif element_type.text(column) == "Equipment":
+            self.editEquipment(item.text(column))
 
     #######################
     # BLOCKS TAB          #
@@ -1276,6 +1309,140 @@ class App(QMainWindow):
         self.ui.elementEditor.setCurrentIndex(ElementPage.STRUCTURES)
 
     #######################
+    # EQUIPMENT TAB       #
+    #######################
+
+    def addEquipmentTexture(self, type_, id, label_widget, path=None):
+        if not path:
+            model, _ = QFileDialog.getOpenFileName(self, "Open Texture File", "", "PNG Files (*.png)")
+            if not model:
+                return
+        else:
+            model = path
+        
+        filename = os.path.basename(model)
+        destinationPath = f'{self.mainDirectory}/workspaces/{self.packDetails["namespace"]}/assets/equipment/{filename}'
+        shutil.copyfile(model, destinationPath)
+
+        if type_.lower() == "model":
+            self.equipmentModel[id] = destinationPath
+        elif type_.lower() == "item":
+            self.equipmentTexture[id] = destinationPath
+        
+        image = QImage(destinationPath)
+        pixmap = QPixmap.fromImage(image).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio)
+
+        label_widget.setPixmap(pixmap)
+
+    def newEquipment(self): 
+        self.ui.elementEditor.setCurrentIndex(ElementPage.EQUIPMENT)
+
+    def validateEquipmentDetails(self):
+        if not FieldValidator.validate_text_field(self.ui.equipmentName, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz _-!0123456789", "Equipment Name"):
+            return 0
+        if self.equipmentTexture["helmet"] == None: alert("Item Texture: Helmet is empty!"); return 0
+        if self.equipmentTexture["chestplate"] == None: alert("Item Texture: Chestplate is empty!"); return 0
+        if self.equipmentTexture["leggings"] == None: alert("Item Texture: Leggings is empty!"); return 0
+        if self.equipmentTexture["boots"] == None: alert("Item Texture: Boots is empty!"); return 0
+        if self.equipmentModel["helmet"] == None: alert("Model Texture: Helmet is empty!"); return 0
+        if self.equipmentModel["chestplate"] == None: alert("Model Texture: Chestplate is empty!"); return 0
+        if self.equipmentModel["leggings"] == None: alert("Model Texture: Leggings is empty!"); return 0
+        if self.equipmentModel["boots"] == None: alert("Model Texture: Boots is empty!"); return 0
+        if self.ui.groupBox.isChecked:
+            if self.equipmentTexture["horse"] == None: alert("Item Texture: Horse is empty!"); return 0
+            if self.equipmentModel["horse"] == None: alert("Model Texture: Horse is empty!"); return 0
+
+        return 1
+
+    def clearEquipmentFields(self):
+        FieldResetter.clear_labels(
+            self.ui.equipmentName,
+            self.ui.helmetModelLabel,
+            self.ui.chestplateModelLabel,
+            self.ui.leggingsModelLabel,
+            self.ui.bootsModelLabel,
+            self.ui.helmetItemLabel,
+            self.ui.chestplateItemLabel,
+            self.ui.leggingsItemLabel,
+            self.ui.bootsItemLabel,
+            self.ui.horseArmorItemLabel,
+            self.ui.horseArmorModelLabel
+        )
+        FieldResetter.reset_spin_boxes(
+            self.ui.helmetArmor,
+            self.ui.chestplateArmor,
+            self.ui.leggingsArmor,
+            self.ui.bootsArmor,
+            self.ui.equipmentArmorToughness,
+            self.ui.equipmentKBResistance,
+            self.ui.equipmentDurability
+        )
+
+        self.equipmentModel = {}
+        self.equipmentTexture = {}
+
+    def addEquipment(self):
+        if self.validateEquipmentDetails() == 0: return
+
+        base_dur = self.ui.equipmentDurability
+
+        self.equipmentProperties = {
+            "name": self.ui.equipmentName.text(),
+            "armor": {
+                "helmet": self.ui.helmetArmor.value(),
+                "chestplate": self.ui.chestplateArmor.value(),
+                "leggings": self.ui.leggingsArmor.value(),
+                "boots": self.ui.bootsArmor.value()
+            },
+            "toughness": self.ui.equipmentArmorToughness.value(),
+            "kb_resistance": self.ui.equipmentKBResistance.value(),
+            "durability": {
+                "helmet": 68.75 * base_dur,
+                "chestplate": base_dur,
+                "leggings": 93.75 * base_dur,
+                "boots": 81.25 * base_dur
+            },
+            "itemTextures": self.equipmentTexture,
+            "modelTextures": self.equipmentModel,
+            "includeHorse": self.ui.groupBox.isChecked()
+        }
+
+        if not self.equipmentProperties["name"] in self.equipment:
+            QTreeWidgetItem(self.equipment_tree, [self.equipmentProperties["name"]])
+        
+        self.equipment[self.equipmentProperties["name"]] = self.equipmentProperties
+
+        self.clearEquipmentFields()
+
+        self.ui.elementEditor.setCurrentIndex(ElementPage.HOME)
+
+        alert("Element added successfully!")
+
+    def editEquipment(self, equip):
+        properties = self.equipment[equip]
+
+        self.ui.equipmentName.setText(properties["name"])
+        self.ui.helmetArmor.setValue(properties["armor"]["helmet"])
+        self.ui.chestplateArmor.setValue(properties["armor"]["chestplate"])
+        self.ui.leggingsArmor.setValue(properties["armor"]["leggings"])
+        self.ui.bootsArmor.setValue(properties["armor"]["boots"])
+        self.ui.equipmentArmorToughness.setValue(properties["toughness"])
+        self.ui.equipmentKBResistance.setValue(properties["kb_resistance"])
+        self.ui.equipmentDurability.setValue(properties["durability"]["chestplate"])
+        self.equipmentTexture = properties["itemTextures"]
+        self.equipmentModel = properties["modelTextures"]
+        self.ui.groupBox.setChecked(properties["includeHorse"])
+
+        self.ui.helmetItemLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentTexture["helmet"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
+        self.ui.chestplateItemLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentTexture["chestplate"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
+        self.ui.leggingsItemLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentTexture["leggings"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
+        self.ui.bootsItemLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentTexture["boots"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
+        self.ui.helmetModelLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentModel["helmet"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
+        self.ui.chestplateModelLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentModel["chestplate"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
+        self.ui.leggingsModelLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentModel["leggings"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
+        self.ui.bootsModelLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentModel["boots"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
+
+    #######################
     # PACK GENERATION     #
     #######################
 
@@ -1307,6 +1474,7 @@ class App(QMainWindow):
             self.data,
             loc,
             self.structures,
+            self.equipment
         )
 
         generator.generateDatapack()

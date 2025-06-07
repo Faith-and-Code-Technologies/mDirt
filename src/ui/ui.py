@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiYjuCtN.ui'
+## Form generated from reading UI file 'uiSZCvla.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.9.0
 ##
@@ -1107,7 +1107,7 @@ class Ui_MainWindow(object):
         self.equipmentEditor.setObjectName(u"equipmentEditor")
         self.formLayoutWidget_3 = QWidget(self.equipmentEditor)
         self.formLayoutWidget_3.setObjectName(u"formLayoutWidget_3")
-        self.formLayoutWidget_3.setGeometry(QRect(10, 10, 231, 241))
+        self.formLayoutWidget_3.setGeometry(QRect(10, 10, 231, 264))
         self.formLayout_10 = QFormLayout(self.formLayoutWidget_3)
         self.formLayout_10.setObjectName(u"formLayout_10")
         self.formLayout_10.setContentsMargins(0, 0, 0, 0)
@@ -1161,6 +1161,7 @@ class Ui_MainWindow(object):
 
         self.equipmentDurability = QSpinBox(self.formLayoutWidget_3)
         self.equipmentDurability.setObjectName(u"equipmentDurability")
+        self.equipmentDurability.setMaximum(100000)
 
         self.formLayout_10.setWidget(7, QFormLayout.ItemRole.FieldRole, self.equipmentDurability)
 
@@ -1196,6 +1197,11 @@ class Ui_MainWindow(object):
         self.bootsArmor.setMaximum(30)
 
         self.formLayout_10.setWidget(4, QFormLayout.ItemRole.FieldRole, self.bootsArmor)
+
+        self.equipmentConfirmButton = QPushButton(self.formLayoutWidget_3)
+        self.equipmentConfirmButton.setObjectName(u"equipmentConfirmButton")
+
+        self.formLayout_10.setWidget(8, QFormLayout.ItemRole.SpanningRole, self.equipmentConfirmButton)
 
         self.helmetItem = QPushButton(self.equipmentEditor)
         self.helmetItem.setObjectName(u"helmetItem")
@@ -1269,7 +1275,7 @@ class Ui_MainWindow(object):
         self.label_48.setGeometry(QRect(360, 0, 91, 16))
         self.groupBox = QGroupBox(self.equipmentEditor)
         self.groupBox.setObjectName(u"groupBox")
-        self.groupBox.setGeometry(QRect(10, 270, 231, 111))
+        self.groupBox.setGeometry(QRect(10, 280, 231, 111))
         self.groupBox.setCheckable(True)
         self.groupBox.setChecked(True)
         self.horseArmorItem = QPushButton(self.groupBox)
@@ -1805,6 +1811,7 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(tooltip)
         self.bootsArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the boots.</p><p>Leather, Gold, Chain: 1</p><p>Iron: 2</p><p>Diamond, Netherite: 3</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
+        self.equipmentConfirmButton.setText(QCoreApplication.translate("MainWindow", u"Confirm Equipment", None))
 #if QT_CONFIG(tooltip)
         self.helmetItem.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The top texture of your block. <span style=\" font-weight:700;\">If you are using a Custom model, only use the bottom texture!</span></p></body></html>", None))
 #endif // QT_CONFIG(tooltip)

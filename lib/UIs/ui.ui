@@ -2332,7 +2332,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <x>10</x>
           <y>10</y>
           <width>231</width>
-          <height>241</height>
+          <height>264</height>
          </rect>
         </property>
         <layout class="QFormLayout" name="formLayout_10">
@@ -2416,6 +2416,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
            <property name="toolTip">
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The durability of the Chestplate.&lt;/p&gt;&lt;p&gt;Durability of the others are calculated as:&lt;br/&gt;Helmet - 68.75%&lt;/p&gt;&lt;p&gt;Leggings - 93.75%&lt;/p&gt;&lt;p&gt;Boots - 81.25%&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Here are the defaults:&lt;br/&gt;Leather - 80&lt;/p&gt;&lt;p&gt;Golden - 112&lt;/p&gt;&lt;p&gt;Chainmail - 240&lt;/p&gt;&lt;p&gt;Iron - 240&lt;/p&gt;&lt;p&gt;Diamond - 528&lt;/p&gt;&lt;p&gt;Netherite - 592&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
+           <property name="maximum">
+            <number>100000</number>
+           </property>
           </widget>
          </item>
          <item row="2" column="0">
@@ -2466,6 +2469,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
            </property>
            <property name="maximum">
             <number>30</number>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="0" colspan="2">
+          <widget class="QPushButton" name="equipmentConfirmButton">
+           <property name="text">
+            <string>Confirm Equipment</string>
            </property>
           </widget>
          </item>
@@ -2787,7 +2797,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>270</y>
+          <y>280</y>
           <width>231</width>
           <height>111</height>
          </rect>

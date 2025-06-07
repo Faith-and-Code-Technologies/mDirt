@@ -19,5 +19,4 @@ class ElementPage(IntEnum):
     PROJECT_SETUP = 5
     SETTINGS = 6
     STRUCTURES = 7
-    ENCHANTMENTS = 8
-    EDITOR = 9
+    EQUIPMENT = 8
