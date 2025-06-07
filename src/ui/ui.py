@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uifXCvSq.ui'
+## Form generated from reading UI file 'uiiDbpll.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.9.0
 ##
@@ -1290,6 +1290,14 @@ class Ui_MainWindow(object):
         self.horseArmor = QSpinBox(self.groupBox)
         self.horseArmor.setObjectName(u"horseArmor")
         self.horseArmor.setGeometry(QRect(110, 100, 67, 24))
+        self.horseArmorItemLabel.raise_()
+        self.horseArmorModelLabel.raise_()
+        self.label_42.raise_()
+        self.label_49.raise_()
+        self.label_53.raise_()
+        self.horseArmor.raise_()
+        self.horseArmorItem.raise_()
+        self.horseArmorModel.raise_()
         self.label_54 = QLabel(self.equipmentEditor)
         self.label_54.setObjectName(u"label_54")
         self.label_54.setGeometry(QRect(430, 90, 61, 16))
@@ -1297,6 +1305,24 @@ class Ui_MainWindow(object):
         self.label_55.setObjectName(u"label_55")
         self.label_55.setGeometry(QRect(430, 150, 111, 16))
         self.elementEditor.addWidget(self.equipmentEditor)
+        self.formLayoutWidget_3.raise_()
+        self.helmetItemLabel.raise_()
+        self.chestplateItemLabel.raise_()
+        self.leggingsItemLabel.raise_()
+        self.bootsItemLabel.raise_()
+        self.chestplateModelLabel.raise_()
+        self.leggingsModelLabel.raise_()
+        self.label_47.raise_()
+        self.label_48.raise_()
+        self.groupBox.raise_()
+        self.label_54.raise_()
+        self.label_55.raise_()
+        self.chestplateItem.raise_()
+        self.leggingsItem.raise_()
+        self.bootsItem.raise_()
+        self.chestplateModel.raise_()
+        self.helmetItem.raise_()
+        self.leggingsModel.raise_()
 
         self.formLayout_2.setWidget(0, QFormLayout.ItemRole.FieldRole, self.elementEditor)
 

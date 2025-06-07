@@ -2866,6 +2866,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </rect>
          </property>
         </widget>
+        <zorder>horseArmorItemLabel</zorder>
+        <zorder>horseArmorModelLabel</zorder>
+        <zorder>label_42</zorder>
+        <zorder>label_49</zorder>
+        <zorder>label_53</zorder>
+        <zorder>horseArmor</zorder>
+        <zorder>horseArmorItem</zorder>
+        <zorder>horseArmorModel</zorder>
        </widget>
        <widget class="QLabel" name="label_54">
         <property name="geometry">
@@ -2893,6 +2901,24 @@ li.checked::marker { content: &quot;\2612&quot;; }
          <string>Humanoid Leggings</string>
         </property>
        </widget>
+       <zorder>formLayoutWidget_3</zorder>
+       <zorder>helmetItemLabel</zorder>
+       <zorder>chestplateItemLabel</zorder>
+       <zorder>leggingsItemLabel</zorder>
+       <zorder>bootsItemLabel</zorder>
+       <zorder>chestplateModelLabel</zorder>
+       <zorder>leggingsModelLabel</zorder>
+       <zorder>label_47</zorder>
+       <zorder>label_48</zorder>
+       <zorder>groupBox</zorder>
+       <zorder>label_54</zorder>
+       <zorder>label_55</zorder>
+       <zorder>chestplateItem</zorder>
+       <zorder>leggingsItem</zorder>
+       <zorder>bootsItem</zorder>
+       <zorder>chestplateModel</zorder>
+       <zorder>helmetItem</zorder>
+       <zorder>leggingsModel</zorder>
       </widget>
      </widget>
     </item>

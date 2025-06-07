@@ -229,7 +229,7 @@ class App(QMainWindow):
         
         self.ui.chestplateModel.clicked.connect(lambda: self.addEquipmentTexture("humanoid", None, self.ui.chestplateModelLabel))
         self.ui.leggingsModel.clicked.connect(lambda: self.addEquipmentTexture("humanoid_leggings", None, self.ui.leggingsModelLabel))
-        self.ui.horseArmorModel.clicked.connect(lambda: self.addEquipmentTexture("horseArmor", None, self.ui.horseArmorModelLabel))
+        self.ui.horseArmorModel.clicked.connect(lambda: self.addEquipmentTexture("horseArmor1", None, self.ui.horseArmorModelLabel))
 
         self.ui.equipmentConfirmButton.clicked.connect(self.addEquipment)
 
@@ -428,12 +428,15 @@ class App(QMainWindow):
             json.dump(self.paintings, file, indent=4)
         with open(projectDirectory / 'structures.json', 'w') as file:
             json.dump(self.structures, file, indent=4)
+        with open(projectDirectory / 'equipment.json', 'w') as file:
+            json.dump(self.equipment, file, indent=4)
         
         os.makedirs(projectDirectory / 'assets', exist_ok=True)
         os.makedirs(projectDirectory / 'assets' / 'blocks', exist_ok=True)
         os.makedirs(projectDirectory / 'assets' / 'items', exist_ok=True)
         os.makedirs(projectDirectory / 'assets' / 'paintings', exist_ok=True)
         os.makedirs(projectDirectory / 'assets' / 'structures', exist_ok=True)
+        os.makedirs(projectDirectory / 'assets' / 'equipment', exist_ok=True)
 
         manifestPath = self.mainDirectory / 'workspaces' / 'manifest.json'
 
@@ -505,6 +508,8 @@ class App(QMainWindow):
             self.paintings = json.load(file)
         with open(projectDirectory / 'structures.json', 'r') as file:
             self.structures = json.load(file)
+        with open(projectDirectory / 'equipment.json', 'r') as file:
+            self.equipment = json.load(file)
         
         try:
             self.projectList.close()
@@ -525,6 +530,9 @@ class App(QMainWindow):
         
         for item in self.structures:
             QTreeWidgetItem(self.structures_tree, [self.structures[item]["name"]])
+        
+        for item in self.equipment:
+            QTreeWidgetItem(self.equipment_tree, [self.equipment[item]["name"]])
 
     #######################
     # SETTINGS            #
@@ -1328,9 +1336,9 @@ class App(QMainWindow):
         if type_.lower() == "humanoid":
             self.equipmentModel["h"] = destinationPath
         elif type_.lower() == "humanoid_leggings":
-            self.equipmentModel["h_l"] == destinationPath
-        elif type_.lower() == "horseArmor":
-            self.equipmentModel["horseArmor"] == destinationPath
+            self.equipmentModel["h_l"] = destinationPath
+        elif type_.lower() == "horseArmor1":
+            self.equipmentModel["horseArmor"] = destinationPath
         elif type_.lower() == "item":
             self.equipmentTexture[id] = destinationPath
         
@@ -1349,13 +1357,11 @@ class App(QMainWindow):
         if self.equipmentTexture["chestplate"] == None: alert("Item Texture: Chestplate is empty!"); return 0
         if self.equipmentTexture["leggings"] == None: alert("Item Texture: Leggings is empty!"); return 0
         if self.equipmentTexture["boots"] == None: alert("Item Texture: Boots is empty!"); return 0
-        if self.equipmentModel["helmet"] == None: alert("Model Texture: Helmet is empty!"); return 0
-        if self.equipmentModel["chestplate"] == None: alert("Model Texture: Chestplate is empty!"); return 0
-        if self.equipmentModel["leggings"] == None: alert("Model Texture: Leggings is empty!"); return 0
-        if self.equipmentModel["boots"] == None: alert("Model Texture: Boots is empty!"); return 0
+        if self.equipmentModel["h"] == None: alert("Model Texture: Humanoid is empty!"); return 0
+        if self.equipmentModel["h_l"] == None: alert("Model Texture: Humanoid Leggings is empty!"); return 0
         if self.ui.groupBox.isChecked:
-            if self.equipmentTexture["horse"] == None: alert("Item Texture: Horse is empty!"); return 0
-            if self.equipmentModel["horse"] == None: alert("Model Texture: Horse is empty!"); return 0
+            if self.equipmentTexture["horseArmor"] == None: alert("Item Texture: Horse is empty!"); return 0
+            if self.equipmentModel["horseArmor"] == None: alert("Model Texture: Horse is empty!"); return 0
 
         return 1
 
@@ -1402,10 +1408,10 @@ class App(QMainWindow):
             "toughness": self.ui.equipmentArmorToughness.value(),
             "kb_resistance": self.ui.equipmentKBResistance.value(),
             "durability": {
-                "helmet": 68.75 * base_dur,
-                "chestplate": base_dur,
-                "leggings": 93.75 * base_dur,
-                "boots": 81.25 * base_dur
+                "helmet": int(68.75 * base_dur),
+                "chestplate": int(base_dur),
+                "leggings": int(93.75 * base_dur),
+                "boots": int(81.25 * base_dur)
             },
             "itemTextures": self.equipmentTexture,
             "modelTextures": self.equipmentModel,
