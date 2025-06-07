@@ -51,7 +51,6 @@ We’ve now added official support for **Minecraft 1.21.5**, enabling you to cre
 | **Items**        | ✅ 80%    | ✅ 80%    | ✅ 80%    |
 | **Recipes**      | ✅ 100%   | ✅ 100%   | ✅ 100%   |
 | **Paintings**    | ❌ -      | ✅ 100%   | ✅ 100%   |
-| **Enchantments** | ❌ -      | ❌ 0%     | ❌ 0%     |
 
 ---
 

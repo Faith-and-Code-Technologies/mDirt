@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiMhzcLp.ui'
+## Form generated from reading UI file 'uiYjuCtN.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.1
+## Created by: Qt User Interface Compiler version 6.9.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -17,13 +17,13 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
 from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QCheckBox, QComboBox,
-    QFormLayout, QFrame, QGridLayout, QHeaderView,
+    QFormLayout, QGridLayout, QGroupBox, QHeaderView,
     QLabel, QLineEdit, QMainWindow, QMenu,
     QMenuBar, QPlainTextEdit, QPushButton, QRadioButton,
     QScrollArea, QSizePolicy, QSlider, QSpinBox,
-    QSplitter, QStackedWidget, QStatusBar, QTabWidget,
-    QTextEdit, QToolButton, QTreeWidget, QTreeWidgetItem,
-    QVBoxLayout, QWidget)
+    QStackedWidget, QStatusBar, QTabWidget, QTextEdit,
+    QToolButton, QTreeWidget, QTreeWidgetItem, QVBoxLayout,
+    QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -59,8 +59,8 @@ class Ui_MainWindow(object):
         self.actionSettings.setObjectName(u"actionSettings")
         self.actionStructure = QAction(MainWindow)
         self.actionStructure.setObjectName(u"actionStructure")
-        self.actionEnchantment = QAction(MainWindow)
-        self.actionEnchantment.setObjectName(u"actionEnchantment")
+        self.actionEquipmentSet = QAction(MainWindow)
+        self.actionEquipmentSet.setObjectName(u"actionEquipmentSet")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.formLayout_2 = QFormLayout(self.centralwidget)
@@ -75,7 +75,7 @@ class Ui_MainWindow(object):
         self.elementViewer.setObjectName(u"elementViewer")
         self.elementViewer.setMinimumSize(QSize(211, 0))
 
-        self.formLayout_2.setWidget(0, QFormLayout.LabelRole, self.elementViewer)
+        self.formLayout_2.setWidget(0, QFormLayout.ItemRole.LabelRole, self.elementViewer)
 
         self.elementEditor = QStackedWidget(self.centralwidget)
         self.elementEditor.setObjectName(u"elementEditor")
@@ -249,12 +249,12 @@ class Ui_MainWindow(object):
         self.recipeNameLabel = QLabel(self.recipeEditor)
         self.recipeNameLabel.setObjectName(u"recipeNameLabel")
 
-        self.formLayout.setWidget(0, QFormLayout.LabelRole, self.recipeNameLabel)
+        self.formLayout.setWidget(0, QFormLayout.ItemRole.LabelRole, self.recipeNameLabel)
 
         self.recipeName = QLineEdit(self.recipeEditor)
         self.recipeName.setObjectName(u"recipeName")
 
-        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.recipeName)
+        self.formLayout.setWidget(0, QFormLayout.ItemRole.FieldRole, self.recipeName)
 
         self.recipeSubTabs = QTabWidget(self.recipeEditor)
         self.recipeSubTabs.setObjectName(u"recipeSubTabs")
@@ -433,12 +433,12 @@ class Ui_MainWindow(object):
         self.stoneCuttingOutputButton.raise_()
         self.stoneCuttingInputButton.raise_()
 
-        self.formLayout.setWidget(1, QFormLayout.SpanningRole, self.recipeSubTabs)
+        self.formLayout.setWidget(1, QFormLayout.ItemRole.SpanningRole, self.recipeSubTabs)
 
         self.recipeConfirmButton = QPushButton(self.recipeEditor)
         self.recipeConfirmButton.setObjectName(u"recipeConfirmButton")
 
-        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.recipeConfirmButton)
+        self.formLayout.setWidget(2, QFormLayout.ItemRole.FieldRole, self.recipeConfirmButton)
 
         self.elementEditor.addWidget(self.recipeEditor)
         self.itemEditor = QWidget()
@@ -654,57 +654,57 @@ class Ui_MainWindow(object):
         self.label_3 = QLabel(self.formLayoutWidget)
         self.label_3.setObjectName(u"label_3")
 
-        self.formLayout_3.setWidget(1, QFormLayout.LabelRole, self.label_3)
+        self.formLayout_3.setWidget(1, QFormLayout.ItemRole.LabelRole, self.label_3)
 
         self.packName = QLineEdit(self.formLayoutWidget)
         self.packName.setObjectName(u"packName")
 
-        self.formLayout_3.setWidget(1, QFormLayout.FieldRole, self.packName)
+        self.formLayout_3.setWidget(1, QFormLayout.ItemRole.FieldRole, self.packName)
 
         self.label_7 = QLabel(self.formLayoutWidget)
         self.label_7.setObjectName(u"label_7")
 
-        self.formLayout_3.setWidget(2, QFormLayout.LabelRole, self.label_7)
+        self.formLayout_3.setWidget(2, QFormLayout.ItemRole.LabelRole, self.label_7)
 
         self.packNamespace = QLineEdit(self.formLayoutWidget)
         self.packNamespace.setObjectName(u"packNamespace")
 
-        self.formLayout_3.setWidget(2, QFormLayout.FieldRole, self.packNamespace)
+        self.formLayout_3.setWidget(2, QFormLayout.ItemRole.FieldRole, self.packNamespace)
 
         self.label_9 = QLabel(self.formLayoutWidget)
         self.label_9.setObjectName(u"label_9")
 
-        self.formLayout_3.setWidget(5, QFormLayout.LabelRole, self.label_9)
+        self.formLayout_3.setWidget(5, QFormLayout.ItemRole.LabelRole, self.label_9)
 
         self.packVersion = QComboBox(self.formLayoutWidget)
         self.packVersion.setObjectName(u"packVersion")
 
-        self.formLayout_3.setWidget(5, QFormLayout.FieldRole, self.packVersion)
+        self.formLayout_3.setWidget(5, QFormLayout.ItemRole.FieldRole, self.packVersion)
 
         self.label_10 = QLabel(self.formLayoutWidget)
         self.label_10.setObjectName(u"label_10")
 
-        self.formLayout_3.setWidget(3, QFormLayout.LabelRole, self.label_10)
+        self.formLayout_3.setWidget(3, QFormLayout.ItemRole.LabelRole, self.label_10)
 
         self.label_11 = QLabel(self.formLayoutWidget)
         self.label_11.setObjectName(u"label_11")
 
-        self.formLayout_3.setWidget(4, QFormLayout.LabelRole, self.label_11)
+        self.formLayout_3.setWidget(4, QFormLayout.ItemRole.LabelRole, self.label_11)
 
         self.packDescription = QLineEdit(self.formLayoutWidget)
         self.packDescription.setObjectName(u"packDescription")
 
-        self.formLayout_3.setWidget(3, QFormLayout.FieldRole, self.packDescription)
+        self.formLayout_3.setWidget(3, QFormLayout.ItemRole.FieldRole, self.packDescription)
 
         self.packAuthor = QLineEdit(self.formLayoutWidget)
         self.packAuthor.setObjectName(u"packAuthor")
 
-        self.formLayout_3.setWidget(4, QFormLayout.FieldRole, self.packAuthor)
+        self.formLayout_3.setWidget(4, QFormLayout.ItemRole.FieldRole, self.packAuthor)
 
         self.createProjectButton = QPushButton(self.formLayoutWidget)
         self.createProjectButton.setObjectName(u"createProjectButton")
 
-        self.formLayout_3.setWidget(6, QFormLayout.SpanningRole, self.createProjectButton)
+        self.formLayout_3.setWidget(6, QFormLayout.ItemRole.SpanningRole, self.createProjectButton)
 
         self.label_12 = QLabel(self.formLayoutWidget)
         self.label_12.setObjectName(u"label_12")
@@ -716,7 +716,7 @@ class Ui_MainWindow(object):
         self.label_12.setFont(font1)
         self.label_12.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        self.formLayout_3.setWidget(0, QFormLayout.SpanningRole, self.label_12)
+        self.formLayout_3.setWidget(0, QFormLayout.ItemRole.SpanningRole, self.label_12)
 
         self.elementEditor.addWidget(self.details)
         self.settings = QWidget()
@@ -740,7 +740,7 @@ class Ui_MainWindow(object):
         self.label_14 = QLabel(self.scrollAreaWidgetContents)
         self.label_14.setObjectName(u"label_14")
 
-        self.formLayout_4.setWidget(0, QFormLayout.LabelRole, self.label_14)
+        self.formLayout_4.setWidget(0, QFormLayout.ItemRole.LabelRole, self.label_14)
 
         self.settingsAutoSaveInt = QComboBox(self.scrollAreaWidgetContents)
         self.settingsAutoSaveInt.addItem("")
@@ -748,38 +748,38 @@ class Ui_MainWindow(object):
         self.settingsAutoSaveInt.addItem("")
         self.settingsAutoSaveInt.setObjectName(u"settingsAutoSaveInt")
 
-        self.formLayout_4.setWidget(0, QFormLayout.FieldRole, self.settingsAutoSaveInt)
+        self.formLayout_4.setWidget(0, QFormLayout.ItemRole.FieldRole, self.settingsAutoSaveInt)
 
         self.label_15 = QLabel(self.scrollAreaWidgetContents)
         self.label_15.setObjectName(u"label_15")
 
-        self.formLayout_4.setWidget(1, QFormLayout.LabelRole, self.label_15)
+        self.formLayout_4.setWidget(1, QFormLayout.ItemRole.LabelRole, self.label_15)
 
         self.settingsOpenLastCheckbox = QCheckBox(self.scrollAreaWidgetContents)
         self.settingsOpenLastCheckbox.setObjectName(u"settingsOpenLastCheckbox")
 
-        self.formLayout_4.setWidget(1, QFormLayout.FieldRole, self.settingsOpenLastCheckbox)
+        self.formLayout_4.setWidget(1, QFormLayout.ItemRole.FieldRole, self.settingsOpenLastCheckbox)
 
         self.label_16 = QLabel(self.scrollAreaWidgetContents)
         self.label_16.setObjectName(u"label_16")
 
-        self.formLayout_4.setWidget(2, QFormLayout.LabelRole, self.label_16)
+        self.formLayout_4.setWidget(2, QFormLayout.ItemRole.LabelRole, self.label_16)
 
         self.label_17 = QLabel(self.scrollAreaWidgetContents)
         self.label_17.setObjectName(u"label_17")
 
-        self.formLayout_4.setWidget(3, QFormLayout.LabelRole, self.label_17)
+        self.formLayout_4.setWidget(3, QFormLayout.ItemRole.LabelRole, self.label_17)
 
         self.settingsLanguageCombo = QComboBox(self.scrollAreaWidgetContents)
         self.settingsLanguageCombo.addItem("")
         self.settingsLanguageCombo.setObjectName(u"settingsLanguageCombo")
 
-        self.formLayout_4.setWidget(3, QFormLayout.FieldRole, self.settingsLanguageCombo)
+        self.formLayout_4.setWidget(3, QFormLayout.ItemRole.FieldRole, self.settingsLanguageCombo)
 
         self.settingsWorkspacePathButton = QToolButton(self.scrollAreaWidgetContents)
         self.settingsWorkspacePathButton.setObjectName(u"settingsWorkspacePathButton")
 
-        self.formLayout_4.setWidget(2, QFormLayout.FieldRole, self.settingsWorkspacePathButton)
+        self.formLayout_4.setWidget(2, QFormLayout.ItemRole.FieldRole, self.settingsWorkspacePathButton)
 
 
         self.verticalLayout_2.addLayout(self.formLayout_4)
@@ -794,17 +794,17 @@ class Ui_MainWindow(object):
         self.label_19 = QLabel(self.scrollAreaWidgetContents)
         self.label_19.setObjectName(u"label_19")
 
-        self.formLayout_5.setWidget(0, QFormLayout.LabelRole, self.label_19)
+        self.formLayout_5.setWidget(0, QFormLayout.ItemRole.LabelRole, self.label_19)
 
         self.label_20 = QLabel(self.scrollAreaWidgetContents)
         self.label_20.setObjectName(u"label_20")
 
-        self.formLayout_5.setWidget(1, QFormLayout.LabelRole, self.label_20)
+        self.formLayout_5.setWidget(1, QFormLayout.ItemRole.LabelRole, self.label_20)
 
         self.label_21 = QLabel(self.scrollAreaWidgetContents)
         self.label_21.setObjectName(u"label_21")
 
-        self.formLayout_5.setWidget(2, QFormLayout.LabelRole, self.label_21)
+        self.formLayout_5.setWidget(2, QFormLayout.ItemRole.LabelRole, self.label_21)
 
         self.settingsThemeCombo = QComboBox(self.scrollAreaWidgetContents)
         self.settingsThemeCombo.addItem("")
@@ -812,7 +812,7 @@ class Ui_MainWindow(object):
         self.settingsThemeCombo.addItem("")
         self.settingsThemeCombo.setObjectName(u"settingsThemeCombo")
 
-        self.formLayout_5.setWidget(0, QFormLayout.FieldRole, self.settingsThemeCombo)
+        self.formLayout_5.setWidget(0, QFormLayout.ItemRole.FieldRole, self.settingsThemeCombo)
 
         self.settingsFontSizeSlider = QSlider(self.scrollAreaWidgetContents)
         self.settingsFontSizeSlider.setObjectName(u"settingsFontSizeSlider")
@@ -821,13 +821,13 @@ class Ui_MainWindow(object):
         self.settingsFontSizeSlider.setValue(9)
         self.settingsFontSizeSlider.setOrientation(Qt.Orientation.Horizontal)
 
-        self.formLayout_5.setWidget(1, QFormLayout.FieldRole, self.settingsFontSizeSlider)
+        self.formLayout_5.setWidget(1, QFormLayout.ItemRole.FieldRole, self.settingsFontSizeSlider)
 
         self.settingsTipsCheckbox = QCheckBox(self.scrollAreaWidgetContents)
         self.settingsTipsCheckbox.setObjectName(u"settingsTipsCheckbox")
         self.settingsTipsCheckbox.setChecked(True)
 
-        self.formLayout_5.setWidget(2, QFormLayout.FieldRole, self.settingsTipsCheckbox)
+        self.formLayout_5.setWidget(2, QFormLayout.ItemRole.FieldRole, self.settingsTipsCheckbox)
 
 
         self.verticalLayout_2.addLayout(self.formLayout_5)
@@ -842,23 +842,23 @@ class Ui_MainWindow(object):
         self.label_23 = QLabel(self.scrollAreaWidgetContents)
         self.label_23.setObjectName(u"label_23")
 
-        self.formLayout_6.setWidget(0, QFormLayout.LabelRole, self.label_23)
+        self.formLayout_6.setWidget(0, QFormLayout.ItemRole.LabelRole, self.label_23)
 
         self.settingsConfirmElementDeleteCheckbox = QCheckBox(self.scrollAreaWidgetContents)
         self.settingsConfirmElementDeleteCheckbox.setObjectName(u"settingsConfirmElementDeleteCheckbox")
         self.settingsConfirmElementDeleteCheckbox.setChecked(True)
 
-        self.formLayout_6.setWidget(0, QFormLayout.FieldRole, self.settingsConfirmElementDeleteCheckbox)
+        self.formLayout_6.setWidget(0, QFormLayout.ItemRole.FieldRole, self.settingsConfirmElementDeleteCheckbox)
 
         self.label_24 = QLabel(self.scrollAreaWidgetContents)
         self.label_24.setObjectName(u"label_24")
 
-        self.formLayout_6.setWidget(1, QFormLayout.LabelRole, self.label_24)
+        self.formLayout_6.setWidget(1, QFormLayout.ItemRole.LabelRole, self.label_24)
 
         self.settingsExperimentsCheckbox = QCheckBox(self.scrollAreaWidgetContents)
         self.settingsExperimentsCheckbox.setObjectName(u"settingsExperimentsCheckbox")
 
-        self.formLayout_6.setWidget(1, QFormLayout.FieldRole, self.settingsExperimentsCheckbox)
+        self.formLayout_6.setWidget(1, QFormLayout.ItemRole.FieldRole, self.settingsExperimentsCheckbox)
 
 
         self.verticalLayout_2.addLayout(self.formLayout_6)
@@ -873,32 +873,32 @@ class Ui_MainWindow(object):
         self.label_26 = QLabel(self.scrollAreaWidgetContents)
         self.label_26.setObjectName(u"label_26")
 
-        self.formLayout_7.setWidget(0, QFormLayout.LabelRole, self.label_26)
+        self.formLayout_7.setWidget(0, QFormLayout.ItemRole.LabelRole, self.label_26)
 
         self.label_27 = QLabel(self.scrollAreaWidgetContents)
         self.label_27.setObjectName(u"label_27")
 
-        self.formLayout_7.setWidget(1, QFormLayout.LabelRole, self.label_27)
+        self.formLayout_7.setWidget(1, QFormLayout.ItemRole.LabelRole, self.label_27)
 
         self.settingsPackFormatOverride = QLineEdit(self.scrollAreaWidgetContents)
         self.settingsPackFormatOverride.setObjectName(u"settingsPackFormatOverride")
 
-        self.formLayout_7.setWidget(1, QFormLayout.FieldRole, self.settingsPackFormatOverride)
+        self.formLayout_7.setWidget(1, QFormLayout.ItemRole.FieldRole, self.settingsPackFormatOverride)
 
         self.label_28 = QLabel(self.scrollAreaWidgetContents)
         self.label_28.setObjectName(u"label_28")
 
-        self.formLayout_7.setWidget(2, QFormLayout.LabelRole, self.label_28)
+        self.formLayout_7.setWidget(2, QFormLayout.ItemRole.LabelRole, self.label_28)
 
         self.settingsVerboseLoggingCheckbox = QCheckBox(self.scrollAreaWidgetContents)
         self.settingsVerboseLoggingCheckbox.setObjectName(u"settingsVerboseLoggingCheckbox")
 
-        self.formLayout_7.setWidget(2, QFormLayout.FieldRole, self.settingsVerboseLoggingCheckbox)
+        self.formLayout_7.setWidget(2, QFormLayout.ItemRole.FieldRole, self.settingsVerboseLoggingCheckbox)
 
         self.settingsDefaultExportButton = QToolButton(self.scrollAreaWidgetContents)
         self.settingsDefaultExportButton.setObjectName(u"settingsDefaultExportButton")
 
-        self.formLayout_7.setWidget(0, QFormLayout.FieldRole, self.settingsDefaultExportButton)
+        self.formLayout_7.setWidget(0, QFormLayout.ItemRole.FieldRole, self.settingsDefaultExportButton)
 
 
         self.verticalLayout_2.addLayout(self.formLayout_7)
@@ -913,33 +913,33 @@ class Ui_MainWindow(object):
         self.label_31 = QLabel(self.scrollAreaWidgetContents)
         self.label_31.setObjectName(u"label_31")
 
-        self.formLayout_8.setWidget(0, QFormLayout.LabelRole, self.label_31)
+        self.formLayout_8.setWidget(0, QFormLayout.ItemRole.LabelRole, self.label_31)
 
         self.settingsCheckUpdatesCheckbox = QCheckBox(self.scrollAreaWidgetContents)
         self.settingsCheckUpdatesCheckbox.setObjectName(u"settingsCheckUpdatesCheckbox")
         self.settingsCheckUpdatesCheckbox.setChecked(True)
 
-        self.formLayout_8.setWidget(0, QFormLayout.FieldRole, self.settingsCheckUpdatesCheckbox)
+        self.formLayout_8.setWidget(0, QFormLayout.ItemRole.FieldRole, self.settingsCheckUpdatesCheckbox)
 
         self.label_32 = QLabel(self.scrollAreaWidgetContents)
         self.label_32.setObjectName(u"label_32")
 
-        self.formLayout_8.setWidget(1, QFormLayout.LabelRole, self.label_32)
+        self.formLayout_8.setWidget(1, QFormLayout.ItemRole.LabelRole, self.label_32)
 
         self.settingsUpdateURL = QLineEdit(self.scrollAreaWidgetContents)
         self.settingsUpdateURL.setObjectName(u"settingsUpdateURL")
 
-        self.formLayout_8.setWidget(1, QFormLayout.FieldRole, self.settingsUpdateURL)
+        self.formLayout_8.setWidget(1, QFormLayout.ItemRole.FieldRole, self.settingsUpdateURL)
 
         self.label_29 = QLabel(self.scrollAreaWidgetContents)
         self.label_29.setObjectName(u"label_29")
 
-        self.formLayout_8.setWidget(2, QFormLayout.LabelRole, self.label_29)
+        self.formLayout_8.setWidget(2, QFormLayout.ItemRole.LabelRole, self.label_29)
 
         self.settingsBetaUpdatesCheckbox = QCheckBox(self.scrollAreaWidgetContents)
         self.settingsBetaUpdatesCheckbox.setObjectName(u"settingsBetaUpdatesCheckbox")
 
-        self.formLayout_8.setWidget(2, QFormLayout.FieldRole, self.settingsBetaUpdatesCheckbox)
+        self.formLayout_8.setWidget(2, QFormLayout.ItemRole.FieldRole, self.settingsBetaUpdatesCheckbox)
 
 
         self.verticalLayout_2.addLayout(self.formLayout_8)
@@ -972,27 +972,27 @@ class Ui_MainWindow(object):
         self.label_33 = QLabel(self.formLayoutWidget_2)
         self.label_33.setObjectName(u"label_33")
 
-        self.formLayout_9.setWidget(0, QFormLayout.LabelRole, self.label_33)
+        self.formLayout_9.setWidget(0, QFormLayout.ItemRole.LabelRole, self.label_33)
 
         self.structureName = QLineEdit(self.formLayoutWidget_2)
         self.structureName.setObjectName(u"structureName")
 
-        self.formLayout_9.setWidget(0, QFormLayout.FieldRole, self.structureName)
+        self.formLayout_9.setWidget(0, QFormLayout.ItemRole.FieldRole, self.structureName)
 
         self.label_41 = QLabel(self.formLayoutWidget_2)
         self.label_41.setObjectName(u"label_41")
 
-        self.formLayout_9.setWidget(1, QFormLayout.LabelRole, self.label_41)
+        self.formLayout_9.setWidget(1, QFormLayout.ItemRole.LabelRole, self.label_41)
 
         self.structureNBTButton = QToolButton(self.formLayoutWidget_2)
         self.structureNBTButton.setObjectName(u"structureNBTButton")
 
-        self.formLayout_9.setWidget(1, QFormLayout.FieldRole, self.structureNBTButton)
+        self.formLayout_9.setWidget(1, QFormLayout.ItemRole.FieldRole, self.structureNBTButton)
 
         self.label_35 = QLabel(self.formLayoutWidget_2)
         self.label_35.setObjectName(u"label_35")
 
-        self.formLayout_9.setWidget(2, QFormLayout.LabelRole, self.label_35)
+        self.formLayout_9.setWidget(2, QFormLayout.ItemRole.LabelRole, self.label_35)
 
         self.structureLocation = QComboBox(self.formLayoutWidget_2)
         self.structureLocation.addItem("")
@@ -1008,12 +1008,12 @@ class Ui_MainWindow(object):
         self.structureLocation.addItem("")
         self.structureLocation.setObjectName(u"structureLocation")
 
-        self.formLayout_9.setWidget(2, QFormLayout.FieldRole, self.structureLocation)
+        self.formLayout_9.setWidget(2, QFormLayout.ItemRole.FieldRole, self.structureLocation)
 
         self.label_36 = QLabel(self.formLayoutWidget_2)
         self.label_36.setObjectName(u"label_36")
 
-        self.formLayout_9.setWidget(3, QFormLayout.LabelRole, self.label_36)
+        self.formLayout_9.setWidget(3, QFormLayout.ItemRole.LabelRole, self.label_36)
 
         self.structureTerrainAdaptation = QComboBox(self.formLayoutWidget_2)
         self.structureTerrainAdaptation.addItem("")
@@ -1023,24 +1023,24 @@ class Ui_MainWindow(object):
         self.structureTerrainAdaptation.addItem("")
         self.structureTerrainAdaptation.setObjectName(u"structureTerrainAdaptation")
 
-        self.formLayout_9.setWidget(3, QFormLayout.FieldRole, self.structureTerrainAdaptation)
+        self.formLayout_9.setWidget(3, QFormLayout.ItemRole.FieldRole, self.structureTerrainAdaptation)
 
         self.label_37 = QLabel(self.formLayoutWidget_2)
         self.label_37.setObjectName(u"label_37")
 
-        self.formLayout_9.setWidget(4, QFormLayout.LabelRole, self.label_37)
+        self.formLayout_9.setWidget(4, QFormLayout.ItemRole.LabelRole, self.label_37)
 
         self.structureStartHeight = QSpinBox(self.formLayoutWidget_2)
         self.structureStartHeight.setObjectName(u"structureStartHeight")
         self.structureStartHeight.setMinimum(-64)
         self.structureStartHeight.setMaximum(312)
 
-        self.formLayout_9.setWidget(4, QFormLayout.FieldRole, self.structureStartHeight)
+        self.formLayout_9.setWidget(4, QFormLayout.ItemRole.FieldRole, self.structureStartHeight)
 
         self.label_38 = QLabel(self.formLayoutWidget_2)
         self.label_38.setObjectName(u"label_38")
 
-        self.formLayout_9.setWidget(5, QFormLayout.LabelRole, self.label_38)
+        self.formLayout_9.setWidget(5, QFormLayout.ItemRole.LabelRole, self.label_38)
 
         self.structurePSTH = QComboBox(self.formLayoutWidget_2)
         self.structurePSTH.addItem("")
@@ -1051,34 +1051,34 @@ class Ui_MainWindow(object):
         self.structurePSTH.addItem("")
         self.structurePSTH.setObjectName(u"structurePSTH")
 
-        self.formLayout_9.setWidget(5, QFormLayout.FieldRole, self.structurePSTH)
+        self.formLayout_9.setWidget(5, QFormLayout.ItemRole.FieldRole, self.structurePSTH)
 
         self.label_39 = QLabel(self.formLayoutWidget_2)
         self.label_39.setObjectName(u"label_39")
 
-        self.formLayout_9.setWidget(6, QFormLayout.LabelRole, self.label_39)
+        self.formLayout_9.setWidget(6, QFormLayout.ItemRole.LabelRole, self.label_39)
 
         self.structureSpacing = QSpinBox(self.formLayoutWidget_2)
         self.structureSpacing.setObjectName(u"structureSpacing")
         self.structureSpacing.setMaximum(4096)
 
-        self.formLayout_9.setWidget(6, QFormLayout.FieldRole, self.structureSpacing)
+        self.formLayout_9.setWidget(6, QFormLayout.ItemRole.FieldRole, self.structureSpacing)
 
         self.label_40 = QLabel(self.formLayoutWidget_2)
         self.label_40.setObjectName(u"label_40")
 
-        self.formLayout_9.setWidget(7, QFormLayout.LabelRole, self.label_40)
+        self.formLayout_9.setWidget(7, QFormLayout.ItemRole.LabelRole, self.label_40)
 
         self.structureSeperation = QSpinBox(self.formLayoutWidget_2)
         self.structureSeperation.setObjectName(u"structureSeperation")
         self.structureSeperation.setMaximum(4096)
 
-        self.formLayout_9.setWidget(7, QFormLayout.FieldRole, self.structureSeperation)
+        self.formLayout_9.setWidget(7, QFormLayout.ItemRole.FieldRole, self.structureSeperation)
 
         self.structureConfirmButton = QPushButton(self.formLayoutWidget_2)
         self.structureConfirmButton.setObjectName(u"structureConfirmButton")
 
-        self.formLayout_9.setWidget(8, QFormLayout.SpanningRole, self.structureConfirmButton)
+        self.formLayout_9.setWidget(8, QFormLayout.ItemRole.SpanningRole, self.structureConfirmButton)
 
         self.biomeScrollArea = QScrollArea(self.structureEditor)
         self.biomeScrollArea.setObjectName(u"biomeScrollArea")
@@ -1103,65 +1103,200 @@ class Ui_MainWindow(object):
 
         self.biomeScrollArea.setWidget(self.scrollAreaWidgetContents_2)
         self.elementEditor.addWidget(self.structureEditor)
-        self.enchantmentEditor = QWidget()
-        self.enchantmentEditor.setObjectName(u"enchantmentEditor")
-        self.verticalLayout_4 = QVBoxLayout(self.enchantmentEditor)
-        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
-        self.enchantmentScrollWidget = QScrollArea(self.enchantmentEditor)
-        self.enchantmentScrollWidget.setObjectName(u"enchantmentScrollWidget")
-        self.enchantmentScrollWidget.setWidgetResizable(True)
-        self.scrollAreaWidgetContents_3 = QWidget()
-        self.scrollAreaWidgetContents_3.setObjectName(u"scrollAreaWidgetContents_3")
-        self.scrollAreaWidgetContents_3.setGeometry(QRect(0, 0, 703, 645))
-        self.enchantmentScrollWidget.setWidget(self.scrollAreaWidgetContents_3)
-
-        self.verticalLayout_4.addWidget(self.enchantmentScrollWidget)
-
-        self.elementEditor.addWidget(self.enchantmentEditor)
-        self.fileEditor = QWidget()
-        self.fileEditor.setObjectName(u"fileEditor")
-        self.gridLayout_5 = QGridLayout(self.fileEditor)
-        self.gridLayout_5.setObjectName(u"gridLayout_5")
-        self.frame = QFrame(self.fileEditor)
-        self.frame.setObjectName(u"frame")
-        self.frame.setFrameShape(QFrame.Shape.StyledPanel)
-        self.frame.setFrameShadow(QFrame.Shadow.Raised)
-        self.gridLayout_6 = QGridLayout(self.frame)
-        self.gridLayout_6.setObjectName(u"gridLayout_6")
-        self.feEditor = QSplitter(self.frame)
-        self.feEditor.setObjectName(u"feEditor")
-        self.feEditor.setOrientation(Qt.Orientation.Horizontal)
-        self.feFileExplorer = QTreeWidget(self.feEditor)
-        __qtreewidgetitem1 = QTreeWidgetItem()
-        __qtreewidgetitem1.setText(0, u"1");
-        self.feFileExplorer.setHeaderItem(__qtreewidgetitem1)
-        self.feFileExplorer.setObjectName(u"feFileExplorer")
-        self.feEditor.addWidget(self.feFileExplorer)
-        self.formLayoutWidget_3 = QWidget(self.feEditor)
+        self.equipmentEditor = QWidget()
+        self.equipmentEditor.setObjectName(u"equipmentEditor")
+        self.formLayoutWidget_3 = QWidget(self.equipmentEditor)
         self.formLayoutWidget_3.setObjectName(u"formLayoutWidget_3")
-        self.feEditorPanel = QFormLayout(self.formLayoutWidget_3)
-        self.feEditorPanel.setObjectName(u"feEditorPanel")
-        self.feEditorPanel.setContentsMargins(0, 0, 0, 0)
-        self.feLineNumWidget = QWidget(self.formLayoutWidget_3)
-        self.feLineNumWidget.setObjectName(u"feLineNumWidget")
+        self.formLayoutWidget_3.setGeometry(QRect(10, 10, 231, 241))
+        self.formLayout_10 = QFormLayout(self.formLayoutWidget_3)
+        self.formLayout_10.setObjectName(u"formLayout_10")
+        self.formLayout_10.setContentsMargins(0, 0, 0, 0)
+        self.label_34 = QLabel(self.formLayoutWidget_3)
+        self.label_34.setObjectName(u"label_34")
 
-        self.feEditorPanel.setWidget(0, QFormLayout.LabelRole, self.feLineNumWidget)
+        self.formLayout_10.setWidget(0, QFormLayout.ItemRole.LabelRole, self.label_34)
 
-        self.feCodeEdit = QTextEdit(self.formLayoutWidget_3)
-        self.feCodeEdit.setObjectName(u"feCodeEdit")
+        self.equipmentName = QLineEdit(self.formLayoutWidget_3)
+        self.equipmentName.setObjectName(u"equipmentName")
 
-        self.feEditorPanel.setWidget(0, QFormLayout.FieldRole, self.feCodeEdit)
+        self.formLayout_10.setWidget(0, QFormLayout.ItemRole.FieldRole, self.equipmentName)
 
-        self.feEditor.addWidget(self.formLayoutWidget_3)
+        self.label_43 = QLabel(self.formLayoutWidget_3)
+        self.label_43.setObjectName(u"label_43")
 
-        self.gridLayout_6.addWidget(self.feEditor, 0, 0, 1, 1)
+        self.formLayout_10.setWidget(1, QFormLayout.ItemRole.LabelRole, self.label_43)
 
+        self.helmetArmor = QSpinBox(self.formLayoutWidget_3)
+        self.helmetArmor.setObjectName(u"helmetArmor")
+        self.helmetArmor.setMaximum(30)
 
-        self.gridLayout_5.addWidget(self.frame, 0, 0, 1, 1)
+        self.formLayout_10.setWidget(1, QFormLayout.ItemRole.FieldRole, self.helmetArmor)
 
-        self.elementEditor.addWidget(self.fileEditor)
+        self.label_44 = QLabel(self.formLayoutWidget_3)
+        self.label_44.setObjectName(u"label_44")
 
-        self.formLayout_2.setWidget(0, QFormLayout.FieldRole, self.elementEditor)
+        self.formLayout_10.setWidget(5, QFormLayout.ItemRole.LabelRole, self.label_44)
+
+        self.equipmentArmorToughness = QSpinBox(self.formLayoutWidget_3)
+        self.equipmentArmorToughness.setObjectName(u"equipmentArmorToughness")
+        self.equipmentArmorToughness.setMaximum(20)
+
+        self.formLayout_10.setWidget(5, QFormLayout.ItemRole.FieldRole, self.equipmentArmorToughness)
+
+        self.label_45 = QLabel(self.formLayoutWidget_3)
+        self.label_45.setObjectName(u"label_45")
+
+        self.formLayout_10.setWidget(6, QFormLayout.ItemRole.LabelRole, self.label_45)
+
+        self.equipmentKBResistance = QSpinBox(self.formLayoutWidget_3)
+        self.equipmentKBResistance.setObjectName(u"equipmentKBResistance")
+        self.equipmentKBResistance.setMaximum(100)
+
+        self.formLayout_10.setWidget(6, QFormLayout.ItemRole.FieldRole, self.equipmentKBResistance)
+
+        self.label_46 = QLabel(self.formLayoutWidget_3)
+        self.label_46.setObjectName(u"label_46")
+
+        self.formLayout_10.setWidget(7, QFormLayout.ItemRole.LabelRole, self.label_46)
+
+        self.equipmentDurability = QSpinBox(self.formLayoutWidget_3)
+        self.equipmentDurability.setObjectName(u"equipmentDurability")
+
+        self.formLayout_10.setWidget(7, QFormLayout.ItemRole.FieldRole, self.equipmentDurability)
+
+        self.label_50 = QLabel(self.formLayoutWidget_3)
+        self.label_50.setObjectName(u"label_50")
+
+        self.formLayout_10.setWidget(2, QFormLayout.ItemRole.LabelRole, self.label_50)
+
+        self.label_51 = QLabel(self.formLayoutWidget_3)
+        self.label_51.setObjectName(u"label_51")
+
+        self.formLayout_10.setWidget(3, QFormLayout.ItemRole.LabelRole, self.label_51)
+
+        self.label_52 = QLabel(self.formLayoutWidget_3)
+        self.label_52.setObjectName(u"label_52")
+
+        self.formLayout_10.setWidget(4, QFormLayout.ItemRole.LabelRole, self.label_52)
+
+        self.chestplateArmor = QSpinBox(self.formLayoutWidget_3)
+        self.chestplateArmor.setObjectName(u"chestplateArmor")
+        self.chestplateArmor.setMaximum(30)
+
+        self.formLayout_10.setWidget(2, QFormLayout.ItemRole.FieldRole, self.chestplateArmor)
+
+        self.leggingsArmor = QSpinBox(self.formLayoutWidget_3)
+        self.leggingsArmor.setObjectName(u"leggingsArmor")
+        self.leggingsArmor.setMaximum(30)
+
+        self.formLayout_10.setWidget(3, QFormLayout.ItemRole.FieldRole, self.leggingsArmor)
+
+        self.bootsArmor = QSpinBox(self.formLayoutWidget_3)
+        self.bootsArmor.setObjectName(u"bootsArmor")
+        self.bootsArmor.setMaximum(30)
+
+        self.formLayout_10.setWidget(4, QFormLayout.ItemRole.FieldRole, self.bootsArmor)
+
+        self.helmetItem = QPushButton(self.equipmentEditor)
+        self.helmetItem.setObjectName(u"helmetItem")
+        self.helmetItem.setGeometry(QRect(270, 20, 50, 50))
+        self.helmetItem.setAcceptDrops(True)
+        self.helmetItem.setFlat(True)
+        self.helmetItemLabel = QLabel(self.equipmentEditor)
+        self.helmetItemLabel.setObjectName(u"helmetItemLabel")
+        self.helmetItemLabel.setGeometry(QRect(270, 20, 50, 50))
+        self.chestplateItemLabel = QLabel(self.equipmentEditor)
+        self.chestplateItemLabel.setObjectName(u"chestplateItemLabel")
+        self.chestplateItemLabel.setGeometry(QRect(270, 80, 50, 50))
+        self.chestplateItem = QPushButton(self.equipmentEditor)
+        self.chestplateItem.setObjectName(u"chestplateItem")
+        self.chestplateItem.setGeometry(QRect(270, 80, 50, 50))
+        self.chestplateItem.setAcceptDrops(True)
+        self.chestplateItem.setFlat(True)
+        self.leggingsItemLabel = QLabel(self.equipmentEditor)
+        self.leggingsItemLabel.setObjectName(u"leggingsItemLabel")
+        self.leggingsItemLabel.setGeometry(QRect(270, 140, 50, 50))
+        self.leggingsItem = QPushButton(self.equipmentEditor)
+        self.leggingsItem.setObjectName(u"leggingsItem")
+        self.leggingsItem.setGeometry(QRect(270, 140, 50, 50))
+        self.leggingsItem.setAcceptDrops(True)
+        self.leggingsItem.setFlat(True)
+        self.bootsItemLabel = QLabel(self.equipmentEditor)
+        self.bootsItemLabel.setObjectName(u"bootsItemLabel")
+        self.bootsItemLabel.setGeometry(QRect(270, 200, 50, 50))
+        self.bootsItem = QPushButton(self.equipmentEditor)
+        self.bootsItem.setObjectName(u"bootsItem")
+        self.bootsItem.setGeometry(QRect(270, 200, 50, 50))
+        self.bootsItem.setAcceptDrops(True)
+        self.bootsItem.setFlat(True)
+        self.helmetModelLabel = QLabel(self.equipmentEditor)
+        self.helmetModelLabel.setObjectName(u"helmetModelLabel")
+        self.helmetModelLabel.setGeometry(QRect(370, 20, 50, 50))
+        self.helmetModel = QPushButton(self.equipmentEditor)
+        self.helmetModel.setObjectName(u"helmetModel")
+        self.helmetModel.setGeometry(QRect(370, 20, 50, 50))
+        self.helmetModel.setAcceptDrops(True)
+        self.helmetModel.setFlat(True)
+        self.chestplateModel = QPushButton(self.equipmentEditor)
+        self.chestplateModel.setObjectName(u"chestplateModel")
+        self.chestplateModel.setGeometry(QRect(370, 80, 50, 50))
+        self.chestplateModel.setAcceptDrops(True)
+        self.chestplateModel.setFlat(True)
+        self.chestplateModelLabel = QLabel(self.equipmentEditor)
+        self.chestplateModelLabel.setObjectName(u"chestplateModelLabel")
+        self.chestplateModelLabel.setGeometry(QRect(370, 80, 50, 50))
+        self.leggingsModelLabel = QLabel(self.equipmentEditor)
+        self.leggingsModelLabel.setObjectName(u"leggingsModelLabel")
+        self.leggingsModelLabel.setGeometry(QRect(370, 140, 50, 50))
+        self.leggingsModel = QPushButton(self.equipmentEditor)
+        self.leggingsModel.setObjectName(u"leggingsModel")
+        self.leggingsModel.setGeometry(QRect(370, 140, 50, 50))
+        self.leggingsModel.setAcceptDrops(True)
+        self.leggingsModel.setFlat(True)
+        self.bootsModelLabel = QLabel(self.equipmentEditor)
+        self.bootsModelLabel.setObjectName(u"bootsModelLabel")
+        self.bootsModelLabel.setGeometry(QRect(370, 200, 50, 50))
+        self.bootsModel = QPushButton(self.equipmentEditor)
+        self.bootsModel.setObjectName(u"bootsModel")
+        self.bootsModel.setGeometry(QRect(370, 200, 50, 50))
+        self.bootsModel.setAcceptDrops(True)
+        self.bootsModel.setFlat(True)
+        self.label_47 = QLabel(self.equipmentEditor)
+        self.label_47.setObjectName(u"label_47")
+        self.label_47.setGeometry(QRect(260, 0, 81, 16))
+        self.label_48 = QLabel(self.equipmentEditor)
+        self.label_48.setObjectName(u"label_48")
+        self.label_48.setGeometry(QRect(360, 0, 91, 16))
+        self.groupBox = QGroupBox(self.equipmentEditor)
+        self.groupBox.setObjectName(u"groupBox")
+        self.groupBox.setGeometry(QRect(10, 270, 231, 111))
+        self.groupBox.setCheckable(True)
+        self.groupBox.setChecked(True)
+        self.horseArmorItem = QPushButton(self.groupBox)
+        self.horseArmorItem.setObjectName(u"horseArmorItem")
+        self.horseArmorItem.setGeometry(QRect(40, 40, 50, 50))
+        self.horseArmorItem.setAcceptDrops(True)
+        self.horseArmorItem.setFlat(True)
+        self.horseArmorItemLabel = QLabel(self.groupBox)
+        self.horseArmorItemLabel.setObjectName(u"horseArmorItemLabel")
+        self.horseArmorItemLabel.setGeometry(QRect(40, 40, 50, 50))
+        self.horseArmorModel = QPushButton(self.groupBox)
+        self.horseArmorModel.setObjectName(u"horseArmorModel")
+        self.horseArmorModel.setGeometry(QRect(130, 40, 50, 50))
+        self.horseArmorModel.setAcceptDrops(True)
+        self.horseArmorModel.setFlat(True)
+        self.horseArmorModelLabel = QLabel(self.groupBox)
+        self.horseArmorModelLabel.setObjectName(u"horseArmorModelLabel")
+        self.horseArmorModelLabel.setGeometry(QRect(130, 40, 50, 50))
+        self.label_42 = QLabel(self.groupBox)
+        self.label_42.setObjectName(u"label_42")
+        self.label_42.setGeometry(QRect(30, 20, 81, 16))
+        self.label_49 = QLabel(self.groupBox)
+        self.label_49.setObjectName(u"label_49")
+        self.label_49.setGeometry(QRect(120, 20, 81, 16))
+        self.elementEditor.addWidget(self.equipmentEditor)
+
+        self.formLayout_2.setWidget(0, QFormLayout.ItemRole.FieldRole, self.elementEditor)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QStatusBar(MainWindow)
@@ -1183,7 +1318,7 @@ class Ui_MainWindow(object):
         self.menuNew_Element.addAction(self.actionRecipe)
         self.menuNew_Element.addAction(self.actionPainting)
         self.menuNew_Element.addAction(self.actionStructure)
-        self.menuNew_Element.addAction(self.actionEnchantment)
+        self.menuNew_Element.addAction(self.actionEquipmentSet)
         self.menuNew_Element.addSeparator()
         self.menuSave.addAction(self.actionNew_Project)
         self.menuSave.addAction(self.actionOpen_Project)
@@ -1220,7 +1355,7 @@ class Ui_MainWindow(object):
         self.actionExport_Project.setText(QCoreApplication.translate("MainWindow", u"Export Project", None))
         self.actionSettings.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
         self.actionStructure.setText(QCoreApplication.translate("MainWindow", u"Structure", None))
-        self.actionEnchantment.setText(QCoreApplication.translate("MainWindow", u"Enchantment", None))
+        self.actionEquipmentSet.setText(QCoreApplication.translate("MainWindow", u"Equipment Set", None))
         ___qtreewidgetitem = self.elementViewer.headerItem()
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"Element Viewer", None));
         self.textEdit.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -1637,6 +1772,106 @@ class Ui_MainWindow(object):
         self.label_40.setText(QCoreApplication.translate("MainWindow", u"Seperation:", None))
         self.structureConfirmButton.setText(QCoreApplication.translate("MainWindow", u"Confirm Structure", None))
         self.biomeScrollContents.setText(QCoreApplication.translate("MainWindow", u"Biomes", None))
+        self.label_34.setText(QCoreApplication.translate("MainWindow", u"Name:", None))
+#if QT_CONFIG(tooltip)
+        self.equipmentName.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The name of the armor SET.<br/>If set to &quot;Emerald&quot;, it would display on a helmet as &quot;Emerald Helmet&quot;.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.equipmentName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Emerald", None))
+        self.label_43.setText(QCoreApplication.translate("MainWindow", u"Helmet Armor", None))
+#if QT_CONFIG(tooltip)
+        self.helmetArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the helmet.</p><p>Leather: 1</p><p>Gold, Chain, Iron: 2</p><p>Diamond, Netherite: 3</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.label_44.setText(QCoreApplication.translate("MainWindow", u"Armor Toughness", None))
+#if QT_CONFIG(tooltip)
+        self.equipmentArmorToughness.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The toughness of the armor.<br/></p><p>Leather, Gold, Chain, Iron: 0</p><p>Diamond: 2</p><p>Netherite: 3</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.label_45.setText(QCoreApplication.translate("MainWindow", u"Knockback Resistance", None))
+#if QT_CONFIG(tooltip)
+        self.equipmentKBResistance.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The %, per piece, of knocback to reduce.<br/>Netherite is set at 10, giving 40% knockback reduction when wearing a full set.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.label_46.setText(QCoreApplication.translate("MainWindow", u"Durability", None))
+#if QT_CONFIG(tooltip)
+        self.equipmentDurability.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The durability of the Chestplate.</p><p>Durability of the others are calculated as:<br/>Helmet - 68.75%</p><p>Leggings - 93.75%</p><p>Boots - 81.25%</p><p><br/></p><p>Here are the defaults:<br/>Leather - 80</p><p>Golden - 112</p><p>Chainmail - 240</p><p>Iron - 240</p><p>Diamond - 528</p><p>Netherite - 592</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.label_50.setText(QCoreApplication.translate("MainWindow", u"Chestplate Armor", None))
+        self.label_51.setText(QCoreApplication.translate("MainWindow", u"Leggings Armor", None))
+        self.label_52.setText(QCoreApplication.translate("MainWindow", u"Boots Armor", None))
+#if QT_CONFIG(tooltip)
+        self.chestplateArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the chestplate.</p><p>Leather: 3</p><p>Gold, Chain: 5</p><p>Iron: 6</p><p>Diamond, Netherite: 8</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.leggingsArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the leggings.</p><p>Leather: 2</p><p>Gold: 3</p><p>Chain: 4</p><p>Iron: 5</p><p>Diamond, Netherite: 6</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.bootsArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the boots.</p><p>Leather, Gold, Chain: 1</p><p>Iron: 2</p><p>Diamond, Netherite: 3</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.helmetItem.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The top texture of your block. <span style=\" font-weight:700;\">If you are using a Custom model, only use the bottom texture!</span></p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.helmetItem.setText("")
+        self.helmetItemLabel.setText("")
+        self.chestplateItemLabel.setText("")
+#if QT_CONFIG(tooltip)
+        self.chestplateItem.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The top texture of your block. <span style=\" font-weight:700;\">If you are using a Custom model, only use the bottom texture!</span></p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.chestplateItem.setText("")
+        self.leggingsItemLabel.setText("")
+#if QT_CONFIG(tooltip)
+        self.leggingsItem.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The top texture of your block. <span style=\" font-weight:700;\">If you are using a Custom model, only use the bottom texture!</span></p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.leggingsItem.setText("")
+        self.bootsItemLabel.setText("")
+#if QT_CONFIG(tooltip)
+        self.bootsItem.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The top texture of your block. <span style=\" font-weight:700;\">If you are using a Custom model, only use the bottom texture!</span></p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.bootsItem.setText("")
+        self.helmetModelLabel.setText("")
+#if QT_CONFIG(tooltip)
+        self.helmetModel.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The top texture of your block. <span style=\" font-weight:700;\">If you are using a Custom model, only use the bottom texture!</span></p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.helmetModel.setText("")
+#if QT_CONFIG(tooltip)
+        self.chestplateModel.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The top texture of your block. <span style=\" font-weight:700;\">If you are using a Custom model, only use the bottom texture!</span></p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.chestplateModel.setText("")
+        self.chestplateModelLabel.setText("")
+        self.leggingsModelLabel.setText("")
+#if QT_CONFIG(tooltip)
+        self.leggingsModel.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The top texture of your block. <span style=\" font-weight:700;\">If you are using a Custom model, only use the bottom texture!</span></p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.leggingsModel.setText("")
+        self.bootsModelLabel.setText("")
+#if QT_CONFIG(tooltip)
+        self.bootsModel.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The top texture of your block. <span style=\" font-weight:700;\">If you are using a Custom model, only use the bottom texture!</span></p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.bootsModel.setText("")
+#if QT_CONFIG(tooltip)
+        self.label_47.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The textures of the armor items, from helmet to boots.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.label_47.setText(QCoreApplication.translate("MainWindow", u"Item Textures", None))
+#if QT_CONFIG(tooltip)
+        self.label_48.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The textures of the armor models (what is displayed when equipped on a player) from helmet to boots.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.label_48.setText(QCoreApplication.translate("MainWindow", u"Model Textures", None))
+        self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Include Horse Armor?", None))
+#if QT_CONFIG(tooltip)
+        self.horseArmorItem.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The top texture of your block. <span style=\" font-weight:700;\">If you are using a Custom model, only use the bottom texture!</span></p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.horseArmorItem.setText("")
+        self.horseArmorItemLabel.setText("")
+#if QT_CONFIG(tooltip)
+        self.horseArmorModel.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The top texture of your block. <span style=\" font-weight:700;\">If you are using a Custom model, only use the bottom texture!</span></p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.horseArmorModel.setText("")
+        self.horseArmorModelLabel.setText("")
+#if QT_CONFIG(tooltip)
+        self.label_42.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The texture of the horse armor item</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.label_42.setText(QCoreApplication.translate("MainWindow", u"Item Texture", None))
+#if QT_CONFIG(tooltip)
+        self.label_49.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The texture of the model of the horse armor (what is displayed on the horse)</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.label_49.setText(QCoreApplication.translate("MainWindow", u"Model Texture", None))
         self.menuNew_Element.setTitle(QCoreApplication.translate("MainWindow", u"New Element", None))
         self.menuSave.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
     # retranslateUi
