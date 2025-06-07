@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uirsfkFY.ui'
+## Form generated from reading UI file 'uifXCvSq.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.9.0
 ##
@@ -1235,14 +1235,6 @@ class Ui_MainWindow(object):
         self.bootsItem.setGeometry(QRect(270, 200, 50, 50))
         self.bootsItem.setAcceptDrops(True)
         self.bootsItem.setFlat(True)
-        self.helmetModelLabel = QLabel(self.equipmentEditor)
-        self.helmetModelLabel.setObjectName(u"helmetModelLabel")
-        self.helmetModelLabel.setGeometry(QRect(370, 20, 50, 50))
-        self.helmetModel = QPushButton(self.equipmentEditor)
-        self.helmetModel.setObjectName(u"helmetModel")
-        self.helmetModel.setGeometry(QRect(370, 20, 50, 50))
-        self.helmetModel.setAcceptDrops(True)
-        self.helmetModel.setFlat(True)
         self.chestplateModel = QPushButton(self.equipmentEditor)
         self.chestplateModel.setObjectName(u"chestplateModel")
         self.chestplateModel.setGeometry(QRect(370, 80, 50, 50))
@@ -1259,14 +1251,6 @@ class Ui_MainWindow(object):
         self.leggingsModel.setGeometry(QRect(370, 140, 50, 50))
         self.leggingsModel.setAcceptDrops(True)
         self.leggingsModel.setFlat(True)
-        self.bootsModelLabel = QLabel(self.equipmentEditor)
-        self.bootsModelLabel.setObjectName(u"bootsModelLabel")
-        self.bootsModelLabel.setGeometry(QRect(370, 200, 50, 50))
-        self.bootsModel = QPushButton(self.equipmentEditor)
-        self.bootsModel.setObjectName(u"bootsModel")
-        self.bootsModel.setGeometry(QRect(370, 200, 50, 50))
-        self.bootsModel.setAcceptDrops(True)
-        self.bootsModel.setFlat(True)
         self.label_47 = QLabel(self.equipmentEditor)
         self.label_47.setObjectName(u"label_47")
         self.label_47.setGeometry(QRect(260, 0, 81, 16))
@@ -1306,6 +1290,12 @@ class Ui_MainWindow(object):
         self.horseArmor = QSpinBox(self.groupBox)
         self.horseArmor.setObjectName(u"horseArmor")
         self.horseArmor.setGeometry(QRect(110, 100, 67, 24))
+        self.label_54 = QLabel(self.equipmentEditor)
+        self.label_54.setObjectName(u"label_54")
+        self.label_54.setGeometry(QRect(430, 90, 61, 16))
+        self.label_55 = QLabel(self.equipmentEditor)
+        self.label_55.setObjectName(u"label_55")
+        self.label_55.setGeometry(QRect(430, 150, 111, 16))
         self.elementEditor.addWidget(self.equipmentEditor)
 
         self.formLayout_2.setWidget(0, QFormLayout.ItemRole.FieldRole, self.elementEditor)
@@ -1838,11 +1828,6 @@ class Ui_MainWindow(object):
         self.bootsItem.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The top texture of your block. <span style=\" font-weight:700;\">If you are using a Custom model, only use the bottom texture!</span></p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.bootsItem.setText("")
-        self.helmetModelLabel.setText("")
-#if QT_CONFIG(tooltip)
-        self.helmetModel.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The top texture of your block. <span style=\" font-weight:700;\">If you are using a Custom model, only use the bottom texture!</span></p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
-        self.helmetModel.setText("")
 #if QT_CONFIG(tooltip)
         self.chestplateModel.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The top texture of your block. <span style=\" font-weight:700;\">If you are using a Custom model, only use the bottom texture!</span></p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
@@ -1853,11 +1838,6 @@ class Ui_MainWindow(object):
         self.leggingsModel.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The top texture of your block. <span style=\" font-weight:700;\">If you are using a Custom model, only use the bottom texture!</span></p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.leggingsModel.setText("")
-        self.bootsModelLabel.setText("")
-#if QT_CONFIG(tooltip)
-        self.bootsModel.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The top texture of your block. <span style=\" font-weight:700;\">If you are using a Custom model, only use the bottom texture!</span></p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
-        self.bootsModel.setText("")
 #if QT_CONFIG(tooltip)
         self.label_47.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The textures of the armor items, from helmet to boots.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
@@ -1886,6 +1866,8 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.label_49.setText(QCoreApplication.translate("MainWindow", u"Model Texture", None))
         self.label_53.setText(QCoreApplication.translate("MainWindow", u"Horse Armor", None))
+        self.label_54.setText(QCoreApplication.translate("MainWindow", u"Humanoid", None))
+        self.label_55.setText(QCoreApplication.translate("MainWindow", u"Humanoid Leggings", None))
         self.menuNew_Element.setTitle(QCoreApplication.translate("MainWindow", u"New Element", None))
         self.menuSave.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
     # retranslateUi

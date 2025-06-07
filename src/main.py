@@ -209,15 +209,10 @@ class App(QMainWindow):
 
         # Equipment Specific Connections
         button_map = [
-            ("helmet", "Model"),
-            ("chestplate", "Model"),
-            ("leggings", "Model"),
-            ("boots", "Model"),
             ("helmet", "Item"),
             ("chestplate", "Item"),
             ("leggings", "Item"),
             ("boots", "Item"),
-            ("horseArmor", "Model"),
             ("horseArmor", "Item")
         ]
 
@@ -231,6 +226,10 @@ class App(QMainWindow):
             button.clicked.connect(
                 lambda _, t=type_, p=part, l=label: self.addEquipmentTexture(t, p, l)
             )
+        
+        self.ui.chestplateModel.clicked.connect(lambda: self.addEquipmentTexture("humanoid", None, self.ui.chestplateModelLabel))
+        self.ui.leggingsModel.clicked.connect(lambda: self.addEquipmentTexture("humanoid_leggings", None, self.ui.leggingsModelLabel))
+        self.ui.horseArmorModel.clicked.connect(lambda: self.addEquipmentTexture("horseArmor", None, self.ui.horseArmorModelLabel))
 
         self.ui.equipmentConfirmButton.clicked.connect(self.addEquipment)
 
@@ -1326,8 +1325,12 @@ class App(QMainWindow):
         destinationPath = f'{self.mainDirectory}/workspaces/{self.packDetails["namespace"]}/assets/equipment/{filename}'
         shutil.copyfile(model, destinationPath)
 
-        if type_.lower() == "model":
-            self.equipmentModel[id] = destinationPath
+        if type_.lower() == "humanoid":
+            self.equipmentModel["h"] = destinationPath
+        elif type_.lower() == "humanoid_leggings":
+            self.equipmentModel["h_l"] == destinationPath
+        elif type_.lower() == "horseArmor":
+            self.equipmentModel["horseArmor"] == destinationPath
         elif type_.lower() == "item":
             self.equipmentTexture[id] = destinationPath
         
@@ -1359,10 +1362,8 @@ class App(QMainWindow):
     def clearEquipmentFields(self):
         FieldResetter.clear_labels(
             self.ui.equipmentName,
-            self.ui.helmetModelLabel,
             self.ui.chestplateModelLabel,
             self.ui.leggingsModelLabel,
-            self.ui.bootsModelLabel,
             self.ui.helmetItemLabel,
             self.ui.chestplateItemLabel,
             self.ui.leggingsItemLabel,

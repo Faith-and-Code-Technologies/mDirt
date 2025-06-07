@@ -136,7 +136,7 @@ class EquipmentResourcer:
         # Copy namespace/textures/entity/equipment/*/*.png
         for equip in self.equipment:
             for texture in self.equipment[equip]["modelTextures"]:
-                if texture == "leggings": currentPath = f'{self.resPackDirectory}/assets/{self.packNamespace}/textures/entity/equipment/humanoid_leggings/'
+                if texture == "h_l": currentPath = f'{self.resPackDirectory}/assets/{self.packNamespace}/textures/entity/equipment/humanoid_leggings/'
                 elif texture == "horseArmor": currentPath = f'{self.resPackDirectory}/assets/{self.packNamespace}/textures/entity/equipment/horse_body/'
                 else: currentPath = f'{self.resPackDirectory}/assets/{self.packNamespace}/textures/entity/equipment/humanoid/'
                 shutil.copy(
