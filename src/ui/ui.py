@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiSZCvla.ui'
+## Form generated from reading UI file 'uirsfkFY.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.9.0
 ##
@@ -1107,7 +1107,7 @@ class Ui_MainWindow(object):
         self.equipmentEditor.setObjectName(u"equipmentEditor")
         self.formLayoutWidget_3 = QWidget(self.equipmentEditor)
         self.formLayoutWidget_3.setObjectName(u"formLayoutWidget_3")
-        self.formLayoutWidget_3.setGeometry(QRect(10, 10, 231, 264))
+        self.formLayoutWidget_3.setGeometry(QRect(10, 10, 231, 286))
         self.formLayout_10 = QFormLayout(self.formLayoutWidget_3)
         self.formLayout_10.setObjectName(u"formLayout_10")
         self.formLayout_10.setContentsMargins(0, 0, 0, 0)
@@ -1131,6 +1131,39 @@ class Ui_MainWindow(object):
         self.helmetArmor.setMaximum(30)
 
         self.formLayout_10.setWidget(1, QFormLayout.ItemRole.FieldRole, self.helmetArmor)
+
+        self.label_50 = QLabel(self.formLayoutWidget_3)
+        self.label_50.setObjectName(u"label_50")
+
+        self.formLayout_10.setWidget(2, QFormLayout.ItemRole.LabelRole, self.label_50)
+
+        self.chestplateArmor = QSpinBox(self.formLayoutWidget_3)
+        self.chestplateArmor.setObjectName(u"chestplateArmor")
+        self.chestplateArmor.setMaximum(30)
+
+        self.formLayout_10.setWidget(2, QFormLayout.ItemRole.FieldRole, self.chestplateArmor)
+
+        self.label_51 = QLabel(self.formLayoutWidget_3)
+        self.label_51.setObjectName(u"label_51")
+
+        self.formLayout_10.setWidget(3, QFormLayout.ItemRole.LabelRole, self.label_51)
+
+        self.leggingsArmor = QSpinBox(self.formLayoutWidget_3)
+        self.leggingsArmor.setObjectName(u"leggingsArmor")
+        self.leggingsArmor.setMaximum(30)
+
+        self.formLayout_10.setWidget(3, QFormLayout.ItemRole.FieldRole, self.leggingsArmor)
+
+        self.label_52 = QLabel(self.formLayoutWidget_3)
+        self.label_52.setObjectName(u"label_52")
+
+        self.formLayout_10.setWidget(4, QFormLayout.ItemRole.LabelRole, self.label_52)
+
+        self.bootsArmor = QSpinBox(self.formLayoutWidget_3)
+        self.bootsArmor.setObjectName(u"bootsArmor")
+        self.bootsArmor.setMaximum(30)
+
+        self.formLayout_10.setWidget(4, QFormLayout.ItemRole.FieldRole, self.bootsArmor)
 
         self.label_44 = QLabel(self.formLayoutWidget_3)
         self.label_44.setObjectName(u"label_44")
@@ -1164,39 +1197,6 @@ class Ui_MainWindow(object):
         self.equipmentDurability.setMaximum(100000)
 
         self.formLayout_10.setWidget(7, QFormLayout.ItemRole.FieldRole, self.equipmentDurability)
-
-        self.label_50 = QLabel(self.formLayoutWidget_3)
-        self.label_50.setObjectName(u"label_50")
-
-        self.formLayout_10.setWidget(2, QFormLayout.ItemRole.LabelRole, self.label_50)
-
-        self.label_51 = QLabel(self.formLayoutWidget_3)
-        self.label_51.setObjectName(u"label_51")
-
-        self.formLayout_10.setWidget(3, QFormLayout.ItemRole.LabelRole, self.label_51)
-
-        self.label_52 = QLabel(self.formLayoutWidget_3)
-        self.label_52.setObjectName(u"label_52")
-
-        self.formLayout_10.setWidget(4, QFormLayout.ItemRole.LabelRole, self.label_52)
-
-        self.chestplateArmor = QSpinBox(self.formLayoutWidget_3)
-        self.chestplateArmor.setObjectName(u"chestplateArmor")
-        self.chestplateArmor.setMaximum(30)
-
-        self.formLayout_10.setWidget(2, QFormLayout.ItemRole.FieldRole, self.chestplateArmor)
-
-        self.leggingsArmor = QSpinBox(self.formLayoutWidget_3)
-        self.leggingsArmor.setObjectName(u"leggingsArmor")
-        self.leggingsArmor.setMaximum(30)
-
-        self.formLayout_10.setWidget(3, QFormLayout.ItemRole.FieldRole, self.leggingsArmor)
-
-        self.bootsArmor = QSpinBox(self.formLayoutWidget_3)
-        self.bootsArmor.setObjectName(u"bootsArmor")
-        self.bootsArmor.setMaximum(30)
-
-        self.formLayout_10.setWidget(4, QFormLayout.ItemRole.FieldRole, self.bootsArmor)
 
         self.equipmentConfirmButton = QPushButton(self.formLayoutWidget_3)
         self.equipmentConfirmButton.setObjectName(u"equipmentConfirmButton")
@@ -1275,7 +1275,7 @@ class Ui_MainWindow(object):
         self.label_48.setGeometry(QRect(360, 0, 91, 16))
         self.groupBox = QGroupBox(self.equipmentEditor)
         self.groupBox.setObjectName(u"groupBox")
-        self.groupBox.setGeometry(QRect(10, 280, 231, 111))
+        self.groupBox.setGeometry(QRect(10, 310, 231, 141))
         self.groupBox.setCheckable(True)
         self.groupBox.setChecked(True)
         self.horseArmorItem = QPushButton(self.groupBox)
@@ -1300,6 +1300,12 @@ class Ui_MainWindow(object):
         self.label_49 = QLabel(self.groupBox)
         self.label_49.setObjectName(u"label_49")
         self.label_49.setGeometry(QRect(120, 20, 81, 16))
+        self.label_53 = QLabel(self.groupBox)
+        self.label_53.setObjectName(u"label_53")
+        self.label_53.setGeometry(QRect(10, 100, 71, 16))
+        self.horseArmor = QSpinBox(self.groupBox)
+        self.horseArmor.setObjectName(u"horseArmor")
+        self.horseArmor.setGeometry(QRect(110, 100, 67, 24))
         self.elementEditor.addWidget(self.equipmentEditor)
 
         self.formLayout_2.setWidget(0, QFormLayout.ItemRole.FieldRole, self.elementEditor)
@@ -1787,6 +1793,18 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(tooltip)
         self.helmetArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the helmet.</p><p>Leather: 1</p><p>Gold, Chain, Iron: 2</p><p>Diamond, Netherite: 3</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
+        self.label_50.setText(QCoreApplication.translate("MainWindow", u"Chestplate Armor", None))
+#if QT_CONFIG(tooltip)
+        self.chestplateArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the chestplate.</p><p>Leather: 3</p><p>Gold, Chain: 5</p><p>Iron: 6</p><p>Diamond, Netherite: 8</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.label_51.setText(QCoreApplication.translate("MainWindow", u"Leggings Armor", None))
+#if QT_CONFIG(tooltip)
+        self.leggingsArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the leggings.</p><p>Leather: 2</p><p>Gold: 3</p><p>Chain: 4</p><p>Iron: 5</p><p>Diamond, Netherite: 6</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.label_52.setText(QCoreApplication.translate("MainWindow", u"Boots Armor", None))
+#if QT_CONFIG(tooltip)
+        self.bootsArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the boots.</p><p>Leather, Gold, Chain: 1</p><p>Iron: 2</p><p>Diamond, Netherite: 3</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_44.setText(QCoreApplication.translate("MainWindow", u"Armor Toughness", None))
 #if QT_CONFIG(tooltip)
         self.equipmentArmorToughness.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The toughness of the armor.<br/></p><p>Leather, Gold, Chain, Iron: 0</p><p>Diamond: 2</p><p>Netherite: 3</p></body></html>", None))
@@ -1798,18 +1816,6 @@ class Ui_MainWindow(object):
         self.label_46.setText(QCoreApplication.translate("MainWindow", u"Durability", None))
 #if QT_CONFIG(tooltip)
         self.equipmentDurability.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The durability of the Chestplate.</p><p>Durability of the others are calculated as:<br/>Helmet - 68.75%</p><p>Leggings - 93.75%</p><p>Boots - 81.25%</p><p><br/></p><p>Here are the defaults:<br/>Leather - 80</p><p>Golden - 112</p><p>Chainmail - 240</p><p>Iron - 240</p><p>Diamond - 528</p><p>Netherite - 592</p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
-        self.label_50.setText(QCoreApplication.translate("MainWindow", u"Chestplate Armor", None))
-        self.label_51.setText(QCoreApplication.translate("MainWindow", u"Leggings Armor", None))
-        self.label_52.setText(QCoreApplication.translate("MainWindow", u"Boots Armor", None))
-#if QT_CONFIG(tooltip)
-        self.chestplateArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the chestplate.</p><p>Leather: 3</p><p>Gold, Chain: 5</p><p>Iron: 6</p><p>Diamond, Netherite: 8</p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(tooltip)
-        self.leggingsArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the leggings.</p><p>Leather: 2</p><p>Gold: 3</p><p>Chain: 4</p><p>Iron: 5</p><p>Diamond, Netherite: 6</p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(tooltip)
-        self.bootsArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the boots.</p><p>Leather, Gold, Chain: 1</p><p>Iron: 2</p><p>Diamond, Netherite: 3</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.equipmentConfirmButton.setText(QCoreApplication.translate("MainWindow", u"Confirm Equipment", None))
 #if QT_CONFIG(tooltip)
@@ -1879,6 +1885,7 @@ class Ui_MainWindow(object):
         self.label_49.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The texture of the model of the horse armor (what is displayed on the horse)</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.label_49.setText(QCoreApplication.translate("MainWindow", u"Model Texture", None))
+        self.label_53.setText(QCoreApplication.translate("MainWindow", u"Horse Armor", None))
         self.menuNew_Element.setTitle(QCoreApplication.translate("MainWindow", u"New Element", None))
         self.menuSave.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
     # retranslateUi

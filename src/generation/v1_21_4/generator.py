@@ -6,6 +6,7 @@ from . import items
 from . import recipes
 from . import paintings
 from . import structures
+from . import equipment
 
 class Generator():
     def __init__(self, app_ver, packDetails, dataFormat, resourceFormat, header, blocks, items, recipes, paintings, data, directory, structures, equipment):
@@ -35,6 +36,14 @@ class Generator():
         os.makedirs(os.path.join(ns_path, "textures", "painting"), exist_ok=True)
         os.makedirs(os.path.join(ns_path, "models"), exist_ok=True)
         os.makedirs(os.path.join(ns_path, "textures"), exist_ok=True)
+
+        if self.equipment:
+            os.makedirs(os.path.join(ns_path, "equipment"), exist_ok=True)
+            os.makedirs(os.path.join(ns_path, "textures", "entity"), exist_ok=True)
+            os.makedirs(os.path.join(ns_path, "textures", "entity", "equipment"), exist_ok=True)
+            os.makedirs(os.path.join(ns_path, "textures", "entity", "equipment", "humanoid"), exist_ok=True)
+            os.makedirs(os.path.join(ns_path, "textures", "entity", "equipment", "humanoid_leggings"), exist_ok=True)
+            os.makedirs(os.path.join(ns_path, "textures", "entity", "equipment", "horse_body"), exist_ok=True)
 
         # pack.mcmeta
         with open(os.path.join(self.resPackDirectory, "pack.mcmeta"), "w") as pack:

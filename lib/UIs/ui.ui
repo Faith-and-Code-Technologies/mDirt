@@ -2332,7 +2332,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <x>10</x>
           <y>10</y>
           <width>231</width>
-          <height>264</height>
+          <height>286</height>
          </rect>
         </property>
         <layout class="QFormLayout" name="formLayout_10">
@@ -2364,6 +2364,57 @@ li.checked::marker { content: &quot;\2612&quot;; }
           <widget class="QSpinBox" name="helmetArmor">
            <property name="toolTip">
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The armor points for the helmet.&lt;/p&gt;&lt;p&gt;Leather: 1&lt;/p&gt;&lt;p&gt;Gold, Chain, Iron: 2&lt;/p&gt;&lt;p&gt;Diamond, Netherite: 3&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="maximum">
+            <number>30</number>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_50">
+           <property name="text">
+            <string>Chestplate Armor</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QSpinBox" name="chestplateArmor">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The armor points for the chestplate.&lt;/p&gt;&lt;p&gt;Leather: 3&lt;/p&gt;&lt;p&gt;Gold, Chain: 5&lt;/p&gt;&lt;p&gt;Iron: 6&lt;/p&gt;&lt;p&gt;Diamond, Netherite: 8&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="maximum">
+            <number>30</number>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_51">
+           <property name="text">
+            <string>Leggings Armor</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QSpinBox" name="leggingsArmor">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The armor points for the leggings.&lt;/p&gt;&lt;p&gt;Leather: 2&lt;/p&gt;&lt;p&gt;Gold: 3&lt;/p&gt;&lt;p&gt;Chain: 4&lt;/p&gt;&lt;p&gt;Iron: 5&lt;/p&gt;&lt;p&gt;Diamond, Netherite: 6&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="maximum">
+            <number>30</number>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="label_52">
+           <property name="text">
+            <string>Boots Armor</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QSpinBox" name="bootsArmor">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The armor points for the boots.&lt;/p&gt;&lt;p&gt;Leather, Gold, Chain: 1&lt;/p&gt;&lt;p&gt;Iron: 2&lt;/p&gt;&lt;p&gt;Diamond, Netherite: 3&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="maximum">
             <number>30</number>
@@ -2418,57 +2469,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
            </property>
            <property name="maximum">
             <number>100000</number>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_50">
-           <property name="text">
-            <string>Chestplate Armor</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_51">
-           <property name="text">
-            <string>Leggings Armor</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="label_52">
-           <property name="text">
-            <string>Boots Armor</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QSpinBox" name="chestplateArmor">
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The armor points for the chestplate.&lt;/p&gt;&lt;p&gt;Leather: 3&lt;/p&gt;&lt;p&gt;Gold, Chain: 5&lt;/p&gt;&lt;p&gt;Iron: 6&lt;/p&gt;&lt;p&gt;Diamond, Netherite: 8&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="maximum">
-            <number>30</number>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QSpinBox" name="leggingsArmor">
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The armor points for the leggings.&lt;/p&gt;&lt;p&gt;Leather: 2&lt;/p&gt;&lt;p&gt;Gold: 3&lt;/p&gt;&lt;p&gt;Chain: 4&lt;/p&gt;&lt;p&gt;Iron: 5&lt;/p&gt;&lt;p&gt;Diamond, Netherite: 6&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="maximum">
-            <number>30</number>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QSpinBox" name="bootsArmor">
-           <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The armor points for the boots.&lt;/p&gt;&lt;p&gt;Leather, Gold, Chain: 1&lt;/p&gt;&lt;p&gt;Iron: 2&lt;/p&gt;&lt;p&gt;Diamond, Netherite: 3&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-           </property>
-           <property name="maximum">
-            <number>30</number>
            </property>
           </widget>
          </item>
@@ -2797,9 +2797,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>280</y>
+          <y>310</y>
           <width>231</width>
-          <height>111</height>
+          <height>141</height>
          </rect>
         </property>
         <property name="title">
@@ -2911,6 +2911,29 @@ li.checked::marker { content: &quot;\2612&quot;; }
          </property>
          <property name="text">
           <string>Model Texture</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_53">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>100</y>
+           <width>71</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Horse Armor</string>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="horseArmor">
+         <property name="geometry">
+          <rect>
+           <x>110</x>
+           <y>100</y>
+           <width>67</width>
+           <height>24</height>
+          </rect>
          </property>
         </widget>
        </widget>

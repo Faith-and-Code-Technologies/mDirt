@@ -217,6 +217,8 @@ class App(QMainWindow):
             ("chestplate", "Item"),
             ("leggings", "Item"),
             ("boots", "Item"),
+            ("horseArmor", "Model"),
+            ("horseArmor", "Item")
         ]
 
         for part, type_ in button_map:
@@ -1373,6 +1375,7 @@ class App(QMainWindow):
             self.ui.chestplateArmor,
             self.ui.leggingsArmor,
             self.ui.bootsArmor,
+            self.ui.horseArmor,
             self.ui.equipmentArmorToughness,
             self.ui.equipmentKBResistance,
             self.ui.equipmentDurability
@@ -1392,7 +1395,8 @@ class App(QMainWindow):
                 "helmet": self.ui.helmetArmor.value(),
                 "chestplate": self.ui.chestplateArmor.value(),
                 "leggings": self.ui.leggingsArmor.value(),
-                "boots": self.ui.bootsArmor.value()
+                "boots": self.ui.bootsArmor.value(),
+                "horse": self.ui.horseArmor.value()
             },
             "toughness": self.ui.equipmentArmorToughness.value(),
             "kb_resistance": self.ui.equipmentKBResistance.value(),
