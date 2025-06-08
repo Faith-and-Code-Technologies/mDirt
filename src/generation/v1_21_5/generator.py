@@ -6,6 +6,7 @@ from . import items
 from . import recipes
 from . import paintings
 from . import structures
+from . import equipment
 
 class Generator():
     def __init__(self, app_ver, packDetails, dataFormat, resourceFormat, header, blocks, items, recipes, paintings, data, directory, structures=None, equipment=None):
@@ -36,6 +37,14 @@ class Generator():
         os.makedirs(os.path.join(ns_path, "models"), exist_ok=True)
         os.makedirs(os.path.join(ns_path, "textures"), exist_ok=True)
 
+        if self.equipment:
+            os.makedirs(os.path.join(ns_path, "equipment"), exist_ok=True)
+            os.makedirs(os.path.join(ns_path, "textures", "entity"), exist_ok=True)
+            os.makedirs(os.path.join(ns_path, "textures", "entity", "equipment"), exist_ok=True)
+            os.makedirs(os.path.join(ns_path, "textures", "entity", "equipment", "humanoid"), exist_ok=True)
+            os.makedirs(os.path.join(ns_path, "textures", "entity", "equipment", "humanoid_leggings"), exist_ok=True)
+            os.makedirs(os.path.join(ns_path, "textures", "entity", "equipment", "horse_body"), exist_ok=True)
+
         # pack.mcmeta
         with open(os.path.join(self.resPackDirectory, "pack.mcmeta"), "w") as pack:
             json.dump({
@@ -49,6 +58,7 @@ class Generator():
         blockResourcer = blocks.BlockResourcer
         itemResourcer = items.ItemResourcer
         paintingResourcer = paintings.PaintingResourcer
+        equipmentResourcer = equipment.EquipmentResourcer
 
         # Generate resources
         if self.blocks:
@@ -70,6 +80,14 @@ class Generator():
                 self.paintings
             )
             paintingResourcer.generate()
+        
+        if self.equipment:
+            equipmentResourcer = equipmentResourcer(
+                self.resPackDirectory,
+                self.packNamespace,
+                self.equipment
+            )
+            equipmentResourcer.generate()
 
     def generateDatapack(self):
         self.packName = self.packDetails["name"]
@@ -144,6 +162,7 @@ class Generator():
         recipeGenerator = recipes.RecipeGenerator
         paintingGenerator = paintings.PaintingGenerator
         structureGenerator = structures.StructureGenerator
+        equipmentGenerator = equipment.EquipmentGenerator
 
         #######################
         # CUSTOM BLOCKS       #
@@ -219,6 +238,19 @@ class Generator():
                 self.structures
             )
             structureGenerator.generate()
+        
+        #######################
+        # CUSTOM EQUIPMENT    #
+        #######################
+
+        if self.equipment:
+            equipmentGenerator = equipmentGenerator(
+                self.header,
+                self.namespaceDirectory,
+                self.equipment,
+                self.packNamespace
+            )
+            equipmentGenerator.generate()
 
         #######################
         # RESOURCE PACK       #
