@@ -49,6 +49,7 @@ class EquipmentResourcer:
         # Create namespace/models/item/*.json
         for equip in self.equipment:
             equipmentName = equip
+            horse = self.equipment[equip]["includeHorse"]
 
             # Generate it for helmet, chestplate, leggings, and boots
             for item in ["helmet", "chestplate", "leggings", "boots"]:
