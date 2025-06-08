@@ -1337,7 +1337,7 @@ class App(QMainWindow):
             self.equipmentModel["h"] = destinationPath
         elif type_.lower() == "humanoid_leggings":
             self.equipmentModel["h_l"] = destinationPath
-        elif type_.lower() == "horseArmor1":
+        elif type_.lower() == "horsearmor1":
             self.equipmentModel["horseArmor"] = destinationPath
         elif type_.lower() == "item":
             self.equipmentTexture[id] = destinationPath
@@ -1394,7 +1394,7 @@ class App(QMainWindow):
     def addEquipment(self):
         if self.validateEquipmentDetails() == 0: return
 
-        base_dur = self.ui.equipmentDurability
+        base_dur = self.ui.equipmentDurability.value()
 
         self.equipmentProperties = {
             "name": self.ui.equipmentName.text(),

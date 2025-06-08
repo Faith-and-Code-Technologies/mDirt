@@ -58,6 +58,7 @@ class Generator():
         blockResourcer = blocks.BlockResourcer
         itemResourcer = items.ItemResourcer
         paintingResourcer = paintings.PaintingResourcer
+        equipmentResourcer = equipment.EquipmentResourcer
 
         # Generate resources
         if self.blocks:
@@ -79,6 +80,14 @@ class Generator():
                 self.paintings
             )
             paintingResourcer.generate()
+        
+        if self.equipment:
+            equipmentResourcer = equipmentResourcer(
+                self.resPackDirectory,
+                self.packNamespace,
+                self.equipment
+            )
+            equipmentResourcer.generate()
 
     def generateDatapack(self):
         self.packName = self.packDetails["name"]
@@ -153,6 +162,7 @@ class Generator():
         recipeGenerator = recipes.RecipeGenerator
         paintingGenerator = paintings.PaintingGenerator
         structureGenerator = structures.StructureGenerator
+        equipmentGenerator = equipment.EquipmentGenerator
 
         #######################
         # CUSTOM BLOCKS       #
@@ -228,6 +238,19 @@ class Generator():
                 self.structures
             )
             structureGenerator.generate()
+        
+        #######################
+        # CUSTOM EQUIPMENT    #
+        #######################
+
+        if self.equipment:
+            equipmentGenerator = equipmentGenerator(
+                self.header,
+                self.namespaceDirectory,
+                self.equipment,
+                self.packNamespace
+            )
+            equipmentGenerator.generate()
 
         #######################
         # RESOURCE PACK       #
