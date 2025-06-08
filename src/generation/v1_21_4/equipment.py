@@ -129,11 +129,11 @@ class EquipmentResourcer:
             for texture in self.equipment[equip]["itemTextures"]:
                 if texture == "horseArmor":
                     if not horse: continue
-                    texture = "horse_armor"
-                texture = self.equipment[equip]["name"] + "_" + texture
+                    name = "horse_armor"
+                name = self.equipment[equip]["name"] + "_" + texture
                 shutil.copy(
                     self.equipment[equip]["itemTextures"][texture], 
-                    os.path.normpath(f'{currentPath}/{os.path.splitext(os.path.basename(str(texture)))[-2]}.png')
+                    os.path.normpath(f'{currentPath}/{name}.png')
                     )
         
         # Copy namespace/textures/entity/equipment/*/*.png
