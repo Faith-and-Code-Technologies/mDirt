@@ -48,7 +48,7 @@ class EquipmentResourcer:
     def generate(self):
         # Create namespace/models/item/*.json
         for equip in self.equipment:
-            equipmentName = equip
+            equipmentName = self.equipment[equip]["name"]
             horse = self.equipment[equip]["includeHorse"]
 
             # Generate it for helmet, chestplate, leggings, and boots
@@ -77,7 +77,7 @@ class EquipmentResourcer:
         # Create namespace/items/*.json
         for equip in self.equipment:
             horse = self.equipment[equip]["includeHorse"]
-            equipmentName = equip
+            equipmentName = self.equipment[equip]["name"]
 
             # Generate it for helmet, chestplate, leggings, and boots
             for item in ["helmet", "chestplate", "leggings", "boots"]:

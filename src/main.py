@@ -1408,10 +1408,10 @@ class App(QMainWindow):
             "toughness": self.ui.equipmentArmorToughness.value(),
             "kb_resistance": self.ui.equipmentKBResistance.value(),
             "durability": {
-                "helmet": int(68.75 * base_dur),
+                "helmet": int(.6875 * base_dur),
                 "chestplate": int(base_dur),
-                "leggings": int(93.75 * base_dur),
-                "boots": int(81.25 * base_dur)
+                "leggings": int(.9375 * base_dur),
+                "boots": int(.8125 * base_dur)
             },
             "itemTextures": self.equipmentTexture,
             "modelTextures": self.equipmentModel,
