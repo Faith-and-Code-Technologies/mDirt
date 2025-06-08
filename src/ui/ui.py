@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiiDbpll.ui'
+## Form generated from reading UI file 'uiCvbjxG.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.9.0
 ##
@@ -1107,101 +1107,111 @@ class Ui_MainWindow(object):
         self.equipmentEditor.setObjectName(u"equipmentEditor")
         self.formLayoutWidget_3 = QWidget(self.equipmentEditor)
         self.formLayoutWidget_3.setObjectName(u"formLayoutWidget_3")
-        self.formLayoutWidget_3.setGeometry(QRect(10, 10, 231, 286))
+        self.formLayoutWidget_3.setGeometry(QRect(10, 10, 241, 292))
         self.formLayout_10 = QFormLayout(self.formLayoutWidget_3)
         self.formLayout_10.setObjectName(u"formLayout_10")
         self.formLayout_10.setContentsMargins(0, 0, 0, 0)
         self.label_34 = QLabel(self.formLayoutWidget_3)
         self.label_34.setObjectName(u"label_34")
 
-        self.formLayout_10.setWidget(0, QFormLayout.ItemRole.LabelRole, self.label_34)
+        self.formLayout_10.setWidget(1, QFormLayout.ItemRole.LabelRole, self.label_34)
 
         self.equipmentName = QLineEdit(self.formLayoutWidget_3)
         self.equipmentName.setObjectName(u"equipmentName")
 
-        self.formLayout_10.setWidget(0, QFormLayout.ItemRole.FieldRole, self.equipmentName)
+        self.formLayout_10.setWidget(1, QFormLayout.ItemRole.FieldRole, self.equipmentName)
 
         self.label_43 = QLabel(self.formLayoutWidget_3)
         self.label_43.setObjectName(u"label_43")
 
-        self.formLayout_10.setWidget(1, QFormLayout.ItemRole.LabelRole, self.label_43)
+        self.formLayout_10.setWidget(2, QFormLayout.ItemRole.LabelRole, self.label_43)
 
         self.helmetArmor = QSpinBox(self.formLayoutWidget_3)
         self.helmetArmor.setObjectName(u"helmetArmor")
         self.helmetArmor.setMaximum(30)
 
-        self.formLayout_10.setWidget(1, QFormLayout.ItemRole.FieldRole, self.helmetArmor)
+        self.formLayout_10.setWidget(2, QFormLayout.ItemRole.FieldRole, self.helmetArmor)
 
         self.label_50 = QLabel(self.formLayoutWidget_3)
         self.label_50.setObjectName(u"label_50")
 
-        self.formLayout_10.setWidget(2, QFormLayout.ItemRole.LabelRole, self.label_50)
+        self.formLayout_10.setWidget(3, QFormLayout.ItemRole.LabelRole, self.label_50)
 
         self.chestplateArmor = QSpinBox(self.formLayoutWidget_3)
         self.chestplateArmor.setObjectName(u"chestplateArmor")
         self.chestplateArmor.setMaximum(30)
 
-        self.formLayout_10.setWidget(2, QFormLayout.ItemRole.FieldRole, self.chestplateArmor)
+        self.formLayout_10.setWidget(3, QFormLayout.ItemRole.FieldRole, self.chestplateArmor)
 
         self.label_51 = QLabel(self.formLayoutWidget_3)
         self.label_51.setObjectName(u"label_51")
 
-        self.formLayout_10.setWidget(3, QFormLayout.ItemRole.LabelRole, self.label_51)
+        self.formLayout_10.setWidget(4, QFormLayout.ItemRole.LabelRole, self.label_51)
 
         self.leggingsArmor = QSpinBox(self.formLayoutWidget_3)
         self.leggingsArmor.setObjectName(u"leggingsArmor")
         self.leggingsArmor.setMaximum(30)
 
-        self.formLayout_10.setWidget(3, QFormLayout.ItemRole.FieldRole, self.leggingsArmor)
+        self.formLayout_10.setWidget(4, QFormLayout.ItemRole.FieldRole, self.leggingsArmor)
 
         self.label_52 = QLabel(self.formLayoutWidget_3)
         self.label_52.setObjectName(u"label_52")
 
-        self.formLayout_10.setWidget(4, QFormLayout.ItemRole.LabelRole, self.label_52)
+        self.formLayout_10.setWidget(5, QFormLayout.ItemRole.LabelRole, self.label_52)
 
         self.bootsArmor = QSpinBox(self.formLayoutWidget_3)
         self.bootsArmor.setObjectName(u"bootsArmor")
         self.bootsArmor.setMaximum(30)
 
-        self.formLayout_10.setWidget(4, QFormLayout.ItemRole.FieldRole, self.bootsArmor)
+        self.formLayout_10.setWidget(5, QFormLayout.ItemRole.FieldRole, self.bootsArmor)
 
         self.label_44 = QLabel(self.formLayoutWidget_3)
         self.label_44.setObjectName(u"label_44")
 
-        self.formLayout_10.setWidget(5, QFormLayout.ItemRole.LabelRole, self.label_44)
+        self.formLayout_10.setWidget(6, QFormLayout.ItemRole.LabelRole, self.label_44)
 
         self.equipmentArmorToughness = QSpinBox(self.formLayoutWidget_3)
         self.equipmentArmorToughness.setObjectName(u"equipmentArmorToughness")
         self.equipmentArmorToughness.setMaximum(20)
 
-        self.formLayout_10.setWidget(5, QFormLayout.ItemRole.FieldRole, self.equipmentArmorToughness)
+        self.formLayout_10.setWidget(6, QFormLayout.ItemRole.FieldRole, self.equipmentArmorToughness)
 
         self.label_45 = QLabel(self.formLayoutWidget_3)
         self.label_45.setObjectName(u"label_45")
 
-        self.formLayout_10.setWidget(6, QFormLayout.ItemRole.LabelRole, self.label_45)
+        self.formLayout_10.setWidget(7, QFormLayout.ItemRole.LabelRole, self.label_45)
 
         self.equipmentKBResistance = QSpinBox(self.formLayoutWidget_3)
         self.equipmentKBResistance.setObjectName(u"equipmentKBResistance")
         self.equipmentKBResistance.setMaximum(100)
 
-        self.formLayout_10.setWidget(6, QFormLayout.ItemRole.FieldRole, self.equipmentKBResistance)
+        self.formLayout_10.setWidget(7, QFormLayout.ItemRole.FieldRole, self.equipmentKBResistance)
 
         self.label_46 = QLabel(self.formLayoutWidget_3)
         self.label_46.setObjectName(u"label_46")
 
-        self.formLayout_10.setWidget(7, QFormLayout.ItemRole.LabelRole, self.label_46)
+        self.formLayout_10.setWidget(8, QFormLayout.ItemRole.LabelRole, self.label_46)
 
         self.equipmentDurability = QSpinBox(self.formLayoutWidget_3)
         self.equipmentDurability.setObjectName(u"equipmentDurability")
         self.equipmentDurability.setMaximum(100000)
 
-        self.formLayout_10.setWidget(7, QFormLayout.ItemRole.FieldRole, self.equipmentDurability)
+        self.formLayout_10.setWidget(8, QFormLayout.ItemRole.FieldRole, self.equipmentDurability)
 
         self.equipmentConfirmButton = QPushButton(self.formLayoutWidget_3)
         self.equipmentConfirmButton.setObjectName(u"equipmentConfirmButton")
 
-        self.formLayout_10.setWidget(8, QFormLayout.ItemRole.SpanningRole, self.equipmentConfirmButton)
+        self.formLayout_10.setWidget(9, QFormLayout.ItemRole.SpanningRole, self.equipmentConfirmButton)
+
+        self.label_56 = QLabel(self.formLayoutWidget_3)
+        self.label_56.setObjectName(u"label_56")
+
+        self.formLayout_10.setWidget(0, QFormLayout.ItemRole.LabelRole, self.label_56)
+
+        self.equipmentDisplayName = QLineEdit(self.formLayoutWidget_3)
+        self.equipmentDisplayName.setObjectName(u"equipmentDisplayName")
+
+        self.formLayout_10.setWidget(0, QFormLayout.ItemRole.FieldRole, self.equipmentDisplayName)
 
         self.helmetItem = QPushButton(self.equipmentEditor)
         self.helmetItem.setObjectName(u"helmetItem")
@@ -1259,7 +1269,7 @@ class Ui_MainWindow(object):
         self.label_48.setGeometry(QRect(360, 0, 91, 16))
         self.groupBox = QGroupBox(self.equipmentEditor)
         self.groupBox.setObjectName(u"groupBox")
-        self.groupBox.setGeometry(QRect(10, 310, 231, 141))
+        self.groupBox.setGeometry(QRect(10, 310, 241, 141))
         self.groupBox.setCheckable(True)
         self.groupBox.setChecked(True)
         self.horseArmorItem = QPushButton(self.groupBox)
@@ -1804,36 +1814,38 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(tooltip)
         self.equipmentName.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The name of the armor SET.<br/>If set to &quot;Emerald&quot;, it would display on a helmet as &quot;Emerald Helmet&quot;.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
-        self.equipmentName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Emerald", None))
-        self.label_43.setText(QCoreApplication.translate("MainWindow", u"Helmet Armor", None))
+        self.equipmentName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"emerald", None))
+        self.label_43.setText(QCoreApplication.translate("MainWindow", u"Helmet Armor:", None))
 #if QT_CONFIG(tooltip)
         self.helmetArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the helmet.</p><p>Leather: 1</p><p>Gold, Chain, Iron: 2</p><p>Diamond, Netherite: 3</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
-        self.label_50.setText(QCoreApplication.translate("MainWindow", u"Chestplate Armor", None))
+        self.label_50.setText(QCoreApplication.translate("MainWindow", u"Chestplate Armor:", None))
 #if QT_CONFIG(tooltip)
         self.chestplateArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the chestplate.</p><p>Leather: 3</p><p>Gold, Chain: 5</p><p>Iron: 6</p><p>Diamond, Netherite: 8</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
-        self.label_51.setText(QCoreApplication.translate("MainWindow", u"Leggings Armor", None))
+        self.label_51.setText(QCoreApplication.translate("MainWindow", u"Leggings Armor:", None))
 #if QT_CONFIG(tooltip)
         self.leggingsArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the leggings.</p><p>Leather: 2</p><p>Gold: 3</p><p>Chain: 4</p><p>Iron: 5</p><p>Diamond, Netherite: 6</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
-        self.label_52.setText(QCoreApplication.translate("MainWindow", u"Boots Armor", None))
+        self.label_52.setText(QCoreApplication.translate("MainWindow", u"Boots Armor:", None))
 #if QT_CONFIG(tooltip)
         self.bootsArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the boots.</p><p>Leather, Gold, Chain: 1</p><p>Iron: 2</p><p>Diamond, Netherite: 3</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
-        self.label_44.setText(QCoreApplication.translate("MainWindow", u"Armor Toughness", None))
+        self.label_44.setText(QCoreApplication.translate("MainWindow", u"Armor Toughness:", None))
 #if QT_CONFIG(tooltip)
         self.equipmentArmorToughness.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The toughness of the armor.<br/></p><p>Leather, Gold, Chain, Iron: 0</p><p>Diamond: 2</p><p>Netherite: 3</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
-        self.label_45.setText(QCoreApplication.translate("MainWindow", u"Knockback Resistance", None))
+        self.label_45.setText(QCoreApplication.translate("MainWindow", u"Knockback Resistance:", None))
 #if QT_CONFIG(tooltip)
         self.equipmentKBResistance.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The %, per piece, of knocback to reduce.<br/>Netherite is set at 10, giving 40% knockback reduction when wearing a full set.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
-        self.label_46.setText(QCoreApplication.translate("MainWindow", u"Durability", None))
+        self.label_46.setText(QCoreApplication.translate("MainWindow", u"Durability:", None))
 #if QT_CONFIG(tooltip)
         self.equipmentDurability.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The durability of the Chestplate.</p><p>Durability of the others are calculated as:<br/>Helmet - 68.75%</p><p>Leggings - 93.75%</p><p>Boots - 81.25%</p><p><br/></p><p>Here are the defaults:<br/>Leather - 80</p><p>Golden - 112</p><p>Chainmail - 240</p><p>Iron - 240</p><p>Diamond - 528</p><p>Netherite - 592</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.equipmentConfirmButton.setText(QCoreApplication.translate("MainWindow", u"Confirm Equipment", None))
+        self.label_56.setText(QCoreApplication.translate("MainWindow", u"Display Name:", None))
+        self.equipmentDisplayName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Emerald", None))
 #if QT_CONFIG(tooltip)
         self.helmetItem.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The top texture of your block. <span style=\" font-weight:700;\">If you are using a Custom model, only use the bottom texture!</span></p></body></html>", None))
 #endif // QT_CONFIG(tooltip)

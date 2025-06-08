@@ -1351,8 +1351,11 @@ class App(QMainWindow):
         self.ui.elementEditor.setCurrentIndex(ElementPage.EQUIPMENT)
 
     def validateEquipmentDetails(self):
-        if not FieldValidator.validate_text_field(self.ui.equipmentName, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz _-!0123456789", "Equipment Name"):
+        if not FieldValidator.validate_text_field(self.ui.equipmentName, "abcdefghijklmnopqrstuvwxyz _-!0123456789", "Equipment Name"):
             return 0
+        if not FieldValidator.validate_text_field(self.ui.equipmentDisplayName, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz _-!0123456789", "Equipment Display Name"):
+            return 0
+        
         if self.equipmentTexture["helmet"] == None: alert("Item Texture: Helmet is empty!"); return 0
         if self.equipmentTexture["chestplate"] == None: alert("Item Texture: Chestplate is empty!"); return 0
         if self.equipmentTexture["leggings"] == None: alert("Item Texture: Leggings is empty!"); return 0
@@ -1366,8 +1369,11 @@ class App(QMainWindow):
         return 1
 
     def clearEquipmentFields(self):
-        FieldResetter.clear_labels(
+        FieldResetter.clear_line_edits(
             self.ui.equipmentName,
+            self.ui.equipmentDisplayName
+        )
+        FieldResetter.clear_labels(
             self.ui.chestplateModelLabel,
             self.ui.leggingsModelLabel,
             self.ui.helmetItemLabel,
@@ -1398,6 +1404,7 @@ class App(QMainWindow):
 
         self.equipmentProperties = {
             "name": self.ui.equipmentName.text(),
+            "displayName": self.ui.equipmentDisplayName.text(),
             "armor": {
                 "helmet": self.ui.helmetArmor.value(),
                 "chestplate": self.ui.chestplateArmor.value(),
