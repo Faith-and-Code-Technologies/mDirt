@@ -231,6 +231,16 @@ class App(QMainWindow):
         self.ui.leggingsModel.clicked.connect(lambda: self.addEquipmentTexture("humanoid_leggings", None, self.ui.leggingsModelLabel))
         self.ui.horseArmorModel.clicked.connect(lambda: self.addEquipmentTexture("horseArmor1", None, self.ui.horseArmorModelLabel))
 
+        self.dropHelmet = DropHandler(self.ui.helmetItem, '.png', lambda path: self.addEquipmentTexture("Item", "helmet", self.ui.helmetItemLabel, path))
+        self.dropChestplate = DropHandler(self.ui.chestplateItem, '.png', lambda path: self.addEquipmentTexture("Item", "chestplate", self.ui.chestplateItemLabel, path))
+        self.dropLeggings = DropHandler(self.ui.leggingsItem, '.png', lambda path: self.addEquipmentTexture("Item", "leggings", self.ui.leggingsItemLabel, path))
+        self.dropBoots = DropHandler(self.ui.bootsItem, '.png', lambda path: self.addEquipmentTexture("Item", "boots", self.ui.bootsItemLabel, path))
+        self.dropHorse = DropHandler(self.ui.horseArmorItem, '.png', lambda path: self.addEquipmentTexture("Item", "horseArmor", self.ui.horseArmorItemLabel, path))
+
+        self.dropChestplateModel = DropHandler(self.ui.chestplateModel, '.png', lambda path: self.addEquipmentTexture("humanoid", None, self.ui.chestplateModelLabel, path))
+        self.dropLeggingsModel = DropHandler(self.ui.leggingsModel, '.png', lambda path: self.addEquipmentTexture("humanoid_leggings", None, self.ui.leggingsModelLabel, path))
+        self.dropHorseModel = DropHandler(self.ui.horseArmorModel, '.png', lambda path: self.addEquipmentTexture("horseArmor1", None, self.ui.horseArmorModelLabel, path))
+
         self.ui.equipmentConfirmButton.clicked.connect(self.addEquipment)
 
         # Settings Specific Connections
@@ -248,7 +258,7 @@ class App(QMainWindow):
             subprocess.Popen(updaterPath)
         else:
             alert("The mDirt Updater is missing! Reinstall mDirt to fix it.", 'critical')
-            #sys.exit(1)
+            sys.exit(1)
 
     #######################
     # SETUP PROJECT       #
