@@ -258,7 +258,7 @@ class App(QMainWindow):
             subprocess.Popen(updaterPath)
         else:
             alert("The mDirt Updater is missing! Reinstall mDirt to fix it.", 'critical')
-            sys.exit(1)
+            #sys.exit(1)
 
     #######################
     # SETUP PROJECT       #
@@ -975,6 +975,11 @@ class App(QMainWindow):
         if slotId in (9, 11, 13):
             for block in self.blocks: self.ui_form.itemsBox.addItem(f'{self.blocks[block]["name"]}')
             for item in self.items: self.ui_form.itemsBox.addItem(f'{self.items[item]["name"]}')
+            for equip in self.equipment: 
+                for item in ['helmet', 'chestplate', 'leggings', 'boots', 'horse_armor']:
+                    if not self.equipment[equip]["includeHorse"]:
+                        if item == "horse_armor": continue
+                    self.ui_form.itemsBox.addItem(f'{self.equipment[equip]["name"]}_{item}')
 
         for item in item_list: self.ui_form.itemsBox.addItem(item)
 
