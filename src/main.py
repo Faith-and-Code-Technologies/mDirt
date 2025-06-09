@@ -316,7 +316,12 @@ class App(QMainWindow):
         merged = {item: 'online' for item in supportedVersions}
         merged.update({item: 'local' for item in versions})
         self.supportedVersions = merged
-        
+
+    def installVersionsJson(self):
+        path = self.mainDirectory / 'lib' / 'version_list.json'
+        with open(path, 'w') as f:
+            f.write(self.version_json)
+
     def openProjectMenu(self):
         self.pullSupportedVersions()                   # Pulls the supported version list from the server.
 
@@ -373,23 +378,54 @@ class App(QMainWindow):
         
     def newProject(self):
         if self.validatePackDetails() == 0: return      # Make sure all fields aren't empty and only contain valid characters.
+        
+        if '🌐' in self.ui.packVersion.currentText():
+            remote = True
+        else: remote = False
 
-        self.packDetails = {
-            "name": self.ui.packName.text(),
-            "namespace": self.ui.packNamespace.text(),
-            "description": self.ui.packDescription.text(),
-            "author": self.ui.packAuthor.text(),
-            "version": self.ui.packVersion.currentText()
-        }
+        if remote:
+            getRemote = QMessageBox.question(
+                self,
+                "Confirm Remote Download",
+                "The version you have selected is not installed. Would you like to install it?",
+                QMessageBox.Yes | QMessageBox.No,
+                QMessageBox.Yes
+            )
+            if getRemote == QMessageBox.Yes:
+                self.packDetails = {
+                    "name": self.ui.packName.text(),
+                    "namespace": self.ui.packNamespace.text(),
+                    "description": self.ui.packDescription.text(),
+                    "author": self.ui.packAuthor.text(),
+                    "version": self.ui.packVersion.currentText().removeprefix('🌐 ')
+                }
 
-        self.pullData()
-        self.setupProjectData()
+                self.installVersionsJson()
+                self.pullData()
+                self.setupProjectData()
 
-        self.saveProjectAs()
-        self.ui.menuNew_Element.setEnabled(True) # Enable the Element buttons so user can add things to their pack
+                self.saveProjectAs()
+                self.ui.menuNew_Element.setEnabled(True) # Enable the Element buttons so user can add things to their pack
 
-        self.ui.elementEditor.setCurrentIndex(ElementPage.HOME)
-        self.ui.textEdit.setHtml(f'<h1>Welcome to mDirt. Create a new Element to get started.</h1>')
+                self.ui.elementEditor.setCurrentIndex(ElementPage.HOME)
+                self.ui.textEdit.setHtml(f'<h1>Welcome to mDirt. Create a new Element to get started.</h1>')
+            
+            else:
+                QMessageBox.information(self, 'Remote Download Cancelled',
+                                        'Remote Download Cancelled. Please select a different version.')
+
+        else:
+            self.packDetails = {
+                    "name": self.ui.packName.text(),
+                    "namespace": self.ui.packNamespace.text(),
+                    "description": self.ui.packDescription.text(),
+                    "author": self.ui.packAuthor.text(),
+                    "version": self.ui.packVersion.currentText()
+                }
+            self.setupProjectData()
+            self.ui.menuNew_Element.setEnabled(True) # Enable the Element buttons so user can add things to their pack
+            self.ui.elementEditor.setCurrentIndex(ElementPage.HOME)
+            self.ui.textEdit.setHtml(f'<h1>Welcome to mDirt. Create a new Element to get started.</h1>')
 
     def setupProjectData(self):
         with open(f'{self.mainDirectory}/lib/{self.packDetails["version"]}_data.json', "r") as f:
