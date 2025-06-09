@@ -26,7 +26,7 @@ jobs:
 
     - name: Build with PyInstaller
       run: |
-        pyinstaller src/main.py --name mDirt-${{ github.ref_name }} --icon "assets/icon.ico" --onedir --windowed --add-data "lib;lib" --add-data "assets;assets" --add-data "src;src" --add-data "workspaces;workspaces" --hidden-import=jinja2 --hidden-import=jinja2.ext
+        pyinstaller src/main.py --name mDirt-${{ github.ref_name }} --icon "assets/icon.ico" --onedir --windowed --add-data "lib;lib" --add-data "assets;assets" --add-data "src;src" --hidden-import=jinja2 --hidden-import=jinja2.ext
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
