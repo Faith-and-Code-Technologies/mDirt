@@ -1507,7 +1507,7 @@ class App(QMainWindow):
                 "chestplate": self.ui.chestplateArmor.value(),
                 "leggings": self.ui.leggingsArmor.value(),
                 "boots": self.ui.bootsArmor.value(),
-                "horse": self.ui.horseArmor.value()
+                "horse_armor": self.ui.horseArmor.value()
             },
             "toughness": self.ui.equipmentArmorToughness.value(),
             "kb_resistance": self.ui.equipmentKBResistance.value(),
@@ -1516,7 +1516,7 @@ class App(QMainWindow):
                 "chestplate": int(base_dur),
                 "leggings": int(.9375 * base_dur),
                 "boots": int(.8125 * base_dur),
-                "horse": 1
+                "horse_armor": 1
             },
             "itemTextures": self.equipmentTexture,
             "modelTextures": self.equipmentModel,
