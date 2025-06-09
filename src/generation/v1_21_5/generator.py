@@ -206,6 +206,7 @@ class Generator():
                 self.blocks,
                 self.items,
                 self.recipes,
+                self.equipment
             )
 
             recipeGenerator.generate()

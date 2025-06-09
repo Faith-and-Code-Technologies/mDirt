@@ -2,12 +2,13 @@ import os
 from jinja2 import Environment, FileSystemLoader
 
 class RecipeGenerator:
-    def __init__(self, namespaceDirectory, packNamespace, packAuthor, blocks, items, recipes):
+    def __init__(self, namespaceDirectory, packNamespace, packAuthor, blocks, items, recipes, equipment):
         self.namespaceDirectory = namespaceDirectory
         self.packAuthor = packAuthor
         self.blocks = blocks
         self.items = items
         self.recipes = recipes
+        self.equipment = equipment
         self.packNamespace = packNamespace
 
         self.env = Environment(
@@ -32,6 +33,7 @@ class RecipeGenerator:
                         'letters': letters,
                         'blocks': self.blocks,
                         'items': self.items,
+                        'equipment': self.equipment,
                         'packNamespace': self.packNamespace,
                         'packAuthor': self.packAuthor
                     })
@@ -45,6 +47,7 @@ class RecipeGenerator:
                         'outputCount': self.recipes[recipe]['outputCount'],
                         'blocks': self.blocks,
                         'items': self.items,
+                        'equipment': self.equipment,
                         'packNamespace': self.packNamespace,
                         'packAuthor': self.packAuthor
                     })
@@ -59,6 +62,7 @@ class RecipeGenerator:
                     'result': self.recipes[recipe]["items"]["11"],
                     'items': self.items,
                     'blocks': self.blocks,
+                    'equipment': self.equipment,
                     'packNamespace': self.packNamespace,
                     'packAuthor': self.packAuthor
                 })
@@ -73,6 +77,7 @@ class RecipeGenerator:
                     'outputCount': self.recipes[recipe]["outputCount2"],
                     'items': self.items,
                     'blocks': self.blocks,
+                    'equipment': self.equipment,
                     'packNamespace': self.packNamespace,
                     'packAuthor': self.packAuthor
                 })

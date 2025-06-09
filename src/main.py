@@ -991,34 +991,20 @@ class App(QMainWindow):
         self.recipe[id_] = item
 
         match id_:
-            case 0:
-                self.ui.slot0.setText(item)
-            case 1:
-                self.ui.slot1.setText(item)
-            case 2:
-                self.ui.slot2.setText(item)
-            case 3:
-                self.ui.slot3.setText(item)
-            case 4:
-                self.ui.slot4.setText(item)
-            case 5:
-                self.ui.slot5.setText(item)
-            case 6:
-                self.ui.slot6.setText(item)
-            case 7:
-                self.ui.slot7.setText(item)
-            case 8:
-                self.ui.slot8.setText(item)
-            case 9:
-                self.ui.slot9.setText(item)
-            case 10:
-                self.ui.smeltingInput.setText(item)
-            case 11:
-                self.ui.smeltingOutput.setText(item)
-            case 12:
-                self.ui.stoneCuttingInput.setText(item)
-            case 13:
-                self.ui.stoneCuttingOutput.setText(item)
+            case 0: self.ui.slot0.setText(item)
+            case 1: self.ui.slot1.setText(item)
+            case 2: self.ui.slot2.setText(item)
+            case 3: self.ui.slot3.setText(item)
+            case 4: self.ui.slot4.setText(item)
+            case 5: self.ui.slot5.setText(item)
+            case 6: self.ui.slot6.setText(item)
+            case 7: self.ui.slot7.setText(item)
+            case 8: self.ui.slot8.setText(item)
+            case 9: self.ui.slot9.setText(item)
+            case 10: self.ui.smeltingInput.setText(item)
+            case 11: self.ui.smeltingOutput.setText(item)
+            case 12: self.ui.stoneCuttingInput.setText(item)
+            case 13: self.ui.stoneCuttingOutput.setText(item)
 
         self.block_popup.close()
 
