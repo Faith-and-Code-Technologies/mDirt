@@ -1182,20 +1182,20 @@ class App(QMainWindow):
         self.ui.exactlyRadio.setChecked(properties["exact"])
         self.ui.slot9Count.setValue(properties["outputCount"])
 
-        try:
-            self.ui.slot0.setText(properties["items"][0])
-            self.ui.slot1.setText(properties["items"][1])
-            self.ui.slot2.setText(properties["items"][2])
-            self.ui.slot3.setText(properties["items"][3])
-            self.ui.slot4.setText(properties["items"][4])
-            self.ui.slot5.setText(properties["items"][5])
-            self.ui.slot6.setText(properties["items"][6])
-            self.ui.slot7.setText(properties["items"][7])
-            self.ui.slot8.setText(properties["items"][8])
-            self.ui.slot9.setText(properties["items"][9])
-            self.ui.smeltingInput.setText(properties["items"][10])
-            self.ui.smeltingOutput.setText(properties["items"][11])
-        except: pass
+        items = properties.get("items", {})
+
+        self.ui.slot0.setText(items.get("0", ""))
+        self.ui.slot1.setText(items.get("1", ""))
+        self.ui.slot2.setText(items.get("2", ""))
+        self.ui.slot3.setText(items.get("3", ""))
+        self.ui.slot4.setText(items.get("4", ""))
+        self.ui.slot5.setText(items.get("5", ""))
+        self.ui.slot6.setText(items.get("6", ""))
+        self.ui.slot7.setText(items.get("7", ""))
+        self.ui.slot8.setText(items.get("8", ""))
+        self.ui.slot9.setText(items.get("9", ""))
+        self.ui.smeltingInput.setText(items.get("10", ""))
+        self.ui.smeltingOutput.setText(items.get("11", ""))
 
         self.ui.elementEditor.setCurrentIndex(ElementPage.RECIPES)
 
@@ -1536,6 +1536,7 @@ class App(QMainWindow):
     def editEquipment(self, equip):
         properties = self.equipment[equip]
 
+        self.ui.equipmentDisplayName.setText(properties["displayName"])
         self.ui.equipmentName.setText(properties["name"])
         self.ui.helmetArmor.setValue(properties["armor"]["helmet"])
         self.ui.chestplateArmor.setValue(properties["armor"]["chestplate"])
@@ -1558,6 +1559,8 @@ class App(QMainWindow):
         self.ui.leggingsModelLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentModel["h_l"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
         try: self.ui.horseArmorModelLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentModel["horseArmor"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
         except: pass
+
+        self.ui.elementEditor.setCurrentIndex(ElementPage.EQUIPMENT)
 
     #######################
     # PACK GENERATION     #
