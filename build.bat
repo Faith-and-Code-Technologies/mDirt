@@ -1,8 +1,10 @@
 pyinstaller src/main.py ^
   --name mDirt-3.0.0-Pre1 ^
+  --icon "assets/icon.ico" ^
   --onedir ^
   --windowed ^
   --add-data "lib;lib" ^
+  --add-data "assets;assets" ^
   --add-data "src;src" ^
   --add-data "workspaces;workspaces" ^
   --hidden-import=jinja2 ^
