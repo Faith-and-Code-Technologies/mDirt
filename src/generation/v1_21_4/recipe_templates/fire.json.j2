@@ -4,7 +4,7 @@
   "ingredient": "minecraft:{{ ingredient }}",
   "result":
   {% set prefix = result.split('_')[0] %}
-  {% set suffix = result.split('_')[1] %}
+  {% set suffix = result.split('_')[1:] | join('_') %}
   {% if result in items %}
   {
     "id": "{{ items[result]['baseItem'] }}",

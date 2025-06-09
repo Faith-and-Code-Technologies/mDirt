@@ -7,7 +7,7 @@
   ],
   "result":
   {% set prefix = ingredients["9"].split('_')[0] %}
-  {% set suffix = ingredients["9"].split('_')[1] %}
+  {% set suffix = ingredients["9"].split('_')[1:] | join('_') %}
   {% if ingredients["9"] in items %}
   {
     "id": "{{ items[ingredients['9']]['baseItem'] }}",
