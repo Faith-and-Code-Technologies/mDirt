@@ -12,7 +12,7 @@ from pathlib import Path
 
 from PySide6.QtCore import Qt, QTimer, QEvent, QObject
 from PySide6.QtGui import QImage, QPixmap, QFont, QDropEvent, QDragEnterEvent
-from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QWidget, QTreeWidgetItem, QCheckBox, QVBoxLayout
+from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QWidget, QTreeWidgetItem, QCheckBox, QMessageBox
 
 from utils.field_validator import FieldValidator
 from utils.field_resetter import FieldResetter
@@ -126,6 +126,8 @@ class App(QMainWindow):
         with open(htmlFile, 'r') as f:
             self.welcomeScreen = f.read()
         self.ui.textEdit.setHtml(self.welcomeScreen)
+
+        self.unsavedChanges = False
 
         # CONNECTIONS
         self.ui.actionNew_Project.triggered.connect(self.openProjectMenu)
@@ -261,6 +263,26 @@ class App(QMainWindow):
             #sys.exit(1)
 
     #######################
+    # QT EVENTS           #
+    #######################
+
+    def closeEvent(self, event):
+        if self.unsavedChanges:
+            reply = QMessageBox.question(
+                self,
+                "Confirm Exit",
+                "You have unsaved changes. Are you sure you want to exit?",
+                QMessageBox.Yes | QMessageBox.No,
+                QMessageBox.No
+            )
+            if reply == QMessageBox.Yes:
+                event.accept()
+            else:
+                event.ignore()
+        else:
+            event.accept()
+
+    #######################
     # SETUP PROJECT       #
     #######################
 
@@ -288,6 +310,7 @@ class App(QMainWindow):
             self.ui.packVersion.addItem(version)       # Adds the versions to the dropdown.
 
         self.ui.elementEditor.setCurrentIndex(ElementPage.PROJECT_SETUP)
+        self.unsavedChanges = True
     
     def validatePackDetails(self):
         if not FieldValidator.validate_text_field(self.ui.packName, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz _-!0123456789", "Name"):
@@ -457,6 +480,8 @@ class App(QMainWindow):
             manifest["workspaces"].append(namespace)
             with open(manifestPath, 'w') as f:
                 json.dump(manifest, f, indent=4)
+        
+        self.unsavedChanges = False
 
     def loadProjectUI(self):
         self.projectList = QWidget()
@@ -687,6 +712,7 @@ class App(QMainWindow):
         label_map[face].setPixmap(pixmap)
 
     def newBlock(self):
+        self.unsavedChanges = True
         self.populateBlockDrop()
         self.ui.elementEditor.setCurrentIndex(ElementPage.BLOCKS)
 
@@ -841,6 +867,7 @@ class App(QMainWindow):
         self.ui.itemTexture.setPixmap(pixmap)
 
     def newItem(self):
+        self.unsavedChanges = True
         self.ui.elementEditor.setCurrentIndex(ElementPage.ITEMS)
 
     def getItemModel(self, path=None):
@@ -1008,6 +1035,7 @@ class App(QMainWindow):
         self.block_popup.close()
 
     def newRecipe(self):
+        self.unsavedChanges = True
         self.ui.elementEditor.setCurrentIndex(ElementPage.RECIPES)
 
     def validateRecipeDetails(self):
@@ -1129,6 +1157,7 @@ class App(QMainWindow):
         self.ui.paintingTexture.setPixmap(pixmap)
 
     def newPainting(self):
+        self.unsavedChanges = True
         self.ui.elementEditor.setCurrentIndex(ElementPage.PAINTINGS)
 
     def validatePaintingDetails(self):
@@ -1223,6 +1252,7 @@ class App(QMainWindow):
         self.ui.structureNBTButton.setText(filename)
 
     def newStructure(self):
+        self.unsavedChanges = True
         self.ui.elementEditor.setCurrentIndex(ElementPage.STRUCTURES)
         self.loadBiomeList()
 
@@ -1348,6 +1378,7 @@ class App(QMainWindow):
         label_widget.setPixmap(pixmap)
 
     def newEquipment(self): 
+        self.unsavedChanges = True
         self.ui.elementEditor.setCurrentIndex(ElementPage.EQUIPMENT)
 
     def validateEquipmentDetails(self):

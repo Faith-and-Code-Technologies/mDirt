@@ -2977,6 +2977,17 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <addaction name="menuSave"/>
    <addaction name="menuNew_Element"/>
   </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>BottomToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
   <action name="actionBlock">
    <property name="text">
     <string>Block</string>

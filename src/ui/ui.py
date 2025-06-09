@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiCvbjxG.ui'
+## Form generated from reading UI file 'uiLmjQIu.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.9.0
 ##
@@ -22,8 +22,8 @@ from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QCheckBox, QCombo
     QMenuBar, QPlainTextEdit, QPushButton, QRadioButton,
     QScrollArea, QSizePolicy, QSlider, QSpinBox,
     QStackedWidget, QStatusBar, QTabWidget, QTextEdit,
-    QToolButton, QTreeWidget, QTreeWidgetItem, QVBoxLayout,
-    QWidget)
+    QToolBar, QToolButton, QTreeWidget, QTreeWidgetItem,
+    QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -1348,6 +1348,9 @@ class Ui_MainWindow(object):
         self.menuSave = QMenu(self.menuBar)
         self.menuSave.setObjectName(u"menuSave")
         MainWindow.setMenuBar(self.menuBar)
+        self.toolBar = QToolBar(MainWindow)
+        self.toolBar.setObjectName(u"toolBar")
+        MainWindow.addToolBar(Qt.ToolBarArea.BottomToolBarArea, self.toolBar)
 
         self.menuBar.addAction(self.menuSave.menuAction())
         self.menuBar.addAction(self.menuNew_Element.menuAction())
@@ -1908,5 +1911,6 @@ class Ui_MainWindow(object):
         self.label_55.setText(QCoreApplication.translate("MainWindow", u"Humanoid Leggings", None))
         self.menuNew_Element.setTitle(QCoreApplication.translate("MainWindow", u"New Element", None))
         self.menuSave.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
+        self.toolBar.setWindowTitle(QCoreApplication.translate("MainWindow", u"toolBar", None))
     # retranslateUi
 
