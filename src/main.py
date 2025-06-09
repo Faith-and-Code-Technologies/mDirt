@@ -27,7 +27,7 @@ from settings import SettingsManager
 from module import ModuleDownloader
 
 APP_VERSION = '3.0.0'
-FULL_APP_VERSION = '3.0.0-beta.3'
+FULL_APP_VERSION = '3.0.0-pre.1'
 LIB_URL = 'https://raw.githubusercontent.com/Faith-and-Code-Technologies/mDirt/main/lib'
 ISSUE_URL = 'https://github.com/Faith-and-Code-Technologies/mDirt/issues'
 
