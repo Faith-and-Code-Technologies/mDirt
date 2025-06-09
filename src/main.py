@@ -1552,8 +1552,12 @@ class App(QMainWindow):
         self.ui.chestplateItemLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentTexture["chestplate"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
         self.ui.leggingsItemLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentTexture["leggings"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
         self.ui.bootsItemLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentTexture["boots"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
-        self.ui.chestplateModelLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentModel["chestplate"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
-        self.ui.leggingsModelLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentModel["leggings"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
+        try: self.ui.horseArmorItemLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentTexture["horseArmor"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
+        except: pass
+        self.ui.chestplateModelLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentModel["h"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
+        self.ui.leggingsModelLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentModel["h_l"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
+        try: self.ui.horseArmorModelLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentModel["horseArmor"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
+        except: pass
 
     #######################
     # PACK GENERATION     #
