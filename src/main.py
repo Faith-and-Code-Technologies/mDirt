@@ -697,6 +697,11 @@ class App(QMainWindow):
             self.ui.blockDropBox.addItem(block)
         for item in self.items:
             self.ui.blockDropBox.addItem(item)
+        for equip in self.equipment: 
+                for item in ['helmet', 'chestplate', 'leggings', 'boots', 'horse_armor']:
+                    if not self.equipment[equip]["includeHorse"]:
+                        if item == "horse_armor": continue
+                    self.ui.blockDropBox.addItem(f'{self.equipment[equip]["name"]}_{item}')
         for item in self.data["items"]:
             self.ui.blockDropBox.addItem(item)
 

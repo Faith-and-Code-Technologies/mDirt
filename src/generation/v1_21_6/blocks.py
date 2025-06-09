@@ -2,13 +2,14 @@ import ast, os, shutil
 from jinja2 import Environment, FileSystemLoader
 
 class BlockGenerator:
-    def __init__(self, header, namespaceDir, packNamespace, packAuthor, blocks, items):
+    def __init__(self, header, namespaceDir, packNamespace, packAuthor, blocks, items, equipment):
         self.namespaceDirectory = namespaceDir
         self.packNamespace = packNamespace
         self.packAuthor = packAuthor
         self.header = header
         self.blocks = blocks
         self.items = items
+        self.equipment = equipment
 
         self.env = Environment(
             loader=FileSystemLoader(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'block_templates')),
@@ -114,6 +115,8 @@ class BlockGenerator:
             content = self.getTemplate('block.json.j2', {
                 'blocks': self.blocks,
                 'block': block,
+                'items': self.items,
+                'equipment': self.equipment,
                 'packAuthor': self.packAuthor,
                 'packNamespace': self.packNamespace
             })

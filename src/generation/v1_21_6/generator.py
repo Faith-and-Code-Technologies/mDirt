@@ -176,6 +176,7 @@ class Generator():
                 self.packAuthor,
                 self.blocks,
                 self.items,
+                self.equipment
             )
 
             blockGenerator.generate()
