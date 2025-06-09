@@ -1,6 +1,6 @@
 title: mDirt Docs
-baseurl: "/mDirt" # or "/repo-name" if using a project site
-theme: minima
+baseurl: "/mDirt"
+theme: null
 markdown: kramdown
 defaults:
   - scope:
