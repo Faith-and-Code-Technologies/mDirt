@@ -35,7 +35,7 @@
     }
 {% else %}
     {% set prefix = blocks[block]["blockDrop"].split('_')[0] %}
-    {% set suffix = blocks[block]["blockDrop"].split('_')[1] %}
+    {% set suffix = ingredients["9"].split('_')[1:] | join('_') %}
     {% if (blocks[block]["blockDrop"] not in items) and (blocks[block]["blockDrop"] not in blocks) %}
         {
             "pools": [
@@ -90,7 +90,7 @@
                             "function": "minecraft:set_components",
                             "components": {
                                 "minecraft:item_model": "{{ packNamespace }}:{{ blocks[blocks[block]['blockDrop']]['name'] }}",
-                                "minecraft:custom_name": "{\"italic\": False, \"text\": \"{{ blocks[blocks[block]['blockDrop']]['displayName'] }}\" }",
+                                "minecraft:custom_name": {"italic": False, "text": "{{ blocks[blocks[block]['blockDrop']]['displayName'] }}" },
                                 "minecraft:entity_data": {
                                     "id": "minecraft:item_frame",
                                     "Fixed": true,
@@ -134,28 +134,28 @@
                             "asset_id": "{{ packNamespace }}:{{ prefix }}"
                             },
                             "minecraft:item_model": "{{ packNamespace }}:{{ prefix }}_{{ suffix }}",
-                            "minecraft:item_name": {"italic":false,"text":"{{ prefix }} {{ suffix }}"},
+                            "minecraft:item_name": {"italic":false,"text":"{{ prefix }} {{ suffix.replace('_', ' ').capitalize() }}"},
                             "minecraft:attribute_modifiers": [
                             {
                                 "id": "armor",
                                 "type": "armor",
                                 "amount": {{ equipment[prefix]["armor"][suffix] }},
-                                "operation": "add_value",
-                                "slot": "{{ slot_map[suffix] }}"
+                                "operation": "add_value"{% if not suffix == "horse_armor" %},
+                                "slot": "{{ slot_map[suffix] }}"{% endif %}
                             },
                             {
                                 "id": "armor_toughness",
                                 "type": "armor_toughness",
                                 "amount": {{ equipment[prefix]["toughness"] }},
-                                "operation": "add_value",
-                                "slot": "{{ slot_map[suffix] }}"
+                                "operation": "add_value"{% if not suffix == "horse_armor" %},
+                                "slot": "{{ slot_map[suffix] }}"{% endif %}
                             },
                             {
                                 "id": "knockback_resistance",
                                 "type": "knockback_resistance",
                                 "amount": {{ equipment[prefix]["kb_resistance"] }},
-                                "operation": "add_value",
-                                "slot": "{{ slot_map[suffix] }}"
+                                "operation": "add_value"{% if not suffix == "horse_armor" %},
+                                "slot": "{{ slot_map[suffix] }}"{% endif %}
                             }
                             ],
                             "minecraft:max_damage": {{ equipment[prefix]["durability"][suffix] }}
