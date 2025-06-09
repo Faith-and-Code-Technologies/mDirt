@@ -291,11 +291,16 @@ class App(QMainWindow):
     # SETUP PROJECT       #
     #######################
 
-    def pullSupportedVersions(self):
+    def pullSupportedVersions(self, remote=True):
         verPath = self.mainDirectory / 'lib' / 'version_list.json'
         with open(verPath, 'r') as f:
-            versions = json.load(f)
-        versions = versions["versions"]
+            versionsa = json.load(f)
+        versions = versionsa["versions"]
+
+        if remote == False:
+            self.version_json = versionsa
+            self.supportedVersions = versions
+            return
 
         self.ui.statusbar.showMessage("Pulling version list...", 2000)
         version_url = f'{LIB_URL}/version_list.json'
@@ -345,7 +350,7 @@ class App(QMainWindow):
 
         return 1
 
-    def pullData(self):
+    def pullData(self, remote=True):
         self.ui.statusbar.showMessage("Pulling version data file...", 2000)
         version = self.packDetails["version"]
         local_path = self.mainDirectory / 'lib' / f'{version}_data.json'
@@ -367,7 +372,7 @@ class App(QMainWindow):
                 os.remove(local_path)
                 alert(f'Downloaded data file is corrupt or invalid JSON.\nCheck your internet connection, and relaunch mDirt. If the issue persists, report it here:\n{ISSUE_URL}')
         
-        self.grabModule()
+            self.grabModule()
 
     def grabModule(self):
         self.ui.statusbar.showMessage("Pulling version module...", 2000)
@@ -423,6 +428,7 @@ class App(QMainWindow):
                     "version": self.ui.packVersion.currentText()
                 }
             self.setupProjectData()
+            self.saveProjectAs()
             self.ui.menuNew_Element.setEnabled(True) # Enable the Element buttons so user can add things to their pack
             self.ui.elementEditor.setCurrentIndex(ElementPage.HOME)
             self.ui.textEdit.setHtml(f'<h1>Welcome to mDirt. Create a new Element to get started.</h1>')
@@ -581,8 +587,8 @@ class App(QMainWindow):
         if data["app_version"] != APP_VERSION:
             alert("Warning: This project was created with a different version of the app, and may cause crashes or corruption!")
         
-        self.pullSupportedVersions()
-        self.pullData()
+        self.pullSupportedVersions(remote=False)
+        self.pullData(remote=False)
         self.setupProjectData()
 
         with open(projectDirectory / 'blocks.json', 'r') as file:
@@ -1176,18 +1182,20 @@ class App(QMainWindow):
         self.ui.exactlyRadio.setChecked(properties["exact"])
         self.ui.slot9Count.setValue(properties["outputCount"])
 
-        self.ui.slot0.setText(properties["items"][0])
-        self.ui.slot1.setText(properties["items"][1])
-        self.ui.slot2.setText(properties["items"][2])
-        self.ui.slot3.setText(properties["items"][3])
-        self.ui.slot4.setText(properties["items"][4])
-        self.ui.slot5.setText(properties["items"][5])
-        self.ui.slot6.setText(properties["items"][6])
-        self.ui.slot7.setText(properties["items"][7])
-        self.ui.slot8.setText(properties["items"][8])
-        self.ui.slot9.setText(properties["items"][9])
-        self.ui.smeltingInput.setText(properties["items"][10])
-        self.ui.smeltingOutput.setText(properties["items"][11])
+        try:
+            self.ui.slot0.setText(properties["items"][0])
+            self.ui.slot1.setText(properties["items"][1])
+            self.ui.slot2.setText(properties["items"][2])
+            self.ui.slot3.setText(properties["items"][3])
+            self.ui.slot4.setText(properties["items"][4])
+            self.ui.slot5.setText(properties["items"][5])
+            self.ui.slot6.setText(properties["items"][6])
+            self.ui.slot7.setText(properties["items"][7])
+            self.ui.slot8.setText(properties["items"][8])
+            self.ui.slot9.setText(properties["items"][9])
+            self.ui.smeltingInput.setText(properties["items"][10])
+            self.ui.smeltingOutput.setText(properties["items"][11])
+        except: pass
 
         self.ui.elementEditor.setCurrentIndex(ElementPage.RECIPES)
 
@@ -1544,10 +1552,8 @@ class App(QMainWindow):
         self.ui.chestplateItemLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentTexture["chestplate"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
         self.ui.leggingsItemLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentTexture["leggings"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
         self.ui.bootsItemLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentTexture["boots"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
-        self.ui.helmetModelLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentModel["helmet"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
         self.ui.chestplateModelLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentModel["chestplate"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
         self.ui.leggingsModelLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentModel["leggings"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
-        self.ui.bootsModelLabel.setPixmap(QPixmap.fromImage(QImage(self.equipmentModel["boots"])).scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio))
 
     #######################
     # PACK GENERATION     #
