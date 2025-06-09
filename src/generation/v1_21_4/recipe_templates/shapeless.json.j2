@@ -6,6 +6,8 @@
     {% endfor %}
   ],
   "result":
+  {% set prefix = ingredients["9"].split('_')[0] %}
+  {% set suffix = ingredients["9"].split('_')[1] %}
   {% if ingredients["9"] in items %}
   {
     "id": "{{ items[ingredients['9']]['baseItem'] }}",
@@ -42,20 +44,14 @@
       }
     }
   }
-  {% set prefix = ingredients["9"].split('_')[0] %}
-  {% set suffix = ingredients["9"].split('_')[1] %}
-  {% elif prefix in equipment %}
+  {% elif prefix in equipment and suffix %}
   {% set slot_map = {
     'helmet': 'head',
     'chestplate': 'chest',
     'leggings': 'legs',
     'boots': 'feet',
-    'horse_armor': 'horse'
-} %}
-{% set parts = someVar.split('_', 1) %}
-{% if parts | length > 1 %}
-{% set suffix = parts[1] %}
-{% endif %}
+    'horse_armor': 'body'
+  } %}
   {
     "id": "minecraft:diamond_{{ suffix }}",
     "components": {
@@ -89,7 +85,7 @@
         }
       ],
       "minecraft:max_damage": {{ equipment[prefix]["durability"][suffix] }}
-  }
+    }
   }
   {% else %}
   {
