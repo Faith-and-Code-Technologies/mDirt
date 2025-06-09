@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uibDgIwj.ui'
+## Form generated from reading UI file 'uiqsBZqB.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.9.0
 ##
@@ -21,7 +21,7 @@ from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QCheckBox, QCombo
     QLabel, QLineEdit, QMainWindow, QMenu,
     QMenuBar, QPlainTextEdit, QPushButton, QRadioButton,
     QScrollArea, QSizePolicy, QSlider, QSpinBox,
-    QStackedWidget, QStatusBar, QTabWidget, QTextEdit,
+    QStackedWidget, QStatusBar, QTabWidget, QTextBrowser,
     QToolButton, QTreeWidget, QTreeWidgetItem, QVBoxLayout,
     QWidget)
 
@@ -83,9 +83,8 @@ class Ui_MainWindow(object):
         self.welcomeScreen.setObjectName(u"welcomeScreen")
         self.gridLayout_4 = QGridLayout(self.welcomeScreen)
         self.gridLayout_4.setObjectName(u"gridLayout_4")
-        self.textEdit = QTextEdit(self.welcomeScreen)
+        self.textEdit = QTextBrowser(self.welcomeScreen)
         self.textEdit.setObjectName(u"textEdit")
-        self.textEdit.setReadOnly(True)
 
         self.gridLayout_4.addWidget(self.textEdit, 0, 0, 1, 1)
 
@@ -1396,14 +1395,6 @@ class Ui_MainWindow(object):
         self.actionEquipmentSet.setText(QCoreApplication.translate("MainWindow", u"Equipment Set", None))
         ___qtreewidgetitem = self.elementViewer.headerItem()
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"Element Viewer", None));
-        self.textEdit.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:16px; margin-bottom:16px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:160%;\"><br /></p></body></html>", None))
 #if QT_CONFIG(tooltip)
         self.blockTextureButtonBottom.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The bottom texture of your block. <span style=\" font-weight:700;\">If you are using a Custom model, only use this texture!</span></p></body></html>", None))
 #endif // QT_CONFIG(tooltip)

@@ -11,7 +11,7 @@ import logging
 from pathlib import Path
 
 from PySide6.QtCore import Qt, QTimer, QEvent, QObject
-from PySide6.QtGui import QImage, QPixmap, QFont, QDropEvent, QDragEnterEvent
+from PySide6.QtGui import QImage, QPixmap, QFont, QDropEvent, QDragEnterEvent, QIcon
 from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QWidget, QTreeWidgetItem, QCheckBox, QMessageBox
 
 from utils.field_validator import FieldValidator
@@ -126,6 +126,11 @@ class App(QMainWindow):
         with open(htmlFile, 'r') as f:
             self.welcomeScreen = f.read()
         self.ui.textEdit.setHtml(self.welcomeScreen)
+        self.ui.textEdit.setOpenExternalLinks(True)
+
+        # Load Icon, then apply it.
+        icon = self.mainDirectory / 'assets' / 'icon.png'
+        self.setWindowIcon(QIcon(str(icon)))
 
         self.unsavedChanges = False
 
@@ -303,7 +308,6 @@ class App(QMainWindow):
         except ValueError:
             alert(f'Received invalid JSON from server.\n\nPlease try again or report the issue:\n{ISSUE_URL}')
         
-
     def openProjectMenu(self):
         self.pullSupportedVersions()                   # Pulls the supported version list from the server.
 
@@ -357,7 +361,6 @@ class App(QMainWindow):
         self.moduleGrab = ModuleDownloader(target_dir=dir)
         self.moduleGrab.download_and_extract(version)
         
-
     def newProject(self):
         if self.validatePackDetails() == 0: return      # Make sure all fields aren't empty and only contain valid characters.
 
@@ -490,7 +493,6 @@ class App(QMainWindow):
         
         self.unsavedChanges = False
         
-
     def loadProjectUI(self):
         self.projectList = QWidget()
         self.projectForm = load_project.Ui_Form()
@@ -573,8 +575,6 @@ class App(QMainWindow):
         for item in self.equipment:
             QTreeWidgetItem(self.equipment_tree, [self.equipment[item]["name"]])
         
-        
-
     #######################
     # SETTINGS            #
     #######################
