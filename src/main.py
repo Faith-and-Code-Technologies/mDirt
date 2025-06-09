@@ -135,7 +135,7 @@ class App(QMainWindow):
         self.unsavedChanges = False
 
         # Create Workspaces folder
-        os.makedirs(self.mainDirectory / 'workspaces', exist_ok=True)
+        os.makedirs(self.mainDirectory / 'workspaces', exist_ok=True) # 
 
         # CONNECTIONS
         self.ui.actionNew_Project.triggered.connect(self.openProjectMenu)
