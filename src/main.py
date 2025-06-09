@@ -1515,7 +1515,8 @@ class App(QMainWindow):
                 "helmet": int(.6875 * base_dur),
                 "chestplate": int(base_dur),
                 "leggings": int(.9375 * base_dur),
-                "boots": int(.8125 * base_dur)
+                "boots": int(.8125 * base_dur),
+                "horse": 1
             },
             "itemTextures": self.equipmentTexture,
             "modelTextures": self.equipmentModel,

@@ -61,22 +61,22 @@
           "id": "armor",
           "type": "armor",
           "amount": {{ equipment[prefix]["armor"][suffix] }},
-          "operation": "add_value",
-          "slot": "{{ slot_map[suffix] }}"
+          "operation": "add_value"{% if not suffix == "horse_armor" %},
+          "slot": "{{ slot_map[suffix] }}"{% endif %}
         },
         {
           "id": "armor_toughness",
           "type": "armor_toughness",
           "amount": {{ equipment[prefix]["toughness"] }},
-          "operation": "add_value",
-          "slot": "{{ slot_map[suffix] }}"
+          "operation": "add_value"{% if not suffix == "horse_armor" %},
+          "slot": "{{ slot_map[suffix] }}"{% endif %}
         },
         {
           "id": "knockback_resistance",
           "type": "knockback_resistance",
           "amount": {{ equipment[prefix]["kb_resistance"] }},
-          "operation": "add_value",
-          "slot": "{{ slot_map[suffix] }}"
+          "operation": "add_value"{% if not suffix == "horse_armor" %},
+          "slot": "{{ slot_map[suffix] }}"{% endif %}
         }
       ],
       "minecraft:max_damage": {{ equipment[prefix]["durability"][suffix] }}
