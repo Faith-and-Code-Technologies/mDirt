@@ -292,6 +292,11 @@ class App(QMainWindow):
     #######################
 
     def pullSupportedVersions(self):
+        verPath = self.mainDirectory / 'lib' / 'version_list.json'
+        with open(verPath, 'r') as f:
+            versions = json.load(f)
+        versions = versions["versions"]
+
         self.ui.statusbar.showMessage("Pulling version list...", 2000)
         version_url = f'{LIB_URL}/version_list.json'
         
@@ -301,19 +306,24 @@ class App(QMainWindow):
 
             data = response.json()
             self.version_json = data
-            self.supportedVersions = data.get("versions", [])
+            supportedVersions = data.get("versions", [])
 
         except requests.exceptions.RequestException as e:
             alert(f'Failed to download supported versions. Error: {e}\n\nPlease relaunch mDirt and try again. If the problem persists, report it here:\n{ISSUE_URL}')
         except ValueError:
             alert(f'Received invalid JSON from server.\n\nPlease try again or report the issue:\n{ISSUE_URL}')
         
+        merged = {item: 'online' for item in supportedVersions}
+        merged.update({item: 'local' for item in versions})
+        self.supportedVersions = merged
+        
     def openProjectMenu(self):
         self.pullSupportedVersions()                   # Pulls the supported version list from the server.
 
         self.ui.packVersion.clear()
-        for version in self.supportedVersions:
-            self.ui.packVersion.addItem(version)       # Adds the versions to the dropdown.
+        for version, source in self.supportedVersions.items():
+            label = f"🌐 {version}" if source == "online" else version
+            self.ui.packVersion.addItem(label)     # Adds the versions to the dropdown.
 
         self.ui.elementEditor.setCurrentIndex(ElementPage.PROJECT_SETUP)
         self.unsavedChanges = True
