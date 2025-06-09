@@ -55,7 +55,7 @@
         "asset_id": "{{ packNamespace }}:{{ equipment[prefix]["name"] }}"
       },
       "minecraft:item_model": "{{ packNamespace }}:{{ equipment[prefix]["name"] }}_{{ suffix }}",
-      "minecraft:item_name": "{\"italic\":false,\"text\":\"{{ equipment[prefix]["displayName"] }} {{ suffix.capitalize() }}\"}",
+      "minecraft:item_name": "{\"italic\":false,\"text\":\"{{ equipment[prefix]["displayName"] }} {{ suffix.capitalize().replace('_', ' ') }}\"}",
       "minecraft:attribute_modifiers": [
         {
           "id": "armor",
