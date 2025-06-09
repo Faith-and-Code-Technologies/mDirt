@@ -287,6 +287,7 @@ class App(QMainWindow):
     #######################
 
     def pullSupportedVersions(self):
+        self.ui.statusbar.showMessage("Pulling version list...", 2000)
         version_url = f'{LIB_URL}/version_list.json'
         
         try:
@@ -301,6 +302,7 @@ class App(QMainWindow):
             alert(f'Failed to download supported versions. Error: {e}\n\nPlease relaunch mDirt and try again. If the problem persists, report it here:\n{ISSUE_URL}')
         except ValueError:
             alert(f'Received invalid JSON from server.\n\nPlease try again or report the issue:\n{ISSUE_URL}')
+        
 
     def openProjectMenu(self):
         self.pullSupportedVersions()                   # Pulls the supported version list from the server.
@@ -325,6 +327,7 @@ class App(QMainWindow):
         return 1
 
     def pullData(self):
+        self.ui.statusbar.showMessage("Pulling version data file...", 2000)
         version = self.packDetails["version"]
         local_path = self.mainDirectory / 'lib' / f'{version}_data.json'
         url = f'{LIB_URL}/{version}_data.json'
@@ -344,13 +347,16 @@ class App(QMainWindow):
             except json.JSONDecodeError:
                 os.remove(local_path)
                 alert(f'Downloaded data file is corrupt or invalid JSON.\nCheck your internet connection, and relaunch mDirt. If the issue persists, report it here:\n{ISSUE_URL}')
+        
         self.grabModule()
 
     def grabModule(self):
+        self.ui.statusbar.showMessage("Pulling version module...", 2000)
         version = f'v{self.packDetails["version"].replace(".", "_")}'
         dir = self.mainDirectory / 'src' / 'generation'
         self.moduleGrab = ModuleDownloader(target_dir=dir)
         self.moduleGrab.download_and_extract(version)
+        
 
     def newProject(self):
         if self.validatePackDetails() == 0: return      # Make sure all fields aren't empty and only contain valid characters.
@@ -422,6 +428,7 @@ class App(QMainWindow):
         self.saveProjectAs()
 
     def saveProjectAs(self):
+        self.ui.statusbar.showMessage("Saving...", 2000)
         if self.workspacePath == 'default':
             projectDirectory = self.mainDirectory / 'workspaces' / f'{self.packDetails["namespace"]}'
         else:
@@ -482,6 +489,7 @@ class App(QMainWindow):
                 json.dump(manifest, f, indent=4)
         
         self.unsavedChanges = False
+        
 
     def loadProjectUI(self):
         self.projectList = QWidget()
@@ -512,6 +520,8 @@ class App(QMainWindow):
             alert("Please select a valid project!")
             return
         
+        self.ui.statusbar.showMessage("Loading Project...", 2000)
+
         projectDirectory = self.mainDirectory / 'workspaces' / f'{projectNamespace}'
         if not os.path.exists(projectDirectory):
             alert("This project doesn't exist or is corrupted!")
@@ -562,6 +572,8 @@ class App(QMainWindow):
         
         for item in self.equipment:
             QTreeWidgetItem(self.equipment_tree, [self.equipment[item]["name"]])
+        
+        
 
     #######################
     # SETTINGS            #
@@ -1496,6 +1508,7 @@ class App(QMainWindow):
     #######################
 
     def generate(self):
+        self.ui.statusbar.showMessage("Exporting project...", 2000)
         version = self.packDetails["version"].replace(".", "_")
 
         if getattr(sys, 'frozen', False):
@@ -1528,6 +1541,7 @@ class App(QMainWindow):
 
         generator.generateDatapack()
 
+        
         alert("Pack Generated!")
 
 
