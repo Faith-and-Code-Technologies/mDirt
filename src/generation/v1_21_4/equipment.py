@@ -128,7 +128,6 @@ class EquipmentResourcer:
             currentPath = f'{self.resPackDirectory}/assets/{self.packNamespace}/textures/item/'
             for texture in self.equipment[equip]["itemTextures"]:
                 if texture == "horseArmor":
-                    if not horse: continue
                     name = "horse_armor"
                 name = self.equipment[equip]["name"] + "_" + texture
                 shutil.copy(
