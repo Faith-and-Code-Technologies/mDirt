@@ -7,3 +7,5 @@
 
 ### And that's it!
 I streamlined the update process so the app itself does not need to be updated!
+
+> ⚠️ This file is deprecated as mDirt moves toward a new documentation site. Please stay tuned!

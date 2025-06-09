@@ -1,5 +1,5 @@
 pyinstaller src/main.py ^
-  --name mDirt-3.0.0-Beta3 ^
+  --name mDirt-3.0.0-Pre1 ^
   --onedir ^
   --windowed ^
   --add-data "lib;lib" ^
