@@ -367,21 +367,15 @@ class App(QMainWindow):
 
         self.exists = {}
 
-        if self.packDetails["version"] == "1.21.3":
-            self.ui.actionPainting.setDisabled(True)
-            self.ui.actionStructure.setDisabled(True)
-            self.ui.actionEquipmentSet.setDisabled(True)
-
         try:
             self.blocks_tree
         except:
             self.blocks_tree = QTreeWidgetItem(self.ui.elementViewer, ["Blocks"])
             self.items_tree = QTreeWidgetItem(self.ui.elementViewer, ["Items"])
             self.recipes_tree = QTreeWidgetItem(self.ui.elementViewer, ["Recipes"])
-            if self.packDetails["version"] != "1.21.3":
-                self.paintings_tree = QTreeWidgetItem(self.ui.elementViewer, ["Paintings"])
-                self.structures_tree = QTreeWidgetItem(self.ui.elementViewer, ["Structures"])
-                self.equipment_tree = QTreeWidgetItem(self.ui.elementViewer, ["Equipment"])
+            self.paintings_tree = QTreeWidgetItem(self.ui.elementViewer, ["Paintings"])
+            self.structures_tree = QTreeWidgetItem(self.ui.elementViewer, ["Structures"])
+            self.equipment_tree = QTreeWidgetItem(self.ui.elementViewer, ["Equipment"])
 
         self.blockTexture = {}
         self.itemTexture = None
