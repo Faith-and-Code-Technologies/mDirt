@@ -1,6 +1,7 @@
 ---
 title: Installing mDirt
 nav_order: 1
+layout: default
 parent: Getting Started
 ---
 
