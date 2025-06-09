@@ -1,3 +1,4 @@
+:: NOTICE - this build script is deprecated!
 pyinstaller src/main.py ^
   --name mDirt-3.0.0-Pre1 ^
   --icon "assets/icon.ico" ^
