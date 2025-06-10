@@ -2059,7 +2059,14 @@
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QLineEdit" name="structureName"/>
+          <widget class="QLineEdit" name="structureName">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of your structure.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="placeholderText">
+            <string>ruby_vein</string>
+           </property>
+          </widget>
          </item>
          <item row="1" column="0">
           <widget class="QLabel" name="label_41">
@@ -2070,6 +2077,9 @@
          </item>
          <item row="1" column="1">
           <widget class="QToolButton" name="structureNBTButton">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The path to your structure nbt.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="text">
             <string>...</string>
            </property>
@@ -2084,6 +2094,9 @@
          </item>
          <item row="2" column="1">
           <widget class="QComboBox" name="structureLocation">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The generation step to use when generating.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;RAW_GENERATION:&lt;/span&gt; Used by small end islands.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;LAKES: &lt;/span&gt;Used by LAVA lakes.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;LOCAL_MODIFICATIONS:&lt;/span&gt; Used by amethyst geodes and icebergs.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;UNDERGROUND_STRUCTURES:&lt;/span&gt; Used for dungeons and overworld fossils.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SURFACE_STRUCTURES: &lt;/span&gt;Used for desert wells and blue ice patches.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;STRONGHOLDS: &lt;/span&gt;Not used in vanilla.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;UNDERGROUND_ORES: &lt;/span&gt;Used for overworld ore veins, overworld dirt/gravel/stone variant veins, and sand/gravel/clay disks.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;UNDERGROUND_DECORATION: &lt;/span&gt;Used for infested block veins, nether gravel and blackstone veins, and all nether ore veins.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;FLUID_SPRINGS: &lt;/span&gt;Used for water and lava falls.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;VEGETAL_DECORATION: &lt;/span&gt;Used for trees, bamboo, cacti, kelp, and other ground and ocean vegetation.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;TOP_LAYER_MODIFICATION: &lt;/span&gt;Used for surface freezing.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <item>
             <property name="text">
              <string>Raw generation</string>
@@ -2150,6 +2163,9 @@
          </item>
          <item row="3" column="1">
           <widget class="QComboBox" name="structureTerrainAdaptation">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The type of terrain adaptation used for the structure.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;none: &lt;/span&gt;No adaptation&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;beard_thin:&lt;/span&gt; Used by pillager outposts and villages&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;bead_box: &lt;/span&gt;Used by ancient cities&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;bury:&lt;/span&gt; Used by strongholds&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;encapsulate: &lt;/span&gt;Used by Trial Chambers&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <item>
             <property name="text">
              <string>None</string>
@@ -2186,6 +2202,9 @@
          </item>
          <item row="4" column="1">
           <widget class="QSpinBox" name="structureStartHeight">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;An offset from the heightmap&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="minimum">
             <number>-64</number>
            </property>
@@ -2203,6 +2222,9 @@
          </item>
          <item row="5" column="1">
           <widget class="QComboBox" name="structurePSTH">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The heightmap the start height should project to.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <item>
             <property name="text">
              <string>Motion blocking</string>
@@ -2244,6 +2266,9 @@
          </item>
          <item row="6" column="1">
           <widget class="QSpinBox" name="structureSpacing">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Average distance between two neighboring generation attempts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="maximum">
             <number>4096</number>
            </property>
@@ -2258,6 +2283,9 @@
          </item>
          <item row="7" column="1">
           <widget class="QSpinBox" name="structureSeperation">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimum distance (in blocks) between two neighboring attempts. Has to be strictly smaller than &lt;span style=&quot; font-weight:700; text-decoration: underline;&quot;&gt;spacing&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="maximum">
             <number>4096</number>
            </property>
@@ -2299,6 +2327,9 @@
             <layout class="QVBoxLayout" name="verticalLayout_3">
              <item>
               <widget class="QLabel" name="biomeScrollContents">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A list of Biomes that the structure can spawn in.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
                <property name="text">
                 <string>Biomes</string>
                </property>
@@ -2331,8 +2362,11 @@
          </item>
          <item row="1" column="1">
           <widget class="QLineEdit" name="equipmentName">
+           <property name="focusPolicy">
+            <enum>Qt::FocusPolicy::StrongFocus</enum>
+           </property>
            <property name="toolTip">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the armor SET.&lt;br/&gt;If set to &amp;quot;Emerald&amp;quot;, it would display on a helmet as &amp;quot;Emerald Helmet&amp;quot;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The name of the armor SET.&lt;br/&gt;If set to &amp;quot;emerald&amp;quot;, a helmet would have the id &amp;quot;emerald_helmet&amp;quot;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
            <property name="placeholderText">
             <string>emerald</string>
@@ -2474,6 +2508,9 @@
          </item>
          <item row="0" column="1">
           <widget class="QLineEdit" name="equipmentDisplayName">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The display name of the armor SET&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="placeholderText">
             <string>Emerald</string>
            </property>
@@ -2494,7 +2531,7 @@
          <bool>true</bool>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The top texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The texture of the helmet item. This is what will display in your inventory.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string/>
@@ -2542,7 +2579,7 @@
          <bool>true</bool>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The top texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The texture of the chestplate  item. This is what will display in your inventory.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string/>
@@ -2577,7 +2614,7 @@
          <bool>true</bool>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The top texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The texture of the leggings item. This is what will display in your inventory.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string/>
@@ -2612,7 +2649,7 @@
          <bool>true</bool>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The top texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The texture of the boots item. This is what will display in your inventory.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string/>
@@ -2634,7 +2671,7 @@
          <bool>true</bool>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The top texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The texture of your armor model. This is what will display on your player.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string/>
@@ -2682,7 +2719,7 @@
          <bool>true</bool>
         </property>
         <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The top texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The texture of your armor model for your legs. This is what will display on your player.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
          <string/>
@@ -2754,7 +2791,7 @@
           <bool>true</bool>
          </property>
          <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The top texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The texture of the horse armor item. This is what will display in your inventory.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="text">
           <string/>
@@ -2789,7 +2826,7 @@
           <bool>true</bool>
          </property>
          <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The top texture of your block. &lt;span style=&quot; font-weight:700;&quot;&gt;If you are using a Custom model, only use the bottom texture!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The texture of your armor model. This is what will display on your horse.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="text">
           <string/>
@@ -2864,6 +2901,9 @@
            <width>67</width>
            <height>24</height>
           </rect>
+         </property>
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The armor points for the Horse Armor&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
         <zorder>horseArmorItemLabel</zorder>
