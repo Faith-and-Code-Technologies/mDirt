@@ -707,7 +707,7 @@
              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Makes the recipe normal.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="text">
-             <string>Exactly Where Placed</string>
+             <string>Shaped</string>
             </property>
             <property name="checked">
              <bool>true</bool>
@@ -2042,7 +2042,7 @@
           <x>10</x>
           <y>10</y>
           <width>361</width>
-          <height>262</height>
+          <height>281</height>
          </rect>
         </property>
         <layout class="QFormLayout" name="formLayout_9">

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiOhTKXI.ui'
+## Form generated from reading UI file 'uikAzZms.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.9.0
 ##
@@ -963,7 +963,7 @@ class Ui_MainWindow(object):
         self.structureEditor.setObjectName(u"structureEditor")
         self.formLayoutWidget_2 = QWidget(self.structureEditor)
         self.formLayoutWidget_2.setObjectName(u"formLayoutWidget_2")
-        self.formLayoutWidget_2.setGeometry(QRect(10, 10, 361, 262))
+        self.formLayoutWidget_2.setGeometry(QRect(10, 10, 361, 281))
         self.formLayout_9 = QFormLayout(self.formLayoutWidget_2)
         self.formLayout_9.setObjectName(u"formLayout_9")
         self.formLayout_9.setContentsMargins(0, 0, 0, 0)
@@ -1517,7 +1517,7 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(tooltip)
         self.exactlyRadio.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Makes the recipe normal.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
-        self.exactlyRadio.setText(QCoreApplication.translate("MainWindow", u"Exactly Where Placed", None))
+        self.exactlyRadio.setText(QCoreApplication.translate("MainWindow", u"Shaped", None))
         self.slot0.setText("")
         self.slot1.setText("")
         self.slot2.setText("")
