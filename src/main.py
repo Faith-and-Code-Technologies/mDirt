@@ -272,7 +272,7 @@ class App(QMainWindow):
             subprocess.Popen(updaterPath)
         else:
             alert("The mDirt Updater is missing! Reinstall mDirt to fix it.", 'critical')
-            #sys.exit(1)
+            sys.exit(1)
 
     #######################
     # QT EVENTS           #
