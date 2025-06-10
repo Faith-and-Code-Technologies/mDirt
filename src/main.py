@@ -177,8 +177,6 @@ class App(QMainWindow):
         self.dropFront = DropHandler(self.ui.blockTextureButtonFront, '.png', lambda path: self.addBlockTexture(BlockFace.FRONT, path))
         self.dropBottom = DropHandler(self.ui.blockTextureButtonBottom, '.png', lambda path: self.addBlockTexture(BlockFace.BOTTOM, path))
 
-        self.dropBlockModel = DropHandler(self.ui.blockModel, '.json', self.getBlockModel)
-
         self.ui.blockModel.currentTextChanged.connect(self.getBlockModel)
         self.ui.blockConfirmButton.clicked.connect(self.addBlock)
 
@@ -187,7 +185,6 @@ class App(QMainWindow):
         self.ui.itemConfirmButton.clicked.connect(self.addItem)
 
         self.dropItem = DropHandler(self.ui.itemTextureButton, '.png', self.addItemTexture)
-        self.dropItemModel = DropHandler(self.ui.itemModel, '.json', self.getItemModel)
 
         # Recipe Specific Connections
         self.ui.slot0Button.clicked.connect(lambda: self.getRecipeItem(0))
@@ -731,7 +728,6 @@ class App(QMainWindow):
         self.setFont(QFont("Segoe UI", self.settings.get('appearance', 'font_size')))
         theme = self.settings.get('appearance', 'theme')
         self.setStyleSheet("QPushButton:flat{background-color: transparent; border: 2px solid black;}")
-        print(self.themes)
         if theme == "Dark":
             app.styleHints().setColorScheme(Qt.ColorScheme.Dark)
             app.setStyle('Fusion')
@@ -817,16 +813,8 @@ class App(QMainWindow):
         for item in self.data["items"]:
             self.ui.blockDropBox.addItem(item)
 
-    def getBlockModel(self, path=None):
-        if path:
-            filePath = path
-            fileName = os.path.basename(filePath)
-            destPath = f'{self.mainDirectory}/workspaces/{self.packDetails["namespace"]}/assets/blocks/{fileName}'
-            shutil.copy(filePath, destPath)
-            self.ui.blockModel.addItem(destPath)
-            self.ui.blockModel.setCurrentText(destPath)
-        
-        elif self.ui.blockModel.currentText() != "Custom": return
+    def getBlockModel(self):
+        if self.ui.blockModel.currentText() != "Custom": return
         
         fileDialog = QFileDialog()
         filePath, _ = fileDialog.getOpenFileName(self, "Open JSON File", "", "JSON Files (*.json)")
@@ -956,16 +944,8 @@ class App(QMainWindow):
         self.unsavedChanges = True
         self.ui.elementEditor.setCurrentIndex(ElementPage.ITEMS)
 
-    def getItemModel(self, path=None):
-        if path:
-            filePath = path
-            fileName = os.path.basename(filePath)
-            destPath = f'{self.mainDirectory}/workspaces/{self.packDetails["namespace"]}/assets/items/{fileName}'
-            shutil.copy(filePath, destPath)
-            self.ui.itemModel.addItem(destPath)
-            self.ui.itemModel.setCurrentText(destPath)
-        
-        elif self.ui.itemModel.currentText() != "Custom": return
+    def getItemModel(self):
+        if self.ui.itemModel.currentText() != "Custom": return
         
         fileDialog = QFileDialog()
         filePath, _ = fileDialog.getOpenFileName(self, "Open JSON File", "", "JSON Files (*.json)")
