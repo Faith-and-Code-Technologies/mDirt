@@ -269,8 +269,8 @@ def get_minecraft_files(version: str, soundver: str):
         blockstate_oneof["definitions"]["blockStates"]["oneOf"].append(wrapped_schema)
 
     # Save full version (detailed oneOf)
-    with open(f"lib/{version}_blockstates.json", "w") as f:
-        json.dump(blockstate_oneof, f, indent=4)
+    #with open(f"lib/{version}_blockstates.json", "w") as f:
+        #json.dump(blockstate_oneof, f, indent=4)
 
     # Save simple original version (just definitions)
     blockstates_simple = {
@@ -280,7 +280,7 @@ def get_minecraft_files(version: str, soundver: str):
         }
     }
 
-    with open(f"lib/{version}_blockstates_simple.json", "w") as f:
-        json.dump(blockstates_simple, f, indent=4)
+    #with open(f"lib/{version}_blockstates_simple.json", "w") as f:
+        #json.dump(blockstates_simple, f, indent=4)
 
-get_minecraft_files("1.21.6-pre3", "1.21.5")
+get_minecraft_files("1.21.6-pre4", "1.21.5")
