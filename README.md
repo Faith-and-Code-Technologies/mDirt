@@ -4,6 +4,7 @@
 
 # mDirt - A Minecraft Datapack Generator
 _making Datapacks is really tedious - mDirt makes it easy._
+
 Creating custom Minecraft datapacks can be time-consuming and complex. **mDirt** simplifies this process by providing an easy-to-use tool for generating datapacks with custom features like blocks, items, recipes, and more.
 
 ---
@@ -42,7 +43,7 @@ We’ve now added official support for **Minecraft 1.21.5**, enabling you to cre
      - `/function YOURNAMESPACE:give_blocks`
      - `/function YOURNAMESPACE:give_items`
      - `/function YOURNAMESPACE:give_paintings`
-     
+
 ---
 
 ### 📚 Full Documentation
