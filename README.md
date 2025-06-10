@@ -48,8 +48,7 @@ We’ve now added official support for **Minecraft 1.21.5**, enabling you to cre
 
 ### 📚 Full Documentation
 
-For full setup instructions, tutorials, and feature breakdowns, check out the  
-👉 **[mDirt Wiki](https://github.com/Faith-and-Code-Technologies/mDirt/wiki)**
+For full setup instructions, tutorials, and feature breakdowns, check out the 👉 **[mDirt Wiki](https://github.com/Faith-and-Code-Technologies/mDirt/wiki)**
 
 ---
 
