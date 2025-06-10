@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uidFkitM.ui'
+## Form generated from reading UI file 'uiOhTKXI.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.9.0
 ##
@@ -806,7 +806,6 @@ class Ui_MainWindow(object):
         self.formLayout_5.setWidget(2, QFormLayout.ItemRole.LabelRole, self.label_21)
 
         self.settingsThemeCombo = QComboBox(self.scrollAreaWidgetContents)
-        self.settingsThemeCombo.addItem("")
         self.settingsThemeCombo.addItem("")
         self.settingsThemeCombo.addItem("")
         self.settingsThemeCombo.setObjectName(u"settingsThemeCombo")
@@ -1704,7 +1703,6 @@ class Ui_MainWindow(object):
         self.label_21.setText(QCoreApplication.translate("MainWindow", u"Show Tips on Startup", None))
         self.settingsThemeCombo.setItemText(0, QCoreApplication.translate("MainWindow", u"Dark", None))
         self.settingsThemeCombo.setItemText(1, QCoreApplication.translate("MainWindow", u"Light", None))
-        self.settingsThemeCombo.setItemText(2, QCoreApplication.translate("MainWindow", u"Experimental: Espresso", None))
 
 #if QT_CONFIG(tooltip)
         self.settingsThemeCombo.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The mDirt theme.</p></body></html>", None))

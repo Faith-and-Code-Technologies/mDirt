@@ -1,0 +1,217 @@
+/* General palette */
+* {
+    color: #E8F5E8;
+    background-color: #1A2B1A;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 14px;
+}
+
+/* QMainWindow */
+QMainWindow {
+    background-color: #1A2B1A;
+}
+
+/* QLabel */
+QLabel {
+    color: #E8F5E8;
+}
+
+/* Spin Boxes */
+QSpinBox,
+QDoubleSpinBox {
+    background-color: #2D4A2D;
+    color: #E8F5E8;
+    border: 1px solid #4A7C59;
+    border-radius: 4px;
+    padding: 2px 6px;
+}
+
+QSpinBox::up-button,
+QDoubleSpinBox::up-button,
+QSpinBox::down-button,
+QDoubleSpinBox::down-button {
+    subcontrol-origin: border;
+    width: 16px;
+    background-color: #3D5A3D;
+    border: 1px solid #4A7C59;
+    border-radius: 2px;
+}
+
+QSpinBox::up-button:hover,
+QDoubleSpinBox::up-button:hover,
+QSpinBox::down-button:hover,
+QDoubleSpinBox::down-button:hover {
+    background-color: #4A6B4A;
+}
+
+QSpinBox::up-arrow,
+QDoubleSpinBox::up-arrow,
+QSpinBox::down-arrow,
+QDoubleSpinBox::down-arrow {
+    width: 10px;
+    height: 10px;
+}
+
+/* Sliders */
+QSlider::groove:horizontal {
+    border: 1px solid #3D5A3D;
+    height: 6px;
+    background: #2D4A2D;
+    margin: 0px;
+    border-radius: 3px;
+}
+
+QSlider::handle:horizontal {
+    background: #4A7C59;
+    border: 1px solid #3D5A3D;
+    width: 12px;
+    margin: -6px 0;
+    border-radius: 6px;
+}
+
+QSlider::groove:vertical {
+    border: 1px solid #3D5A3D;
+    width: 6px;
+    background: #2D4A2D;
+    margin: 0px;
+    border-radius: 3px;
+}
+
+QSlider::handle:vertical {
+    background: #4A7C59;
+    border: 1px solid #3D5A3D;
+    height: 12px;
+    margin: 0 -6px;
+    border-radius: 6px;
+}
+
+/* Tree Widgets */
+QTreeWidget,
+QTreeView {
+    background-color: #2D4A2D;
+    color: #D4E6D4;
+    border: 1px solid #3D5A3D;
+    alternate-background-color: #3A5C3A;
+    show-decoration-selected: 1;
+}
+
+QTreeView::item:selected {
+    background-color: #4A6B4A;
+    color: #F0F8F0;
+}
+
+QTreeView::branch {
+    background-color: transparent;
+}
+
+QHeaderView::section {
+    background-color: #3D5A3D;
+    color: #E8F5E8;
+    border: 1px solid #4A7C59;
+    padding: 4px;
+}
+
+/* QPushButton */
+QPushButton {
+    background-color: #2F4F2F;
+    color: #E8F5E8;
+    border: 1px solid #4A7C59;
+    border-radius: 5px;
+    padding: 5px;
+}
+QPushButton:hover {
+    background-color: #3D5A3D;
+}
+QPushButton:pressed {
+    background-color: #1E3F1E;
+}
+
+/* QLineEdit */
+QLineEdit {
+    background-color: #243B24;
+    color: #E8F5E8;
+    border: 1px solid #4A7C59;
+    border-radius: 3px;
+    padding: 4px;
+}
+
+/* QPlainTextEdit */
+QPlainTextEdit {
+    background-color: #243B24;
+    color: #E8F5E8;
+    border: 1px solid #4A7C59;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+/* QComboBox */
+QComboBox {
+    background-color: #243B24;
+    color: #E8F5E8;
+    border: 1px solid #4A7C59;
+    border-radius: 3px;
+    padding: 4px;
+}
+QComboBox QAbstractItemView {
+    background-color: #1A2B1A;
+    color: #E8F5E8;
+    border: 1px solid #4A7C59;
+    selection-background-color: #3D5A3D;
+}
+
+/* QCheckBox */
+QCheckBox {
+    color: #E8F5E8;
+}
+QCheckBox::indicator {
+    width: 14px;
+    height: 14px;
+}
+QCheckBox::indicator:unchecked {
+    border: 1px solid #4A7C59;
+    background-color: #243B24;
+}
+QCheckBox::indicator:checked {
+    background-color: #4A7C59;
+    border: 1px solid #6B9F6B;
+}
+
+/* QGroupBox */
+QGroupBox {
+    border: 1px solid #4A7C59;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+QGroupBox:title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0 3px;
+    color: #E8F5E8;
+}
+
+/* QMenuBar */
+QMenuBar {
+    background-color: #1A2B1A;
+}
+QMenuBar::item {
+    background: transparent;
+    color: #E8F5E8;
+    padding: 5px 10px;
+}
+QMenuBar::item:selected {
+    background: #3D5A3D;
+}
+
+/* QMenu */
+QMenu {
+    background-color: #1A2B1A;
+    color: #E8F5E8;
+    border: 1px solid #4A7C59;
+}
+QMenu::item:selected {
+    background-color: #3D5A3D;
+}
+
+QPushButton:flat{
+    background-color: transparent;
+}

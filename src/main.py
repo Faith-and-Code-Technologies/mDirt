@@ -135,7 +135,11 @@ class App(QMainWindow):
         self.unsavedChanges = False
 
         # Create Workspaces folder
-        os.makedirs(self.mainDirectory / 'workspaces', exist_ok=True) # 
+        os.makedirs(self.mainDirectory / 'workspaces', exist_ok=True)
+
+        # Load Themes
+        path = self.mainDirectory / 'assets' / 'themes'
+        self.loadThemes(path)
 
         # CONNECTIONS
         self.ui.actionNew_Project.triggered.connect(self.openProjectMenu)
@@ -268,7 +272,7 @@ class App(QMainWindow):
             subprocess.Popen(updaterPath)
         else:
             alert("The mDirt Updater is missing! Reinstall mDirt to fix it.", 'critical')
-            sys.exit(1)
+            #sys.exit(1)
 
     #######################
     # QT EVENTS           #
@@ -634,6 +638,12 @@ class App(QMainWindow):
     # SETTINGS            #
     #######################
 
+    def loadThemes(self, path):
+        self.themes = {}
+        folder = Path(path)
+        for file_path in folder.glob("*.qss"):
+            self.themes[file_path.name.removesuffix('.qss').replace('_', ' ').capitalize()] = str(file_path.absolute())
+
     def disableUnusedSettings(self):
         self.ui.settingsLanguageCombo.setDisabled(True)
         self.ui.settingsExperimentsCheckbox.setDisabled(True)
@@ -692,6 +702,14 @@ class App(QMainWindow):
         self.ui.elementEditor.setCurrentIndex(ElementPage.HOME)
 
     def refreshSettings(self):
+        self.loadThemes(self.mainDirectory / 'assets' / 'themes')
+        self.ui.settingsThemeCombo.clear()
+        for theme in self.themes:
+            self.ui.settingsThemeCombo.addItem(theme)
+        
+        self.ui.settingsThemeCombo.addItem('Dark')
+        self.ui.settingsThemeCombo.addItem('Light')
+
         self.ui.settingsAutoSaveInt.setCurrentText(self.settings.get('general', 'auto_save_interval'))
         self.ui.settingsOpenLastCheckbox.setChecked(self.settings.get('general', 'open_last_project'))
         self.ui.settingsWorkspacePathButton.setText(self.settings.get('general', 'workspace_path'))
@@ -711,19 +729,20 @@ class App(QMainWindow):
         self.setAutoSaveInterval()
         self.workspacePath = self.settings.get('general', 'workspace_path')
         self.setFont(QFont("Segoe UI", self.settings.get('appearance', 'font_size')))
-        theme = self.settings.get('appearance', 'theme').lower()
-        self.setStyleSheet("QPushButton:flat{background-color: transparent; border: 2px solid vlack;}")
-        if theme == "dark":
+        theme = self.settings.get('appearance', 'theme')
+        self.setStyleSheet("QPushButton:flat{background-color: transparent; border: 2px solid black;}")
+        print(self.themes)
+        if theme == "Dark":
             app.styleHints().setColorScheme(Qt.ColorScheme.Dark)
             app.setStyle('Fusion')
-        elif theme == "light":
+        elif theme == "Light":
             app.styleHints().setColorScheme(Qt.ColorScheme.Light)
             app.setStyle('Fusion')
-        elif "espresso" in theme:
-            stylesheetFile = self.mainDirectory / 'lib' / 'UIs' / 'espresso.qss'
-            with open(stylesheetFile, 'r') as f:
-                espressoTheme = f.read()
-            self.setStyleSheet(espressoTheme)
+        elif theme in self.themes.keys():
+            themePath = self.themes[theme]
+            with open(themePath, 'r') as f: # Add error checking here
+                themeQSS = f.read()
+                self.setStyleSheet(themeQSS)
 
     #######################
     # ELEMENT MANAGER     #
