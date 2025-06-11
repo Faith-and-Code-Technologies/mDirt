@@ -9,6 +9,10 @@ Creating custom Minecraft datapacks can be time-consuming and complex. **mDirt**
 
 ---
 
+### ⬆️ **v3.0 Update**
+v3.0 will release on **Friday, June 13th**!
+
+---
 ### 🛠️ **Supported Versions**
 - **Minecraft Versions Supported**: 1.21.3, 1.21.4, and 1.21.5  
   - Full compatibility for **1.21.5** has been added.
@@ -63,15 +67,6 @@ For full setup instructions, tutorials, and feature breakdowns, check out the �
 | **Items**        | ✅ 80%    | ✅ 80%    | ✅ 80%    |
 | **Recipes**      | ✅ 100%   | ✅ 100%   | ✅ 100%   |
 | **Paintings**    | ❌ -      | ✅ 100%   | ✅ 100%   |
-
----
-
-### 🚀 **Coming Soon**
-
-- v3.0
-  - As you may know, v3 has been in development for a couple of months. We had been planning on implementing a new system for the backend to make things like Enchantments, Predicates, Loot Tables, etc. possible.
-  - But due to the extreme amount of work that will go into that, we have delayed it until v3.1 or v4.0
-  - v3.0 is now almost finished, and does still come with some MAJOR changes, and two new features. Stay tuned!
 
 ---
 
