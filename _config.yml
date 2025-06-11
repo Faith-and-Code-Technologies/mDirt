@@ -1,9 +1,0 @@
-title: mDirt Docs
-baseurl: "/mDirt"
-theme: null
-markdown: kramdown
-defaults:
-  - scope:
-      path: "docs"
-    values:
-      layout: default
