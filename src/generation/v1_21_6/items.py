@@ -100,11 +100,9 @@ class ItemGenerator:
 
 
 class ItemResourcer:
-    def __init__(self, resPackDirectory, packNamespace, exists, data, items):
+    def __init__(self, resPackDirectory, packNamespace, items):
         self.items = items
         self.resPackDirectory = resPackDirectory
-        self.exists = exists
-        self.data = data
         self.packNamespace = packNamespace
 
         self.env = Environment(
