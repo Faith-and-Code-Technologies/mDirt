@@ -28,7 +28,6 @@ pyinstaller src/main.py ^
   --add-data "lib;lib" ^
   --add-data "assets;assets" ^
   --add-data "src;src" ^
-  --add-data "workspaces;workspaces" ^
   --hidden-import=jinja2 ^
   --hidden-import=jinja2.ext
 
