@@ -24,7 +24,7 @@ def get_sounds_json(target_version=None):
     versions = [f for f in os.listdir(index_dir) if f.endswith(".json")]
 
     if target_version:
-        index_file = target_version.split('.')[0] + '.' + target_version.split('.')[1] + ".json" if '.' in target_version else target_version + ".json"
+        index_file = target_version + ".json"
         if index_file not in versions:
             print(f"Version {target_version} not found. Available: {[v.rstrip('.json') for v in versions]}")
             return
@@ -283,4 +283,8 @@ def get_minecraft_files(version: str, soundver: str):
     #with open(f"lib/{version}_blockstates_simple.json", "w") as f:
         #json.dump(blockstates_simple, f, indent=4)
 
-get_minecraft_files("1.21.6-pre4", "1.21.5")
+# 1.21.4 = 19
+# 1.21.5 = 24
+# 1.21.6 = 26
+# We have NO IDEA why Mojang names their sounds this way.
+get_minecraft_files("1.21.6-rc1", "26")
