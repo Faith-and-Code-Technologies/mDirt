@@ -4,7 +4,7 @@ setlocal enabledelayedexpansion
 :: ================================
 :: CONFIGURABLE VERSION NUMBER
 :: ================================
-set "VERSION=3.0.0-RC2"
+set "VERSION=3.0.0"
 set "ZIP_NAME=mDirt-%VERSION%.zip"
 set "RELEASE_DIR=release"
 set "MAIN_APP_DIR=dist\mDirt-%VERSION%"
@@ -111,7 +111,7 @@ if errorlevel 1 (
 echo Creating ZIP archive...
 
 powershell -NoLogo -NoProfile -Command ^
-    "Try { Compress-Archive -Path '%RELEASE_DIR%\*' -DestinationPath '%ZIP_NAME%' -CompressionLevel Optimal -Force; exit 0 } Catch { Write-Error $_.Exception.Message; exit 1 }"
+    "Try { Compress-Archive -Path %RELEASE_DIR%\* -DestinationPath %ZIP_NAME% -CompressionLevel Optimal -Force; exit 0 } Catch { Write-Error $_.Exception.Message; exit 1 }"
 
 if errorlevel 1 (
     echo ERROR: PowerShell ZIP failed. Trying 7-Zip...
