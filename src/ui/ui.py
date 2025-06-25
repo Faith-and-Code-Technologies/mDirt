@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uikAzZms.ui'
+## Form generated from reading UI file 'uiRtgTcG.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.9.0
 ##
@@ -61,6 +61,8 @@ class Ui_MainWindow(object):
         self.actionStructure.setObjectName(u"actionStructure")
         self.actionEquipmentSet = QAction(MainWindow)
         self.actionEquipmentSet.setObjectName(u"actionEquipmentSet")
+        self.actionInstall_Plugin = QAction(MainWindow)
+        self.actionInstall_Plugin.setObjectName(u"actionInstall_Plugin")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.formLayout_2 = QFormLayout(self.centralwidget)
@@ -1346,10 +1348,13 @@ class Ui_MainWindow(object):
         self.menuNew_Element.setObjectName(u"menuNew_Element")
         self.menuSave = QMenu(self.menuBar)
         self.menuSave.setObjectName(u"menuSave")
+        self.menuPlugins = QMenu(self.menuBar)
+        self.menuPlugins.setObjectName(u"menuPlugins")
         MainWindow.setMenuBar(self.menuBar)
 
         self.menuBar.addAction(self.menuSave.menuAction())
         self.menuBar.addAction(self.menuNew_Element.menuAction())
+        self.menuBar.addAction(self.menuPlugins.menuAction())
         self.menuNew_Element.addAction(self.actionBlock)
         self.menuNew_Element.addAction(self.actionItem)
         self.menuNew_Element.addAction(self.actionRecipe)
@@ -1366,6 +1371,7 @@ class Ui_MainWindow(object):
         self.menuSave.addAction(self.actionExport_Project)
         self.menuSave.addSeparator()
         self.menuSave.addAction(self.actionSettings)
+        self.menuPlugins.addAction(self.actionInstall_Plugin)
 
         self.retranslateUi(MainWindow)
 
@@ -1377,7 +1383,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"mDirt - v3.0.0", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"mDirt - v3.1.0", None))
         self.actionBlock.setText(QCoreApplication.translate("MainWindow", u"Block", None))
         self.actionRecipe.setText(QCoreApplication.translate("MainWindow", u"Recipe", None))
         self.actionPainting.setText(QCoreApplication.translate("MainWindow", u"Painting", None))
@@ -1393,6 +1399,7 @@ class Ui_MainWindow(object):
         self.actionSettings.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
         self.actionStructure.setText(QCoreApplication.translate("MainWindow", u"Structure", None))
         self.actionEquipmentSet.setText(QCoreApplication.translate("MainWindow", u"Equipment Set", None))
+        self.actionInstall_Plugin.setText(QCoreApplication.translate("MainWindow", u"Install Plugin", None))
         ___qtreewidgetitem = self.elementViewer.headerItem()
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"Element Viewer", None));
 #if QT_CONFIG(tooltip)
@@ -1933,5 +1940,6 @@ class Ui_MainWindow(object):
         self.label_55.setText(QCoreApplication.translate("MainWindow", u"Humanoid Leggings", None))
         self.menuNew_Element.setTitle(QCoreApplication.translate("MainWindow", u"New Element", None))
         self.menuSave.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
+        self.menuPlugins.setTitle(QCoreApplication.translate("MainWindow", u"Plugins", None))
     # retranslateUi
 

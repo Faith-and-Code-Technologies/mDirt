@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>mDirt - v3.0.0</string>
+   <string>mDirt - v3.1.0</string>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -2995,8 +2995,15 @@
     <addaction name="separator"/>
     <addaction name="actionSettings"/>
    </widget>
+   <widget class="QMenu" name="menuPlugins">
+    <property name="title">
+     <string>Plugins</string>
+    </property>
+    <addaction name="actionInstall_Plugin"/>
+   </widget>
    <addaction name="menuSave"/>
    <addaction name="menuNew_Element"/>
+   <addaction name="menuPlugins"/>
   </widget>
   <action name="actionBlock">
    <property name="text">
@@ -3071,6 +3078,11 @@
   <action name="actionEquipmentSet">
    <property name="text">
     <string>Equipment Set</string>
+   </property>
+  </action>
+  <action name="actionInstall_Plugin">
+   <property name="text">
+    <string>Install Plugin</string>
    </property>
   </action>
  </widget>
