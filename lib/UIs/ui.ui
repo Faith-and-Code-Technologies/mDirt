@@ -2955,6 +2955,150 @@
        <zorder>helmetItem</zorder>
        <zorder>leggingsModel</zorder>
       </widget>
+      <widget class="QWidget" name="textEditor">
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QPushButton" name="textGeneratorBold">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset theme="QIcon::ThemeIcon::FormatTextBold"/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="textGeneratorItalic">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset theme="QIcon::ThemeIcon::FormatTextItalic"/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="textGeneratorStrikethrough">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset theme="QIcon::ThemeIcon::FormatTextStrikethrough"/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="textGeneratorUnderline">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset theme="QIcon::ThemeIcon::FormatTextUnderline"/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="textGeneratorObfuscated">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset theme="QIcon::ThemeIcon::ListRemove"/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="textGeneratorShadowColor">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset theme="QIcon::ThemeIcon::MediaRecord"/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="textGeneratorColor">
+            <property name="text">
+             <string>Color</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0">
+         <widget class="QTextEdit" name="textGeneratorTextBox"/>
+        </item>
+        <item row="2" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QComboBox" name="textGeneratorType">
+            <item>
+             <property name="text">
+              <string>Raw JSON</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Tellraw Command</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Title</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Subtitle</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Actionbar</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Bossbar Name</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Item Name</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Item Lore</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>MOTD</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="textGeneratorCopy">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset theme="edit-copy"/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="textGeneratorOutput"/>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -2995,15 +3139,15 @@
     <addaction name="separator"/>
     <addaction name="actionSettings"/>
    </widget>
-   <widget class="QMenu" name="menuPlugins">
+   <widget class="QMenu" name="menuTools">
     <property name="title">
-     <string>Plugins</string>
+     <string>Tools</string>
     </property>
-    <addaction name="actionInstall_Plugin"/>
+    <addaction name="actionText_Generator"/>
    </widget>
    <addaction name="menuSave"/>
    <addaction name="menuNew_Element"/>
-   <addaction name="menuPlugins"/>
+   <addaction name="menuTools"/>
   </widget>
   <action name="actionBlock">
    <property name="text">
@@ -3080,9 +3224,9 @@
     <string>Equipment Set</string>
    </property>
   </action>
-  <action name="actionInstall_Plugin">
+  <action name="actionText_Generator">
    <property name="text">
-    <string>Install Plugin</string>
+    <string>Text Generator</string>
    </property>
   </action>
  </widget>

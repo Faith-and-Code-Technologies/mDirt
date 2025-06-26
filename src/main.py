@@ -143,7 +143,9 @@ class App(QMainWindow):
 
         # Load Fonts
         self.fontIDS = self.loadFonts()
-        self.minecraftFont = QFont("Minecraft", 12)
+        
+        family = QFontDatabase.applicationFontFamilies(self.fontIDS[0])[0]
+        self.minecraftFont = QFont(family, 12)
 
         # CONNECTIONS
         self.ui.actionNew_Project.triggered.connect(self.openProjectMenu)
@@ -165,6 +167,7 @@ class App(QMainWindow):
         self.ui.actionPainting.triggered.connect(self.newPainting)
         self.ui.actionStructure.triggered.connect(self.newStructure)
         self.ui.actionEquipmentSet.triggered.connect(self.newEquipment)
+        self.ui.actionText_Generator.triggered.connect(self.textGenerator)
 
         # Block Specific Connections
         self.ui.blockTextureButtonTop.clicked.connect(lambda: self.addBlockTexture(BlockFace.TOP))
@@ -258,6 +261,9 @@ class App(QMainWindow):
 
         self.ui.equipmentConfirmButton.clicked.connect(self.addEquipment)
 
+        # Text Generator Connections
+
+
         # Settings Specific Connections
         self.ui.settingsWorkspacePathButton.clicked.connect(self.workspacePathChanged)
         self.ui.settingsDefaultExportButton.clicked.connect(self.exportPathChanged)
@@ -281,7 +287,7 @@ class App(QMainWindow):
         for file in os.listdir(self.fontDir):
             if file.endswith('.otf'):
                 fontPath = self.fontDir / file
-                fontID = QFontDatabase.addApplicationFont(fontPath)
+                fontID = QFontDatabase.addApplicationFont(str(fontPath))
                 if fontID != -1:
                     fontIDs.append(fontID)
         
@@ -1580,6 +1586,15 @@ class App(QMainWindow):
         except: pass
 
         self.ui.elementEditor.setCurrentIndex(ElementPage.EQUIPMENT)
+
+    #######################
+    # TOOLS               #
+    #######################
+
+    def textGenerator(self):
+        self.ui.elementEditor.setCurrentIndex(ElementPage.TEXT_GENERATOR)
+        self.ui.textGeneratorTextBox.setFont(self.minecraftFont)
+        self.ui.textGeneratorTextBox.setStyleSheet("background-color: #1e1e1e; color: white;")
 
     #######################
     # PACK GENERATION     #

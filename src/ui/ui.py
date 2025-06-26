@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiRtgTcG.ui'
+## Form generated from reading UI file 'uihVhDNr.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.9.0
 ##
@@ -17,13 +17,13 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
 from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QCheckBox, QComboBox,
-    QFormLayout, QGridLayout, QGroupBox, QHeaderView,
-    QLabel, QLineEdit, QMainWindow, QMenu,
-    QMenuBar, QPlainTextEdit, QPushButton, QRadioButton,
-    QScrollArea, QSizePolicy, QSlider, QSpinBox,
-    QStackedWidget, QStatusBar, QTabWidget, QTextBrowser,
-    QToolButton, QTreeWidget, QTreeWidgetItem, QVBoxLayout,
-    QWidget)
+    QFormLayout, QGridLayout, QGroupBox, QHBoxLayout,
+    QHeaderView, QLabel, QLineEdit, QMainWindow,
+    QMenu, QMenuBar, QPlainTextEdit, QPushButton,
+    QRadioButton, QScrollArea, QSizePolicy, QSlider,
+    QSpinBox, QStackedWidget, QStatusBar, QTabWidget,
+    QTextBrowser, QTextEdit, QToolButton, QTreeWidget,
+    QTreeWidgetItem, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -61,8 +61,8 @@ class Ui_MainWindow(object):
         self.actionStructure.setObjectName(u"actionStructure")
         self.actionEquipmentSet = QAction(MainWindow)
         self.actionEquipmentSet.setObjectName(u"actionEquipmentSet")
-        self.actionInstall_Plugin = QAction(MainWindow)
-        self.actionInstall_Plugin.setObjectName(u"actionInstall_Plugin")
+        self.actionText_Generator = QAction(MainWindow)
+        self.actionText_Generator.setObjectName(u"actionText_Generator")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.formLayout_2 = QFormLayout(self.centralwidget)
@@ -1334,6 +1334,99 @@ class Ui_MainWindow(object):
         self.chestplateModel.raise_()
         self.helmetItem.raise_()
         self.leggingsModel.raise_()
+        self.textEditor = QWidget()
+        self.textEditor.setObjectName(u"textEditor")
+        self.gridLayout_5 = QGridLayout(self.textEditor)
+        self.gridLayout_5.setObjectName(u"gridLayout_5")
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.textGeneratorBold = QPushButton(self.textEditor)
+        self.textGeneratorBold.setObjectName(u"textGeneratorBold")
+        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.FormatTextBold))
+        self.textGeneratorBold.setIcon(icon)
+
+        self.horizontalLayout.addWidget(self.textGeneratorBold)
+
+        self.textGeneratorItalic = QPushButton(self.textEditor)
+        self.textGeneratorItalic.setObjectName(u"textGeneratorItalic")
+        icon1 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.FormatTextItalic))
+        self.textGeneratorItalic.setIcon(icon1)
+
+        self.horizontalLayout.addWidget(self.textGeneratorItalic)
+
+        self.textGeneratorStrikethrough = QPushButton(self.textEditor)
+        self.textGeneratorStrikethrough.setObjectName(u"textGeneratorStrikethrough")
+        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.FormatTextStrikethrough))
+        self.textGeneratorStrikethrough.setIcon(icon2)
+
+        self.horizontalLayout.addWidget(self.textGeneratorStrikethrough)
+
+        self.textGeneratorUnderline = QPushButton(self.textEditor)
+        self.textGeneratorUnderline.setObjectName(u"textGeneratorUnderline")
+        icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.FormatTextUnderline))
+        self.textGeneratorUnderline.setIcon(icon3)
+
+        self.horizontalLayout.addWidget(self.textGeneratorUnderline)
+
+        self.textGeneratorObfuscated = QPushButton(self.textEditor)
+        self.textGeneratorObfuscated.setObjectName(u"textGeneratorObfuscated")
+        icon4 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.ListRemove))
+        self.textGeneratorObfuscated.setIcon(icon4)
+
+        self.horizontalLayout.addWidget(self.textGeneratorObfuscated)
+
+        self.textGeneratorShadowColor = QPushButton(self.textEditor)
+        self.textGeneratorShadowColor.setObjectName(u"textGeneratorShadowColor")
+        icon5 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaRecord))
+        self.textGeneratorShadowColor.setIcon(icon5)
+
+        self.horizontalLayout.addWidget(self.textGeneratorShadowColor)
+
+        self.textGeneratorColor = QPushButton(self.textEditor)
+        self.textGeneratorColor.setObjectName(u"textGeneratorColor")
+
+        self.horizontalLayout.addWidget(self.textGeneratorColor)
+
+
+        self.gridLayout_5.addLayout(self.horizontalLayout, 0, 0, 1, 1)
+
+        self.textGeneratorTextBox = QTextEdit(self.textEditor)
+        self.textGeneratorTextBox.setObjectName(u"textGeneratorTextBox")
+
+        self.gridLayout_5.addWidget(self.textGeneratorTextBox, 1, 0, 1, 1)
+
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.textGeneratorType = QComboBox(self.textEditor)
+        self.textGeneratorType.addItem("")
+        self.textGeneratorType.addItem("")
+        self.textGeneratorType.addItem("")
+        self.textGeneratorType.addItem("")
+        self.textGeneratorType.addItem("")
+        self.textGeneratorType.addItem("")
+        self.textGeneratorType.addItem("")
+        self.textGeneratorType.addItem("")
+        self.textGeneratorType.addItem("")
+        self.textGeneratorType.setObjectName(u"textGeneratorType")
+
+        self.horizontalLayout_3.addWidget(self.textGeneratorType)
+
+        self.textGeneratorCopy = QPushButton(self.textEditor)
+        self.textGeneratorCopy.setObjectName(u"textGeneratorCopy")
+        icon6 = QIcon(QIcon.fromTheme(u"edit-copy"))
+        self.textGeneratorCopy.setIcon(icon6)
+
+        self.horizontalLayout_3.addWidget(self.textGeneratorCopy)
+
+        self.textGeneratorOutput = QLineEdit(self.textEditor)
+        self.textGeneratorOutput.setObjectName(u"textGeneratorOutput")
+
+        self.horizontalLayout_3.addWidget(self.textGeneratorOutput)
+
+
+        self.gridLayout_5.addLayout(self.horizontalLayout_3, 2, 0, 1, 1)
+
+        self.elementEditor.addWidget(self.textEditor)
 
         self.formLayout_2.setWidget(0, QFormLayout.ItemRole.FieldRole, self.elementEditor)
 
@@ -1348,13 +1441,13 @@ class Ui_MainWindow(object):
         self.menuNew_Element.setObjectName(u"menuNew_Element")
         self.menuSave = QMenu(self.menuBar)
         self.menuSave.setObjectName(u"menuSave")
-        self.menuPlugins = QMenu(self.menuBar)
-        self.menuPlugins.setObjectName(u"menuPlugins")
+        self.menuTools = QMenu(self.menuBar)
+        self.menuTools.setObjectName(u"menuTools")
         MainWindow.setMenuBar(self.menuBar)
 
         self.menuBar.addAction(self.menuSave.menuAction())
         self.menuBar.addAction(self.menuNew_Element.menuAction())
-        self.menuBar.addAction(self.menuPlugins.menuAction())
+        self.menuBar.addAction(self.menuTools.menuAction())
         self.menuNew_Element.addAction(self.actionBlock)
         self.menuNew_Element.addAction(self.actionItem)
         self.menuNew_Element.addAction(self.actionRecipe)
@@ -1371,7 +1464,7 @@ class Ui_MainWindow(object):
         self.menuSave.addAction(self.actionExport_Project)
         self.menuSave.addSeparator()
         self.menuSave.addAction(self.actionSettings)
-        self.menuPlugins.addAction(self.actionInstall_Plugin)
+        self.menuTools.addAction(self.actionText_Generator)
 
         self.retranslateUi(MainWindow)
 
@@ -1399,7 +1492,7 @@ class Ui_MainWindow(object):
         self.actionSettings.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
         self.actionStructure.setText(QCoreApplication.translate("MainWindow", u"Structure", None))
         self.actionEquipmentSet.setText(QCoreApplication.translate("MainWindow", u"Equipment Set", None))
-        self.actionInstall_Plugin.setText(QCoreApplication.translate("MainWindow", u"Install Plugin", None))
+        self.actionText_Generator.setText(QCoreApplication.translate("MainWindow", u"Text Generator", None))
         ___qtreewidgetitem = self.elementViewer.headerItem()
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"Element Viewer", None));
 #if QT_CONFIG(tooltip)
@@ -1938,8 +2031,26 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.label_54.setText(QCoreApplication.translate("MainWindow", u"Humanoid", None))
         self.label_55.setText(QCoreApplication.translate("MainWindow", u"Humanoid Leggings", None))
+        self.textGeneratorBold.setText("")
+        self.textGeneratorItalic.setText("")
+        self.textGeneratorStrikethrough.setText("")
+        self.textGeneratorUnderline.setText("")
+        self.textGeneratorObfuscated.setText("")
+        self.textGeneratorShadowColor.setText("")
+        self.textGeneratorColor.setText(QCoreApplication.translate("MainWindow", u"Color", None))
+        self.textGeneratorType.setItemText(0, QCoreApplication.translate("MainWindow", u"Raw JSON", None))
+        self.textGeneratorType.setItemText(1, QCoreApplication.translate("MainWindow", u"Tellraw Command", None))
+        self.textGeneratorType.setItemText(2, QCoreApplication.translate("MainWindow", u"Title", None))
+        self.textGeneratorType.setItemText(3, QCoreApplication.translate("MainWindow", u"Subtitle", None))
+        self.textGeneratorType.setItemText(4, QCoreApplication.translate("MainWindow", u"Actionbar", None))
+        self.textGeneratorType.setItemText(5, QCoreApplication.translate("MainWindow", u"Bossbar Name", None))
+        self.textGeneratorType.setItemText(6, QCoreApplication.translate("MainWindow", u"Item Name", None))
+        self.textGeneratorType.setItemText(7, QCoreApplication.translate("MainWindow", u"Item Lore", None))
+        self.textGeneratorType.setItemText(8, QCoreApplication.translate("MainWindow", u"MOTD", None))
+
+        self.textGeneratorCopy.setText("")
         self.menuNew_Element.setTitle(QCoreApplication.translate("MainWindow", u"New Element", None))
         self.menuSave.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
-        self.menuPlugins.setTitle(QCoreApplication.translate("MainWindow", u"Plugins", None))
+        self.menuTools.setTitle(QCoreApplication.translate("MainWindow", u"Tools", None))
     # retranslateUi
 

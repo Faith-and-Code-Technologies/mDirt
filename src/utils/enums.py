@@ -20,3 +20,4 @@ class ElementPage(IntEnum):
     SETTINGS = 6
     STRUCTURES = 7
     EQUIPMENT = 8
+    TEXT_GENERATOR = 9
