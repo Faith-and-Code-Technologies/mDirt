@@ -92,6 +92,7 @@ _As of v3.0.0_
 
 - Built by **[@TheJupiterDev](https://github.com/TheJupiterDev)** and **[@JustJoshinDev](https://github.com/JustJoshinDev)**
 - Special thanks to **[Admin](https://youtube.com/@WASDBuildTeam)** for the custom block generation method
+- The Minecraft font used is under the Public Domain.
 
 ---
 
