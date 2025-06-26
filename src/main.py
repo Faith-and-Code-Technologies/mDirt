@@ -26,8 +26,8 @@ from ui.ui import Ui_MainWindow
 from settings import SettingsManager
 from module import ModuleDownloader
 
-APP_VERSION = '3.0.0'
-FULL_APP_VERSION = '3.0.0'
+APP_VERSION = '3.0.1'
+FULL_APP_VERSION = '3.0.1'
 LIB_URL = 'https://raw.githubusercontent.com/Faith-and-Code-Technologies/mDirt/main/lib'
 ISSUE_URL = 'https://github.com/Faith-and-Code-Technologies/mDirt/issues'
 
