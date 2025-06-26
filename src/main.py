@@ -329,7 +329,7 @@ class App(QMainWindow):
     def installVersionsJson(self):
         path = self.mainDirectory / 'lib' / 'version_list.json'
         with open(path, 'w') as f:
-            f.write(self.version_json)
+            json.dump(self.version_json, f)
 
     def openProjectMenu(self):
         self.pullSupportedVersions()                   # Pulls the supported version list from the server.
