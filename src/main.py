@@ -11,7 +11,7 @@ import logging
 from pathlib import Path
 
 from PySide6.QtCore import Qt, QTimer, QEvent, QObject
-from PySide6.QtGui import QImage, QPixmap, QFont, QDropEvent, QDragEnterEvent, QIcon
+from PySide6.QtGui import QImage, QPixmap, QFont, QDropEvent, QDragEnterEvent, QIcon, QFontDatabase
 from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QWidget, QTreeWidgetItem, QCheckBox, QMessageBox
 
 from utils.field_validator import FieldValidator
@@ -26,8 +26,8 @@ from ui.ui import Ui_MainWindow
 from settings import SettingsManager
 from module import ModuleDownloader
 
-APP_VERSION = '3.0.1'
-FULL_APP_VERSION = '3.0.1'
+APP_VERSION = '3.1.0'
+FULL_APP_VERSION = '3.1.0'
 LIB_URL = 'https://raw.githubusercontent.com/Faith-and-Code-Technologies/mDirt/main/lib'
 ISSUE_URL = 'https://github.com/Faith-and-Code-Technologies/mDirt/issues'
 
@@ -140,6 +140,10 @@ class App(QMainWindow):
         # Load Themes
         path = self.mainDirectory / 'assets' / 'themes'
         self.loadThemes(path)
+
+        # Load Fonts
+        self.fontIDS = self.loadFonts()
+        self.minecraftFont = QFont("Minecraft", 12)
 
         # CONNECTIONS
         self.ui.actionNew_Project.triggered.connect(self.openProjectMenu)
@@ -270,6 +274,18 @@ class App(QMainWindow):
         else:
             alert("The mDirt Updater is missing! Reinstall mDirt to fix it.", 'critical')
             #sys.exit(1)
+
+    def loadFonts(self):
+        self.fontDir = self.mainDirectory / 'assets' / 'fonts'
+        fontIDs = []
+        for file in os.listdir(self.fontDir):
+            if file.endswith('.otf'):
+                fontPath = self.fontDir / file
+                fontID = QFontDatabase.addApplicationFont(fontPath)
+                if fontID != -1:
+                    fontIDs.append(fontID)
+        
+        return fontIDs
 
     #######################
     # QT EVENTS           #

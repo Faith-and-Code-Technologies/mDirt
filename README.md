@@ -21,13 +21,13 @@ mDirt v3.0 has officially released!
 ---
 
 ### 🛠️ **Supported Versions**
-- **Minecraft Versions**: 1.21.4, 1.21.5, and 1.21.6*
-  - *Full compatibility for **1.21.6** has been added and will be available on its release day.
+- **Minecraft Versions**: 1.21.4, 1.21.5, and 1.21.6
+  - Full compatibility for **1.21.6** has been added!
 
 ---
 
 ### 🚨 **Version 1.21.6 Support**
-Official support for **Minecraft 1.21.6** is fully implemented and will be ready the moment Mojang ships the update.
+Official support for **Minecraft 1.21.6** is fully implemented and is working for every Element!
 
 ---
 
@@ -92,6 +92,7 @@ _As of v3.0.0_
 
 - Built by **[@TheJupiterDev](https://github.com/TheJupiterDev)** and **[@JustJoshinDev](https://github.com/JustJoshinDev)**
 - Special thanks to **[Admin](https://youtube.com/@WASDBuildTeam)** for the custom block generation method
+- The Minecraft font used is under the Public Domain.
 
 ---
 
