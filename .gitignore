@@ -9,3 +9,4 @@ settings.json
 *.log
 exports/*
 v3.0.md
+venv/
