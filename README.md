@@ -15,6 +15,12 @@ Creating custom Minecraft datapacks can be time-consuming and complex. **mDirt**
 
 ---
 
+## ⚠️ MAJOR NOTICE
+mDirt has been made using Python & Qt. Sadly, this has made the app very difficult to develop.
+We are currently rewriting the entire app into Rust & Leptos, which will allow us to deploy it as a web app!
+
+---
+
 ### ⬆️ **v3.0 Update**
 mDirt v3.0 has officially released!
 
