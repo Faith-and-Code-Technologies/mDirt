@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://faith-and-code-technologies.github.io/mDirt/" target="_blank">
-    🌐 Visit the mDirt Website Here!
+    🌐 Visit the mDirt Website
   </a>
 </p>
 
