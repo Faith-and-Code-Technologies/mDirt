@@ -21,13 +21,8 @@ mDirt v3.0 has officially released!
 ---
 
 ### 🛠️ **Supported Versions**
-- **Minecraft Versions**: 1.21.4, 1.21.5, and 1.21.6
-  - Full compatibility for **1.21.6** has been added!
-
----
-
-### 🚨 **Version 1.21.6 Support**
-Official support for **Minecraft 1.21.6** is fully implemented and is working for every Element!
+- **Minecraft Versions**: 1.21.4, 1.21.5, and 1.21.6 / 1.21.7!
+  - Full compatibility for **1.21.6 & 1.21.7** has been added!
 
 ---
 
@@ -67,7 +62,7 @@ Check out the [**mDirt Wiki**](https://github.com/Faith-and-Code-Technologies/mD
 ### 🧩 **Feature Support by Version**  
 _As of v3.0.0_
 
-| Feature        | 1.21.4 | 1.21.5 | 1.21.6 |
+| Feature        | 1.21.4 | 1.21.5 | 1.21.6/1.21.7 |
 |----------------|--------|--------|--------|
 | **Blocks**     | ✅ 100% | ✅ 100% | ✅ 100% |
 | **Items**      | ✅ 100% | ✅ 100% | ✅ 100% |
