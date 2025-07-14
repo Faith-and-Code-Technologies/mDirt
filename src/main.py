@@ -8,11 +8,13 @@ import shutil
 import string
 import subprocess
 import logging
+import random
+import string
 from pathlib import Path
 
 from PySide6.QtCore import Qt, QTimer, QEvent, QObject
-from PySide6.QtGui import QImage, QPixmap, QFont, QDropEvent, QDragEnterEvent, QIcon, QFontDatabase
-from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QWidget, QTreeWidgetItem, QCheckBox, QMessageBox
+from PySide6.QtGui import QImage, QPixmap, QFont, QDropEvent, QDragEnterEvent, QIcon, QFontDatabase, QTextCharFormat, QTextCursor, QColor
+from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QWidget, QTreeWidgetItem, QCheckBox, QMessageBox, QDialog, QGridLayout, QPushButton, QColorDialog
 
 from utils.field_validator import FieldValidator
 from utils.field_resetter import FieldResetter
@@ -30,6 +32,24 @@ APP_VERSION = '3.1.0'
 FULL_APP_VERSION = '3.1.0'
 LIB_URL = 'https://raw.githubusercontent.com/Faith-and-Code-Technologies/mDirt/main/lib'
 ISSUE_URL = 'https://github.com/Faith-and-Code-Technologies/mDirt/issues'
+MINECRAFT_COLORS = [
+    ("Black", "#000000"),
+    ("Dark Blue", "#0000AA"),
+    ("Dark Green", "#00AA00"),
+    ("Dark Aqua", "#00AAAA"),
+    ("Dark Red", "#AA0000"),
+    ("Dark Purple", "#AA00AA"),
+    ("Gold", "#FFAA00"),
+    ("Gray", "#AAAAAA"),
+    ("Dark Gray", "#555555"),
+    ("Blue", "#5555FF"),
+    ("Green", "#55FF55"),
+    ("Aqua", "#55FFFF"),
+    ("Red", "#FF5555"),
+    ("Light Purple", "#FF55FF"),
+    ("Yellow", "#FFFF55"),
+    ("White", "#FFFFFF")
+]
 
 
 class DropHandler(QObject):
@@ -262,6 +282,19 @@ class App(QMainWindow):
         self.ui.equipmentConfirmButton.clicked.connect(self.addEquipment)
 
         # Text Generator Connections
+        self.ui.textGeneratorBold.clicked.connect(self.tg_ToggleBold)
+        self.ui.textGeneratorItalic.clicked.connect(self.tg_ToggleItalic)
+        self.ui.textGeneratorUnderline.clicked.connect(self.tg_ToggleUnderline)
+        self.ui.textGeneratorStrikethrough.clicked.connect(self.tg_ToggleStrikethrough)
+        self.ui.textGeneratorObfuscated.clicked.connect(self.tg_ToggleObfuscate)
+        self.ui.textGeneratorColor.clicked.connect(self.tg_Color)
+        self.ui.textGeneratorShadowColor.clicked.connect(self.tg_ShadowColor)
+
+            # Text Generator Vars
+        self.tg_obfuscatedRegions = []
+        self.tg_obfuscateTimer = QTimer()
+        self.tg_obfuscateTimer.timeout.connect(self.tg_UpdateObfuscation)
+        self.tg_obfuscateTimer.start(80)
 
 
         # Settings Specific Connections
@@ -1595,6 +1628,128 @@ class App(QMainWindow):
         self.ui.elementEditor.setCurrentIndex(ElementPage.TEXT_GENERATOR)
         self.ui.textGeneratorTextBox.setFont(self.minecraftFont)
         self.ui.textGeneratorTextBox.setStyleSheet("background-color: #1e1e1e; color: white;")
+
+    def tg_MergeFormat(self, fmt: QTextCharFormat):
+        cursor = self.ui.textGeneratorTextBox.textCursor()
+        if not cursor.hasSelection():
+            cursor.select(QTextCursor.WordUnderCursor)
+        cursor.mergeCharFormat(fmt)
+        self.ui.textGeneratorTextBox.mergeCurrentCharFormat(fmt)
+
+    def tg_ToggleBold(self):
+        fmt = QTextCharFormat()
+        current = self.ui.textGeneratorTextBox.currentCharFormat().fontWeight()
+        fmt.setFontWeight(QFont.Normal if current > QFont.Normal else QFont.Bold)
+        self.tg_MergeFormat(fmt)
+    
+    def tg_ToggleItalic(self):
+        fmt = QTextCharFormat()
+        current = self.ui.textGeneratorTextBox.currentCharFormat().fontItalic()
+        fmt.setFontItalic(not current)
+        self.tg_MergeFormat(fmt)
+    
+    def tg_ToggleUnderline(self):
+        fmt = QTextCharFormat()
+        current = self.ui.textGeneratorTextBox.currentCharFormat().fontUnderline()
+        fmt.setFontUnderline(not current)
+        self.tg_MergeFormat(fmt)
+    
+    def tg_ToggleStrikethrough(self):
+        fmt = QTextCharFormat()
+        current = self.ui.textGeneratorTextBox.currentCharFormat().fontStrikeOut()
+        fmt.setFontStrikeOut(not current)
+        self.tg_MergeFormat(fmt)
+    
+    def tg_ToggleObfuscate(self):
+        cursor = self.ui.textGeneratorTextBox.textCursor()
+        if not cursor.hasSelection():
+            return
+
+        start = cursor.selectionStart()
+        end = cursor.selectionEnd()
+
+        for region in self.tg_obfuscatedRegions:
+            if region["start"] == start and region["end"] == end:
+                cursor.setPosition(start)
+                cursor.setPosition(end, QTextCursor.KeepAnchor)
+                cursor.insertText(region["original"])
+                self.tg_obfuscatedRegions.remove(region)
+                return
+
+        original = cursor.selectedText()
+        self.tg_obfuscatedRegions.append({
+            "start": start,
+            "end": end,
+            "original": original
+        })
+    
+    def tg_UpdateObfuscation(self):
+        if not self.tg_obfuscatedRegions:
+            return
+
+        current_cursor = self.ui.textGeneratorTextBox.textCursor()
+
+        for region in self.tg_obfuscatedRegions:
+            if current_cursor.hasSelection():
+                selection_start = current_cursor.selectionStart()
+                selection_end = current_cursor.selectionEnd()
+
+                if (
+                    selection_start <= region["end"] and
+                    selection_end >= region["start"]
+                ):
+                    continue
+
+            cursor = self.ui.textGeneratorTextBox.textCursor()
+            cursor.setPosition(region["start"])
+            cursor.setPosition(region["end"], QTextCursor.KeepAnchor)
+
+            def random_char(c):
+                if c.isspace():
+                    return c
+                return random.choice(string.ascii_letters + string.digits + "!@#$%^&*")
+
+            scrambled = ''.join(random_char(c) for c in region["original"])
+            cursor.insertText(scrambled)
+
+            region["end"] = region["start"] + len(scrambled)
+
+    def tg_Color(self):
+        dialog = QDialog(self)
+        dialog.setWindowTitle("Pick a Color")
+        layout = QGridLayout(dialog)
+
+        # Add buttons for each Minecraft color
+        for i, (name, hexcode) in enumerate(MINECRAFT_COLORS):
+            btn = QPushButton(name)
+            btn.setStyleSheet(f"background-color: {hexcode}; color: black;")
+            btn.clicked.connect(lambda _, color=hexcode: self.tg_ApplyColor(color, dialog))
+            layout.addWidget(btn, i // 4, i % 4)
+
+        # Add a custom color picker button
+        custom_btn = QPushButton("Custom Color...")
+        custom_btn.clicked.connect(lambda: self.tg_OpenColorPicker(dialog))
+        layout.addWidget(custom_btn, len(MINECRAFT_COLORS) // 4 + 1, 0, 1, 4)
+
+        dialog.setLayout(layout)
+        dialog.exec()
+    
+    def tg_ApplyColor(self, hexcode, dialog=None):
+        cursor = self.ui.textGeneratorTextBox.textCursor()
+        if cursor.hasSelection():
+            color = QColor(hexcode)
+            fmt = QTextCharFormat()
+            fmt.setForeground(color)
+            cursor.mergeCharFormat(fmt)
+
+        if dialog:
+            dialog.accept()
+    
+    def tg_OpenColorPicker(self, dialog=None):
+        color = QColorDialog.getColor()
+        if color.isValid():
+            self.tg_ApplyColor(color.name(), dialog)
+
 
     #######################
     # PACK GENERATION     #
