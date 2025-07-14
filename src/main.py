@@ -23,6 +23,7 @@ from utils.alert import alert
 
 import ui.select_item as select_item
 import ui.load_project as load_project
+from ui.shadow_text_edit import ShadowTextEdit, SHADOW_COLOR_PROPERTY
 from ui.ui import Ui_MainWindow
 
 from settings import SettingsManager
@@ -1635,31 +1636,31 @@ class App(QMainWindow):
             cursor.select(QTextCursor.WordUnderCursor)
         cursor.mergeCharFormat(fmt)
         self.ui.textGeneratorTextBox.mergeCurrentCharFormat(fmt)
-
+        
     def tg_ToggleBold(self):
         fmt = QTextCharFormat()
         current = self.ui.textGeneratorTextBox.currentCharFormat().fontWeight()
         fmt.setFontWeight(QFont.Normal if current > QFont.Normal else QFont.Bold)
         self.tg_MergeFormat(fmt)
-    
+
     def tg_ToggleItalic(self):
         fmt = QTextCharFormat()
         current = self.ui.textGeneratorTextBox.currentCharFormat().fontItalic()
         fmt.setFontItalic(not current)
         self.tg_MergeFormat(fmt)
-    
+
     def tg_ToggleUnderline(self):
         fmt = QTextCharFormat()
         current = self.ui.textGeneratorTextBox.currentCharFormat().fontUnderline()
         fmt.setFontUnderline(not current)
         self.tg_MergeFormat(fmt)
-    
+
     def tg_ToggleStrikethrough(self):
         fmt = QTextCharFormat()
         current = self.ui.textGeneratorTextBox.currentCharFormat().fontStrikeOut()
         fmt.setFontStrikeOut(not current)
         self.tg_MergeFormat(fmt)
-    
+
     def tg_ToggleObfuscate(self):
         cursor = self.ui.textGeneratorTextBox.textCursor()
         if not cursor.hasSelection():
@@ -1682,7 +1683,7 @@ class App(QMainWindow):
             "end": end,
             "original": original
         })
-    
+
     def tg_UpdateObfuscation(self):
         if not self.tg_obfuscatedRegions:
             return
@@ -1733,7 +1734,7 @@ class App(QMainWindow):
 
         dialog.setLayout(layout)
         dialog.exec()
-    
+
     def tg_ApplyColor(self, hexcode, dialog=None):
         cursor = self.ui.textGeneratorTextBox.textCursor()
         if cursor.hasSelection():
@@ -1744,12 +1745,26 @@ class App(QMainWindow):
 
         if dialog:
             dialog.accept()
-    
+
     def tg_OpenColorPicker(self, dialog=None):
         color = QColorDialog.getColor()
         if color.isValid():
             self.tg_ApplyColor(color.name(), dialog)
 
+    def tg_ShadowColor(self):
+        cursor = self.ui.textGeneratorTextBox.textCursor()
+        if not cursor.hasSelection():
+            return
+
+        color = QColorDialog.getColor()
+        if not color.isValid():
+            return
+
+        fmt = QTextCharFormat()
+        fmt.setProperty(SHADOW_COLOR_PROPERTY, color)
+        cursor.mergeCharFormat(fmt)
+
+        self.ui.textGeneratorTextBox.viewport().update()
 
     #######################
     # PACK GENERATION     #

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uihVhDNr.ui'
+## Form generated from reading UI file 'uinFDhyg.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.9.0
 ##
@@ -22,8 +22,10 @@ from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QCheckBox, QCombo
     QMenu, QMenuBar, QPlainTextEdit, QPushButton,
     QRadioButton, QScrollArea, QSizePolicy, QSlider,
     QSpinBox, QStackedWidget, QStatusBar, QTabWidget,
-    QTextBrowser, QTextEdit, QToolButton, QTreeWidget,
-    QTreeWidgetItem, QVBoxLayout, QWidget)
+    QTextBrowser, QToolButton, QTreeWidget, QTreeWidgetItem,
+    QVBoxLayout, QWidget)
+
+from .shadow_text_edit import ShadowTextEdit
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -1390,7 +1392,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_5.addLayout(self.horizontalLayout, 0, 0, 1, 1)
 
-        self.textGeneratorTextBox = QTextEdit(self.textEditor)
+        self.textGeneratorTextBox = ShadowTextEdit(self.textEditor)
         self.textGeneratorTextBox.setObjectName(u"textGeneratorTextBox")
 
         self.gridLayout_5.addWidget(self.textGeneratorTextBox, 1, 0, 1, 1)
