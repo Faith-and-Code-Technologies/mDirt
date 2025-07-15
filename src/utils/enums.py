@@ -21,3 +21,4 @@ class ElementPage(IntEnum):
     STRUCTURES = 7
     EQUIPMENT = 8
     TEXT_GENERATOR = 9
+    POTION_GENERATOR = 10

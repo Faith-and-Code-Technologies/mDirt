@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiSszfXY.ui'
+## Form generated from reading UI file 'uiwRuKAi.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.9.0
 ##
@@ -21,11 +21,9 @@ from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QCheckBox, QCombo
     QHeaderView, QLabel, QLineEdit, QMainWindow,
     QMenu, QMenuBar, QPlainTextEdit, QPushButton,
     QRadioButton, QScrollArea, QSizePolicy, QSlider,
-    QSpinBox, QStackedWidget, QStatusBar, QTabWidget,
-    QTextBrowser, QToolButton, QTreeWidget, QTreeWidgetItem,
-    QVBoxLayout, QWidget)
-
-from .shadow_text_edit import ShadowTextEdit
+    QSpacerItem, QSpinBox, QStackedWidget, QStatusBar,
+    QTabWidget, QTextBrowser, QTextEdit, QToolButton,
+    QTreeWidget, QTreeWidgetItem, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -65,6 +63,8 @@ class Ui_MainWindow(object):
         self.actionEquipmentSet.setObjectName(u"actionEquipmentSet")
         self.actionText_Generator = QAction(MainWindow)
         self.actionText_Generator.setObjectName(u"actionText_Generator")
+        self.actionPotion_Generator = QAction(MainWindow)
+        self.actionPotion_Generator.setObjectName(u"actionPotion_Generator")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.formLayout_2 = QFormLayout(self.centralwidget)
@@ -1385,11 +1385,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout_5.addLayout(self.horizontalLayout, 0, 0, 1, 1)
 
-        self.textGeneratorTextBox = ShadowTextEdit(self.textEditor)
-        self.textGeneratorTextBox.setObjectName(u"textGeneratorTextBox")
-
-        self.gridLayout_5.addWidget(self.textGeneratorTextBox, 1, 0, 1, 1)
-
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.textGeneratorType = QComboBox(self.textEditor)
@@ -1418,7 +1413,99 @@ class Ui_MainWindow(object):
 
         self.gridLayout_5.addLayout(self.horizontalLayout_3, 2, 0, 1, 1)
 
+        self.textGeneratorTextBox = QTextEdit(self.textEditor)
+        self.textGeneratorTextBox.setObjectName(u"textGeneratorTextBox")
+
+        self.gridLayout_5.addWidget(self.textGeneratorTextBox, 1, 0, 1, 1)
+
         self.elementEditor.addWidget(self.textEditor)
+        self.potionGenerator = QWidget()
+        self.potionGenerator.setObjectName(u"potionGenerator")
+        self.formLayout_11 = QFormLayout(self.potionGenerator)
+        self.formLayout_11.setObjectName(u"formLayout_11")
+        self.label_58 = QLabel(self.potionGenerator)
+        self.label_58.setObjectName(u"label_58")
+
+        self.formLayout_11.setWidget(0, QFormLayout.ItemRole.LabelRole, self.label_58)
+
+        self.potionType = QComboBox(self.potionGenerator)
+        self.potionType.addItem("")
+        self.potionType.addItem("")
+        self.potionType.addItem("")
+        self.potionType.addItem("")
+        self.potionType.setObjectName(u"potionType")
+
+        self.formLayout_11.setWidget(0, QFormLayout.ItemRole.FieldRole, self.potionType)
+
+        self.label_59 = QLabel(self.potionGenerator)
+        self.label_59.setObjectName(u"label_59")
+
+        self.formLayout_11.setWidget(1, QFormLayout.ItemRole.LabelRole, self.label_59)
+
+        self.potionColor = QPushButton(self.potionGenerator)
+        self.potionColor.setObjectName(u"potionColor")
+
+        self.formLayout_11.setWidget(1, QFormLayout.ItemRole.FieldRole, self.potionColor)
+
+        self.label_57 = QLabel(self.potionGenerator)
+        self.label_57.setObjectName(u"label_57")
+
+        self.formLayout_11.setWidget(3, QFormLayout.ItemRole.SpanningRole, self.label_57)
+
+        self.potionEffectBox = QComboBox(self.potionGenerator)
+        self.potionEffectBox.setObjectName(u"potionEffectBox")
+
+        self.formLayout_11.setWidget(5, QFormLayout.ItemRole.LabelRole, self.potionEffectBox)
+
+        self.potionAddEffect = QPushButton(self.potionGenerator)
+        self.potionAddEffect.setObjectName(u"potionAddEffect")
+
+        self.formLayout_11.setWidget(5, QFormLayout.ItemRole.FieldRole, self.potionAddEffect)
+
+        self.potionScrollArea = QScrollArea(self.potionGenerator)
+        self.potionScrollArea.setObjectName(u"potionScrollArea")
+        self.potionScrollArea.setWidgetResizable(True)
+        self.scrollAreaWidgetContents_3 = QWidget()
+        self.scrollAreaWidgetContents_3.setObjectName(u"scrollAreaWidgetContents_3")
+        self.scrollAreaWidgetContents_3.setGeometry(QRect(0, 0, 703, 218))
+        self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents_3)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout_4.addItem(self.verticalSpacer)
+
+        self.potionScrollArea.setWidget(self.scrollAreaWidgetContents_3)
+
+        self.formLayout_11.setWidget(6, QFormLayout.ItemRole.SpanningRole, self.potionScrollArea)
+
+        self.potionGenerate = QPushButton(self.potionGenerator)
+        self.potionGenerate.setObjectName(u"potionGenerate")
+
+        self.formLayout_11.setWidget(7, QFormLayout.ItemRole.SpanningRole, self.potionGenerate)
+
+        self.potionCopy = QPushButton(self.potionGenerator)
+        self.potionCopy.setObjectName(u"potionCopy")
+        icon6 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.EditCopy))
+        self.potionCopy.setIcon(icon6)
+
+        self.formLayout_11.setWidget(8, QFormLayout.ItemRole.LabelRole, self.potionCopy)
+
+        self.potionOutput = QLineEdit(self.potionGenerator)
+        self.potionOutput.setObjectName(u"potionOutput")
+
+        self.formLayout_11.setWidget(8, QFormLayout.ItemRole.FieldRole, self.potionOutput)
+
+        self.label_60 = QLabel(self.potionGenerator)
+        self.label_60.setObjectName(u"label_60")
+
+        self.formLayout_11.setWidget(2, QFormLayout.ItemRole.LabelRole, self.label_60)
+
+        self.potionName = QLineEdit(self.potionGenerator)
+        self.potionName.setObjectName(u"potionName")
+
+        self.formLayout_11.setWidget(2, QFormLayout.ItemRole.FieldRole, self.potionName)
+
+        self.elementEditor.addWidget(self.potionGenerator)
 
         self.formLayout_2.setWidget(0, QFormLayout.ItemRole.FieldRole, self.elementEditor)
 
@@ -1457,6 +1544,7 @@ class Ui_MainWindow(object):
         self.menuSave.addSeparator()
         self.menuSave.addAction(self.actionSettings)
         self.menuTools.addAction(self.actionText_Generator)
+        self.menuTools.addAction(self.actionPotion_Generator)
 
         self.retranslateUi(MainWindow)
 
@@ -1485,6 +1573,7 @@ class Ui_MainWindow(object):
         self.actionStructure.setText(QCoreApplication.translate("MainWindow", u"Structure", None))
         self.actionEquipmentSet.setText(QCoreApplication.translate("MainWindow", u"Equipment Set", None))
         self.actionText_Generator.setText(QCoreApplication.translate("MainWindow", u"Text Generator", None))
+        self.actionPotion_Generator.setText(QCoreApplication.translate("MainWindow", u"Potion Generator", None))
         ___qtreewidgetitem = self.elementViewer.headerItem()
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"Element Viewer", None));
 #if QT_CONFIG(tooltip)
@@ -2047,9 +2136,6 @@ class Ui_MainWindow(object):
         self.textGeneratorColor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:700;\">COLOR</span></p><p>Changes the color of the currently highlighted text</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.textGeneratorColor.setText(QCoreApplication.translate("MainWindow", u"Color", None))
-#if QT_CONFIG(tooltip)
-        self.textGeneratorTextBox.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The textbox where you can type your text!</p></body></html>", None))
-#endif // QT_CONFIG(tooltip)
         self.textGeneratorType.setItemText(0, QCoreApplication.translate("MainWindow", u"Raw JSON", None))
         self.textGeneratorType.setItemText(1, QCoreApplication.translate("MainWindow", u"Tellraw Command", None))
         self.textGeneratorType.setItemText(2, QCoreApplication.translate("MainWindow", u"Title", None))
@@ -2067,6 +2153,19 @@ class Ui_MainWindow(object):
 #if QT_CONFIG(tooltip)
         self.textGeneratorOutput.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The text generator output.</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
+        self.label_58.setText(QCoreApplication.translate("MainWindow", u"Potion Type", None))
+        self.potionType.setItemText(0, QCoreApplication.translate("MainWindow", u"Potion", None))
+        self.potionType.setItemText(1, QCoreApplication.translate("MainWindow", u"Splash Potion", None))
+        self.potionType.setItemText(2, QCoreApplication.translate("MainWindow", u"Lingering Potion", None))
+        self.potionType.setItemText(3, QCoreApplication.translate("MainWindow", u"Tipped Arrow", None))
+
+        self.label_59.setText(QCoreApplication.translate("MainWindow", u"Color", None))
+        self.potionColor.setText(QCoreApplication.translate("MainWindow", u"Color", None))
+        self.label_57.setText(QCoreApplication.translate("MainWindow", u"Potion Effect", None))
+        self.potionAddEffect.setText(QCoreApplication.translate("MainWindow", u"[+]", None))
+        self.potionGenerate.setText(QCoreApplication.translate("MainWindow", u"Generate", None))
+        self.potionCopy.setText("")
+        self.label_60.setText(QCoreApplication.translate("MainWindow", u"Potion Name", None))
         self.menuNew_Element.setTitle(QCoreApplication.translate("MainWindow", u"New Element", None))
         self.menuSave.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
         self.menuTools.setTitle(QCoreApplication.translate("MainWindow", u"Tools", None))

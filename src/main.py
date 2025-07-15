@@ -12,8 +12,8 @@ import string
 from pathlib import Path
 
 from PySide6.QtCore import Qt, QTimer, QEvent, QObject
-from PySide6.QtGui import QImage, QPixmap, QFont, QDropEvent, QDragEnterEvent, QIcon, QFontDatabase, QTextCharFormat, QTextCursor, QColor
-from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QWidget, QTreeWidgetItem, QCheckBox, QMessageBox, QDialog, QGridLayout, QPushButton, QColorDialog
+from PySide6.QtGui import QImage, QPixmap, QFont, QDropEvent, QDragEnterEvent, QIcon, QFontDatabase
+from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QWidget, QTreeWidgetItem, QCheckBox, QMessageBox, QHBoxLayout, QLabel, QSpinBox, QPushButton, QColorDialog
 
 from utils.field_validator import FieldValidator
 from utils.field_resetter import FieldResetter
@@ -25,6 +25,7 @@ import ui.load_project as load_project
 from ui.ui import Ui_MainWindow
 
 from generation.text_generator import TextGenerator
+from generation.potion_generator import PotionGenerator, PotionEffectWidget, PotionColorPicker
 
 from settings import SettingsManager
 from module import ModuleDownloader
@@ -104,6 +105,7 @@ class App(QMainWindow):
             # Dev mode
             self.mainDirectory = Path(__file__).resolve().parent.parent
         self.ui.menuNew_Element.setEnabled(False)
+        self.ui.menuTools.setEnabled(False)
 
         self.workspacePath = "default"
 
@@ -168,8 +170,10 @@ class App(QMainWindow):
         family = QFontDatabase.applicationFontFamilies(self.fontIDS[0])[0]
         self.minecraftFont = QFont(family, 12)
 
-        # Generator Setup
+        # Tools Setup
         self.text_generator = TextGenerator(self.ui, OBFUSCATE_PROPERTY, MINECRAFT_COLORS)
+        self.potion_generator = None
+        self.effectWidgets = []
 
         # CONNECTIONS
         self.ui.actionNew_Project.triggered.connect(self.openProjectMenu)
@@ -191,7 +195,9 @@ class App(QMainWindow):
         self.ui.actionPainting.triggered.connect(self.newPainting)
         self.ui.actionStructure.triggered.connect(self.newStructure)
         self.ui.actionEquipmentSet.triggered.connect(self.newEquipment)
+
         self.ui.actionText_Generator.triggered.connect(self.textGenerator)
+        self.ui.actionPotion_Generator.triggered.connect(self.potionGenerator)
 
         # Block Specific Connections
         self.ui.blockTextureButtonTop.clicked.connect(lambda: self.addBlockTexture(BlockFace.TOP))
@@ -296,6 +302,14 @@ class App(QMainWindow):
         self.ui.textGeneratorCopy.clicked.connect(self.text_generator.tg_CopyOutput)
 
         self.ui.textGeneratorOutput.setReadOnly(True)
+
+        # Potion Generator Connections
+        self.ui.potionAddEffect.clicked.connect(self.addPotionEffect)
+        self.ui.potionColor.clicked.connect(self.getPotionColor)
+        self.ui.potionGenerate.clicked.connect(self.generatePotion)
+        self.ui.potionCopy.clicked.connect(self.copyPotionOutput)
+
+        self.ui.potionOutput.setReadOnly(True)
 
         # Settings Specific Connections
         self.ui.settingsWorkspacePathButton.clicked.connect(self.workspacePathChanged)
@@ -470,6 +484,7 @@ class App(QMainWindow):
 
                 self.saveProjectAs()
                 self.ui.menuNew_Element.setEnabled(True) # Enable the Element buttons so user can add things to their pack
+                self.ui.menuTools.setEnabled(True)
 
                 self.ui.elementEditor.setCurrentIndex(ElementPage.HOME)
                 self.ui.textEdit.setHtml(f'<h1>Welcome to mDirt. Create a new Element to get started.</h1>')
@@ -489,6 +504,7 @@ class App(QMainWindow):
             self.setupProjectData()
             self.saveProjectAs()
             self.ui.menuNew_Element.setEnabled(True) # Enable the Element buttons so user can add things to their pack
+            self.ui.menuTools.setEnabled(True)
             self.ui.elementEditor.setCurrentIndex(ElementPage.HOME)
             self.ui.textEdit.setHtml(f'<h1>Welcome to mDirt. Create a new Element to get started.</h1>')
 
@@ -500,6 +516,7 @@ class App(QMainWindow):
         self.resourceFormat = self.version_json["resourceformat"][self.packDetails["version"]]
 
         self.ui.menuNew_Element.setEnabled(True)
+        self.ui.menuTools.setEnabled(True)
 
         self.blocks = {}
         self.items = {}
@@ -1628,6 +1645,75 @@ class App(QMainWindow):
         self.ui.elementEditor.setCurrentIndex(ElementPage.TEXT_GENERATOR)
         self.ui.textGeneratorTextBox.setFont(self.minecraftFont)
         self.ui.textGeneratorTextBox.setStyleSheet("background-color: #1e1e1e; color: white;")
+
+    def potionGenerator(self):
+        for potionEffect in self.data["effects"]:
+            effect = potionEffect.replace("_", " ").capitalize()
+            self.ui.potionEffectBox.addItem(effect)
+        
+        self.potion_generator = PotionGenerator()
+        self.effectWidgets = []
+        
+        self.ui.elementEditor.setCurrentIndex(ElementPage.POTION_GENERATOR)
+
+    def addPotionEffect(self):
+        effectId = self.ui.potionEffectBox.currentText()
+        
+        # Check if already exists using the generator
+        if self.potion_generator.hasEffect(effectId):
+            QMessageBox.warning(self, "Duplicate Effect",
+                            f"{effectId} is already added to this Potion!")
+            return
+        
+        # Create the widget
+        effectWidget = PotionEffectWidget(effectId, self.removeEffectWidget)
+        
+        # Add to layout
+        insertPosition = self.ui.verticalLayout_4.count() - 1
+        if insertPosition < 0:
+            insertPosition = 0
+        self.ui.verticalLayout_4.insertWidget(insertPosition, effectWidget)
+        
+        # Track the widget
+        self.effectWidgets.append(effectWidget)
+        
+        # Add to generator
+        self.potion_generator.addEffect(effectId)
+        
+        self.ui.potionScrollArea.ensureWidgetVisible(effectWidget)
+
+    def removeEffectWidget(self, widget):
+        if widget in self.effectWidgets:
+            self.effectWidgets.remove(widget)
+            self.potion_generator.removeEffect(widget.effectId)
+            widget.deleteLater()
+
+    def getPotionColor(self):
+        color = PotionColorPicker.showColorDialog(self)
+        if color is not None:
+            self.potion_generator.setColor(color)
+            stylesheet = PotionColorPicker.colorToStylesheet(color)
+            self.ui.potionColor.setStyleSheet(stylesheet)
+
+    def generatePotion(self):
+        # Update generator with current UI values
+        self.potion_generator.setName(self.ui.potionName.text())
+        self.potion_generator.setPotionType(self.ui.potionType.currentText())
+        
+        # Clear existing effects and add current ones
+        self.potion_generator.clearEffects()
+        for widget in self.effectWidgets:
+            effect = widget.getPotionEffect()
+            self.potion_generator.addEffect(effect)
+        
+        # Generate and display command
+        command = self.potion_generator.generateCommand()
+        self.ui.potionOutput.setText(command)
+
+    def copyPotionOutput(self):
+        clipboard = QApplication.clipboard()
+        text = self.ui.potionOutput.text()
+        clipboard.setText(text)
 
     #######################
     # PACK GENERATION     #
