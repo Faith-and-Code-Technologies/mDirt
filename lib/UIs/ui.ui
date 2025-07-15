@@ -2961,6 +2961,9 @@
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
            <widget class="QPushButton" name="textGeneratorBold">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;BOLD&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Bolds the currently highlighted text&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string/>
             </property>
@@ -2971,6 +2974,9 @@
           </item>
           <item>
            <widget class="QPushButton" name="textGeneratorItalic">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;ITALIC&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Italicizes the currently highlighted text&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string/>
             </property>
@@ -2980,17 +2986,10 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="textGeneratorStrikethrough">
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset theme="QIcon::ThemeIcon::FormatTextStrikethrough"/>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QPushButton" name="textGeneratorUnderline">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;UNDERLINE&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Underlines the currently highlighted text&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string/>
             </property>
@@ -3000,7 +2999,23 @@
            </widget>
           </item>
           <item>
+           <widget class="QPushButton" name="textGeneratorStrikethrough">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;STRIKETHROUGH&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Strikes out the currently highlighted text&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset theme="QIcon::ThemeIcon::FormatTextStrikethrough"/>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="textGeneratorObfuscated">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;OBFUSCATE&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Obfuscates the currently highlighted text&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string/>
             </property>
@@ -3010,17 +3025,10 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="textGeneratorShadowColor">
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset theme="QIcon::ThemeIcon::MediaRecord"/>
-            </property>
-           </widget>
-          </item>
-          <item>
            <widget class="QPushButton" name="textGeneratorColor">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;COLOR&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Changes the color of the currently highlighted text&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string>Color</string>
             </property>
@@ -3029,12 +3037,19 @@
          </layout>
         </item>
         <item row="1" column="0">
-         <widget class="ShadowTextEdit" name="textGeneratorTextBox"/>
+         <widget class="ShadowTextEdit" name="textGeneratorTextBox">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The textbox where you can type your text!&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
         </item>
         <item row="2" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
            <widget class="QComboBox" name="textGeneratorType">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Different Generation modes.&lt;/p&gt;&lt;p&gt;Raw JSON - Gives the JSON for the text&lt;/p&gt;&lt;p&gt;Tellraw Command - Gives the text as a `/tellraw @a` command&lt;/p&gt;&lt;p&gt;Title - Gives the text as a `/title @a` command&lt;/p&gt;&lt;p&gt;Subtitle - Gives the text as a `/title @a subtitle` command&lt;/p&gt;&lt;p&gt;Actionbar - Gives the text as a `/title @a actionbar` command&lt;/p&gt;&lt;p&gt;MOTD - Gives the text as one line, using color codes and `\n` for use in a server's &amp;quot;Message of the Day&amp;quot;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <item>
              <property name="text">
               <string>Raw JSON</string>
@@ -3069,6 +3084,9 @@
           </item>
           <item>
            <widget class="QPushButton" name="textGeneratorCopy">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Copies the output to your clipboard.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
             <property name="text">
              <string/>
             </property>
@@ -3078,7 +3096,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="textGeneratorOutput"/>
+           <widget class="QLineEdit" name="textGeneratorOutput">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The text generator output.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>

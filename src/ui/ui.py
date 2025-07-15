@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uinFDhyg.ui'
+## Form generated from reading UI file 'uiSszfXY.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.9.0
 ##
@@ -25,7 +25,7 @@ from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QCheckBox, QCombo
     QTextBrowser, QToolButton, QTreeWidget, QTreeWidgetItem,
     QVBoxLayout, QWidget)
 
-from .shadow_text_edit import ShadowTextEdit
+from shadow_text_edit import ShadowTextEdit
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -1356,19 +1356,19 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.textGeneratorItalic)
 
-        self.textGeneratorStrikethrough = QPushButton(self.textEditor)
-        self.textGeneratorStrikethrough.setObjectName(u"textGeneratorStrikethrough")
-        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.FormatTextStrikethrough))
-        self.textGeneratorStrikethrough.setIcon(icon2)
-
-        self.horizontalLayout.addWidget(self.textGeneratorStrikethrough)
-
         self.textGeneratorUnderline = QPushButton(self.textEditor)
         self.textGeneratorUnderline.setObjectName(u"textGeneratorUnderline")
-        icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.FormatTextUnderline))
-        self.textGeneratorUnderline.setIcon(icon3)
+        icon2 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.FormatTextUnderline))
+        self.textGeneratorUnderline.setIcon(icon2)
 
         self.horizontalLayout.addWidget(self.textGeneratorUnderline)
+
+        self.textGeneratorStrikethrough = QPushButton(self.textEditor)
+        self.textGeneratorStrikethrough.setObjectName(u"textGeneratorStrikethrough")
+        icon3 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.FormatTextStrikethrough))
+        self.textGeneratorStrikethrough.setIcon(icon3)
+
+        self.horizontalLayout.addWidget(self.textGeneratorStrikethrough)
 
         self.textGeneratorObfuscated = QPushButton(self.textEditor)
         self.textGeneratorObfuscated.setObjectName(u"textGeneratorObfuscated")
@@ -1376,13 +1376,6 @@ class Ui_MainWindow(object):
         self.textGeneratorObfuscated.setIcon(icon4)
 
         self.horizontalLayout.addWidget(self.textGeneratorObfuscated)
-
-        self.textGeneratorShadowColor = QPushButton(self.textEditor)
-        self.textGeneratorShadowColor.setObjectName(u"textGeneratorShadowColor")
-        icon5 = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.MediaRecord))
-        self.textGeneratorShadowColor.setIcon(icon5)
-
-        self.horizontalLayout.addWidget(self.textGeneratorShadowColor)
 
         self.textGeneratorColor = QPushButton(self.textEditor)
         self.textGeneratorColor.setObjectName(u"textGeneratorColor")
@@ -1406,17 +1399,14 @@ class Ui_MainWindow(object):
         self.textGeneratorType.addItem("")
         self.textGeneratorType.addItem("")
         self.textGeneratorType.addItem("")
-        self.textGeneratorType.addItem("")
-        self.textGeneratorType.addItem("")
-        self.textGeneratorType.addItem("")
         self.textGeneratorType.setObjectName(u"textGeneratorType")
 
         self.horizontalLayout_3.addWidget(self.textGeneratorType)
 
         self.textGeneratorCopy = QPushButton(self.textEditor)
         self.textGeneratorCopy.setObjectName(u"textGeneratorCopy")
-        icon6 = QIcon(QIcon.fromTheme(u"edit-copy"))
-        self.textGeneratorCopy.setIcon(icon6)
+        icon5 = QIcon(QIcon.fromTheme(u"edit-copy"))
+        self.textGeneratorCopy.setIcon(icon5)
 
         self.horizontalLayout_3.addWidget(self.textGeneratorCopy)
 
@@ -2033,24 +2023,50 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.label_54.setText(QCoreApplication.translate("MainWindow", u"Humanoid", None))
         self.label_55.setText(QCoreApplication.translate("MainWindow", u"Humanoid Leggings", None))
+#if QT_CONFIG(tooltip)
+        self.textGeneratorBold.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:700;\">BOLD</span></p><p>Bolds the currently highlighted text</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.textGeneratorBold.setText("")
+#if QT_CONFIG(tooltip)
+        self.textGeneratorItalic.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:700;\">ITALIC</span></p><p>Italicizes the currently highlighted text</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.textGeneratorItalic.setText("")
-        self.textGeneratorStrikethrough.setText("")
+#if QT_CONFIG(tooltip)
+        self.textGeneratorUnderline.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:700;\">UNDERLINE</span></p><p>Underlines the currently highlighted text</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.textGeneratorUnderline.setText("")
+#if QT_CONFIG(tooltip)
+        self.textGeneratorStrikethrough.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:700;\">STRIKETHROUGH</span></p><p>Strikes out the currently highlighted text</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.textGeneratorStrikethrough.setText("")
+#if QT_CONFIG(tooltip)
+        self.textGeneratorObfuscated.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:700;\">OBFUSCATE</span></p><p>Obfuscates the currently highlighted text</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.textGeneratorObfuscated.setText("")
-        self.textGeneratorShadowColor.setText("")
+#if QT_CONFIG(tooltip)
+        self.textGeneratorColor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-weight:700;\">COLOR</span></p><p>Changes the color of the currently highlighted text</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.textGeneratorColor.setText(QCoreApplication.translate("MainWindow", u"Color", None))
+#if QT_CONFIG(tooltip)
+        self.textGeneratorTextBox.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The textbox where you can type your text!</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.textGeneratorType.setItemText(0, QCoreApplication.translate("MainWindow", u"Raw JSON", None))
         self.textGeneratorType.setItemText(1, QCoreApplication.translate("MainWindow", u"Tellraw Command", None))
         self.textGeneratorType.setItemText(2, QCoreApplication.translate("MainWindow", u"Title", None))
         self.textGeneratorType.setItemText(3, QCoreApplication.translate("MainWindow", u"Subtitle", None))
         self.textGeneratorType.setItemText(4, QCoreApplication.translate("MainWindow", u"Actionbar", None))
-        self.textGeneratorType.setItemText(5, QCoreApplication.translate("MainWindow", u"Bossbar Name", None))
-        self.textGeneratorType.setItemText(6, QCoreApplication.translate("MainWindow", u"Item Name", None))
-        self.textGeneratorType.setItemText(7, QCoreApplication.translate("MainWindow", u"Item Lore", None))
-        self.textGeneratorType.setItemText(8, QCoreApplication.translate("MainWindow", u"MOTD", None))
+        self.textGeneratorType.setItemText(5, QCoreApplication.translate("MainWindow", u"MOTD", None))
 
+#if QT_CONFIG(tooltip)
+        self.textGeneratorType.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Different Generation modes.</p><p>Raw JSON - Gives the JSON for the text</p><p>Tellraw Command - Gives the text as a `/tellraw @a` command</p><p>Title - Gives the text as a `/title @a` command</p><p>Subtitle - Gives the text as a `/title @a subtitle` command</p><p>Actionbar - Gives the text as a `/title @a actionbar` command</p><p>MOTD - Gives the text as one line, using color codes and `\\n` for use in a server's &quot;Message of the Day&quot;.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.textGeneratorCopy.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Copies the output to your clipboard.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.textGeneratorCopy.setText("")
+#if QT_CONFIG(tooltip)
+        self.textGeneratorOutput.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The text generator output.</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.menuNew_Element.setTitle(QCoreApplication.translate("MainWindow", u"New Element", None))
         self.menuSave.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
         self.menuTools.setTitle(QCoreApplication.translate("MainWindow", u"Tools", None))
