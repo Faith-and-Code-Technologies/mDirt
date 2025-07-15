@@ -3029,7 +3029,7 @@
          </layout>
         </item>
         <item row="1" column="0">
-         <widget class="QTextEdit" name="textGeneratorTextBox"/>
+         <widget class="ShadowTextEdit" name="textGeneratorTextBox"/>
         </item>
         <item row="2" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -3230,6 +3230,13 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ShadowTextEdit</class>
+   <extends>QTextEdit</extends>
+   <header>shadow_text_edit.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

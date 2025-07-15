@@ -23,6 +23,7 @@ from utils.alert import alert
 
 import ui.select_item as select_item
 import ui.load_project as load_project
+from ui.shadow_text_edit import ShadowTextEdit, SHADOW_COLOR_PROPERTY
 from ui.ui import Ui_MainWindow
 
 from settings import SettingsManager
@@ -50,7 +51,7 @@ MINECRAFT_COLORS = [
     ("Yellow", "#FFFF55"),
     ("White", "#FFFFFF")
 ]
-
+OBFUSCATE_PROPERTY = 10001
 
 class DropHandler(QObject):
     def __init__(self, button, filetype, func):
@@ -289,6 +290,10 @@ class App(QMainWindow):
         self.ui.textGeneratorObfuscated.clicked.connect(self.tg_ToggleObfuscate)
         self.ui.textGeneratorColor.clicked.connect(self.tg_Color)
         self.ui.textGeneratorShadowColor.clicked.connect(self.tg_ShadowColor)
+        self.ui.textGeneratorTextBox.textChanged.connect(self.tg_UpdateTextComponentOutput)
+        self.ui.textGeneratorCopy.clicked.connect(self.tg_CopyOutput)
+
+        self.ui.textGeneratorOutput.setReadOnly(True)
 
             # Text Generator Vars
         self.tg_obfuscatedRegions = []
@@ -1641,25 +1646,25 @@ class App(QMainWindow):
         current = self.ui.textGeneratorTextBox.currentCharFormat().fontWeight()
         fmt.setFontWeight(QFont.Normal if current > QFont.Normal else QFont.Bold)
         self.tg_MergeFormat(fmt)
-    
+
     def tg_ToggleItalic(self):
         fmt = QTextCharFormat()
         current = self.ui.textGeneratorTextBox.currentCharFormat().fontItalic()
         fmt.setFontItalic(not current)
         self.tg_MergeFormat(fmt)
-    
+
     def tg_ToggleUnderline(self):
         fmt = QTextCharFormat()
         current = self.ui.textGeneratorTextBox.currentCharFormat().fontUnderline()
         fmt.setFontUnderline(not current)
         self.tg_MergeFormat(fmt)
-    
+
     def tg_ToggleStrikethrough(self):
         fmt = QTextCharFormat()
         current = self.ui.textGeneratorTextBox.currentCharFormat().fontStrikeOut()
         fmt.setFontStrikeOut(not current)
         self.tg_MergeFormat(fmt)
-    
+
     def tg_ToggleObfuscate(self):
         cursor = self.ui.textGeneratorTextBox.textCursor()
         if not cursor.hasSelection():
@@ -1674,6 +1679,10 @@ class App(QMainWindow):
                 cursor.setPosition(end, QTextCursor.KeepAnchor)
                 cursor.insertText(region["original"])
                 self.tg_obfuscatedRegions.remove(region)
+
+                fmt = QTextCharFormat()
+                fmt.setProperty(OBFUSCATE_PROPERTY, False)
+                cursor.mergeCharFormat(fmt)
                 return
 
         original = cursor.selectedText()
@@ -1682,37 +1691,35 @@ class App(QMainWindow):
             "end": end,
             "original": original
         })
-    
+
+        fmt = QTextCharFormat()
+        fmt.setProperty(OBFUSCATE_PROPERTY, True)
+        cursor.mergeCharFormat(fmt)
+
     def tg_UpdateObfuscation(self):
-        if not self.tg_obfuscatedRegions:
-            return
+        doc = self.ui.textGeneratorTextBox.document()
+        block = doc.begin()
 
-        current_cursor = self.ui.textGeneratorTextBox.textCursor()
+        while block.isValid():
+            it = block.begin()
+            while not it.atEnd():
+                frag = it.fragment()
+                if frag.isValid():
+                    fmt = frag.charFormat()
+                    if fmt.property(OBFUSCATE_PROPERTY):
+                        cursor = self.ui.textGeneratorTextBox.textCursor()
+                        cursor.setPosition(frag.position())
+                        cursor.setPosition(frag.position() + frag.length(), QTextCursor.KeepAnchor)
 
-        for region in self.tg_obfuscatedRegions:
-            if current_cursor.hasSelection():
-                selection_start = current_cursor.selectionStart()
-                selection_end = current_cursor.selectionEnd()
+                        def random_char(c):
+                            if c.isspace():
+                                return c
+                            return random.choice(string.ascii_letters + string.digits + "!@#$%^&*")
 
-                if (
-                    selection_start <= region["end"] and
-                    selection_end >= region["start"]
-                ):
-                    continue
-
-            cursor = self.ui.textGeneratorTextBox.textCursor()
-            cursor.setPosition(region["start"])
-            cursor.setPosition(region["end"], QTextCursor.KeepAnchor)
-
-            def random_char(c):
-                if c.isspace():
-                    return c
-                return random.choice(string.ascii_letters + string.digits + "!@#$%^&*")
-
-            scrambled = ''.join(random_char(c) for c in region["original"])
-            cursor.insertText(scrambled)
-
-            region["end"] = region["start"] + len(scrambled)
+                        scrambled = ''.join(random_char(c) for c in frag.text())
+                        cursor.insertText(scrambled, fmt)
+                it += 1
+            block = block.next()
 
     def tg_Color(self):
         dialog = QDialog(self)
@@ -1733,7 +1740,7 @@ class App(QMainWindow):
 
         dialog.setLayout(layout)
         dialog.exec()
-    
+
     def tg_ApplyColor(self, hexcode, dialog=None):
         cursor = self.ui.textGeneratorTextBox.textCursor()
         if cursor.hasSelection():
@@ -1744,12 +1751,95 @@ class App(QMainWindow):
 
         if dialog:
             dialog.accept()
-    
+
     def tg_OpenColorPicker(self, dialog=None):
         color = QColorDialog.getColor()
         if color.isValid():
             self.tg_ApplyColor(color.name(), dialog)
 
+    def tg_ShadowColor(self):
+        cursor = self.ui.textGeneratorTextBox.textCursor()
+        if not cursor.hasSelection():
+            return
+
+        color = QColorDialog.getColor()
+        if not color.isValid():
+            return
+
+        fmt = QTextCharFormat()
+        fmt.setProperty(SHADOW_COLOR_PROPERTY, color)
+        cursor.mergeCharFormat(fmt)
+
+        self.ui.textGeneratorTextBox.viewport().update()
+
+    def tg_UpdateTextComponentOutput(self):
+        doc = self.ui.textGeneratorTextBox.document()
+        output = []
+
+        block = doc.begin()
+        pos = 0
+
+        default_colors = {"#000000", "#ffffff"}
+
+        while block.isValid():
+            it = block.begin()
+            while not it.atEnd():
+                frag = it.fragment()
+                if frag.isValid():
+                    length = len(frag.text())
+                    text = frag.text()
+                    for region in self.tg_obfuscatedRegions:
+                        start, end, original = region["start"], region["end"], region["original"]
+                        if pos >= start and pos + length <= end:
+                            offset = pos - start
+                            text = original[offset:offset + length]
+                            break
+
+                    if text == "":
+                        pos += length
+                        it += 1
+                        continue
+
+                    fmt = frag.charFormat()
+                    component = {"text": text}
+
+                    if fmt.fontWeight() > 50:
+                        component["bold"] = True
+                    if fmt.fontItalic():
+                        component["italic"] = True
+                    if fmt.fontUnderline():
+                        component["underlined"] = True
+                    if fmt.fontStrikeOut():
+                        component["strikethrough"] = True
+                    if bool(fmt.property(OBFUSCATE_PROPERTY)):
+                        component["obfuscated"] = True
+
+                    color = fmt.foreground().color()
+                    if color.isValid():
+                        hex_color = color.name()
+                        if hex_color not in default_colors:
+                            component["color"] = hex_color
+
+                    shadow = fmt.property(SHADOW_COLOR_PROPERTY)
+                    if shadow:
+                        component["shadowColor"] = shadow.name()
+
+                    output.append(component)
+                    pos += length
+                it += 1
+
+            if block.next().isValid():
+                output.append({"text": "\n"})
+                pos += 1
+            block = block.next()
+
+        json_str = json.dumps(output, separators=(",", ":"))
+        self.ui.textGeneratorOutput.setText(json_str)
+
+    def tg_CopyOutput(self):
+        clipboard = QApplication.clipboard()
+        text = self.ui.textGeneratorOutput.text()
+        clipboard.setText(text)
 
     #######################
     # PACK GENERATION     #
