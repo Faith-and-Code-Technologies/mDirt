@@ -22,8 +22,9 @@ from utils.alert import alert
 
 import ui.select_item as select_item
 import ui.load_project as load_project
-from ui.shadow_text_edit import ShadowTextEdit, SHADOW_COLOR_PROPERTY
 from ui.ui import Ui_MainWindow
+
+from generation.text_generator import TextGenerator
 
 from settings import SettingsManager
 from module import ModuleDownloader
@@ -167,6 +168,9 @@ class App(QMainWindow):
         family = QFontDatabase.applicationFontFamilies(self.fontIDS[0])[0]
         self.minecraftFont = QFont(family, 12)
 
+        # Generator Setup
+        self.text_generator = TextGenerator(self.ui, OBFUSCATE_PROPERTY, MINECRAFT_COLORS)
+
         # CONNECTIONS
         self.ui.actionNew_Project.triggered.connect(self.openProjectMenu)
         self.ui.createProjectButton.clicked.connect(self.newProject)
@@ -282,20 +286,16 @@ class App(QMainWindow):
         self.ui.equipmentConfirmButton.clicked.connect(self.addEquipment)
 
         # Text Generator Connections
-        self.ui.textGeneratorBold.clicked.connect(self.tg_ToggleBold)
-        self.ui.textGeneratorItalic.clicked.connect(self.tg_ToggleItalic)
-        self.ui.textGeneratorUnderline.clicked.connect(self.tg_ToggleUnderline)
-        self.ui.textGeneratorStrikethrough.clicked.connect(self.tg_ToggleStrikethrough)
-        self.ui.textGeneratorObfuscated.clicked.connect(self.tg_ToggleObfuscate)
-        self.ui.textGeneratorColor.clicked.connect(self.tg_Color)
-        self.ui.textGeneratorShadowColor.clicked.connect(self.tg_ShadowColor)
-        self.ui.textGeneratorTextBox.textChanged.connect(self.tg_UpdateTextComponentOutput)
-        self.ui.textGeneratorCopy.clicked.connect(self.tg_CopyOutput)
+        self.ui.textGeneratorBold.clicked.connect(self.text_generator.tg_ToggleBold)
+        self.ui.textGeneratorItalic.clicked.connect(self.text_generator.tg_ToggleItalic)
+        self.ui.textGeneratorUnderline.clicked.connect(self.text_generator.tg_ToggleUnderline)
+        self.ui.textGeneratorStrikethrough.clicked.connect(self.text_generator.tg_ToggleStrikethrough)
+        self.ui.textGeneratorObfuscated.clicked.connect(self.text_generator.tg_ToggleObfuscate)
+        self.ui.textGeneratorColor.clicked.connect(self.text_generator.tg_Color)
+        self.ui.textGeneratorTextBox.textChanged.connect(self.text_generator.tg_UpdateTextComponentOutput)
+        self.ui.textGeneratorCopy.clicked.connect(self.text_generator.tg_CopyOutput)
 
         self.ui.textGeneratorOutput.setReadOnly(True)
-
-        self.tg_obfuscatedRegions = []
-
 
         # Settings Specific Connections
         self.ui.settingsWorkspacePathButton.clicked.connect(self.workspacePathChanged)
@@ -1629,343 +1629,6 @@ class App(QMainWindow):
         self.ui.textGeneratorTextBox.setFont(self.minecraftFont)
         self.ui.textGeneratorTextBox.setStyleSheet("background-color: #1e1e1e; color: white;")
 
-    def tg_MergeFormat(self, fmt: QTextCharFormat):
-        cursor = self.ui.textGeneratorTextBox.textCursor()
-        if not cursor.hasSelection():
-            cursor.select(QTextCursor.WordUnderCursor)
-        cursor.mergeCharFormat(fmt)
-        self.ui.textGeneratorTextBox.mergeCurrentCharFormat(fmt)
-
-    def tg_ToggleBold(self):
-        fmt = QTextCharFormat()
-        current = self.ui.textGeneratorTextBox.currentCharFormat().fontWeight()
-        fmt.setFontWeight(QFont.Normal if current > QFont.Normal else QFont.Bold)
-        self.tg_MergeFormat(fmt)
-
-    def tg_ToggleItalic(self):
-        fmt = QTextCharFormat()
-        current = self.ui.textGeneratorTextBox.currentCharFormat().fontItalic()
-        fmt.setFontItalic(not current)
-        self.tg_MergeFormat(fmt)
-
-    def tg_ToggleUnderline(self):
-        fmt = QTextCharFormat()
-        current = self.ui.textGeneratorTextBox.currentCharFormat().fontUnderline()
-        fmt.setFontUnderline(not current)
-        self.tg_MergeFormat(fmt)
-
-    def tg_ToggleStrikethrough(self):
-        fmt = QTextCharFormat()
-        current = self.ui.textGeneratorTextBox.currentCharFormat().fontStrikeOut()
-        fmt.setFontStrikeOut(not current)
-        self.tg_MergeFormat(fmt)
-
-    def tg_ToggleObfuscate(self):
-        cursor = self.ui.textGeneratorTextBox.textCursor()
-        if not cursor.hasSelection():
-            return
-
-        start_pos = cursor.selectionStart()
-        end_pos = cursor.selectionEnd()
-        
-        # Check if the selection is currently obfuscated by checking the first character
-        cursor.setPosition(start_pos)
-        cursor.setPosition(start_pos + 1, QTextCursor.KeepAnchor)
-        
-        is_obfuscated = False
-        if cursor.hasSelection():
-            fmt = cursor.charFormat()
-            is_obfuscated = bool(fmt.property(OBFUSCATE_PROPERTY))
-        
-        # Restore selection
-        cursor.setPosition(start_pos)
-        cursor.setPosition(end_pos, QTextCursor.KeepAnchor)
-        
-        if is_obfuscated:
-            # Deobfuscate: go through each fragment and restore original text
-            doc = self.ui.textGeneratorTextBox.document()
-            fragments_to_restore = []
-            
-            # Collect all fragments in the selection
-            pos = start_pos
-            while pos < end_pos:
-                cursor.setPosition(pos)
-                cursor.setPosition(pos + 1, QTextCursor.KeepAnchor)
-                if cursor.hasSelection():
-                    fmt = cursor.charFormat()
-                    if fmt.property(OBFUSCATE_PROPERTY):
-                        stored_text = fmt.property(OBFUSCATE_PROPERTY + 1)
-                        if stored_text:
-                            fragments_to_restore.append((pos, pos + 1, stored_text))
-                    pos += 1
-                else:
-                    break
-            
-            # Restore fragments from right to left to maintain positions
-            for start, end, original_text in reversed(fragments_to_restore):
-                cursor.setPosition(start)
-                cursor.setPosition(end, QTextCursor.KeepAnchor)
-                
-                # Create format without obfuscation but keep other formatting
-                new_fmt = QTextCharFormat(cursor.charFormat())
-                new_fmt.setProperty(OBFUSCATE_PROPERTY, False)
-                new_fmt.setProperty(OBFUSCATE_PROPERTY + 1, None)
-                
-                cursor.insertText(original_text, new_fmt)
-        else:
-            # Obfuscate: replace each character with box character
-            selected_text = cursor.selectedText()
-            
-            # Delete the selection first
-            cursor.removeSelectedText()
-            
-            # Insert each character with obfuscation format
-            for i, char in enumerate(selected_text):
-                display_char = '█' if not char.isspace() else char
-                
-                # Create format with obfuscation
-                fmt = QTextCharFormat(cursor.charFormat())
-                fmt.setProperty(OBFUSCATE_PROPERTY, True)
-                fmt.setProperty(OBFUSCATE_PROPERTY + 1, char)  # Store original character
-                
-                cursor.insertText(display_char, fmt)
-
-    def tg_Color(self):
-        dialog = QDialog(self)
-        dialog.setWindowTitle("Pick a Color")
-        layout = QGridLayout(dialog)
-
-        # Add buttons for each Minecraft color
-        for i, (name, hexcode) in enumerate(MINECRAFT_COLORS):
-            btn = QPushButton(name)
-            btn.setStyleSheet(f"background-color: {hexcode}; color: black;")
-            btn.clicked.connect(lambda _, color=hexcode: self.tg_ApplyColor(color, dialog))
-            layout.addWidget(btn, i // 4, i % 4)
-
-        # Add a custom color picker button
-        custom_btn = QPushButton("Custom Color...")
-        custom_btn.clicked.connect(lambda: self.tg_OpenColorPicker(dialog))
-        layout.addWidget(custom_btn, len(MINECRAFT_COLORS) // 4 + 1, 0, 1, 4)
-
-        dialog.setLayout(layout)
-        dialog.exec()
-
-    def tg_ApplyColor(self, hexcode, dialog=None):
-        cursor = self.ui.textGeneratorTextBox.textCursor()
-        if cursor.hasSelection():
-            color = QColor(hexcode)
-            fmt = QTextCharFormat()
-            fmt.setForeground(color)
-            cursor.mergeCharFormat(fmt)
-
-        if dialog:
-            dialog.accept()
-
-    def tg_OpenColorPicker(self, dialog=None):
-        color = QColorDialog.getColor()
-        if color.isValid():
-            self.tg_ApplyColor(color.name(), dialog)
-
-    def tg_ShadowColor(self):
-        cursor = self.ui.textGeneratorTextBox.textCursor()
-        if not cursor.hasSelection():
-            return
-
-        color = QColorDialog.getColor()
-        if not color.isValid():
-            return
-
-        fmt = QTextCharFormat()
-        fmt.setProperty(SHADOW_COLOR_PROPERTY, color)
-        cursor.mergeCharFormat(fmt)
-
-        self.ui.textGeneratorTextBox.viewport().update()
-
-    def tg_UpdateTextComponentOutput(self):
-        doc = self.ui.textGeneratorTextBox.document()
-        output = [""]
-
-        block = doc.begin()
-        default_colors = {"#000000", "#ffffff"}
-
-        while block.isValid():
-            it = block.begin()
-            while not it.atEnd():
-                frag = it.fragment()
-                if frag.isValid():
-                    fmt = frag.charFormat()
-                    
-                    # Get the actual text (original if obfuscated)
-                    text = frag.text()
-                    if fmt.property(OBFUSCATE_PROPERTY):
-                        original_text = fmt.property(OBFUSCATE_PROPERTY + 1)
-                        if original_text:
-                            text = original_text
-
-                    if text == "":
-                        it += 1
-                        continue
-
-                    component = {"text": text}
-
-                    # Only include formatting if it's true
-                    if fmt.fontWeight() > QFont.Normal:
-                        component["bold"] = True
-                        
-                    if fmt.fontItalic():
-                        component["italic"] = True
-                        
-                    if fmt.fontUnderline():
-                        component["underlined"] = True
-                        
-                    if fmt.fontStrikeOut():
-                        component["strikethrough"] = True
-                        
-                    if bool(fmt.property(OBFUSCATE_PROPERTY)):
-                        component["obfuscated"] = True
-
-                    color = fmt.foreground().color()
-                    if color.isValid():
-                        hex_color = color.name()
-                        if hex_color not in default_colors:
-                            component["color"] = hex_color
-
-                    shadow = fmt.property(SHADOW_COLOR_PROPERTY)
-                    if shadow and hasattr(shadow, 'name'):
-                        component["shadowColor"] = shadow.name()
-
-                    output.append(component)
-                it += 1
-
-            if block.next().isValid():
-                output.append({"text": "\n"})
-            block = block.next()
-
-        json_str = json.dumps(output, separators=(",", ":"))
-
-        if self.ui.textGeneratorType.currentText() == "Raw JSON":
-            output_string = json_str
-        elif self.ui.textGeneratorType.currentText() == "Tellraw Command":
-            output_string = "/tellraw @a " + json_str
-        elif self.ui.textGeneratorType.currentText() == "Title":
-            output_string = "/title @a title " + json_str
-        elif self.ui.textGeneratorType.currentText() == "Subtitle":
-            output_string = "/title @a subtitle " + json_str
-        elif self.ui.textGeneratorType.currentText() == "Actionbar":
-            output_string = "/title @a actionbar " + json_str
-        elif self.ui.textGeneratorType.currentText() == "MOTD":
-            # MOTD format uses legacy color codes
-            output_string = self.tg_ConvertToMOTD()
-        else:
-            output_string = json_str
-
-        self.ui.textGeneratorOutput.setText(output_string)
-
-    def tg_ConvertToMOTD(self):
-        """Convert formatted text to MOTD format using legacy color codes"""
-        doc = self.ui.textGeneratorTextBox.document()
-        motd_text = ""
-        
-        # Color code mappings from hex to legacy codes
-        color_codes = {
-            "#000000": "&0",  # Black
-            "#0000aa": "&1",  # Dark Blue
-            "#00aa00": "&2",  # Dark Green
-            "#00aaaa": "&3",  # Dark Aqua
-            "#aa0000": "&4",  # Dark Red
-            "#aa00aa": "&5",  # Dark Purple
-            "#ffaa00": "&6",  # Gold
-            "#aaaaaa": "&7",  # Gray
-            "#555555": "&8",  # Dark Gray
-            "#5555ff": "&9",  # Blue
-            "#55ff55": "&a",  # Green
-            "#55ffff": "&b",  # Aqua
-            "#ff5555": "&c",  # Red
-            "#ff55ff": "&d",  # Light Purple
-            "#ffff55": "&e",  # Yellow
-            "#ffffff": "&f",  # White
-        }
-        
-        block = doc.begin()
-        current_color = None
-        current_bold = False
-        current_italic = False
-        current_underline = False
-        current_strikethrough = False
-        current_obfuscated = False
-        
-        while block.isValid():
-            it = block.begin()
-            while not it.atEnd():
-                frag = it.fragment()
-                if frag.isValid():
-                    fmt = frag.charFormat()
-                    
-                    # Get the actual text (original if obfuscated)
-                    text = frag.text()
-                    if fmt.property(OBFUSCATE_PROPERTY):
-                        original_text = fmt.property(OBFUSCATE_PROPERTY + 1)
-                        if original_text:
-                            text = original_text
-                    
-                    if text == "":
-                        it += 1
-                        continue
-                    
-                    # Check formatting changes
-                    color = fmt.foreground().color()
-                    hex_color = color.name().lower() if color.isValid() else None
-                    bold = fmt.fontWeight() > QFont.Normal
-                    italic = fmt.fontItalic()
-                    underline = fmt.fontUnderline()
-                    strikethrough = fmt.fontStrikeOut()
-                    obfuscated = bool(fmt.property(OBFUSCATE_PROPERTY))
-                    
-                    # Add color code if color changed
-                    if hex_color != current_color:
-                        if hex_color in color_codes:
-                            motd_text += color_codes[hex_color]
-                        current_color = hex_color
-                        # Reset formatting flags when color changes
-                        current_bold = False
-                        current_italic = False
-                        current_underline = False
-                        current_strikethrough = False
-                        current_obfuscated = False
-                    
-                    # Add formatting codes
-                    if bold and not current_bold:
-                        motd_text += "&l"
-                        current_bold = True
-                    if italic and not current_italic:
-                        motd_text += "&o"
-                        current_italic = True
-                    if underline and not current_underline:
-                        motd_text += "&n"
-                        current_underline = True
-                    if strikethrough and not current_strikethrough:
-                        motd_text += "&m"
-                        current_strikethrough = True
-                    if obfuscated and not current_obfuscated:
-                        motd_text += "&k"
-                        current_obfuscated = True
-                    
-                    # Add the text
-                    motd_text += text
-                    
-                it += 1
-            
-            if block.next().isValid():
-                motd_text += "\\n"
-            block = block.next()
-        
-        return motd_text
-    
-    def tg_CopyOutput(self):
-        clipboard = QApplication.clipboard()
-        text = self.ui.textGeneratorOutput.text()
-        clipboard.setText(text)
-    
     #######################
     # PACK GENERATION     #
     #######################

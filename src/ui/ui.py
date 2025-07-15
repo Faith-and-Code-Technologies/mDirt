@@ -25,7 +25,7 @@ from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QCheckBox, QCombo
     QTextBrowser, QToolButton, QTreeWidget, QTreeWidgetItem,
     QVBoxLayout, QWidget)
 
-from shadow_text_edit import ShadowTextEdit
+from .shadow_text_edit import ShadowTextEdit
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
