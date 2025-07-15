@@ -3062,21 +3062,6 @@
             </item>
             <item>
              <property name="text">
-              <string>Bossbar Name</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Item Name</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Item Lore</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
               <string>MOTD</string>
              </property>
             </item>
