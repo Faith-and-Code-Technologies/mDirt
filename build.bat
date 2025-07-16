@@ -4,7 +4,7 @@ setlocal enabledelayedexpansion
 :: ================================
 :: CONFIGURABLE VERSION NUMBER
 :: ================================
-set "VERSION=3.1.0-beta.1"
+set "VERSION=3.1.0-beta.2"
 set "ZIP_NAME=mDirt-%VERSION%.zip"
 set "RELEASE_DIR=release"
 set "MAIN_APP_DIR=dist\mDirt-%VERSION%"

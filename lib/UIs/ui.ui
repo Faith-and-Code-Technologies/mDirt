@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>mDirt - v3.1.0 Beta 1</string>
+   <string>mDirt - v3.1.0 Beta 2</string>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -3176,8 +3176,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>703</width>
-             <height>218</height>
+             <width>98</width>
+             <height>28</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_4">

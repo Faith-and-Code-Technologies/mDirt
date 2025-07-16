@@ -13,7 +13,7 @@ from pathlib import Path
 
 from PySide6.QtCore import Qt, QTimer, QEvent, QObject
 from PySide6.QtGui import QImage, QPixmap, QFont, QDropEvent, QDragEnterEvent, QIcon, QFontDatabase
-from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QWidget, QTreeWidgetItem, QCheckBox, QMessageBox, QHBoxLayout, QLabel, QSpinBox, QPushButton, QColorDialog
+from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QWidget, QTreeWidgetItem, QCheckBox, QMessageBox
 
 from utils.field_validator import FieldValidator
 from utils.field_resetter import FieldResetter
@@ -31,7 +31,7 @@ from settings import SettingsManager
 from module import ModuleDownloader
 
 APP_VERSION = '3.1.0'
-FULL_APP_VERSION = '3.1.0-beta.1'
+FULL_APP_VERSION = '3.1.0-beta.2'
 LIB_URL = 'https://raw.githubusercontent.com/Faith-and-Code-Technologies/mDirt/main/lib'
 ISSUE_URL = 'https://github.com/Faith-and-Code-Technologies/mDirt/issues'
 MINECRAFT_COLORS = [
