@@ -1,0 +1,5 @@
+{{ header }}
+{% for block in blocks %}
+    execute as @s[tag={{ packAuthor }}.{{ block }}] run function {{ packNamespace }}:blocks/{{ block }}/place
+{% endfor %}
+kill @s
