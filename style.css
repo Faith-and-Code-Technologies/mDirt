@@ -16,6 +16,8 @@
     --minecraft-blue: #5555ff;
     --gradient-primary: linear-gradient(135deg, #4a90e2, #357abd);
     --gradient-accent: linear-gradient(135deg, #5cb85c, #449d44);
+    --success: #10b981;
+    --warning: #f59e0b;
 }
 
 body {
@@ -673,4 +675,50 @@ body {
 
 body:not(.user-is-tabbing) a:focus {
     outline: none;
+}
+
+.version-category {
+    margin: 1.5rem 0;
+}
+
+.category-title {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.category-versions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-left: 1.5rem;
+}
+
+.category-version {
+    background: var(--surface);
+    border: 1px solid #334155;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: var(--text-gray);
+}
+
+.stable .category-version {
+    border-color: var(--success);
+    color: var(--success);
+}
+
+.experimental .category-version {
+    border-color: var(--warning);
+    color: var(--warning);
+}
+
+@media (max-width: 768px) {
+    .category-versions {
+        margin-left: 0;
+        justify-content: center;
+    }
 }
