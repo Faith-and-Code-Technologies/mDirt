@@ -15,14 +15,9 @@ Creating custom Minecraft datapacks can be time-consuming and complex. **mDirt**
 
 ---
 
-### ⬆️ **v3.0 Update**
-mDirt v3.0 has officially released!
-
----
-
-### 🛠️ **Supported Versions**
-- **Minecraft Versions**: 1.21.4, 1.21.5, and 1.21.6 / 1.21.7 / 1.21.8!
-  - Full compatibility for **1.21.6 & 1.21.7 & 1.21.8** has been added!
+### 🛠️ **Snapshots**
+- **Minecraft Snapshot Support**
+  - mDirt now has the ability to support snapshots! Not every snapshot will be getting support, but some will when we have time to make them!
 
 ---
 
