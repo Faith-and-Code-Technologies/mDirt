@@ -286,5 +286,6 @@ def get_minecraft_files(version: str, soundver: str):
 # 1.21.4 = 19
 # 1.21.5 = 24
 # 1.21.6/1.21.7/1.21.8 = 26 <- this file is NOT the same for 1.21.6 and 7 versions though!
+# 25w31a = 27
 # We have NO IDEA why Mojang names their sounds this way.
-get_minecraft_files("1.21.8", "26")
+get_minecraft_files("25w31a", "27")
