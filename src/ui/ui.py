@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'uiBXmtAR.ui'
+## Form generated from reading UI file 'uibcpfWT.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.9.0
 ##
@@ -1467,7 +1467,7 @@ class Ui_MainWindow(object):
         self.potionScrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents_3 = QWidget()
         self.scrollAreaWidgetContents_3.setObjectName(u"scrollAreaWidgetContents_3")
-        self.scrollAreaWidgetContents_3.setGeometry(QRect(0, 0, 98, 28))
+        self.scrollAreaWidgetContents_3.setGeometry(QRect(0, 0, 703, 218))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents_3)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
@@ -2017,23 +2017,23 @@ class Ui_MainWindow(object):
         self.equipmentName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"emerald", None))
         self.label_43.setText(QCoreApplication.translate("MainWindow", u"Helmet Armor:", None))
 #if QT_CONFIG(tooltip)
-        self.helmetArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the helmet.</p><p>Leather: 1</p><p>Gold, Chain, Iron: 2</p><p>Diamond, Netherite: 3</p></body></html>", None))
+        self.helmetArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the helmet.</p><p>Leather: 1</p><p>Copper, Gold, Chain, Iron: 2</p><p>Diamond, Netherite: 3</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.label_50.setText(QCoreApplication.translate("MainWindow", u"Chestplate Armor:", None))
 #if QT_CONFIG(tooltip)
-        self.chestplateArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the chestplate.</p><p>Leather: 3</p><p>Gold, Chain: 5</p><p>Iron: 6</p><p>Diamond, Netherite: 8</p></body></html>", None))
+        self.chestplateArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the chestplate.</p><p>Leather: 3</p><p>Copper: 4</p><p>Gold, Chain: 5</p><p>Iron: 6</p><p>Diamond, Netherite: 8</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.label_51.setText(QCoreApplication.translate("MainWindow", u"Leggings Armor:", None))
 #if QT_CONFIG(tooltip)
-        self.leggingsArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the leggings.</p><p>Leather: 2</p><p>Gold: 3</p><p>Chain: 4</p><p>Iron: 5</p><p>Diamond, Netherite: 6</p></body></html>", None))
+        self.leggingsArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the leggings.</p><p>Leather: 2</p><p>Copper, Gold: 3</p><p>Chain: 4</p><p>Iron: 5</p><p>Diamond, Netherite: 6</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.label_52.setText(QCoreApplication.translate("MainWindow", u"Boots Armor:", None))
 #if QT_CONFIG(tooltip)
-        self.bootsArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the boots.</p><p>Leather, Gold, Chain: 1</p><p>Iron: 2</p><p>Diamond, Netherite: 3</p></body></html>", None))
+        self.bootsArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the boots.</p><p>Leather, Chain, Gold, Copper: 1</p><p>Iron: 2</p><p>Diamond, Netherite: 3</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.label_44.setText(QCoreApplication.translate("MainWindow", u"Armor Toughness:", None))
 #if QT_CONFIG(tooltip)
-        self.equipmentArmorToughness.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The toughness of the armor.<br/></p><p>Leather, Gold, Chain, Iron: 0</p><p>Diamond: 2</p><p>Netherite: 3</p></body></html>", None))
+        self.equipmentArmorToughness.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The toughness of the armor.<br/></p><p>Leather, Chain, Gold, Copper, Iron: 0</p><p>Diamond: 2</p><p>Netherite: 3</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.label_45.setText(QCoreApplication.translate("MainWindow", u"Knockback Resistance:", None))
 #if QT_CONFIG(tooltip)
@@ -2041,7 +2041,7 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.label_46.setText(QCoreApplication.translate("MainWindow", u"Durability:", None))
 #if QT_CONFIG(tooltip)
-        self.equipmentDurability.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The durability of the Chestplate.</p><p>Durability of the others are calculated as:<br/>Helmet - 68.75%</p><p>Leggings - 93.75%</p><p>Boots - 81.25%</p><p><br/></p><p>Here are the defaults:<br/>Leather - 80</p><p>Golden - 112</p><p>Chainmail - 240</p><p>Iron - 240</p><p>Diamond - 528</p><p>Netherite - 592</p></body></html>", None))
+        self.equipmentDurability.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The durability of the Chestplate.</p><p>Durability of the others are calculated as:<br/>Helmet - 68.75%</p><p>Leggings - 93.75%</p><p>Boots - 81.25%</p><p><br/></p><p>Here are the defaults:<br/>Leather - 80</p><p>Golden - 112</p><p>Copper - 176</p><p>Chainmail - 240</p><p>Iron - 240</p><p>Diamond - 528</p><p>Netherite - 592</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.equipmentConfirmButton.setText(QCoreApplication.translate("MainWindow", u"Confirm Equipment", None))
         self.label_56.setText(QCoreApplication.translate("MainWindow", u"Display Name:", None))
@@ -2108,7 +2108,7 @@ class Ui_MainWindow(object):
         self.label_49.setText(QCoreApplication.translate("MainWindow", u"Model Texture", None))
         self.label_53.setText(QCoreApplication.translate("MainWindow", u"Horse Armor", None))
 #if QT_CONFIG(tooltip)
-        self.horseArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the Horse Armor</p></body></html>", None))
+        self.horseArmor.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>The armor points for the Horse Armor</p><p>Leather - 3</p><p>Copper - 4</p><p>Iron - 5</p><p>Gold - 7</p><p>Diamond - 11</p></body></html>", None))
 #endif // QT_CONFIG(tooltip)
         self.label_54.setText(QCoreApplication.translate("MainWindow", u"Humanoid", None))
         self.label_55.setText(QCoreApplication.translate("MainWindow", u"Humanoid Leggings", None))
