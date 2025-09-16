@@ -1,4 +1,0 @@
-{{ header }}
-{% for painting in paintings %}
-    give @s painting[entity_data={id:"minecraft:painting",variant:"{{ packNamespace }}:{{ paintings[painting]["name"] }}"}] 1
-{% endfor %}
