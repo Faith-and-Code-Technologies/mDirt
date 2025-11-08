@@ -289,4 +289,4 @@ def get_minecraft_files(version: str, soundver: str):
 # 1.21.9/10 = 27
 # Next update: 28
 # We have NO IDEA why Mojang names their sounds this way.
-get_minecraft_files("25w41a", "28")
+get_minecraft_files("25w45a", "28")
